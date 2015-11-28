@@ -1,1 +1,3 @@
 include ':app', ':parse_layout', ':manualdatabase', ':debug', ':android-timeago'
+
+include ':assertionLib'
