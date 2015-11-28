@@ -1,5 +1,6 @@
 package com.ieatta.com.parse;
 
+import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.parse.ParseACL;
 import com.parse.ParseQuery;
@@ -276,7 +277,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
      - parameter query:           query's instance
      */
 
-    Task<Object> unpinInBackgroundByQuery(ParseQuery query)     {
+    Task<Object> unpinInBackground(ParseQuery query)     {
         final TaskCompletionSource unpinTask = new TaskCompletionSource();
 
         this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<Object, Object>() {
@@ -322,13 +323,15 @@ public abstract class ParseModelQuery extends ParseJsoner {
 
      - parameter deletedModel:    ParseModelAbstract's instance that want to delete
      */
-//    Task<Object> unpinInBackgroundWithNewRecord()     {
-//        return this.unpinInBackground(byQuery: this.createQueryByObjectUUID()).continueWithBlock { (task) -> AnyObject? in
-//
-//            let newRecordQuery = NewRecord(modelType: this.getModelType(), modelPoint: ParseModelAbstract.getPoint(self)).createQueryForDeletedModel()
-//            return this.unpinInBackground(byQuery: newRecordQuery)
-//        }
-//    }
+    Task<Object> unpinInBackgroundWithNewRecord()     {
+        final ParseQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
+        return this.unpinInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return unpinInBackground(newRecordQuery);
+            }
+        });
+    }
 
     /**
      * Unpin the offline object by a given PFObject's instance.
