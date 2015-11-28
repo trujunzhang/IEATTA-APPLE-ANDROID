@@ -148,14 +148,14 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     public void writeAbstractCommon(ParseObject object) {
         this.checkAndMakeObjectUUID(object);
 
-//        object[kPAPFieldObjectCreatedDateKey] = this.objectCreatedDate
-//        object[kPAPFieldFlagKey]              = this.modelFlag
+        object.put(kPAPFieldObjectCreatedDateKey, this.objectCreatedDate);
+        object.put(kPAPFieldFlagKey, this.modelFlag);
     }
 
     public void checkAndMakeObjectUUID(ParseObject object) {
         this.makeObjectUUID();
 
-//        object[kPAPFieldObjectUUIDKey] = this.objectUUID
+        object.put(kPAPFieldObjectUUIDKey, this.objectUUID);
     }
 
     public abstract void writeCommonObject(ParseObject object);
