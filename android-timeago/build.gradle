@@ -1,19 +1,20 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion Integer.parseInt(ANDROID_COMPILE_SDK_VERSION)
+    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Integer.parseInt(ANDROID_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(ANDROID_TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(ANDROID_VERSION_CODE)
+        versionName ANDROID_VERSION_NAME
+        consumerProguardFiles 'proguard-consumer.txt'
     }
+
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        debug {
+            testCoverageEnabled Boolean.parseBoolean(IS_COVERAGE_ENABLED)
         }
     }
 }
