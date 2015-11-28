@@ -20,6 +20,7 @@ import com.parse.ParseObject;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -274,36 +275,47 @@ public abstract class ParseModelQuery extends ParseJsoner {
 
      - parameter query:           query's instance
      */
-//    Task<Object> unpinInBackground(byQuery ParseQuery query)     {
-//        let unpinTask = BFTaskCompletionSource()
-//        this.getFirstLocalObjectArrayInBackground(query).continueWithBlock({ (task) -> AnyObject? in
-//        if let _error = task.error{
-//            ///Here, return value is false means that not found object.
-//            unpinTask.setError(_error)
-//        }else{
-//            let value = task.result as! NSArray
-//            if(value.count >= 1){
-//                ParseModelQuery.unpinObjectInBackground(forObject: (value[0] as! PFObject)).continueWithBlock({ (task) -> AnyObject? in
-//                if let _error = task.error{
-//                    unpinTask.setError(_error)
-//                }else{
-//                    unpinTask.setResult(true)
-//                }
-//                return nil
-//                })
-//            }else{
-//                // **** Important ****
-//                // Here, return value is false means that not found object.
-//                // For example, if all newrecord objects already pushed to server.
-//                // No newrecord rows on the local table. So not found newrecord here.
-//                unpinTask.setResult(false)
-//            }
-//        }
-//        return nil
-//        })
-//
-//        return unpinTask.task
-//    }
+
+    Task<Object> unpinInBackgroundByQuery(ParseQuery query)     {
+        final TaskCompletionSource unpinTask = new TaskCompletionSource();
+
+        this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if(task.getError()!= null){
+                    unpinTask.setResult(task.getError());
+                }else {
+                    Object result = task.getResult();
+                    LinkedList<Object> value = new LinkedList<Object>((Collection<?>) result);
+                    if(value.size() >= 1){
+                        ParseObject object = (ParseObject) value.get(0);
+                        ParseModelQuery.unpinObjectInBackground(object).continueWith(new Continuation<Void, Object>() {
+                            @Override
+                            public Object then(Task<Void> task) throws Exception {
+                                if(task.getError() != null){
+                                    unpinTask.setError(task.getError());
+                                }else{
+                                    unpinTask.setResult(true);
+                                }
+                                return null;
+                            }
+                        });
+                    }else{
+                        // **** Important ****
+                        // Here, return value is false means that not found object.
+                        // For example, if all newrecord objects already pushed to server.
+                        // No newrecord rows on the local table. So not found newrecord here.
+                        unpinTask.setResult(false);
+                    }
+
+                }
+
+                return null;
+            }
+        });
+
+        return unpinTask.getTask();
+    }
 
     /**
      Unpin the first offline object itself with NewRecord by query instance.
