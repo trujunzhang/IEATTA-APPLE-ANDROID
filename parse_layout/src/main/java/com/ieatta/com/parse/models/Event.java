@@ -23,6 +23,8 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.Date;
 
+//import com.twofortyfouram.assertion;
+
 /**
  * Created by djzhang on 11/27/15.
  */
@@ -97,6 +99,7 @@ public class Event extends ParseModelSync {
 
     @Override
     public void writeCommonObject(ParseObject object) {
+//        Assertions.
 //        assert(this.restaurantRef.isEmpty == false, "Must setup restaurantRef.")
 
         object.put(kPAPFieldDisplayNameKey, this.displayName);
