@@ -165,8 +165,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
     }
 
-//     @Override
-     public Task<Object> getFirstLocalModelArrayTask()   {
+    @Override public Task<Object> getFirstLocalModelArrayTask()   {
          return this.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Object, Object>() {
              @Override
              public Object then(Task<Object> task) throws Exception {
@@ -175,9 +174,9 @@ public abstract class ParseModelQuery extends ParseJsoner {
          });
     }
 
-//     @Override     public Task<Object> getFirstOnlineObjectTask()   {
-//        return this.createQueryByObjectUUID().getFirstObjectInBackground();
-//    }
+     @Override     public Task<Object> getFirstOnlineObjectTask()   {
+        return this.createQueryByObjectUUID().getFirstInBackground();
+    }
 
     /**
      * Get count of objects on the offline datastore.
@@ -335,21 +334,24 @@ public abstract class ParseModelQuery extends ParseJsoner {
      - parameter type:            ParseModel's type
      - parameter model:           insance of query
      */
-//    Task<Object> deleteOnlineObjectInBackground(PQeuryModelType type,ParseModelAbstract model)     {
-//        return this.deleteOnlineObjectInBackground(ParseModelQuery.createQuery(type,model));
-//    }
+    Task<Object> deleteOnlineObjectInBackground(PQeuryModelType type,ParseModelAbstract model)     {
+        return this.deleteOnlineObjectInBackground(ParseModelQuery.createQuery(type,model));
+    }
 
     /**
      Delete the first online object by query instance.
 
      - parameter query:           query's instance
      */
-//    Task<Object> deleteOnlineObjectInBackground(ParseQuery query)     {
-//        return this.getFirstLocalObjectArrayInBackground(query).continueWithBlock { (task) -> AnyObject? in
-//
-//            return this.deleteOnlineObjectBackgroundForObject(task.result as! PFObject)
-//        }
-//    }
+    Task<Object> deleteOnlineObjectInBackground(ParseQuery query)     {
+        return this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                ParseObject object = (ParseObject) task.getResult();
+                return deleteOnlineObjectBackgroundForObject(object);
+            }
+        });
+    }
 
     /**
      * Delete the online object by a given PFObject's instance.
@@ -359,5 +361,4 @@ public abstract class ParseModelQuery extends ParseJsoner {
     Task<Void> deleteOnlineObjectBackgroundForObject(ParseObject object) {
         return object.deleteInBackground();
     }
-
 }

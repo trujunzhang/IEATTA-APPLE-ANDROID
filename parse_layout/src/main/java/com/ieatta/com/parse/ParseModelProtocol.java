@@ -54,9 +54,9 @@ public interface ParseModelProtocol {
      * <p/>
      * - returns: task's instance, task's result is [ParseModelAbstract]
      */
-//    public Task<Object> getFirstLocalModelArrayTask();
-//
-//    public Task<Object> getFirstOnlineObjectTask();
-//
+    public Task<Object> getFirstLocalModelArrayTask();
+
+    public Task<Object> getFirstOnlineObjectTask();
+
 //    public Task<Object> queryBelongToTask(ParseModelAbstract belongTo);
 }
