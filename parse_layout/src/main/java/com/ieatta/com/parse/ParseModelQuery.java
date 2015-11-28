@@ -133,18 +133,19 @@ public abstract class ParseModelQuery extends ParseJsoner {
     public static Task<Object> queryFromDatabase(final PQeuryModelType type, final ParseQuery query) {
         final TaskCompletionSource<Object> queryTask = new TaskCompletionSource<>();
 
-        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
-            @Override
-            public Object then(Task<List<ParseObject>> task) throws Exception {
+        ParseModelQuery.findLocalObjectsInBackground(query)
+                .continueWith(new Continuation<List<ParseObject>, Object>() {
+                    @Override
+                    public Object then(Task<List<ParseObject>> task) throws Exception {
 
-                LinkedList<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(type).convertToParseModelArray(task.getResult(), true);
+                        LinkedList<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(type).convertToParseModelArray(task.getResult(), true);
 
-                TaskCompletionSource<Object> nextTask = new TaskCompletionSource<>();
-                nextTask.setResult(array);
+                        TaskCompletionSource<Object> nextTask = new TaskCompletionSource<>();
+                        nextTask.setResult(array);
 
-                return nextTask;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
+                        return nextTask;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted() == true) {
@@ -164,11 +165,15 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
     }
 
-//     @Override     public Task<Object> getFirstLocalModelArrayTask()   {
-//        return this.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).continueWithSuccessBlock { (task) -> AnyObject? in
-//            return this.convertToLocalModelTask(task)
-//        }
-//    }
+//     @Override
+     public Task<Object> getFirstLocalModelArrayTask()   {
+         return this.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Object, Object>() {
+             @Override
+             public Object then(Task<Object> task) throws Exception {
+                 return convertToLocalModelTask(task);
+             }
+         });
+    }
 
 //     @Override     public Task<Object> getFirstOnlineObjectTask()   {
 //        return this.createQueryByObjectUUID().getFirstObjectInBackground();
@@ -197,19 +202,19 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * <p/>
      * - returns: the first object's array,like [PFObject's instance].
      */
-    public  static Task<Object> getFirstLocalObjectArrayInBackground(ParseQuery query){
+    public static Task<Object> getFirstLocalObjectArrayInBackground(ParseQuery query) {
         final TaskCompletionSource findTask = new TaskCompletionSource();
 
         ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
             @Override
             public Object then(Task<List<ParseObject>> task) throws Exception {
-                if(task.getError() == null){
+                if (task.getError() == null) {
                     findTask.setError(task.getError());
-                }else{
-                    LinkedList<ParseObject> objects =  new LinkedList<ParseObject>(task.getResult());
-                    if(objects.size() == 0){
+                } else {
+                    LinkedList<ParseObject> objects = new LinkedList<ParseObject>(task.getResult());
+                    if (objects.size() == 0) {
                         findTask.setResult(new LinkedList<ParseObject>());
-                    }else {
+                    } else {
                         findTask.setResult(objects);
                     }
                 }
@@ -217,7 +222,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
             }
         });
 
-        return  findTask.getTask();
+        return findTask.getTask();
     }
 
     public static Task<List<ParseObject>> findLocalObjectsInBackground(ParseQuery query) {
@@ -246,7 +251,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return object.pinInBackground("Offline");
     }
 
-    Task<Object> pinInBackgroundWithNewRecord()   {
+    Task<Object> pinInBackgroundWithNewRecord() {
         return this.pinInBackgroundForModel().continueWith(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {

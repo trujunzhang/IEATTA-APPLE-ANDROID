@@ -11,6 +11,7 @@ import com.lukazakrajsek.timeago.TimeAgo;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.UUID;
@@ -292,13 +293,13 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     public LinkedList<ParseModelAbstract> convertToParseModelArray(Object value, boolean offline)  {
         LinkedList<ParseModelAbstract> array = new LinkedList<>();
 
-//        for object in (value! as! NSArray){
-//            if(offline){
-//                array.append(ParseModelAbstract.convertToLocalModel((ParseObject)object,instance: getNewInstance()) as AnyObject)
-//            }else{
-//                array.append(ParseModelAbstract.convertToOnlineModel((ParseObject)object,instance: getNewInstance()) as AnyObject)
-//            }
-//        }
+        for(ParseModelAbstract object : array){
+            if(offline == true){
+                ParseModelAbstract.convertToFirstLocalModel(object,this.getNewInstance());
+            }else{
+                ParseModelAbstract.convertToOnlineModel(object,this.getNewInstance());
+            }
+        }
 
         return array;
     }
@@ -319,34 +320,53 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return instance;
     }
 
-//    public void convertToOnlineModelTask(getFirstObjectTask:BFTask) BFTask{
-//        if let object = getFirstObjectTask.result{
-//            this.readObject((ParseObject)object)
-//            return BFTask(result: true)
-//        }
-//
-//        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
-//    }
+    public Task<Object> convertToOnlineModelTask(Task<Object> getFirstObjectTask) {
+        Object result = getFirstObjectTask.getResult();
+        if(result!= null){
+            LinkedList<Object> array = new LinkedList<>((Collection<?>) result);
+            if(array.size() >= 1){
+                ParseObject firstObject = (ParseObject) array.get(0);
+                this.readObject(firstObject);
+                TaskCompletionSource<Object> finishTask = new TaskCompletionSource<>();
+                finishTask.setResult(true);
+                return finishTask.getTask();
+            }
+        }
 
-//    public void convertToLocalModelTask(firstObjectArray:BFTask) BFTask{
-//        if let value = firstObjectArray.result{
-//            let array = value as! NSArray
-//            if(array.count >= 1){
-//                let firstObject = array[0] as! ParseObject
-//                this.readObjectLocal(firstObject)
-//                return BFTask(result: true)
-//            }
-//        }
-//
 //        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
-//    }
-//
-//    class public ParseModelAbstract convertToFirstLocalModel(result:AnyObject?,ParseModelAbstract instance)  {
-//        if((result! as! NSArray).count == 1){
-//            return instance.convertToLocalModel((result! as! NSArray)[0])
-//        }
-//        return nil
-//    }
+        TaskCompletionSource finishTask = new TaskCompletionSource<>();
+//        finishTask.setError(new Error(""));
+        return finishTask.getTask();
+    }
 
+    public Task<Object> convertToLocalModelTask(Task<Object> firstObjectArray) {
+        Object result = firstObjectArray.getResult();
+        if(result!= null){
+            LinkedList<Object> array = new LinkedList<>((Collection<?>) result);
+            if(array.size() >= 1){
+                ParseObject firstObject = (ParseObject) array.get(0);
+                this.readObjectLocal(firstObject);
+                TaskCompletionSource<Object> finishTask = new TaskCompletionSource<>();
+                finishTask.setResult(true);
+                return finishTask.getTask();
+            }
+        }
+
+//        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
+
+        TaskCompletionSource finishTask = new TaskCompletionSource<>();
+//        finishTask.setError(new Error(""));
+        return finishTask.getTask();
+
+    }
+//
+    static public ParseModelAbstract convertToFirstLocalModel(Object result,ParseModelAbstract instance)  {
+        LinkedList<Object> array = new LinkedList<>((Collection<?>) result);
+        if(array.size() == 1){
+            return instance.convertToLocalModel(array.get(0));
+        }
+
+        return null;
+    }
 
 }
