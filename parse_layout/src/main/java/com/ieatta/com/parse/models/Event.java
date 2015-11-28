@@ -20,6 +20,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
+import com.twofortyfouram.assertion.Assertions;
 
 import java.util.Date;
 
@@ -99,8 +100,7 @@ public class Event extends ParseModelSync {
 
     @Override
     public void writeCommonObject(ParseObject object) {
-//        Assertions.
-//        assert(this.restaurantRef.isEmpty == false, "Must setup restaurantRef.")
+        Assertions.assertNotEmpty(this.restaurantRef,"Must setup restaurantRef.");
 
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldStartDateKey, this.startDate);

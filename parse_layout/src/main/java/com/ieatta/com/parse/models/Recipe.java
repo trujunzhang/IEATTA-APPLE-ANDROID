@@ -165,10 +165,11 @@ public class Recipe extends ParseModelSync {
 //
 //    }
 
-//    static Task<Object> queryOrderedRecipesCount(ParseUser people,Event event)   {
-//        Recipe recipe =new  Recipe();
-//        return recipe.countLocalObjects(recipe.createQuery(people,event));
-//    }
+    static Task<Integer> queryOrderedRecipesCount(ParseUser people,Event event)   {
+        Recipe recipe =new  Recipe();
+
+        return recipe.countLocalObjects(recipe.createQuery(people,event));
+    }
 
     // MARK: Description
     @Override

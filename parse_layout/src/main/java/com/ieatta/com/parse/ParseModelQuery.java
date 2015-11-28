@@ -197,25 +197,29 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * <p/>
      * - returns: the first object's array,like [PFObject's instance].
      */
-//    public  static Task<Object> getFirstLocalObjectArrayInBackground(ParseQuery query){
-//        let findTask = BFTaskCompletionSource()
-//
-//        ParseModelQuery.findLocalObjectsInBackground(query).continueWithBlock { (task) -> AnyObject? in
-//            if let _error = task.error{
-//                findTask.setError(_error)
-//            }else{
-//                let objects = task.result as! NSArray
-//                if(objects.count == 0){
-//                    findTask.setResult([PFObject]()) // Empty array
-//                }else{
-//                    findTask.setResult(objects) // Array contains the first object.
-//                }
-//            }
-//            return nil
-//        }
-//
-//        return findTask.task
-//    }
+    public  static Task<Object> getFirstLocalObjectArrayInBackground(ParseQuery query){
+        final TaskCompletionSource findTask = new TaskCompletionSource();
+
+        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
+            @Override
+            public Object then(Task<List<ParseObject>> task) throws Exception {
+                if(task.getError() == null){
+                    findTask.setError(task.getError());
+                }else{
+                    LinkedList<ParseObject> objects =  new LinkedList<ParseObject>(task.getResult());
+                    if(objects.size() == 0){
+                        findTask.setResult(new LinkedList<ParseObject>());
+                    }else {
+                        findTask.setResult(objects);
+                    }
+                }
+                return null;
+            }
+        });
+
+        return  findTask.getTask();
+    }
+
     public static Task<List<ParseObject>> findLocalObjectsInBackground(ParseQuery query) {
         // *** Important ***
         query.fromLocalDatastore();

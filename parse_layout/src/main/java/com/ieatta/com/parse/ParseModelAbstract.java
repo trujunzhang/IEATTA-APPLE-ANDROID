@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import java.util.UUID;
 
 import bolts.Task;
+import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -138,9 +139,9 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     }
 
     // MARK: Common methonds.
-//    public NewRecord getNewRecord()  {
-//        return NewRecord(modelType: getModelType().rawValue, modelPoint: this.objectUUID, modelCreatedDate: this.objectCreatedDate)
-//    }
+    public NewRecord getNewRecord()  {
+        return new  NewRecord( getModelType(),  this.objectUUID,  this.objectCreatedDate);
+    }
 
     // MARK: Support common methonds for writing ParseObject.
     public void writeAbstractCommon(ParseObject object) {
@@ -228,14 +229,15 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return objectUUID.hashCode();
     }
 
-//    class public [String] getModelPoints(BFTask previous)  {
-//        let fetchedModels:NSArray = previous.result as! NSArray
-//        var points:[String] = [String]()
+    static public LinkedList<String> getModelPoints(TaskCompletionSource previous)  {
+//        let fetchedModels:NSArray = previous.getTask().getResult()
+        LinkedList<String> points = new LinkedList<>();
+
 //        for model in fetchedModels{
 //            points.append(ParseModelAbstract.getPoint(model as! ParseModelAbstract))
 //        }
-//        return points
-//    }
+        return points;
+    }
 
     // MARK: Description
     public String printDescription() {

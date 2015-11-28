@@ -130,8 +130,8 @@ public class PeopleInEvent extends ParseModelSync {
 //        return BFTask(result: sortedPeople)
 //    }
 
-//    Task<Object>   saveParseUser()   {
-//        return this.pinInBackgroundWithNewRecord()
+//    public Task<Object>   saveParseUser()   {
+//        return this.pinInBackgroundWithNewRecord();
 //    }
 
     // MARK: Description

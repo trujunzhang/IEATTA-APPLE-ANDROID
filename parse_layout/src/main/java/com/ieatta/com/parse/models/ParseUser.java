@@ -137,9 +137,9 @@ public class ParseUser extends ParseModelSync {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.ParseUser, new ParseUser().makeParseQuery());
     }
 
-//    static Task<Object> queryParseUser(LinkedList<String> points)   {
-//        return new  ParseUser().queryParseModels(PQeuryModelType.ParseUser, points);
-//    }
+    static Task<Object> queryParseUserByPoints(LinkedList<String> points)   {
+        return new  ParseUser().queryParseModels(PQeuryModelType.ParseUser, points);
+    }
 
     static Task<Object> queryParseUser(LinkedList<PeopleInEvent> list) {
         // 1. Get ordered people reference.
@@ -152,9 +152,9 @@ public class ParseUser extends ParseModelSync {
     static LinkedList<String> getPeoplePoints(LinkedList<PeopleInEvent> peopleInEvent) {
         LinkedList<String> peoplePoints = new LinkedList<>();
 
-//        for model in peopleInEvent{
-//            peoplePoints.append(model.userRef)
-//        }
+        for(PeopleInEvent model : peopleInEvent){
+            peoplePoints.add(model.userRef);
+        }
 
         return peoplePoints;
     }
@@ -175,9 +175,9 @@ public class ParseUser extends ParseModelSync {
     static LinkedList<ParseUser> convertToParseUserArray(LinkedList<ParseObject> objectArray) {
         LinkedList<ParseUser> array = new LinkedList<>();
 
-//        for object in objectArray{
-//            array.append(convertToModel(object as! PFObject,instance: ParseUser()) as! ParseUser)
-//        }
+        for(ParseObject object : objectArray){
+            array.add((ParseUser)convertToModel(object,new ParseUser()));
+        }
 
         return array;
     }
