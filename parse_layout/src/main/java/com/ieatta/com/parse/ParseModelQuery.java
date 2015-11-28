@@ -239,18 +239,21 @@ public abstract class ParseModelQuery extends ParseJsoner {
     // =============================================================================
     //        offline Store
     // =============================================================================
-    Task<Void> pinInBackgroundForModel() {
+    public Task<Void> pinInBackgroundForModel() {
         ParseObject object = makeObject();
         this.writeLocalObject(object);
 
         return object.pinInBackground("Offline");
     }
 
-//    Task<Void> pinInBackgroundWithNewRecord()   {
-//        return this.pinInBackgroundForModel().continueWithBlock { (task) -> AnyObject? in
-//            return this.getNewRecord().pinInBackgroundForModel()
-//        }
-//    }
+    Task<Object> pinInBackgroundWithNewRecord()   {
+        return this.pinInBackgroundForModel().continueWith(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                return getNewRecord().pinInBackgroundForModel();
+            }
+        });
+    }
 
     // =============================================================================
     //        Online Store
