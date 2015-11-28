@@ -177,19 +177,20 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     // MARK: Support common methonds for reading ParseObject.
 
-
     public void readAbstractCommon(ParseObject object) {
-//        if let theObjectUUID: AnyObject = getValueFromObject(object,key: kPAPFieldObjectUUIDKey){
-//            this.objectUUID = theObjectUUID as! String
-//        }
-//
-//        if let theObjectCreatedDate: AnyObject = getValueFromObject(object,key: kPAPFieldObjectCreatedDateKey){
-//            this.objectCreatedDate = theObjectCreatedDate as! NSDate
-//        }
-//
-//        if let theModelFlag: AnyObject = getValueFromObject(object,key: kPAPFieldFlagKey){
-//            this.modelFlag = theModelFlag as! Int
-//        }
+        Object theObjectUUID = this.getValueFromObject(object, kPAPFieldObjectUUIDKey);
+        if (theObjectUUID != null) {
+            this.objectUUID = (String) theObjectUUID;
+        }
+        Object theObjectCreatedDate = this.getValueFromObject(object, kPAPFieldObjectCreatedDateKey);
+        if (theObjectCreatedDate != null) {
+            this.objectCreatedDate = (Date) theObjectCreatedDate;
+        }
+        Object theModelFlag = this.getValueFromObject(object, kPAPFieldFlagKey);
+        if (theModelFlag != null) {
+            int type = (int) theModelFlag;
+            this.modelFlag = ParseModelFlag.fromInteger(type);
+        }
     }
 
 //    public void readCommonObject(ParseObject object){
