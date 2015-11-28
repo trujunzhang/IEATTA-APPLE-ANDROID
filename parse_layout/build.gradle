@@ -21,12 +21,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile group:'junit', name:'junit', version:"${JUNIT_VERSION}"
-    compile group:'com.android.support', name:'appcompat-v7', version:"${SUPPORT_APPCOMPAT_ANDROID_VERSION}"
-
-    compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
-    compile group:'com.parse.bolts', name:'bolts-tasks', version:"${BOLTS_ANDROID_VERSION}"
-    compile group:'com.parse.bolts', name:'bolts-applinks', version:"${BOLTS_ANDROID_VERSION}"
-
-    compile project(':android-timeago')
+    testCompile group: 'junit', name: 'junit', version: "${JUNIT_VERSION}" compile group: 'com.android.support', name: 'appcompat-v7', version: "${SUPPORT_APPCOMPAT_ANDROID_VERSION}" compile group: 'com.parse', name: 'parse-android', version: "${PARSE_ANDROID_VERSION}" compile group: 'com.parse.bolts', name: 'bolts-tasks', version: "${BOLTS_ANDROID_VERSION}" compile group: 'com.parse.bolts', name: 'bolts-applinks', version: "${BOLTS_ANDROID_VERSION}" compile project(':android-timeago')
+    compile project(':assertionLib')
 }

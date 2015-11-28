@@ -3,10 +3,6 @@ apply plugin: 'findbugs'
 apply plugin: 'maven'
 
 dependencies {
-    compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
-    compile group:'com.parse.bolts', name:'bolts-tasks', version:'1.3.0'
-    compile group:'com.parse.bolts', name:'bolts-applinks', version:'1.3.0'
-
     compile group:'net.jcip', name:'jcip-annotations', version:"${JCIP_ANNOTATION_VERSION_MATCHER}"
     compile group:'com.android.support', name:'support-annotations', version:"${ANDROID_SUPPORT_ANNOTATION_VERSION_MATCHER}"
     compile group:'com.twofortyfouram', name:'android-annotation', version:"${TWOFORTYFOURAM_ANNOTATION_VERSION_MATCHER}"
