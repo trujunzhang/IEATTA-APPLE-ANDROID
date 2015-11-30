@@ -48,11 +48,12 @@ public class ParseAsyncTimer {
         @Override
         public void run() {
             try {
-                System.out.println("\t periodicTask Execution Time: "
-                        + fmt.format(new Date()));
+//                System.out.println("\t periodicTask Execution Time: " + fmt.format(new Date()));
+
+                everyTask();
                 Thread.sleep(10 * 1000);
-                System.out.println("\t periodicTask End Time: "
-                        + fmt.format(new Date()));
+
+//                System.out.println("\t periodicTask End Time: " + fmt.format(new Date()));
             } catch (Exception e) {
 
             }
@@ -61,7 +62,7 @@ public class ParseAsyncTimer {
 
 
     private void everyTask(){
-
+        ParseAsyncHandler.sharedInstance.executeParseAsyncHandler();
     }
 
     public void prepareTimer(){
