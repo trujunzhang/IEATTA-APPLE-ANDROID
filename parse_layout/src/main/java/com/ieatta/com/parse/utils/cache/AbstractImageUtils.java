@@ -110,7 +110,9 @@ public abstract class AbstractImageUtils {
 
      - returns: task's instance
      */
-    public abstract Task<Object> generateTakenPhoto(Bitmap image, Photo model) ;
+    public  Task<Object> generateTakenPhoto(Bitmap image, Photo model) {
+        return null;
+    }
 
 
     public Task<Object> downloadImageWithURL(String URL) {
