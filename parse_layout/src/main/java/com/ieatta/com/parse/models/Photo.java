@@ -5,6 +5,7 @@ import com.ieatta.com.parse.ParseModelSync;
 
 import bolts.Task;
 
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.parse.ParseQuery;
@@ -149,24 +150,24 @@ public class Photo extends ParseModelSync {
 
     @Override
     public void writeObject(ParseObject object) {
-//         super.writeObject(object);
-//
+         super.writeObject(object);
+
 //        // Special: Used only for the online object.
 //        object[kPAPFieldOriginalImageKey]    = ImageOptimizeUtils.getPFFileForOrginalImage(self);
 //        object[kPAPFieldThumbnailImageKey]   = ImageOptimizeUtils.getPFFileForThumbnailImage(self);
-//
-//        this.writeCommonObject(object);
+
+        this.writeCommonObject(object);
     }
 
     @Override
     public void writeLocalObject(ParseObject object) {
-//         super.writeLocalObject(object);
-//
-//        // Special: Used only for the offline object.
-//        object[kPAPFieldOriginalUrlKey]    = this.originalUrl;
-//        object[kPAPFieldThumbnailUrlKey]   = this.thumbnailUrl;
-//
-//        this.writeCommonObject(object);
+         super.writeLocalObject(object);
+
+        // Special: Used only for the offline object.
+        object.put(kPAPFieldOriginalUrlKey, this.originalUrl);
+        object.put(kPAPFieldThumbnailUrlKey, this.thumbnailUrl);
+
+        this.writeCommonObject(object);
     }
 
 
@@ -190,38 +191,37 @@ public class Photo extends ParseModelSync {
 
     @Override
     public void readObject(ParseObject object) {
-//        super.readObject(object)
-//
-//        // Special: Used only for the online object.
-//        if let _originalFile: AnyObject = getValueFromObject(object,key: kPAPFieldOriginalImageKey){
-//            if let url = ((_originalFile as? PFFile)!).url{
-//                this.originalUrl  = url
-//            }
-//        }
-//
-//        if let _thumbnailFile: AnyObject = getValueFromObject(object,key: kPAPFieldThumbnailImageKey){
-//            if let url = ((_thumbnailFile as? PFFile)!).url{
-//                this.thumbnailUrl  = url
-//            }
-//        }
-//
-//        this.readCommonObject(object)
+        super.readObject(object);
+
+        // Special: Used only for the online object.
+        Object _originalFile = this.getValueFromObject(object, kPAPFieldOriginalImageKey);
+        if (_originalFile != null) {
+            this.originalUrl = ((ParseFile)_originalFile).getUrl();
+        }
+
+        Object _thumbnailFile = this.getValueFromObject(object, kPAPFieldThumbnailImageKey);
+        if (_thumbnailFile != null) {
+            this.thumbnailUrl = ((ParseFile)_thumbnailFile).getUrl();
+        }
+
+        this.readCommonObject(object);
     }
 
     @Override
     public void readObjectLocal(ParseObject object) {
-//        super.readObject(object)
-//
-//        // Special: Used only for the offline object.
-//        if let _originalUrl: AnyObject = getValueFromObject(object,key: kPAPFieldOriginalUrlKey){
-//            this.originalUrl = _originalUrl as! String
-//        }
-//
-//        if let _thumbnailUrl: AnyObject = getValueFromObject(object,key: kPAPFieldThumbnailUrlKey){
-//            this.thumbnailUrl = _thumbnailUrl as! String
-//        }
-//
-//        this.readCommonObject(object)
+        super.readObject(object);
+
+        // Special: Used only for the offline object.
+        Object _originalUrl = this.getValueFromObject(object, kPAPFieldOriginalUrlKey);
+        if (_originalUrl != null) {
+            this.originalUrl = (String) _originalUrl;
+        }
+        Object _thumbnailUrl = this.getValueFromObject(object, kPAPFieldThumbnailUrlKey);
+        if (_thumbnailUrl != null) {
+            this.thumbnailUrl = (String) _thumbnailUrl;
+        }
+
+        this.readCommonObject(object);
     }
 
     static Task<Object> queryPhotosByRestaurant( Restaurant restaurant){
@@ -253,7 +253,7 @@ public class Photo extends ParseModelSync {
 //            return newPhoto.pinInBackgroundWithNewRecord()
 //        }
 //    }
-//
+
     static Photo getTakenPhotoInstance(ParseModelAbstract model) {
         Photo photo = new Photo();
 
