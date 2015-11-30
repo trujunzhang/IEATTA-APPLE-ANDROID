@@ -25,11 +25,6 @@ public class CacheImageUtils extends AbstractImageUtils{
         return null;
     }
 
-    @Override
-    public Task<Object> generateTakenPhoto(Bitmap image, Photo model) {
-        return null;
-    }
-
     public void clearCacheDisk() {
 //        this.getImageCache().clearDisk();
     }
