@@ -162,12 +162,9 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         this.writeAbstractCommon(object);
     }
 
-//    public void getFirstLocalModelArrayTask()  BFTask{
-//        fatalError("Must Override")
-//    }
-//    public void getFirstOnlineObjectTask()  BFTask{
-//        fatalError("Must Override")
-//    }
+    public abstract Task<Object> getFirstLocalModelArrayTask();
+
+    public abstract Task<Object> getFirstOnlineObjectTask();
 
     // MARK: Support common methonds for reading ParseObject.
 
