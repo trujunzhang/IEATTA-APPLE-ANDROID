@@ -24,7 +24,7 @@ public class Team extends ParseModelSync {
     public static final int DEFAULT_RECIPES_COUNT = Integer.MIN_VALUE;
 
     // Class key
-    private static final String kPAPClassKey = "User";
+    private static final String kPAPClassKey = "Team";
 
     // Field keys
     private static final String kPAPFieldEmailKey = "email";
