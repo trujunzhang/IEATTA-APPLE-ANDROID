@@ -19,8 +19,6 @@ import bolts.TaskCompletionSource;
  */
 public class PushNewRecordToServerTask {
 
-
-
     public static Task PushToServerSeriesTask(ParseQuery query) {
         final TaskCompletionSource seriesTask = new TaskCompletionSource();
 
