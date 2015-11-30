@@ -60,22 +60,15 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     }
 
     // MARK: Async methods.
-//    public void pinAfterPullFromServer()  BFTask{
-//        fatalError("Must Override")
-//    }
-//
-//    public void pushToServer()  BFTask{
-//        fatalError("Must Override")
-//    }
-//
+    public abstract Task<Object> pinAfterPullFromServer();
+    public abstract Task<Object> pushToServer();
+
 //    public void eventAfterPushToServer()  BFTask{
 //        return BFTask(result: true)
 //    }
-//
-//    public void pullFromServerAndPin()  BFTask{
-//        fatalError("Must Override")
-//    }
-//
+
+    public abstract Task<Object> pullFromServerAndPin();
+
 //    public Task<Object> queryBelongToTask(belongTo:ParseModelAbstract?) {
 //        fatalError("Must Override")
 //    }
