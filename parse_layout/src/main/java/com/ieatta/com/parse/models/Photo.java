@@ -7,7 +7,9 @@ import com.ieatta.com.parse.ParseModelSync;
 
 import bolts.Continuation;
 import bolts.Task;
+import bolts.TaskCompletionSource;
 
+import com.ieatta.com.parse.utils.cache.CacheImageUtils;
 import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
 import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
@@ -20,6 +22,7 @@ import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
+import java.io.File;
 import java.util.LinkedList;
 
 /**
@@ -87,20 +90,20 @@ public class Photo extends ParseModelSync {
         return query;
     }
 
-    ParseQuery   createQueryForUsedRef()    {
-          ParseQuery query = this.makeParseQuery();
-        query.whereEqualTo(kPAPFieldUsedRefKey,this.usedRef);
+    ParseQuery createQueryForUsedRef() {
+        ParseQuery query = this.makeParseQuery();
+        query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         return query;
     }
 
-    ParseQuery   createQueryForRestaurantRef()    {
-          ParseQuery query = this.makeParseQuery();
-        query.whereEqualTo(kPAPFieldLocalRestaurantKey,this.restaurantRef);
+    ParseQuery createQueryForRestaurantRef() {
+        ParseQuery query = this.makeParseQuery();
+        query.whereEqualTo(kPAPFieldLocalRestaurantKey, this.restaurantRef);
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;
     }
 
-    static ParseQuery createQueryForRestaurantRef(Restaurant restaurant)    {
+    static ParseQuery createQueryForRestaurantRef(Restaurant restaurant) {
         Photo photo = new Photo();
         photo.restaurantRef = ParseModelAbstract.getPoint(restaurant);
         return photo.createQueryForRestaurantRef();
@@ -121,9 +124,9 @@ public class Photo extends ParseModelSync {
         return new Photo();
     }
 
-    ParseQuery   createQueryByRestaurantRef(String restaurantRef)   {
-          ParseQuery query = this.makeParseQuery();
-        query.whereEqualTo(kPAPFieldUsedRefKey,restaurantRef);
+    ParseQuery createQueryByRestaurantRef(String restaurantRef) {
+        ParseQuery query = this.makeParseQuery();
+        query.whereEqualTo(kPAPFieldUsedRefKey, restaurantRef);
         return query;
     }
 
@@ -134,10 +137,10 @@ public class Photo extends ParseModelSync {
      * <p/>
      * - returns: query's instance
      */
-    private ParseQuery createQueryForBatchingPhoto(LinkedList<String> usedRefs)   {
-          ParseQuery query = this.getParseQueryInstance();
+    private ParseQuery createQueryForBatchingPhoto(LinkedList<String> usedRefs) {
+        ParseQuery query = this.getParseQueryInstance();
 
-        query.whereContainedIn(kPAPFieldUsedRefKey,usedRefs);
+        query.whereContainedIn(kPAPFieldUsedRefKey, usedRefs);
 
         // *** Important (used orderByAscending) ***
         query.orderByAscending(kPAPFieldObjectCreatedDateKey);
@@ -156,18 +159,18 @@ public class Photo extends ParseModelSync {
 
     @Override
     public void writeObject(ParseObject object) {
-         super.writeObject(object);
+        super.writeObject(object);
 
         // Special: Used only for the online object.
-        object.put(kPAPFieldOriginalImageKey,ImageOptimizeUtils.getPFFileForOrginalImage(this));
-        object.put(kPAPFieldThumbnailImageKey,ImageOptimizeUtils.getPFFileForThumbnailImage(this));
+        object.put(kPAPFieldOriginalImageKey, ImageOptimizeUtils.getPFFileForOrginalImage(this));
+        object.put(kPAPFieldThumbnailImageKey, ImageOptimizeUtils.getPFFileForThumbnailImage(this));
 
         this.writeCommonObject(object);
     }
 
     @Override
     public void writeLocalObject(ParseObject object) {
-         super.writeLocalObject(object);
+        super.writeLocalObject(object);
 
         // Special: Used only for the offline object.
         object.put(kPAPFieldOriginalUrlKey, this.originalUrl);
@@ -202,12 +205,12 @@ public class Photo extends ParseModelSync {
         // Special: Used only for the online object.
         Object _originalFile = this.getValueFromObject(object, kPAPFieldOriginalImageKey);
         if (_originalFile != null) {
-            this.originalUrl = ((ParseFile)_originalFile).getUrl();
+            this.originalUrl = ((ParseFile) _originalFile).getUrl();
         }
 
         Object _thumbnailFile = this.getValueFromObject(object, kPAPFieldThumbnailImageKey);
         if (_thumbnailFile != null) {
-            this.thumbnailUrl = ((ParseFile)_thumbnailFile).getUrl();
+            this.thumbnailUrl = ((ParseFile) _thumbnailFile).getUrl();
         }
 
         this.readCommonObject(object);
@@ -230,16 +233,16 @@ public class Photo extends ParseModelSync {
         this.readCommonObject(object);
     }
 
-    static Task<Object> queryPhotosByRestaurant( Restaurant restaurant){
+    static Task<Object> queryPhotosByRestaurant(Restaurant restaurant) {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo().createQueryForRestaurantRef(restaurant));
     }
 
-    static Task<Object> queryPhotosByModel(ParseModelAbstract model){
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo,new Photo(model).createQueryForUsedRefWithType());
+    static Task<Object> queryPhotosByModel(ParseModelAbstract model) {
+        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo(model).createQueryForUsedRefWithType());
     }
 
-    static Task<Object> queryPhotosFromUsedRefs(LinkedList<String> usedRefs){
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo,new Photo().createQueryForBatchingPhoto(usedRefs));
+    static Task<Object> queryPhotosFromUsedRefs(LinkedList<String> usedRefs) {
+        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo().createQueryForBatchingPhoto(usedRefs));
     }
 
     /**
@@ -250,12 +253,12 @@ public class Photo extends ParseModelSync {
      * - parameter newPhoto:        photo's instance
      * - parameter image:           taken image
      */
-    static  Task<Object> pinPhotoAndCacheImage(final Photo newPhoto, final Bitmap image)  {
+    static Task<Object> pinPhotoAndCacheImage(final Photo newPhoto, final Bitmap image) {
 
         return OriginalImageUtils.sharedInstance.generateTakenPhoto(image, newPhoto).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                return ThumbnailImageUtils.sharedInstance.generateTakenPhoto(image,newPhoto);
+                return ThumbnailImageUtils.sharedInstance.generateTakenPhoto(image, newPhoto);
             }
         }).continueWith(new Continuation<Object, Object>() {
             @Override
@@ -272,7 +275,7 @@ public class Photo extends ParseModelSync {
         photo.usedType = model.getPhotoUsedType();
 
         // **** Important ****
-        if(model.getPhotoUsedType() != PhotoUsedType.Photo_Used_People){
+        if (model.getPhotoUsedType() != PhotoUsedType.Photo_Used_People) {
             photo.restaurantRef = model.getRestaurantRef();
         }
 
@@ -288,45 +291,64 @@ public class Photo extends ParseModelSync {
                 ", usedType=" + usedType +
                 '}';
     }
-//     @Override     public Task<Object> pinAfterPullFromServer()   {
-//        // 1. First of all,to decrease client storage,so just save online thumbnail image as offline file.
-//
-//        return this.downloadThumbnailImageFromServer().continueWithSuccessBlock { (task) -> AnyObject? in
-//            return super.pinAfterPullFromServer()
-//        }
-//
-//    }
-//
-//    Task<Object>   downloadThumbnailImageFromServer(){
-//        return ThumbnailImageUtils.sharedInstance.downloadImageFromServer(forPhoto: self,url: this.thumbnailUrl)
-//    }
-//
-//    Task<Object>   downloadOriginalImageFromServer(){
-//        return OriginalImageUtils.sharedInstance.downloadImageFromServer(forPhoto: self,url: this.originalUrl)
-//    }
-//
-//    Task<Object>   downloadCacheImageFromServer(){
-//        return CacheImageUtils.sharedInstance.downloadImageFromServer(forPhoto: self,url: this.originalUrl)
-//    }
-//
-//     @Override     Task<Object> void eventAfterPushToServer(){
-//        return OriginalImageUtils.sharedInstance.removeOriginalImage(self)
-//    }
-//
-//    Task<Object>   getRelatedPhoto(){
-//        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).continueWithSuccessBlock { (task) -> AnyObject? in
-//            return this.convertToLocalModelTask(task)
-//        }.continueWithBlock({ (task) -> AnyObject? in
-//        return this.getThumbanilImage()
-//        })
-//    }
-//
-//    Task<Object>   getThumbanilImage() {
-//        if let image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(ParseModelAbstract.getPoint(self)){
-//            return BFTask(result: image)
-//        }else{
+
+    @Override
+    public Task<Object> pinAfterPullFromServer() {
+        final Photo self = this;
+        // 1. First of all,to decrease client storage,so just save online thumbnail image as offline file.
+        return this.downloadThumbnailImageFromServer().continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return self.pinAfterPullFromServer();
+            }
+        });
+    }
+
+    Task<Object> downloadThumbnailImageFromServer() {
+        return ThumbnailImageUtils.sharedInstance.downloadImageFromServer(this, this.thumbnailUrl);
+    }
+
+    Task<Object> downloadOriginalImageFromServer() {
+        return OriginalImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
+    }
+
+    Task<Object> downloadCacheImageFromServer() {
+        return CacheImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
+    }
+
+    @Override
+    public Task<Object> eventAfterPushToServer() {
+        return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
+    }
+
+    Task<Object>   getRelatedPhoto(){
+        final Photo self = this;
+        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return self.convertToLocalModelTask(task);
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return self.getThumbanilImage();
+            }
+        });
+    }
+
+    Task<Object>   getThumbanilImage() {
+        TaskCompletionSource finalTask = new TaskCompletionSource();
+
+        File image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(ParseModelAbstract.getPoint(this));
+        if(image!= null){
+            finalTask.setResult(image);
+
+        }else {
 //            return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "When fetching Image for NewPhoto, and the photo's UUID is \(objectUUID)"))
-//        }
-//    }
+//            finalTask.setError();
+        }
+
+        return finalTask.getTask();
+    }
 
 }

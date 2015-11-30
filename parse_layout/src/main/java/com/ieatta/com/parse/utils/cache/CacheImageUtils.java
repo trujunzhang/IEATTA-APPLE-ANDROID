@@ -12,7 +12,7 @@ import bolts.Task;
  */
 public class CacheImageUtils extends AbstractImageUtils{
 
-    final static CacheImageUtils sharedInstance  = new  CacheImageUtils();
+    public final static CacheImageUtils sharedInstance  = new  CacheImageUtils();
 
     /**
      This SDImageCache constructor's namespace is "Cache". Store images on the folder: "Cache/com.virtualbreak.IEATTA.cache"
