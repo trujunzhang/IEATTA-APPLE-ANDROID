@@ -20,7 +20,6 @@ android {
     }
 }
 
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -44,6 +43,6 @@ dependencies {
     compile 'io.reactivex:rxandroid:0.25.0'
 
 
-
+    compile project(':debug')
     compile project(':parse_layout')
 }
