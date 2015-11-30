@@ -105,26 +105,26 @@ public class PeopleInEvent extends ParseModelSync {
         });
     }
 
-    static Team getPeople(PeopleInEvent peopleInEvent,LinkedList<Team> fetchedPeople){
-        for(Team people :fetchedPeople){
-            if(ParseModelAbstract.getPoint(people).equals(peopleInEvent.userRef)){
+    static Team getPeople(PeopleInEvent peopleInEvent, LinkedList<Team> fetchedPeople) {
+        for (Team people : fetchedPeople) {
+            if (ParseModelAbstract.getPoint(people).equals(peopleInEvent.userRef)) {
                 return people;
             }
         }
 
-        return  null;
+        return null;
     }
 
-    static Task<Object> sortOrderedPeople(Task<Object> previous,LinkedList<PeopleInEvent> peopleInEvents){
-        LinkedList<Team>fetchedPeople = new LinkedList<>((Collection<? extends Team>) previous.getResult());
+    static Task<Object> sortOrderedPeople(Task<Object> previous, LinkedList<PeopleInEvent> peopleInEvents) {
+        LinkedList<Team> fetchedPeople = new LinkedList<>((Collection<? extends Team>) previous.getResult());
 
         LinkedList<Team> sortedPeople = new LinkedList<>();
 
-        for(PeopleInEvent peopleInEvent : peopleInEvents){
+        for (PeopleInEvent peopleInEvent : peopleInEvents) {
             Team people = getPeople(peopleInEvent, fetchedPeople);
-            if(people!=null){
+            if (people != null) {
                 sortedPeople.add(people);
-            }else {
+            } else {
                 // TODO djzhang(fixing)
 //                return BFTask(error: NSError.getError(IEAErrorType.SortArray, description: "\(peopleInEvent.printDescription())"))
             }
@@ -135,7 +135,7 @@ public class PeopleInEvent extends ParseModelSync {
         return finishTask.getTask();
     }
 
-    public Task<Object>   saveParseUser()   {
+    public Task<Object> saveTeam() {
         return this.pinInBackgroundWithNewRecord();
     }
 

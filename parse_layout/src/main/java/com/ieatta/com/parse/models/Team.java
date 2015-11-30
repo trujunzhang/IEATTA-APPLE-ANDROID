@@ -66,7 +66,7 @@ public class Team extends ParseModelSync {
 
     @Override
     public PQeuryModelType getModelType() {
-        return PQeuryModelType.ParseUser;
+        return PQeuryModelType.Team;
     }
 
     @Override
@@ -134,19 +134,19 @@ public class Team extends ParseModelSync {
         return finalTask.getTask();
     }
 
-    static Task<Object> queryParseUser() {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.ParseUser, new Team().makeParseQuery());
+    static Task<Object> queryTeam() {
+        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Team, new Team().makeParseQuery());
     }
 
-    static Task<Object> queryParseUserByPoints(LinkedList<String> points) {
-        return new Team().queryParseModels(PQeuryModelType.ParseUser, points);
+    static Task<Object> queryTeamByPoints(LinkedList<String> points) {
+        return new Team().queryParseModels(PQeuryModelType.Team, points);
     }
 
-    static Task<Object> queryParseUser(LinkedList<PeopleInEvent> list) {
+    static Task<Object> queryTeam(LinkedList<PeopleInEvent> list) {
         // 1. Get ordered people reference.
         LinkedList<String> points = Team.getPeoplePoints(list);
 
-        return new Team().queryParseModels(PQeuryModelType.ParseUser, points);
+        return new Team().queryParseModels(PQeuryModelType.Team, points);
     }
 
     // MARK: Support methods.
@@ -173,7 +173,7 @@ public class Team extends ParseModelSync {
     }
 
 
-    static LinkedList<Team> convertToParseUserArray(LinkedList<ParseObject> objectArray) {
+    static LinkedList<Team> convertToTeamArray(LinkedList<ParseObject> objectArray) {
         LinkedList<Team> array = new LinkedList<>();
 
         for (ParseObject object : objectArray) {
