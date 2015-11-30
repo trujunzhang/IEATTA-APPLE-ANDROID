@@ -20,7 +20,7 @@ public class ParseAsyncHandler {
 
     private boolean didEndAsync = true;
 
-    private void PullObjectsFromServer() {
+    public void PullObjectsFromServer() {
 
         PullNewRecordFromServerTask.PullFromServerSeriesTask(new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD))
                 .continueWith(new Continuation<Object, Object>() {

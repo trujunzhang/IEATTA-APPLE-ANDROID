@@ -16,6 +16,8 @@ public class ParseAPI {
         Parse.enableLocalDatastore(context);
 
         // Add your initialization code here
+//        Parse.initialize(context,"VCaFXiKwdCYUkY9fOe1gK4lcmvexwXPjEt6r0txq","DcqY8cnikXrRaYwteQyCX4lkN3ksrhROBXuarXpB");
+
         Parse.initialize(context,"VCaFXiKwdCYUkY9fOe1gK4lcmvexwXPjEt6r0txq","DcqY8cnikXrRaYwteQyCX4lkN3ksrhROBXuarXpB");
 
         ParseUser.enableAutomaticUser();
