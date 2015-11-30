@@ -184,9 +184,8 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         }
     }
 
-//    public void readCommonObject(ParseObject object){
-//        fatalError("Must Override")
-//    }
+    public abstract void readCommonObject(ParseObject object);
+
 
     public void readObject(ParseObject object) {
         this.readAbstractCommon(object);
@@ -222,13 +221,14 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return objectUUID.hashCode();
     }
 
-    static public LinkedList<String> getModelPoints(TaskCompletionSource previous) {
-//        let fetchedModels:NSArray = previous.getTask().getResult()
+    static public LinkedList<String> getModelPoints(Task<Object> previous) {
+        LinkedList<Object> fetchedModels = new LinkedList<>((Collection<?>) previous);
+
         LinkedList<String> points = new LinkedList<>();
 
-//        for model in fetchedModels{
-//            points.append(ParseModelAbstract.getPoint(model as! ParseModelAbstract))
-//        }
+        for(Object model :fetchedModels){
+            points.add(ParseModelAbstract.getPoint((ParseModelAbstract)model));
+        }
         return points;
     }
 
