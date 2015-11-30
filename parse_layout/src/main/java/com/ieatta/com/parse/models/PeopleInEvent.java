@@ -11,9 +11,6 @@ import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -108,8 +105,8 @@ public class PeopleInEvent extends ParseModelSync {
         });
     }
 
-    static ParseUser getPeople(PeopleInEvent peopleInEvent,LinkedList<ParseUser> fetchedPeople){
-        for(ParseUser people :fetchedPeople){
+    static Team getPeople(PeopleInEvent peopleInEvent,LinkedList<Team> fetchedPeople){
+        for(Team people :fetchedPeople){
             if(ParseModelAbstract.getPoint(people).equals(peopleInEvent.userRef)){
                 return people;
             }
@@ -119,12 +116,12 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     static Task<Object> sortOrderedPeople(Task<Object> previous,LinkedList<PeopleInEvent> peopleInEvents){
-        LinkedList<ParseUser>fetchedPeople = new LinkedList<>((Collection<? extends ParseUser>) previous.getResult());
+        LinkedList<Team>fetchedPeople = new LinkedList<>((Collection<? extends Team>) previous.getResult());
 
-        LinkedList<ParseUser> sortedPeople = new LinkedList<>();
+        LinkedList<Team> sortedPeople = new LinkedList<>();
 
         for(PeopleInEvent peopleInEvent : peopleInEvents){
-            ParseUser people = getPeople(peopleInEvent, fetchedPeople);
+            Team people = getPeople(peopleInEvent, fetchedPeople);
             if(people!=null){
                 sortedPeople.add(people);
             }else {

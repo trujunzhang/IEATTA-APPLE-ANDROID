@@ -7,38 +7,18 @@ import bolts.Task;
 
 import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Objects;
 
-import com.ieatta.com.parse.ParseModelQuery;
-import com.ieatta.com.parse.ParseModelSync;
-
-import bolts.Continuation;
-import bolts.Task;
-
-import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.parse.ParseQuery;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
-
-import bolts.Continuation;
-import bolts.Task;
 import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/27/15.
  */
-public class ParseUser extends ParseModelSync {
+public class Team extends ParseModelSync {
 
     public static final String DEFAULT_USER_NAME = "Anonymous";
     public static final int DEFAULT_RECIPES_COUNT = Integer.MIN_VALUE;
@@ -61,18 +41,18 @@ public class ParseUser extends ParseModelSync {
     public Event belongToModel;
     public String writedReviewTimeAgo = "";
 
-    public ParseUser() {
+    public Team() {
         super();
     }
 
-    public ParseUser(Event belongToModel) {
+    public Team(Event belongToModel) {
         super();
         this.belongToModel = belongToModel;
     }
 
     // MARK: Anonymous User
-    static ParseUser getAnonymousUser() {
-        ParseUser people = new ParseUser();
+    static Team getAnonymousUser() {
+        Team people = new Team();
         people.displayName = DEFAULT_USER_NAME;
 
         return people;
@@ -126,11 +106,11 @@ public class ParseUser extends ParseModelSync {
 
     @Override
     public ParseModelAbstract getNewInstance() {
-        return new ParseUser();
+        return new Team();
     }
 
-    private static boolean checkExist(ParseUser user, LinkedList<ParseUser> inSource) {
-        for (ParseUser model : inSource) {
+    private static boolean checkExist(Team user, LinkedList<Team> inSource) {
+        for (Team model : inSource) {
             if (model.equals(user)) {
                 return true;
             }
@@ -139,12 +119,12 @@ public class ParseUser extends ParseModelSync {
     }
 
     // MARK: Support methods.
-    static Task<Object> filterFrom(Task<Object> previous, LinkedList<ParseUser> source) {
+    static Task<Object> filterFrom(Task<Object> previous, LinkedList<Team> source) {
 
-        LinkedList<ParseUser> result = new LinkedList<>((Collection<? extends ParseUser>) previous.getResult());
+        LinkedList<Team> result = new LinkedList<>((Collection<? extends Team>) previous.getResult());
 
-        LinkedList<ParseUser> filterUser = new LinkedList<>();
-        for (ParseUser model : result) {
+        LinkedList<Team> filterUser = new LinkedList<>();
+        for (Team model : result) {
             if (checkExist(model, source)) {
                 filterUser.add(model);
             }
@@ -155,18 +135,18 @@ public class ParseUser extends ParseModelSync {
     }
 
     static Task<Object> queryParseUser() {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.ParseUser, new ParseUser().makeParseQuery());
+        return ParseModelQuery.queryFromDatabase(PQeuryModelType.ParseUser, new Team().makeParseQuery());
     }
 
     static Task<Object> queryParseUserByPoints(LinkedList<String> points) {
-        return new ParseUser().queryParseModels(PQeuryModelType.ParseUser, points);
+        return new Team().queryParseModels(PQeuryModelType.ParseUser, points);
     }
 
     static Task<Object> queryParseUser(LinkedList<PeopleInEvent> list) {
         // 1. Get ordered people reference.
-        LinkedList<String> points = ParseUser.getPeoplePoints(list);
+        LinkedList<String> points = Team.getPeoplePoints(list);
 
-        return new ParseUser().queryParseModels(PQeuryModelType.ParseUser, points);
+        return new Team().queryParseModels(PQeuryModelType.ParseUser, points);
     }
 
     // MARK: Support methods.
@@ -184,7 +164,7 @@ public class ParseUser extends ParseModelSync {
     // MARK: Description
     @Override
     public String printDescription() {
-        return "ParseUser{" +
+        return "Team{" +
                 "objectUUID='" + objectUUID + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", email='" + email + '\'' +
@@ -193,11 +173,11 @@ public class ParseUser extends ParseModelSync {
     }
 
 
-    static LinkedList<ParseUser> convertToParseUserArray(LinkedList<ParseObject> objectArray) {
-        LinkedList<ParseUser> array = new LinkedList<>();
+    static LinkedList<Team> convertToParseUserArray(LinkedList<ParseObject> objectArray) {
+        LinkedList<Team> array = new LinkedList<>();
 
         for (ParseObject object : objectArray) {
-            array.add((ParseUser) convertToModel(object, new ParseUser()));
+            array.add((Team) convertToModel(object, new Team()));
         }
 
         return array;

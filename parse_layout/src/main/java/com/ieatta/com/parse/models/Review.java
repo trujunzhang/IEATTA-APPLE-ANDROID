@@ -11,8 +11,6 @@ import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.LinkedList;
@@ -45,7 +43,7 @@ public class Review extends ParseModelSync {
 
     /// Rate valuefrom 1 to 5
     public int rate = 1;
-    public String userRef = "";// Point of ParseUser
+    public String userRef = "";// Point of Team
     public String reviewRef = "";
     public ReviewType reviewType = ReviewType.Review_Unknow;
 
@@ -60,7 +58,7 @@ public class Review extends ParseModelSync {
         this.reviewType = refModel.getReviewType();
     }
 
-    public Review(ParseUser refUser, ParseModelAbstract refModel, String content, int rate) {
+    public Review(Team refUser, ParseModelAbstract refModel, String content, int rate) {
         this(refModel);
 
         this.userRef = ParseModelAbstract.getPoint(refUser);
@@ -198,19 +196,19 @@ public class Review extends ParseModelSync {
         return userPoints;
     }
 
-    private static ParseUser getPeople(Review review, LinkedList<ParseUser> people) {
-        for (ParseUser user : people) {
+    private static Team getPeople(Review review, LinkedList<Team> people) {
+        for (Team user : people) {
             if (review.userRef.equals(ParseModelAbstract.getPoint(user))) {
                 return user;
             }
         }
-        return ParseUser.getAnonymousUser();
+        return Team.getAnonymousUser();
     }
 
-    static LinkedList<Object> getReviewItems(LinkedList<Review> reviews, LinkedList<ParseUser> people) {
+    static LinkedList<Object> getReviewItems(LinkedList<Review> reviews, LinkedList<Team> people) {
         LinkedList<Object> array = new LinkedList<>();
         for (Review model : reviews) {
-            ParseUser user = getPeople(model, people);
+            Team user = getPeople(model, people);
             // TODO djzhang(fixing)
 //        user.writedReviewTimeAgo = model.getTimeAgoString();
 

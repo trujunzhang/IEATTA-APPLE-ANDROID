@@ -3,6 +3,7 @@ package com.ieatta.com.parse;
 import android.content.Context;
 
 import com.ieatta.com.parse.models.NewRecord;
+import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.ParseModelFlag;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
@@ -255,7 +256,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
             case Photo:
                 return new com.ieatta.com.parse.models.Photo();
             case ParseUser:
-                return new com.ieatta.com.parse.models.ParseUser();
+                return new Team();
             case Review:
                 return new com.ieatta.com.parse.models.Review();
             case Event:
