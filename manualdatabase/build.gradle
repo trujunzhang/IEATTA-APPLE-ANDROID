@@ -9,7 +9,6 @@ android {
         targetSdkVersion Integer.parseInt(ANDROID_TARGET_SDK_VERSION)
         versionCode Integer.parseInt(ANDROID_VERSION_CODE)
         versionName ANDROID_VERSION_NAME
-        consumerProguardFiles 'proguard-consumer.txt'
     }
 
     buildTypes {
