@@ -43,8 +43,7 @@ dependencies {
     //RxAndroid or NotRxAndroid is not required by library
     compile 'io.reactivex:rxandroid:0.25.0'
 
-    // Simple, pretty and powerful logger for android
-    compile 'com.github.orhanobut:logger:1.12'
+
 
     compile project(':parse_layout')
 }
