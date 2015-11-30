@@ -116,7 +116,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return new ParseQuery(this.getParseTableName());
     }
 
-    protected ParseQuery makeParseQuery() {
+    public ParseQuery makeParseQuery() {
         ParseQuery query = this.getParseQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;

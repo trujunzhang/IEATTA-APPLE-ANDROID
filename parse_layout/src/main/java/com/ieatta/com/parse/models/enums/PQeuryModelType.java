@@ -9,7 +9,7 @@ package com.ieatta.com.parse.models.enums;
 public enum PQeuryModelType {
     Recipe,    // 0
     Photo,
-    ParseUser,
+    Team,
     Review,
     Event,
     Restaurant,
@@ -30,7 +30,7 @@ public enum PQeuryModelType {
             case 1:
                 return Photo;
             case 2:
-                return ParseUser;
+                return Team;
             case 3:
                 return Review;
             case 4:

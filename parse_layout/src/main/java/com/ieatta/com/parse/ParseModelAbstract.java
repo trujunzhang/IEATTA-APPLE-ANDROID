@@ -255,7 +255,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
                 return new com.ieatta.com.parse.models.Recipe();
             case Photo:
                 return new com.ieatta.com.parse.models.Photo();
-            case ParseUser:
+            case Team:
                 return new Team();
             case Review:
                 return new com.ieatta.com.parse.models.Review();
