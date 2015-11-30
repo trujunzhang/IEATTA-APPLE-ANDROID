@@ -52,9 +52,14 @@ public abstract class ParseModelSync extends ParseModelQuery {
     @Override
     public Task<Object> pinAfterPullFromServer() {
         // 1. Check wheather exist.
-        ParseQuery query = ParseModelQuery.createQuery(this.getModelType(), this);
+        final ParseQuery query = ParseModelQuery.createQuery(this.getModelType(), this);
 
-        return this.unpinInBackground(query).continueWith(new Continuation<Object, Object>() {
+        return this.eventAfterPushToServer().continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return unpinInBackground(query);
+            }
+        }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 return pinInBackgroundForModel();
