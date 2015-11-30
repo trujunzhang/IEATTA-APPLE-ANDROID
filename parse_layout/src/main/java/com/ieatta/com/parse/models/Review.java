@@ -189,34 +189,37 @@ public class Review extends ParseModelSync {
         return rating;
     }
 
-//    class [String] getUserPoints(reviews:[Review])  {
-//    public String userPoints:[String] = [String]()
-//        for model in reviews{
-//            userPoints.append(model.userRef)
-//        }
-//        return userPoints
-//    }
-//
-//    class [Object] getReviewItems(reviews:[Review],people:[ParseUser])  {
-//        void   getPeople(fromReview review:Review) -> ParseUser{
-//            for user in people{
-//                if(review.userRef == ParseModelAbstract.getPoint(user)){
-//                    return user
-//                }
-//            }
-//            return ParseUser.getAnonymousUser()
-//        }
-//
-//    public String array:[AnyObject] = [AnyObject]()
-//        for model in reviews{
-//            let user = getPeople(fromReview:model)
-//            user.writedReviewTimeAgo = model.getTimeAgoString()
-//
-//            array.append(user)
-//            array.append(model)
-//        }
-//        return array
-//    }
+
+    static LinkedList<String> getUserPoints(LinkedList<Review> reviews) {
+        LinkedList<String> userPoints = new LinkedList<>();
+        for (Review model : reviews) {
+            userPoints.add(model.userRef);
+        }
+        return userPoints;
+    }
+
+    private static ParseUser getPeople(Review review, LinkedList<ParseUser> people) {
+        for (ParseUser user : people) {
+            if (review.userRef.equals(ParseModelAbstract.getPoint(user))) {
+                return user;
+            }
+        }
+        return ParseUser.getAnonymousUser();
+    }
+
+    static LinkedList<Object> getReviewItems(LinkedList<Review> reviews, LinkedList<ParseUser> people) {
+        LinkedList<Object> array = new LinkedList<>();
+        for (Review model : reviews) {
+            ParseUser user = getPeople(model, people);
+            // TODO djzhang(fixing)
+//        user.writedReviewTimeAgo = model.getTimeAgoString();
+
+            array.add(user);
+            array.add(model);
+        }
+
+        return array;
+    }
 
 
     // MARK: Description
