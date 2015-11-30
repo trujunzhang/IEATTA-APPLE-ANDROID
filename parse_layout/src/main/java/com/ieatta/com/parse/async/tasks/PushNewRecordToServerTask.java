@@ -6,6 +6,10 @@ import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 import bolts.Continuation;
 import bolts.Task;
 import bolts.TaskCompletionSource;
@@ -18,36 +22,47 @@ public class PushNewRecordToServerTask {
 
 
     public static Task PushToServerSeriesTask(ParseQuery query) {
+        final TaskCompletionSource seriesTask = new TaskCompletionSource();
 
-//        let seriesTask = BFTaskCompletionSource()
-//
-//        ParseModelQuery.findLocalObjectsInBackground(query).continueWithBlock {
-//            (task: BFTask!) -> BFTask in
-//            let results = task.result as! [PFObject]
-//            print("Push objects to Server: \(results.count)")
-//            // Create a trivial completed task as a base case.
-//            var task = BFTask(result:nil)
-//            for result : PFObject in results {
-//                // For each item, extend the task with a function to delete the item.
-//                task = task.continueWithBlock {
-//                    (task: BFTask!) -> BFTask in
-//                    return self.PushObjectToServerTask(result)
-//                }
-//            }
-//            return task
-//        }.continueWithBlock {
-//            (task: BFTask!) -> AnyObject! in
-//            // Every offline objects was pushed to Parse.com.
-//            if let _error = task.error{
-//                seriesTask.setError(_error)
-//            }else{
-//                seriesTask.setResult(true)
-//            }
-//            return nil
-//        }
+        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
+            @Override
+            public Object then(Task<List<ParseObject>> task) throws Exception {
+                if (task.getError() != null) {
+                    TaskCompletionSource finalTask = new TaskCompletionSource();
+                    finalTask.setError(task.getError());
+                    return finalTask;
+                }
+                LinkedList<ParseObject> results = new LinkedList<ParseObject>((Collection<? extends ParseObject>) task.getResult());
+//                print("Push objects to Server: \(results.count)")
 
-//        return seriesTask.task
-        return null;
+                // Create a trivial completed task as a base case.
+                Task<Void> _task = Task.forResult(null);
+                for (final ParseObject result : results) {
+                    // For each item, extend the task with a function to delete the item.
+                    _task = _task.continueWithTask(new Continuation<Void, Task<Void>>() {
+                        public Task<Void> then(Task<Void> ignored) throws Exception {
+                            // Return a task that will be marked as completed when the delete is finished.
+                            return PushObjectToServerTask(result);
+                        }
+                    });
+                }
+
+                return null;
+            }
+        }).continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                // Every offline objects was pushed to Parse.com.
+                if (task.getError() != null) {
+                    seriesTask.setError(task.getError());
+                } else {
+                    seriesTask.setResult(true);
+                }
+                return null;
+            }
+        });
+
+        return seriesTask.getTask();
     }
 
     /**
