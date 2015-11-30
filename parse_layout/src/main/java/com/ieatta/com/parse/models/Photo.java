@@ -5,6 +5,7 @@ import com.ieatta.com.parse.ParseModelSync;
 
 import bolts.Task;
 
+import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
@@ -152,9 +153,9 @@ public class Photo extends ParseModelSync {
     public void writeObject(ParseObject object) {
          super.writeObject(object);
 
-//        // Special: Used only for the online object.
-//        object[kPAPFieldOriginalImageKey]    = ImageOptimizeUtils.getPFFileForOrginalImage(self);
-//        object[kPAPFieldThumbnailImageKey]   = ImageOptimizeUtils.getPFFileForThumbnailImage(self);
+        // Special: Used only for the online object.
+        object.put(kPAPFieldOriginalImageKey,ImageOptimizeUtils.getPFFileForOrginalImage(this));
+        object.put(kPAPFieldThumbnailImageKey,ImageOptimizeUtils.getPFFileForThumbnailImage(this));
 
         this.writeCommonObject(object);
     }
