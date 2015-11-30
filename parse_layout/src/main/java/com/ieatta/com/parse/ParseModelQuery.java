@@ -53,7 +53,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * <p/>
      * - returns: query's instance
      */
-    ParseQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
+    public ParseQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
         ParseQuery query = this.getParseQueryInstance();
         query.setLimit(limit);
 
@@ -72,7 +72,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * <p/>
      * - returns: query's instance
      */
-    ParseQuery createQueryForPushObjectsToServer(int limit) {
+    public ParseQuery createQueryForPushObjectsToServer(int limit) {
         ParseQuery query = this.getParseQueryInstance();
         query.setLimit(limit);
 

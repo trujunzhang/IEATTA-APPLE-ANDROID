@@ -17,7 +17,7 @@ import bolts.TaskCompletionSource;
 public class PullNewRecordFromServerTask {
 
 
-    static Task<Object> PullFromServerSeriesTask(ParseQuery query) {
+    public static Task<Object> PullFromServerSeriesTask(ParseQuery query) {
         TaskCompletionSource seriesTask = new TaskCompletionSource();
 
         query.findInBackground().continueWithTask(new Continuation() {
