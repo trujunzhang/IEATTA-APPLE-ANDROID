@@ -61,6 +61,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     // MARK: Async methods.
     public abstract Task<Object> pinAfterPullFromServer();
+
     public abstract Task<Object> pushToServer();
 
 //    public void eventAfterPushToServer()  BFTask{
@@ -69,9 +70,11 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public abstract Task<Object> pullFromServerAndPin();
 
-    public abstract Task<Object> queryBelongToTask(ParseModelAbstract belongTo);
+    public Task<Object> queryBelongToTask(ParseModelAbstract belongTo) {
+        return null;
+    }
 
-    public Task<Object> queryParseModels(String keyword){
+    public Task<Object> queryParseModels(String keyword) {
         return null;
     }
 
@@ -100,7 +103,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     // MARK: Common methond.
 
-    public String getTimeAgoString(Context context)  {
+    public String getTimeAgoString(Context context) {
         TimeAgo timeAgo = new TimeAgo(context);
 
         return timeAgo.timeAgo(this.objectCreatedDate);
@@ -131,8 +134,8 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     }
 
     // MARK: Common methonds.
-    public NewRecord getNewRecord()  {
-        return new  NewRecord( getModelType(),  this.objectUUID,  this.objectCreatedDate);
+    public NewRecord getNewRecord() {
+        return new NewRecord(getModelType(), this.objectUUID, this.objectCreatedDate);
     }
 
     // MARK: Support common methonds for writing ParseObject.
@@ -222,7 +225,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return objectUUID.hashCode();
     }
 
-    static public LinkedList<String> getModelPoints(TaskCompletionSource previous)  {
+    static public LinkedList<String> getModelPoints(TaskCompletionSource previous) {
 //        let fetchedModels:NSArray = previous.getTask().getResult()
         LinkedList<String> points = new LinkedList<>();
 
@@ -282,14 +285,14 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
      * <p/>
      * - returns: ParseModelAbstract's array
      */
-    public LinkedList<ParseModelAbstract> convertToParseModelArray(Object value, boolean offline)  {
+    public LinkedList<ParseModelAbstract> convertToParseModelArray(Object value, boolean offline) {
         LinkedList<ParseModelAbstract> array = new LinkedList<>();
 
-        for(ParseModelAbstract object : array){
-            if(offline == true){
-                ParseModelAbstract.convertToFirstLocalModel(object,this.getNewInstance());
-            }else{
-                ParseModelAbstract.convertToOnlineModel(object,this.getNewInstance());
+        for (ParseModelAbstract object : array) {
+            if (offline == true) {
+                ParseModelAbstract.convertToFirstLocalModel(object, this.getNewInstance());
+            } else {
+                ParseModelAbstract.convertToOnlineModel(object, this.getNewInstance());
             }
         }
 
@@ -298,7 +301,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public ParseModelAbstract convertToLocalModel(Object object) {
         ParseModelAbstract instance = this.getNewInstance(); // Alloc a new instance.
-        instance.readObjectLocal((ParseObject)object  );
+        instance.readObjectLocal((ParseObject) object);
         return instance;
     }
 
@@ -314,9 +317,9 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public Task<Object> convertToOnlineModelTask(Task<Object> getFirstObjectTask) {
         Object result = getFirstObjectTask.getResult();
-        if(result!= null){
+        if (result != null) {
             LinkedList<Object> array = new LinkedList<>((Collection<?>) result);
-            if(array.size() >= 1){
+            if (array.size() >= 1) {
                 ParseObject firstObject = (ParseObject) array.get(0);
                 this.readObject(firstObject);
                 TaskCompletionSource<Object> finishTask = new TaskCompletionSource<>();
@@ -333,9 +336,9 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public Task<Object> convertToLocalModelTask(Task<Object> firstObjectArray) {
         Object result = firstObjectArray.getResult();
-        if(result!= null){
+        if (result != null) {
             LinkedList<Object> array = new LinkedList<>((Collection<?>) result);
-            if(array.size() >= 1){
+            if (array.size() >= 1) {
                 ParseObject firstObject = (ParseObject) array.get(0);
                 this.readObjectLocal(firstObject);
                 TaskCompletionSource<Object> finishTask = new TaskCompletionSource<>();
@@ -351,10 +354,11 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return finishTask.getTask();
 
     }
-//
-    static public ParseModelAbstract convertToFirstLocalModel(Object result,ParseModelAbstract instance)  {
+
+    //
+    static public ParseModelAbstract convertToFirstLocalModel(Object result, ParseModelAbstract instance) {
         LinkedList<Object> array = new LinkedList<>((Collection<?>) result);
-        if(array.size() == 1){
+        if (array.size() == 1) {
             return instance.convertToLocalModel(array.get(0));
         }
 
