@@ -4,6 +4,9 @@ import com.ieatta.com.parse.async.tasks.PullNewRecordFromServerTask;
 import com.ieatta.com.parse.async.tasks.PushNewRecordToServerTask;
 import com.ieatta.com.parse.models.NewRecord;
 
+import bolts.Continuation;
+import bolts.Task;
+
 /**
  * Created by djzhang on 11/27/15.
  */
@@ -19,16 +22,17 @@ public class ParseAsyncHandler {
 
     private void PullObjectsFromServer(){
 
-        PullNewRecordFromServerTask.PullFromServerSeriesTask(new  AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD)).continueWithBlock { (task) -> AnyObject? in
-
-            if let _error = task.error{
-                self.endAsyncTasks(_error)
-            }else{
-                self.PushLocalNewRecordToServer()
+        PullNewRecordFromServerTask.PullFromServerSeriesTask(new  AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD)).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if(task.getError() != null){
+                    endAsyncTasks(task.getError());
+                }else {
+                    PushLocalNewRecordToServer();
+                }
+                return null;
             }
-
-            return nil
-        }
+        });
     }
 
     private void PushLocalNewRecordToServer(){
@@ -44,7 +48,7 @@ public class ParseAsyncHandler {
         }
     }
 
-    private void endAsyncTasks(Error error){
+    private void endAsyncTasks(Exception error){
         if(error != null){
 //            print("Error when async database: \(_error.userInfo)");
         }else {
