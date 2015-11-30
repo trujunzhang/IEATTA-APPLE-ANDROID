@@ -1,11 +1,16 @@
 package com.ieatta.com.parse.models;
 
+import android.graphics.Bitmap;
+
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
 
+import bolts.Continuation;
 import bolts.Task;
 
 import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
+import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
+import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
@@ -245,15 +250,20 @@ public class Photo extends ParseModelSync {
      * - parameter newPhoto:        photo's instance
      * - parameter image:           taken image
      */
-//    static  Task<Object> pinPhotoAndCacheImage(forNewPhoto newPhoto:Photo,image: UIImage)  {
-//        return OriginalImageUtils.sharedInstance.generateTakenPhoto(image, model: newPhoto).continueWithSuccessBlock { (task) -> AnyObject? in
-//
-//            return ThumbnailImageUtils.sharedInstance.generateTakenPhoto(image, model: newPhoto)
-//        }.continueWithSuccessBlock { (task) -> AnyObject? in
-//            // 3. Save photo's instance.
-//            return newPhoto.pinInBackgroundWithNewRecord()
-//        }
-//    }
+    static  Task<Object> pinPhotoAndCacheImage(final Photo newPhoto, final Bitmap image)  {
+
+        return OriginalImageUtils.sharedInstance.generateTakenPhoto(image, newPhoto).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return ThumbnailImageUtils.sharedInstance.generateTakenPhoto(image,newPhoto);
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return newPhoto.pinInBackgroundWithNewRecord();
+            }
+        });
+    }
 
     static Photo getTakenPhotoInstance(ParseModelAbstract model) {
         Photo photo = new Photo();

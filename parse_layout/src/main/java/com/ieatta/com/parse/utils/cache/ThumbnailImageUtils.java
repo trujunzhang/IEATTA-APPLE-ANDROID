@@ -12,7 +12,7 @@ import bolts.Task;
  */
 public class ThumbnailImageUtils extends AbstractImageUtils{
 
-    final static ThumbnailImageUtils sharedInstance  = new  ThumbnailImageUtils();
+    public final static ThumbnailImageUtils sharedInstance  = new  ThumbnailImageUtils();
 
     /**
      This SDImageCache constructor's namespace is "Thumbnail". Store images on the folder: "Thumbnail/com.virtualbreak.IEATTA.thumbnail"

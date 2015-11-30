@@ -13,7 +13,7 @@ import bolts.Task;
  */
 public class OriginalImageUtils extends AbstractImageUtils{
 
-    final static OriginalImageUtils sharedInstance  = new  OriginalImageUtils();
+public     final static OriginalImageUtils sharedInstance  = new  OriginalImageUtils();
 
     /**
      This SDImageCache constructor's namespace is "Original". Store images on the folder: "Original/com.virtualbreak.IEATTA.original"
