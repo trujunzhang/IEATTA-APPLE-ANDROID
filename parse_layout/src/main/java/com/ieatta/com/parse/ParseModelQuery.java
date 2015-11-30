@@ -252,7 +252,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return object.pinInBackground("Offline");
     }
 
-    Task<Object> pinInBackgroundWithNewRecord() {
+    public Task<Object> pinInBackgroundWithNewRecord() {
         return this.pinInBackgroundForModel().continueWith(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {

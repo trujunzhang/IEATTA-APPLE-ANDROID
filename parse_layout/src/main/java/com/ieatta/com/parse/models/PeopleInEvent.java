@@ -15,6 +15,7 @@ import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -99,6 +100,7 @@ public class PeopleInEvent extends ParseModelSync {
             @Override
             public Object then(Task<List<ParseObject>> task) throws Exception {
                 LinkedList<ParseModelAbstract> array = new PeopleInEvent().convertToParseModelArray(task.getResult(), true);
+
                 TaskCompletionSource nextTask = new TaskCompletionSource();
                 nextTask.setResult(array);
                 return nextTask;
@@ -106,33 +108,39 @@ public class PeopleInEvent extends ParseModelSync {
         });
     }
 
-//    static Task<Object> sortOrderedPeople(previous:BFTask,peopleInEvents:[PeopleInEvent]){
-//        let fetchedPeople = previous.result as! [ParseUser]
-//    public String sortedPeople = [ParseUser]()
-//
-//        void   getPeople(peopleInEvent: PeopleInEvent) -> ParseUser?{
-//        for people in fetchedPeople{
-//            if(ParseModelAbstract.getPoint(people) == peopleInEvent.userRef){
-//                return people
-//            }
-//        }
-//        return nil
-//        }
-//
-//        for peopleInEvent in peopleInEvents{
-//            if let people = getPeople(peopleInEvent){
-//                sortedPeople.append(people)
-//            }else{
-//                return BFTask(error: NSError.getError(IEAErrorType.SortArray, description: "\(peopleInEvent.printDescription())"))
-//            }
-//        }
-//
-//        return BFTask(result: sortedPeople)
-//    }
+    static ParseUser getPeople(PeopleInEvent peopleInEvent,LinkedList<ParseUser> fetchedPeople){
+        for(ParseUser people :fetchedPeople){
+            if(ParseModelAbstract.getPoint(people).equals(peopleInEvent.userRef)){
+                return people;
+            }
+        }
 
-//    public Task<Object>   saveParseUser()   {
-//        return this.pinInBackgroundWithNewRecord();
-//    }
+        return  null;
+    }
+
+    static Task<Object> sortOrderedPeople(Task<Object> previous,LinkedList<PeopleInEvent> peopleInEvents){
+        LinkedList<ParseUser>fetchedPeople = new LinkedList<>((Collection<? extends ParseUser>) previous.getResult());
+
+        LinkedList<ParseUser> sortedPeople = new LinkedList<>();
+
+        for(PeopleInEvent peopleInEvent : peopleInEvents){
+            ParseUser people = getPeople(peopleInEvent, fetchedPeople);
+            if(people!=null){
+                sortedPeople.add(people);
+            }else {
+                // TODO djzhang(fixing)
+//                return BFTask(error: NSError.getError(IEAErrorType.SortArray, description: "\(peopleInEvent.printDescription())"))
+            }
+        }
+
+        TaskCompletionSource finishTask = new TaskCompletionSource();
+        finishTask.setResult(sortedPeople);
+        return finishTask.getTask();
+    }
+
+    public Task<Object>   saveParseUser()   {
+        return this.pinInBackgroundWithNewRecord();
+    }
 
     // MARK: Description
     @Override
