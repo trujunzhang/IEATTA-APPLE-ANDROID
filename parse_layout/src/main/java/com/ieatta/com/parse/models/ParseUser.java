@@ -13,7 +13,27 @@ import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
+import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Objects;
+
+import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.ParseModelSync;
+
+import bolts.Continuation;
+import bolts.Task;
+
+import com.parse.ParseObject;
+import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.parse.ParseQuery;
+import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PhotoUsedType;
+import com.ieatta.com.parse.models.enums.ReviewType;
+
+import bolts.Continuation;
+import bolts.Task;
+import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -109,36 +129,37 @@ public class ParseUser extends ParseModelSync {
         return new ParseUser();
     }
 
+    private static boolean checkExist(ParseUser user, LinkedList<ParseUser> inSource) {
+        for (ParseUser model : inSource) {
+            if (model.equals(user)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // MARK: Support methods.
-//    static void filterFrom(previous:BFTask,source:[ParseUser])   Task<Object>{
-//    public String result:[ParseUser] = previous.result as! [ParseUser]
-//
-//    public String filterUser:[ParseUser] = [ParseUser]()
-//
-//        void   checkExist(user:ParseUser, inSource:[ParseUser]) -> Bool{
-//            for model in source{
-//                if(ParseModelAbstract.getPoint(model) == ParseModelAbstract.getPoint(user)){
-//                    return true
-//                }
-//            }
-//            return false
-//        }
-//
-//        for model in result{
-//            if(checkExist(model,inSource: source) == false){
-//                filterUser.append(model)
-//            }
-//        }
-//
-//        return BFTask(result: filterUser)
-//    }
+    static Task<Object> filterFrom(Task<Object> previous, LinkedList<ParseUser> source) {
+
+        LinkedList<ParseUser> result = new LinkedList<>((Collection<? extends ParseUser>) previous.getResult());
+
+        LinkedList<ParseUser> filterUser = new LinkedList<>();
+        for (ParseUser model : result) {
+            if (checkExist(model, source)) {
+                filterUser.add(model);
+            }
+        }
+        TaskCompletionSource finalTask = new TaskCompletionSource();
+        finalTask.setResult(filterUser);
+        return finalTask.getTask();
+    }
 
     static Task<Object> queryParseUser() {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.ParseUser, new ParseUser().makeParseQuery());
     }
 
-    static Task<Object> queryParseUserByPoints(LinkedList<String> points)   {
-        return new  ParseUser().queryParseModels(PQeuryModelType.ParseUser, points);
+    static Task<Object> queryParseUserByPoints(LinkedList<String> points) {
+        return new ParseUser().queryParseModels(PQeuryModelType.ParseUser, points);
     }
 
     static Task<Object> queryParseUser(LinkedList<PeopleInEvent> list) {
@@ -152,7 +173,7 @@ public class ParseUser extends ParseModelSync {
     static LinkedList<String> getPeoplePoints(LinkedList<PeopleInEvent> peopleInEvent) {
         LinkedList<String> peoplePoints = new LinkedList<>();
 
-        for(PeopleInEvent model : peopleInEvent){
+        for (PeopleInEvent model : peopleInEvent) {
             peoplePoints.add(model.userRef);
         }
 
@@ -175,8 +196,8 @@ public class ParseUser extends ParseModelSync {
     static LinkedList<ParseUser> convertToParseUserArray(LinkedList<ParseObject> objectArray) {
         LinkedList<ParseUser> array = new LinkedList<>();
 
-        for(ParseObject object : objectArray){
-            array.add((ParseUser)convertToModel(object,new ParseUser()));
+        for (ParseObject object : objectArray) {
+            array.add((ParseUser) convertToModel(object, new ParseUser()));
         }
 
         return array;
