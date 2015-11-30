@@ -12,46 +12,49 @@ import bolts.Task;
  */
 public class ParseAsyncHandler {
 
-    private static final int  PAGE_NUMBER_FETCH_NEW_RECORD = 10;
-    private static final int  PAGE_NUMBER_PUSH_NEW_RECORD  = 2;
+    private static final int PAGE_NUMBER_FETCH_NEW_RECORD = 10;
+    private static final int PAGE_NUMBER_PUSH_NEW_RECORD = 2;
 
     public static final ParseAsyncHandler sharedInstance = new ParseAsyncHandler();
 
 
     private boolean didEndAsync = true;
 
-    private void PullObjectsFromServer(){
+    private void PullObjectsFromServer() {
 
-        PullNewRecordFromServerTask.PullFromServerSeriesTask(new  AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD)).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                if(task.getError() != null){
-                    endAsyncTasks(task.getError());
-                }else {
-                    PushLocalNewRecordToServer();
-                }
-                return null;
-            }
-        });
+        PullNewRecordFromServerTask.PullFromServerSeriesTask(new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD))
+                .continueWith(new Continuation<Object, Object>() {
+                    @Override
+                    public Object then(Task<Object> task) throws Exception {
+                        if (task.getError() != null) {
+                            endAsyncTasks(task.getError());
+                        } else {
+                            PushLocalNewRecordToServer();
+                        }
+                        return null;
+                    }
+                });
     }
 
-    private void PushLocalNewRecordToServer(){
-        PushNewRecordToServerTask.PushToServerSeriesTask(new NewRecord().createQueryForPushObjectsToServer(PAGE_NUMBER_PUSH_NEW_RECORD)).continueWithBlock { (task) -> AnyObject? in
-
-            if let _error = task.error{
-                self.endAsyncTasks(_error)
-            }else{
-                self.endAsyncTasks()
-            }
-
-            return nil
-        }
+    private void PushLocalNewRecordToServer() {
+        PushNewRecordToServerTask.PushToServerSeriesTask(new NewRecord().createQueryForPushObjectsToServer(PAGE_NUMBER_PUSH_NEW_RECORD))
+                .continueWith(new Continuation<Object, Object>() {
+                    @Override
+                    public Object then(Task<Object> task) throws Exception {
+                        if (task.getError() != null) {
+                            endAsyncTasks(task.getError());
+                        } else {
+                            endAsyncTasks(null);
+                        }
+                        return null;
+                    }
+                });
     }
 
-    private void endAsyncTasks(Exception error){
-        if(error != null){
+    private void endAsyncTasks(Exception error) {
+        if (error != null) {
 //            print("Error when async database: \(_error.userInfo)");
-        }else {
+        } else {
 //            print("Async database task end sucessfully!");
         }
 
@@ -60,11 +63,11 @@ public class ParseAsyncHandler {
 
 
     /**
-     Start Point
+     * Start Point
      */
-    public void executeParseAsyncHandler(){
+    public void executeParseAsyncHandler() {
         // Already have the same async handler.
-        if(this.didEndAsync == false){
+        if (this.didEndAsync == false) {
             return;
         }
 
@@ -72,8 +75,6 @@ public class ParseAsyncHandler {
         this.didEndAsync = false;
         this.PullObjectsFromServer();
     }
-
-
 
 
 }
