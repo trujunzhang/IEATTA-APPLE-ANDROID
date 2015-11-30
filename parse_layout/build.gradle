@@ -29,4 +29,5 @@ dependencies {
 
     compile project(':android-timeago')
     compile project(':assertionLib')
+    compile project(':Android-Universal-Image-Loader')
 }
