@@ -3,6 +3,7 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
 
+import bolts.Continuation;
 import bolts.Task;
 
 import com.parse.ParseObject;
@@ -12,6 +13,10 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
+
+import bolts.Continuation;
+import bolts.Task;
+import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -154,21 +159,34 @@ public class Recipe extends ParseModelSync {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Recipe, new Recipe().createQuery(people, event));
     }
 
-//     @Override     public Task<Object> queryBelongToTask(belongTo:ParseModelAbstract?)   {
-//        return this.getFirstLocalModelArrayTask().continueWithBlock({ (task) -> AnyObject? in
-//        return ParseModelAbstract.getInstanceFromType(PQeuryModelType.Event.rawValue, objectUUID: this.eventRef).queryBelongToTask(self).continueWithBlock({ (task) -> AnyObject? in
-//                let event = task.result as! Event
-//                this.belongToModel = ParseUser(belongToModel: event)
-//        return BFTask(result: self)
-//        })
-//        })
-//
-//    }
+    @Override
+    public Task<Object> queryBelongToTask(ParseModelAbstract belongTo) {
+        final Recipe self = this;
 
-    static Task<Integer> queryOrderedRecipesCount(ParseUser people,Event event)   {
-        Recipe recipe =new  Recipe();
+        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                ParseModelAbstract model = ParseModelAbstract.getInstanceFromType(PQeuryModelType.Event, self.eventRef);
+                return model.queryBelongToTask(self);
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
 
-        return recipe.countLocalObjects(recipe.createQuery(people,event));
+                final Event event = (Event) task.getResult();
+                self.belongToModel = new ParseUser(event);
+
+                TaskCompletionSource finalTask = new TaskCompletionSource();
+                finalTask.setResult(self);
+                return finalTask.getTask();
+            }
+        });
+    }
+
+    static Task<Integer> queryOrderedRecipesCount(ParseUser people, Event event) {
+        Recipe recipe = new Recipe();
+
+        return recipe.countLocalObjects(recipe.createQuery(people, event));
     }
 
     // MARK: Description
