@@ -1,10 +1,14 @@
 package com.ieatta.com.parse.async.tasks;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import bolts.Continuation;
 import bolts.Task;
+import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/30/15.
@@ -51,30 +55,44 @@ public class PushNewRecordToServerTask {
 
      - parameter newRecordObject: A row data on the NewRecord table.
      */
-    private static Task PushObjectToServerTask(ParseObject newRecordObject) {
+    private static Task PushObjectToServerTask(final ParseObject newRecordObject) {
         // Convert newRecordObject to Model instance.
-//        let newRecord:NewRecord = NewRecord().convertToLocalModel(newRecordObject) as! NewRecord
-//
-////        print("push to server: \(newRecord.printDescription())")
-//
-//        // 1. Get the recoreded model instance from NewRecord, by the modelType and the modelPoint.
-//        // (such as photo,restaurant,event etc)
-//        let model = newRecord.getRecordedModel()
-////        print("push to server: \(model.printDescription())")
-//
-//        return model.pushToServer()
-//                .continueWithSuccessBlock { (task) -> AnyObject? in
-//            // Save NewRecord to Parse.com
-//            return newRecordObject.saveInBackground()
-//        }.continueWithSuccessBlock({ (task) -> AnyObject? in
-//                // Unpin the offline NewRecord
-//        return ParseModelQuery.unpinObjectInBackground(forObject: newRecordObject)
-//        }).continueWithSuccessBlock({ (task) -> AnyObject? in
-//                // For the specail photo here.
-//        return model.eventAfterPushToServer()
-//        })
+        NewRecord newRecord = (NewRecord) new NewRecord().convertToLocalModel(newRecordObject);
 
-        return null;
+//        print("push to server: \(newRecord.printDescription())")
+
+        // 1. Get the recoreded model instance from NewRecord, by the modelType and the modelPoint.
+        // (such as photo,restaurant,event etc)
+        final ParseModelAbstract model = newRecord.getRecordedModel();
+//        print("push to server: \(model.printDescription())")
+
+        return model.pushToServer().continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+
+                if (task.getError() != null) {
+                    TaskCompletionSource finalTask = new TaskCompletionSource();
+                    finalTask.setError(task.getError());
+                    return finalTask;
+                }
+
+                // Save NewRecord to Parse.com
+                return newRecordObject.saveInBackground();
+            }
+        }).continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+
+                // Unpin the offline NewRecord
+                return ParseModelQuery.unpinObjectInBackground(newRecordObject);
+            }
+        }).continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                // For the specail photo here.
+                return model.eventAfterPushToServer();
+            }
+        });
     }
 
 

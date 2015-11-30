@@ -55,7 +55,7 @@ public class NewRecord extends ParseModelSync {
         return newRecord.getRecordedModel();
     }
 
-    ParseModelAbstract getRecordedModel() {
+    public ParseModelAbstract getRecordedModel() {
         return ParseModelAbstract.getInstanceFromType(this.modelType, this.modelPoint);
     }
 

@@ -44,8 +44,8 @@ public interface ParseModelProtocol {
      * - returns: task's instance
      */
     public Task<Object> pushToServer();
-//
-//    public Task<Object> eventAfterPushToServer();
+
+    public Task<Object> eventAfterPushToServer();
 
     public Task<Object> pullFromServerAndPin();
 
