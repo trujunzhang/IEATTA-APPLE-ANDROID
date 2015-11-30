@@ -3,6 +3,7 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
 
+import bolts.Continuation;
 import bolts.Task;
 
 import com.ieatta.com.parse.ParseModelSync;
@@ -100,7 +101,7 @@ public class Event extends ParseModelSync {
 
     @Override
     public void writeCommonObject(ParseObject object) {
-        Assertions.assertNotEmpty(this.restaurantRef,"Must setup restaurantRef.");
+        Assertions.assertNotEmpty(this.restaurantRef, "Must setup restaurantRef.");
 
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldStartDateKey, this.startDate);
@@ -157,11 +158,16 @@ public class Event extends ParseModelSync {
         return new Event();
     }
 
-//     @Override     public Task<Object> queryBelongToTask(ParseModelAbstract belongTo)   {
-//        return this.getFirstLocalModelArrayTask().continueWithBlock({ (task) -> AnyObject? in
-//        return ParseModelAbstract.getInstanceFromType(PQeuryModelType.Restaurant.rawValue, objectUUID: this.restaurantRef).queryBelongToTask(self)
-//        })
-//    }
+    @Override
+    public Task<Object> queryBelongToTask(ParseModelAbstract belongTo) {
+        final Event self = this;
+        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return ParseModelAbstract.getInstanceFromType(PQeuryModelType.Restaurant, self.restaurantRef).queryBelongToTask(self);
+            }
+        });
+    }
 
     public Task<Object> queryParseModels(String keyword) {
         return Event.queryFromDatabase(PQeuryModelType.Event, new Event().createSearchDisplayNameQuery(keyword));

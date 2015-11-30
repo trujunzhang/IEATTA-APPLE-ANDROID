@@ -69,9 +69,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public abstract Task<Object> pullFromServerAndPin();
 
-//    public Task<Object> queryBelongToTask(belongTo:ParseModelAbstract?) {
-//        fatalError("Must Override")
-//    }
+    public abstract Task<Object> queryBelongToTask(ParseModelAbstract belongTo);
 
     public Task<Object> queryParseModels(String keyword){
         return null;

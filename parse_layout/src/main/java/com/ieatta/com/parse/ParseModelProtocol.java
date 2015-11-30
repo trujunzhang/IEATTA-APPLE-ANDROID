@@ -58,5 +58,5 @@ public interface ParseModelProtocol {
 
     public Task<Object> getFirstOnlineObjectTask();
 
-//    public Task<Object> queryBelongToTask(ParseModelAbstract belongTo);
+    public Task<Object> queryBelongToTask(ParseModelAbstract belongTo);
 }

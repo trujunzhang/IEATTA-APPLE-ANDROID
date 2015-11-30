@@ -3,7 +3,9 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
 
+import bolts.Continuation;
 import bolts.Task;
+import bolts.TaskCompletionSource;
 
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -36,7 +38,7 @@ public class Restaurant extends ParseModelSync {
     private String googleMapAddress = Default_FormattedAddress;
 
     public String getGoogleMapAddress() {
-        if(this.googleMapAddress==null || this.googleMapAddress.equals("")){
+        if (this.googleMapAddress == null || this.googleMapAddress.equals("")) {
             return Default_FormattedAddress;
         }
 
@@ -115,32 +117,44 @@ public class Restaurant extends ParseModelSync {
         return new Restaurant();
     }
 
-//     @Override     public Task<Object> queryBelongToTask(belongTo:ParseModelAbstract?)   Task<Object>{
-//        if let _beloingTo = belongTo{// belongTo is self, return this.
-//            if(_beloingTo.isEqual(self)){
-//                return BFTask(result: self)
-//            }
-//        }
-//
-//        return this.getFirstLocalModelArrayTask().continueWithBlock({ (task) -> AnyObject? in
-//        if let _beloingTo = belongTo{
-//            (_beloingTo as! Event).belongToModel = self
-//        }
-//        return BFTask(result: belongTo)
-//        })
-//    }
+    @Override
+    public Task<Object> queryBelongToTask(final ParseModelAbstract belongTo) {
+        final Restaurant self = this;
+        // belongTo is self, return this.
+        if (belongTo != null) {
+            if (belongTo.equals(self)) {
+                TaskCompletionSource finalTask = new TaskCompletionSource();
+                finalTask.setResult(self);
+                return finalTask.getTask();
+            }
+        }
 
-    static Task<Object> queryRestaurants()   {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Restaurant, new  Restaurant().makeParseQuery());
+        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (belongTo != null) {
+                    final Event event = (Event) belongTo;
+                    event.belongToModel = self;
+                }
+
+                TaskCompletionSource finalTask = new TaskCompletionSource();
+                finalTask.setResult(belongTo);
+                return finalTask.getTask();
+            }
+        });
     }
 
-    static Task<Object> queryNearRestaurants(ParseGeoPoint geoPoint)   {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Restaurant,new  Restaurant().createNearlyRestaurantQuery(geoPoint));
+    static Task<Object> queryRestaurants() {
+        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Restaurant, new Restaurant().makeParseQuery());
     }
 
-     @Override
-     public Task<Object> queryParseModels(String keyword)  {
-        return Restaurant.queryFromDatabase(PQeuryModelType.Restaurant,new  Restaurant().createSearchDisplayNameQuery(keyword));
+    static Task<Object> queryNearRestaurants(ParseGeoPoint geoPoint) {
+        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
+    }
+
+    @Override
+    public Task<Object> queryParseModels(String keyword) {
+        return Restaurant.queryFromDatabase(PQeuryModelType.Restaurant, new Restaurant().createSearchDisplayNameQuery(keyword));
     }
 
     // MARK: Description
