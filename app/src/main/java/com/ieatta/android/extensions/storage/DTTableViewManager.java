@@ -1,6 +1,8 @@
 package com.ieatta.android.extensions.storage;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.ieatta.android.modules.adapter.IEAViewHolder;
@@ -25,7 +27,8 @@ public class DTTableViewManager {
     }
 
     public Object getModel(int position) {
-        return null;
+        SectionModel sectionModel = self.memoryStorage.getSectionFromPosition(0);
+        return sectionModel.items.get(position);
     }
 
     public void registerHeaderClass(Class<IEAViewHolder> headerClass) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
@@ -34,8 +37,26 @@ public class DTTableViewManager {
     }
 
     public IEAViewHolder createViewHolder(ViewGroup parent, int viewType) {
-//        Class clazz = self.memoryStorage.getItem(viewType);
-        return null;
+        SectionModel sectionModel = self.memoryStorage.getSectionFromPosition(viewType);
+        Class cellClass = sectionModel.cellClass;
+        int layoutResId = sectionModel.layoutResId;
+
+        Constructor[] ctors = cellClass.getDeclaredConstructors();
+        Constructor viewConstructor = TableViewFactory.getConstructorForView(ctors);
+        View view = LayoutInflater.from(self.context).inflate(layoutResId, parent, false);
+
+        IEAViewHolder viewHolder = null;
+        try {
+            viewHolder = (IEAViewHolder) viewConstructor.newInstance(new Object[]{view});
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return viewHolder;
     }
 
     public void registerCellClass(Class cellClass, int forSectionIndex,int layoutResId) {

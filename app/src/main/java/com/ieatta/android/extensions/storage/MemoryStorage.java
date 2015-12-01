@@ -35,7 +35,11 @@ public class MemoryStorage {
 
     }
 
-    private SectionModel getSection(int forSectionIndex) {
+    public SectionModel getSectionFromPosition(int viewType){
+      return self.sections.get(new Integer(0));
+    };
+
+    private SectionModel verifySection(int forSectionIndex) {
         SectionModel model = self.sections.get(new Integer(forSectionIndex));
         if (model != null) {
             return model;
@@ -57,7 +61,7 @@ public class MemoryStorage {
     }
 
     public void registerCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
-        SectionModel section = self.getSection(forSectionIndex);
+        SectionModel section = self.verifySection(forSectionIndex);
         section.layoutResId = layoutResId;
         section.cellClass =cellClass;
     }
