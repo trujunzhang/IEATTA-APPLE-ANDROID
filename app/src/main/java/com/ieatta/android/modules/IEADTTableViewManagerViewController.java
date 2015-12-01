@@ -78,7 +78,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell,int forSectionIndex ){
-//        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex: index)
+        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex);
     }
 
     public MemoryStorage getMemoryStorage()  {
