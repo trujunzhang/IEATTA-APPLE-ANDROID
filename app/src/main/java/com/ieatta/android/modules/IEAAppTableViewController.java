@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
-import com.ieatta.android.modules.adopter.IEATableViewControllerAdapter;
+import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
 
 /**
  * Created by djzhang on 12/1/15.

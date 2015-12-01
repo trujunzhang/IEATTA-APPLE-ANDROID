@@ -43,7 +43,6 @@ public class MemoryStorage {
         return new SectionModel(forSectionIndex);
     }
 
-
     /// Set section footer model for MemoryStorage
     /// - Note: This does not update UI
     /// - Parameter model: model for section footer at index

@@ -6,7 +6,7 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.viewkit.ModelTransfer;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
-import com.ieatta.android.modules.adopter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
 import java.lang.reflect.Constructor;
@@ -60,7 +60,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setRegisterCellClassWhenSelected(Class cellClass, int forSectionIndex,int layoutResId){
-        getTableManager().registerCellClass(cellClass,forSectionIndex,layoutResId);
+        getTableManager().registerCellClass(cellClass, forSectionIndex, layoutResId);
 //        getTableManager().registerCellClass(cellClass) { (_, model, indexPath) -> Void in
 //            self.whenSelectedEvent((model as! Object), indexPath: indexPath)
 //        }

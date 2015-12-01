@@ -1,4 +1,4 @@
-package com.ieatta.android.modules.adopter;
+package com.ieatta.android.modules.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

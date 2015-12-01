@@ -1,13 +1,10 @@
-package com.ieatta.android.modules.adopter;
+package com.ieatta.android.modules.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
-import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
 
 /**
  * Created by djzhang on 12/1/15.

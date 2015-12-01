@@ -1,15 +1,11 @@
 package com.ieatta.android.modules.cells;
 
-import android.graphics.Bitmap;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.viewkit.ModelTransfer;
-import com.ieatta.android.modules.adopter.IEAViewHolder;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
+import com.ieatta.android.modules.adapter.IEAViewHolder;
 
 public class IEANearRestaurantMoreCell extends IEAViewHolder {
     public static int layoutResId = R.layout.near_restaurant_more_cell;

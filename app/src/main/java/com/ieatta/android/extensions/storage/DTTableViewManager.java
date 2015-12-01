@@ -3,8 +3,7 @@ package com.ieatta.android.extensions.storage;
 import android.content.Context;
 import android.view.ViewGroup;
 
-import com.ieatta.android.modules.IEADTTableViewManagerViewController;
-import com.ieatta.android.modules.adopter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.IEAViewHolder;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
