@@ -6,6 +6,7 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.viewkit.ModelTransfer;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
+import com.ieatta.android.modules.adopter.IEATableAdapter;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
 import java.util.LinkedList;
@@ -17,10 +18,12 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     private IEADTTableViewManagerViewController self = this;
     private DTTableViewManager manager = new DTTableViewManager();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        self.startManagingWithDelegate(manager);
 //        getTableManager().startManagingWithDelegate(self)
 //        setRegisterHeaderClass(IEAViewForHeaderInSectionCell);
     }

@@ -1,18 +1,24 @@
 package com.ieatta.android.modules.cells;
 
 import android.graphics.Bitmap;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.extensions.viewkit.ModelTransfer;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 
-public class IEANearRestaurantMoreCell implements ModelTransfer {
+public class IEANearRestaurantMoreCell extends RecyclerView.ViewHolder implements ModelTransfer {
 
 
     private IEANearRestaurantMoreCell self = this;
     private ImageView iconImageView;
     private TextView titleLabel;
+
+    public IEANearRestaurantMoreCell(View itemView) {
+        super(itemView);
+    }
 
     @Override
     public void updateWithModel(Object model) {

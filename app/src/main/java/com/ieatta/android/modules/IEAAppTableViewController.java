@@ -3,17 +3,21 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.DTTableViewManager;
+import com.ieatta.android.modules.adopter.IEATableAdapter;
 
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEAAppTableViewController extends AppCompatActivity{
-
+public class IEAAppTableViewController extends AppCompatActivity {
+    private IEAAppTableViewController self = this;
     private RecyclerView recyclerView;
+    public IEATableAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,8 @@ public class IEAAppTableViewController extends AppCompatActivity{
         setContentView(R.layout.tableviewcontroller);
 
         this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
+
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 //        self.view.backgroundColor = UIColor(named: .MainBody)
 //        self.tableView.backgroundColor = UIColor(named: .MainBody)
@@ -30,11 +36,16 @@ public class IEAAppTableViewController extends AppCompatActivity{
 //        }
     }
 
+    protected void startManagingWithDelegate(DTTableViewManager manager) {
+        self.adapter = new IEATableAdapter(manager);
+        self.recyclerView.setAdapter(self.adapter);
+    }
+
     public boolean navigationShouldPopOnBackButton() {
         return true;
     }
 
-    public boolean showNavigationTitle()  {
+    public boolean showNavigationTitle() {
         return true;
     }
 
@@ -46,7 +57,7 @@ public class IEAAppTableViewController extends AppCompatActivity{
         return false;
     }
 
-    public View setTitle(String title, String subtitle)  {
+    public View setTitle(String title, String subtitle) {
 //        let titleLabel = UILabel(frame: CGRectMake(0, -5, 0, 0))
 //
 //        titleLabel.backgroundColor = UIColor.clearColor()
@@ -82,7 +93,7 @@ public class IEAAppTableViewController extends AppCompatActivity{
         return null;
     }
 
-     public void didReceiveMemoryWarning() {
+    public void didReceiveMemoryWarning() {
         // Dispose of any resources that can be recreated.
     }
 
