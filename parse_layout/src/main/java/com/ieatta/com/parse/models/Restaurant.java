@@ -20,6 +20,7 @@ import com.ieatta.com.parse.models.enums.ReviewType;
  * Created by djzhang on 11/27/15.
  */
 public class Restaurant extends ParseModelSync {
+    private  Restaurant self = this;
     public static final String Default_FormattedAddress = "";
 
     public static final double PAWRestaurantMaximumSearchDistance = 1; // Value in kilometers
@@ -37,8 +38,10 @@ public class Restaurant extends ParseModelSync {
     // Variables invoked by viewController
     private String googleMapAddress = Default_FormattedAddress;
 
-    public Restaurant(String s, ParseGeoPoint parseGeoPoint, String s1, String s2, int rest01) {
-
+    public Restaurant(String displayName, ParseGeoPoint location, String address, String city, int sampleFileName) {
+        self.displayName = displayName;
+        self.location = location;
+        self.sampleFileName = sampleFileName;
     }
 
     public String getGoogleMapAddress() {

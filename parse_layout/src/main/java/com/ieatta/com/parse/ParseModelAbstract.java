@@ -98,7 +98,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public Date objectCreatedDate;
 
-    public String sampleFileName = "";// Image's offline Image Path.
+    public int sampleFileName ;// Image's offline Image Path.
 
     public ParseModelAbstract(String objectUUID) {
         this.objectUUID = objectUUID;

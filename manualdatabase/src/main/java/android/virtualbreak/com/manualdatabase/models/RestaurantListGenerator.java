@@ -29,4 +29,8 @@ public class RestaurantListGenerator {
     }
 
 
+    public static ParseGeoPoint getCurrentLocationAndCulculateDistance() {
+
+        return getCurrentRestaurantList().get(1).location;
+    }
 }
