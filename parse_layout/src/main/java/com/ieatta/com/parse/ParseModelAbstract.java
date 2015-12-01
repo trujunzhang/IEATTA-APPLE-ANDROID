@@ -151,7 +151,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         this.checkAndMakeObjectUUID(object);
 
         object.put(kPAPFieldObjectCreatedDateKey, this.objectCreatedDate);
-        object.put(kPAPFieldFlagKey, this.modelFlag);
+        object.put(kPAPFieldFlagKey, this.modelFlag.ordinal());
     }
 
     public void checkAndMakeObjectUUID(ParseObject object) {
@@ -296,11 +296,11 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     public LinkedList<ParseModelAbstract> convertToParseModelArray(Object value, boolean offline) {
         LinkedList<ParseModelAbstract> array = new LinkedList<>();
 
-        for (ParseModelAbstract object : array) {
+        for (ParseObject object : new LinkedList<>((Collection<? extends ParseObject>) value)) {
             if (offline == true) {
-                ParseModelAbstract.convertToFirstLocalModel(object, this.getNewInstance());
+                array.add(ParseModelAbstract.convertToLocalModel(object, this.getNewInstance()));
             } else {
-                ParseModelAbstract.convertToOnlineModel(object, this.getNewInstance());
+                array.add(ParseModelAbstract.convertToOnlineModel(object, this.getNewInstance()));
             }
         }
 
@@ -313,7 +313,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return instance;
     }
 
-    public ParseModelAbstract convertToLocalModel(Object object, ParseModelAbstract instance) {
+    public static ParseModelAbstract convertToLocalModel(Object object, ParseModelAbstract instance) {
         instance.readObjectLocal((ParseObject) object);
         return instance;
     }
