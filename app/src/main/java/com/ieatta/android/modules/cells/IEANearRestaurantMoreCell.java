@@ -18,7 +18,7 @@ public class IEANearRestaurantMoreCell implements ModelTransfer {
     public void updateWithModel(Object model) {
         IENearRestaurantMore more  = (IENearRestaurantMore) model;
 
-        self.iconImageView.setImageResource(more.resId);
-        self.titleLabel.setText(more.title);
+        self.iconImageView.setImageResource(more.iconResId);
+        self.titleLabel.setText(more.titleResId);
     }
 }
