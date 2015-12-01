@@ -7,13 +7,13 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
  */
 
 public class IENearRestaurantMore {
-    int resId;
-    String title = "";
+    int iconResId;
+    int titleResId;
     MainSegueIdentifier identifier = MainSegueIdentifier.Unspecified;
 
-    public IENearRestaurantMore(int resId, String title, MainSegueIdentifier identifier) {
-        this.resId = resId;
-        this.title = title;
+    public IENearRestaurantMore(int iconResId, int titleResId, MainSegueIdentifier identifier) {
+        this.iconResId = iconResId;
+        this.titleResId = titleResId;
         this.identifier = identifier;
     }
 }
