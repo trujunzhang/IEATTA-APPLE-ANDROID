@@ -3,6 +3,7 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 
 import com.ieatta.android.cache.IEACache;
+import com.ieatta.android.modules.tools.TableViewHeightInfo;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Restaurant;
@@ -14,34 +15,34 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEABaseTableViewController extends IEADTTableViewManagerViewController{
-private IEABaseTableViewController self =this;
+public class IEABaseTableViewController extends IEADTTableViewManagerViewController {
+    private IEABaseTableViewController self = this;
     ProgressHUD mProgressHUD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(self.shouldShowHUD() == true){
+        if (self.shouldShowHUD() == true) {
             self.showHUD();
         }
 
     }
 
-    public void showHUD(){
-        mProgressHUD = ProgressHUD.show(IEABaseTableViewController.this,"Loading", true,true,null);
+    public void showHUD() {
+        mProgressHUD = ProgressHUD.show(IEABaseTableViewController.this, "Loading", true, true, null);
     }
 
-    public void hideHUD(){
+    public void hideHUD() {
         mProgressHUD.dismiss();
     }
 
-    public ParseModelAbstract getPageModel()  {
+    public ParseModelAbstract getPageModel() {
 //        fatalError("getPageModel() has not been implemented")
         return null;
     }
 
-    public TableViewHeightInfo getTableViewHeightInfo()  {
+    public TableViewHeightInfo getTableViewHeightInfo() {
 //        return TableViewHeightInfo.getEmptyInfo()
         return null;
     }
@@ -54,43 +55,41 @@ private IEABaseTableViewController self =this;
 //        }
 //    }
 
-    override tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if let height = self.getTableViewHeightInfo().getHeightForHeaderInSection(section){
-            return height
-        }
-        return DEFAULT_SECTION_TITLE_HEADER_HEIGHT
-    }
+//    override tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if let height = self.getTableViewHeightInfo().getHeightForHeaderInSection(section){
+//            return height
+//        }
+//        return DEFAULT_SECTION_TITLE_HEADER_HEIGHT
+//    }
 
-    override tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let height = self.getTableViewHeightInfo().getHeightForRowAtIndexPath(indexPath){
-            return height
-        }
+//    override tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if let height = self.getTableViewHeightInfo().getHeightForRowAtIndexPath(indexPath){
+//            return height
+//        }
+//
+//        assert(false, "Must set row height at row: \(indexPath.row), section: \(indexPath.section)")
+//        return 0.0
+//    }
 
-        assert(false, "Must set row height at row: \(indexPath.row), section: \(indexPath.section)")
-        return 0.0
-    }
-
-    public Task<Object> getPhotosForModelsTask(Task<Object> previous) {
+    public Task<Object> getPhotosForModelsTask(final Task<Object> previous) {
         // First of all, query relate photos task.
-        return Photo.queryPhotosFromUsedRefs( ParseModelAbstract.getModelPoints(previous)).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                return null;
-            }
-        })
-
-
-        .continueWithBlock { (task) -> AnyObject? in
-            // Next, Cache all models' uuid as key and photo's uuid as value.
-            return IEACache.sharedInstance.setPhotoPointForModels(task)
-                    .continueWithBlock({ (task) -> AnyObject? in
-                            // Finish, return previous task to continue.
-            return previous
-            })
-        }
+        return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous))
+                .continueWith(new Continuation<Object, Object>() {
+                    @Override
+                    public Object then(Task<Object> task) throws Exception {
+                        // Next, Cache all models' uuid as key and photo's uuid as value.
+                        return IEACache.sharedInstance.setPhotoPointForModels(task);
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
+                    @Override
+                    public Object then(Task<Object> task) throws Exception {
+                        // Finish, return previous task to continue.
+                        return previous;
+                    }
+                });
     }
 
-    public void showGoogleMapAddress(int sectionIndex){
+    public void showGoogleMapAddress(int sectionIndex) {
         Restaurant restaurant = (Restaurant) self.getPageModel();
 //        self.setRegisterCellClass(IEAGoogleMapAddressCell)
 
