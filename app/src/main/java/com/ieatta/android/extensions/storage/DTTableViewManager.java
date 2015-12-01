@@ -23,7 +23,7 @@ public class DTTableViewManager {
 
 
     public int getItemCount() {
-        return 0;
+        return self.memoryStorage.getItemCount();
     }
 
     public Object getModel(int position) {
