@@ -64,6 +64,13 @@ public class Event extends ParseModelSync {
         this.restaurantRef = ParseModelAbstract.getPoint(belongToModel);
     }
 
+    public Event(String s, Date date, Date date1, String s1, String remarks1) {
+
+
+
+
+    }
+
 
     // MARK: ParseModel
     ParseQuery createQueryByRestaurantRef(Restaurant restaurant) {

@@ -50,6 +50,10 @@ public class Team extends ParseModelSync {
         this.belongToModel = belongToModel;
     }
 
+    public Team(String s, String s1, String s2, int clarencemorgan) {
+
+    }
+
     // MARK: Anonymous User
     static Team getAnonymousUser() {
         Team people = new Team();

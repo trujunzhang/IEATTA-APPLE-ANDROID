@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">ManualDatabase</string>
+    <string name="app_name">ParseLocalGenerator</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="header_view_biz_title">New Yrok Sports Clubs</string>
+    <string name="header_view_biz_reviews_info">61 Reviews</string>
+    <string name="header_view_biz_event_info">1 Events</string>
+
 </resources>

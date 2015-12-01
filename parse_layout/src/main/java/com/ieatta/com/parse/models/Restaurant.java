@@ -37,6 +37,10 @@ public class Restaurant extends ParseModelSync {
     // Variables invoked by viewController
     private String googleMapAddress = Default_FormattedAddress;
 
+    public Restaurant(String s, ParseGeoPoint parseGeoPoint, String s1, String s2, int rest01) {
+
+    }
+
     public String getGoogleMapAddress() {
         if (this.googleMapAddress == null || this.googleMapAddress.equals("")) {
             return Default_FormattedAddress;

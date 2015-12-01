@@ -59,6 +59,10 @@ public class Recipe extends ParseModelSync {
         this.cost = cost;
     }
 
+    public Recipe(String s, double v, int food01) {
+
+    }
+
     // MARK: ParseModel
     ParseQuery createQuery(Team people, Event event) {
         ParseQuery query = this.getParseQueryInstance();
