@@ -21,7 +21,6 @@ public class DTTableViewManager {
         self.context = context;
     }
 
-
     public int getItemCount() {
         return self.memoryStorage.getItemCount();
     }
@@ -36,7 +35,11 @@ public class DTTableViewManager {
     }
 
     public IEAViewHolder createViewHolder(ViewGroup parent, int viewType) {
-
+//        Class clazz = self.memoryStorage.getItem(viewType);
         return null;
+    }
+
+    public void registerCellClass(Class cellClass) {
+//        self.memoryStorage.
     }
 }

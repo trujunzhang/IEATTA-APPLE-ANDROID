@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitMasterViewController;
 import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
+import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
 import com.ieatta.android.modules.cells.IENearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
@@ -38,6 +39,9 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Register Cells by class.
+//        self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.class);
+
         self.configModelsInMoreSection();
 
         // TOOD djzhang(test)
@@ -46,7 +50,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
     /// Add rows for section "More".
     private void configModelsInMoreSection() {
-        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.class);
+        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.class,NearRestaurantSection.sectionMoreItems.ordinal(),IEANearRestaurantMoreCell.layoutResId);
 
         self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, R.string.More),  NearRestaurantSection.sectionMoreItems.ordinal());
 
