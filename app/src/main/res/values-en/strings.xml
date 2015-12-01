@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="App_Title">IEATTA</string>
-    <string name="App_Subtitle">Eating Experience Tracker</string>
-
     <!--_Common                                                                       -->
     <string name="PhotosGallery">Photos</string>
 
@@ -20,9 +17,9 @@
 
     <!--_Edit_Recipe                                                                  -->
     <string name="Recipe_name">Recipe's name</string>
-    <string name="Recipe_cost">Recipe's cost</string>
+    <string name="Recipe_cost">Recipe's price</string>
     <string name="Recipe_Name">Recipe Name</string>
-    <string name="Cost">Cost</string>
+    <string name="Price">Price</string>
 
 
     <!--_Edit_restaurant_screen                                                       -->
