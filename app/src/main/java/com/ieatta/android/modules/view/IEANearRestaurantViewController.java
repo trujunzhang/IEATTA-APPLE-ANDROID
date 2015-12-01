@@ -39,6 +39,8 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
         self.configModelsInMoreSection();
 
+        // TOOD djzhang(test)
+        self.queryNearRestaurant(null);
     }
 
 
@@ -65,6 +67,8 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
     // MARK: Query near restaurant list.
     public void queryNearRestaurant(ParseGeoPoint geoPoint) {
+        // TODO djzhang(test)
+        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
         Restaurant.queryNearRestaurants(geoPoint).continueWith(new Continuation<Object, Object>() {
             @Override
