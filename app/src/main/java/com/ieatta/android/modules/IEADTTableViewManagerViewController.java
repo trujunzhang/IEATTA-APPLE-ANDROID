@@ -59,7 +59,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
 //        getTableManager().registerCellClass(cellClass)
     }
 
-    public void setRegisterCellClassWhenSelected(ModelTransfer cellClass){
+    public void setRegisterCellClassWhenSelected(Class cellClass){
 //        getTableManager().registerCellClass(cellClass) { (_, model, indexPath) -> Void in
 //            self.whenSelectedEvent((model as! Object), indexPath: indexPath)
 //        }

@@ -40,15 +40,14 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         self.configModelsInMoreSection();
 
         // TOOD djzhang(test)
-        self.queryNearRestaurant(null);
+//        self.queryNearRestaurant(null);
     }
-
 
     /// Add rows for section "More".
     private void configModelsInMoreSection() {
-//        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.self);
+        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.class);
 
-//        self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.More.string), forSectionIndex: NearRestaurantSection.sectionMoreItems.rawValue)
+        self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, R.string.More),  NearRestaurantSection.sectionMoreItems.ordinal());
 
         // "Manager Restaurant"
         IENearRestaurantMore managerRestaurantItem = new IENearRestaurantMore(R.drawable.restaurants_icon, R.string.Add_a_Restaurant, MainSegueIdentifier.editRestaurantSegueIdentifier);
