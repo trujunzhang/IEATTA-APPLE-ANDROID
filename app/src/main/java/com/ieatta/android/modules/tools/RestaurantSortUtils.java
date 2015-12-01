@@ -2,8 +2,6 @@ package com.ieatta.android.modules.tools;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
-import com.restaurant.tracking.parseasync.local.models.ParseModelProtocol;
-import com.restaurant.tracking.parseasync.local.models.parse.Restaurant;
 
 import java.util.Collections;
 import java.util.Comparator;
