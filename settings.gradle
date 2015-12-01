@@ -1,4 +1,4 @@
-include ':app', ':parse_layout', ':manualdatabase', ':debug', ':android-timeago'
+include ':app', ':parse_layout', ':manualdatabase', ':debug', ':android-timeago', ':commonLib'
 
 include ':assertionLib'
 include ':AndroidProgressHUD'

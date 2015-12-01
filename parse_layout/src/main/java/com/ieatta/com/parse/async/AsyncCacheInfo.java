@@ -11,6 +11,7 @@ import java.util.Date;
 public class AsyncCacheInfo {
 
     public static final String TAG_NEW_RECORD_DATE = "LastPulledNewRecordCreatedAt";
+    private static final String PREFS = "prefs";
 
     /// Cache the last update date from server for new record table.
     public Date lastRecordCreateAt = null;
