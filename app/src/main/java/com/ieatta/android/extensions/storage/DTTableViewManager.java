@@ -1,6 +1,7 @@
 package com.ieatta.android.extensions.storage;
 
 import android.content.Context;
+import android.view.ViewGroup;
 
 import com.ieatta.android.modules.IEADTTableViewManagerViewController;
 import com.ieatta.android.modules.adopter.IEAViewHolder;
@@ -32,5 +33,10 @@ public class DTTableViewManager {
     public void registerHeaderClass(Class<IEAViewHolder> headerClass) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Constructor<?> constructor = headerClass.getConstructor(IEAViewHolder.class);
         Object object = constructor.newInstance(new Object[] { "wanghao" });
+    }
+
+    public IEAViewHolder createViewHolder(ViewGroup parent, int viewType) {
+
+        return null;
     }
 }
