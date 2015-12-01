@@ -35,7 +35,7 @@ public class AsyncCacheInfo {
 
         // Read the user's name,
         // or an empty string if nothing found
-        long dateValue = mSharedPreferences.getLong(storeKey, Long.MIN_VALUE);
+        long dateValue = mSharedPreferences.getLong(this.storeKey, Long.MIN_VALUE);
 
         this.lastRecordCreateAt = null;
         if (dateValue != Long.MIN_VALUE) {
@@ -48,7 +48,7 @@ public class AsyncCacheInfo {
     public void storeNewRecordDate(Date newDate) {
         // Put it into memory (don't forget to commit!)
         SharedPreferences.Editor e = mSharedPreferences.edit();
-        e.putLong(TAG_NEW_RECORD_DATE, newDate.getTime());
+        e.putLong(this.storeKey, newDate.getTime());
         e.commit();
 
         // 2. Set last date.
