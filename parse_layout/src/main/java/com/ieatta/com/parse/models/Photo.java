@@ -223,15 +223,15 @@ public class Photo extends ParseModelSync {
         }
     }
 
-    static Task<Object> queryPhotosByRestaurant(Restaurant restaurant) {
+    public static Task<Object> queryPhotosByRestaurant(Restaurant restaurant) {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo().createQueryForRestaurantRef(restaurant));
     }
 
-    static Task<Object> queryPhotosByModel(ParseModelAbstract model) {
+    public static Task<Object> queryPhotosByModel(ParseModelAbstract model) {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo(model).createQueryForUsedRefWithType());
     }
 
-    static Task<Object> queryPhotosFromUsedRefs(LinkedList<String> usedRefs) {
+    public static Task<Object> queryPhotosFromUsedRefs(LinkedList<String> usedRefs) {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo().createQueryForBatchingPhoto(usedRefs));
     }
 

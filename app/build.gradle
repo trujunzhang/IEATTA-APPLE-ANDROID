@@ -45,4 +45,5 @@ dependencies {
     compile project(':debug')
     compile project(':parse_layout')
     compile project(':commonLib')
+    compile project(':AndroidProgressHUD')
 }
