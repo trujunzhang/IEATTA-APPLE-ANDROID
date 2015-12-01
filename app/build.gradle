@@ -25,6 +25,7 @@ dependencies {
     testCompile group:'junit', name:'junit', version:"${JUNIT_VERSION}"
     compile group:'com.android.support', name:'appcompat-v7', version:"${SUPPORT_APPCOMPAT_ANDROID_VERSION}"
     compile group:'com.android.support', name:'design', version:"${SUPPORT_DESIGN_ANDROID_VERSION}"
+    compile "com.android.support:recyclerview-v7:23.1.0"
 
     compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
     compile group:'com.parse.bolts', name:'bolts-tasks', version:"${BOLTS_ANDROID_VERSION}"

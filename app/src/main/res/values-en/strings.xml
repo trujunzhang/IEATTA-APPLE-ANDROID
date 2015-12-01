@@ -10,7 +10,6 @@
     <string name="Search_Restaurants">Search Restaurants</string>
     <string name="Read_Reviews">Read Reviews</string>
     <string name="Manage_Friends">Manage Friends</string>
-    <string name="Businesses_nearby_here_not_found">Businesses nearby here not found. You can click 'Add a Restaurant' to add new businesses by category above.</string>
 
     <!--_Recipe                                                                       -->
     <string name="Add_Friends">Add Friends</string>
@@ -39,18 +38,15 @@
     <string name="Recipe_Name_info">Recipe Name: %@</string>
 
     <!--_Restaurant_detail                                                            -->
-    <string name="Events_for_restaurant_not_found">Events for restaurant not found. You can click 'Add a Event' to add new event.</string>
     <string name="Review_Highlights">Review Highlights</string>
     <string name="Events_Recorded">Events Recorded</string>
     <string name="Warn_still_fetching_recipes">Still is fetching recipes!</string>
     <string name="Warn_deleted_Person_already_ordered">Deleted Person has already ordered %d recipes!</string>
 
     <!--_Event                                                                        -->
-    <string name="People_for_Event_not_found">People for Event not found. You can click 'Add People Ordered' to add new People.</string>
     <string name="Select_people_failure">Select people failure!</string>
 
     <!--_Ordered_People                                                               -->
-    <string name="Recipes_for_ordered_People_not_found">Recipes for ordered People not found. You can click 'Add' to add new recipe by navigation bar</string>
     <string name="Ordered_Recipes">Ordered Recipes</string>
     <string name="People_Ordered">People Ordered</string>
 
@@ -60,7 +56,6 @@
     <string name="Post_Review">Post Review</string>
 
     <!--_Recipe_Detail                                                                -->
-    <string name="Reviews_for_this_recipe_not_found">Reviews for this recipe not found. You can click 'Rating icon' to post a review.</string>
     <string name="Fetch_recipe_count_failure">Fetch recipe count failure!</string>
     <string name="Reipes_Ordered_Count">%d Recipes Ordered</string>
     <string name="Ordered_People">Ordered People</string>
@@ -99,7 +94,7 @@
     <string name="Take_a_Photo">Take a Photo</string>
     <string name="More">More</string>
     <string name="Cancel">Cancel</string>
-    <string name="Hold_On...">Hold On...</string>
+    <string name="Hold_On">Hold On...</string>
     <string name="OK">OK</string>
     <string name="Update">Update</string>
     <string name="Save">Save</string>

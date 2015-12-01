@@ -13,6 +13,7 @@ public class IEAAppTableViewController extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.tableviewcontroller);
 
 //        self.view.backgroundColor = UIColor(named: .MainBody)
 //        self.tableView.backgroundColor = UIColor(named: .MainBody)
