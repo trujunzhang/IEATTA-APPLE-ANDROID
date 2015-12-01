@@ -162,10 +162,12 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public void writeObject(ParseObject object) {
         this.writeAbstractCommon(object);
+        this.writeCommonObject(object);
     }
 
     public void writeLocalObject(ParseObject object) {
         this.writeAbstractCommon(object);
+        this.writeCommonObject(object);
     }
 
     public abstract Task<Object> getFirstLocalModelArrayTask();
@@ -195,10 +197,12 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public void readObject(ParseObject object) {
         this.readAbstractCommon(object);
+        this.readCommonObject(object);
     }
 
     public void readObjectLocal(ParseObject object) {
         this.readAbstractCommon(object);
+        this.readCommonObject(object);
     }
 
     public ParseACL getACL() {
