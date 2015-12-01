@@ -13,7 +13,8 @@ public class SectionModel {
     /// - SeeAlso: `setItems:`
     public LinkedList<Object> items = new LinkedList<>();
 
-    public SectionModel() {
+    public SectionModel(LinkedList<Object> items) {
+        this.items = items;
     }
 
     /// Set items of specific time to items property.
