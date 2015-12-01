@@ -174,7 +174,6 @@ public class Photo extends ParseModelSync {
         object.put(kPAPFieldThumbnailUrlKey, this.thumbnailUrl);
     }
 
-
     @Override
     public void readCommonObject(ParseObject object) {
         Object theRestaurantRef = this.getValueFromObject(object, kPAPFieldLocalRestaurantKey);
@@ -211,7 +210,7 @@ public class Photo extends ParseModelSync {
 
     @Override
     public void readObjectLocal(ParseObject object) {
-        super.readObject(object);
+        super.readObjectLocal(object);
 
         // Special: Used only for the offline object.
         Object _originalUrl = this.getValueFromObject(object, kPAPFieldOriginalUrlKey);
