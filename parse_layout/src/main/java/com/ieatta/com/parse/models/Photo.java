@@ -292,11 +292,11 @@ public class Photo extends ParseModelSync {
                 '}';
     }
 
-    @Override
-    public Task<Object> eventBeforePullFromServer() {
-        // 1. First of all,to decrease client storage,so just save online thumbnail image as offline file.
-        return this.downloadThumbnailImageFromServer();
-    }
+//    @Override
+//    public Task<Object> eventBeforePullFromServer() {
+//        // 1. First of all,to decrease client storage,so just save online thumbnail image as offline file.
+//        return this.downloadThumbnailImageFromServer();
+//    }
 
     Task<Object> downloadThumbnailImageFromServer() {
         return ThumbnailImageUtils.sharedInstance.downloadImageFromServer(this, this.thumbnailUrl);
@@ -310,12 +310,12 @@ public class Photo extends ParseModelSync {
         return CacheImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
     }
 
-    @Override
-    public Task<Object> eventAfterPushToServer() {
-        return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
-    }
+//    @Override
+//    public Task<Object> eventAfterPushToServer() {
+//        return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
+//    }
 
-    Task<Object>   getRelatedPhoto(){
+    Task<Object> getRelatedPhoto() {
         final Photo self = this;
         return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).continueWith(new Continuation<Object, Object>() {
             @Override
@@ -330,14 +330,14 @@ public class Photo extends ParseModelSync {
         });
     }
 
-    Task<Object>   getThumbanilImage() {
+    Task<Object> getThumbanilImage() {
         TaskCompletionSource finalTask = new TaskCompletionSource();
 
         File image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(ParseModelAbstract.getPoint(this));
-        if(image!= null){
+        if (image != null) {
             finalTask.setResult(image);
 
-        }else {
+        } else {
 //            return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "When fetching Image for NewPhoto, and the photo's UUID is \(objectUUID)"))
 //            finalTask.setError();
         }
