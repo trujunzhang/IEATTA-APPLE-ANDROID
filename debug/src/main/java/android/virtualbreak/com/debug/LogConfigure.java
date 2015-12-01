@@ -13,6 +13,6 @@ public class LogConfigure {
     }
 
     static void DDLogVerbose(String message){
-        Log.d("",message);
+        Log.d("IEATTA_Debug",message);
     }
 }

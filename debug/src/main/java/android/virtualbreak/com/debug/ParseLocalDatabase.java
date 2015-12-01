@@ -71,7 +71,7 @@ public class ParseLocalDatabase {
         // =============================================================================
         //        Cache image file names
         // =============================================================================
-        ParseLocalDatabase.listAllCacheImageNames();
+//        ParseLocalDatabase.listAllCacheImageNames();
     }
 
 

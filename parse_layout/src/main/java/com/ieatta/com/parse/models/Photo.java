@@ -145,7 +145,6 @@ public class Photo extends ParseModelSync {
         // *** Important (used orderByAscending) ***
         query.orderByAscending(kPAPFieldObjectCreatedDateKey);
 
-
         return query;
     }
 
@@ -164,8 +163,6 @@ public class Photo extends ParseModelSync {
         // Special: Used only for the online object.
         object.put(kPAPFieldOriginalImageKey, ImageOptimizeUtils.getPFFileForOrginalImage(this));
         object.put(kPAPFieldThumbnailImageKey, ImageOptimizeUtils.getPFFileForThumbnailImage(this));
-
-        this.writeCommonObject(object);
     }
 
     @Override
@@ -175,8 +172,6 @@ public class Photo extends ParseModelSync {
         // Special: Used only for the offline object.
         object.put(kPAPFieldOriginalUrlKey, this.originalUrl);
         object.put(kPAPFieldThumbnailUrlKey, this.thumbnailUrl);
-
-        this.writeCommonObject(object);
     }
 
 
@@ -212,8 +207,6 @@ public class Photo extends ParseModelSync {
         if (_thumbnailFile != null) {
             this.thumbnailUrl = ((ParseFile) _thumbnailFile).getUrl();
         }
-
-        this.readCommonObject(object);
     }
 
     @Override
@@ -229,8 +222,6 @@ public class Photo extends ParseModelSync {
         if (_thumbnailUrl != null) {
             this.thumbnailUrl = (String) _thumbnailUrl;
         }
-
-        this.readCommonObject(object);
     }
 
     static Task<Object> queryPhotosByRestaurant(Restaurant restaurant) {
