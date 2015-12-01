@@ -46,11 +46,16 @@ public class AsyncCacheInfo {
     }
 
     public void storeNewRecordDate(Date newDate) {
+        // Put it into memory (don't forget to commit!)
+        SharedPreferences.Editor e = mSharedPreferences.edit();
+        e.putLong(TAG_NEW_RECORD_DATE, newDate.getTime());
+        e.commit();
+
+        // 2. Set last date.
         this.lastRecordCreateAt = newDate;
 
-//        Defaults[self.key!] = newDate
-
-//        this.printDescription("Store");
+        // 3. Print date info.
+        this.printDescription("Store");
     }
 
     public ParseQuery createQuery(int limit) {
