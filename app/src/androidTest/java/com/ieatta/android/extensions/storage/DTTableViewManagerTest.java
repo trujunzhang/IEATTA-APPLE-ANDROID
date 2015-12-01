@@ -1,6 +1,8 @@
 package com.ieatta.android.extensions.storage;
 
+import android.content.Context;
 import android.test.InstrumentationTestCase;
+import android.util.AttributeSet;
 import android.view.View;
 
 import junit.framework.TestCase;
@@ -37,16 +39,20 @@ class MyClass {
 
 public class DTTableViewManagerTest extends InstrumentationTestCase {
 
+    private Context context;
+
     @Override
     public void setUp() throws Exception {
         super.setUp();
+        this.context = this.getInstrumentation().getContext();
     }
 
     public void testInstanceOfClass() throws Exception {
         try {
             Constructor[] ctors = MyClass.class.getDeclaredConstructors();
             Constructor viewConstructor = this.getConstructorForView(ctors);
-            int x = 0;
+
+            MyClass myClass = (MyClass) viewConstructor.newInstance(new Object[]{new View(this.context)});
 
 //            MyClass.class.getConstructor(Class.class).newInstance(Some.class);
             Constructor<?> constructor = MyClass.class.getConstructor(MyClass.class);
