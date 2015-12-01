@@ -20,10 +20,6 @@ public class SectionModel {
         this.sectionIndex = sectionIndex;
     }
 
-    public SectionModel(LinkedList<Object> items) {
-        this.items = items;
-    }
-
     /// Set items of specific time to items property.
     /// - Parameter items: items to set
     /// - Note: This method exists because of inability of Swift to cast [T] to [Any].

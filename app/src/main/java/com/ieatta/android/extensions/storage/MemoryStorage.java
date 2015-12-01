@@ -17,14 +17,16 @@ public class MemoryStorage {
     /// - Parameter items: items to add
     /// - Parameter toSection: index of section to add items
     public void addItems(LinkedList<Object> items, int toSection) {
-        this.sections.put(new Integer(toSection), new SectionModel(items));
+//        this.sections.put(new Integer(toSection), new SectionModel(items));
     }
 
     /// Set items for specific section. This will reload UI after updating.
     /// - Parameter items: items to set for section
     /// - Parameter forSectionIndex: index of section to update
     public void setItems(LinkedList<Object> items, int forSectionIndex) {
-        self.sections.put(new Integer(forSectionIndex), new SectionModel(items));
+        SectionModel section = self.verifySection(forSectionIndex);
+        section.items = items;
+        self.sections.put(new Integer(forSectionIndex), section);
     }
 
     /// Set section header model for MemoryStorage
