@@ -16,3 +16,14 @@ public class EditBaseCellModel {
 //        this.editValue = editValue;
 //    }
 }
+
+
+class SectionTitleCellModel extends EditBaseCellModel {
+    String title = "";
+
+//    public SectionTitleCellModel(IEAEditKey editKey, String title) {
+//        this.title = title;
+//    }
+
+}
+

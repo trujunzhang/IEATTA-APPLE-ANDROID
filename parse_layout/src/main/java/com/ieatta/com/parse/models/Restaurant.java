@@ -144,11 +144,11 @@ public class Restaurant extends ParseModelSync {
         });
     }
 
-    static Task<Object> queryRestaurants() {
+    public static Task<Object> queryRestaurants() {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Restaurant, new Restaurant().makeParseQuery());
     }
 
-    static Task<Object> queryNearRestaurants(ParseGeoPoint geoPoint) {
+    public static Task<Object> queryNearRestaurants(ParseGeoPoint geoPoint) {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
     }
 
