@@ -18,7 +18,7 @@ import static com.ieatta.android.modules.common.MainSegueIdentifier.*;
 /**
  * Created by djzhang on 12/1/15.
  */
-public abstract class IEAAppSegureTableViewController extends IEAAppTableViewController {
+public class IEAAppSegureTableViewController extends IEAAppTableViewController {
     private IEAAppSegureTableViewController self = this;
 
     public void prepareForSegue(MainSegueIdentifier identifier) {
@@ -72,27 +72,36 @@ public abstract class IEAAppSegureTableViewController extends IEAAppTableViewCon
 //        }
     }
 
-    protected abstract void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination);
+    protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination) {
+    }
 
-    protected abstract void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination);
+    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination) {
+    }
 
-    protected abstract void segueForEventDetailViewController(IEAEventDetailViewController destination);
+    protected void segueForEventDetailViewController(IEAEventDetailViewController destination) {
+    }
 
-    protected abstract void segueForEditEventViewController(IEAEditEventViewController destination);
+    protected void segueForEditEventViewController(IEAEditEventViewController destination) {
+    }
 
-    protected abstract void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination);
+    protected void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination) {
+    }
 
-    protected abstract void segueForChoicePeopleViewController(IEAChoicePeopleViewController destination);
+    protected void segueForChoicePeopleViewController(IEAChoicePeopleViewController destination) {
+    }
 
-    protected abstract void segueForEditPeopleViewController(IEAEditPeopleViewController destination);
+    protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination) {
+    }
 
-    protected abstract void segueForRecipeDetailViewController(IEARecipeDetailViewController destination);
+    protected void segueForRecipeDetailViewController(IEARecipeDetailViewController destination) {
+    }
 
-    protected abstract void segueForEditRecipeViewController(IEAEditRecipeViewController destination);
+    protected void segueForEditRecipeViewController(IEAEditRecipeViewController destination) {
+    }
 
-    protected abstract void segueForReviewDetailViewController(IEAReviewDetailViewController destination);
+    protected void segueForReviewDetailViewController(IEAReviewDetailViewController destination) {
+    }
 
-    protected abstract void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination);
-
-
+    protected void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination) {
+    }
 }
