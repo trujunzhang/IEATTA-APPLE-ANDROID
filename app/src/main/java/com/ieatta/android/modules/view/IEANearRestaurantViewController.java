@@ -9,7 +9,9 @@ import com.ieatta.android.modules.cells.IENearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.android.observers.LocationObserver;
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 import com.parse.ParseGeoPoint;
 
@@ -76,12 +78,13 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
                 self.fetchedRestaurants = (LinkedList<Object>) task.getResult();
 
+                RestaurantSortUtils.sort(self.fetchedRestaurants);
 //                        self.fetchedRestaurants.sortInPlace({ $0.displayName < $1.displayName })
 
                 if (self.fetchedRestaurants.size() != 0) {
                     self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title,R.string.Nearby_Restaurants),  NearRestaurantSection.sectionRestaurants.ordinal());
                 }
-                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
+//                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
 
 //                LocationObserver.sharedInstance.popLastLocation();
 

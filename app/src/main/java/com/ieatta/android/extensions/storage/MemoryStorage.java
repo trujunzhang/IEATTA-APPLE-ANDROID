@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * Created by djzhang on 12/1/15.
  */
 public class MemoryStorage {
-    private MemoryStorage self = this;
+private MemoryStorage self = this;
     public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
 
 
@@ -23,8 +23,9 @@ public class MemoryStorage {
     /// Set items for specific section. This will reload UI after updating.
     /// - Parameter items: items to set for section
     /// - Parameter forSectionIndex: index of section to update
-    public void setItems(LinkedList<Object> items, int forSectionIndex) {
-        self.sections.put(new Integer(forSectionIndex), new SectionModel(items));
+    public void setItems(LinkedList<Object> items,int forSectionIndex )
+    {
+        self.sections.put(new Integer(forSectionIndex),new SectionModel(items));
     }
 
     /// Set section header model for MemoryStorage
