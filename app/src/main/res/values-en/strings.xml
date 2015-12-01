@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    "App_Title"                                                                                                   = "IEATTA";
+    "App_Subtitle"                                                                                                = "Eating Experience Tracker";
+
+    // Common
+    "PhotosGallery"                                                                                               = "Photos";
+
+    // Nearby Restaurant screen
+    "Nearby Restaurants"                                                                                          = "Nearby Restaurants";
+    "Add a Restaurant"                                                                                            = "Add a Restaurant";
+    "Search Restaurants"                                                                                          = "Search Restaurants";
+    "Read Reviews"                                                                                                = "Read Reviews";
+    "Manage Friends"                                                                                              = "Manage Friends";
+    "Businesses nearby here not found. You can click 'Add a Restaurant' to add new businesses by category above." = "Businesses nearby here not found. You can click 'Add a Restaurant' to add new businesses by category above.";
+
+    // Recipe
+    "Add Friends"                                                                                                 = "Add Friends";
+    "Add a Recipe"                                                                                                = "Add a Recipe";
+
+    // Edit Recipe
+    "Recipe's name"                                                                                               = "Recipe's name";
+    "Recipe's cost"                                                                                               = "Recipe's cost";
+    "Recipe Name"                                                                                                 = "Recipe Name";
+    "Cost"                                                                                                        = "Cost";
+
+
+    // Edit restaurant screen
+    "Add Restaurant"                                                                                              = "Add Restaurant";
+    "Restaurant Information"                                                                                      = "Restaurant Information";
+    "Restaurant's Name"                                                                                           = "Restaurant's Name";
+    "Address"                                                                                                     = "Address";
+    "City, State"                                                                                                 = "City, State";
+    "Save photo Failure."                                                                                         = "Save photo Failure.";
+
+    // Review detail
+    "Review Information"                                                                                          = "Review Information";
+    "Date of visit"                                                                                               = "Date of visit: %@";
+    "Restaurant Name info"                                                                                        = "Restaurant Name: %@";
+    "Event Name info"                                                                                             = "Event Name: %@";
+    "Recipe Name info"                                                                                            = "Recipe Name: %@";
+
+    // Restaurant detail
+    "Events for restaurant not found. You can click 'Add a Event' to add new event."                              = "Events for restaurant not found. You can click 'Add a Event' to add new event.";
+    "Review Highlights"                                                                                           = "Review Highlights";
+    "Events Recorded"                                                                                             = "Events Recorded";
+    "Warn still fetching recipes"                                                                                 = "Still is fetching recipes!";
+    "Warn deleted Person already ordered"                                                                         = "Deleted Person has already ordered %d recipes!";
+
+    // Event
+    "People for Event not found. You can click 'Add People Ordered' to add new People."                           = "People for Event not found. You can click 'Add People Ordered' to add new People.";
+    "Select people failure!"                                                                                      = "Select people failure!";
+
+    // Ordered People
+    "Recipes for ordered People not found. You can click 'Add' to add new recipe by navigation bar"               = "Recipes for ordered People not found. You can click 'Add' to add new recipe by navigation bar";
+    "Ordered Recipes"                                                                                             = "Ordered Recipes";
+    "People Ordered"                                                                                              = "People Ordered";
+
+    // Select people screen
+    "Select People"                                                                                               = "Select People";
+    "Recipe Information"                                                                                          = "Recipe Information";
+    "Post Review"                                                                                                 = "Post Review";
+
+    // Recipe Detail
+    "Reviews for this recipe not found. You can click 'Rating icon' to post a review."                            = "Reviews for this recipe not found. You can click 'Rating icon' to post a review.";
+    "Fetch recipe count failure!"                                                                                 = "Fetch recipe count failure!";
+    "Reipes Ordered Count"                                                                                        = "%d Recipes Ordered";
+    "Ordered People"                                                                                              = "Ordered People";
+
+    // Edit Event screen
+    "Event Information"                                                                                           = "Event Information";
+    "Date of Event"                                                                                               = "Date of Event";
+    "Current GPS Location"                                                                                        = "Current GPS Location";
+    "Event Name"                                                                                                  = "Event Name";
+    "Server Name"                                                                                                 = "Server Name";
+    "Who served for you"                                                                                          = "Who served for you";
+    "Start Time"                                                                                                  = "Start Time";
+    "End Time"                                                                                                    = "End Time";
+    "What had to eat"                                                                                             = "What had to eat";
+    "When"                                                                                                        = "When";
+    "Name of Server"                                                                                              = "Name of Server";
+    "What & Why"                                                                                                  = "What & Why";
+    "Remarks"                                                                                                     = "Remarks";
+    "Add a Event"                                                                                                 = "Add a Event";
+
+    // Edit People
+    "People Information"                                                                                          = "Edit Person";
+    "Edit People"                                                                                                 = "Edit People";
+    "Who are they"                                                                                                = "Who are they";
+    "Type their address"                                                                                          = "Type their address";
+    "Type their email"                                                                                            = "Type their email";
+    "Display Name"                                                                                                = "Display Name";
+    "Email"                                                                                                       = "Email";
+    "Add People"                                                                                                  = "Add People";
+    "Add People Ordered"                                                                                          = "Add People Ordered";
+
+    // Location Manager
+    "Registration Failed"                                                                                         = "Registration Failed";
+
+    // Common
+    "Take a Photo"                                                                                                = "Take a Photo";
+    "More"                                                                                                        = "More";
+    "Cancel"                                                                                                      = "Cancel";
+    "Hold On..."                                                                                                  = "Hold On...";
+    "OK"                                                                                                          = "OK";
+    "Update"                                                                                                      = "Update";
+    "Save"                                                                                                        = "Save";
+    "Saved Failure"                                                                                               = "Saved Failure";
+    "Update Failure"                                                                                              = "Update Failure";
+    "Reviews"                                                                                                     = "Reviews";
+    "Events"                                                                                                      = "Events";
+    "Take a Photo failure"                                                                                        = "Take a Photo failure";
+    "Edit"                                                                                                        = "Edit";
+    "Dismiss"                                                                                                     = "Dismiss";
+    "Back"                                                                                                        = "Back";
+    "Post"                                                                                                        = "Post";
+    "See All Photos"                                                                                              = "See All %d";
+    "See More Reviews"                                                                                            = "%d More Reviews";
+    "See More Highlights"                                                                                         = "%d More Highlights";
+    "No More Reviews"                                                                                             = "No More Reviews";
+
+    "Nearby"                                                                                                      = "Nearby";
+
+    "Write Review"                                                                                                = "Write Review";
+    "See Reviews"                                                                                                 = "See Reviews";
+
+    "Restaurant"                                                                                                  = "Restaurant";
+    "Event"                                                                                                       = "Event";
+    "Recipe"                                                                                                      = "Recipe";
+
+    "Add Event"                                                                                                   = "Add Event";
+
+    "Edit Event"                                                                                                  = "Edit Event";
+    "Edit Restaurant"                                                                                             = "Edit Restaurant";
+    "Edit Recipe"                                                                                                 = "Edit Recipe";
+
+
+    "Add_Right_Button"                                                                                            = "Add";
+
+    "No waiters servered for you"                                                                                 = "No waiters servered for you";
+
+    "Current Address"                                                                                             = "Current Address";
+    "Still converting GPS to Address"                                                                             = "Still converting GPS to address on Parse.com." ;
+
+    "Delete the ordered people failed"                                                                            = "Delete the ordered people failed";
+    "Select_Person"                                                                                               = "Select Person";
+    "Select_Person_Title"                                                                                         = "SELECT PERSON";
+
+    "Segment_Restaurant"                                                                                          = "Restaurant";
+    "Segment_Event"                                                                                               = "Event";
+    "Segment_Recipe"                                                                                              = "Recipe";
+
+    "Add_Food_Button"                                                                                             = "Add food";
+    "Alert"                                                                                                       = "Alert";
+    "Alert_Take_Photo_Lost"                                                                                       = "All taken photos will be lost.";
+
+
+
+</resources>
