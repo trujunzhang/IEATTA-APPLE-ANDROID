@@ -16,6 +16,11 @@ public class IEANearRestaurantMoreCell extends IEAViewHolder {
 
     public IEANearRestaurantMoreCell(View itemView) {
         super(itemView);
+
+
+        int x = 0;
+
+        titleLabel = null;
     }
 
     @Override
