@@ -2,6 +2,7 @@ package com.ieatta.android;
 
 import android.app.Application;
 import android.virtualbreak.com.debug.AppDebugManager;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.ParseAPI;
 import com.ieatta.com.parse.async.ParseAsyncTimer;
@@ -17,6 +18,7 @@ public class IEAApplication extends Application{
 
         ParseAPI.setup(this);
 
+        EnvironmentUtils.sharedInstance.registerGlobalContext(this.getApplicationContext());
 
         AppDebugManager.show();
 

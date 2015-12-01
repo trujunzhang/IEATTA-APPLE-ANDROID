@@ -1,5 +1,9 @@
 package com.ieatta.com.parse.async;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.yelp.com.commonlib.EnvironmentUtils;
+
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseQuery;
 
@@ -17,6 +21,8 @@ public class AsyncCacheInfo {
     public Date lastRecordCreateAt = null;
     private String storeKey;
 
+    SharedPreferences mSharedPreferences;
+
     public AsyncCacheInfo() {
 //        assert(false, "This constructor is not allowed!");
     }
@@ -24,11 +30,19 @@ public class AsyncCacheInfo {
     public AsyncCacheInfo(String storeKey) {
         this.storeKey = storeKey;
 
-//        if let theNewRecordDate = Defaults[self.key!] {
-//            self.lastRecordCreateAt = theNewRecordDate
-//
-////            self.printDescription("Constructor")
-//        }
+        // Access the device's key-value storage
+        mSharedPreferences = EnvironmentUtils.sharedInstance.getGlobalContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+
+        // Read the user's name,
+        // or an empty string if nothing found
+        long dateValue = mSharedPreferences.getLong(storeKey, Long.MIN_VALUE);
+
+        this.lastRecordCreateAt = null;
+        if (dateValue != Long.MIN_VALUE) {
+            this.lastRecordCreateAt = new Date(dateValue);
+            // 3. Print date info.
+            this.printDescription("Constructor");
+        }
     }
 
     public void storeNewRecordDate(Date newDate) {
