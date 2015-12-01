@@ -209,7 +209,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
             @Override
             public Object then(Task<List<ParseObject>> task) throws Exception {
-                if (task.getError() == null) {
+                if (task.getError() != null) {
                     findTask.setError(task.getError());
                 } else {
                     LinkedList<ParseObject> objects = new LinkedList<ParseObject>(task.getResult());
