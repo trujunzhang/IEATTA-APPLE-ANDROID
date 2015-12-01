@@ -1,7 +1,6 @@
 package com.ieatta.android.modules;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +8,7 @@ import android.view.View;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
-import com.ieatta.android.modules.adopter.IEATableAdapter;
+import com.ieatta.android.modules.adopter.IEATableViewControllerAdapter;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -17,7 +16,7 @@ import com.ieatta.android.modules.adopter.IEATableAdapter;
 public class IEAAppTableViewController extends AppCompatActivity {
     private IEAAppTableViewController self = this;
     private RecyclerView recyclerView;
-    public IEATableAdapter adapter;
+    public IEATableViewControllerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
     }
 
     protected void startManagingWithDelegate(DTTableViewManager manager) {
-        self.adapter = new IEATableAdapter(manager,self.getApplicationContext());
+        self.adapter = new IEATableViewControllerAdapter(manager,self.getApplicationContext());
         self.recyclerView.setAdapter(self.adapter);
     }
 

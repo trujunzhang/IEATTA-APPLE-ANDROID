@@ -12,13 +12,13 @@ import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEATableAdapter extends RecyclerView.Adapter<IEAViewHolder> {
+public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewHolder> {
     private  Context context;
     private DTTableViewManager manager;
 
-    private IEATableAdapter self = this;
+    private IEATableViewControllerAdapter self = this;
 
-    public IEATableAdapter(DTTableViewManager manager, Context context) {
+    public IEATableViewControllerAdapter(DTTableViewManager manager, Context context) {
         self.manager = manager;
         self.context = context;
     }

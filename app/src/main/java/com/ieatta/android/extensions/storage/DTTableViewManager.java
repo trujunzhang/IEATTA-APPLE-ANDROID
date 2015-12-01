@@ -3,6 +3,7 @@ package com.ieatta.android.extensions.storage;
 import android.content.Context;
 
 import com.ieatta.android.modules.IEADTTableViewManagerViewController;
+import com.ieatta.android.modules.adopter.IEAViewHolder;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -23,5 +24,9 @@ public class DTTableViewManager {
 
     public Object getModel(int position) {
         return null;
+    }
+
+    public void registerHeaderClass(Class<IEAViewHolder> headerClass) {
+        
     }
 }

@@ -6,7 +6,7 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.viewkit.ModelTransfer;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
-import com.ieatta.android.modules.adopter.IEATableAdapter;
+import com.ieatta.android.modules.adopter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
 import java.util.LinkedList;
@@ -32,8 +32,8 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
 //        fatalError("whenSelectedEvent() has not been implemented");
     }
 
-    public void setRegisterHeaderClass( ModelTransfer headerClass){
-//        getTableManager().registerHeaderClass(headerClass)
+    public void setRegisterHeaderClass( Class<IEAViewHolder> headerClass){
+        getTableManager().registerHeaderClass(headerClass);
     }
 
     public void setRegisterFooterClass(ModelTransfer footerClass){
