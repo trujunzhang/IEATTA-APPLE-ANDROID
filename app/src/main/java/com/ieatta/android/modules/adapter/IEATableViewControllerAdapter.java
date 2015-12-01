@@ -23,10 +23,6 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
     @Override
     public IEAViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return self.manager.createViewHolder(parent,viewType);
-//        IEANearRestaurantMoreCell holder = new IEANearRestaurantMoreCell(LayoutInflater.from(
-//                self.context).inflate(R.layout.near_restaurant_more_cell, parent,
-//                false));
-//        return holder;
     }
 
     @Override
