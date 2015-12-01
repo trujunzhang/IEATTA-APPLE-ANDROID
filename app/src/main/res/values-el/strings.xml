@@ -1,158 +1,158 @@
 <?xml_version="1.0"_encoding="utf-8"?>
 
 
-"App_Title"
-"App_Subtitle"
+        "App_Title"
+        "App_Subtitle"
 
-//_Common
-"PhotosGallery"
+        //_Common
+        "PhotosGallery"
 
-//_Nearby_Restaurant_screen
-"Nearby_Restaurants"
-"Add_a_Restaurant"
-"Search_Restaurants"
-"Read_Reviews"
-"Manage_Friends"
-"Businesses_nearby_here_not_found"
+        //_Nearby_Restaurant_screen
+        "Nearby_Restaurants"
+        "Add_a_Restaurant"
+        "Search_Restaurants"
+        "Read_Reviews"
+        "Manage_Friends"
+        "Businesses_nearby_here_not_found"
 
-//_Recipe
-"Add_Friends"
-"Add_a_Recipe"
+        //_Recipe
+        "Add_Friends"
+        "Add_a_Recipe"
 
-//_Edit_Recipe
-"Recipe's_name"
-"Recipe's_cost"
-"Recipe_Name"
-"Cost"
-
-
-//_Edit_restaurant_screen
-"Add_Restaurant"
-"Restaurant_Information"
-"Restaurant's_Name"
-"Address"
-"City,_State"
-"Save_photo_Failure."
-
-//_Review_detail
-"Review_Information"
-"Date_of_visit"
-"Restaurant_Name_info"
-"Event_Name_info"
-"Recipe_Name_info"
-
-//_Restaurant_detail
-"Events_for_restaurant_not_found"
-"Review_Highlights"
-"Events_Recorded"
-"Warn_still_fetching_recipes"
-"Warn_deleted_Person_already_ordered"
-
-//_Event
-"People_for_Event_not_found"
-"Select_people_failure!"
-
-//_Ordered_People
-"Recipes_for_ordered_People_not_found"
-"Ordered_Recipes"
-"People_Ordered"
-
-//_Select_people_screen
-"Select_People"
-"Recipe_Information"
-"Post_Review"
-
-//_Recipe_Detail
-"Reviews_for_this_recipe_not_found"
-"Fetch_recipe_count_failure!"
-"Reipes_Ordered_Count"
-"Ordered_People"
-
-//_Edit_Event_screen
-"Event_Information"
-"Date_of_Event"
-"Current_GPS_Location"
-"Event_Name"
-"Server_Name"
-"Who_served_for_you"
-"Start_Time"
-"End_Time"
-"What_had_to_eat"
-"When"
-"Name_of_Server"
-"What_&_Why"
-"Remarks"
-"Add_a_Event"
-
-//_Edit_People
-"People_Information"
-"Edit_People"
-"Who_are_they"
-"Type_their_address"
-"Type_their_email"
-"Display_Name"
-"Email"
-"Add_People"
-"Add_People_Ordered"
-
-//_Location_Manager
-"Registration_Failed"
-
-//_Common
-"Take_a_Photo"
-"More"
-"Cancel"
-"Hold_On..."
-"OK"
-"Update"
-"Save"
-"Saved_Failure"
-"Update_Failure"
-"Reviews"
-"Events"
-"Take_a_Photo_failure"
-"Edit"
-"Dismiss"
-"Back"
-"Post"
-"See_All_Photos"
-"See_More_Reviews"
-"See_More_Highlights"
-"No_More_Reviews"
-
-"Nearby"
-
-"Write_Review"
-"See_Reviews"
-
-"Restaurant"
-"Event"
-"Recipe"
-
-"Add_Event"
-
-"Edit_Event"
-"Edit_Restaurant"
-"Edit_Recipe"
+        //_Edit_Recipe
+        "Recipe's_name"
+        "Recipe's_cost"
+        "Recipe_Name"
+        "Cost"
 
 
-"Add_Right_Button"
+        //_Edit_restaurant_screen
+        "Add_Restaurant"
+        "Restaurant_Information"
+        "Restaurant's_Name"
+        "Address"
+        "City,_State"
+        "Save_photo_Failure."
 
-"No_waiters_servered_for_you"
+        //_Review_detail
+        "Review_Information"
+        "Date_of_visit"
+        "Restaurant_Name_info"
+        "Event_Name_info"
+        "Recipe_Name_info"
 
-"Current_Address"
-"Still_converting_GPS_to_Address"
+        //_Restaurant_detail
+        "Events_for_restaurant_not_found"
+        "Review_Highlights"
+        "Events_Recorded"
+        "Warn_still_fetching_recipes"
+        "Warn_deleted_Person_already_ordered"
 
-"Delete_the_ordered_people_failed"
-"Select_Person"
-"Select_Person_Title"
+        //_Event
+        "People_for_Event_not_found"
+        "Select_people_failure!"
 
-"Segment_Restaurant"
-"Segment_Event"
-"Segment_Recipe"
+        //_Ordered_People
+        "Recipes_for_ordered_People_not_found"
+        "Ordered_Recipes"
+        "People_Ordered"
 
-"Add_Food_Button"
-"Alert"
-"Alert_Take_Photo_Lost"
+        //_Select_people_screen
+        "Select_People"
+        "Recipe_Information"
+        "Post_Review"
+
+        //_Recipe_Detail
+        "Reviews_for_this_recipe_not_found"
+        "Fetch_recipe_count_failure!"
+        "Reipes_Ordered_Count"
+        "Ordered_People"
+
+        //_Edit_Event_screen
+        "Event_Information"
+        "Date_of_Event"
+        "Current_GPS_Location"
+        "Event_Name"
+        "Server_Name"
+        "Who_served_for_you"
+        "Start_Time"
+        "End_Time"
+        "What_had_to_eat"
+        "When"
+        "Name_of_Server"
+        "What_&_Why"
+        "Remarks"
+        "Add_a_Event"
+
+        //_Edit_People
+        "People_Information"
+        "Edit_People"
+        "Who_are_they"
+        "Type_their_address"
+        "Type_their_email"
+        "Display_Name"
+        "Email"
+        "Add_People"
+        "Add_People_Ordered"
+
+        //_Location_Manager
+        "Registration_Failed"
+
+        //_Common
+        "Take_a_Photo"
+        "More"
+        "Cancel"
+        "Hold_On..."
+        "OK"
+        "Update"
+        "Save"
+        "Saved_Failure"
+        "Update_Failure"
+        "Reviews"
+        "Events"
+        "Take_a_Photo_failure"
+        "Edit"
+        "Dismiss"
+        "Back"
+        "Post"
+        "See_All_Photos"
+        "See_More_Reviews"
+        "See_More_Highlights"
+        "No_More_Reviews"
+
+        "Nearby"
+
+        "Write_Review"
+        "See_Reviews"
+
+        "Restaurant"
+        "Event"
+        "Recipe"
+
+        "Add_Event"
+
+        "Edit_Event"
+        "Edit_Restaurant"
+        "Edit_Recipe"
+
+
+        "Add_Right_Button"
+
+        "No_waiters_servered_for_you"
+
+        "Current_Address"
+        "Still_converting_GPS_to_Address"
+
+        "Delete_the_ordered_people_failed"
+        "Select_Person"
+        "Select_Person_Title"
+
+        "Segment_Restaurant"
+        "Segment_Event"
+        "Segment_Recipe"
+
+        "Add_Food_Button"
+        "Alert"
+        "Alert_Take_Photo_Lost"
 
 <resources></resources>

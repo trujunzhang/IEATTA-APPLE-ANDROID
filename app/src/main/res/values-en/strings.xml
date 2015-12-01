@@ -1,158 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-"App_Title"                                                                                          = "IEATTA";
-"App_Subtitle"                                                                                       = "Eating Experience Tracker";
-
-//_Common
-"PhotosGallery"                                                                                      = "Photos";
-
-//_Nearby_Restaurant_screen
-"Nearby_Restaurants"                                                                                 = "Nearby Restaurants";
-"Add_a_Restaurant"                                                                                   = "Add a Restaurant";
-"Search_Restaurants"                                                                                 = "Search Restaurants";
-"Read_Reviews"                                                                                       = "Read Reviews";
-"Manage_Friends"                                                                                     = "Manage Friends";
-"Businesses_nearby_here_not_found"                                                                   = "Businesses nearby here not found. You can click 'Add a Restaurant' to add new businesses by category above.";
-
-//_Recipe
-"Add_Friends"                                                                                        = "Add Friends";
-"Add_a_Recipe"                                                                                       = "Add a Recipe";
-
-//_Edit_Recipe
-"Recipe's_name"                                                                                      = "Recipe's name";
-"Recipe's_cost"                                                                                      = "Recipe's cost";
-"Recipe_Name"                                                                                        = "Recipe Name";
-"Cost"                                                                                               = "Cost";
-
-
-//_Edit_restaurant_screen
-"Add_Restaurant"                                                                                     = "Add Restaurant";
-"Restaurant_Information"                                                                             = "Restaurant Information";
-"Restaurant's_Name"                                                                                  = "Restaurant's Name";
-"Address"                                                                                            = "Address";
-"City,_State"                                                                                        = "City, State";
-"Save_photo_Failure."                                                                                = "Save photo Failure.";
-
-//_Review_detail
-"Review_Information"                                                                                 = "Review Information";
-"Date_of_visit"                                                                                      = "Date of visit: %@";
-"Restaurant_Name_info"                                                                               = "Restaurant Name: %@";
-"Event_Name_info"                                                                                    = "Event Name: %@";
-"Recipe_Name_info"                                                                                   = "Recipe Name: %@";
-
-//_Restaurant_detail
-"Events_for_restaurant_not_found"                                                                    = "Events for restaurant not found. You can click 'Add a Event' to add new event.";
-"Review_Highlights"                                                                                  = "Review Highlights";
-"Events_Recorded"                                                                                    = "Events Recorded";
-"Warn_still_fetching_recipes"                                                                        = "Still is fetching recipes!";
-"Warn_deleted_Person_already_ordered"                                                                = "Deleted Person has already ordered %d recipes!";
-
-//_Event
-"People_for_Event_not_found"                                                                         = "People for Event not found. You can click 'Add People Ordered' to add new People.";
-"Select_people_failure!"                                                                             = "Select people failure!";
-
-//_Ordered_People
-"Recipes_for_ordered_People_not_found"                                                               = "Recipes for ordered People not found. You can click 'Add' to add new recipe by navigation bar";
-"Ordered_Recipes"                                                                                    = "Ordered Recipes";
-"People_Ordered"                                                                                     = "People Ordered";
-
-//_Select_people_screen
-"Select_People"                                                                                      = "Select People";
-"Recipe_Information"                                                                                 = "Recipe Information";
-"Post_Review"                                                                                        = "Post Review";
-
-//_Recipe_Detail
-"Reviews_for_this_recipe_not_found"                                                                  = "Reviews for this recipe not found. You can click 'Rating icon' to post a review.";
-"Fetch_recipe_count_failure!"                                                                        = "Fetch recipe count failure!";
-"Reipes_Ordered_Count"                                                                               = "%d Recipes Ordered";
-"Ordered_People"                                                                                     = "Ordered People";
-
-//_Edit_Event_screen
-"Event_Information"                                                                                  = "Event Information";
-"Date_of_Event"                                                                                      = "Date of Event";
-"Current_GPS_Location"                                                                               = "Current GPS Location";
-"Event_Name"                                                                                         = "Event Name";
-"Server_Name"                                                                                        = "Server Name";
-"Who_served_for_you"                                                                                 = "Who served for you";
-"Start_Time"                                                                                         = "Start Time";
-"End_Time"                                                                                           = "End Time";
-"What_had_to_eat"                                                                                    = "What had to eat";
-"When"                                                                                               = "When";
-"Name_of_Server"                                                                                     = "Name of Server";
-"What_&_Why"                                                                                         = "What & Why";
-"Remarks"                                                                                            = "Remarks";
-"Add_a_Event"                                                                                        = "Add a Event";
-
-//_Edit_People
-"People_Information"                                                                                 = "Edit Person";
-"Edit_People"                                                                                        = "Edit People";
-"Who_are_they"                                                                                       = "Who are they";
-"Type_their_address"                                                                                 = "Type their address";
-"Type_their_email"                                                                                   = "Type their email";
-"Display_Name"                                                                                       = "Display Name";
-"Email"                                                                                              = "Email";
-"Add_People"                                                                                         = "Add People";
-"Add_People_Ordered"                                                                                 = "Add People Ordered";
-
-//_Location_Manager
-"Registration_Failed"                                                                                = "Registration Failed";
-
-//_Common
-"Take_a_Photo"                                                                                       = "Take a Photo";
-"More"                                                                                               = "More";
-"Cancel"                                                                                             = "Cancel";
-"Hold_On..."                                                                                         = "Hold On...";
-"OK"                                                                                                 = "OK";
-"Update"                                                                                             = "Update";
-"Save"                                                                                               = "Save";
-"Saved_Failure"                                                                                      = "Saved Failure";
-"Update_Failure"                                                                                     = "Update Failure";
-"Reviews"                                                                                            = "Reviews";
-"Events"                                                                                             = "Events";
-"Take_a_Photo_failure"                                                                               = "Take a Photo failure";
-"Edit"                                                                                               = "Edit";
-"Dismiss"                                                                                            = "Dismiss";
-"Back"                                                                                               = "Back";
-"Post"                                                                                               = "Post";
-"See_All_Photos"                                                                                     = "See All %d";
-"See_More_Reviews"                                                                                   = "%d More Reviews";
-"See_More_Highlights"                                                                                = "%d More Highlights";
-"No_More_Reviews"                                                                                    = "No More Reviews";
-
-"Nearby"                                                                                             = "Nearby";
-
-"Write_Review"                                                                                       = "Write Review";
-"See_Reviews"                                                                                        = "See Reviews";
-
-"Restaurant"                                                                                         = "Restaurant";
-"Event"                                                                                              = "Event";
-"Recipe"                                                                                             = "Recipe";
-
-"Add_Event"                                                                                          = "Add Event";
-
-"Edit_Event"                                                                                         = "Edit Event";
-"Edit_Restaurant"                                                                                    = "Edit Restaurant";
-"Edit_Recipe"                                                                                        = "Edit Recipe";
-
-
-"Add_Right_Button"                                                                                   = "Add";
-
-"No_waiters_servered_for_you"                                                                        = "No waiters servered for you";
-
-"Current_Address"                                                                                    = "Current Address";
-"Still_converting_GPS_to_Address"                                                                    = "Still converting GPS to address on Parse.com." ;
-
-"Delete_the_ordered_people_failed"                                                                   = "Delete the ordered people failed";
-"Select_Person"                                                                                      = "Select Person";
-"Select_Person_Title"                                                                                = "SELECT PERSON";
-
-"Segment_Restaurant"                                                                                 = "Restaurant";
-"Segment_Event"                                                                                      = "Event";
-"Segment_Recipe"                                                                                     = "Recipe";
-
-"Add_Food_Button"                                                                                    = "Add food";
-"Alert"                                                                                              = "Alert";
-"Alert_Take_Photo_Lost"                                                                              = "All taken photos will be lost.";
+    yinhaixiaApp_Title"                                                                          = "IEATTA";
+    yinhaixiaApp_Subtitle"                                                                       = "Eating Experience Tracker";
+                                                                                        
+        //_Common                                                                       
+    yinhaixiaPhotosGallery"                                                                      = "Photos";
+                                                                                        
+        //_Nearby_Restaurant_screen                                                     
+    yinhaixiaNearby_Restaurants"                                                                 = "Nearby Restaurants";
+    yinhaixiaAdd_a_Restaurant"                                                                   = "Add a Restaurant";
+    yinhaixiaSearch_Restaurants"                                                                 = "Search Restaurants";
+    yinhaixiaRead_Reviews"                                                                       = "Read Reviews";
+    yinhaixiaManage_Friends"                                                                     = "Manage Friends";
+    yinhaixiaBusinesses_nearby_here_not_found"                                                   = "Businesses nearby here not found. You can click 'Add a Restaurant' to add new businesses by category above.";
+                                                                                        
+        //_Recipe                                                                       
+    yinhaixiaAdd_Friends"                                                                        = "Add Friends";
+    yinhaixiaAdd_a_Recipe"                                                                       = "Add a Recipe";
+                                                                                        
+        //_Edit_Recipe                                                                  
+    yinhaixiaRecipe's_name"                                                                      = "Recipe's name";
+    yinhaixiaRecipe's_cost"                                                                      = "Recipe's cost";
+    yinhaixiaRecipe_Name"                                                                        = "Recipe Name";
+    yinhaixiaCost"                                                                               = "Cost";
+                                                                                        
+                                                                                        
+        //_Edit_restaurant_screen                                                       
+    yinhaixiaAdd_Restaurant"                                                                     = "Add Restaurant";
+    yinhaixiaRestaurant_Information"                                                             = "Restaurant Information";
+    yinhaixiaRestaurant's_Name"                                                                  = "Restaurant's Name";
+    yinhaixiaAddress"                                                                            = "Address";
+    yinhaixiaCity,_State"                                                                        = "City, State";
+    yinhaixiaSave_photo_Failure."                                                                = "Save photo Failure.";
+                                                                                        
+        //_Review_detail                                                                
+    yinhaixiaReview_Information"                                                                 = "Review Information";
+    yinhaixiaDate_of_visit"                                                                      = "Date of visit: %@";
+    yinhaixiaRestaurant_Name_info"                                                               = "Restaurant Name: %@";
+    yinhaixiaEvent_Name_info"                                                                    = "Event Name: %@";
+    yinhaixiaRecipe_Name_info"                                                                   = "Recipe Name: %@";
+                                                                                        
+        //_Restaurant_detail                                                            
+    yinhaixiaEvents_for_restaurant_not_found"                                                    = "Events for restaurant not found. You can click 'Add a Event' to add new event.";
+    yinhaixiaReview_Highlights"                                                                  = "Review Highlights";
+    yinhaixiaEvents_Recorded"                                                                    = "Events Recorded";
+    yinhaixiaWarn_still_fetching_recipes"                                                        = "Still is fetching recipes!";
+    yinhaixiaWarn_deleted_Person_already_ordered"                                                = "Deleted Person has already ordered %d recipes!";
+                                                                                        
+        //_Event                                                                        
+    yinhaixiaPeople_for_Event_not_found"                                                         = "People for Event not found. You can click 'Add People Ordered' to add new People.";
+    yinhaixiaSelect_people_failure!"                                                             = "Select people failure!";
+                                                                                        
+        //_Ordered_People                                                               
+    yinhaixiaRecipes_for_ordered_People_not_found"                                               = "Recipes for ordered People not found. You can click 'Add' to add new recipe by navigation bar";
+    yinhaixiaOrdered_Recipes"                                                                    = "Ordered Recipes";
+    yinhaixiaPeople_Ordered"                                                                     = "People Ordered";
+                                                                                        
+        //_Select_people_screen                                                         
+    yinhaixiaSelect_People"                                                                      = "Select People";
+    yinhaixiaRecipe_Information"                                                                 = "Recipe Information";
+    yinhaixiaPost_Review"                                                                        = "Post Review";
+                                                                                        
+        //_Recipe_Detail                                                                
+    yinhaixiaReviews_for_this_recipe_not_found"                                                  = "Reviews for this recipe not found. You can click 'Rating icon' to post a review.";
+    yinhaixiaFetch_recipe_count_failure!"                                                        = "Fetch recipe count failure!";
+    yinhaixiaReipes_Ordered_Count"                                                               = "%d Recipes Ordered";
+    yinhaixiaOrdered_People"                                                                     = "Ordered People";
+                                                                                        
+        //_Edit_Event_screen                                                            
+    yinhaixiaEvent_Information"                                                                  = "Event Information";
+    yinhaixiaDate_of_Event"                                                                      = "Date of Event";
+    yinhaixiaCurrent_GPS_Location"                                                               = "Current GPS Location";
+    yinhaixiaEvent_Name"                                                                         = "Event Name";
+    yinhaixiaServer_Name"                                                                        = "Server Name";
+    yinhaixiaWho_served_for_you"                                                                 = "Who served for you";
+    yinhaixiaStart_Time"                                                                         = "Start Time";
+    yinhaixiaEnd_Time"                                                                           = "End Time";
+    yinhaixiaWhat_had_to_eat"                                                                    = "What had to eat";
+    yinhaixiaWhen"                                                                               = "When";
+    yinhaixiaName_of_Server"                                                                     = "Name of Server";
+    yinhaixiaWhat_&_Why"                                                                         = "What & Why";
+    yinhaixiaRemarks"                                                                            = "Remarks";
+    yinhaixiaAdd_a_Event"                                                                        = "Add a Event";
+                                                                                        
+        //_Edit_People                                                                  
+    yinhaixiaPeople_Information"                                                                 = "Edit Person";
+    yinhaixiaEdit_People"                                                                        = "Edit People";
+    yinhaixiaWho_are_they"                                                                       = "Who are they";
+    yinhaixiaType_their_address"                                                                 = "Type their address";
+    yinhaixiaType_their_email"                                                                   = "Type their email";
+    yinhaixiaDisplay_Name"                                                                       = "Display Name";
+    yinhaixiaEmail"                                                                              = "Email";
+    yinhaixiaAdd_People"                                                                         = "Add People";
+    yinhaixiaAdd_People_Ordered"                                                                 = "Add People Ordered";
+                                                                                        
+        //_Location_Manager                                                             
+    yinhaixiaRegistration_Failed"                                                                = "Registration Failed";
+                                                                                        
+        //_Common                                                                       
+    yinhaixiaTake_a_Photo"                                                                       = "Take a Photo";
+    yinhaixiaMore"                                                                               = "More";
+    yinhaixiaCancel"                                                                             = "Cancel";
+    yinhaixiaHold_On..."                                                                         = "Hold On...";
+    yinhaixiaOK"                                                                                 = "OK";
+    yinhaixiaUpdate"                                                                             = "Update";
+    yinhaixiaSave"                                                                               = "Save";
+    yinhaixiaSaved_Failure"                                                                      = "Saved Failure";
+    yinhaixiaUpdate_Failure"                                                                     = "Update Failure";
+    yinhaixiaReviews"                                                                            = "Reviews";
+    yinhaixiaEvents"                                                                             = "Events";
+    yinhaixiaTake_a_Photo_failure"                                                               = "Take a Photo failure";
+    yinhaixiaEdit"                                                                               = "Edit";
+    yinhaixiaDismiss"                                                                            = "Dismiss";
+    yinhaixiaBack"                                                                               = "Back";
+    yinhaixiaPost"                                                                               = "Post";
+    yinhaixiaSee_All_Photos"                                                                     = "See All %d";
+    yinhaixiaSee_More_Reviews"                                                                   = "%d More Reviews";
+    yinhaixiaSee_More_Highlights"                                                                = "%d More Highlights";
+    yinhaixiaNo_More_Reviews"                                                                    = "No More Reviews";
+                                                                                        
+    yinhaixiaNearby"                                                                             = "Nearby";
+                                                                                        
+    yinhaixiaWrite_Review"                                                                       = "Write Review";
+    yinhaixiaSee_Reviews"                                                                        = "See Reviews";
+                                                                                        
+    yinhaixiaRestaurant"                                                                         = "Restaurant";
+    yinhaixiaEvent"                                                                              = "Event";
+    yinhaixiaRecipe"                                                                             = "Recipe";
+                                                                                        
+    yinhaixiaAdd_Event"                                                                          = "Add Event";
+                                                                                        
+    yinhaixiaEdit_Event"                                                                         = "Edit Event";
+    yinhaixiaEdit_Restaurant"                                                                    = "Edit Restaurant";
+    yinhaixiaEdit_Recipe"                                                                        = "Edit Recipe";
+                                                                                        
+                                                                                        
+    yinhaixiaAdd_Right_Button"                                                                   = "Add";
+                                                                                        
+    yinhaixiaNo_waiters_servered_for_you"                                                        = "No waiters servered for you";
+                                                                                        
+    yinhaixiaCurrent_Address"                                                                    = "Current Address";
+    yinhaixiaStill_converting_GPS_to_Address"                                                    = "Still converting GPS to address on Parse.com." ;
+                                                                                        
+    yinhaixiaDelete_the_ordered_people_failed"                                                   = "Delete the ordered people failed";
+    yinhaixiaSelect_Person"                                                                      = "Select Person";
+    yinhaixiaSelect_Person_Title"                                                                = "SELECT PERSON";
+                                                                                        
+    yinhaixiaSegment_Restaurant"                                                                 = "Restaurant";
+    yinhaixiaSegment_Event"                                                                      = "Event";
+    yinhaixiaSegment_Recipe"                                                                     = "Recipe";
+                                                                                        
+    yinhaixiaAdd_Food_Button"                                                                    = "Add food";
+    yinhaixiaAlert"                                                                              = "Alert";
+    yinhaixiaAlert_Take_Photo_Lost"                                                              = "All taken photos will be lost.";
 
 
 
