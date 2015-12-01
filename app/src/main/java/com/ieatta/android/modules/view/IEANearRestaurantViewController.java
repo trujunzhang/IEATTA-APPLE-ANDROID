@@ -15,6 +15,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 import com.parse.ParseGeoPoint;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import bolts.Continuation;
@@ -61,7 +62,8 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         // "Read Reviews"
         IENearRestaurantMore readReviews = new IENearRestaurantMore(R.drawable.restaurants_icon, R.string.Read_Reviews, MainSegueIdentifier.readReviewsSegueIdentifier);
 
-//        setSectionItems([managerRestaurantItem,searchRestaurant,managerPeople,readReviews], forSectionIndex: NearRestaurantSection.sectionMoreItems.rawValue)
+        IENearRestaurantMore[] mores = {managerRestaurantItem,searchRestaurant,managerPeople,readReviews};
+        setSectionItems(new LinkedList<Object>(Arrays.asList(mores)),  NearRestaurantSection.sectionMoreItems.ordinal());
     }
 
     // MARK: Query near restaurant list.
