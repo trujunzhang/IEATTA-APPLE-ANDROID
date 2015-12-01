@@ -1,6 +1,7 @@
 package com.ieatta.android.extensions.storage;
 
 import android.test.InstrumentationTestCase;
+import android.view.View;
 
 import junit.framework.TestCase;
 
@@ -10,6 +11,30 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Created by djzhang on 12/1/15.
  */
+
+class MyClass {
+    private String displayName = "";
+    private int price;
+    private View view;
+
+    public MyClass(View view) {
+        this.view = view;
+    }
+
+    public MyClass(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public MyClass(int price) {
+        this.price = price;
+    }
+
+    public MyClass(String displayName, int price) {
+        this.displayName = displayName;
+        this.price = price;
+    }
+}
+
 public class DTTableViewManagerTest extends InstrumentationTestCase {
 
     @Override
@@ -19,10 +44,16 @@ public class DTTableViewManagerTest extends InstrumentationTestCase {
 
     public void testInstanceOfClass() throws Exception {
         try {
-//            getTableManager().registerHeaderClass(headerClass);
+            Constructor[] ctors = MyClass.class.getDeclaredConstructors();
+            Constructor viewConstructor = this.getConstructorForView(ctors);
+            int x = 0;
 
-            Constructor<?> constructor = headerClass.getConstructor(IEAViewHolder.class);
-            Object object = constructor.newInstance(new Object[] { "wanghao" });
+//            MyClass.class.getConstructor(Class.class).newInstance(Some.class);
+            Constructor<?> constructor = MyClass.class.getConstructor(MyClass.class);
+            Object object = constructor.newInstance(new Object[]{"wanghao"});
+
+            int y = 0;
+            Object z = object;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -33,5 +64,30 @@ public class DTTableViewManagerTest extends InstrumentationTestCase {
             e.printStackTrace();
         }
 
+    }
+
+    private Constructor getConstructorForView(Constructor[] ctors) {
+        Constructor ctor = null;
+        for (int i = 0; i < ctors.length; i++) {
+            ctor = ctors[i];
+            if (ctor.getGenericParameterTypes().length == 1) {
+                Class[] types = ctor.getParameterTypes();
+                boolean isView = this.verifyParaWithView(types);
+                if(isView == true){
+                    return ctor;
+                }
+            }
+        }
+        return ctor;
+    }
+
+    private boolean verifyParaWithView(Class[] types) {
+        for (int i = 0; i < types.length; i++) {
+            Class type = types[i];
+            if(type.equals(View.class)){
+                return true;
+            }
+        }
+        return false;
     }
 }
