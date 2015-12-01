@@ -25,7 +25,6 @@ public class IEAAppTableViewController extends AppCompatActivity {
         setContentView(R.layout.tableviewcontroller);
 
         this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
-
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 //        self.view.backgroundColor = UIColor(named: .MainBody)
@@ -37,7 +36,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
     }
 
     protected void startManagingWithDelegate(DTTableViewManager manager) {
-        self.adapter = new IEATableAdapter(manager);
+        self.adapter = new IEATableAdapter(manager,self.getApplicationContext());
         self.recyclerView.setAdapter(self.adapter);
     }
 

@@ -7,10 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.extensions.viewkit.ModelTransfer;
+import com.ieatta.android.modules.adopter.IEAViewHolder;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 
-public class IEANearRestaurantMoreCell extends RecyclerView.ViewHolder implements ModelTransfer {
-
+public class IEANearRestaurantMoreCell extends IEAViewHolder {
 
     private IEANearRestaurantMoreCell self = this;
     private ImageView iconImageView;

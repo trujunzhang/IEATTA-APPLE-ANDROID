@@ -7,4 +7,11 @@ public class DTTableViewManager {
     public  MemoryStorage memoryStorage = new MemoryStorage();
 
 
+    public int getItemCount() {
+        return 0;
+    }
+
+    public Object getModel(int position) {
+        return null;
+    }
 }
