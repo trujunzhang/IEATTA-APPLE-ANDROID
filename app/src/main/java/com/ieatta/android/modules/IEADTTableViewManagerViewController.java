@@ -15,6 +15,7 @@ import java.util.LinkedList;
  */
 public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController{
     private IEADTTableViewManagerViewController self = this;
+    private DTTableViewManager manager = new DTTableViewManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +64,11 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public MemoryStorage getMemoryStorage()  {
-//        return getTableManager().memoryStorage
-        return null;
+        return getTableManager().memoryStorage;
     }
 
     public DTTableViewManager getTableManager(){
-//        return manager
-        return null;
+        return manager;
     }
 
 
