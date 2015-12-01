@@ -46,7 +46,9 @@ public class MemoryStorage {
         if (model != null) {
             return model;
         }
-        return new SectionModel(forSectionIndex);
+        model = new SectionModel(forSectionIndex);
+        self.sections.put(new Integer(forSectionIndex),model);
+        return  model;
     }
 
     /// Set section footer model for MemoryStorage
