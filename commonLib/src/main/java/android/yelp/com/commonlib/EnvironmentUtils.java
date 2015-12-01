@@ -10,6 +10,9 @@ public class EnvironmentUtils {
 
     private Context context;
 
+    private EnvironmentUtils() {
+    }
+
     public void registerGlobalContext(Context context){
         this.context = context;
     }

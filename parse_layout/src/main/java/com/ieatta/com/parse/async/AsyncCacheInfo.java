@@ -23,7 +23,7 @@ public class AsyncCacheInfo {
 
     SharedPreferences mSharedPreferences;
 
-    public AsyncCacheInfo() {
+    private AsyncCacheInfo() {
 //        assert(false, "This constructor is not allowed!");
     }
 
