@@ -39,7 +39,7 @@ public class DTTableViewManager {
         return null;
     }
 
-    public void registerCellClass(Class cellClass) {
-//        self.memoryStorage.
+    public void registerCellClass(Class cellClass, int forSectionIndex,int layoutResId) {
+        self.memoryStorage.registerCellClass(cellClass,forSectionIndex,layoutResId);
     }
 }

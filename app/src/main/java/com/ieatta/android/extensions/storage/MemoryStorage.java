@@ -35,6 +35,14 @@ public class MemoryStorage {
 
     }
 
+    private SectionModel getSection(int forSectionIndex) {
+        SectionModel model = self.sections.get(new Integer(forSectionIndex));
+        if (model != null) {
+            return model;
+        }
+        return new SectionModel(forSectionIndex);
+    }
+
 
     /// Set section footer model for MemoryStorage
     /// - Note: This does not update UI
@@ -49,10 +57,15 @@ public class MemoryStorage {
     public void removeItemsAtIndexPaths(NSIndexPath[] indexPaths) {
     }
 
+    public void registerCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
+        SectionModel section = self.getSection(forSectionIndex);
+        section.layoutResId = layoutResId;
+        section.cellClass =cellClass;
+    }
 
     public int getItemCount() {
         int sum = 0;
-        for(SectionModel model:self.sections.values()){
+        for (SectionModel model : self.sections.values()) {
             sum += model.numberOfItems();
         }
         return sum;
