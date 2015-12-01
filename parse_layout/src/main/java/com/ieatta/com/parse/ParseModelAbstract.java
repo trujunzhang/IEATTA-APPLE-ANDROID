@@ -235,8 +235,8 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
         LinkedList<String> points = new LinkedList<>();
 
-        for(Object model :fetchedModels){
-            points.add(ParseModelAbstract.getPoint((ParseModelAbstract)model));
+        for (Object model : fetchedModels) {
+            points.add(ParseModelAbstract.getPoint((ParseModelAbstract) model));
         }
         return points;
     }
@@ -321,17 +321,21 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return instance;
     }
 
+    /**
+     * Convert from the online PFObject to the Model instance.
+     *
+     * @param getFirstObjectTask
+     * @return
+     */
     public Task<Object> convertToOnlineModelTask(Task<Object> getFirstObjectTask) {
         Object result = getFirstObjectTask.getResult();
         if (result != null) {
-            LinkedList<Object> array = new LinkedList<>((Collection<?>) result);
-            if (array.size() >= 1) {
-                ParseObject firstObject = (ParseObject) array.get(0);
-                this.readObject(firstObject);
-                TaskCompletionSource<Object> finishTask = new TaskCompletionSource<>();
-                finishTask.setResult(true);
-                return finishTask.getTask();
-            }
+            ParseObject firstObject = (ParseObject) result;
+            this.readObject(firstObject);
+
+            TaskCompletionSource<Object> finishTask = new TaskCompletionSource<>();
+            finishTask.setResult(true);
+            return finishTask.getTask();
         }
 
 //        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
