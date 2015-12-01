@@ -1,12 +1,11 @@
 package com.ieatta.android.modules.common.edit;
 
 public class SectionTitleCellModel extends EditBaseCellModel {
-    String title = "";
+    int titleResId;
 
-
-    public SectionTitleCellModel(IEAEditKey editKey, String title) {
+    public SectionTitleCellModel(IEAEditKey editKey, int titleResId) {
         super(editKey);
-        this.title = title;
+        this.titleResId = titleResId;
     }
 
 }

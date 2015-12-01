@@ -3,7 +3,7 @@ package com.ieatta.android.modules.common.edit;
 /**
  * Created by djzhang on 12/1/15.
  */
-enum IEAEditKey {
+public enum IEAEditKey {
 
     Unknow {
         public String toString() {
@@ -13,7 +13,7 @@ enum IEAEditKey {
 
     //******************************************
     // the following Sections
-    section_title {
+    Section_Title {
         public String toString() {
             return "section_title";
         }

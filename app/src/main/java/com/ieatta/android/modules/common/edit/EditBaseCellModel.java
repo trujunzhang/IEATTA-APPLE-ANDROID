@@ -5,15 +5,15 @@ package com.ieatta.android.modules.common.edit;
  */
 public class EditBaseCellModel {
     IEAEditKey editKey  = IEAEditKey.Unknow;
-    String editValue           = "";
+    int editValueResId;
 
     public EditBaseCellModel(IEAEditKey editKey) {
         this.editKey = editKey;
     }
 
-    public EditBaseCellModel(IEAEditKey editKey, String editValue) {
+    public EditBaseCellModel(IEAEditKey editKey, int editValueResId) {
         this.editKey = editKey;
-        this.editValue = editValue;
+        this.editValueResId = editValueResId;
     }
 }
 
