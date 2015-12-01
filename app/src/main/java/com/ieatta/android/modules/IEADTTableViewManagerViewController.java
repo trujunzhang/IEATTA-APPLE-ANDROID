@@ -48,7 +48,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setSectionItems(LinkedList<Object> items,int forSectionIndex ){
-//        getMemoryStorage().setItems(items, forSectionIndex);
+        getMemoryStorage().setItems(items, forSectionIndex);
     }
 
     public void setFooterModelInSection(Object model,int forSectionIndex ){
