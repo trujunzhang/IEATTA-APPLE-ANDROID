@@ -1,62 +1,75 @@
 package com.ieatta.android.modules;
 
+import android.os.Bundle;
+
+import com.ieatta.android.extensions.storage.DTTableViewManager;
+import com.ieatta.android.extensions.storage.MemoryStorage;
+import com.ieatta.android.extensions.viewkit.ModelTransfer;
+import com.ieatta.android.extensions.viewkit.NSIndexPath;
+import com.ieatta.android.modules.common.edit.EditBaseCellModel;
+
+import java.util.LinkedList;
+
 /**
  * Created by djzhang on 12/1/15.
  */
 public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController{
+    private IEADTTableViewManagerViewController self = this;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        getTableManager().startManagingWithDelegate(self)
-        setRegisterHeaderClass(IEAViewForHeaderInSectionCell)
+//        getTableManager().startManagingWithDelegate(self)
+//        setRegisterHeaderClass(IEAViewForHeaderInSectionCell);
     }
 
-    func whenSelectedEvent(model:AnyObject,indexPath:NSIndexPath){
-        fatalError("whenSelectedEvent() has not been implemented")
+    public void whenSelectedEvent(Object model,NSIndexPath indexPath){
+//        fatalError("whenSelectedEvent() has not been implemented");
     }
 
-    func setRegisterHeaderClass<T : ModelTransfer where T : UIView>(headerClass: T.Type){
-        getTableManager().registerHeaderClass(headerClass)
+    public void setRegisterHeaderClass( ModelTransfer headerClass){
+//        getTableManager().registerHeaderClass(headerClass)
     }
 
-    func setRegisterFooterClass<T : ModelTransfer where T : UIView>(footerClass: T.Type){
-        getTableManager().registerFooterClass(footerClass)
+    public void setRegisterFooterClass(ModelTransfer footerClass){
+//        getTableManager().registerFooterClass(footer)
     }
 
-    func setRegisterCellClass<T : ModelTransfer where T : UITableViewCell>(cellClass: T.Type){
-        getTableManager().registerCellClass(cellClass)
+    public void setRegisterCellClass(ModelTransfer cellClass){
+//        getTableManager().registerCellClass(cellClass)
     }
 
-    func setRegisterCellClassWhenSelected<T : ModelTransfer where T : UITableViewCell>(cellClass: T.Type){
-        getTableManager().registerCellClass(cellClass) { (_, model, indexPath) -> Void in
-            self.whenSelectedEvent((model as! AnyObject), indexPath: indexPath)
-        }
+    public void setRegisterCellClassWhenSelected(ModelTransfer cellClass){
+//        getTableManager().registerCellClass(cellClass) { (_, model, indexPath) -> Void in
+//            self.whenSelectedEvent((model as! Object), indexPath: indexPath)
+//        }
     }
 
-    func setSectionItems<T>(items: [T], forSectionIndex index: Int){
-        getMemoryStorage().setItems(items,forSectionIndex: index)
+    public void setSectionItems(LinkedList<Object> items,int forSectionIndex ){
+//        getMemoryStorage().setItems(items,forSectionIndex: forSectionIndex)
     }
 
-    func setFooterModelInSection<T>(model: T?, forSectionIndex sectionIndex: Int){
-        getMemoryStorage().setSectionFooterModel(model,forSectionIndex: sectionIndex)
+    public void setFooterModelInSection(Object model,int forSectionIndex ){
+//        getMemoryStorage().setSectionFooterModel(model,forSectionIndex: sectionIndex)
     }
 
-    func removeSectionItemsAtIndexPaths(indexPaths: [NSIndexPath]){
-        getMemoryStorage().removeItemsAtIndexPaths(indexPaths)
+    public void removeSectionItemsAtIndexPaths(NSIndexPath[] indexPaths){
+//        getMemoryStorage().removeItemsAtIndexPaths(indexPaths)
     }
 
-    func appendSectionTitleCell(cell:EditBaseCellModel, forSectionIndex index:Int){
-        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex: index)
+    public void appendSectionTitleCell(EditBaseCellModel cell,int forSectionIndex ){
+//        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex: index)
     }
 
-    func getMemoryStorage() -> DTModelStorage.MemoryStorage{
-        return getTableManager().memoryStorage
+    public MemoryStorage getMemoryStorage()  {
+//        return getTableManager().memoryStorage
+        return null;
     }
 
-    func getTableManager() -> DTTableViewManager{
-        return manager
+    public DTTableViewManager getTableManager(){
+//        return manager
+        return null;
     }
 
 
