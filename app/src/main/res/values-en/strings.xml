@@ -12,30 +12,28 @@
     <string name="Manage_Friends">Manage Friends</string>
 
     <!--_Recipe                                                                       -->
-    <string name="Add_Friends">Add Friends</string>
-    <string name="Add_a_Recipe">Add a Recipe</string>
+    <string name="add_Friends">Add Friends</string>
+    <string name="add_a_Recipe">Add a Recipe</string>
 
     <!--_Edit_Recipe                                                                  -->
-    <string name="Recipe_name">Recipe's name</string>
-    <string name="Recipe_cost">Recipe's price</string>
-    <string name="Recipe_Name">Recipe Name</string>
-    <string name="Price">Price</string>
-
+    <!--<string name="recipe_name">Recipe's name</string>-->
+    <!--<string name="recipe_price">Recipe's price</string>-->
+    <string name="price">Price</string>
 
     <!--_Edit_restaurant_screen                                                       -->
     <string name="Add_Restaurant">Add Restaurant</string>
     <string name="Restaurant_Information">Restaurant Information</string>
-    <string name="Restaurant_Name">Restaurant's Name</string>
+    <!--<string name="Restaurant_Name">Restaurant's Name</string>-->
     <string name="Address">Address</string>
     <string name="City_State">City, State</string>
     <string name="Save_photo_Failure.">Save photo Failure.</string>
 
     <!--_Review_detail                                                                -->
     <string name="Review_Information">Review Information</string>
-    <string name="Date_of_visit">Date of visit: %@</string>
-    <string name="Restaurant_Name_info">Restaurant Name: %@</string>
-    <string name="Event_Name_info">Event Name: %@</string>
-    <string name="Recipe_Name_info">Recipe Name: %@</string>
+    <string name="Date_of_visit">Date of visit</string>
+    <string name="Restaurant_Name_info">Restaurant Name</string>
+    <string name="Event_Name_info">Event Name</string>
+    <string name="Recipe_Name_info">Recipe Name</string>
 
     <!--_Restaurant_detail                                                            -->
     <string name="Review_Highlights">Review Highlights</string>
@@ -57,7 +55,7 @@
 
     <!--_Recipe_Detail                                                                -->
     <string name="Fetch_recipe_count_failure">Fetch recipe count failure!</string>
-    <string name="Reipes_Ordered_Count">%d Recipes Ordered</string>
+    <string name="Reipes_Ordered_Count">Recipes Ordered</string>
     <string name="Ordered_People">Ordered People</string>
 
     <!--_Edit_Event_screen                                                            -->
