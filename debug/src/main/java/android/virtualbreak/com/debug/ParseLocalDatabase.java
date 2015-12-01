@@ -96,7 +96,7 @@ public class ParseLocalDatabase {
     public static void printList(PQeuryModelType type,LinkedList<ParseModelAbstract> array){
         LogConfigure.DDLogVerbose("");
         LogConfigure.DDLogVerbose("<<-------------------------------------------------------");
-//        LogConfigure.DDLogVerbose("Count after query * \(PQeuryModelTypeNames[classType.rawValue]); * in background: \(array.count);");
+        LogConfigure.DDLogVerbose("Count after query * "+PQeuryModelType.getString(type) +" * in background: "+array.size());
         LogConfigure.DDLogVerbose("-------------------------------------------------------");
         for(ParseModelAbstract model:array){
             // Print instance's description

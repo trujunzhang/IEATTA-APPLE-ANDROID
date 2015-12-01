@@ -51,5 +51,26 @@ public enum PQeuryModelType {
         return null;
     }
 
+    public static String getString(PQeuryModelType type){
+        String[] PQeuryModelTypeNames = {
+                "Recipe",
+                "Photo",
+                "Team",
+                "Review",
+                "Event",
+                "Restaurant",
+
+                "NewRecord",
+
+                "PeopleInEvent",
+
+                "Waiter",
+                "ServedWaiter",
+
+                "unkown",
+        };
+        return PQeuryModelTypeNames[type.ordinal()];
+    }
+
 }
 
