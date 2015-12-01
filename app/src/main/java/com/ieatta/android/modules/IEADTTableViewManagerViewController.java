@@ -9,6 +9,8 @@ import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adopter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 
 /**
@@ -33,7 +35,20 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setRegisterHeaderClass( Class<IEAViewHolder> headerClass){
-        getTableManager().registerHeaderClass(headerClass);
+        try {
+//            getTableManager().registerHeaderClass(headerClass);
+
+            Constructor<?> constructor = headerClass.getConstructor(IEAViewHolder.class);
+            Object object = constructor.newInstance(new Object[] { "wanghao" });
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setRegisterFooterClass(ModelTransfer footerClass){

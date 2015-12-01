@@ -5,6 +5,9 @@ import android.content.Context;
 import com.ieatta.android.modules.IEADTTableViewManagerViewController;
 import com.ieatta.android.modules.adopter.IEAViewHolder;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Created by djzhang on 12/1/15.
  */
@@ -26,7 +29,8 @@ public class DTTableViewManager {
         return null;
     }
 
-    public void registerHeaderClass(Class<IEAViewHolder> headerClass) {
-        
+    public void registerHeaderClass(Class<IEAViewHolder> headerClass) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Constructor<?> constructor = headerClass.getConstructor(IEAViewHolder.class);
+        Object object = constructor.newInstance(new Object[] { "wanghao" });
     }
 }
