@@ -158,18 +158,6 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         object.put(kPAPFieldObjectUUIDKey, this.objectUUID);
     }
 
-    public abstract void writeCommonObject(ParseObject object);
-
-    public void writeObject(ParseObject object) {
-        this.writeAbstractCommon(object);
-        this.writeCommonObject(object);
-    }
-
-    public void writeLocalObject(ParseObject object) {
-        this.writeAbstractCommon(object);
-        this.writeCommonObject(object);
-    }
-
     public abstract Task<Object> getFirstLocalModelArrayTask();
 
     public abstract Task<Object> getFirstOnlineObjectTask();
@@ -192,8 +180,19 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         }
     }
 
-    public abstract void readCommonObject(ParseObject object);
+    public abstract void writeCommonObject(ParseObject object);
 
+    public void writeObject(ParseObject object) {
+        this.writeAbstractCommon(object);
+        this.writeCommonObject(object);
+    }
+
+    public void writeLocalObject(ParseObject object) {
+        this.writeAbstractCommon(object);
+        this.writeCommonObject(object);
+    }
+
+    public abstract void readCommonObject(ParseObject object);
 
     public void readObject(ParseObject object) {
         this.readAbstractCommon(object);
