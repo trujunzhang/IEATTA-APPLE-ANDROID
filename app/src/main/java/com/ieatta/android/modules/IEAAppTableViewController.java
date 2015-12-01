@@ -3,17 +3,24 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.ieatta.android.R;
 
 /**
  * Created by djzhang on 12/1/15.
  */
 public class IEAAppTableViewController extends AppCompatActivity{
 
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tableviewcontroller);
+
+        this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
 
 //        self.view.backgroundColor = UIColor(named: .MainBody)
 //        self.tableView.backgroundColor = UIColor(named: .MainBody)
