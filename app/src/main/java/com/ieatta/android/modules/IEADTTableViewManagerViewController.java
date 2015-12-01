@@ -16,7 +16,7 @@ import java.util.LinkedList;
  */
 public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController{
     private IEADTTableViewManagerViewController self = this;
-    private DTTableViewManager manager = new DTTableViewManager();
+    private DTTableViewManager manager = new DTTableViewManager(this);
 
 
     @Override
