@@ -1,5 +1,6 @@
 package com.ieatta.android.modules.cells;
 
+import com.ieatta.android.R;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 
 /**
