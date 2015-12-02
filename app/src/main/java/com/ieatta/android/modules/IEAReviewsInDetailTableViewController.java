@@ -23,6 +23,8 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //        self.setRegisterFooterClass(IEAMoreReviewsFooterCell);
     }
 
+
+
     // MARK: Override IEADTTableViewManagerViewController methods
 //    override func whenSelectedEvent(model:AnyObject,NSIndexPath indexPath){
 //        if(indexPath.section >= self.getReviewsSectionIndex()){
@@ -33,7 +35,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //        }
 //    }
 
-//    @Override
+    @Override
      public void setItemsForReviewsSection(LinkedList<Object> fetchedReviewPeople){
 //        int startIndex = self.getReviewsSectionIndex();
 //
@@ -64,11 +66,9 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier.rawValue, sender: self)
 //    }
 
-
-    private int getMoreReviewSectionIndex() {
-//        return (self.getReviewsSectionIndex() + Int(Review.MAX_FETCHED_REVIEWS_IN_DetailPage) + 1);
-        return -1;
+    @Override
+    protected int getReviewsSectionIndex() {
+        return (self.getReviewsSectionIndex() + Review.MAX_FETCHED_REVIEWS_IN_DetailPage + 1);
     }
-
 
 }
