@@ -12,10 +12,16 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
+import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.tools.TaskUtils;
 import com.ieatta.android.observers.LocationObserver;
 import com.ieatta.com.parse.models.Restaurant;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -76,9 +82,36 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         IEANearRestaurantMore[] mores = {managerRestaurantItem, searchRestaurant, managerPeople, readReviews};
         return Arrays.asList(mores);
     }
+    public void queryNearRestaurant(ParseGeoPoint geoPoint) {
+        ParseQuery query = new Restaurant().makeParseQuery();
+        query.fromLocalDatastore();
+
+        query.findInBackground(new FindCallback() {
+            @Override
+            public void done(List objects, ParseException e) {
+                int x = 0;
+            }
+
+            @Override
+            public void done(Object o, Throwable throwable) {
+                Object object = o;
+                List<ParseObject> list = (List<ParseObject>) o;
+                LinkedList<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant).convertToParseModelArray(list, true);
+
+                LinkedList<Object> objects = new LinkedList<Object>();
+                for(ParseModelAbstract modelAbstract:array){
+                    objects.add(modelAbstract);
+                }
+                if (array.size() != 0) {
+                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
+                }
+                self.setSectionItems(objects, NearRestaurantSection.sectionRestaurants.ordinal());
+            }
+        });
+    }
 
     // MARK: Query near restaurant list.
-    public void queryNearRestaurant(ParseGeoPoint geoPoint) {
+    public void queryNearRestaurant111(ParseGeoPoint geoPoint) {
         // TODO djzhang(test)
 //        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 

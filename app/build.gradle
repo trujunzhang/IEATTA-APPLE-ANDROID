@@ -28,8 +28,8 @@ dependencies {
     compile "com.android.support:recyclerview-v7:23.1.0"
 
     compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
-    compile group:'com.parse.bolts', name:'bolts-tasks', version:"${BOLTS_ANDROID_VERSION}"
-    compile group:'com.parse.bolts', name:'bolts-applinks', version:"${BOLTS_ANDROID_VERSION}"
+//    compile group:'com.parse.bolts', name:'bolts-tasks', version:"${BOLTS_ANDROID_VERSION}"
+//    compile group:'com.parse.bolts', name:'bolts-applinks', version:"${BOLTS_ANDROID_VERSION}"
 
     // Android library listening network connection state and change of the WiFi signal strength with RxJava Observables
     compile group:'com.github.pwittchen', name:'reactivenetwork',version:"0.1.3"

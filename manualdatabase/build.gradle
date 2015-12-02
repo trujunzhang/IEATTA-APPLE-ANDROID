@@ -25,8 +25,8 @@ dependencies {
     compile group:'com.android.support', name:'appcompat-v7', version:"${SUPPORT_APPCOMPAT_ANDROID_VERSION}"
 
     compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
-    compile group:'com.parse.bolts', name:'bolts-tasks', version:"${BOLTS_ANDROID_VERSION}"
-    compile group:'com.parse.bolts', name:'bolts-applinks', version:"${BOLTS_ANDROID_VERSION}"
+//    compile group:'com.parse.bolts', name:'bolts-tasks', version:"${BOLTS_ANDROID_VERSION}"
+//    compile group:'com.parse.bolts', name:'bolts-applinks', version:"${BOLTS_ANDROID_VERSION}"
 
     compile project(':parse_layout')
 }
