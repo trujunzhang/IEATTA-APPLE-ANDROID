@@ -39,6 +39,14 @@ public class SectionModel {
         return self;
     }
 
+    public RowModel getRowModel(int row){
+        if(headerModel!= null){
+
+        }
+
+        return  null;
+    }
+
     /// Number of items in current section
     public int numberOfItems() {
         int itemsSize = this.items.size();

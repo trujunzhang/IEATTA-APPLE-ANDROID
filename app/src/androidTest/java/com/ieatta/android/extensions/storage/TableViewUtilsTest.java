@@ -29,21 +29,28 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
         TableViewUtils tableViewUtils = new TableViewUtils();
 
         LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
-        Object[] array5 = {new TableItem(0),new TableItem(1)};// 2
+        TableItem[] array5 = {new TableItem(50),new TableItem(51)};// 2
         sections.put(new Integer(5),new SectionModel(5).setItems(array5));
-        Object[] array4 = {new TableItem(0),new TableItem(1),new TableItem(2)};// 3
+        TableItem[] array4 = {new TableItem(40),new TableItem(41),new TableItem(42)};// 3
         sections.put(new Integer(4),new SectionModel(4).setItems(array4));
-        Object[] array1 = {new TableItem(0)};// 1
+        TableItem[] array1 = {new TableItem(10)};// 1
         sections.put(new Integer(1),new SectionModel(1).setItems(array1));
-        Object[] array0 = {new TableItem(0),new TableItem(1)}; // 2
+        TableItem[] array0 = {new TableItem(0),new TableItem(1)}; // 2
         sections.put(new Integer(0),new SectionModel(0).setItems(array0));
 
         tableViewUtils.generateItems(sections);
 
+        // Verify the total rows count.
         int itemCount = tableViewUtils.getItemCount();
         int expectItemCount = array0.length + array1.length+array4.length+array5.length;
         Assert.assertEquals("row count.",itemCount,expectItemCount);
 
-
+        // Verify that getRowModel.
+        int viewType = 3; // array1[0]
+        RowModel item = tableViewUtils.getItem(viewType);
+        TableItem model = (TableItem) item.model;
+        int position = model.position;
+        int expectPosition = array1[0].position;
+        Assert.assertEquals("The same row Model.",position,expectItemCount);
     }
 }

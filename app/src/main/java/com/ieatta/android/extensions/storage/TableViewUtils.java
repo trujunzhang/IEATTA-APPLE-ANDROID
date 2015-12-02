@@ -11,12 +11,12 @@ import java.util.Set;
 public class TableViewUtils {
     private TableViewUtils self = this;
 
-    private LinkedHashMap<Integer,Integer> sectionInfo;
+    private LinkedHashMap<Integer, Integer> sectionInfo;
     private int rowLength = 0;
 
     public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
 
-    public void generateItems(LinkedHashMap<Integer, SectionModel> sections){
+    public void generateItems(LinkedHashMap<Integer, SectionModel> sections) {
         self.sections = sections;
 
         Set<Integer> keySet = sections.keySet();
@@ -25,10 +25,10 @@ public class TableViewUtils {
 
         self.sectionInfo = new LinkedHashMap<>();
         self.rowLength = 0;
-        for(Integer integer:indexs){
+        for (Integer integer : indexs) {
             Integer itemsCountInSection = self.getItemsCountInSection(integer);
             rowLength += itemsCountInSection;
-            sectionInfo.put(integer,itemsCountInSection);
+            sectionInfo.put(integer, itemsCountInSection);
         }
     }
 
@@ -37,12 +37,22 @@ public class TableViewUtils {
         return sectionModel.numberOfItems();
     }
 
-
     public int getItemCount() {
         return rowLength;
     }
 
     public RowModel getItem(int viewType) {
+        int total = 0;
+        for (Integer key : self.sectionInfo.keySet()) {
+            Integer count = self.sectionInfo.get(key);
+            int begin = total;
+            int end = total + count;
+            if (viewType >= begin && viewType <= end) {
+                int row = viewType - begin;
+                return self.sections.get(key).getRowModel(row);
+            }
+            total = end;
+        }
         return null;
     }
 }
