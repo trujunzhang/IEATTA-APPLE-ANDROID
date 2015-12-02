@@ -58,4 +58,21 @@ public class TableViewUtils {
         }
         return null;
     }
+
+    public int getItemViewType(int position) {
+        int total = 0;
+
+        for (Integer key : self.sectionInfo.keySet()) {
+            Integer count = self.sectionInfo.get(key);
+
+            int begin = total;
+            int end = total + count;
+
+            if ((position + 1) >= begin && (position + 1) <= end) {
+                return key.intValue();
+            }
+            total = end;
+        }
+        return 0;
+    }
 }

@@ -101,4 +101,8 @@ public class MemoryStorage {
     public int getItemCount() {
         return tableViewUtils.getItemCount();
     }
+
+    public int getItemViewType(int position) {
+        return self.tableViewUtils.getItemViewType(position);
+    }
 }
