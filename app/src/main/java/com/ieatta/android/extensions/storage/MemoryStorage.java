@@ -16,7 +16,7 @@ public class MemoryStorage {
     private TableViewUtils tableViewUtils = new TableViewUtils();
 
     public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
-    public LinkedHashMap<Integer, Class> rowTypes = new LinkedHashMap<>();
+    public CellTypeUtils cellTypeUtils = new CellTypeUtils();
 
     public MemoryStorage(IEATableViewControllerAdapter adapter) {
         self.adapter = adapter;
@@ -52,7 +52,7 @@ public class MemoryStorage {
     /// - Parameter sectionIndex: index of section for setting header
     public void setSectionHeaderModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
         // Step1: Register cell type.
-        self.registerType(cellClass,layoutResId);
+        cellTypeUtils.registerType(cellClass,layoutResId);
 
         // Step2: Create/Add a Header Section.
         SectionModel section = self.verifySection(forSectionIndex);
@@ -90,7 +90,7 @@ public class MemoryStorage {
 
     public void registerCellClass(Class cellClass, int layoutResId, int forSectionIndex) {
         // Step1: Register class type
-        self.registerType(cellClass,layoutResId);
+        cellTypeUtils.registerType(cellClass,layoutResId);
 
         // Step2: Create/Modify a section.
         SectionModel section = self.verifySection(forSectionIndex);
@@ -114,7 +114,7 @@ public class MemoryStorage {
     public int getItemViewType(int position) {
         RowModel rowModel = self.getRowModelFromPosition(position);
 
-        int type = self.getRowModelType(rowModel);
+        int type = cellTypeUtils.getRowModelType(rowModel);
 
         if (type == 1) {
             int x = 0;
@@ -126,30 +126,5 @@ public class MemoryStorage {
         return type;
     }
 
-    public void registerType(Class aClass, int layoutResId) {
-        if (self.isExistRegisterType(aClass) == false) {
-            int size = self.rowTypes.size();
-            self.rowTypes.put(new Integer(size), aClass);
-        }
-    }
 
-    private int getRowModelType(RowModel rowModel) {
-        for (Integer index : self.rowTypes.keySet()) {
-            Class classzz = self.rowTypes.get(index);
-            if (rowModel.cellClass.equals(classzz)) {
-                return index.intValue();
-            }
-        }
-        return 0;
-    }
-
-    private boolean isExistRegisterType(Class aClass) {
-        for (Integer index : self.rowTypes.keySet()) {
-            Class classzz = self.rowTypes.get(index);
-            if (aClass.equals(classzz)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
