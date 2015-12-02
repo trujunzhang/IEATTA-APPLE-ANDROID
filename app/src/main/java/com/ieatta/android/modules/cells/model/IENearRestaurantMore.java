@@ -1,4 +1,4 @@
-package com.ieatta.android.modules.cells;
+package com.ieatta.android.modules.cells.model;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
