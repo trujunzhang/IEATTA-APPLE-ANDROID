@@ -12,27 +12,30 @@ import java.util.LinkedHashMap;
  * Created by djzhang on 12/2/15.
  */
 
-class HeaderTableItem{
+class HeaderTableItem {
     String title;
 
     public HeaderTableItem(String title) {
         this.title = title;
     }
 }
-class FooterTableItem{
+
+class FooterTableItem {
     String subTitle;
 
     public FooterTableItem(String subTitle) {
         this.subTitle = subTitle;
     }
 }
-class TableItem{
+
+class TableItem {
     int position;
 
     public TableItem(int position) {
         this.position = position;
     }
 }
+
 public class TableViewUtilsTest extends InstrumentationTestCase {
 
     @Override
@@ -45,29 +48,29 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
 
         LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
 
-        // 5
-        TableItem[] array5 = {new TableItem(50),new TableItem(51)};// 2
+        // 5(2+2)
+        TableItem[] array5 = {new TableItem(50), new TableItem(51)};// 2
         HeaderModel headerModel5 = new HeaderModel(new HeaderTableItem("header_555"));
         FooterModel footerModel5 = new FooterModel(new FooterTableItem("footer_555"));
-        sections.put(new Integer(5),new SectionModel(5).setItems(array5).setHeaderModel(headerModel5).setFooterModel(footerModel5));
+        sections.put(new Integer(5), new SectionModel(5).setItems(array5).setHeaderModel(headerModel5).setFooterModel(footerModel5));
 
         // 4
-        TableItem[] array4 = {new TableItem(40),new TableItem(41),new TableItem(42)};// 3
-        sections.put(new Integer(4),new SectionModel(4).setItems(array4));
+        TableItem[] array4 = {new TableItem(40), new TableItem(41), new TableItem(42)};// 3
+        sections.put(new Integer(4), new SectionModel(4).setItems(array4));
 
         // 1
         TableItem[] array1 = {new TableItem(10)};// 1
-        sections.put(new Integer(1),new SectionModel(1).setItems(array1));
+        sections.put(new Integer(1), new SectionModel(1).setItems(array1));
 
         // 0
-        TableItem[] array0 = {new TableItem(0),new TableItem(1)}; // 2
-        sections.put(new Integer(0),new SectionModel(0).setItems(array0));
+        TableItem[] array0 = {new TableItem(0), new TableItem(1)}; // 2
+        sections.put(new Integer(0), new SectionModel(0).setItems(array0));
 
         tableViewUtils.generateItems(sections);
 
         // Verify the total rows count.
         int itemCount = tableViewUtils.getItemCount();
-        int expectItemCount = array0.length + array1.length+array4.length+array5.length;
+        int expectItemCount = (0 + array0.length + 0) + (0 + array1.length + 0) + (0 + array4.length + 0) + (1 + array5.length + 1);
         Assert.assertEquals("row count.", itemCount, expectItemCount);
 
         // Verify that getRowModel.
