@@ -20,6 +20,8 @@ public class IEANearRestaurantsCell extends IEAViewHolder {
 
     public IEANearRestaurantsCell(View itemView) {
         super(itemView);
+        self.titleLabel = (TextView) itemView.findViewById(R.id.titleTextView);
+        self.subtitleLabel = (TextView) itemView.findViewById(R.id.addressTextView);
     }
 
     @Override
