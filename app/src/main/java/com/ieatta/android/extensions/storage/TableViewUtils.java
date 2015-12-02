@@ -1,10 +1,8 @@
 package com.ieatta.android.extensions.storage;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -25,10 +23,18 @@ public class TableViewUtils {
         LinkedList<Integer> indexs = new LinkedList<>(keySet);
         Collections.sort(indexs);
 
-
+        sectionInfo = new LinkedHashMap<>();
+        for(Integer integer:indexs){
+            Integer itemsCountInSection = self.getItemsCountInSection(integer);
+            sectionInfo.put(integer,itemsCountInSection);
+        }
 
     }
 
+    private Integer getItemsCountInSection(Integer integer) {
+        SectionModel sectionModel = self.sections.get(integer);
+        return sectionModel.numberOfItems();
+    }
 
 
     public int getItemCount() {

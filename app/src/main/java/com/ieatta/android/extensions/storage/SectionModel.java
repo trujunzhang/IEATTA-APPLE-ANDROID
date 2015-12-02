@@ -41,7 +41,15 @@ public class SectionModel {
 
     /// Number of items in current section
     public int numberOfItems() {
-        return this.items.size();
+        int itemsSize = this.items.size();
+        if(headerModel!= null){
+            itemsSize ++;
+        }
+        if(footerModel!= null){
+            itemsSize ++;
+        }
+
+        return itemsSize;
     }
 
 }
