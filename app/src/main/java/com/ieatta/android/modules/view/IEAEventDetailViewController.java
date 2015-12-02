@@ -82,8 +82,7 @@ public  ParseModelAbstract getPageModel(){
             public Object then(Task<Object> task) throws Exception {
                 self.fetchedPeople = new LinkedList<Team>((Collection<? extends Team>) task.getResult());
                 // Next, Load Reviews.
-//                return self.getReviewsReleatdModelQueryTask();
-                return null;
+                return self.getReviewsReleatdModelQueryTask();
             }
         }).continueWith(new Continuation<Object, Object>() {
             @Override

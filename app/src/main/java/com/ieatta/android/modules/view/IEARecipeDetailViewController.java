@@ -63,8 +63,7 @@ private IEARecipeDetailViewController self = this;
 //                        fetchedPhotosTask = task;
 
                         // Next, Load Reviews.
-//                        return self.getReviewsReleatdModelQueryTask();
-                        return  null;
+                        return self.getReviewsReleatdModelQueryTask();
                     }
         }).continueWith(new Continuation<Object, Object>() {
             @Override
@@ -99,7 +98,7 @@ private IEARecipeDetailViewController self = this;
 
 
     // MARK: Override IEAReviewsTableViewController methods
-//    @Override
+    @Override
     public int  getReviewsSectionIndex() {
         return RecipeDetailSection.sectionReviews.ordinal();
     }

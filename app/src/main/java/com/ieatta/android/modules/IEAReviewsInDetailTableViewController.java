@@ -24,7 +24,6 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
     }
 
 
-
     // MARK: Override IEADTTableViewManagerViewController methods
 //    override func whenSelectedEvent(model:AnyObject,NSIndexPath indexPath){
 //        if(indexPath.section >= self.getReviewsSectionIndex()){

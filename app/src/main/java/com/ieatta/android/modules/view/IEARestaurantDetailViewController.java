@@ -81,8 +81,7 @@ Event.queryEventsRelatedRestaurant(self.restaurant)
 //        fetchedPhotosTask = task;
 
         // Next, Load Reviews.
-//        return self.getReviewsReleatdModelQueryTask();
-        return null;
+        return self.getReviewsReleatdModelQueryTask();
     }
 }).continueWith(new Continuation<Object, Object>() {
     @Override
@@ -117,7 +116,7 @@ Event.queryEventsRelatedRestaurant(self.restaurant)
     }
 
     // MARK: Override IEAReviewsTableViewController methods
-//    @Override
+    @Override
     public int getReviewsSectionIndex() {
         return RestaurantDetailSection.sectionReviews.ordinal();
     }

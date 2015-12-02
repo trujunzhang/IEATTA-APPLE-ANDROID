@@ -17,7 +17,7 @@ import bolts.Task;
  */
 /// IEABaseReviewsTableViewController <|-- IEAReviewsInDetailTableViewController
 /// IEABaseReviewsTableViewController <|-- IEASeeReviewsInDetailViewController
-public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTableViewController{
+public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTableViewController {
     private IEABaseReviewsTableViewController self = this;
 
 
@@ -35,24 +35,24 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 
 
     protected Task<Object> getReviewsReleatdModelQueryTask() {
-      return   Review.queryReviews(self.getPageModel(),self.getQueriedReviewsLimit())
+        return Review.queryReviews(self.getPageModel(), self.getQueriedReviewsLimit())
                 .continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                self.fetchedReviews = new LinkedList<Object>((Collection<?>) task.getResult());//Review
+                    @Override
+                    public Object then(Task<Object> task) throws Exception {
+                        self.fetchedReviews = new LinkedList<Object>((Collection<?>) task.getResult());//Review
 //                return Team.queryTeam(Review.getUserPoints(self.fetchedReviews));
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
+                        return null;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
+                    @Override
+                    public Object then(Task<Object> task) throws Exception {
 
-                return self.getPhotosForModelsTask(task);
-            }
-        });
+                        return self.getPhotosForModelsTask(task);
+                    }
+                });
     }
 
-    protected void configureReviewsSection(LinkedList<Object> fetchedReviewPeople){//Team
+    protected void configureReviewsSection(LinkedList<Object> fetchedReviewPeople) {//Team
 //        self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.ReviewHighlights.string), forSectionIndex: self.getReviewsSectionIndex())
         self.setItemsForReviewsSection(fetchedReviewPeople);
     }
@@ -65,9 +65,9 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
         return Review.MAX_FETCHED_REVIEWS_IN_DetailPage;
     }
 
-    protected abstract int getReviewsSectionIndex() ;
+    protected abstract int getReviewsSectionIndex();
 
-    protected Review getReview(NSIndexPath indexPath)  {
+    protected Review getReview(NSIndexPath indexPath) {
 //        return self.fetchedReviews[(indexPath.section - self.getReviewsSectionIndex())];
         return null;
     }
