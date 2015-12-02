@@ -89,8 +89,8 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
         verifyRowModel(tableViewUtils, 7, array4[2].position);
         // Array5
         verifyHeaderModel(tableViewUtils, 8, ((HeaderTableItem) (headerModel5.item)).title);
-        verifyRowModel(tableViewUtils, 9, array5[2].position);
-        verifyRowModel(tableViewUtils, 10, array5[0].position);
+        verifyRowModel(tableViewUtils, 9, array5[0].position);
+        verifyRowModel(tableViewUtils, 10, array5[1].position);
         verifyFooterModel(tableViewUtils, 11, ((FooterTableItem) (footerModel5.item)).subTitle);
     }
 
