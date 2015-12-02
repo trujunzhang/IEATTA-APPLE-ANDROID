@@ -16,7 +16,7 @@ public class MemoryStorage {
     private TableViewUtils tableViewUtils = new TableViewUtils();
 
     public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
-    public LinkedHashMap<Integer,Class> rowTypes = new LinkedHashMap<>();
+    public LinkedHashMap<Integer, Class> rowTypes = new LinkedHashMap<>();
 
     public MemoryStorage(IEATableViewControllerAdapter adapter) {
         self.adapter = adapter;
@@ -29,7 +29,7 @@ public class MemoryStorage {
 //        this.sections.put(new Integer(toSection), new SectionModel(items));
     }
 
-    private void reloadTableView(){
+    private void reloadTableView() {
         self.tableViewUtils.generateItems(self.sections);
 
         self.adapter.notifyDataSetChanged();
@@ -58,7 +58,7 @@ public class MemoryStorage {
         SectionModel section = self.verifySection(forSectionIndex);
         section.setHeaderModel(new HeaderModel(model, cellClass, layoutResId));
 
-        self.reloadTableView();
+//        self.reloadTableView();
     }
 
     /// Set section footer model for MemoryStorage
@@ -69,7 +69,7 @@ public class MemoryStorage {
         SectionModel section = self.verifySection(forSectionIndex);
         section.setFooterModel(new FooterModel(model, cellClass, layoutResId));
 
-        self.reloadTableView();
+//        self.reloadTableView();
     }
 
     private SectionModel verifySection(int forSectionIndex) {
@@ -98,8 +98,8 @@ public class MemoryStorage {
         section.cellClass = cellClass;
     }
 
-    public RowModel getRowModelFromPosition(int viewType) {
-        return self.tableViewUtils.getItem(viewType);
+    public RowModel getRowModelFromPosition(int position) {
+        return self.tableViewUtils.getItem(position);
     }
 
     public Object getRowModel(int position) {
@@ -114,30 +114,39 @@ public class MemoryStorage {
     public int getItemViewType(int position) {
         RowModel rowModel = self.getRowModelFromPosition(position);
 
-        return self.getRowModelType(rowModel);
+        int type = self.getRowModelType(rowModel);
+
+        if (type == 1) {
+            int x = 0;
+        }
+        if (position == 6) {
+            int x = 0;
+        }
+
+        return type;
     }
 
     public void registerType(Class aClass) {
-        if(self.isExistRegisterType(aClass) == false){
+        if (self.isExistRegisterType(aClass) == false) {
             int size = self.rowTypes.size();
-            self.rowTypes.put(new Integer(size),aClass);
+            self.rowTypes.put(new Integer(size), aClass);
         }
     }
 
-    private int getRowModelType(RowModel rowModel){
-        for(Integer index: self.rowTypes.keySet()){
+    private int getRowModelType(RowModel rowModel) {
+        for (Integer index : self.rowTypes.keySet()) {
             Class classzz = self.rowTypes.get(index);
-            if(rowModel.cellClass.equals(classzz)){
+            if (rowModel.cellClass.equals(classzz)) {
                 return index.intValue();
             }
         }
         return 0;
     }
 
-    private boolean isExistRegisterType(Class aClass){
-        for(Integer index: self.rowTypes.keySet()){
+    private boolean isExistRegisterType(Class aClass) {
+        for (Integer index : self.rowTypes.keySet()) {
             Class classzz = self.rowTypes.get(index);
-            if(aClass.equals(classzz)){
+            if (aClass.equals(classzz)) {
                 return true;
             }
         }

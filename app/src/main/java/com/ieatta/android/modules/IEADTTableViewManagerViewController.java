@@ -23,18 +23,18 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         super.onCreate(savedInstanceState);
 
         self.startManagingWithDelegate(manager);
-        self.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.class);
+        self.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.class,IEAViewForHeaderInSectionCell.layoutResId);
     }
 
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
 //        fatalError("whenSelectedEvent() has not been implemented");
     }
 
-    public void setRegisterHeaderClass(Class headerClass) {
+    public void setRegisterHeaderClass(Class headerClass, int layoutResId) {
         getTableManager().registerHeaderClass(headerClass);
     }
 
-    public void setRegisterFooterClass(Class footerClass) {
+    public void setRegisterFooterClass(Class footerClass, int layoutResId) {
         getTableManager().registerFooterClass(footerClass);
     }
 

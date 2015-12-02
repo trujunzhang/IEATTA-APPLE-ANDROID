@@ -33,8 +33,6 @@ public class DTTableViewManager {
         return self.memoryStorage.getItemCount();
     }
 
-
-
     public void registerHeaderClass(Class headerClass) {
         self.memoryStorage.registerType(headerClass);
     }

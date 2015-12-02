@@ -45,6 +45,10 @@ public class TableViewUtils {
     public RowModel getItem(int position) {
         int total = 0;
 
+        if(position == 6){
+            int x = 0;
+        }
+
         for (Integer key : self.sectionInfo.keySet()) {
             Integer count = self.sectionInfo.get(key);
 

@@ -22,6 +22,6 @@ public class IEAApplication extends Application{
 
         AppDebugManager.show();
 
-        new ParseAsyncTimer().prepareTimer();
+//        new ParseAsyncTimer().prepareTimer();
     }
 }
