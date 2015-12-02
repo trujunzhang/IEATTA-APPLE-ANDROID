@@ -12,6 +12,7 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
+import com.ieatta.com.parse.tools.TaskUtils;
 import com.ieatta.android.observers.LocationObserver;
 import com.ieatta.com.parse.models.Restaurant;
 import com.parse.ParseGeoPoint;
@@ -22,7 +23,6 @@ import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
-import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -95,9 +95,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
                     Exception error = task.getError();
                 }else {
 
-                    Task result = (Task) task.getResult();
-//                    self.fetchedRestaurants = (LinkedList<Object>) result.getTask().getResult();
-
+                    self.fetchedRestaurants = TaskUtils.getResultFromTask(task);
                     self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
                     if (self.fetchedRestaurants.size() != 0) {

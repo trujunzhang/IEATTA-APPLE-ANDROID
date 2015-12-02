@@ -8,6 +8,7 @@ import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.ParseModelFlag;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
+import com.ieatta.com.parse.tools.TaskUtils;
 import com.lukazakrajsek.timeago.TimeAgo;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
@@ -238,7 +239,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
      * @return
      */
     static public LinkedList<String> getModelPoints(Task<Object> previous) {
-        LinkedList<Object> fetchedModels = (LinkedList<Object>) ((Task)(previous.getResult())).getResult();
+        LinkedList<Object> fetchedModels = TaskUtils.getResultFromTask(previous);
 
         LinkedList<String> points = new LinkedList<>();
 
@@ -247,6 +248,8 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         }
         return points;
     }
+
+
 
     // MARK: Description
     public String printDescription() {

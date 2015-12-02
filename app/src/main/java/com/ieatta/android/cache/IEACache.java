@@ -3,6 +3,7 @@ package com.ieatta.android.cache;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Review;
+import com.ieatta.com.parse.tools.TaskUtils;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -53,17 +54,14 @@ public class IEACache {
         return  self.photoPointCache.get(ParseModelAbstract.getPoint(model));
     }
 
-    public Task<Object> setPhotoPointForModels(Task<Object> previous){
-        TaskCompletionSource result = (TaskCompletionSource) previous.getResult();
+    public Task<Boolean> setPhotoPointForModels(Task<Object> previous){
 
-        LinkedList<Photo> fetchedPhotos = (LinkedList<Photo>) result.getTask().getResult();
-        for(Photo photo : fetchedPhotos){
-            self.setPhotoPoint(photo);
+        LinkedList<Object> fetchedPhotos = TaskUtils.getResultFromTask(previous);
+        for(Object photo : fetchedPhotos){
+            self.setPhotoPoint((Photo)photo);
         }
 
-        TaskCompletionSource finalTask = new TaskCompletionSource();
-        finalTask.setResult(true);
-        return finalTask.getTask();
+        return Task.forResult(true);
     }
 
     public void  clearPhotoPointCache(){
