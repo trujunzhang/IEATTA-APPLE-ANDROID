@@ -67,7 +67,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         IENearRestaurantMore readReviews = new IENearRestaurantMore(R.drawable.restaurants_icon, R.string.Read_Reviews, MainSegueIdentifier.readReviewsSegueIdentifier);
 
         IENearRestaurantMore[] mores = {managerRestaurantItem,searchRestaurant,managerPeople,readReviews};
-        setSectionItems(new LinkedList<Object>(Arrays.asList(mores)),  NearRestaurantSection.sectionMoreItems.ordinal());
+        self.setSectionItems(new LinkedList<Object>(Arrays.asList(mores)),  NearRestaurantSection.sectionMoreItems.ordinal());
     }
 
     // MARK: Query near restaurant list.
