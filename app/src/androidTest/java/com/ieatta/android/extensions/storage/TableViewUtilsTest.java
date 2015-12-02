@@ -72,17 +72,40 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
 
         // Verify the total rows count.
         int itemCount = tableViewUtils.getItemCount();
-        int expectItemCount = (0 + array0.length + 0) + (0 + array1.length + 1) + (1 + array4.length + 0) + (1 + array5.length + 1);
+        int expectItemCount = (0 + array0.length/*2*/ + 0) + (0 + array1.length/*1*/ + 1) + (1 + array4.length/*3*/ + 0) + (1 + array5.length/*2*/ + 1);
         Assert.assertEquals("row count.", itemCount, expectItemCount);
 
         // Verify that getRowModel.
+        // Array0
         verifyRowModel(tableViewUtils, 0, array0[0].position);
         verifyRowModel(tableViewUtils, 1, array0[1].position);
+        // Array1
         verifyRowModel(tableViewUtils, 2, array1[0].position);
-        verifyRowModel(tableViewUtils, 3, array4[0].position);
-        verifyRowModel(tableViewUtils, 4, array4[1].position);
-        verifyRowModel(tableViewUtils, 5, array4[2].position);
-        verifyRowModel(tableViewUtils, 6, array5[0].position);
+        verifyFooterModel(tableViewUtils, 3, ((FooterTableItem) (footerModel1.item)).subTitle);
+        // Array4
+        verifyHeaderModel(tableViewUtils, 4, ((HeaderTableItem) (headerModel4.item)).title);
+        verifyRowModel(tableViewUtils, 5, array4[0].position);
+        verifyRowModel(tableViewUtils, 6, array4[1].position);
+        verifyRowModel(tableViewUtils, 7, array4[2].position);
+        // Array5
+        verifyHeaderModel(tableViewUtils, 8, ((HeaderTableItem) (headerModel5.item)).title);
+        verifyRowModel(tableViewUtils, 9, array5[2].position);
+        verifyRowModel(tableViewUtils, 10, array5[0].position);
+        verifyFooterModel(tableViewUtils, 11, ((FooterTableItem) (footerModel5.item)).subTitle);
+    }
+
+    private void verifyHeaderModel(TableViewUtils tableViewUtils, int viewType, String expectTitle) {
+        RowModel item = tableViewUtils.getItem(viewType);
+        HeaderTableItem model = (HeaderTableItem) item.model;
+        String title = model.title;
+        Assert.assertEquals("The same Header Model.", title, expectTitle);
+    }
+
+    private void verifyFooterModel(TableViewUtils tableViewUtils, int viewType, String expectSubtitle) {
+        RowModel item = tableViewUtils.getItem(viewType);
+        FooterTableItem model = (FooterTableItem) item.model;
+        String subtitle = model.subTitle;
+        Assert.assertEquals("The same Footer Model.", subtitle, expectSubtitle);
     }
 
     private void verifyRowModel(TableViewUtils tableViewUtils, int viewType, int expectPosition) {
