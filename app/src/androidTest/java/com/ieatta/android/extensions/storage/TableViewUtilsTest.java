@@ -12,6 +12,14 @@ import java.util.LinkedHashMap;
  * Created by djzhang on 12/2/15.
  */
 
+class HeaderSubtitleTableItem {
+    String title;
+
+    public HeaderSubtitleTableItem(String title) {
+        this.title = title;
+    }
+}
+
 class HeaderTableItem {
     String title;
 
@@ -50,7 +58,7 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
 
         // 5(2+2)
         TableItem[] array5 = {new TableItem(50), new TableItem(51)};// 2
-        HeaderModel headerModel5 = new HeaderModel(new HeaderTableItem("header_555"));
+        HeaderModel headerModel5 = new HeaderModel(new HeaderSubtitleTableItem("header_555"));
         FooterModel footerModel5 = new FooterModel(new FooterTableItem("footer_555"));
         sections.put(new Integer(5), new SectionModel(5).setItems(array5).setHeaderModel(headerModel5).setFooterModel(footerModel5));
 

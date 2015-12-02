@@ -112,7 +112,9 @@ public class MemoryStorage {
     }
 
     public int getItemViewType(int position) {
-        return self.tableViewUtils.getItemViewType(position);
+        RowModel rowModel = self.getRowModelFromPosition(position);
+
+        return self.getRowModelType(rowModel);
     }
 
     public void registerType(Class aClass) {
@@ -120,6 +122,16 @@ public class MemoryStorage {
             int size = self.rowTypes.size();
             self.rowTypes.put(new Integer(size),aClass);
         }
+    }
+
+    private int getRowModelType(RowModel rowModel){
+        for(Integer index: self.rowTypes.keySet()){
+            Class classzz = self.rowTypes.get(index);
+            if(rowModel.cellClass.equals(classzz)){
+                return index.intValue();
+            }
+        }
+        return 0;
     }
 
     private boolean isExistRegisterType(Class aClass){
