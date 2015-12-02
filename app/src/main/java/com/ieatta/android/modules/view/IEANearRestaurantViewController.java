@@ -41,7 +41,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         super.onCreate(savedInstanceState);
 
         // Register Cells by class.
-        self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.class, NearRestaurantSection.sectionRestaurants.ordinal(), IEANearRestaurantsCell.layoutResId);
+        self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.class, IEANearRestaurantsCell.layoutResId, NearRestaurantSection.sectionRestaurants.ordinal());
 
         self.configModelsInMoreSection();
 
@@ -51,7 +51,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
     /// Add rows for section "More".
     private void configModelsInMoreSection() {
-        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.class, NearRestaurantSection.sectionMoreItems.ordinal(), IEANearRestaurantMoreCell.layoutResId);
+        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.class, IEANearRestaurantMoreCell.layoutResId, NearRestaurantSection.sectionMoreItems.ordinal());
 
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
 
