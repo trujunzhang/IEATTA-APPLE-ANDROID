@@ -64,7 +64,7 @@ public class Recipe extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    ParseQuery createQuery(Team people, Event event) {
+    public ParseQuery createQuery(Team people, Event event) {
         ParseQuery query = this.getParseQueryInstance();
 
         query.whereEqualTo(kPAPFieldOrderedPeopleRefKey, ParseModelAbstract.getPoint(people));
@@ -147,7 +147,7 @@ public class Recipe extends ParseModelSync {
         return new Recipe();
     }
 
-    static Task<Object> queryRecipes() {
+    public static Task<Object> queryRecipes() {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Recipe, new Recipe().makeParseQuery());
     }
 
@@ -156,7 +156,7 @@ public class Recipe extends ParseModelSync {
         return Recipe.queryFromDatabase(PQeuryModelType.Recipe, new Recipe().createSearchDisplayNameQuery(keyword));
     }
 
-    static Task<Object> queryRecipes(Team people, Event event) {
+    public static Task<Object> queryRecipes(Team people, Event event) {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Recipe, new Recipe().createQuery(people, event));
     }
 
@@ -184,7 +184,7 @@ public class Recipe extends ParseModelSync {
         });
     }
 
-    static Task<Integer> queryOrderedRecipesCount(Team people, Event event) {
+    public static Task<Integer> queryOrderedRecipesCount(Team people, Event event) {
         Recipe recipe = new Recipe();
 
         return recipe.countLocalObjects(recipe.createQuery(people, event));
