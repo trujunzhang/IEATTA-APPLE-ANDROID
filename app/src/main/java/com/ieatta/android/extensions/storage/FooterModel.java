@@ -14,6 +14,9 @@ public class FooterModel {
     public int layoutResId;
     public Class cellClass;
 
+    public FooterModel(Object item) {
+        this.item = item;
+    }
 
     public FooterModel(Object item, Class cellClass, int layoutResId) {
         this.item = item;
