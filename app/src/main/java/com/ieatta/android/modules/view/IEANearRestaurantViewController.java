@@ -81,7 +81,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         // TODO djzhang(test)
         geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
-        Restaurant.queryNearRestaurants(geoPoint).continueWith(new Continuation<Object, Object>() {
+        Restaurant.queryRestaurants().continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 // Next, fetch related photos

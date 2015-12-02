@@ -232,8 +232,15 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return objectUUID.hashCode();
     }
 
+    /**
+     *
+     * @param previous LinkedList<Restaurant>
+     * @return
+     */
     static public LinkedList<String> getModelPoints(Task<Object> previous) {
-        LinkedList<Object> fetchedModels = new LinkedList<>((Collection<?>) previous);
+        TaskCompletionSource taskCompletionSource = ((TaskCompletionSource) previous.getResult());
+
+        LinkedList<Object> fetchedModels = (LinkedList<Object>) taskCompletionSource.getTask().getResult();
 
         LinkedList<String> points = new LinkedList<>();
 
