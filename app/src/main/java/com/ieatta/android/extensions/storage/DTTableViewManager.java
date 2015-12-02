@@ -31,9 +31,11 @@ public class DTTableViewManager {
         return sectionModel.items.get(position);
     }
 
-    public void registerHeaderClass(Class<IEAViewHolder> headerClass) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Constructor<?> constructor = headerClass.getConstructor(IEAViewHolder.class);
-        Object object = constructor.newInstance(new Object[] { "wanghao" });
+    public void registerHeaderClass(Class headerClass) {
+
+    }
+    public void registerFooterClass(Class footerClass) {
+
     }
 
     public IEAViewHolder createViewHolder(ViewGroup parent, int viewType) {
@@ -62,4 +64,6 @@ public class DTTableViewManager {
     public void registerCellClass(Class cellClass, int forSectionIndex,int layoutResId) {
         self.memoryStorage.registerCellClass(cellClass,forSectionIndex,layoutResId);
     }
+
+
 }

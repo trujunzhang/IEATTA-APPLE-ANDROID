@@ -62,6 +62,7 @@ public class MemoryStorage {
     /// Remove items at index paths.
     /// - Parameter indexPaths: indexPaths to remove item from. Any indexPaths that will not be found, will be skipped
     public void removeItemsAtIndexPaths(NSIndexPath[] indexPaths) {
+
     }
 
     public void registerCellClass(Class cellClass, int forSectionIndex, int layoutResId) {

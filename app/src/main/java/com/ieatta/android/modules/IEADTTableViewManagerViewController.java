@@ -7,6 +7,7 @@ import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.viewkit.ModelTransfer;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
 import java.lang.reflect.Constructor;
@@ -16,7 +17,7 @@ import java.util.LinkedList;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController{
+public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController {
     private IEADTTableViewManagerViewController self = this;
     private DTTableViewManager manager = new DTTableViewManager(this);
 
@@ -27,66 +28,53 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
 
         self.startManagingWithDelegate(manager);
 //        getTableManager().startManagingWithDelegate(self)
-//        setRegisterHeaderClass(IEAViewForHeaderInSectionCell);
+        setRegisterHeaderClass(IEAViewForHeaderInSectionCell.class);
     }
 
-    public void whenSelectedEvent(Object model,NSIndexPath indexPath){
+    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
 //        fatalError("whenSelectedEvent() has not been implemented");
     }
 
-    public void setRegisterHeaderClass( Class<IEAViewHolder> headerClass){
-        try {
-//            getTableManager().registerHeaderClass(headerClass);
-
-            Constructor<?> constructor = headerClass.getConstructor(IEAViewHolder.class);
-            Object object = constructor.newInstance(new Object[] { "wanghao" });
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
+    public void setRegisterHeaderClass(Class headerClass) {
+        getTableManager().registerHeaderClass(headerClass);
     }
 
-    public void setRegisterFooterClass(ModelTransfer footerClass){
-//        getTableManager().registerFooterClass(footer)
+    public void setRegisterFooterClass(Class footerClass) {
+        getTableManager().registerFooterClass(footerClass);
     }
 
-    public void setRegisterCellClass(ModelTransfer cellClass){
-//        getTableManager().registerCellClass(cellClass)
+    public void setRegisterCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
+        getTableManager().registerCellClass(cellClass,forSectionIndex,layoutResId);
     }
 
-    public void setRegisterCellClassWhenSelected(Class cellClass, int forSectionIndex,int layoutResId){
+    public void setRegisterCellClassWhenSelected(Class cellClass, int forSectionIndex, int layoutResId) {
         getTableManager().registerCellClass(cellClass, forSectionIndex, layoutResId);
 //        getTableManager().registerCellClass(cellClass) { (_, model, indexPath) -> Void in
 //            self.whenSelectedEvent((model as! Object), indexPath: indexPath)
 //        }
     }
 
-    public void setSectionItems(LinkedList<Object> items,int forSectionIndex ){
+    public void setSectionItems(LinkedList<Object> items, int forSectionIndex) {
         getMemoryStorage().setItems(items, forSectionIndex);
     }
 
-    public void setFooterModelInSection(Object model,int forSectionIndex ){
-//        getMemoryStorage().setSectionFooterModel(model,forSectionIndex: sectionIndex)
+    public void setFooterModelInSection(Object model, int forSectionIndex) {
+        getMemoryStorage().setSectionFooterModel(model,forSectionIndex);
     }
 
-    public void removeSectionItemsAtIndexPaths(NSIndexPath[] indexPaths){
-//        getMemoryStorage().removeItemsAtIndexPaths(indexPaths)
+    public void removeSectionItemsAtIndexPaths(NSIndexPath[] indexPaths) {
+        getMemoryStorage().removeItemsAtIndexPaths(indexPaths);
     }
 
-    public void appendSectionTitleCell(EditBaseCellModel cell,int forSectionIndex ){
+    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
         getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex);
     }
 
-    public MemoryStorage getMemoryStorage()  {
+    public MemoryStorage getMemoryStorage() {
         return getTableManager().memoryStorage;
     }
 
-    public DTTableViewManager getTableManager(){
+    public DTTableViewManager getTableManager() {
         return manager;
     }
 

@@ -15,6 +15,8 @@ public class SectionModel {
     public int sectionIndex;
     public int layoutResId;
     public Class cellClass;
+    public Class headerCellClass;
+    public Class footerCellClass;
 
     public SectionModel(int sectionIndex) {
         this.sectionIndex = sectionIndex;
