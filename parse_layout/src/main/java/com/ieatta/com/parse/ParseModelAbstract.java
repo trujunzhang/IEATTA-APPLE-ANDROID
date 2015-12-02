@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.Team;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.ParseModelFlag;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -38,10 +38,10 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return "";
     }
 
-    public PQeuryModelType getModelType()
+    public PQueryModelType getModelType()
 
     {
-        return PQeuryModelType.unkown;
+        return PQueryModelType.unkown;
     }
 
     public ReviewType getReviewType()
@@ -259,14 +259,14 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
                 '}';
     }
 
-    public static ParseModelAbstract getInstanceFromType(PQeuryModelType type, String objectUUID) {
+    public static ParseModelAbstract getInstanceFromType(PQueryModelType type, String objectUUID) {
         ParseModelAbstract model = getInstanceFromType(type);
         model.objectUUID = objectUUID;
 
         return model;
     }
 
-    public static ParseModelAbstract getInstanceFromType(PQeuryModelType type) {
+    public static ParseModelAbstract getInstanceFromType(PQueryModelType type) {
         switch (type) {
             case Recipe:
                 return new com.ieatta.com.parse.models.Recipe();

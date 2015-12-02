@@ -1,10 +1,5 @@
 package com.ieatta.com.parse;
 
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.ieatta.com.parse.models.enums.ParseModelFlag;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import bolts.Continuation;

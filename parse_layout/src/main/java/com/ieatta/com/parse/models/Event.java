@@ -6,21 +6,13 @@ import com.ieatta.com.parse.ParseModelSync;
 import bolts.Continuation;
 import bolts.Task;
 
-import com.ieatta.com.parse.ParseModelSync;
-import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.parse.ParseObject;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
 import com.twofortyfouram.assertion.Assertions;
 
 import java.util.Date;
@@ -97,8 +89,8 @@ public class Event extends ParseModelSync {
     }
 
     @Override
-    public PQeuryModelType getModelType() {
-        return PQeuryModelType.Event;
+    public PQueryModelType getModelType() {
+        return PQueryModelType.Event;
     }
 
     @Override
@@ -171,17 +163,17 @@ public class Event extends ParseModelSync {
         return this.getFirstLocalModelArrayTask().continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                return ParseModelAbstract.getInstanceFromType(PQeuryModelType.Restaurant, self.restaurantRef).queryBelongToTask(self);
+                return ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant, self.restaurantRef).queryBelongToTask(self);
             }
         });
     }
 
     public Task<Object> queryParseModels(String keyword) {
-        return Event.queryFromDatabase(PQeuryModelType.Event, new Event().createSearchDisplayNameQuery(keyword));
+        return Event.queryFromDatabase(PQueryModelType.Event, new Event().createSearchDisplayNameQuery(keyword));
     }
 
     public static Task<Object> queryEventsRelatedRestaurant(Restaurant restaurant) {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Event, new Event().createQueryByRestaurantRef(restaurant));
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Event, new Event().createQueryByRestaurantRef(restaurant));
     }
 
     // MARK: Description

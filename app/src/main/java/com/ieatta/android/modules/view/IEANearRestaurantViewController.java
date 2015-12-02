@@ -92,9 +92,9 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
             public Object then(Task<Object> task) throws Exception {
                 if(task.getError() != null){
                     Exception error = task.getError();
-                    int x = 0;
                 }else {
 
+                    Object result = task.getResult();
                     self.fetchedRestaurants = (LinkedList<Object>) task.getResult();
 
                     self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);

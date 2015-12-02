@@ -9,10 +9,9 @@ import bolts.TaskCompletionSource;
 
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
@@ -80,8 +79,8 @@ public class Restaurant extends ParseModelSync {
     }
 
     @Override
-    public PQeuryModelType getModelType() {
-        return PQeuryModelType.Restaurant;
+    public PQueryModelType getModelType() {
+        return PQueryModelType.Restaurant;
     }
 
     @Override
@@ -153,16 +152,16 @@ public class Restaurant extends ParseModelSync {
     }
 
     public static Task<Object> queryRestaurants() {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Restaurant, new Restaurant().makeParseQuery());
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().makeParseQuery());
     }
 
     public static Task<Object> queryNearRestaurants(ParseGeoPoint geoPoint) {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
     }
 
     @Override
     public Task<Object> queryParseModels(String keyword) {
-        return Restaurant.queryFromDatabase(PQeuryModelType.Restaurant, new Restaurant().createSearchDisplayNameQuery(keyword));
+        return Restaurant.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().createSearchDisplayNameQuery(keyword));
     }
 
     // MARK: Description

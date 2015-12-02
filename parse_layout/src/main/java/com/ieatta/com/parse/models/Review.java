@@ -8,7 +8,7 @@ import bolts.Task;
 import bolts.TaskCompletionSource;
 
 import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -91,8 +91,8 @@ public class Review extends ParseModelSync {
     }
 
     @Override
-    public PQeuryModelType getModelType() {
-        return PQeuryModelType.Review;
+    public PQueryModelType getModelType() {
+        return PQueryModelType.Review;
     }
 
     @Override
@@ -169,7 +169,7 @@ public class Review extends ParseModelSync {
         if (limit != Review.NO_Limit_FETCHED_REVIEWS_IN_DetailPage) {
             query.setLimit(limit);
         }
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Review, query);
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Review, query);
     }
 
 

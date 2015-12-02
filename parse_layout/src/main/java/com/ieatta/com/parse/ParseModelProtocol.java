@@ -1,7 +1,6 @@
 package com.ieatta.com.parse;
 
-import com.ieatta.com.parse.models.NewRecord;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
 
@@ -14,7 +13,7 @@ public interface ParseModelProtocol {
 
 //    public NewRecord getNewRecord();
 
-    public PQeuryModelType getModelType();
+    public PQueryModelType getModelType();
 
     public String getParseTableName();
 

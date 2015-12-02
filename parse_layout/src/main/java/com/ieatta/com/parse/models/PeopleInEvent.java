@@ -8,7 +8,7 @@ import bolts.Task;
 import bolts.TaskCompletionSource;
 
 import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 
@@ -64,8 +64,8 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     @Override
-    public PQeuryModelType getModelType() {
-        return PQeuryModelType.PeopleInEvent;
+    public PQueryModelType getModelType() {
+        return PQueryModelType.PeopleInEvent;
     }
 
     @Override

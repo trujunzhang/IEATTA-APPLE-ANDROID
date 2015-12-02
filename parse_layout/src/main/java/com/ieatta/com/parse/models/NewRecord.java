@@ -2,16 +2,10 @@ package com.ieatta.com.parse.models;
 
 import com.ieatta.com.parse.ParseModelSync;
 
-import bolts.Task;
-
-import com.ieatta.com.parse.ParseModelSync;
 import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.Date;
 
@@ -27,7 +21,7 @@ public class NewRecord extends ParseModelSync {
     private static final String kPAPFieldModelPointKey = "modelPoint";
     private static final String kPAPFieldModelCreatedDateKey = "modelCreatedDate";
 
-    public PQeuryModelType modelType = PQeuryModelType.unkown;
+    public PQueryModelType modelType = PQueryModelType.unkown;
     public String modelPoint = "";
     public Date modelCreatedDate;
 
@@ -35,13 +29,13 @@ public class NewRecord extends ParseModelSync {
         super();
     }
 
-    public NewRecord(PQeuryModelType modelType, String modelPoint) {
+    public NewRecord(PQueryModelType modelType, String modelPoint) {
         super();
         this.modelType = modelType;
         this.modelPoint = modelPoint;
     }
 
-    public NewRecord(PQeuryModelType modelType, String modelPoint, Date modelCreatedDate) {
+    public NewRecord(PQueryModelType modelType, String modelPoint, Date modelCreatedDate) {
         super();
         this.modelType = modelType;
         this.modelPoint = modelPoint;
@@ -76,8 +70,8 @@ public class NewRecord extends ParseModelSync {
     }
 
     @Override
-    public PQeuryModelType getModelType() {
-        return PQeuryModelType.NewRecord;
+    public PQueryModelType getModelType() {
+        return PQueryModelType.NewRecord;
     }
 
     @Override
@@ -91,7 +85,7 @@ public class NewRecord extends ParseModelSync {
     public void readCommonObject(ParseObject object) {
         Object theModelType = this.getValueFromObject(object, kPAPFieldModelTypeKey);
         if (theModelType != null) {
-            this.modelType = PQeuryModelType.fromInteger(((int) theModelType));
+            this.modelType = PQueryModelType.fromInteger(((int) theModelType));
         }
 
         Object theModelPoint = this.getValueFromObject(object, kPAPFieldModelPointKey);

@@ -6,7 +6,7 @@ import com.ieatta.com.parse.ParseModelSync;
 import bolts.Task;
 
 import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 
@@ -69,8 +69,8 @@ public class Team extends ParseModelSync {
     }
 
     @Override
-    public PQeuryModelType getModelType() {
-        return PQeuryModelType.Team;
+    public PQueryModelType getModelType() {
+        return PQueryModelType.Team;
     }
 
     @Override
@@ -139,18 +139,18 @@ public class Team extends ParseModelSync {
     }
 
     public static Task<Object> queryTeam() {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Team, new Team().makeParseQuery());
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Team, new Team().makeParseQuery());
     }
 
     public static Task<Object> queryTeamByPoints(LinkedList<String> points) {
-        return new Team().queryParseModels(PQeuryModelType.Team, points);
+        return new Team().queryParseModels(PQueryModelType.Team, points);
     }
 
     public static Task<Object> queryTeam(LinkedList<PeopleInEvent> list) {
         // 1. Get ordered people reference.
         LinkedList<String> points = Team.getPeoplePoints(list);
 
-        return new Team().queryParseModels(PQeuryModelType.Team, points);
+        return new Team().queryParseModels(PQueryModelType.Team, points);
     }
 
     // MARK: Support methods.

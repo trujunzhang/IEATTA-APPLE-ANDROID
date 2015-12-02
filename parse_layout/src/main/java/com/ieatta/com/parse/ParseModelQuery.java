@@ -1,33 +1,20 @@
 package com.ieatta.com.parse;
 
 import com.ieatta.com.parse.models.NewRecord;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
 import com.parse.ParseQuery;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
 
 import bolts.Continuation;
 import bolts.Task;
 
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
-import com.ieatta.com.parse.models.enums.ParseModelFlag;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
 import com.parse.ParseObject;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
-import bolts.Task;
 import bolts.TaskCompletionSource;
 
 /**
@@ -107,7 +94,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return query;
     }
 
-    static ParseQuery createQuery(PQeuryModelType type, ParseModelAbstract model) {
+    static ParseQuery createQuery(PQueryModelType type, ParseModelAbstract model) {
         ParseModelQuery instance = (ParseModelQuery) ParseModelAbstract.getInstanceFromType(type, ParseModelAbstract.getPoint(model));
         return instance.createQueryByObjectUUID();
     }
@@ -132,7 +119,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return query;
     }
 
-    public static Task<Object> queryFromDatabase(final PQeuryModelType type, final ParseQuery query) {
+    public static Task<Object> queryFromDatabase(final PQueryModelType type, final ParseQuery query) {
         final TaskCompletionSource<Object> queryTask = new TaskCompletionSource<>();
 
         ParseModelQuery.findLocalObjectsInBackground(query)
@@ -163,7 +150,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return queryTask.getTask();
     }
 
-    protected Task<Object> queryParseModels(PQeuryModelType type, LinkedList<String> points) {
+    protected Task<Object> queryParseModels(PQueryModelType type, LinkedList<String> points) {
         return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
     }
 
@@ -349,7 +336,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
      - parameter type:            ParseModel's type
      - parameter model:           insance of query
      */
-    Task<Object> deleteOnlineObjectInBackground(PQeuryModelType type,ParseModelAbstract model)     {
+    Task<Object> deleteOnlineObjectInBackground(PQueryModelType type,ParseModelAbstract model)     {
         return this.deleteOnlineObjectInBackground(ParseModelQuery.createQuery(type,model));
     }
 

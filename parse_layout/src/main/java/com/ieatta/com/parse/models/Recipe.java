@@ -7,7 +7,7 @@ import bolts.Continuation;
 import bolts.Task;
 
 import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
@@ -89,8 +89,8 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public PQeuryModelType getModelType() {
-        return PQeuryModelType.Recipe;
+    public PQueryModelType getModelType() {
+        return PQueryModelType.Recipe;
     }
 
     @Override
@@ -148,16 +148,16 @@ public class Recipe extends ParseModelSync {
     }
 
     public static Task<Object> queryRecipes() {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Recipe, new Recipe().makeParseQuery());
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Recipe, new Recipe().makeParseQuery());
     }
 
     @Override
     public Task<Object> queryParseModels(String keyword) {
-        return Recipe.queryFromDatabase(PQeuryModelType.Recipe, new Recipe().createSearchDisplayNameQuery(keyword));
+        return Recipe.queryFromDatabase(PQueryModelType.Recipe, new Recipe().createSearchDisplayNameQuery(keyword));
     }
 
     public static Task<Object> queryRecipes(Team people, Event event) {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Recipe, new Recipe().createQuery(people, event));
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Recipe, new Recipe().createQuery(people, event));
     }
 
     @Override
@@ -167,7 +167,7 @@ public class Recipe extends ParseModelSync {
         return this.getFirstLocalModelArrayTask().continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                ParseModelAbstract model = ParseModelAbstract.getInstanceFromType(PQeuryModelType.Event, self.eventRef);
+                ParseModelAbstract model = ParseModelAbstract.getInstanceFromType(PQueryModelType.Event, self.eventRef);
                 return model.queryBelongToTask(self);
             }
         }).continueWith(new Continuation<Object, Object>() {

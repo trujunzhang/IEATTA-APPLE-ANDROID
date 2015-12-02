@@ -15,12 +15,10 @@ import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQeuryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -115,8 +113,8 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public PQeuryModelType getModelType() {
-        return PQeuryModelType.Photo;
+    public PQueryModelType getModelType() {
+        return PQueryModelType.Photo;
     }
 
     @Override
@@ -224,15 +222,15 @@ public class Photo extends ParseModelSync {
     }
 
     public static Task<Object> queryPhotosByRestaurant(Restaurant restaurant) {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo().createQueryForRestaurantRef(restaurant));
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Photo, new Photo().createQueryForRestaurantRef(restaurant));
     }
 
     public static Task<Object> queryPhotosByModel(ParseModelAbstract model) {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo(model).createQueryForUsedRefWithType());
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Photo, new Photo(model).createQueryForUsedRefWithType());
     }
 
     public static Task<Object> queryPhotosFromUsedRefs(LinkedList<String> usedRefs) {
-        return ParseModelQuery.queryFromDatabase(PQeuryModelType.Photo, new Photo().createQueryForBatchingPhoto(usedRefs));
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Photo, new Photo().createQueryForBatchingPhoto(usedRefs));
     }
 
     /**

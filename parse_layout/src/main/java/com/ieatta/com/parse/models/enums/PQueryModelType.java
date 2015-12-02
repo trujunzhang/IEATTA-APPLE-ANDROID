@@ -6,7 +6,7 @@ package com.ieatta.com.parse.models.enums;
 
 
 
-public enum PQeuryModelType {
+public enum PQueryModelType {
     Recipe,    // 0
     Photo,
     Team,
@@ -23,7 +23,7 @@ public enum PQeuryModelType {
 
     unkown;// 10
 
-    public static PQeuryModelType fromInteger(int x) {
+    public static PQueryModelType fromInteger(int x) {
         switch(x) {
             case 0:
                 return Recipe;
@@ -51,7 +51,7 @@ public enum PQeuryModelType {
         return null;
     }
 
-    public static String getString(PQeuryModelType type){
+    public static String getString(PQueryModelType type){
         String[] PQeuryModelTypeNames = {
                 "Recipe",
                 "Photo",
