@@ -55,12 +55,14 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
         sections.put(new Integer(5), new SectionModel(5).setItems(array5).setHeaderModel(headerModel5).setFooterModel(footerModel5));
 
         // 4
+        HeaderModel headerModel4 = new HeaderModel(new HeaderTableItem("header_444"));
         TableItem[] array4 = {new TableItem(40), new TableItem(41), new TableItem(42)};// 3
-        sections.put(new Integer(4), new SectionModel(4).setItems(array4));
+        sections.put(new Integer(4), new SectionModel(4).setItems(array4).setHeaderModel(headerModel4));
 
         // 1
         TableItem[] array1 = {new TableItem(10)};// 1
-        sections.put(new Integer(1), new SectionModel(1).setItems(array1));
+        FooterModel footerModel1 = new FooterModel(new FooterTableItem("footer_111"));
+        sections.put(new Integer(1), new SectionModel(1).setItems(array1).setFooterModel(footerModel1));
 
         // 0
         TableItem[] array0 = {new TableItem(0), new TableItem(1)}; // 2
@@ -70,7 +72,7 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
 
         // Verify the total rows count.
         int itemCount = tableViewUtils.getItemCount();
-        int expectItemCount = (0 + array0.length + 0) + (0 + array1.length + 0) + (0 + array4.length + 0) + (1 + array5.length + 1);
+        int expectItemCount = (0 + array0.length + 0) + (0 + array1.length + 1) + (1 + array4.length + 0) + (1 + array5.length + 1);
         Assert.assertEquals("row count.", itemCount, expectItemCount);
 
         // Verify that getRowModel.
