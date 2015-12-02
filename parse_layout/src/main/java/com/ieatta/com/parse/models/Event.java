@@ -73,7 +73,7 @@ public class Event extends ParseModelSync {
 
 
     // MARK: ParseModel
-    ParseQuery createQueryByRestaurantRef(Restaurant restaurant) {
+    public ParseQuery createQueryByRestaurantRef(Restaurant restaurant) {
         ParseQuery query = this.makeParseQuery();
 
         query.whereEqualTo(kPAPFieldLocalRestaurantKey, ParseModelAbstract.getPoint(restaurant));
@@ -180,7 +180,7 @@ public class Event extends ParseModelSync {
         return Event.queryFromDatabase(PQeuryModelType.Event, new Event().createSearchDisplayNameQuery(keyword));
     }
 
-    static Task<Object> queryEventsRelatedRestaurant(Restaurant restaurant) {
+    public static Task<Object> queryEventsRelatedRestaurant(Restaurant restaurant) {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Event, new Event().createQueryByRestaurantRef(restaurant));
     }
 
