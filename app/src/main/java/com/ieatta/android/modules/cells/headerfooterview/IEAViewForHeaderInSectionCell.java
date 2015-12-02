@@ -19,6 +19,8 @@ public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
 
     public IEAViewForHeaderInSectionCell(View itemView) {
         super(itemView);
+
+        self.titleLabel = (TextView) itemView.findViewById(R.id.headerTextView);
     }
 
     @Override
