@@ -39,22 +39,31 @@ public class SectionModel {
         return self;
     }
 
-    public RowModel getRowModel(int row){
-        if(headerModel!= null){
-
+    public RowModel getRowModel(int row) {
+        if (headerModel != null) {
+            if (row == 0) {
+                return new RowModel(headerModel);
+            }
+            row--;
+        }
+        if(row < self.items.size()){
+            return new RowModel(self.items.get(row),cellClass,layoutResId);
+        }
+        else if(footerModel != null){
+            return new RowModel(footerModel);
         }
 
-        return  null;
+        return null;
     }
 
     /// Number of items in current section
     public int numberOfItems() {
-        int itemsSize = this.items.size();
-        if(headerModel!= null){
-            itemsSize ++;
+        int itemsSize = self.items.size();
+        if (headerModel != null) {
+            itemsSize++;
         }
-        if(footerModel!= null){
-            itemsSize ++;
+        if (footerModel != null) {
+            itemsSize++;
         }
 
         return itemsSize;
