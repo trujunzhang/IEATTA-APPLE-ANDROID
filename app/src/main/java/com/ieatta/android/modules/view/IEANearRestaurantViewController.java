@@ -95,9 +95,8 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
                     Exception error = task.getError();
                 }else {
 
-                    TaskCompletionSource result = (TaskCompletionSource) task.getResult();
-
-                    self.fetchedRestaurants = (LinkedList<Object>) result.getTask().getResult();
+                    Task result = (Task) task.getResult();
+//                    self.fetchedRestaurants = (LinkedList<Object>) result.getTask().getResult();
 
                     self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
