@@ -120,15 +120,22 @@ public abstract class ParseModelQuery extends ParseJsoner {
     }
 
     public static Task<Object> queryFromDatabase(final PQueryModelType type, final ParseQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query)
+        final TaskCompletionSource finalTask = new TaskCompletionSource();
+         ParseModelQuery.findLocalObjectsInBackground(query)
                 .continueWith(new Continuation<List<ParseObject>, Object>() {
                     @Override
                     public Object then(Task<List<ParseObject>> task) throws Exception {
-
-                        LinkedList<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(type).convertToParseModelArray(task.getResult(), true);
-                        return Task.forResult(array);
+                        if (task.getError() != null) {
+                            finalTask.setError(task.getError());
+                        } else {
+                            LinkedList<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(type).convertToParseModelArray(task.getResult(), true);
+                            finalTask.setResult(array);
+                        }
+                        return null;
                     }
                 });
+
+        return finalTask.getTask();
     }
 
     protected Task<Object> queryParseModels(PQueryModelType type, LinkedList<String> points) {

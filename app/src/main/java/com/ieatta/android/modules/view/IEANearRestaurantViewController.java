@@ -80,7 +80,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
     // MARK: Query near restaurant list.
     public void queryNearRestaurant(ParseGeoPoint geoPoint) {
         // TODO djzhang(test)
-        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
+//        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
         Restaurant.queryRestaurants().continueWith(new Continuation<Object, Object>() {
             @Override
@@ -92,9 +92,9 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
             @Override
             public Object then(Task<Object> task) throws Exception {
 
-                if(task.getError() != null){
+                if (task.getError() != null) {
                     Exception error = task.getError();
-                }else {
+                } else {
                     final Object result = TaskUtils.getResultFromTask(task);
                     self.mUiHandler.post(new Runnable() {
                         @Override
