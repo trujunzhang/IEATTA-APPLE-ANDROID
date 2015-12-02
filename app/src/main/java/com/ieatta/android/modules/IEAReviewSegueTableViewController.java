@@ -5,5 +5,8 @@ import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewControlle
 /**
  * Created by djzhang on 12/1/15.
  */
+/// The following children classes:
+///   IEABaseReviewsTableViewController
+///   IEAReadReviewsBaseViewController
 public class IEAReviewSegueTableViewController extends IEAPhotoGalleryViewController {
 }
