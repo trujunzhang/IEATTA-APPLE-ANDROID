@@ -36,7 +36,7 @@ public class DTTableViewManager {
 
 
     public void registerHeaderClass(Class headerClass) {
-
+        self.memoryStorage.registerType(headerClass);
     }
     public void registerFooterClass(Class footerClass) {
 

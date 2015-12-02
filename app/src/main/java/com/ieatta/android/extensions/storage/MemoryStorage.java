@@ -13,9 +13,10 @@ public class MemoryStorage {
     private MemoryStorage self = this;
 
     public IEATableViewControllerAdapter adapter;
+    private TableViewUtils tableViewUtils = new TableViewUtils();
 
     public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
-    private TableViewUtils tableViewUtils = new TableViewUtils();
+    public LinkedHashMap<Integer,Class> rowTypes = new LinkedHashMap<>();
 
     public MemoryStorage(IEATableViewControllerAdapter adapter) {
         self.adapter = adapter;
@@ -104,5 +105,22 @@ public class MemoryStorage {
 
     public int getItemViewType(int position) {
         return self.tableViewUtils.getItemViewType(position);
+    }
+
+    public void registerType(Class aClass) {
+        if(self.isExistRegisterType(aClass) == false){
+            int size = self.rowTypes.size();
+            self.rowTypes.put(new Integer(size),aClass);
+        }
+    }
+
+    private boolean isExistRegisterType(Class aClass){
+        for(Integer index: self.rowTypes.keySet()){
+            Class classzz = self.rowTypes.get(index);
+            if(aClass.equals(classzz)){
+                return true;
+            }
+        }
+        return false;
     }
 }

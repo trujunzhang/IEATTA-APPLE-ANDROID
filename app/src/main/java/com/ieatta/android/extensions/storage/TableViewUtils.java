@@ -42,22 +42,26 @@ public class TableViewUtils {
     }
 
     public RowModel getItem(int viewType) {
-        int total = 0;
-
-        for (Integer key : self.sectionInfo.keySet()) {
-            Integer count = self.sectionInfo.get(key);
-
-            int begin = total;
-            int end = total + count;
-
-            if ((viewType + 1) >= begin && (viewType + 1) <= end) {
-                int row = viewType - total;
-                return self.sections.get(key).getRowModel(row);
-            }
-            total = end;
-        }
+//        return self.sections.get(viewType);
         return null;
     }
+//    public RowModel getItem(int viewType) {
+//        int total = 0;
+//
+//        for (Integer key : self.sectionInfo.keySet()) {
+//            Integer count = self.sectionInfo.get(key);
+//
+//            int begin = total;
+//            int end = total + count;
+//
+//            if ((viewType + 1) >= begin && (viewType + 1) <= end) {
+//                int row = viewType - total;
+//                return self.sections.get(key).getRowModel(row);
+//            }
+//            total = end;
+//        }
+//        return null;
+//    }
 
     public int getItemViewType(int position) {
         int total = 0;

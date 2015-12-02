@@ -23,7 +23,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         super.onCreate(savedInstanceState);
 
         self.startManagingWithDelegate(manager);
-//        self.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.class);
+        self.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.class);
     }
 
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
@@ -31,7 +31,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setRegisterHeaderClass(Class headerClass) {
-//        getTableManager().registerHeaderClass(headerClass);
+        getTableManager().registerHeaderClass(headerClass);
     }
 
     public void setRegisterFooterClass(Class footerClass) {
