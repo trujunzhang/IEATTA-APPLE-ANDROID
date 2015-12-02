@@ -54,7 +54,9 @@ public class IEACache {
     }
 
     public Task<Object> setPhotoPointForModels(Task<Object> previous){
-        LinkedList<Photo> fetchedPhotos = new LinkedList<>((Collection<? extends Photo>) previous.getResult());
+        TaskCompletionSource result = (TaskCompletionSource) previous.getResult();
+
+        LinkedList<Photo> fetchedPhotos = (LinkedList<Photo>) result.getTask().getResult();
         for(Photo photo : fetchedPhotos){
             self.setPhotoPoint(photo);
         }

@@ -22,6 +22,7 @@ import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
+import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -94,8 +95,9 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
                     Exception error = task.getError();
                 }else {
 
-                    Object result = task.getResult();
-                    self.fetchedRestaurants = (LinkedList<Object>) task.getResult();
+                    TaskCompletionSource result = (TaskCompletionSource) task.getResult();
+
+                    self.fetchedRestaurants = (LinkedList<Object>) result.getTask().getResult();
 
                     self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
