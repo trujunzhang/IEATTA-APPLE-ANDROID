@@ -5,4 +5,5 @@ package com.ieatta.android.modules;
  */
 public class IEASplitMasterViewController extends IEABaseTableViewController{
 
+
 }
