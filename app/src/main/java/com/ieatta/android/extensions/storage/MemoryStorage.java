@@ -33,15 +33,16 @@ public class MemoryStorage {
     /// - Note: This does not update UI
     /// - Parameter model: model for section header at index
     /// - Parameter sectionIndex: index of section for setting header
-    public void setSectionHeaderModel(Object model, int forSectionIndex, int layoutResId) {
+    public void setSectionHeaderModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
         SectionModel section = self.verifySection(forSectionIndex);
-        HeaderModel headerModel = new HeaderModel();
-        section.headerModel = headerModel;
+        section.headerModel = new HeaderModel(model, cellClass, layoutResId);
     }
 
-    public SectionModel getSectionFromPosition(int viewType){
-      return self.sections.get(new Integer(0));
-    };
+    public SectionModel getSectionFromPosition(int viewType) {
+        return self.sections.get(new Integer(0));
+    }
+
+    ;
 
     private SectionModel verifySection(int forSectionIndex) {
         SectionModel model = self.sections.get(new Integer(forSectionIndex));
@@ -49,16 +50,17 @@ public class MemoryStorage {
             return model;
         }
         model = new SectionModel(forSectionIndex);
-        self.sections.put(new Integer(forSectionIndex),model);
-        return  model;
+        self.sections.put(new Integer(forSectionIndex), model);
+        return model;
     }
 
     /// Set section footer model for MemoryStorage
     /// - Note: This does not update UI
     /// - Parameter model: model for section footer at index
     /// - Parameter sectionIndex: index of section for setting footer
-    public void setSectionFooterModel(Object model, int forSectionIndex) {
-
+    public void setSectionFooterModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
+        SectionModel section = self.verifySection(forSectionIndex);
+        section.footerModel = new FooterModel(model, cellClass, layoutResId);
     }
 
     /// Remove items at index paths.
@@ -70,7 +72,7 @@ public class MemoryStorage {
     public void registerCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
         SectionModel section = self.verifySection(forSectionIndex);
         section.layoutResId = layoutResId;
-        section.cellClass =cellClass;
+        section.cellClass = cellClass;
     }
 
     public int getItemCount() {

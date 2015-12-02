@@ -10,27 +10,14 @@ public class FooterModel {
     /// Items for current section
     /// - Warning: If you try to set new array to this property [T], the only way to do this without exception is to wrap it into items.map { $0 }. This is a workaround that exists because of Swift inability to cast [T] to [Any]. You can call `setItems` method instead of doing so.
     /// - SeeAlso: `setItems:`
-    public LinkedList<Object> items = new LinkedList<>();
-    public int sectionIndex;
+    public Object item;
     public int layoutResId;
     public Class cellClass;
-    public Class headerCellClass;
-    public Class footerCellClass;
 
-    public FooterModel(int sectionIndex) {
-        this.sectionIndex = sectionIndex;
+
+    public FooterModel(Object item, Class cellClass, int layoutResId) {
+        this.item = item;
+        this.layoutResId = layoutResId;
+        this.cellClass = cellClass;
     }
-
-    /// Set items of specific time to items property.
-    /// - Parameter items: items to set
-    /// - Note: This method exists because of inability of Swift to cast [T] to [Any].
-    public void setItems(LinkedList<Object> items){
-        this.items = items;
-    }
-
-    /// Number of items in current section
-    public int numberOfItems(){
-        return this.items.size();
-    }
-
 }
