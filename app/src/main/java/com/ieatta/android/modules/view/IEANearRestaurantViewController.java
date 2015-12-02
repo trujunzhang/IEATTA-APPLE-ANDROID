@@ -91,6 +91,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
+
                 if(task.getError() != null){
                     Exception error = task.getError();
                 }else {
