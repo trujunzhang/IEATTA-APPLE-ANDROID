@@ -1,5 +1,13 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven {
+        repositories {
+            url 'https://oss.sonatype.org/content/repositories/releases/'
+        }
+    }
+}
+
 android {
     compileSdkVersion Integer.parseInt(ANDROID_COMPILE_SDK_VERSION)
     buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
@@ -48,4 +56,5 @@ dependencies {
     compile project(':commonLib')
     compile project(':AndroidProgressHUD')
     compile project(':manualdatabase')
+    compile project(':android-weak-handler')
 }

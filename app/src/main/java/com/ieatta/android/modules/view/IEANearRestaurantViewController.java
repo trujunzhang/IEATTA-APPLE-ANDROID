@@ -26,6 +26,7 @@ import com.parse.ParseQuery;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -82,7 +83,8 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         IEANearRestaurantMore[] mores = {managerRestaurantItem, searchRestaurant, managerPeople, readReviews};
         return Arrays.asList(mores);
     }
-    public void queryNearRestaurant(ParseGeoPoint geoPoint) {
+
+    public void queryNearRestaurant111(ParseGeoPoint geoPoint) {
         ParseQuery query = new Restaurant().makeParseQuery();
         query.fromLocalDatastore();
 
@@ -99,7 +101,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
                 LinkedList<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant).convertToParseModelArray(list, true);
 
                 LinkedList<Object> objects = new LinkedList<Object>();
-                for(ParseModelAbstract modelAbstract:array){
+                for (ParseModelAbstract modelAbstract : array) {
                     objects.add(modelAbstract);
                 }
                 if (array.size() != 0) {
@@ -111,7 +113,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
     }
 
     // MARK: Query near restaurant list.
-    public void queryNearRestaurant111(ParseGeoPoint geoPoint) {
+    public void queryNearRestaurant(ParseGeoPoint geoPoint) {
         // TODO djzhang(test)
 //        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
@@ -128,16 +130,22 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
             @Override
             public Object then(Task<Object> task) throws Exception {
 
-                if (self.fetchedRestaurants.size() != 0) {
-                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
-                }
-                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
-
-//                LocationObserver.sharedInstance.popLastLocation();
+                self.executeUIThread();
 
                 return null;
             }
         });
+    }
+
+    @Override
+    protected void updateUI() {
+        if (self.fetchedRestaurants.size() != 0) {
+            self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
+        }
+        self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
+
+//                LocationObserver.sharedInstance.popLastLocation();
+
     }
 
 }

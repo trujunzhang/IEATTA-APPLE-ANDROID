@@ -12,6 +12,8 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.view.enums.HandlerType;
 
+import com.badoo.mobile.util.WeakHandler;
+
 /**
  * Created by djzhang on 12/1/15.
  */
@@ -19,17 +21,18 @@ public class IEAAppTableViewController extends AppCompatActivity {
     private IEAAppTableViewController self = this;
     private RecyclerView recyclerView;
 
-protected     final Handler mUiHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg){
-            super.handleMessage(msg);
-            if(msg.what == HandlerType.Update_UI.ordinal()){
+    private WeakHandler mHandler; // We still need at least one hard reference to WeakHandler
+
+    protected void executeUIThread() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
                 self.updateUI();
             }
-        }
-    };
+        }, 1);
+    }
 
-    protected void updateUI(){
+    protected void updateUI() {
 
     }
 
@@ -37,6 +40,8 @@ protected     final Handler mUiHandler = new Handler(){
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.table_view_controller);
+
+        mHandler = new WeakHandler();
 
         this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
