@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class Review extends ParseModelSync {
 
-    protected static final int MAX_FETCHED_REVIEWS_IN_DetailPage = 3;
-    private static final int NO_Limit_FETCHED_REVIEWS_IN_DetailPage = Integer.MAX_VALUE;
+    public static final int MAX_FETCHED_REVIEWS_IN_DetailPage = 3;
+    public static final int NO_Limit_FETCHED_REVIEWS_IN_DetailPage = Integer.MAX_VALUE;
 
     private static final int Rating_Default_Value = 1;
     private static final int Rating_Max_Value = 5;
@@ -76,7 +76,7 @@ public class Review extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    ParseQuery createQueryForReviewRef() {
+    public ParseQuery createQueryForReviewRef() {
         ParseQuery query = this.makeParseQuery();
 
         query.whereEqualTo(kPAPFieldReviewRefKey, this.reviewRef);
@@ -136,7 +136,7 @@ public class Review extends ParseModelSync {
         return new Review();
     }
 
-    Task<Object> queryReviewsCount() {
+    public Task<Object> queryReviewsCount() {
         return this.countLocalObjects(this.createQueryForReviewRef()).continueWith(new Continuation<Integer, Object>() {
             @Override
             public Object then(Task<Integer> task) throws Exception {
@@ -188,7 +188,7 @@ public class Review extends ParseModelSync {
     }
 
 
-    static LinkedList<String> getUserPoints(LinkedList<Review> reviews) {
+    public static LinkedList<String> getUserPoints(LinkedList<Review> reviews) {
         LinkedList<String> userPoints = new LinkedList<>();
         for (Review model : reviews) {
             userPoints.add(model.userRef);
@@ -205,7 +205,7 @@ public class Review extends ParseModelSync {
         return Team.getAnonymousUser();
     }
 
-    static LinkedList<Object> getReviewItems(LinkedList<Review> reviews, LinkedList<Team> people) {
+    public static LinkedList<Object> getReviewItems(LinkedList<Review> reviews, LinkedList<Team> people) {
         LinkedList<Object> array = new LinkedList<>();
         for (Review model : reviews) {
             Team user = getPeople(model, people);
