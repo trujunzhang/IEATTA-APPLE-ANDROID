@@ -1,12 +1,19 @@
 package com.ieatta.android.modules.view;
 
+import android.os.Bundle;
+
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
+import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.PeopleInEvent;
 import com.ieatta.com.parse.models.Team;
 
+import java.util.Collection;
 import java.util.LinkedList;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -37,9 +44,75 @@ public  ParseModelAbstract getPageModel(){
     private LinkedList<PeopleInEvent> fetchedPeopleInEvent;
     private boolean isTabBarHidden = false;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
 
+        // Do any additional setup after loading the view.
+//        assert(self.event != nil, "Must setup Event's instance.")
+//        assert(self.event?.belongToModel != nil, "Must setup Restaurant's instance.")
 
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
+
+        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
+                .continueWith(new Continuation<Object, Object>() {
+                    @Override
+                    public Object then(Task<Object> task) throws Exception {
+                        self.fetchedPeopleInEvent = new LinkedList<PeopleInEvent>((Collection<? extends PeopleInEvent>) task.getResult());
+
+                        // 2. Get all people in the event.
+                        return Team.queryTeam(self.fetchedPeopleInEvent);
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                // Next, fetch related photos
+                return self.getPhotosForModelsTask(task);
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                // Sort, by fetchedPeopleInEvent
+                return PeopleInEvent.sortOrderedPeople(task,self.fetchedPeopleInEvent);
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                self.fetchedPeople = new LinkedList<Team>((Collection<? extends Team>) task.getResult());
+                // Next, Load Reviews.
+//                return self.getReviewsReleatdModelQueryTask();
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if(task.getError() != null){
+
+                }else {
+
+                    // Finally, hide hud.
+                    self.hideHUD();
+
+//                    self.setRegisterCellClass(IEAEventHeaderCell);
+//                    self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.self);
+
+//                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: EventDetailSection.sectionHeader.rawValue)
+//                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.PeopleOrdered.string), forSectionIndex: EventDetailSection.sectionOrderedPeople.rawValue)
+
+//                    self.setSectionItems([new  IEAEventHeader(viewController: self, model:self.event!)], forSectionIndex: EventDetailSection.sectionHeader.ordinal());
+
+//                    self.addOrderedPeopleSection(self.fetchedPeople);
+//                    .configureReviewsSection(task.result as! [Team]);
+
+                }
+
+                return null;
+            }
+        });
+
+    }
 
     @Override
     public void didSelectPeople(Team people) {

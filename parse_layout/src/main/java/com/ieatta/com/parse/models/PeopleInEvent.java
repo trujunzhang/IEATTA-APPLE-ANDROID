@@ -92,7 +92,7 @@ public class PeopleInEvent extends ParseModelSync {
         return new PeopleInEvent();
     }
 
-    static Task<Object> queryOrderedPeople(String eventRef) {
+    public static Task<Object> queryOrderedPeople(String eventRef) {
         return ParseModelQuery.findLocalObjectsInBackground(new PeopleInEvent().createQueryByEventRef(eventRef)).continueWith(new Continuation<List<ParseObject>, Object>() {
             @Override
             public Object then(Task<List<ParseObject>> task) throws Exception {
@@ -105,7 +105,7 @@ public class PeopleInEvent extends ParseModelSync {
         });
     }
 
-    static Team getPeople(PeopleInEvent peopleInEvent, LinkedList<Team> fetchedPeople) {
+    public static Team getPeople(PeopleInEvent peopleInEvent, LinkedList<Team> fetchedPeople) {
         for (Team people : fetchedPeople) {
             if (ParseModelAbstract.getPoint(people).equals(peopleInEvent.userRef)) {
                 return people;
@@ -115,7 +115,7 @@ public class PeopleInEvent extends ParseModelSync {
         return null;
     }
 
-    static Task<Object> sortOrderedPeople(Task<Object> previous, LinkedList<PeopleInEvent> peopleInEvents) {
+    public static Task<Object> sortOrderedPeople(Task<Object> previous, LinkedList<PeopleInEvent> peopleInEvents) {
         LinkedList<Team> fetchedPeople = new LinkedList<>((Collection<? extends Team>) previous.getResult());
 
         LinkedList<Team> sortedPeople = new LinkedList<>();
