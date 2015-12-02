@@ -18,8 +18,8 @@ public class IEANearRestaurantMoreCell extends IEAViewHolder {
     public IEANearRestaurantMoreCell(View itemView) {
         super(itemView);
 
-        self.iconImageView = (ImageView) itemView.findViewById(R.id.imageView);
-        self.titleLabel = (TextView) itemView.findViewById(R.id.textView);
+        self.iconImageView = (ImageView) itemView.findViewById(R.id.moreCellIconImageView);
+        self.titleLabel = (TextView) itemView.findViewById(R.id.moreCellTextView);
     }
 
     @Override

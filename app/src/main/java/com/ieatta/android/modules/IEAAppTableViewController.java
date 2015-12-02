@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
-import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -20,7 +19,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tableviewcontroller);
+        setContentView(R.layout.table_view_controller);
 
         this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
