@@ -6,16 +6,14 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.com.parse.models.Restaurant;
 
 public class IEAGoogleMapAddressCell extends IEAViewHolder {
     public static int layoutResId = R.layout.near_restaurant_cell;
 
     private IEAGoogleMapAddressCell self = this;
 
-//    @IBOutlet weak var avatarView: AvatarView!
-
-    private TextView titleLabel;
-    private TextView subtitleLabel;
+    private TextView formattedAddressLabel;
 
     public IEAGoogleMapAddressCell(View itemView) {
         super(itemView);
@@ -23,7 +21,7 @@ public class IEAGoogleMapAddressCell extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
-        self.titleLabel.setText(more.titleResId);
+        Restaurant more  = (Restaurant) model;
+        self.formattedAddressLabel.setText(more.getGoogleMapAddress());
     }
 }
