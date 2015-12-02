@@ -50,10 +50,13 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
         Assert.assertEquals("row count.", itemCount, expectItemCount);
 
         // Verify that getRowModel.
-        verifyRowModel(tableViewUtils, 3, array4[0].position);
         verifyRowModel(tableViewUtils, 0, array0[0].position);
         verifyRowModel(tableViewUtils, 1, array0[1].position);
         verifyRowModel(tableViewUtils, 2, array1[0].position);
+        verifyRowModel(tableViewUtils, 3, array4[0].position);
+        verifyRowModel(tableViewUtils, 4, array4[1].position);
+        verifyRowModel(tableViewUtils, 5, array4[2].position);
+        verifyRowModel(tableViewUtils, 6, array5[0].position);
     }
 
     private void verifyRowModel(TableViewUtils tableViewUtils, int viewType, int expectPosition) {
