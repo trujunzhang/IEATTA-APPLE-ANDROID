@@ -82,7 +82,7 @@ public class Photo extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    ParseQuery createQueryForUsedRefWithType() {
+    public ParseQuery createQueryForUsedRefWithType() {
         ParseQuery query = this.makeParseQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         query.whereEqualTo(kPAPFieldUsedTypeKey, this.usedType);
@@ -90,20 +90,20 @@ public class Photo extends ParseModelSync {
         return query;
     }
 
-    ParseQuery createQueryForUsedRef() {
+    public ParseQuery createQueryForUsedRef() {
         ParseQuery query = this.makeParseQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         return query;
     }
 
-    ParseQuery createQueryForRestaurantRef() {
+    public ParseQuery createQueryForRestaurantRef() {
         ParseQuery query = this.makeParseQuery();
         query.whereEqualTo(kPAPFieldLocalRestaurantKey, this.restaurantRef);
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;
     }
 
-    static ParseQuery createQueryForRestaurantRef(Restaurant restaurant) {
+    public static ParseQuery createQueryForRestaurantRef(Restaurant restaurant) {
         Photo photo = new Photo();
         photo.restaurantRef = ParseModelAbstract.getPoint(restaurant);
         return photo.createQueryForRestaurantRef();
@@ -243,7 +243,7 @@ public class Photo extends ParseModelSync {
      * - parameter newPhoto:        photo's instance
      * - parameter image:           taken image
      */
-    static Task<Object> pinPhotoAndCacheImage(final Photo newPhoto, final Bitmap image) {
+    public static Task<Object> pinPhotoAndCacheImage(final Photo newPhoto, final Bitmap image) {
 
         return OriginalImageUtils.sharedInstance.generateTakenPhoto(image, newPhoto).continueWith(new Continuation<Object, Object>() {
             @Override
@@ -258,7 +258,7 @@ public class Photo extends ParseModelSync {
         });
     }
 
-    static Photo getTakenPhotoInstance(ParseModelAbstract model) {
+    public static Photo getTakenPhotoInstance(ParseModelAbstract model) {
         Photo photo = new Photo();
 
         photo.usedRef = ParseModelAbstract.getPoint(model);
@@ -305,7 +305,7 @@ public class Photo extends ParseModelSync {
 //        return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
 //    }
 
-    Task<Object> getRelatedPhoto() {
+    public Task<Object> getRelatedPhoto() {
         final Photo self = this;
         return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).continueWith(new Continuation<Object, Object>() {
             @Override
@@ -320,7 +320,7 @@ public class Photo extends ParseModelSync {
         });
     }
 
-    Task<Object> getThumbanilImage() {
+    public Task<Object> getThumbanilImage() {
         TaskCompletionSource finalTask = new TaskCompletionSource();
 
         File image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(ParseModelAbstract.getPoint(this));
