@@ -23,12 +23,13 @@ public class TableViewUtils {
         LinkedList<Integer> indexs = new LinkedList<>(keySet);
         Collections.sort(indexs);
 
-        sectionInfo = new LinkedHashMap<>();
+        self.sectionInfo = new LinkedHashMap<>();
+        self.rowLength = 0;
         for(Integer integer:indexs){
             Integer itemsCountInSection = self.getItemsCountInSection(integer);
+            rowLength += itemsCountInSection;
             sectionInfo.put(integer,itemsCountInSection);
         }
-
     }
 
     private Integer getItemsCountInSection(Integer integer) {
