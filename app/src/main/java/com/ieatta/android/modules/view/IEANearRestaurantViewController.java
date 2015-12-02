@@ -90,18 +90,22 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
+                if(task.getError() != null){
+                    Exception error = task.getError();
+                    int x = 0;
+                }else {
 
-                self.fetchedRestaurants = (LinkedList<Object>) task.getResult();
+                    self.fetchedRestaurants = (LinkedList<Object>) task.getResult();
 
-                self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
+                    self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
-                if (self.fetchedRestaurants.size() != 0) {
-                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
-                }
-                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
+                    if (self.fetchedRestaurants.size() != 0) {
+                        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
+                    }
+                    self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
 
 //                LocationObserver.sharedInstance.popLastLocation();
-
+                }
 
                 return null;
             }
