@@ -55,7 +55,7 @@ public class Team extends ParseModelSync {
     }
 
     // MARK: Anonymous User
-    static Team getAnonymousUser() {
+    public static Team getAnonymousUser() {
         Team people = new Team();
         people.displayName = DEFAULT_USER_NAME;
 
@@ -123,7 +123,7 @@ public class Team extends ParseModelSync {
     }
 
     // MARK: Support methods.
-    static Task<Object> filterFrom(Task<Object> previous, LinkedList<Team> source) {
+    public static Task<Object> filterFrom(Task<Object> previous, LinkedList<Team> source) {
 
         LinkedList<Team> result = new LinkedList<>((Collection<? extends Team>) previous.getResult());
 
@@ -138,15 +138,15 @@ public class Team extends ParseModelSync {
         return finalTask.getTask();
     }
 
-    static Task<Object> queryTeam() {
+    public static Task<Object> queryTeam() {
         return ParseModelQuery.queryFromDatabase(PQeuryModelType.Team, new Team().makeParseQuery());
     }
 
-    static Task<Object> queryTeamByPoints(LinkedList<String> points) {
+    public static Task<Object> queryTeamByPoints(LinkedList<String> points) {
         return new Team().queryParseModels(PQeuryModelType.Team, points);
     }
 
-    static Task<Object> queryTeam(LinkedList<PeopleInEvent> list) {
+    public static Task<Object> queryTeam(LinkedList<PeopleInEvent> list) {
         // 1. Get ordered people reference.
         LinkedList<String> points = Team.getPeoplePoints(list);
 
@@ -154,7 +154,7 @@ public class Team extends ParseModelSync {
     }
 
     // MARK: Support methods.
-    static LinkedList<String> getPeoplePoints(LinkedList<PeopleInEvent> peopleInEvent) {
+    public static LinkedList<String> getPeoplePoints(LinkedList<PeopleInEvent> peopleInEvent) {
         LinkedList<String> peoplePoints = new LinkedList<>();
 
         for (PeopleInEvent model : peopleInEvent) {
