@@ -4,14 +4,10 @@ import android.os.Bundle;
 
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
-import com.ieatta.android.extensions.viewkit.ModelTransfer;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
-import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 
 /**
@@ -43,11 +39,11 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setRegisterCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
-        getTableManager().registerCellClass(cellClass, forSectionIndex, layoutResId);
+        getTableManager().registerCellClass(cellClass, layoutResId, forSectionIndex);
     }
 
     public void setRegisterCellClassWhenSelected(Class cellClass, int layoutResId, int forSectionIndex) {
-        getTableManager().registerCellClass(cellClass, forSectionIndex, layoutResId);
+        getTableManager().registerCellClass(cellClass, layoutResId, forSectionIndex);
     }
 
     public void setSectionItems(LinkedList<Object> items, int forSectionIndex) {

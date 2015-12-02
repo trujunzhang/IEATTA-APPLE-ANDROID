@@ -15,9 +15,11 @@ private MainActivity self = this;
         super.onCreate(savedInstanceState);
 
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), 0);
-//        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.class, IEANearRestaurantMoreCell.layoutResId, 0);
-        
 
+
+        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.class, IEANearRestaurantMoreCell.layoutResId, 0);
+
+//        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe), 1);
     }
 
 }
