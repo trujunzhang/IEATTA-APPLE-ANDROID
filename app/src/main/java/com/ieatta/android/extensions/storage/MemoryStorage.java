@@ -99,10 +99,6 @@ public class MemoryStorage {
     }
 
     public int getItemCount() {
-        int sum = 0;
-        for (SectionModel model : self.sections.values()) {
-            sum += model.numberOfItems();
-        }
         return tableViewUtils.getItemCount();
     }
 }
