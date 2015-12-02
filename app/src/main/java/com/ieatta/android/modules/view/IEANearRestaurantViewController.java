@@ -6,17 +6,15 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitMasterViewController;
 import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
-import com.ieatta.android.modules.cells.model.IENearRestaurantMore;
+import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.android.observers.LocationObserver;
-import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 import com.parse.ParseGeoPoint;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 import bolts.Continuation;
@@ -55,19 +53,19 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, R.string.More),  NearRestaurantSection.sectionMoreItems.ordinal());
 
         // "Manager Restaurant"
-        IENearRestaurantMore managerRestaurantItem = new IENearRestaurantMore(R.drawable.restaurants_icon, R.string.Add_a_Restaurant, MainSegueIdentifier.editRestaurantSegueIdentifier);
+        IEANearRestaurantMore managerRestaurantItem = new IEANearRestaurantMore(R.drawable.restaurants_icon, R.string.Add_a_Restaurant, MainSegueIdentifier.editRestaurantSegueIdentifier);
 
         // "Search Restaurant"
-        IENearRestaurantMore searchRestaurant = new IENearRestaurantMore(R.drawable.nav_search, R.string.Search_Restaurants, MainSegueIdentifier.searchRestaurantSegueIdentifier);
+        IEANearRestaurantMore searchRestaurant = new IEANearRestaurantMore(R.drawable.nav_search, R.string.Search_Restaurants, MainSegueIdentifier.searchRestaurantSegueIdentifier);
 
         // "Manager People"
-        IENearRestaurantMore managerPeople = new IENearRestaurantMore(R.drawable.nav_add_friends, R.string.Manage_Friends, MainSegueIdentifier.managerPeopleSegueIdentifier);
+        IEANearRestaurantMore managerPeople = new IEANearRestaurantMore(R.drawable.nav_add_friends, R.string.Manage_Friends, MainSegueIdentifier.managerPeopleSegueIdentifier);
 
         // "Read Reviews"
-        IENearRestaurantMore readReviews = new IENearRestaurantMore(R.drawable.restaurants_icon, R.string.Read_Reviews, MainSegueIdentifier.readReviewsSegueIdentifier);
+        IEANearRestaurantMore readReviews = new IEANearRestaurantMore(R.drawable.restaurants_icon, R.string.Read_Reviews, MainSegueIdentifier.readReviewsSegueIdentifier);
 
-        IENearRestaurantMore[] mores = {managerRestaurantItem,searchRestaurant,managerPeople,readReviews};
-        self.setSectionItems(new LinkedList<Object>(Arrays.asList(mores)),  NearRestaurantSection.sectionMoreItems.ordinal());
+        IEANearRestaurantMore[] mores = {managerRestaurantItem,searchRestaurant,managerPeople,readReviews};
+//        self.setSectionItems(new LinkedList<Object>(Arrays.asList(mores)),  NearRestaurantSection.sectionMoreItems.ordinal());
     }
 
     // MARK: Query near restaurant list.

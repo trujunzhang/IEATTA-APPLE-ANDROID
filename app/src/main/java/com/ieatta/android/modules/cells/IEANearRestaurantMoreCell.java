@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.cells.model.IENearRestaurantMore;
+import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 
 public class IEANearRestaurantMoreCell extends IEAViewHolder {
     public static int layoutResId = R.layout.near_restaurant_more_cell;
@@ -24,7 +24,7 @@ public class IEANearRestaurantMoreCell extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-        IENearRestaurantMore more  = (IENearRestaurantMore) model;
+        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
 
         self.iconImageView.setImageResource(more.iconResId);
         self.titleLabel.setText(more.titleResId);
