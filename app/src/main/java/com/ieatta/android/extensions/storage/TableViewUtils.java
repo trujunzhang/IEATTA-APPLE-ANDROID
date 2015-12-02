@@ -2,6 +2,7 @@ package com.ieatta.android.extensions.storage;
 
 import java.util.LinkedHashMap;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -16,6 +17,7 @@ public class TableViewUtils {
 
     public void generateItems(LinkedHashMap<Integer, SectionModel> sections){
         self.sections = sections;
+        Set<Integer> keySet = sections.keySet();
 
     }
 
