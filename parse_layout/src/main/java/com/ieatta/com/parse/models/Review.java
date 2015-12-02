@@ -24,8 +24,8 @@ public class Review extends ParseModelSync {
     public static final int MAX_FETCHED_REVIEWS_IN_DetailPage = 3;
     public static final int NO_Limit_FETCHED_REVIEWS_IN_DetailPage = Integer.MAX_VALUE;
 
-    private static final int Rating_Default_Value = 1;
-    private static final int Rating_Max_Value = 5;
+    public static final int Rating_Default_Value = 1;
+    public static final int Rating_Max_Value = 5;
 
     // Class key
     private static final String kPAPClassKey = "Review";
