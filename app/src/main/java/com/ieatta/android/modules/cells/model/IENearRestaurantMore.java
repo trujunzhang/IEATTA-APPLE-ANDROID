@@ -8,9 +8,9 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
  */
 
 public class IENearRestaurantMore {
-    int iconResId;
-    int titleResId;
-    MainSegueIdentifier identifier = MainSegueIdentifier.Unspecified;
+    public int iconResId;
+    public int titleResId;
+    public MainSegueIdentifier identifier = MainSegueIdentifier.Unspecified;
 
     public IENearRestaurantMore(int iconResId, int titleResId, MainSegueIdentifier identifier) {
         this.iconResId = iconResId;

@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.cells.model.IENearRestaurantMore;
 
 public class IEANearRestaurantsCell extends IEAViewHolder {
     public static int layoutResId = R.layout.near_restaurant_cell;

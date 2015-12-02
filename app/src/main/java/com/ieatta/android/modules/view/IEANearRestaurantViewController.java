@@ -6,7 +6,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitMasterViewController;
 import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
-import com.ieatta.android.modules.cells.IENearRestaurantMore;
+import com.ieatta.android.modules.cells.model.IENearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
