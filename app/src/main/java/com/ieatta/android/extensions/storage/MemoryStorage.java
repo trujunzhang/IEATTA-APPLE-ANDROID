@@ -51,7 +51,7 @@ public class MemoryStorage {
     /// - Parameter sectionIndex: index of section for setting header
     public void setSectionHeaderModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
         SectionModel section = self.verifySection(forSectionIndex);
-        section.setHeaderModel(new HeaderModel(model, cellClass, layoutResId);
+        section.setHeaderModel(new HeaderModel(model, cellClass, layoutResId));
 
         self.reloadTableView();
     }
