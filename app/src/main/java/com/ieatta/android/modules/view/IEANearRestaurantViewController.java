@@ -88,30 +88,22 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
             }
-        }).continueWith(new Continuation<Object, Object>() {
+        }).onSuccess(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
 
-                if (task.getError() != null) {
-                    Exception error = task.getError();
-                } else {
-                    final Object result = TaskUtils.getResultFromTask(task);
-                    self.mUiHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            self.fetchedRestaurants = (LinkedList<Object>) result;
-                            self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
+                Object object = task;
 
-                            if (self.fetchedRestaurants.size() != 0) {
-                                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
-                            }
-                            self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
+                final Object result = TaskUtils.getResultFromTask(task);
+                self.fetchedRestaurants = (LinkedList<Object>) result;
+                self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
-                        }
-                    });
+                if (self.fetchedRestaurants.size() != 0) {
+                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
+                }
+                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
 
 //                LocationObserver.sharedInstance.popLastLocation();
-                }
 
                 return null;
             }
