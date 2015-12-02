@@ -1,6 +1,9 @@
 package com.ieatta.android.extensions.storage;
 
+import android.content.Context;
+
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
+import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -10,8 +13,14 @@ import java.util.LinkedList;
  */
 public class MemoryStorage {
     private MemoryStorage self = this;
+
+    public IEATableViewControllerAdapter adapter;
+
     public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
 
+    public MemoryStorage(IEATableViewControllerAdapter adapter) {
+        self.adapter = adapter;
+    }
 
     /// Add items to section with `toSection` number.
     /// - Parameter items: items to add

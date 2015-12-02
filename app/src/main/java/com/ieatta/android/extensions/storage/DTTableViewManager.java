@@ -15,19 +15,18 @@ import java.lang.reflect.InvocationTargetException;
  * Created by djzhang on 12/1/15.
  */
 public class DTTableViewManager {
-    private Context context;
     private DTTableViewManager self = this;
-    public  MemoryStorage memoryStorage = new MemoryStorage();
 
-    public IEATableViewControllerAdapter adapter;
+    private Context context;
+    public  MemoryStorage memoryStorage ;
 
     public DTTableViewManager(Context context) {
         self.context = context;
-        self.adapter = new IEATableViewControllerAdapter(self,self.context);
+        self.memoryStorage = new MemoryStorage(new IEATableViewControllerAdapter(self, self.context));
     }
 
     public IEATableViewControllerAdapter getAdapter(){
-        return self.adapter;
+        return self.memoryStorage.adapter;
     }
 
     public int getItemCount() {
