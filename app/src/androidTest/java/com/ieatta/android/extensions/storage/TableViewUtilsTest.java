@@ -3,6 +3,7 @@ package com.ieatta.android.extensions.storage;
 import android.test.InstrumentationTestCase;
 import android.test.InstrumentationTestSuite;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import java.util.LinkedHashMap;
@@ -38,6 +39,11 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
         sections.put(new Integer(0),new SectionModel(0).setItems(array0));
 
         tableViewUtils.generateItems(sections);
+
+        int itemCount = tableViewUtils.getItemCount();
+        int expectItemCount = array0.length + array1.length+array4.length+array5.length;
+        Assert.assertEquals("row count.",itemCount,expectItemCount);
+
 
     }
 }
