@@ -34,16 +34,16 @@ public class DTTableViewManager {
     }
 
     public void registerHeaderClass(Class headerClass, int layoutResId) {
-        self.memoryStorage.registerType(headerClass,layoutResId);
+        self.memoryStorage.cellTypeUtils.registerType(headerClass, layoutResId);
     }
     public void registerFooterClass(Class footerClass, int layoutResId) {
-        self.memoryStorage.registerType(footerClass,layoutResId);
+        self.memoryStorage.cellTypeUtils.registerType(footerClass, layoutResId);
     }
 
     public IEAViewHolder createViewHolder(ViewGroup parent, int viewType) {
-        RowModel rowModel = self.memoryStorage.getRowModelFromPosition(viewType);
-        Class cellClass = rowModel.cellClass;
-        int layoutResId = rowModel.layoutResId;
+        CellTypeUtils.ModelType modelType = self.memoryStorage.cellTypeUtils.getModelType(viewType);
+        Class cellClass = modelType.cellClass;
+        int layoutResId = modelType.layoutResId;
 
         Constructor[] ctors = cellClass.getDeclaredConstructors();
         Constructor viewConstructor = TableViewFactory.getConstructorForView(ctors);
