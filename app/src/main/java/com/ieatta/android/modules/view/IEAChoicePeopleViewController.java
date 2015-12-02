@@ -24,7 +24,7 @@ enum ChoicePeopleSection {
 public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     private IEAChoicePeopleViewController self = this;
 
-    interface IEAChoicePeopleViewProtocol {
+    public interface IEAChoicePeopleViewProtocol {
         public void didSelectPeople(Team people);
     }
 
