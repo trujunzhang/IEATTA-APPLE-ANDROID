@@ -47,14 +47,19 @@ public class TableViewUtilsTest extends InstrumentationTestCase {
         // Verify the total rows count.
         int itemCount = tableViewUtils.getItemCount();
         int expectItemCount = array0.length + array1.length+array4.length+array5.length;
-        Assert.assertEquals("row count.",itemCount,expectItemCount);
+        Assert.assertEquals("row count.", itemCount, expectItemCount);
 
         // Verify that getRowModel.
-        int viewType = 3; // array4[0]
+        verifyRowModel(tableViewUtils, 3, array4[0].position);
+        verifyRowModel(tableViewUtils, 0, array0[0].position);
+        verifyRowModel(tableViewUtils, 1, array0[1].position);
+        verifyRowModel(tableViewUtils, 2, array1[0].position);
+    }
+
+    private void verifyRowModel(TableViewUtils tableViewUtils, int viewType, int expectPosition) {
         RowModel item = tableViewUtils.getItem(viewType);
         TableItem model = (TableItem) item.model;
         int position = model.position;
-        int expectPosition = array4[0].position;
-        Assert.assertEquals("The same row Model.",position,expectPosition);
+        Assert.assertEquals("The same row Model.", position, expectPosition);
     }
 }
