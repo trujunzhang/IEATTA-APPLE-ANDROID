@@ -40,7 +40,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         super.onCreate(savedInstanceState);
 
         // Register Cells by class.
-//        self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.class);
+        self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.class,NearRestaurantSection.sectionRestaurants.ordinal(),IEANearRestaurantsCell.layoutResId);
 
         self.configModelsInMoreSection();
 
@@ -87,13 +87,12 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
                 self.fetchedRestaurants = (LinkedList<Object>) task.getResult();
 
-                RestaurantSortUtils.sort(self.fetchedRestaurants);
-//                        self.fetchedRestaurants.sortInPlace({ $0.displayName < $1.displayName })
+                self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
                 if (self.fetchedRestaurants.size() != 0) {
                     self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title,R.string.Nearby_Restaurants),  NearRestaurantSection.sectionRestaurants.ordinal());
                 }
-//                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
+                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
 
 //                LocationObserver.sharedInstance.popLastLocation();
 
