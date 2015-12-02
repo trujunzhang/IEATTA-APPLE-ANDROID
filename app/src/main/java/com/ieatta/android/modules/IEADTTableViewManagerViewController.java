@@ -44,7 +44,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setRegisterCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
-        getTableManager().registerCellClass(cellClass,forSectionIndex,layoutResId);
+        getTableManager().registerCellClass(cellClass, forSectionIndex, layoutResId);
     }
 
     public void setRegisterCellClassWhenSelected(Class cellClass, int forSectionIndex, int layoutResId) {
@@ -56,7 +56,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setFooterModelInSection(Object model, int forSectionIndex) {
-        getMemoryStorage().setSectionFooterModel(model,forSectionIndex);
+        getMemoryStorage().setSectionFooterModel(model, forSectionIndex);
     }
 
     public void removeSectionItemsAtIndexPaths(NSIndexPath[] indexPaths) {
@@ -64,7 +64,11 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
-        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex);
+        self.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.layoutResId);
+    }
+    
+    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex, int layoutResId) {
+        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex,layoutResId);
     }
 
     public MemoryStorage getMemoryStorage() {

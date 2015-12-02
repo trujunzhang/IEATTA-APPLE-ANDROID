@@ -33,8 +33,10 @@ public class MemoryStorage {
     /// - Note: This does not update UI
     /// - Parameter model: model for section header at index
     /// - Parameter sectionIndex: index of section for setting header
-    public void setSectionHeaderModel(Object model, int forSectionIndex) {
-
+    public void setSectionHeaderModel(Object model, int forSectionIndex, int layoutResId) {
+        SectionModel section = self.verifySection(forSectionIndex);
+        HeaderModel headerModel = new HeaderModel();
+        section.headerModel = headerModel;
     }
 
     public SectionModel getSectionFromPosition(int viewType){
