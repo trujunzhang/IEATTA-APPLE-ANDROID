@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.cache.RatedModelReviewCount;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 
@@ -23,7 +24,7 @@ public class IEAReadReviewsCell extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
-        self.titleLabel.setText(more.titleResId);
+        RatedModelReviewCount more  = (RatedModelReviewCount) model;
+//        self.titleLabel.setText(more.titleResId);
     }
 }

@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.com.parse.models.Event;
 
 public class IEARestaurantEventsCell extends IEAViewHolder {
     public static int layoutResId = R.layout.near_restaurant_cell;
@@ -14,7 +14,7 @@ public class IEARestaurantEventsCell extends IEAViewHolder {
 
 //    @IBOutlet weak var avatarView: AvatarView!
 
-    private TextView titleLabel;
+    private TextView infoLabel;
     private TextView subtitleLabel;
 
     public IEARestaurantEventsCell(View itemView) {
@@ -23,7 +23,8 @@ public class IEARestaurantEventsCell extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
-        self.titleLabel.setText(more.titleResId);
+        Event more  = (Event) model;
+        self.infoLabel.setText(more.displayName);
+
     }
 }
