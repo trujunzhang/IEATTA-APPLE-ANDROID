@@ -52,7 +52,7 @@ public class MemoryStorage {
     /// - Parameter sectionIndex: index of section for setting header
     public void setSectionHeaderModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
         // Step1: Register cell type.
-        self.registerType(cellClass);
+        self.registerType(cellClass,layoutResId);
 
         // Step2: Create/Add a Header Section.
         SectionModel section = self.verifySection(forSectionIndex);
@@ -88,9 +88,9 @@ public class MemoryStorage {
 
     }
 
-    public void registerCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
+    public void registerCellClass(Class cellClass, int layoutResId, int forSectionIndex) {
         // Step1: Register class type
-        self.registerType(cellClass);
+        self.registerType(cellClass,layoutResId);
 
         // Step2: Create/Modify a section.
         SectionModel section = self.verifySection(forSectionIndex);
@@ -126,7 +126,7 @@ public class MemoryStorage {
         return type;
     }
 
-    public void registerType(Class aClass) {
+    public void registerType(Class aClass, int layoutResId) {
         if (self.isExistRegisterType(aClass) == false) {
             int size = self.rowTypes.size();
             self.rowTypes.put(new Integer(size), aClass);

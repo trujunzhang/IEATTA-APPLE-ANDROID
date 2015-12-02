@@ -33,11 +33,11 @@ public class DTTableViewManager {
         return self.memoryStorage.getItemCount();
     }
 
-    public void registerHeaderClass(Class headerClass) {
-        self.memoryStorage.registerType(headerClass);
+    public void registerHeaderClass(Class headerClass, int layoutResId) {
+        self.memoryStorage.registerType(headerClass,layoutResId);
     }
-    public void registerFooterClass(Class footerClass) {
-        self.memoryStorage.registerType(footerClass);
+    public void registerFooterClass(Class footerClass, int layoutResId) {
+        self.memoryStorage.registerType(footerClass,layoutResId);
     }
 
     public IEAViewHolder createViewHolder(ViewGroup parent, int viewType) {
@@ -64,7 +64,7 @@ public class DTTableViewManager {
     }
 
     public void registerCellClass(Class cellClass, int layoutResId, int forSectionIndex) {
-        self.memoryStorage.registerCellClass(cellClass,forSectionIndex,layoutResId);
+        self.memoryStorage.registerCellClass(cellClass, layoutResId, forSectionIndex);
     }
 
 

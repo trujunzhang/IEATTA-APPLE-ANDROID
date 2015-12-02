@@ -31,11 +31,11 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setRegisterHeaderClass(Class headerClass, int layoutResId) {
-        getTableManager().registerHeaderClass(headerClass);
+        getTableManager().registerHeaderClass(headerClass,layoutResId);
     }
 
     public void setRegisterFooterClass(Class footerClass, int layoutResId) {
-        getTableManager().registerFooterClass(footerClass);
+        getTableManager().registerFooterClass(footerClass,layoutResId);
     }
 
     public void setRegisterCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
