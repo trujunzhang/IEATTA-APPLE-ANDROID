@@ -17,6 +17,7 @@ public class MemoryStorage {
     public IEATableViewControllerAdapter adapter;
 
     public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
+    private TableViewUtils tableViewUtils = new TableViewUtils();
 
     public MemoryStorage(IEATableViewControllerAdapter adapter) {
         self.adapter = adapter;
@@ -29,6 +30,10 @@ public class MemoryStorage {
 //        this.sections.put(new Integer(toSection), new SectionModel(items));
     }
 
+    private void reloadTableView(){
+        self.tableViewUtils.generateItems(self.sections);
+    }
+
     /// Set items for specific section. This will reload UI after updating.
     /// - Parameter items: items to set for section
     /// - Parameter forSectionIndex: index of section to update
@@ -36,6 +41,8 @@ public class MemoryStorage {
         SectionModel section = self.verifySection(forSectionIndex);
         section.items = items;
         self.sections.put(new Integer(forSectionIndex), section);
+
+        self.reloadTableView();
     }
 
     /// Set section header model for MemoryStorage
@@ -45,10 +52,23 @@ public class MemoryStorage {
     public void setSectionHeaderModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
         SectionModel section = self.verifySection(forSectionIndex);
         section.headerModel = new HeaderModel(model, cellClass, layoutResId);
+
+        self.reloadTableView();
+    }
+
+    /// Set section footer model for MemoryStorage
+    /// - Note: This does not update UI
+    /// - Parameter model: model for section footer at index
+    /// - Parameter sectionIndex: index of section for setting footer
+    public void setSectionFooterModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
+        SectionModel section = self.verifySection(forSectionIndex);
+        section.footerModel = new FooterModel(model, cellClass, layoutResId);
+
+        self.reloadTableView();
     }
 
     public SectionModel getSectionFromPosition(int viewType) {
-        return self.sections.get(new Integer(0));
+        return self.tableViewUtils.getItem(viewType);
     }
 
     private SectionModel verifySection(int forSectionIndex) {
@@ -61,14 +81,7 @@ public class MemoryStorage {
         return model;
     }
 
-    /// Set section footer model for MemoryStorage
-    /// - Note: This does not update UI
-    /// - Parameter model: model for section footer at index
-    /// - Parameter sectionIndex: index of section for setting footer
-    public void setSectionFooterModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
-        SectionModel section = self.verifySection(forSectionIndex);
-        section.footerModel = new FooterModel(model, cellClass, layoutResId);
-    }
+
 
     /// Remove items at index paths.
     /// - Parameter indexPaths: indexPaths to remove item from. Any indexPaths that will not be found, will be skipped
@@ -87,6 +100,6 @@ public class MemoryStorage {
         for (SectionModel model : self.sections.values()) {
             sum += model.numberOfItems();
         }
-        return sum;
+        return tableViewUtils.getItemCount();
     }
 }
