@@ -16,7 +16,6 @@ import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
 public class IEAAppTableViewController extends AppCompatActivity {
     private IEAAppTableViewController self = this;
     private RecyclerView recyclerView;
-    public IEATableViewControllerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +34,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
     }
 
     protected void startManagingWithDelegate(DTTableViewManager manager) {
-        self.adapter = new IEATableViewControllerAdapter(manager,self.getApplicationContext());
-        self.recyclerView.setAdapter(self.adapter);
+        self.recyclerView.setAdapter(manager.getAdapter());
     }
 
     public boolean navigationShouldPopOnBackButton() {

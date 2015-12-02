@@ -42,8 +42,6 @@ public class MemoryStorage {
         return self.sections.get(new Integer(0));
     }
 
-    ;
-
     private SectionModel verifySection(int forSectionIndex) {
         SectionModel model = self.sections.get(new Integer(forSectionIndex));
         if (model != null) {

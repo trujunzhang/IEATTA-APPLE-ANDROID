@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 
 import java.lang.reflect.Constructor;
@@ -18,8 +19,15 @@ public class DTTableViewManager {
     private DTTableViewManager self = this;
     public  MemoryStorage memoryStorage = new MemoryStorage();
 
+    public IEATableViewControllerAdapter adapter;
+
     public DTTableViewManager(Context context) {
         self.context = context;
+        self.adapter = new IEATableViewControllerAdapter(self,self.context);
+    }
+
+    public IEATableViewControllerAdapter getAdapter(){
+        return self.adapter;
     }
 
     public int getItemCount() {
