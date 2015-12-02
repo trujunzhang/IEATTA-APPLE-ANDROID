@@ -33,10 +33,7 @@ public class DTTableViewManager {
         return self.memoryStorage.getItemCount();
     }
 
-    public Object getModel(int position) {
-        SectionModel sectionModel = self.memoryStorage.getSectionFromPosition(0);
-        return sectionModel.items.get(position);
-    }
+
 
     public void registerHeaderClass(Class headerClass) {
 
@@ -46,9 +43,9 @@ public class DTTableViewManager {
     }
 
     public IEAViewHolder createViewHolder(ViewGroup parent, int viewType) {
-        SectionModel sectionModel = self.memoryStorage.getSectionFromPosition(viewType);
-        Class cellClass = sectionModel.cellClass;
-        int layoutResId = sectionModel.layoutResId;
+        RowModel rowModel = self.memoryStorage.getRowModelFromPosition(viewType);
+        Class cellClass = rowModel.cellClass;
+        int layoutResId = rowModel.layoutResId;
 
         Constructor[] ctors = cellClass.getDeclaredConstructors();
         Constructor viewConstructor = TableViewFactory.getConstructorForView(ctors);

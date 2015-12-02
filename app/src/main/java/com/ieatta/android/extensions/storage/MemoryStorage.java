@@ -1,7 +1,5 @@
 package com.ieatta.android.extensions.storage;
 
-import android.content.Context;
-
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
 
@@ -67,10 +65,6 @@ public class MemoryStorage {
         self.reloadTableView();
     }
 
-    public SectionModel getSectionFromPosition(int viewType) {
-        return self.tableViewUtils.getItem(viewType);
-    }
-
     private SectionModel verifySection(int forSectionIndex) {
         SectionModel model = self.sections.get(new Integer(forSectionIndex));
         if (model != null) {
@@ -80,8 +74,6 @@ public class MemoryStorage {
         self.sections.put(new Integer(forSectionIndex), model);
         return model;
     }
-
-
 
     /// Remove items at index paths.
     /// - Parameter indexPaths: indexPaths to remove item from. Any indexPaths that will not be found, will be skipped
@@ -93,6 +85,15 @@ public class MemoryStorage {
         SectionModel section = self.verifySection(forSectionIndex);
         section.layoutResId = layoutResId;
         section.cellClass = cellClass;
+    }
+
+    public RowModel getRowModelFromPosition(int viewType) {
+        return self.tableViewUtils.getItem(viewType);
+    }
+
+    public Object getRowModel(int position) {
+        RowModel rowModel = self.getRowModelFromPosition(position);
+        return rowModel.model;
     }
 
     public int getItemCount() {

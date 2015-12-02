@@ -17,7 +17,7 @@ public class TableViewUtils {
         return items.length;
     }
 
-    public SectionModel getItem(int viewType) {
+    public RowModel getItem(int viewType) {
         return null;
     }
 }

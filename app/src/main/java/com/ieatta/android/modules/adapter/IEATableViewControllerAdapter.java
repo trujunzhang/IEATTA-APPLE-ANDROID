@@ -27,7 +27,7 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
 
     @Override
     public void onBindViewHolder(IEAViewHolder holder, int position) {
-        Object model = self.manager.getModel(position);
+        Object model = self.manager.memoryStorage.getRowModel(position);
         holder.updateWithModel(model);
     }
 
