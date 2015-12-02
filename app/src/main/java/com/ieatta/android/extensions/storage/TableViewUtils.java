@@ -7,14 +7,20 @@ import java.util.Objects;
  * Created by djzhang on 12/2/15.
  */
 public class TableViewUtils {
+    private TableViewUtils self = this;
+
     private Object[] items ;
+    private int rowLength = 0;
+
+    public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
 
     public void generateItems(LinkedHashMap<Integer, SectionModel> sections){
+        self.sections = sections;
 
     }
 
     public int getItemCount() {
-        return items.length;
+        return rowLength;
     }
 
     public RowModel getItem(int viewType) {

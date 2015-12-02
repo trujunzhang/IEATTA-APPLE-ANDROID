@@ -30,6 +30,8 @@ public class MemoryStorage {
 
     private void reloadTableView(){
         self.tableViewUtils.generateItems(self.sections);
+
+        self.adapter.notifyDataSetChanged();
     }
 
     /// Set items for specific section. This will reload UI after updating.
