@@ -39,7 +39,7 @@ public class DTTableViewManager {
         self.memoryStorage.registerType(headerClass);
     }
     public void registerFooterClass(Class footerClass) {
-
+        self.memoryStorage.registerType(footerClass);
     }
 
     public IEAViewHolder createViewHolder(ViewGroup parent, int viewType) {
