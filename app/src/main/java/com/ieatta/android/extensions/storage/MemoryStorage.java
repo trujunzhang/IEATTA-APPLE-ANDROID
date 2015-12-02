@@ -51,7 +51,7 @@ public class MemoryStorage {
     /// - Parameter sectionIndex: index of section for setting header
     public void setSectionHeaderModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
         SectionModel section = self.verifySection(forSectionIndex);
-        section.headerModel = new HeaderModel(model, cellClass, layoutResId);
+        section.setHeaderModel(new HeaderModel(model, cellClass, layoutResId);
 
         self.reloadTableView();
     }
@@ -62,7 +62,7 @@ public class MemoryStorage {
     /// - Parameter sectionIndex: index of section for setting footer
     public void setSectionFooterModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
         SectionModel section = self.verifySection(forSectionIndex);
-        section.footerModel = new FooterModel(model, cellClass, layoutResId);
+        section.setFooterModel(new FooterModel(model, cellClass, layoutResId));
 
         self.reloadTableView();
     }

@@ -69,4 +69,14 @@ public class SectionModel {
         return itemsSize;
     }
 
+    public SectionModel setHeaderModel(HeaderModel headerModel) {
+        self.headerModel = headerModel;
+        return self;
+    }
+
+
+    public SectionModel setFooterModel(FooterModel footerModel) {
+        self.footerModel = footerModel;
+        return self;
+    }
 }
