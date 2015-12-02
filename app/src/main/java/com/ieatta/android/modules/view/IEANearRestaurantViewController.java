@@ -85,18 +85,15 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         Restaurant.queryRestaurants().continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
+                self.fetchedRestaurants = (LinkedList<Object>) task.getResult();
+                self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
+
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
             }
-        }).onSuccess(new Continuation<Object, Object>() {
+        }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-
-                Object object = task;
-
-                final Object result = TaskUtils.getResultFromTask(task);
-                self.fetchedRestaurants = (LinkedList<Object>) result;
-                self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
                 if (self.fetchedRestaurants.size() != 0) {
                     self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());

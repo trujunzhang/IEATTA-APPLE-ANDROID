@@ -11,6 +11,7 @@ import com.walnutlabs.android.ProgressHUD;
 
 import bolts.Continuation;
 import bolts.Task;
+import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -72,8 +73,10 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
 //    }
 
     public Task<Object> getPhotosForModelsTask(final Task<Object> previous) {
+        final TaskCompletionSource finalTask = new TaskCompletionSource();
+
         // First of all, query relate photos task.
-        return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous))
+        Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous))
                 .continueWith(new Continuation<Object, Object>() {
                     @Override
                     public Object then(Task<Object> task) throws Exception {
@@ -81,12 +84,16 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
                         return IEACache.sharedInstance.setPhotoPointForModels(task);
                     }
                 }).continueWith(new Continuation<Object, Object>() {
-                    @Override
-                    public Object then(Task<Object> task) throws Exception {
-                        // Finish, return previous task to continue.
-                        return previous;
-                    }
-                });
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                // Finish, return previous task to continue.
+//                Object result = previous.getResult();
+                finalTask.setResult(previous.getResult());
+                return null;
+            }
+        });
+
+        return finalTask.getTask();
     }
 
     public void showGoogleMapAddress(int sectionIndex) {
