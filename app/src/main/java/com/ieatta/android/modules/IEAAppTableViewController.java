@@ -2,6 +2,7 @@ package com.ieatta.android.modules;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.View;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
+import com.ieatta.android.modules.view.enums.HandlerType;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -17,7 +19,19 @@ public class IEAAppTableViewController extends AppCompatActivity {
     private IEAAppTableViewController self = this;
     private RecyclerView recyclerView;
 
-    protected Handler mUiHandler = new Handler();
+protected     final Handler mUiHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            if(msg.what == HandlerType.Update_UI.ordinal()){
+                self.updateUI();
+            }
+        }
+    };
+
+    protected void updateUI(){
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
