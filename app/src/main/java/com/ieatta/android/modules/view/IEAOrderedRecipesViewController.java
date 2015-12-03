@@ -3,8 +3,13 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
+import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
+import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
+import com.ieatta.android.modules.cells.IEAOrderedRecipeCell;
+import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Team;
@@ -76,15 +81,15 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
                     // Finally, hide hud.
                     self.hideHUD();
 
-//                    self.setRegisterCellClass(IEAOrderedPeopleCell);
-//                    self.setRegisterCellClassWhenSelected(IEAOrderedRecipeCell.self);
+                    self.setRegisterCellClass(IEAOrderedPeopleCell.class, IEAOrderedPeopleCell.layoutResId, OrderedRecipesSection.sectionOrderedPeople.ordinal());
+                    self.setRegisterCellClassWhenSelected(IEAOrderedRecipeCell.class, IEAOrderedRecipeCell.layoutResId, OrderedRecipesSection.sectionRecipes.ordinal());
 
-//                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.OrderedPeople.string), forSectionIndex: OrderedRecipesSection.sectionOrderedPeople.ordinal());
-//                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.OrderedRecipes.string), forSectionIndex: OrderedRecipesSection.sectionRecipes.ordinal());
+                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_People), OrderedRecipesSection.sectionOrderedPeople.ordinal());
+                    self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title,  R.string.Ordered_Recipes),  OrderedRecipesSection.sectionRecipes.ordinal());
 
-//                    self.setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.orderedPeople!, forEvent: (self.orderedPeople?.belongToModel!)!,viewController:self), forSectionIndex: OrderedRecipesSection.sectionOrderedPeople.rawValue)
+                    self.setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.orderedPeople,  (self.orderedPeople.belongToModel),self),  OrderedRecipesSection.sectionOrderedPeople.ordinal());
 
-//                    self.setSectionItems(fetchedOrderedRecipes, forSectionIndex: OrderedRecipesSection.sectionRecipes.ordinal());
+                    self.setSectionItems(fetchedOrderedRecipes,  OrderedRecipesSection.sectionRecipes.ordinal());
 
                 return null;
             }
