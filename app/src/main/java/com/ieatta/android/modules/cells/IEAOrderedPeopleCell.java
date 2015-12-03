@@ -26,6 +26,6 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
     @Override
     public void updateWithModel(Object model) {
         IEAOrderedPeople more  = (IEAOrderedPeople) model;
-//        self.nameLabel.setText(more.displayName);
+        self.nameLabel.setText(more.model.displayName);
     }
 }

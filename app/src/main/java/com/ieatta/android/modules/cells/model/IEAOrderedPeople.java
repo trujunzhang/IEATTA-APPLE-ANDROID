@@ -14,10 +14,10 @@ import java.util.Objects;
  */
 public class IEAOrderedPeople {
     private IEAOrderedPeople self = this;
-    Team model;
-    Event event;
-    boolean hideButton = true;
-    IEAOrderedRecipesViewController viewController;
+    public Team model;
+    public Event event;
+    public boolean hideButton = true;
+    public IEAOrderedRecipesViewController viewController;
 
     public IEAOrderedPeople(Team model, Event event) {
         this.model = model;

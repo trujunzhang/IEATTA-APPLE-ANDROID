@@ -106,7 +106,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.class, IEAOrderedPeopleCell.layoutResId, EventDetailSection.sectionOrderedPeople.ordinal());
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 
-//                    self.addOrderedPeopleSection(self.fetchedPeople);
+                    self.addOrderedPeopleSection(self.fetchedPeople);
 //                    self.configureReviewsSection(task.result as! [Team]);
 
 
