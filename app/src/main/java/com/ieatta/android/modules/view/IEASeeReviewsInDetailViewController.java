@@ -39,17 +39,17 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         // Do any additional setup after loading the view.
 //        assert(self.reviewForModel != nil, "Must setup reviewForModel's instance.")
 
-        self.getReviewsReleatdModelQueryTask().continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                if(task.getError()!=null){
-
-                }else {
-                    self.configureReviewsSection(new LinkedList<Object>((Collection<?>) task.getResult()));
-                }
-                return null;
-            }
-        });
+//        self.getReviewsReleatdModelQueryTask().continueWith(new Continuation<Object, Object>() {
+//            @Override
+//            public Object then(Task<Object> task) throws Exception {
+//                if(task.getError()!=null){
+//
+//                }else {
+//                    self.configureReviewsSection(new LinkedList<Object>((Collection<?>) task.getResult()));
+//                }
+//                return null;
+//            }
+//        });
     }
 
     // MARK: Override IEAReviewsTableViewController methods

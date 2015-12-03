@@ -65,7 +65,8 @@ private IEARecipeDetailViewController self = this;
 //                        fetchedPhotosTask = task;
 
                         // Next, Load Reviews.
-                        return self.getReviewsReleatdModelQueryTask();
+//                        return self.getReviewsReleatdModelQueryTask();
+                        return null;
                     }
         }).continueWith(new Continuation<Object, Object>() {
             @Override

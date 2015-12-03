@@ -74,9 +74,9 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 
 
         Event.queryEventsRelatedRestaurant(self.restaurant)
-                .continueWith(new Continuation<Object, Object>() {
+                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
                     @Override
-                    public Object then(Task<Object> task) throws Exception {
+                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
                         self.fetchedEvents = new LinkedList((Collection<? extends Event>) task.getResult());
 
                         // Next, Load photo gallery.
@@ -88,7 +88,8 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 self.fetchedPhotosTask = task;
 
                 // Next, Load Reviews.
-                return self.getReviewsReleatdModelQueryTask();
+//                return self.getReviewsReleatdModelQueryTask();//
+                return null;
             }
         }).continueWith(new Continuation<Object, Object>() {
             @Override
