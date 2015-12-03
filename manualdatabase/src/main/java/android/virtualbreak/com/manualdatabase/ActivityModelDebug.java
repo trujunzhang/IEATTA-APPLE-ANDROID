@@ -25,6 +25,7 @@ public class ActivityModelDebug {
     public static Team getOrderedPeople() {
         Team team = new Team();
         team.objectUUID = "F72F106D-8759-4932-BE76-10D89FBDEB79";
+        team.displayName = "Frank Gregory";
         return team;
     }
 
