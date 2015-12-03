@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Restaurant"
+                    android:text="@string/Edit_Restaurant"
                     android:textSize="@dimen/abc_text_size_subtitle_material_toolbar"
                     android:layout_centerVertical="true" />
             </RelativeLayout>
@@ -77,7 +77,7 @@
     <!--buttonsView-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
         style="@style/Widget.ListView.White.NoScrollCache">
 
@@ -85,7 +85,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_marginRight="1dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -108,7 +109,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -137,7 +139,8 @@
                 android:text="@string/Add_Event"
                 android:textSize="@dimen/abc_text_size_small_material"
                 android:textAlignment="center"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:layout_marginLeft="1dp" />
 
         </LinearLayout>
 

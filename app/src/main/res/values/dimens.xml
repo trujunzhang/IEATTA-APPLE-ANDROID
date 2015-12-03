@@ -145,7 +145,7 @@
     <dimen name="base_text_padding">10.0dip</dimen>
     <dimen name="blur_image_height">30.0px</dimen>
     <dimen name="blur_image_width">40.0px</dimen>
-    <dimen name="border">2.0px</dimen>
+    <dimen name="border">4.0dp</dimen>
     <dimen name="business_page_viewpager_height">50.0dip</dimen>
     <dimen name="businesspage_cell_half_review_height">22.0dip</dimen>
     <dimen name="businesspage_cell_min_height">40.0dip</dimen>
