@@ -18,20 +18,21 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/1/15.
  */
-enum EventDetailSection  {
-         sectionHeader,        //= 0
-         sectionOrderedPeople, //= 1
-         sectionReviews,       //= 2
-        }
+enum EventDetailSection {
+    sectionHeader,        //= 0
+    sectionOrderedPeople, //= 1
+    sectionReviews,       //= 2
+}
+
 public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewController implements IEAChoicePeopleViewController.IEAChoicePeopleViewProtocol {
     private IEAEventDetailViewController self = this;
 
 
-public  ParseModelAbstract getPageModel(){
+    public ParseModelAbstract getPageModel() {
         return self.event;
     }
 
-    public  boolean shouldShowHUD() {
+    public boolean shouldShowHUD() {
         return true;
     }
 
@@ -75,7 +76,7 @@ public  ParseModelAbstract getPageModel(){
             @Override
             public Object then(Task<Object> task) throws Exception {
                 // Sort, by fetchedPeopleInEvent
-                return PeopleInEvent.sortOrderedPeople(task,self.fetchedPeopleInEvent);
+                return PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
             }
         }).continueWith(new Continuation<Object, Object>() {
             @Override
@@ -87,9 +88,9 @@ public  ParseModelAbstract getPageModel(){
         }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                if(task.getError() != null){
+                if (task.getError() != null) {
 
-                }else {
+                } else {
 
                     // Finally, hide hud.
                     self.hideHUD();

@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
@@ -29,12 +30,12 @@ enum RestaurantDetailSection {
 public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableViewController {
     private IEARestaurantDetailViewController self = this;
 
-    IEARestaurantDetailViewController transfer(Restaurant selectedModel)  {
+    IEARestaurantDetailViewController transfer(Restaurant selectedModel) {
         self.restaurant = selectedModel;
         return self;
     }
 
-@Override
+    @Override
     public boolean shouldShowHUD() {
         return true;
     }
@@ -55,7 +56,8 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        // TODO djzhang(test)
+        self.restaurant = ActivityModelDebug.getRestaurantForRestaurantDetail();
 
         // Do any additional setup after loading the view.
 //        assert(self.restaurant != nil, "Must setup selected restaurant.")
@@ -67,30 +69,32 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         final LinkedList<Object> fetchedEvents = new LinkedList<>();// Event
 //        var fetchedPhotosTask = BFTask()
 
-Event.queryEventsRelatedRestaurant(self.restaurant)
-        .continueWith(new Continuation<Object, Object>() {
-    @Override
-    public Object then(Task<Object> task) throws Exception {
-//        fetchedEvents = new LinkedList<Object>(task.getResult());
-        // Next, Load photo gallery.
-        return Photo.queryPhotosByRestaurant(self.restaurant);
-    }
-}).continueWith(new Continuation<Object, Object>() {
-    @Override
-    public Object then(Task<Object> task) throws Exception {
-//        fetchedPhotosTask = task;
+        Event.queryEventsRelatedRestaurant(self.restaurant)
+                .continueWith(new Continuation<Object, Object>() {
+                    @Override
+                    public Object then(Task<Object> task) throws Exception {
+                        Object object = task;
 
-        // Next, Load Reviews.
-        return self.getReviewsReleatdModelQueryTask();
-    }
-}).continueWith(new Continuation<Object, Object>() {
-    @Override
-    public Object then(Task<Object> task) throws Exception {
-        if(task.getError()!= null){
+ //        fetchedEvents = new LinkedList<Object>(task.getResult());
+                        // Next, Load photo gallery.
+                        return Photo.queryPhotosByRestaurant(self.restaurant);
+                     }
+                }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+  //        fetchedPhotosTask = task;
 
-        }else{
-            // Finally, hide hud.
-            self.hideHUD();
+                // Next, Load Reviews.
+                return self.getReviewsReleatdModelQueryTask();
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.getError() != null) {
+
+                } else {
+                    // Finally, hide hud.
+                    self.hideHUD();
 
 //            self.setRegisterCellClass(IEARestaurantDetailHeaderCell)
 //            self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.self)
@@ -101,16 +105,15 @@ Event.queryEventsRelatedRestaurant(self.restaurant)
 
 //            self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.EventsRecorded.string), forSectionIndex: RestaurantDetailSection.sectionEvents.rawValue)
 
-            self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
+                    self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
 
-            self.configureEventSection(fetchedEvents);
+                    self.configureEventSection(fetchedEvents);
 //            self.configurePhotoGallerySection(fetchedPhotosTask)
 //            self.configureReviewsSection(task.result as! [Team])
-        }
-        return null;
-    }
-});
-
+                }
+                return null;
+            }
+        });
 
 
     }
@@ -123,13 +126,13 @@ Event.queryEventsRelatedRestaurant(self.restaurant)
 
     // MARK: Override IEABaseTableViewController methods
     @Override
-    public ParseModelAbstract getPageModel()  {
+    public ParseModelAbstract getPageModel() {
         return self.restaurant;
     }
 
 
-    private void configureEventSection(LinkedList<Object> fetchedEvents){
-        self.setSectionItems(fetchedEvents,  RestaurantDetailSection.sectionEvents.ordinal());
+    private void configureEventSection(LinkedList<Object> fetchedEvents) {
+        self.setSectionItems(fetchedEvents, RestaurantDetailSection.sectionEvents.ordinal());
     }
 
     // MARK: Override IEAPhotoGalleryViewController methods
