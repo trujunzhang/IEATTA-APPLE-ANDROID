@@ -59,6 +59,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
 
         // TODO djzhang(test)
         self.orderedRecipe = ActivityModelDebug.getOrderedRecipe();
+        self.orderedRecipe.belongToModel = ActivityModelDebug.getOrderedPeople();
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedRecipe?.belongToModel != nil, "Must setup OrderedPeople's instance.")
@@ -76,7 +77,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
                     self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_People), RecipeDetailSection.sectionOrderedPeople.ordinal());
 
                     self.setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
-                    self.setSectionItems(CollectionUtils.createList(self.orderedRecipe.belongToModel), RecipeDetailSection.sectionOrderedPeople.ordinal());
+//                    self.setSectionItems(CollectionUtils.createList(self.orderedRecipe.belongToModel), RecipeDetailSection.sectionOrderedPeople.ordinal());
 
 //                    self.configureReviewsSection(task.result as! [Team])
 //                    self.configurePhotoGallerySection(fetchedPhotosTask)

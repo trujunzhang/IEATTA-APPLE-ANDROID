@@ -5,10 +5,10 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.com.parse.models.Team;
 
 public class IEAReviewUserCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.near_restaurant_cell;
+    public static int layoutResId = R.layout.review_user_cell;
 
     private IEAReviewUserCell self = this;
 
@@ -19,11 +19,14 @@ public class IEAReviewUserCell extends IEAViewHolder {
 
     public IEAReviewUserCell(View itemView) {
         super(itemView);
+
+        self.titleLabel = (TextView) itemView.findViewById(R.id.titleTextView);
+        self.subtitleLabel = (TextView) itemView.findViewById(R.id.addressTextView);
     }
 
     @Override
     public void updateWithModel(Object model) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
-        self.titleLabel.setText(more.titleResId);
+        Team more  = (Team) model;
+        self.titleLabel.setText(more.displayName);
     }
 }
