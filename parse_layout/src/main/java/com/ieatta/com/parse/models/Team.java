@@ -142,15 +142,9 @@ public class Team extends ParseModelSync {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Team, new Team().makeParseQuery());
     }
 
-    public static Task<Object> queryTeamByPoints(LinkedList<String> points) {
-        return new Team().queryParseModels(PQueryModelType.Team, points);
-    }
-
-    public static Task<Object> queryTeam(LinkedList<PeopleInEvent> list) {
+    public static Task<Object> queryTeamByPoints(LinkedList<PeopleInEvent> list) {
         // 1. Get ordered people reference.
-        LinkedList<String> points = Team.getPeoplePoints(list);
-
-        return new Team().queryParseModels(PQueryModelType.Team, points);
+        return new Team().queryParseModels(PQueryModelType.Team, Team.getPeoplePoints(list));
     }
 
     // MARK: Support methods.
