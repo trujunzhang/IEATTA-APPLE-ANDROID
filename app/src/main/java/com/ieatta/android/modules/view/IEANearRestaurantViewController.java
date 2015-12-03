@@ -117,18 +117,18 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         // TODO djzhang(test)
 //        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
-        Restaurant.queryRestaurants().continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
+        Restaurant.queryRestaurants().onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<Boolean>>() {
             @Override
-            public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+            public Task<Boolean> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
                 self.fetchedRestaurants = task.getResult();
                 self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
             }
-        }).continueWith(new Continuation<Object, Object>() {
+        }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Void then(Task<Boolean> task) throws Exception {
 
                 if (self.fetchedRestaurants.size() != 0) {
                     self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
@@ -137,7 +137,11 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
 //                LocationObserver.sharedInstance.popLastLocation();
 
-
+                return null;
+            }
+        }).continueWith(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
                 return null;
             }
         });
