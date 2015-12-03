@@ -5,6 +5,7 @@
     <string name="App_Title">IEATTA</string>
     <string name="App_Subtitle">Eating Experience Tracker</string>
 
+    <string name="google_maps_api_key">Eating Experience Tracker</string>
 
 
 </resources>
