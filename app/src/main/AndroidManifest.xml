@@ -29,6 +29,11 @@
         <activity
             android:name=".modules.view.IEAEventDetailViewController"
             android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".modules.view.IEAOrderedRecipesViewController"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

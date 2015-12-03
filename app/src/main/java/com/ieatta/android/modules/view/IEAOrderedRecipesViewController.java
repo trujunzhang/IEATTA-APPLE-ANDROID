@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
@@ -36,9 +37,15 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
     // Selected model from tableview.
     private Recipe selectedModel;
 
+    private LinkedList<ParseModelAbstract/*Recipe*/> fetchedOrderedRecipes = new LinkedList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // TODO djzhang(test)
+        self.orderedPeople = ActivityModelDebug.getOrderedPeople();
+        self.orderedPeople.belongToModel = ActivityModelDebug.getEventForEventDetail();
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedPeople?.belongToModel != nil, "Must setup Event's instance.")
@@ -51,13 +58,13 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
     }
 
     private void queryOrderedRecipesList() {
-        LinkedList<Recipe> fetchedOrderedRecipes = new LinkedList<>();
+
 
         Recipe.queryRecipes(self.orderedPeople, self.orderedPeople.belongToModel)
                 .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
                     @Override
                     public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-//                        fetchedOrderedRecipes = new LinkedList<>((Collection<? extends Recipe>) task.getResult());
+                        fetchedOrderedRecipes = task.getResult();
 
                         // Next, fetch related photos
                         return self.getPhotosForModelsTask(task);
