@@ -11,12 +11,6 @@
     <attr name="adSize" format="string" />
     <attr name="adSizes" format="string" />
     <attr name="adUnitId" format="string" />
-    <attr name="buttonPanelSideLayout" format="reference" />
-    <attr name="listLayout" format="reference" />
-    <attr name="multiChoiceItemLayout" format="reference" />
-    <attr name="singleChoiceItemLayout" format="reference" />
-    <attr name="listItemLayout" format="reference" />
-    <attr name="textAllCaps" format="reference|boolean" />
     <attr name="awardLeftText" format="string" />
     <attr name="awardLeftTextStyle" format="reference" />
     <attr name="awardRightText" format="string" />
@@ -38,14 +32,9 @@
     <attr name="virtualEverythingCategory" format="reference|string" />
     <attr name="headerText" format="reference|string" />
     <attr name="textFormat" format="reference" />
-    <attr name="color" format="color" />
-    <attr name="spinBars" format="boolean" />
-    <attr name="drawableSize" format="dimension" />
-    <attr name="gapBetweenBars" format="dimension" />
     <attr name="topBottomBarArrowSize" format="dimension" />
     <attr name="middleBarArrowSize" format="dimension" />
     <attr name="barSize" format="dimension" />
-    <attr name="thickness" format="dimension" />
     <attr name="eliteBadgeStyle" format="reference" />
     <attr name="eliteBadgeShortStyle" format="reference" />
     <attr name="eliteBadgeGoldStyle" format="reference" />
@@ -69,28 +58,6 @@
     <attr name="rightGapSize" format="dimension" />
     <attr name="topGapSize" format="dimension" />
     <attr name="bottomGapSize" format="dimension" />
-    <attr name="measureWithLargestChild" format="boolean" />
-    <attr name="showDividers">
-        <flag name="none" value="0x00000000" />
-        <flag name="beginning" value="0x00000001" />
-        <flag name="end" value="0x00000004" />
-        <flag name="middle" value="0x00000002" />
-    </attr>
-    <attr name="dividerPadding" format="dimension" />
-    <attr name="imageAspectRatioAdjust">
-        <enum name="none" value="0" />
-        <enum name="adjust_height" value="2" />
-        <enum name="adjust_width" value="1" />
-    </attr>
-    <attr name="imageAspectRatio" format="float" />
-    <attr name="circleCrop" format="boolean" />
-    <attr name="mapType">
-        <enum name="normal" value="1" />
-        <enum name="none" value="0" />
-        <enum name="hybrid" value="4" />
-        <enum name="satellite" value="2" />
-        <enum name="terrain" value="3" />
-    </attr>
     <attr name="cameraBearing" format="float" />
     <attr name="cameraTargetLat" format="float" />
     <attr name="cameraTargetLng" format="float" />
