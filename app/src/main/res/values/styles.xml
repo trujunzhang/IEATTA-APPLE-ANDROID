@@ -21,6 +21,137 @@
 
     <!--the following is yelp's styles-->
 
+    <style name="BaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="contentOverlay">@drawable/ab_solid_shadow</item>
+    </style>
+
+    <style name="Theme.Yelp" parent="@style/BaseTheme">
+        <item name="android:textColorPrimary">@android:color/primary_text_light</item>
+        <item name="android:textColorSecondary">@android:color/secondary_text_light</item>
+        <item name="android:textColorPrimaryInverse">@android:color/primary_text_dark</item>
+        <item name="android:textColorSecondaryInverse">@android:color/secondary_text_dark</item>
+        <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowTitleSize">@dimen/actionbar_height</item>
+        <item name="android:listViewStyle">@style/Widget.ListView.NoScrollCache</item>
+        <item name="android:listViewWhiteStyle">@style/Widget.ListView.White.NoScrollCache</item>
+        <item name="android:spinnerStyle">@style/Widget.Spinner</item>
+        <item name="android:spinnerDropDownItemStyle">@style/Widget.SpinnerDropDownItem</item>
+        <item name="android:spinnerItemStyle">@style/Widget.SpinnerItem</item>
+        <item name="android:textColorLink">@color/link_color</item>
+        <item name="android:windowAnimationStyle">@style/NoAnimations</item>
+        <item name="android:textAppearanceButton">@android:style/TextAppearance.Widget.Button</item>
+        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp</item>
+        <item name="android:apiKey">@string/google_maps_api_key</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:actionBarSize">@dimen/actionbar_height</item>
+        <item name="android:actionBarDivider">@drawable/actionbar_divider</item>
+        <item name="android:actionBarItemBackground">@drawable/actionbar_action_background</item>
+        <item name="drawerArrowStyle">@style/Hamburger</item>
+        <item name="messageAlertBoxStyle">@style/MessageAlertBox</item>
+        <item name="formulaQuantityViewStyle">@style/QuantityView</item>
+        <item name="eliteBadgeStyle">@style/EliteBadge</item>
+        <item name="eliteBadgeShortStyle">@style/EliteBadge.Short</item>
+        <item name="eliteBadgeGoldStyle">@style/EliteBadge.Gold</item>
+        <item name="eliteBadgeGoldShortStyle">@style/EliteBadge.Short.Gold</item>
+        <item name="eliteBadgeBlackStyle">@style/EliteBadge.Black</item>
+        <item name="eliteBadgeBlackShortStyle">@style/EliteBadge.Short.Black</item>
+        <item name="smallGapSize">5.0dip</item>
+        <item name="baseGapSize">10.0dip</item>
+        <item name="largeGapSize">15.0dip</item>
+        <item name="imageGapSize">8.0dip</item>
+        <item name="smallImageGapSize">5.0dip</item>
+        <item name="leftGapSize">?baseGapSize</item>
+        <item name="rightGapSize">?baseGapSize</item>
+        <item name="topGapSize">?largeGapSize</item>
+        <item name="bottomGapSize">?largeGapSize</item>
+        <item name="mapHeight">@dimen/map_height</item>
+        <item name="mapBorders">@drawable/map_edge</item>
+        <item name="mapCorners">@drawable/selector_rounded_cell</item>
+        <item name="mapOverlayStyle">@style/MapOverlay</item>
+        <item name="messageAlertBoxClosedStyle">@style/MessageAlertBox.Red.Closed</item>
+        <item name="messageAlertBoxMovedFromStyle">@style/MessageAlertBox.Green.MovedFrom</item>
+        <item name="messageAlertBoxRenovatedFromStyle">@style/MessageAlertBox.Green.RenovatedFrom</item>
+        <item name="messageAlertBoxRenovatedStyle">@style/MessageAlertBox.Red.Renovated</item>
+        <item name="messageAlertBoxTempClosedStyle">@style/MessageAlertBox.Red.TempClosed</item>
+        <item name="messageAlertBoxMovedStyle">@style/MessageAlertBox.Red.Moved</item>
+        <item name="messageAlertBoxMessageTheBusinessStyle">@style/MessageAlertBox.Green.MessageTheBusiness</item>
+        <item name="messageAlertBoxOtherStyle">@style/MessageAlertBox.Green</item>
+        <item name="messageAlertBoxTipStyle">@style/MessageAlertBox.Green.Tip</item>
+        <item name="messageAlertBoxReservationConfirmedStyle">@style/MessageAlertBox.Green.ReservationConfirmed</item>
+        <item name="messageAlertBoxPlatformSuccessStyle">@style/MessageAlertBox.Green.PlatformSuccess</item>
+        <item name="messageAlertBoxVideoUploadStyle">@style/MessageAlertBox.Green.VideoUpload</item>
+        <item name="messageAlertBoxSpecialHoursPhoneNumberAvailableStyle">@style/MessageAlertBox.Red.SpecialHours.PhoneNumberAvailable</item>
+        <item name="messageAlertBoxSpecialHoursNoPhoneNumberStyle">@style/MessageAlertBox.Red.SpecialHours.NoPhoneNumber</item>
+        <item name="preferenceViewStyle">@style/PreferenceView</item>
+        <item name="preferenceBooleanViewStyle">@style/PreferenceView.Toggle</item>
+        <item name="preferenceChoiceGroupViewStyle">@style/PreferenceView.ChoiceGroup</item>
+        <item name="preferenceChoiceViewStyle">@style/PreferenceView</item>
+        <item name="preferenceLocationPreferenceButton">@style/PreferenceView.LocationPreference</item>
+        <item name="quantityDropDownViewStyle">@style/Widget.TextView.DropDown</item>
+        <item name="spanOfPhotosViewStyle">@style/SpanOfPhotosViewBusiness</item>
+        <item name="spannedTextViewStyle">@style/Widget.Button.WhiteSilver</item>
+        <item name="splashScreenStyle">@style/SplashScreen</item>
+        <item name="actionBarSize">@dimen/actionbar_height</item>
+        <item name="actionBarDivider">@drawable/actionbar_divider</item>
+        <item name="actionBarItemBackground">@drawable/actionbar_action_background</item>
+        <item name="actionButtonStyle">@style/Widget.AppCompat.ActionButton.TallActionButton</item>
+        <item name="toolbarNavigationButtonStyle">@style/NavigationIcon</item>
+        <item name="colorPrimary">@color/red_shirley_temple</item>
+        <item name="colorPrimaryDark">@color/red_midnight_bonfire</item>
+        <item name="colorControlActivated">@color/blue_sky</item>
+        <item name="autoCompleteTextViewStyle">@style/YelpAutoCompleteTextView</item>
+        <item name="buttonStyle">@style/Widget.Button</item>
+        <item name="checkboxStyle">@style/Widget.CompoundButton.CheckBox</item>
+        <item name="radioButtonStyle">@style/Widget.CompoundButton.RadioButton</item>
+        <item name="titlebarBackground">?colorPrimary</item>
+        <item name="toolbarLogo">@drawable/homescreen_icon</item>
+        <item name="contributionSearchBackground">?titlebarBackground</item>
+        <item name="searchButtonDrawable">@drawable/selector_button_search</item>
+        <item name="searchBoxCursorDrawable">@drawable/search_box_cursor</item>
+        <item name="tabsBackground">@drawable/selector_tabs</item>
+        <item name="shouldDisplayToolbar">true</item>
+        <item name="toolbarDisplayOptions">homeAsUp|showTitle</item>
+        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="userProfileViewStyle">@style/UserProfileViewStyle.Default</item>
+        <item name="friendQuantityViewStyle">@style/QuantityView.Recipient</item>
+        <item name="selfQuantityViewStyle">@style/QuantityView.Self</item>
+        <item name="loading">@drawable/picture_frame</item>
+        <item name="image_priority">20</item>
+        <item name="whiteButtonStyle">@style/Widget.Button.White</item>
+        <item name="grayListSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
+        <item name="grayListSeparatorLayoutStyle">@style/ListFilterHeader</item>
+        <item name="minorListSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp.WhiteBackground</item>
+        <item name="minorTransparentListSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp.TransparentBackground</item>
+        <item name="twoTierButtonStyle">@style/TwoTierButton</item>
+        <item name="twoTierButtonTextStyle">@style/ButtonSmallText</item>
+        <item name="listViewStyle">@style/ResultsList</item>
+        <item name="sublistCell">@style/Sublist.WhiteRoundedRect</item>
+        <item name="sublistGrayCell">@style/Sublist.GrayDividedRect</item>
+        <item name="sublistMoreCell">@style/Sublist.GrayLastOrOnly</item>
+        <item name="sublistCellWithDisclosure">@style/Sublist.WhiteRoundedRect.Disclosure</item>
+        <item name="sublistMoreCellWithDisclosure">@style/Sublist.GrayLastOrOnly.Disclosure</item>
+        <item name="sublistCellDivided">@style/Sublist.WhiteRoundedDivided</item>
+        <item name="showHotButtons">true</item>
+        <item name="listCellSquareStyle">@style/Wide.ListCellSquare</item>
+        <item name="listCellRectStyle">@style/Wide.ListCell</item>
+        <item name="flatCellStyle">@style/Wide.NonClickablePanel</item>
+        <item name="cellButtonStyle">@style/Wide.Panel.CellButton</item>
+        <item name="gutterCellStyle">@style/Gutter</item>
+        <item name="submitButtonStyle">@style/Widget.Button.Submit.Accept</item>
+        <item name="cancelButtonStyle">@style/Widget.Button.Submit.Cancel</item>
+        <item name="adBannerStyle">@style/AdBanner</item>
+        <item name="searchListImageSize">@dimen/search_photo_size</item>
+        <item name="passportUserPhotoSize">@dimen/medium_photo_size</item>
+        <item name="passportUserNameTextAppearance">@style/SubtitleDarkText</item>
+        <item name="passportUserNameTextColor">@color/black_yoni</item>
+        <item name="passportStatsTextColor">@color/orange_text</item>
+        <item name="passportFriendCountDrawable">@drawable/passport_friends_icon</item>
+        <item name="passportReviewCountDrawable">@drawable/passport_reviews_icon</item>
+        <item name="passportPhotoCountDrawable">@drawable/passport_photos_icon</item>
+    </style>
+
     <style name="Base.Theme.AppCompat.DialogWhenLarge" parent="@style/Theme.AppCompat" />
 
     <style name="Base.Theme.AppCompat.Light.DialogWhenLarge" parent="@style/Theme.AppCompat.Light" />
@@ -444,10 +575,7 @@
         <item name="android:minWidth">56.0dip</item>
     </style>
 
-    <style name="BaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="contentOverlay">@drawable/ab_solid_shadow</item>
-    </style>
+
 
     <style name="ButtonSmallText">
         <item name="android:textSize">12.0sp</item>
@@ -1271,177 +1399,6 @@
         <item name="android:numColumns">auto_fit</item>
     </style>
 
-    <style name="MessageAlertBox">
-        <item name="android:gravity">left|center</item>
-        <item name="android:padding">7.0dip</item>
-    </style>
-
-    <style name="MessageAlertBox.Green" parent="@style/MessageAlertBox">
-        <item name="messageAlertBackground">@drawable/message_alert_box_green_background_selector
-        </item>
-        <item name="messageAlertArrow">@drawable/message_alert_box_green_arrow</item>
-        <item name="messageAlertTextColor">@color/green_outline</item>
-        <item name="messageAlertSubtitleTextColor">@color/green_insight</item>
-    </style>
-
-    <style name="MessageAlertBox.Green.MessageTheBusiness" parent="@style/MessageAlertBox.Green">
-        <item name="messageAlertIcon">@drawable/paper_plane_green</item>
-        <item name="messageAlertTitle">@string/your_message_was_sent</item>
-    </style>
-
-    <style name="MessageAlertBox.Green.MovedFrom" parent="@style/MessageAlertBox.Green">
-        <item name="messageAlertIcon">@drawable/moved_icon_green</item>
-        <item name="messageAlertTitle">@string/biz_recently_moved</item>
-        <item name="messageAlertSubtitle">@string/tap_to_view_old_biz_page</item>
-    </style>
-
-    <style name="MessageAlertBox.Green.PlatformSuccess" parent="@style/MessageAlertBox.Green">
-        <item name="messageAlertIcon">@drawable/notification_check</item>
-        <item name="messageAlertTitle">@string/order_sent</item>
-        <item name="messageAlertSubtitle">@string/check_your_email</item>
-    </style>
-
-    <style name="MessageAlertBox.Green.RenovatedFrom" parent="@style/MessageAlertBox.Green">
-        <item name="messageAlertIcon">@drawable/renovated_icon_green</item>
-        <item name="messageAlertTitle">@string/biz_recently_renovated</item>
-        <item name="messageAlertSubtitle">@string/tap_to_view_old_biz_page</item>
-    </style>
-
-    <style name="MessageAlertBox.Green.ReservationConfirmed" parent="@style/MessageAlertBox.Green">
-        <item name="messageAlertIcon">@drawable/notification_check</item>
-    </style>
-
-    <style name="MessageAlertBox.Green.Review" parent="@style/MessageAlertBox.Green">
-        <item name="messageAlertIcon">@drawable/contribute_review_green</item>
-    </style>
-
-    <style name="MessageAlertBox.Green.Tip" parent="@style/MessageAlertBox.Green">
-        <item name="messageAlertIcon">@drawable/notification_tip</item>
-        <item name="messageAlertTitle">@string/thanks_for_the_tip</item>
-    </style>
-
-    <style name="MessageAlertBox.Green.VideoUpload" parent="@style/MessageAlertBox.Green">
-        <item name="messageAlertIcon">@drawable/notification_video</item>
-    </style>
-
-    <style name="MessageAlertBox.Red" parent="@style/MessageAlertBox">
-        <item name="messageAlertBackground">@drawable/message_alert_box_red_background_selector
-        </item>
-        <item name="messageAlertArrow">@drawable/message_alert_box_red_arrow</item>
-        <item name="messageAlertTextColor">@color/red</item>
-        <item name="messageAlertSubtitleTextColor">@color/red_etching</item>
-    </style>
-
-    <style name="MessageAlertBox.Red.Closed" parent="@style/MessageAlertBox.Red">
-        <item name="messageAlertIcon">@drawable/closed_icon</item>
-        <item name="messageAlertTitle">@string/biz_permanently_closed</item>
-    </style>
-
-    <style name="MessageAlertBox.Red.Moved" parent="@style/MessageAlertBox.Red">
-        <item name="messageAlertIcon">@drawable/moved_icon</item>
-        <item name="messageAlertTitle">@string/biz_moved</item>
-        <item name="messageAlertSubtitle">@string/biz_moved_details</item>
-    </style>
-
-    <style name="MessageAlertBox.Red.Renovated" parent="@style/MessageAlertBox.Red">
-        <item name="messageAlertIcon">@drawable/renovated_icon</item>
-        <item name="messageAlertTitle">@string/biz_renovated</item>
-        <item name="messageAlertSubtitle">@string/biz_renovated_details</item>
-    </style>
-
-    <style name="MessageAlertBox.Red.SpecialHours" parent="@style/MessageAlertBox.Red">
-        <item name="messageAlertTitle">@string/today_is_a_national_holiday</item>
-    </style>
-
-    <style name="MessageAlertBox.Red.SpecialHours.NoPhoneNumber" parent="@style/MessageAlertBox.Red.SpecialHours">
-        <item name="messageAlertIcon">@drawable/closed_icon</item>
-        <item name="messageAlertSubtitle">@string/business_hours_may_be_different_today</item>
-    </style>
-
-    <style name="MessageAlertBox.Red.SpecialHours.PhoneNumberAvailable" parent="@style/MessageAlertBox.Red.SpecialHours">
-        <item name="messageAlertIcon">@drawable/phone_error</item>
-        <item name="messageAlertSubtitle">@string/tap_here_to_call_and_confirm_hours</item>
-    </style>
-
-    <style name="MessageAlertBox.Red.TempClosed" parent="@style/MessageAlertBox.Red">
-        <item name="messageAlertIcon">@drawable/temp_closed_icon</item>
-        <item name="messageAlertTitle">@string/biz_temporarily_closed</item>
-    </style>
-
-    <style name="MessageAlertBox.Red.Tip" parent="@style/MessageAlertBox.Red">
-        <item name="messageAlertIcon">@drawable/notification_tip_red</item>
-    </style>
-
-    <style name="MessengerButton">
-        <item name="android:clickable">true</item>
-    </style>
-
-    <style name="MessengerButton.Blue" parent="@style/MessengerButton">
-        <item name="android:background">@drawable/messenger_button_blue_bg_selector</item>
-    </style>
-
-    <style name="MessengerButton.Blue.Large" parent="@style/MessengerButton.Blue">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">44.0dip</item>
-        <item name="android:layout_marginLeft">16.0dip</item>
-        <item name="android:layout_marginRight">16.0dip</item>
-    </style>
-
-    <style name="MessengerButton.Blue.Small" parent="@style/MessengerButton.Blue">
-        <item name="android:layout_width">158.0dip</item>
-        <item name="android:layout_height">36.0dip</item>
-    </style>
-
-    <style name="MessengerButton.White" parent="@style/MessengerButton">
-        <item name="android:background">@drawable/messenger_button_white_bg_selector</item>
-    </style>
-
-    <style name="MessengerButton.White.Large" parent="@style/MessengerButton.White">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">44.0dip</item>
-        <item name="android:layout_marginLeft">16.0dip</item>
-        <item name="android:layout_marginRight">16.0dip</item>
-    </style>
-
-    <style name="MessengerButton.White.Small" parent="@style/MessengerButton.White">
-        <item name="android:layout_width">158.0dip</item>
-        <item name="android:layout_height">36.0dip</item>
-    </style>
-
-    <style name="MessengerButtonText">
-        <item name="android:textSize">14.0sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:drawablePadding">4.0dip</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="MessengerButtonText.Blue" parent="@style/MessengerButtonText">
-        <item name="android:textColor">#ffffffff</item>
-    </style>
-
-    <style name="MessengerButtonText.Blue.Large" parent="@style/MessengerButtonText.Blue">
-        <item name="android:drawableLeft">@drawable/messenger_bubble_large_white</item>
-    </style>
-
-    <style name="MessengerButtonText.Blue.Small" parent="@style/MessengerButtonText.Blue">
-        <item name="android:drawableLeft">@drawable/messenger_bubble_small_white</item>
-    </style>
-
-    <style name="MessengerButtonText.White" parent="@style/MessengerButtonText">
-        <item name="android:textColor">#ff0084ff</item>
-    </style>
-
-    <style name="MessengerButtonText.White.Large" parent="@style/MessengerButtonText.White">
-        <item name="android:drawableLeft">@drawable/messenger_bubble_large_blue</item>
-    </style>
-
-    <style name="MessengerButtonText.White.Small" parent="@style/MessengerButtonText.White">
-        <item name="android:drawableLeft">@drawable/messenger_bubble_small_blue</item>
-    </style>
 
     <style name="NavDrawerItem">
         <item name="android:textAppearance">@style/SubtitleLightText</item>
@@ -1512,46 +1469,6 @@
         <item name="android:drawablePadding">2.0dip</item>
     </style>
 
-    <style name="PreferenceView" parent="@style/Wide.ListCell">
-        <item name="android:background">@drawable/selector_list_cell_white_gutter</item>
-        <item name="android:paddingLeft">@dimen/list_guttered_content_padding</item>
-        <item name="android:paddingRight">@dimen/list_guttered_content_padding</item>
-        <item name="android:minHeight">55.0dip</item>
-        <item name="yelpLayout">@layout/panel_preference_view</item>
-    </style>
-
-    <style name="PreferenceView.ChoiceGroup" parent="@style/PreferenceView">
-        <item name="preferenceIcon">?attr/android:moreIcon</item>
-    </style>
-
-    <style name="PreferenceView.LocationPreference" parent="@style/PreferenceView">
-        <item name="preferenceIcon">@drawable/btn_location</item>
-    </style>
-
-    <style name="PreferenceView.Toggle" parent="@style/PreferenceView">
-        <item name="preferenceIcon">@layout/preferences_toggle_button</item>
-    </style>
-
-    <style name="PrideWeekend">
-        <item name="toolbarLogo">@drawable/homescreen_icon_pride</item>
-    </style>
-
-    <style name="QuantityView">
-        <item name="android:background">@drawable/darkgray_section_background</item>
-        <item name="startRange">0</item>
-        <item name="endRange">50</item>
-        <item name="yelpLayout">@layout/deals_quantity_view</item>
-    </style>
-
-    <style name="QuantityView.Recipient" parent="@style/QuantityView">
-        <item name="textFormat">@string/gift_this_to_x</item>
-    </style>
-
-    <style name="QuantityView.Self" parent="@style/QuantityView">
-        <item name="android:background">@drawable/darkgray_solid</item>
-        <item name="textFormat">@string/gift_this_to_x</item>
-    </style>
-
     <style name="RelativeTimeAgoText" parent="@android:style/TextAppearance">
         <item name="android:textSize">13.0sp</item>
         <item name="android:textColor">@color/gray_mid</item>
@@ -1601,16 +1518,6 @@
         <item name="android:textCursorDrawable">?attr/searchBoxCursorDrawable</item>
     </style>
 
-    <style name="SearchBox.Location" parent="@style/SearchBox">
-        <item name="android:textAppearance">@style/TextAppearanceSearchBox.Location</item>
-        <item name="android:textColorHint">@color/blue_text_hint</item>
-        <item name="android:hint">@string/current_location</item>
-    </style>
-
-    <style name="SearchBox.NoPressState" parent="@style/SearchBox">
-        <item name="android:background">@drawable/search_bar_pressed</item>
-    </style>
-
     <style name="SectionText">
         <item name="android:textSize">18.0sp</item>
         <item name="android:textColor">@color/BlackText</item>
@@ -1645,22 +1552,6 @@
         <item name="android:gravity">left</item>
     </style>
 
-    <style name="SplashScreen" parent="@android:style/Widget">
-        <item name="positiveButtonText">@string/yes</item>
-        <item name="negativeButtonText">@string/no_thanks</item>
-        <item name="summaryText">@string/its_ok_to_not_have_an_account</item>
-        <item name="backgroundDrawableClass">@null</item>
-        <item name="yelpLayout">@layout/splash_screen</item>
-    </style>
-
-    <style name="StPatricksDefault">
-        <item name="colorPrimary">@color/green_parsley_sprig</item>
-        <item name="colorPrimaryDark">@color/green_chopped_chive</item>
-        <item name="toolbarLogo">@drawable/homescreen_icon_st_patricks</item>
-        <item name="searchButtonDrawable">@drawable/selector_button_search_green</item>
-        <item name="searchBoxCursorDrawable">@drawable/search_box_cursor_green</item>
-        <item name="tabsBackground">@drawable/selector_tabs_green</item>
-    </style>
 
     <style name="StandardBoldLightText" parent="@style/StandardLightText">
         <item name="android:textStyle">bold</item>
@@ -1914,10 +1805,6 @@
 
     <style name="TextView" parent="@android:style/Widget.TextView" />
 
-    <style name="ThanksgivingDefault">
-        <item name="toolbarLogo">@drawable/homescreen_icon_thanksgiving</item>
-    </style>
-
     <style name="Theme.AppCompat" parent="@style/Base.Theme.AppCompat" />
 
     <style name="Theme.AppCompat.CompactMenu" parent="@style/Base.Theme.AppCompat.CompactMenu" />
@@ -1940,30 +1827,6 @@
     <style name="Theme.AppCompat.Light.Dialog.MinWidth" parent="@style/Base.Theme.AppCompat.Light.Dialog.MinWidth" />
 
     <style name="Theme.AppCompat.Light.DialogWhenLarge" parent="@style/Base.Theme.AppCompat.Light.DialogWhenLarge" />
-
-
-    <style name="Theme.Dialog.Light.Notification" parent="@style/Theme.Dialog.Light">
-        <item name="notificationBackground">@null</item>
-        <item name="notificationImage">@null</item>
-        <item name="notificationSubtitle">@null</item>
-        <item name="notificationSubtitleColor">@null</item>
-        <item name="notificationTitle">@null</item>
-        <item name="notificationSubLayout">@layout/panel_textbox</item>
-    </style>
-
-    <style name="Theme.Dialog.Light.Notification.FirstTranslation" parent="@style/Theme.Dialog.Light.Notification">
-        <item name="notificationImage">@drawable/dino_translate_reviews</item>
-        <item name="notificationSubtitle">@string/heads_up</item>
-        <item name="notificationSubtitleColor">@color/gray_yoni_light_text</item>
-    </style>
-
-    <style name="Theme.Dialog.Light.Notification.TipOfTheDay" parent="@style/Theme.Dialog.Light.Notification">
-        <item name="notificationBackground">@color/red</item>
-        <item name="notificationImage">@drawable/tip_of_the_day_splash_bulb</item>
-        <item name="notificationSubtitleColor">@color/gray_light</item>
-        <item name="notificationTitle">@string/tip_of_the_day</item>
-        <item name="notificationSubLayout">@layout/panel_tip_of_the_day_content</item>
-    </style>
 
     <style name="Theme.IAPTheme" parent="@android:style/Theme">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -2022,14 +1885,6 @@
         <item name="showNavDrawer">false</item>
     </style>
 
-    <style name="Theme.Yelp.CommentOnCheckIn" parent="@style/Theme.Yelp">
-        <item name="inputBoxHint">@string/add_a_comment</item>
-        <item name="inputBoxMaxLines">@integer/default_edittext_lines</item>
-        <item name="inputBoxMaxLength">@integer/default_comment_text_length</item>
-        <item name="inputBoxButtonText">@string/post</item>
-        <item name="showHotButtons">false</item>
-    </style>
-
     <style name="Theme.Yelp.ComposeMessage" parent="@style/Theme.Yelp">
         <item name="showHotButtons">false</item>
     </style>
@@ -2053,20 +1908,6 @@
         <item name="android:windowBackground">@color/black</item>
     </style>
 
-    <style name="Theme.Yelp.Dialog" parent="@style/Theme.Dialog.Light">
-        <item name="android:buttonStyle">@style/Widget.Button</item>
-        <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:checkboxStyle">@style/Widget.CompoundButton.CheckBox</item>
-        <item name="android:listViewStyle">@style/Widget.ListView.NoScrollCache</item>
-        <item name="android:radioButtonStyle">@style/Widget.CompoundButton.RadioButton</item>
-        <item name="android:spinnerStyle">@style/Widget.Spinner</item>
-        <item name="android:spinnerItemStyle">@style/Widget.SpinnerItem</item>
-        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp
-        </item>
-        <item name="showNavDrawer">false</item>
-        <item name="cellButtonStyle">@style/Wide.Panel.CellButton</item>
-    </style>
 
     <style name="Theme.Yelp.FadeIn" parent="@style/Theme.Yelp.NoNavDrawer">
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
@@ -2091,38 +1932,7 @@
         <item name="passportUserNameTextAppearance">@style/LargeDarkText</item>
     </style>
 
-    <style name="Theme.Yelp.FullBleed.CategoryList" parent="@style/Theme.Yelp.FullBleed">
-        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
-        <item name="currentCategoryString">@string/all_of_category</item>
-        <item name="virtualEverythingCategory">@string/more_categories_show_all_businesses</item>
-        <item name="headerText">@style/HeadlineTextDeprecated</item>
-        <item name="cellButtonStyle">@style/Wide.Selectable</item>
-    </style>
 
-    <style name="Theme.Yelp.FullBleed.CategoryList.AddBusiness" parent="@style/Theme.Yelp.FullBleed.CategoryList">
-        <item name="currentCategoryString">@string/self_string_format</item>
-        <item name="virtualEverythingCategory">@null</item>
-        <item name="toolbarDisplayOptions">showTitle</item>
-    </style>
-
-    <style name="Theme.Yelp.FullBleed.Feed" parent="@style/Theme.Yelp.FullBleed">
-        <item name="photoSizeSquare">@dimen/scroll_photo_size</item>
-        <item name="roundingMode">overlay</item>
-    </style>
-
-    <style name="Theme.Yelp.FullBleed.NoNavDrawer" parent="@style/Theme.Yelp.FullBleed">
-        <item name="showNavDrawer">false</item>
-        <item name="showHotButtons">false</item>
-    </style>
-
-    <style name="Theme.Yelp.Messaging" parent="@style/Theme.Yelp">
-        <item name="topGapSize">0.0dip</item>
-        <item name="bottomGapSize">?attr/baseGapSize</item>
-        <item name="inputBoxHint">@string/add_a_reply</item>
-        <item name="inputBoxMaxLines">@integer/default_edittext_lines</item>
-        <item name="inputBoxMaxLength">@integer/default_comment_text_length</item>
-        <item name="inputBoxButtonText">@string/send</item>
-    </style>
 
     <style name="Theme.Yelp.NoHotButtons" parent="@style/Theme.Yelp">
         <item name="showHotButtons">false</item>
@@ -2163,28 +1973,6 @@
 
     <style name="Theme.Yelp.Startup" parent="@style/Theme.Yelp">
         <item name="toolbarDisplayOptions"></item>
-    </style>
-
-    <style name="Theme.Yelp.Talk" parent="@style/Theme.Yelp">
-        <item name="inputBoxHint">@string/add_a_reply</item>
-        <item name="inputBoxMaxLines">@integer/max_edittext_lines</item>
-        <item name="inputBoxMaxLength">@integer/max_talk_post_length</item>
-        <item name="inputBoxButtonText">@string/send</item>
-        <item name="listCellRectStyle">@style/Wide.ListCell.Thin</item>
-    </style>
-
-    <style name="Theme.Yelp.Talk.ViewPost" parent="@style/Theme.Yelp.Talk">
-        <item name="showHotButtons">false</item>
-    </style>
-
-    <style name="Theme.Yelp.Translucent.CheckIn" parent="@style/Theme.Yelp.Translucent">
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowSoftInputMode">adjustPan</item>
-    </style>
-
-    <style name="Theme.Yelp.WeeklyIssue" parent="@style/Theme.Yelp">
-        <item name="listCellRectStyle">@style/Wide.ListCell.Thin.Outlined</item>
     </style>
 
     <style name="Theme.Yelp.WithOldListSeparators" parent="@style/Theme.Yelp">
