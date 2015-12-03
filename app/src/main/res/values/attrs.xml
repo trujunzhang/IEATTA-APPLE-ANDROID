@@ -58,9 +58,6 @@
     <attr name="rightGapSize" format="dimension" />
     <attr name="topGapSize" format="dimension" />
     <attr name="bottomGapSize" format="dimension" />
-    <attr name="useViewLifecycle" format="boolean" />
-    <attr name="zOrderOnTop" format="boolean" />
-    <attr name="uiMapToolbar" format="boolean" />
     <attr name="state_ad" format="boolean" />
     <attr name="state_numbered" format="boolean" />
     <attr name="mapHeight" format="dimension" />
@@ -69,17 +66,6 @@
     <attr name="mapOverlayStyle" format="reference" />
     <attr name="showOrdinal" format="boolean" />
     <attr name="isPin" format="boolean" />
-    <attr name="showAsAction">
-        <flag name="always" value="0x00000002" />
-        <flag name="collapseActionView" value="0x00000008" />
-        <flag name="ifRoom" value="0x00000001" />
-        <flag name="never" value="0x00000000" />
-        <flag name="withText" value="0x00000004" />
-    </attr>
-    <attr name="actionLayout" format="reference" />
-    <attr name="actionViewClass" format="string" />
-    <attr name="actionProviderClass" format="string" />
-    <attr name="preserveIconSpacing" format="boolean" />
     <attr name="messageAlertBoxClosedStyle" format="reference" />
     <attr name="messageAlertBoxMovedFromStyle" format="reference" />
     <attr name="messageAlertBoxRenovatedFromStyle" format="reference" />
@@ -150,18 +136,6 @@
     </attr>
     <attr name="topLoading" format="boolean" />
     <attr name="layout" format="reference" />
-    <attr name="iconifiedByDefault" format="boolean" />
-    <attr name="queryHint" format="string" />
-    <attr name="defaultQueryHint" format="string" />
-    <attr name="closeIcon" format="reference" />
-    <attr name="goIcon" format="reference" />
-    <attr name="searchIcon" format="reference" />
-    <attr name="searchHintIcon" format="reference" />
-    <attr name="voiceIcon" format="reference" />
-    <attr name="commitIcon" format="reference" />
-    <attr name="suggestionRowLayout" format="reference" />
-    <attr name="queryBackground" format="reference" />
-    <attr name="submitBackground" format="reference" />
     <attr name="spanOfPhotosViewStyle" format="reference" />
     <attr name="maxPhotos" format="integer" />
     <attr name="photoSizeSquare" format="reference|dimension" />
@@ -197,57 +171,7 @@
     <attr name="titleText" format="string" />
     <attr name="summaryText" format="string" />
     <attr name="headlineText" format="string" />
-    <attr name="track" format="reference" />
-    <attr name="thumbTextPadding" format="dimension" />
-    <attr name="switchTextAppearance" format="reference" />
-    <attr name="switchMinWidth" format="dimension" />
-    <attr name="switchPadding" format="dimension" />
-    <attr name="splitTrack" format="boolean" />
-    <attr name="showText" format="boolean" />
-    <attr name="textAppearanceLargePopupMenu" format="reference" />
-    <attr name="textAppearanceSmallPopupMenu" format="reference" />
-    <attr name="dialogTheme" format="reference" />
-    <attr name="dialogPreferredPadding" format="dimension" />
-    <attr name="listDividerAlertDialog" format="reference" />
-    <attr name="actionDropDownStyle" format="reference" />
     <attr name="dropdownListPreferredItemHeight" format="dimension" />
-    <attr name="spinnerDropDownItemStyle" format="reference" />
-    <attr name="homeAsUpIndicator" format="reference" />
-    <attr name="actionButtonStyle" format="reference" />
-    <attr name="buttonBarStyle" format="reference" />
-    <attr name="buttonBarButtonStyle" format="reference" />
-    <attr name="selectableItemBackground" format="reference" />
-    <attr name="selectableItemBackgroundBorderless" format="reference" />
-    <attr name="borderlessButtonStyle" format="reference" />
-    <attr name="dividerVertical" format="reference" />
-    <attr name="dividerHorizontal" format="reference" />
-    <attr name="activityChooserViewStyle" format="reference" />
-    <attr name="toolbarStyle" format="reference" />
-    <attr name="toolbarNavigationButtonStyle" format="reference" />
-    <attr name="popupMenuStyle" format="reference" />
-    <attr name="popupWindowStyle" format="reference" />
-    <attr name="editTextColor" format="reference|color" />
-    <attr name="editTextBackground" format="reference" />
-    <attr name="textAppearanceSearchResultTitle" format="reference" />
-    <attr name="textAppearanceSearchResultSubtitle" format="reference" />
-    <attr name="textColorSearchUrl" format="reference|color" />
-    <attr name="searchViewStyle" format="reference" />
-    <attr name="dropDownListViewStyle" format="reference" />
-    <attr name="listPopupWindowStyle" format="reference" />
-    <attr name="textAppearanceListItem" format="reference" />
-    <attr name="textAppearanceListItemSmall" format="reference" />
-    <attr name="panelBackground" format="reference" />
-    <attr name="panelMenuListWidth" format="dimension" />
-    <attr name="panelMenuListTheme" format="reference" />
-    <attr name="listChoiceBackgroundIndicator" format="reference" />
-    <attr name="textColorAlertDialogListItem" format="reference|color" />
-    <attr name="autoCompleteTextViewStyle" format="reference" />
-    <attr name="buttonStyle" format="reference" />
-    <attr name="buttonStyleSmall" format="reference" />
-    <attr name="checkboxStyle" format="reference" />
-    <attr name="checkedTextViewStyle" format="reference" />
-    <attr name="editTextStyle" format="reference" />
-    <attr name="radioButtonStyle" format="reference" />
     <attr name="ratingBarStyle" format="reference" />
     <attr name="spinnerStyle" format="reference" />
     <attr name="switchStyle" format="reference" />
@@ -258,9 +182,6 @@
     <attr name="searchButtonDrawable" format="reference" />
     <attr name="searchBoxCursorDrawable" format="reference" />
     <attr name="tabsBackground" format="reference" />
-    <attr name="maxButtonHeight" format="dimension" />
-    <attr name="collapseIcon" format="reference" />
-    <attr name="collapseContentDescription" format="string" />
     <attr name="shouldDisplayToolbar" format="boolean" />
     <attr name="toolbarDisplayOptions" format="integer">
         <flag name="homeAsUp" value="0x00000002" />
@@ -312,7 +233,6 @@
     <attr name="flatCellStyle" format="reference" />
     <attr name="cellButtonStyle" format="reference" />
     <attr name="gutterCellStyle" format="reference" />
-    <attr name="submitButtonStyle" format="reference" />
     <attr name="cancelButtonStyle" format="reference" />
     <attr name="fullBleedButtonStyle" format="reference" />
     <attr name="adBannerStyle" format="reference" />
