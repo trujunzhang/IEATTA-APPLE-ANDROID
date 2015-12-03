@@ -162,7 +162,7 @@ public class Review extends ParseModelSync {
         });
     }
 
-    public static Task<Object> queryReviews(ParseModelAbstract model, int limit) {
+    public static Task<LinkedList<ParseModelAbstract>> queryReviews(ParseModelAbstract model, int limit) {
         ParseQuery query = new Review(model).createQueryForReviewRef();
         //        print("\(model.printDescription())")
         //        print("\(Review(refModel: model).printDescription())")

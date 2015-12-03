@@ -81,9 +81,9 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     public Task<Object> getPhotosForModelsTask(final Task<Object> previous) {
         // First of all, query relate photos task.
         return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous))
-                .continueWith(new Continuation<Object, Object>() {
+                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
                     @Override
-                    public Object then(Task<Object> task) throws Exception {
+                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
                         // Next, Cache all models' uuid as key and photo's uuid as value.
                         return IEACache.sharedInstance.setPhotoPointForModels(task);
                     }

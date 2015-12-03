@@ -13,6 +13,8 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
+import java.util.LinkedList;
+
 import bolts.TaskCompletionSource;
 
 /**
@@ -147,16 +149,16 @@ public class Recipe extends ParseModelSync {
         return new Recipe();
     }
 
-    public static Task<Object> queryRecipes() {
+    public static Task<LinkedList<ParseModelAbstract>> queryRecipes() {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Recipe, new Recipe().makeParseQuery());
     }
 
     @Override
-    public Task<Object> queryParseModels(String keyword) {
+    public Task<LinkedList<ParseModelAbstract>> queryParseModels(String keyword) {
         return Recipe.queryFromDatabase(PQueryModelType.Recipe, new Recipe().createSearchDisplayNameQuery(keyword));
     }
 
-    public static Task<Object> queryRecipes(Team people, Event event) {
+    public static Task<LinkedList<ParseModelAbstract>> queryRecipes(Team people, Event event) {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Recipe, new Recipe().createQuery(people, event));
     }
 

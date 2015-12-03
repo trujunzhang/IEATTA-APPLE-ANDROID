@@ -92,7 +92,7 @@ public class PeopleInEvent extends ParseModelSync {
         return new PeopleInEvent();
     }
 
-    public static Task<Object> queryOrderedPeople(String eventRef) {
+    public static Task<LinkedList<ParseModelAbstract>> queryOrderedPeople(String eventRef) {
         return Event.queryFromDatabase(PQueryModelType.PeopleInEvent, new PeopleInEvent().createQueryByEventRef(eventRef));
     }
 

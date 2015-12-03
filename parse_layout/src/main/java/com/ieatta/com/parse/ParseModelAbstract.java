@@ -83,7 +83,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return null;
     }
 
-    public Task<Object> queryParseModels(String keyword) {
+    public Task<LinkedList<ParseModelAbstract>> queryParseModels(String keyword) {
         return null;
     }
 

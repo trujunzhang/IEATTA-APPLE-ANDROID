@@ -2,6 +2,7 @@ package com.ieatta.com.parse;
 
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
+import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseQuery;
 
@@ -119,8 +120,8 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return query;
     }
 
-    public static Task<Object> queryFromDatabase(final PQueryModelType type, final ParseQuery query) {
-        final Task.TaskCompletionSource tcs = Task.create();
+    public static Task<LinkedList<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final ParseQuery query) {
+        final Task<LinkedList<ParseModelAbstract>>.TaskCompletionSource tcs = Task.create();
         ParseModelQuery.findLocalObjectsInBackground(query)
                 .continueWith(new Continuation<List<ParseObject>, Object>() {
                     @Override
@@ -138,7 +139,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return tcs.getTask();
     }
 
-    protected Task<Object> queryParseModels(PQueryModelType type, LinkedList<String> points) {
+    protected Task<LinkedList<ParseModelAbstract>> queryParseModels(PQueryModelType type, LinkedList<String> points) {
         return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
     }
 
