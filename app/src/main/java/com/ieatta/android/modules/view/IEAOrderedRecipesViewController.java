@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Team;
 import com.nostra13.universalimageloader.utils.L;
@@ -53,9 +54,9 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
         LinkedList<Recipe> fetchedOrderedRecipes = new LinkedList<>();
 
         Recipe.queryRecipes(self.orderedPeople, self.orderedPeople.belongToModel)
-                .continueWith(new Continuation<Object, Object>() {
+                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
                     @Override
-                    public Object then(Task<Object> task) throws Exception {
+                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
 //                        fetchedOrderedRecipes = new LinkedList<>((Collection<? extends Recipe>) task.getResult());
 
                         // Next, fetch related photos

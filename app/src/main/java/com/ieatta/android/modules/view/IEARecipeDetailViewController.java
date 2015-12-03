@@ -9,6 +9,8 @@ import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Team;
 
+import java.util.LinkedList;
+
 import bolts.Continuation;
 import bolts.Task;
 
@@ -57,9 +59,9 @@ private IEARecipeDetailViewController self = this;
          Task<Object> fetchedPhotosTask = null;
 
         Photo.queryPhotosByModel(self.getPageModel())
-                .continueWith(new Continuation<Object, Object>() {
+                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
                     @Override
-                    public Object then(Task<Object> task) throws Exception {
+                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
 //                        fetchedPhotosTask = task;
 
                         // Next, Load Reviews.

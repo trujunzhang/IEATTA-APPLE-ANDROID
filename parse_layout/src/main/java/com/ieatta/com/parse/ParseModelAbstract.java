@@ -238,9 +238,9 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
      * @param previous LinkedList<Restaurant>
      * @return
      */
-    static public LinkedList<String> getModelPoints(Task<Object> previous) {
+    static public LinkedList<String> getModelPoints(Task<LinkedList<ParseModelAbstract>> previous) {
         Object object = previous;
-        LinkedList<Object> fetchedModels = (LinkedList<Object>) previous.getResult();
+        LinkedList<ParseModelAbstract> fetchedModels =previous.getResult();
 
         LinkedList<String> points = new LinkedList<>();
 

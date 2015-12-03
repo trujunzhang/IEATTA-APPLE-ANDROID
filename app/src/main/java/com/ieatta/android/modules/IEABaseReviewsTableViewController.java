@@ -3,6 +3,7 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
 
@@ -36,9 +37,9 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 
     protected Task<Object> getReviewsReleatdModelQueryTask() {
         return Review.queryReviews(self.getPageModel(), self.getQueriedReviewsLimit())
-                .continueWith(new Continuation<Object, Object>() {
+                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
                     @Override
-                    public Object then(Task<Object> task) throws Exception {
+                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
                         self.fetchedReviews = new LinkedList<Object>((Collection<?>) task.getResult());//Review
 //                return Team.queryTeam(Review.getUserPoints(self.fetchedReviews));
                         return null;
