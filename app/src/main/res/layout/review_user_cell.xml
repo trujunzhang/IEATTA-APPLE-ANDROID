@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:paddingRight="8dp"
-        android:text="Medium Text"
+        android:text=""
         android:textSize="@dimen/abc_text_size_caption_material"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true" />
