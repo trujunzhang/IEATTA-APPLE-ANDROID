@@ -44,7 +44,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     private Team selectedModel;
     // Fetched list by quering database.
     private LinkedList<Team> fetchedPeople;
-    private LinkedList<PeopleInEvent> fetchedPeopleInEvent;
+    private LinkedList<ParseModelAbstract> fetchedPeopleInEvent;
     private boolean isTabBarHidden = false;
 
     @Override
@@ -64,10 +64,10 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 
 
         PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
-                .continueWith(new Continuation<Object, Object>() {
+                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
                     @Override
-                    public Object then(Task<Object> task) throws Exception {
-                        self.fetchedPeopleInEvent = new LinkedList((Collection<? extends PeopleInEvent>) task.getResult());
+                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+                        self.fetchedPeopleInEvent = task.getResult();
 
                         // 2. Get all people in the event.
                         return Team.queryTeamByPoints(self.fetchedPeopleInEvent);

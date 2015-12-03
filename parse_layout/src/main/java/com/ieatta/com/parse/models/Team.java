@@ -123,14 +123,14 @@ public class Team extends ParseModelSync {
     }
 
     // MARK: Support methods.
-    public static Task<Object> filterFrom(Task<Object> previous, LinkedList<Team> source) {
+    public static Task<Object> filterFrom(Task<LinkedList<ParseModelAbstract>> previous, LinkedList<Team> source) {
 
-        LinkedList<Team> result = new LinkedList<>((Collection<? extends Team>) previous.getResult());
+        LinkedList<ParseModelAbstract> result =  previous.getResult();
 
         LinkedList<Team> filterUser = new LinkedList<>();
-        for (Team model : result) {
-            if (checkExist(model, source)) {
-                filterUser.add(model);
+        for (ParseModelAbstract model : result) {
+            if (checkExist((Team)model, source)) {
+                filterUser.add((Team)model);
             }
         }
         TaskCompletionSource finalTask = new TaskCompletionSource();
@@ -142,17 +142,17 @@ public class Team extends ParseModelSync {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Team, new Team().makeParseQuery());
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryTeamByPoints(LinkedList<PeopleInEvent> list) {
+    public static Task<LinkedList<ParseModelAbstract>> queryTeamByPoints(LinkedList<ParseModelAbstract> list) {
         // 1. Get ordered people reference.
         return new Team().queryParseModels(PQueryModelType.Team, Team.getPeoplePoints(list));
     }
 
     // MARK: Support methods.
-    public static LinkedList<String> getPeoplePoints(LinkedList<PeopleInEvent> peopleInEvent) {
+    public static LinkedList<String> getPeoplePoints(LinkedList<ParseModelAbstract> peopleInEvent) {
         LinkedList<String> peoplePoints = new LinkedList<>();
 
-        for (PeopleInEvent model : peopleInEvent) {
-            peoplePoints.add(model.userRef);
+        for (ParseModelAbstract model : peopleInEvent) {
+            peoplePoints.add(((PeopleInEvent)model).userRef);
         }
 
         return peoplePoints;

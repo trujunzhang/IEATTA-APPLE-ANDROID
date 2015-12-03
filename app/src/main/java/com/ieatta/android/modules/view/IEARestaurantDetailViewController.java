@@ -77,7 +77,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
                     @Override
                     public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                        self.fetchedEvents = new LinkedList((Collection<? extends Event>) task.getResult());
+                        self.fetchedEvents =  task.getResult();
 
                         // Next, Load photo gallery.
                         return Photo.queryPhotosByRestaurant(self.restaurant);
