@@ -8,7 +8,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Recipe;
 
 public class IEAOrderedRecipeCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.near_restaurant_cell;
+    public static int layoutResId = R.layout.ordered_recipe_cell;
 
     private IEAOrderedRecipeCell self = this;
 
@@ -19,6 +19,9 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
 
     public IEAOrderedRecipeCell(View itemView) {
         super(itemView);
+
+        self.displayNameLabel = (TextView) itemView.findViewById(R.id.titleTextView);
+        self.subtitleLabel = (TextView) itemView.findViewById(R.id.addressTextView);
     }
 
     @Override
