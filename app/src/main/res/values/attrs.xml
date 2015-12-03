@@ -105,8 +105,6 @@
         <enum name="small" value="1" />
     </attr>
     <attr name="progressColor" format="reference|color" />
-    <attr name="overlapAnchor" format="boolean" />
-    <attr name="state_above_anchor" format="boolean" />
     <attr name="preferenceViewStyle" format="reference" />
     <attr name="preferenceBooleanViewStyle" format="reference" />
     <attr name="preferenceChoiceGroupViewStyle" format="reference" />
@@ -135,7 +133,6 @@
         <enum name="overlay" value="2" />
     </attr>
     <attr name="topLoading" format="boolean" />
-    <attr name="layout" format="reference" />
     <attr name="spanOfPhotosViewStyle" format="reference" />
     <attr name="maxPhotos" format="integer" />
     <attr name="photoSizeSquare" format="reference|dimension" />
@@ -171,10 +168,6 @@
     <attr name="titleText" format="string" />
     <attr name="summaryText" format="string" />
     <attr name="headlineText" format="string" />
-    <attr name="dropdownListPreferredItemHeight" format="dimension" />
-    <attr name="ratingBarStyle" format="reference" />
-    <attr name="spinnerStyle" format="reference" />
-    <attr name="switchStyle" format="reference" />
     <attr name="titlebarBackground" format="reference" />
     <attr name="toolbarLogo" format="reference" />
     <attr name="titlebarBackgroundOverride" format="reference" />
