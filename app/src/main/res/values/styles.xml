@@ -46,12 +46,6 @@
         <item name="android:apiKey">@string/google_maps_api_key</item>
         <item name="android:fadeScrollbars">true</item>
         <item name="drawerArrowStyle">@style/Hamburger</item>
-        <item name="eliteBadgeStyle">@style/EliteBadge</item>
-        <item name="eliteBadgeShortStyle">@style/EliteBadge.Short</item>
-        <item name="eliteBadgeGoldStyle">@style/EliteBadge.Gold</item>
-        <item name="eliteBadgeGoldShortStyle">@style/EliteBadge.Short.Gold</item>
-        <item name="eliteBadgeBlackStyle">@style/EliteBadge.Black</item>
-        <item name="eliteBadgeBlackShortStyle">@style/EliteBadge.Short.Black</item>
         <item name="smallGapSize">5.0dip</item>
         <item name="baseGapSize">10.0dip</item>
         <item name="largeGapSize">15.0dip</item>
@@ -64,7 +58,6 @@
         <item name="mapHeight">@dimen/map_height</item>
         <item name="mapBorders">@drawable/map_edge</item>
         <item name="mapCorners">@drawable/selector_rounded_cell</item>
-        <item name="mapOverlayStyle">@style/MapOverlay</item>
         <item name="quantityDropDownViewStyle">@style/Widget.TextView.DropDown</item>
         <item name="spanOfPhotosViewStyle">@style/SpanOfPhotosViewBusiness</item>
         <item name="spannedTextViewStyle">@style/Widget.Button.WhiteSilver</item>
@@ -84,7 +77,6 @@
         <item name="shouldDisplayToolbar">true</item>
         <item name="toolbarDisplayOptions">homeAsUp|showTitle</item>
         <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="userProfileViewStyle">@style/UserProfileViewStyle.Default</item>
         <item name="image_priority">20</item>
         <item name="whiteButtonStyle">@style/Widget.Button.White</item>
         <item name="grayListSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
@@ -1069,11 +1061,6 @@
         <item name="android:layout_marginBottom">?attr/smallGapSize</item>
     </style>
 
-    <style name="ContributionTransitions" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/slide_in_bottom</item>
-        <item name="android:activityOpenExitAnimation">@anim/activity_keep</item>
-    </style>
-
     <style name="ConversationButton">
         <item name="android:textAppearance">@style/SubtitleDarkText</item>
         <item name="android:textColor">?attr/android:textColorPrimaryInverse</item>
@@ -1084,18 +1071,18 @@
 
     <style name="DarkButton">
         <item name="android:textAppearance">@style/StandardBoldWhiteText</item>
-        <item name="android:background">@drawable/dark_panel_button_selector</item>
+        <!--<item name="android:background">@drawable/dark_panel_button_selector</item>-->
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="DarkButtonStyle" parent="@style/Widget.Button">
         <item name="android:textColor">?attr/android:textColorPrimaryInverse</item>
-        <item name="android:background">@drawable/dark_btn_background</item>
+        <!--<item name="android:background">@drawable/dark_btn_background</item>-->
     </style>
 
     <style name="DarkImageButtonStyle" parent="@android:style/Widget.ImageButton">
         <item name="android:textColor">?attr/android:textColorPrimaryInverse</item>
-        <item name="android:background">@drawable/dark_btn_background</item>
+        <!--<item name="android:background">@drawable/dark_btn_background</item>-->
     </style>
 
     <style name="DealPurchasePageBorderText" parent="@android:style/Widget.TextView">
@@ -1113,34 +1100,6 @@
     <style name="DollarSignText" parent="@android:style/TextAppearance">
         <item name="android:textSize">13.0sp</item>
         <item name="android:textColor">@color/green_money</item>
-    </style>
-
-    <style name="EliteBadge">
-        <item name="android:textAppearance">@style/CaptionWhiteText</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@drawable/elite_badge</item>
-        <item name="eliteTextFormat">@string/long_elite_format</item>
-    </style>
-
-    <style name="EliteBadge.Black" parent="@style/EliteBadge">
-        <item name="android:background">@drawable/elite_badge_black</item>
-    </style>
-
-    <style name="EliteBadge.Gold" parent="@style/EliteBadge">
-        <item name="android:background">@drawable/elite_badge_gold</item>
-    </style>
-
-    <style name="EliteBadge.Short" parent="@style/EliteBadge">
-        <item name="android:background">@drawable/short_elite_badge</item>
-        <item name="eliteTextFormat">@string/short_elite_format</item>
-    </style>
-
-    <style name="EliteBadge.Short.Black" parent="@style/EliteBadge.Short">
-        <item name="android:background">@drawable/short_elite_badge_black</item>
-    </style>
-
-    <style name="EliteBadge.Short.Gold" parent="@style/EliteBadge.Short">
-        <item name="android:background">@drawable/short_elite_badge_gold</item>
     </style>
 
     <style name="FeedHeaderItem" parent="@style/Sublist.FullBleed">
@@ -1183,15 +1142,6 @@
         <item name="android:paddingTop">@dimen/list_guttered_content_padding_vertical</item>
         <item name="android:paddingRight">@dimen/list_guttered_content_padding</item>
         <item name="android:paddingBottom">@dimen/list_guttered_content_padding_vertical</item>
-    </style>
-
-    <style name="Halloween">
-        <item name="colorPrimary">@color/orange_october_kingdom</item>
-        <item name="colorPrimaryDark">@color/orange_autumn_arrival</item>
-        <item name="toolbarLogo">@drawable/homescreen_icon_halloween</item>
-        <item name="searchButtonDrawable">@drawable/selector_button_search_orange</item>
-        <item name="searchBoxCursorDrawable">@drawable/search_box_cursor_orange</item>
-        <item name="tabsBackground">@drawable/selector_tabs_orange</item>
     </style>
 
     <style name="Hamburger" parent="@style/Widget.AppCompat.DrawerArrowToggle">
@@ -1284,25 +1234,8 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="MapOverlay">
-        <item name="android:background">@drawable/map_marker_star</item>
-        <item name="showOrdinal">false</item>
-        <item name="isPin">true</item>
-    </style>
-
-    <style name="MapOverlay.BusinessSearch" parent="@style/MapOverlay">
-        <item name="android:textSize">9.0sp</item>
-        <item name="android:textColor">@color/map_marker_text</item>
-        <item name="android:background">@drawable/map_marker_pin</item>
-        <item name="showOrdinal">true</item>
-    </style>
-
-    <style name="MapOverlay.Fuzzy" parent="@style/MapOverlay">
-        <item name="android:background">@drawable/map_annotation_fuzzy</item>
-    </style>
-
     <style name="MediaGrid">
-        <item name="android:padding">?attr/attr/smallImageGapSize</item>
+        <item name="android:padding">?attr/smallImageGapSize</item>
         <item name="android:horizontalSpacing">?attr/smallImageGapSize</item>
         <item name="android:verticalSpacing">?attr/smallImageGapSize</item>
         <item name="android:stretchMode">columnWidth</item>
@@ -1327,7 +1260,7 @@
 
     <style name="NavDrawerItem.UserPassport" parent="@style/NavDrawerItem">
         <item name="android:textAppearance">@style/LargeLightGrayText</item>
-        <item name="android:background">@drawable/selector_nav_passport_item</item>
+        <!--<item name="android:background">@drawable/selector_nav_passport_item</item>-->
         <item name="android:paddingTop">@dimen/nav_user_passport_padding</item>
         <item name="android:paddingBottom">@dimen/nav_user_passport_padding</item>
     </style>
@@ -1355,7 +1288,7 @@
         <item name="divider">@color/gray_silver_divider</item>
         <item name="fill_under">@color/white</item>
         <item name="fill_over">@android:color/transparent</item>
-        <item name="overlay_layout">@layout/businesspage_button_bar</item>
+        <!--<item name="overlay_layout">@layout/businesspage_button_bar</item>-->
     </style>
 
     <style name="PanelSearchTermKeyword" parent="@android:style/TextAppearance">
@@ -1871,14 +1804,14 @@
     </style>
 
     <style name="Theme.Yelp.Reviews" parent="@style/Theme.Yelp.NoNavDrawer">
-        <item name="android:windowAnimationStyle">@style/ContributionTransitions</item>
-        <item name="android:actionMenuTextColor">@color/black_yoni</item>
-        <item name="android:actionBarDivider">@drawable/actionbar_divider_gray</item>
-        <item name="actionBarDivider">@drawable/actionbar_divider_gray</item>
+        <!--<item name="android:windowAnimationStyle">@style/ContributionTransitions</item>-->
+        <!--<item name="android:actionMenuTextColor">@color/black_yoni</item>-->
+        <!--<item name="android:actionBarDivider">@drawable/actionbar_divider_gray</item>-->
+        <!--<item name="actionBarDivider">@drawable/actionbar_divider_gray</item>-->
         <item name="actionMenuTextColor">@color/black_yoni</item>
-        <item name="titlebarBackgroundOverride">@drawable/titlebar_gradient_white</item>
+        <!--<item name="titlebarBackgroundOverride">@drawable/titlebar_gradient_white</item>-->
         <item name="toolbarDisplayOptions">homeAsUp|showCustom</item>
-        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar.GrayControls</item>
+        <!--<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar.GrayControls</item>-->
         <item name="statusBarColorOverride">@color/gray_faint</item>
     </style>
 
@@ -1925,7 +1858,7 @@
         <item name="android:paddingRight">@dimen/two_level_button_padding</item>
         <item name="android:paddingBottom">@dimen/two_level_button_padding</item>
         <item name="android:clickable">true</item>
-        <item name="yelpLayout">@layout/panel_two_level_button</item>
+        <!--<item name="yelpLayout">@layout/panel_two_level_button</item>-->
     </style>
 
     <style name="UpdatedReviewTagline">
@@ -1943,51 +1876,6 @@
         <item name="android:textColor">@color/orange_text</item>
     </style>
 
-    <style name="UserProfileViewStyle">
-        <item name="android:orientation">vertical</item>
-        <item name="android:addStatesFromChildren">false</item>
-        <item name="sublistBoldTextColor">@color/black_yoni</item>
-        <item name="bannerBackground">@null</item>
-        <item name="toolbarBackground">@null</item>
-        <item name="statusBarColor">?attr/colorPrimaryDark</item>
-        <item name="yelpLayout">@layout/user_profile</item>
-    </style>
-
-    <style name="UserProfileViewStyle.Default" parent="@style/UserProfileViewStyle">
-        <item name="userNameTextColor">@color/black_yoni</item>
-        <item name="userQuoteTextColor">@color/gray_yoni_light_text</item>
-        <item name="profileBackground">@color/white_dirty_snow</item>
-    </style>
-
-    <style name="UserProfileViewStyle.Elite" parent="@style/UserProfileViewStyle">
-        <item name="userNameTextColor">@android:color/white</item>
-        <item name="userEtchingColor">@color/red_etching</item>
-        <item name="userQuoteTextColor">@android:color/white</item>
-        <item name="profileBackground">@drawable/elite_profile_background</item>
-        <item name="bannerBackground">@drawable/elite_banner</item>
-        <item name="toolbarBackground">@drawable/red_elite_toolbar_background_repeated</item>
-        <item name="statusBarColor">@color/red_midnight_bonfire</item>
-    </style>
-
-    <style name="UserProfileViewStyle.Elite.Black" parent="@style/UserProfileViewStyle.Elite">
-        <item name="userEtchingColor">@android:color/black</item>
-        <item name="profileBackground">@drawable/black_elite_profile_background</item>
-        <item name="bannerBackground">@drawable/black_elite_banner</item>
-        <item name="toolbarBackground">@drawable/black_elite_toolbar_background_repeated</item>
-        <item name="statusBarColor">@color/black_beluga</item>
-    </style>
-
-    <style name="UserProfileViewStyle.Elite.Gold" parent="@style/UserProfileViewStyle.Elite">
-        <item name="userEtchingColor">@color/yellow_etching</item>
-        <item name="profileBackground">@drawable/gold_elite_profile_background</item>
-        <item name="bannerBackground">@drawable/gold_elite_banner</item>
-        <item name="toolbarBackground">@drawable/gold_elite_toolbar_background_repeated</item>
-        <item name="statusBarColor">@color/yellow_gold_star</item>
-    </style>
-
-    <style name="ValentinesDefault">
-        <item name="toolbarLogo">@drawable/homescreen_icon_valentines</item>
-    </style>
 
     <style name="WhiteShadow">
         <item name="android:shadowColor">@color/shadow_for_black_text</item>
@@ -2445,16 +2333,16 @@
     <style name="YelpHoloEditText" parent="@android:style/Widget.EditText">
         <item name="android:textAppearance">@style/SubtitleText</item>
         <item name="android:textColorHint">@color/hint_foreground_light</item>
-        <item name="android:background">@drawable/yelp_holo_underline_selector</item>
+        <!--<item name="android:background">@drawable/yelp_holo_underline_selector</item>-->
     </style>
 
     <style name="YelpHoloEditText.Light" parent="@style/YelpHoloEditText">
         <item name="android:textColorHint">@color/gray_faint</item>
-        <item name="android:background">@drawable/yelp_holo_underline_light</item>
+        <!--<item name="android:background">@drawable/yelp_holo_underline_light</item>-->
     </style>
 
     <style name="YelpHoloSpinner">
-        <item name="android:background">@drawable/yelp_holo_spinner_selector</item>
+        <!--<item name="android:background">@drawable/yelp_holo_spinner_selector</item>-->
     </style>
 
     <style name="YelpRadioButtons">
