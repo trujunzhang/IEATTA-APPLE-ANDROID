@@ -11,6 +11,7 @@ import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Team;
 
+import java.util.Collection;
 import java.util.LinkedList;
 
 import bolts.Continuation;
@@ -45,7 +46,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     // Selected model from tableview.
     private Event selectedModel;
     // Fetched list by quering database.
-    //    var fetchedEvents:[Event] = [Event]()
+    private LinkedList<Event> fetchedEvents = new LinkedList<>();
 
     @Override
     public boolean havePhotoGallery() {
@@ -73,9 +74,8 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 .continueWith(new Continuation<Object, Object>() {
                     @Override
                     public Object then(Task<Object> task) throws Exception {
-                        Object object = task;
+                        self.fetchedEvents = new LinkedList<Event>((Collection<? extends Event>) task.getResult());
 
- //        fetchedEvents = new LinkedList<Object>(task.getResult());
                         // Next, Load photo gallery.
                         return Photo.queryPhotosByRestaurant(self.restaurant);
                      }
