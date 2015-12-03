@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.cells.model.IEAEventHeader;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
 
 /**
@@ -25,7 +26,7 @@ public class IEAEventHeaderCell  extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-        IEARestaurantDetailHeader more  = (IEARestaurantDetailHeader) model;
+        IEAEventHeader more  = (IEAEventHeader) model;
 //        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
 
     }
