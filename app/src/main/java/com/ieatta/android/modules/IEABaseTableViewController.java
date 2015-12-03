@@ -2,12 +2,18 @@ package com.ieatta.android.modules;
 
 import android.os.Bundle;
 
+import com.ieatta.android.R;
 import com.ieatta.android.cache.IEACache;
+import com.ieatta.android.modules.cells.IEAGoogleMapAddressCell;
+import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.TableViewHeightInfo;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Restaurant;
 import com.walnutlabs.android.ProgressHUD;
+
+import java.util.LinkedList;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -86,11 +92,13 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
 
     public void showGoogleMapAddress(int sectionIndex) {
         Restaurant restaurant = (Restaurant) self.getPageModel();
-//        self.setRegisterCellClass(IEAGoogleMapAddressCell)
+        self.setRegisterCellClass(IEAGoogleMapAddressCell.class, IEAGoogleMapAddressCell.layoutResId, sectionIndex);
 
-//        self.setSectionItems([restaurant], forSectionIndex:sectionIndex)
-//        self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.CurrentAddress.string), forSectionIndex: sectionIndex)
+        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Current_Address), sectionIndex);
 
+        LinkedList list = new LinkedList();
+        list.add(restaurant);
+        self.setSectionItems(list, sectionIndex);
     }
 
 

@@ -102,7 +102,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
 
-//                self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
+                self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
 
                 self.configureEventSection(self.fetchedEvents);
 //            self.configurePhotoGallerySection(fetchedPhotosTask)

@@ -38,7 +38,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         getTableManager().registerFooterClass(footerClass,layoutResId);
     }
 
-    public void setRegisterCellClass(Class cellClass, int forSectionIndex, int layoutResId) {
+    public void setRegisterCellClass(Class cellClass, int layoutResId, int forSectionIndex) {
         getTableManager().registerCellClass(cellClass, layoutResId, forSectionIndex);
     }
 
