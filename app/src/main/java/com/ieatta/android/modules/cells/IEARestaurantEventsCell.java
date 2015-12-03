@@ -20,7 +20,7 @@ public class IEARestaurantEventsCell extends IEAViewHolder {
         super(itemView);
 
         self.infoLabel = (TextView) itemView.findViewById(R.id.titleTextView);
-        self.timeAgoLabelLabel = (TextView) itemView.findViewById(R.id.infoTextView);
+        self.timeInfoLabel = (TextView) itemView.findViewById(R.id.infoTextView);
         self.timeAgoLabelLabel = (TextView) itemView.findViewById(R.id.timeAgoTextView);
     }
 
