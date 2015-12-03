@@ -61,21 +61,18 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
 
 
         Recipe.queryRecipes(self.orderedPeople, self.orderedPeople.belongToModel)
-                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
-                    @Override
-                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                        fetchedOrderedRecipes = task.getResult();
-
-                        // Next, fetch related photos
-                        return self.getPhotosForModelsTask(task);
-                    }
-                }).continueWith(new Continuation<Object, Object>() {
+                .onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<Boolean>>  ()
+        {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Task<Boolean> then (Task < LinkedList < ParseModelAbstract >> task)throws Exception {
+            fetchedOrderedRecipes = task.getResult();
 
-                if (task.getError() != null) {
-
-                } else {
+            // Next, fetch related photos
+            return self.getPhotosForModelsTask(task);
+        }
+        }).onSuccess(new Continuation<Boolean, Void>() {
+            @Override
+            public Void then(Task<Boolean> task) throws Exception {
                     // Finally, hide hud.
                     self.hideHUD();
 
@@ -88,8 +85,14 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
 //                    self.setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.orderedPeople!, forEvent: (self.orderedPeople?.belongToModel!)!,viewController:self), forSectionIndex: OrderedRecipesSection.sectionOrderedPeople.rawValue)
 
 //                    self.setSectionItems(fetchedOrderedRecipes, forSectionIndex: OrderedRecipesSection.sectionRecipes.ordinal());
-                }
 
+                return null;
+            }
+        }).continueWith(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                if (task.isFaulted() == true) {
+                }
                 return null;
             }
         });
