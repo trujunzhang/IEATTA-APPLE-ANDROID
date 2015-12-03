@@ -73,27 +73,18 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
 
 
-        Event.queryEventsRelatedRestaurant(self.restaurant)
-                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
-                    @Override
-                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                        self.fetchedEvents =  task.getResult();
-
-                        // Next, Load photo gallery.
-                        return Photo.queryPhotosByRestaurant(self.restaurant);
-                    }
-                }).continueWith(new Continuation<Object, Object>() {
+        Event.queryEventsRelatedRestaurant(self.restaurant).onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<LinkedList<ParseModelAbstract>>>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Task<LinkedList<ParseModelAbstract>> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+                self.fetchedEvents =  task.getResult();
+
+                return Photo.queryPhotosByRestaurant(self.restaurant);
+            }
+        }).onSuccess(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
+            @Override
+            public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
                 self.fetchedPhotosTask = task;
 
-                // Next, Load Reviews.
-//                return self.getReviewsReleatdModelQueryTask();//
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
                 // Finally, hide hud.
                 self.hideHUD();
 
@@ -110,7 +101,53 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 
                 return null;
             }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted() == true) {
+                }
+                return null;
+            }
         });
+
+//        Event.queryEventsRelatedRestaurant(self.restaurant)
+//                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
+//                    @Override
+//                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+//                        self.fetchedEvents =  task.getResult();
+//
+//                        // Next, Load photo gallery.
+//                        return Photo.queryPhotosByRestaurant(self.restaurant);
+//                    }
+//                }).continueWith(new Continuation<Object, Object>() {
+//            @Override
+//            public Object then(Task<Object> task) throws Exception {
+//                self.fetchedPhotosTask = task;
+//
+//                // Next, Load Reviews.
+////                return self.getReviewsReleatdModelQueryTask();//
+//                return null;
+//            }
+//        }).continueWith(new Continuation<Object, Object>() {
+//            @Override
+//            public Object then(Task<Object> task) throws Exception {
+//                // Finally, hide hud.
+//                self.hideHUD();
+//
+//                self.setRegisterCellClass(IEARestaurantDetailHeaderCell.class, IEARestaurantDetailHeaderCell.layoutResId, RestaurantDetailSection.sectionHeader.ordinal());
+//                self.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(self, self.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
+//
+//                self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
+//                self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.class, IEARestaurantEventsCell.layoutResId, RestaurantDetailSection.sectionEvents.ordinal());
+//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
+//
+//                self.configureEventSection(self.fetchedEvents);
+////            self.configurePhotoGallerySection(fetchedPhotosTask)
+////            self.configureReviewsSection(task.result as! [Team])
+//
+//                return null;
+//            }
+//        });
 
 
     }
