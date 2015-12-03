@@ -43,8 +43,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     // Selected model from tableview.
     private Team selectedModel;
     // Fetched list by quering database.
-    private LinkedList<Team> fetchedPeople;
-    private LinkedList<ParseModelAbstract> fetchedPeopleInEvent;
+    private LinkedList<ParseModelAbstract/*Team*/> fetchedPeople;
+    private LinkedList<ParseModelAbstract/*PeopleInEvent*/> fetchedPeopleInEvent;
     private boolean isTabBarHidden = false;
 
     @Override
@@ -66,37 +66,57 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 .onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<LinkedList<ParseModelAbstract>>>() {
                     @Override
                     public Task<LinkedList<ParseModelAbstract>> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                        return Team.queryTeam();
+                                                self.fetchedPeopleInEvent = task.getResult();
+//  Sort, by fetchedPeopleInEvent
+//                        PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
+
+                        // 2. Get all people in the event.
+                        return Team.queryTeamByPoints(self.fetchedPeopleInEvent);
                     }
-                }).onSuccess(new Continuation<LinkedList<ParseModelAbstract>, Void>() {
+                }).onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<Boolean>>() {
             @Override
-            public Void then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                Object object = task;
-                // Everything is done!
+            public Task<Boolean> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+                self.fetchedPeople = task.getResult();
+//
+//                // Next, fetch related photos
+                return self.getPhotosForModelsTask(task);
+            }
+////        }).continueWith(new Continuation<Object, Object>() {
+////            @Override
+////            public Object then(Task<Object> task) throws Exception {
+////                // Next, Load Reviews.
+////                return self.getReviewsReleatdModelQueryTask();
+////            }
+        }).onSuccess(new Continuation<Boolean, Void>() {
+            @Override
+            public Void then(Task<Boolean> task) throws Exception {
+
+                    // Finally, hide hud.
+                    self.hideHUD();
+
+//                    self.setRegisterCellClass(IEAEventHeaderCell);
+//                    self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.self);
+
+//                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: EventDetailSection.sectionHeader.rawValue)
+//                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.PeopleOrdered.string), forSectionIndex: EventDetailSection.sectionOrderedPeople.rawValue)
+
+//                    self.setSectionItems([new  IEAEventHeader(viewController: self, model:self.event!)], forSectionIndex: EventDetailSection.sectionHeader.ordinal());
+
+//                    self.addOrderedPeopleSection(self.fetchedPeople);
+//                    .configureReviewsSection(task.result as! [Team]);
+
+
+                return null;
+            }
+        }).continueWith(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+
                 return null;
             }
         });
 
 
-//        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
-//                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
-//                    @Override
-//                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-//                        Object object = task;
-//                        self.fetchedPeopleInEvent = task.getResult();
-//
-//                        // 2. Get all people in the event.
-//                        return Team.queryTeamByPoints(self.fetchedPeopleInEvent);
-//                    }
-//                })
-//                .continueWith(new Continuation<Object, Object>() {
-//                    @Override
-//                    public Object then(Task<Object> task) throws Exception {
-//                        Object object = task;
-//                        self.fetchedPeople = new LinkedList((Collection<? extends Team>) task.getResult());
-//                        return null;
-//                    }
-//                });
 
 //        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
 //                .continueWith(new Continuation<Object, Object>() {
