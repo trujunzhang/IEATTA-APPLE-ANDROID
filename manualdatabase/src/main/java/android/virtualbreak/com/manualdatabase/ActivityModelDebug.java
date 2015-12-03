@@ -1,6 +1,7 @@
 package android.virtualbreak.com.manualdatabase;
 
 import com.ieatta.com.parse.models.Event;
+import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Team;
 
@@ -27,4 +28,9 @@ public class ActivityModelDebug {
         return team;
     }
 
+    public static Recipe getOrderedRecipe() {
+        Recipe recipe=new Recipe();
+        recipe.objectUUID = "B46474CD-FA02-4D7E-AE0F-B9439F4C8E8F";
+        return recipe;
+    }
 }

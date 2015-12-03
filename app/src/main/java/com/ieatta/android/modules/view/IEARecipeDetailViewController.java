@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
@@ -26,16 +27,18 @@ enum RecipeDetailSection {
 }
 
 public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewController {
-private IEARecipeDetailViewController self = this;
+    private IEARecipeDetailViewController self = this;
 
     @Override
-    public ParseModelAbstract getPageModel(){
+    public ParseModelAbstract getPageModel() {
         return self.orderedRecipe;
     }
+
     @Override
     public boolean havePhotoGallery() {
         return true;
     }
+
     @Override
     public boolean shouldShowHUD() {
         return true;
@@ -48,6 +51,8 @@ private IEARecipeDetailViewController self = this;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // TODO djzhang(test)
+        self.orderedRecipe = ActivityModelDebug.getOrderedRecipe();
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedRecipe?.belongToModel != nil, "Must setup OrderedPeople's instance.")
@@ -56,7 +61,7 @@ private IEARecipeDetailViewController self = this;
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 
 
-         Task<Object> fetchedPhotosTask = null;
+        Task<Object> fetchedPhotosTask = null;
 
         Photo.queryPhotosByModel(self.getPageModel())
                 .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
@@ -68,13 +73,13 @@ private IEARecipeDetailViewController self = this;
 //                        return self.getReviewsReleatdModelQueryTask();
                         return null;
                     }
-        }).continueWith(new Continuation<Object, Object>() {
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
 
-                if(task.getError() != null){
+                if (task.getError() != null) {
 
-                }else {
+                } else {
 
                     // Finally, hide hud.
                     self.hideHUD();
@@ -102,7 +107,7 @@ private IEARecipeDetailViewController self = this;
 
     // MARK: Override IEAReviewsTableViewController methods
     @Override
-    public int  getReviewsSectionIndex() {
+    public int getReviewsSectionIndex() {
         return RecipeDetailSection.sectionReviews.ordinal();
     }
 
