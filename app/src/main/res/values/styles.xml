@@ -618,7 +618,7 @@
     <style name="AdPill" parent="@android:style/Widget.TextView">
         <item name="android:textAppearance">@style/AdPillText</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/ad_background</item>
+        <!--<item name="android:background">@drawable/ad_background</item>-->
         <item name="android:paddingLeft">?attr/smallGapSize</item>
         <item name="android:paddingTop">1.0dip</item>
         <item name="android:paddingRight">?attr/smallGapSize</item>
@@ -644,60 +644,6 @@
         <item name="android:background">@drawable/button_appwidget_category</item>
         <item name="android:layout_marginBottom">@dimen/appwidget_shadow_size_bottom</item>
         <item name="android:scaleType">center</item>
-    </style>
-
-    <style name="AwardBanner">
-        <item name="awardLeftTextStyle">@style/CaptionText</item>
-        <item name="awardRightTextStyle">@style/CaptionText</item>
-    </style>
-
-    <style name="AwardBannerFirstToReview" parent="@style/AwardBanner">
-        <item name="awardLeftText">@string/first_to_review</item>
-        <item name="awardTextColor">@color/blue_seaweed_surprise</item>
-        <item name="awardBackground">@drawable/award_banner_background_cyan</item>
-        <item name="awardIcon">@drawable/first_review</item>
-    </style>
-
-    <style name="AwardBannerFirstToReviewLargeText" parent="@style/AwardBannerFirstToReview">
-        <item name="awardLeftTextStyle">@style/LargeDarkText</item>
-        <item name="awardRightTextStyle">@style/LargeText</item>
-    </style>
-
-    <style name="AwardBannerFirstToTip" parent="@style/AwardBanner">
-        <item name="awardLeftText">@string/first_to_tip</item>
-        <item name="awardTextColor">@color/blue_seaweed_surprise</item>
-        <item name="awardBackground">@drawable/award_banner_background_cyan</item>
-        <item name="awardIcon">@drawable/first_tip</item>
-    </style>
-
-    <style name="AwardBannerFirstToTipLargeText" parent="@style/AwardBannerFirstToTip">
-        <item name="awardLeftTextStyle">@style/LargeDarkText</item>
-        <item name="awardRightTextStyle">@style/LargeText</item>
-    </style>
-
-    <style name="AwardBannerHotNewBusiness" parent="@style/AwardBanner">
-        <item name="awardLeftText">@string/hot_new_business</item>
-        <item name="awardTextColor">@color/award_hot_new_business_text_red</item>
-        <item name="awardBackground">@drawable/award_banner_background_red</item>
-        <item name="awardIcon">@drawable/hot_new_business_icon</item>
-        <item name="awardIconPaddingBottom">@dimen/default_small_gap_size</item>
-    </style>
-
-    <style name="AwardBannerHotNewBusinessLargeText" parent="@style/AwardBannerHotNewBusiness">
-        <item name="awardLeftTextStyle">@style/LargeDarkText</item>
-        <item name="awardRightTextStyle">@style/LargeText</item>
-    </style>
-
-    <style name="AwardBannerRotd" parent="@style/AwardBanner">
-        <item name="awardLeftText">@string/review_of_the_day</item>
-        <item name="awardTextColor">@color/award_rotd_text_blue</item>
-        <item name="awardBackground">@drawable/award_banner_background_blue</item>
-        <item name="awardIcon">@drawable/rotd</item>
-    </style>
-
-    <style name="AwardBannerRotdLargeText" parent="@style/AwardBannerRotd">
-        <item name="awardLeftTextStyle">@style/LargeDarkText</item>
-        <item name="awardRightTextStyle">@style/LargeText</item>
     </style>
 
     <style name="Base.AlertDialog.AppCompat" parent="@android:style/Widget">
