@@ -1,5 +1,6 @@
 package android.virtualbreak.com.manualdatabase;
 
+import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Restaurant;
 
 /**
@@ -12,4 +13,11 @@ public class ActivityModelDebug {
         restaurant.objectUUID = "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04";
         return restaurant;
     }
+
+    public static Event getEventForEventDetail() {
+        Event event = new Event();
+        event.objectUUID = "C9970CF0-6925-42C5-8C52-4E37A8A250A1";
+        return event;
+    }
+
 }

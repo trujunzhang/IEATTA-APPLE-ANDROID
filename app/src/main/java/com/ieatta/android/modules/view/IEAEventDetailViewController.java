@@ -1,9 +1,11 @@
 package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.PeopleInEvent;
@@ -49,6 +51,9 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // TODO djzhang(test)
+        self.event = ActivityModelDebug.getEventForEventDetail();
+
 
         // Do any additional setup after loading the view.
 //        assert(self.event != nil, "Must setup Event's instance.")
@@ -61,6 +66,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 .continueWith(new Continuation<Object, Object>() {
                     @Override
                     public Object then(Task<Object> task) throws Exception {
+                        Object object = task;
                         self.fetchedPeopleInEvent = new LinkedList<PeopleInEvent>((Collection<? extends PeopleInEvent>) task.getResult());
 
                         // 2. Get all people in the event.

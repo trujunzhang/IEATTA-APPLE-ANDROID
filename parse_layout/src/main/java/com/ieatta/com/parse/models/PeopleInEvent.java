@@ -93,16 +93,19 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     public static Task<Object> queryOrderedPeople(String eventRef) {
-        return ParseModelQuery.findLocalObjectsInBackground(new PeopleInEvent().createQueryByEventRef(eventRef)).continueWith(new Continuation<List<ParseObject>, Object>() {
-            @Override
-            public Object then(Task<List<ParseObject>> task) throws Exception {
-                LinkedList<ParseModelAbstract> array = new PeopleInEvent().convertToParseModelArray(task.getResult(), true);
+        return Event.queryFromDatabase(PQueryModelType.PeopleInEvent, new PeopleInEvent().createQueryByEventRef(eventRef));
 
-                TaskCompletionSource nextTask = new TaskCompletionSource();
-                nextTask.setResult(array);
-                return nextTask;
-            }
-        });
+//        return ParseModelQuery.findLocalObjectsInBackground(new PeopleInEvent().createQueryByEventRef(eventRef))
+//                .continueWith(new Continuation<List<ParseObject>, Object>() {
+//                    @Override
+//                    public Object then(Task<List<ParseObject>> task) throws Exception {
+//                        LinkedList<ParseModelAbstract> array = new PeopleInEvent().convertToParseModelArray(task.getResult(), true);
+//
+//                        TaskCompletionSource nextTask = new TaskCompletionSource();
+//                        nextTask.setResult(array);
+//                        return nextTask;
+//                    }
+//                });
     }
 
     public static Team getPeople(PeopleInEvent peopleInEvent, LinkedList<Team> fetchedPeople) {
