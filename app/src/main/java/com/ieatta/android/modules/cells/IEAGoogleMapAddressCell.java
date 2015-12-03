@@ -16,6 +16,8 @@ public class IEAGoogleMapAddressCell extends IEAViewHolder {
 
     public IEAGoogleMapAddressCell(View itemView) {
         super(itemView);
+
+        self.formattedAddressLabel = (TextView) itemView.findViewById(R.id.formattedAddressLabel);
     }
 
     @Override
