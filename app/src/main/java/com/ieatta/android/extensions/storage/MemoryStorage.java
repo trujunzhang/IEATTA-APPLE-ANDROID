@@ -3,6 +3,7 @@ package com.ieatta.android.extensions.storage;
 import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
+import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -47,7 +48,7 @@ public class MemoryStorage {
     /// Set items for specific section. This will reload UI after updating.
     /// - Parameter items: items to set for section
     /// - Parameter forSectionIndex: index of section to update
-    public void setItems(LinkedList<Object> items, int forSectionIndex) {
+    public void setItems(LinkedList<ParseModelAbstract> items, int forSectionIndex) {
         SectionModel section = self.verifySection(forSectionIndex);
         section.items = items;
         self.sections.put(new Integer(forSectionIndex), section);

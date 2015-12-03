@@ -19,7 +19,7 @@ public class RestaurantSortUtils {
         }
     }
 
-    public static LinkedList<Object> sort(LinkedList<Object> modelProtocols) {
+    public static LinkedList<ParseModelAbstract> sort(LinkedList<ParseModelAbstract> modelProtocols) {
         Collections.sort(modelProtocols, new SortByName());
         return modelProtocols;
     }

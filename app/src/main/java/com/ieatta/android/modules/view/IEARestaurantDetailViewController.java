@@ -128,7 +128,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     }
 
 
-    private void configureEventSection(LinkedList<Object> fetchedEvents) {
+    private void configureEventSection(LinkedList<ParseModelAbstract> fetchedEvents) {
         self.setSectionItems(fetchedEvents, RestaurantDetailSection.sectionEvents.ordinal());
     }
 

@@ -1,5 +1,7 @@
 package com.ieatta.android.extensions.storage;
 
+import com.ieatta.com.parse.ParseModelAbstract;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -14,7 +16,7 @@ public class SectionModel {
     /// Items for current section
     /// - Warning: If you try to set new array to this property [T], the only way to do this without exception is to wrap it into items.map { $0 }. This is a workaround that exists because of Swift inability to cast [T] to [Any]. You can call `setItems` method instead of doing so.
     /// - SeeAlso: `setItems:`
-    public LinkedList<Object> items = new LinkedList<>();
+    public LinkedList<ParseModelAbstract> items = new LinkedList<>();
     public int sectionIndex;
     public int layoutResId;
     public Class cellClass;
@@ -29,13 +31,13 @@ public class SectionModel {
     /// Set items of specific time to items property.
     /// - Parameter items: items to set
     /// - Note: This method exists because of inability of Swift to cast [T] to [Any].
-    public SectionModel setItems(LinkedList<Object> items) {
+    public SectionModel setItems(LinkedList<ParseModelAbstract> items) {
         this.items = items;
         return self;
     }
 
     public SectionModel setItems(Object[] items) {
-        this.items = new LinkedList<>(Arrays.asList(items));
+        this.items = new LinkedList<ParseModelAbstract>(Arrays.<ParseModelAbstract>asList((ParseModelAbstract[]) items));
         return self;
     }
 

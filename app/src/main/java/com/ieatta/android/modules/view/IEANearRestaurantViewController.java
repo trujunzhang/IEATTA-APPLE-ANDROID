@@ -42,7 +42,7 @@ enum NearRestaurantSection {
 
 public class IEANearRestaurantViewController extends IEASplitMasterViewController {
     private IEANearRestaurantViewController self = this;
-    private LinkedList<Object> fetchedRestaurants;
+    private LinkedList<ParseModelAbstract> fetchedRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
 
-        self.setSectionItems(new LinkedList<Object>(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
+//        self.setSectionItems(new LinkedList<ParseModelAbstract>(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
     }
 
     @NonNull
@@ -107,7 +107,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
                 if (array.size() != 0) {
                     self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
                 }
-                self.setSectionItems(objects, NearRestaurantSection.sectionRestaurants.ordinal());
+//                self.setSectionItems(objects, NearRestaurantSection.sectionRestaurants.ordinal());
             }
         });
     }
@@ -117,10 +117,10 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         // TODO djzhang(test)
 //        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
-        Restaurant.queryRestaurants().continueWith(new Continuation<Object, Object>() {
+        Restaurant.queryRestaurants().continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
-                self.fetchedRestaurants = (LinkedList<Object>) task.getResult();
+            public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+                self.fetchedRestaurants = task.getResult();
                 self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
                 // Next, fetch related photos

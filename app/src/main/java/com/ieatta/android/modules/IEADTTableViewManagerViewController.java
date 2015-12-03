@@ -7,6 +7,7 @@ import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
+import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.LinkedList;
 
@@ -46,7 +47,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         getTableManager().registerCellClass(cellClass, layoutResId, forSectionIndex);
     }
 
-    public void setSectionItems(LinkedList<Object> items, int forSectionIndex) {
+    public void setSectionItems(LinkedList<ParseModelAbstract> items, int forSectionIndex) {
         getMemoryStorage().setItems(items, forSectionIndex);
     }
 
