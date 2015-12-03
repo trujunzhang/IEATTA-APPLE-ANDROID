@@ -121,7 +121,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
 
     public static Task<Object> queryFromDatabase(final PQueryModelType type, final ParseQuery query) {
         final Task.TaskCompletionSource tcs = Task.create();
-         ParseModelQuery.findLocalObjectsInBackground(query)
+        ParseModelQuery.findLocalObjectsInBackground(query)
                 .continueWith(new Continuation<List<ParseObject>, Object>() {
                     @Override
                     public Object then(Task<List<ParseObject>> task) throws Exception {
@@ -142,16 +142,18 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
     }
 
-    @Override public Task<Object> getFirstLocalModelArrayTask()   {
-         return this.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Object, Object>() {
-             @Override
-             public Object then(Task<Object> task) throws Exception {
-                 return convertToLocalModelTask(task);
-             }
-         });
+    @Override
+    public Task<Object> getFirstLocalModelArrayTask() {
+        return this.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return convertToLocalModelTask(task);
+            }
+        });
     }
 
-     @Override     public Task<Object> getFirstOnlineObjectTask()   {
+    @Override
+    public Task<Object> getFirstOnlineObjectTask() {
         return this.createQueryByObjectUUID().getFirstInBackground();
     }
 
@@ -247,36 +249,36 @@ public abstract class ParseModelQuery extends ParseJsoner {
     }
 
     /**
-     Unpin the first offline object by query instance.
-
-     - parameter query:           query's instance
+     * Unpin the first offline object by query instance.
+     * <p/>
+     * - parameter query:           query's instance
      */
 
-    Task<Object> unpinInBackground(ParseQuery query)     {
+    Task<Object> unpinInBackground(ParseQuery query) {
         final TaskCompletionSource unpinTask = new TaskCompletionSource();
 
         this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                if(task.getError()!= null){
+                if (task.getError() != null) {
                     unpinTask.setResult(task.getError());
-                }else {
+                } else {
                     Object result = task.getResult();
                     LinkedList<Object> value = new LinkedList<Object>((Collection<?>) result);
-                    if(value.size() >= 1){
+                    if (value.size() >= 1) {
                         ParseObject object = (ParseObject) value.get(0);
                         ParseModelQuery.unpinObjectInBackground(object).continueWith(new Continuation<Void, Object>() {
                             @Override
                             public Object then(Task<Void> task) throws Exception {
-                                if(task.getError() != null){
+                                if (task.getError() != null) {
                                     unpinTask.setError(task.getError());
-                                }else{
+                                } else {
                                     unpinTask.setResult(true);
                                 }
                                 return null;
                             }
                         });
-                    }else{
+                    } else {
                         // **** Important ****
                         // Here, return value is false means that not found object.
                         // For example, if all newrecord objects already pushed to server.
@@ -294,11 +296,11 @@ public abstract class ParseModelQuery extends ParseJsoner {
     }
 
     /**
-     Unpin the first offline object itself with NewRecord by query instance.
-
-     - parameter deletedModel:    ParseModelAbstract's instance that want to delete
+     * Unpin the first offline object itself with NewRecord by query instance.
+     * <p/>
+     * - parameter deletedModel:    ParseModelAbstract's instance that want to delete
      */
-    Task<Object> unpinInBackgroundWithNewRecord()     {
+    Task<Object> unpinInBackgroundWithNewRecord() {
         final ParseQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
         return this.unpinInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Object, Object>() {
             @Override
@@ -319,21 +321,21 @@ public abstract class ParseModelQuery extends ParseJsoner {
     }
 
     /**
-     Delete the first online object, after creating a query instance by objectUUID.
-
-     - parameter type:            ParseModel's type
-     - parameter model:           insance of query
+     * Delete the first online object, after creating a query instance by objectUUID.
+     * <p/>
+     * - parameter type:            ParseModel's type
+     * - parameter model:           insance of query
      */
-    Task<Object> deleteOnlineObjectInBackground(PQueryModelType type,ParseModelAbstract model)     {
-        return this.deleteOnlineObjectInBackground(ParseModelQuery.createQuery(type,model));
+    Task<Object> deleteOnlineObjectInBackground(PQueryModelType type, ParseModelAbstract model) {
+        return this.deleteOnlineObjectInBackground(ParseModelQuery.createQuery(type, model));
     }
 
     /**
-     Delete the first online object by query instance.
-
-     - parameter query:           query's instance
+     * Delete the first online object by query instance.
+     * <p/>
+     * - parameter query:           query's instance
      */
-    Task<Object> deleteOnlineObjectInBackground(ParseQuery query)     {
+    Task<Object> deleteOnlineObjectInBackground(ParseQuery query) {
         return this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {

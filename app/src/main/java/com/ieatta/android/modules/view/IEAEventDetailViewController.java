@@ -66,8 +66,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 .continueWith(new Continuation<Object, Object>() {
                     @Override
                     public Object then(Task<Object> task) throws Exception {
-                        Object object = task;
-                        self.fetchedPeopleInEvent = new LinkedList<PeopleInEvent>((Collection<? extends PeopleInEvent>) task.getResult());
+                        self.fetchedPeopleInEvent = new LinkedList((Collection<? extends PeopleInEvent>) task.getResult());
 
                         // 2. Get all people in the event.
                         return Team.queryTeam(self.fetchedPeopleInEvent);
@@ -75,6 +74,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
+                Object object = task;
+
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
             }
@@ -94,10 +95,6 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                if (task.getError() != null) {
-
-                } else {
-
                     // Finally, hide hud.
                     self.hideHUD();
 
@@ -112,7 +109,6 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //                    self.addOrderedPeopleSection(self.fetchedPeople);
 //                    .configureReviewsSection(task.result as! [Team]);
 
-                }
 
                 return null;
             }
