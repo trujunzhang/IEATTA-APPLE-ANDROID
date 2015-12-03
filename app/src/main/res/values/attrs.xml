@@ -4,24 +4,7 @@
     <attr name="height" format="dimension" />
     <attr name="isLightTheme" format="boolean" />
     <attr name="title" format="string" />
-    <attr name="backgroundSplit" format="reference|color" />
-    <attr name="customNavigationLayout" format="reference" />
-    <attr name="homeLayout" format="reference" />
-    <attr name="progressBarStyle" format="reference" />
-    <attr name="indeterminateProgressStyle" format="reference" />
-    <attr name="progressBarPadding" format="dimension" />
-    <attr name="itemPadding" format="dimension" />
-    <attr name="hideOnContentScroll" format="boolean" />
-    <attr name="contentInsetStart" format="dimension" />
-    <attr name="contentInsetEnd" format="dimension" />
-    <attr name="contentInsetLeft" format="dimension" />
-    <attr name="contentInsetRight" format="dimension" />
-    <attr name="elevation" format="dimension" />
-    <attr name="popupTheme" format="reference" />
-    <attr name="closeItemLayout" format="reference" />
-    <attr name="initialActivityCount" format="string" />
-    <attr name="expandActivityOverflowButtonDrawable" format="reference" />
-    <attr name="emptyIcon" format="reference" />
+        <attr name="emptyIcon" format="reference" />
     <attr name="setIcon" format="reference" />
     <attr name="attachmentIcon" format="reference" />
     <attr name="emptyText" format="reference" />
