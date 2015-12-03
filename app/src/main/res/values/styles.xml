@@ -518,7 +518,7 @@
         <item name="android:dropDownVerticalOffset">0.0dip</item>
         <item name="overlapAnchor">true</item>
         <item name="spinnerMode">dropdown</item>
-        <item name="popupPromptView">@layout/abc_simple_dropdown_hint</item>
+        <!--<item name="popupPromptView">@layout/abc_simple_dropdown_hint</item>-->
         <item name="disableChildrenWhenDisabled">true</item>
     </style>
 
@@ -2408,12 +2408,12 @@
 
     <style name="Widget.Spinner" parent="@style/Widget">
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/yelp_holo_spinner_selector</item>
+        <!--<item name="android:background">@drawable/yelp_holo_spinner_selector</item>-->
         <item name="android:clickable">true</item>
     </style>
 
     <style name="Widget.Spinner.FullBleed" parent="@style/Widget.Spinner">
-        <item name="android:background">@drawable/spinner_selector</item>
+        <!--<item name="android:background">@drawable/spinner_selector</item>-->
     </style>
 
     <style name="Widget.SpinnerDropDownItem" parent="@android:style/Widget.DropDownItem.Spinner" />
@@ -2431,7 +2431,7 @@
         <item name="android:popupWindowStyle">@style/RoundedPopupStyle</item>
         <item name="android:background">@android:drawable/editbox_background</item>
         <item name="android:minHeight">@dimen/businesspage_cell_min_height</item>
-        <item name="dropDownItemLayout">@layout/spinner_view</item>
+        <!--<item name="dropDownItemLayout">@layout/spinner_view</item>-->
     </style>
 
     <style name="Widget.TextView.ListSeparatorYelp" parent="@android:style/Widget.TextView">
@@ -2484,14 +2484,6 @@
         <item name="android:drawablePadding">?attr/smallGapSize</item>
     </style>
 
-    <style name="Winter">
-        <item name="toolbarLogo">@drawable/homescreen_icon_winter</item>
-    </style>
-
-    <style name="WorldCup">
-        <item name="toolbarLogo">@drawable/homescreen_icon_world_cup</item>
-    </style>
-
     <style name="YelpAutoCompleteTextView" parent="@style/Widget.AppCompat.AutoCompleteTextView">
         <item name="android:textColorHint">@color/hint_foreground_light</item>
         <item name="android:popupBackground">?attr/android:colorBackground</item>
@@ -2541,13 +2533,6 @@
         <item name="android:button">@null</item>
         <item name="android:textAllCaps">true</item>
     </style>
-
-    <style name="YelpToggleButton" parent="@style/Widget.Button.Toggle">
-        <item name="android:background">@drawable/switch_toggle</item>
-        <item name="android:textOn">@string/on</item>
-        <item name="android:textOff">@string/off</item>
-    </style>
-
 
     <style name="tooltip_bubble_text">
         <item name="android:textSize">12.0sp</item>
