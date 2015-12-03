@@ -63,7 +63,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
 
-//        self.setSectionItems(new LinkedList<ParseModelAbstract>(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
+        self.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
     }
 
     @NonNull
