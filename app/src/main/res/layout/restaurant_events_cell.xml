@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.ListView.White.NoScrollCache"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/RestaurantDetail_Events">
+
+    <ImageView
+        android:id="@+id/eventIconImageView"
+        android:layout_width="@dimen/NearRestaurant_More_Icon_Width"
+        android:layout_height="@dimen/NearRestaurant_More_Icon_Height"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_centerVertical="true"
+        android:src="@drawable/nav_events" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_toRightOf="@+id/eventIconImageView"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:text="Medium Text"
+        android:textSize="@dimen/abc_text_size_menu_material" />
+
+    <TextView
+        android:id="@+id/infoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:paddingTop="2dp"
+        android:layout_toRightOf="@+id/eventIconImageView"
+        android:layout_below="@+id/titleTextView"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:text="Medium Text"
+        android:textSize="@dimen/abc_text_size_caption_material" />
+
+    <TextView
+        android:id="@+id/timeAgoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:paddingTop="10dp"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:text="Medium Text"
+        android:textSize="@dimen/abc_text_size_caption_material"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

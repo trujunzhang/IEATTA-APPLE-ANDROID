@@ -8,23 +8,34 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Event;
 
 public class IEARestaurantEventsCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.near_restaurant_cell;
+    public static int layoutResId = R.layout.restaurant_events_cell;
 
     private IEARestaurantEventsCell self = this;
 
-//    @IBOutlet weak var avatarView: AvatarView!
-
     private TextView infoLabel;
-    private TextView subtitleLabel;
+    private TextView timeInfoLabel;
+    private TextView timeAgoLabelLabel;
 
     public IEARestaurantEventsCell(View itemView) {
         super(itemView);
+
+        self.infoLabel = (TextView) itemView.findViewById(R.id.titleTextView);
+        self.timeAgoLabelLabel = (TextView) itemView.findViewById(R.id.infoTextView);
+        self.timeAgoLabelLabel = (TextView) itemView.findViewById(R.id.timeAgoTextView);
     }
 
     @Override
     public void updateWithModel(Object model) {
-        Event more  = (Event) model;
+        Event more = (Event) model;
+
         self.infoLabel.setText(more.displayName);
+        if (more.waiter == null || more.waiter.equals("")) {
+            self.timeInfoLabel.setText(R.string.No_waiters_servered_for_you);
+        } else {
+            self.timeInfoLabel.setText(more.waiter);
+        }
+
+//        self.timeAgoLabelLabel = more.getTimeAgoString();
 
     }
 }

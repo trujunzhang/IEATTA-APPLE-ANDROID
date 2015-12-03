@@ -3,8 +3,11 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
+import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
+import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Photo;
@@ -46,7 +49,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     // Selected model from tableview.
     private Event selectedModel;
     // Fetched list by quering database.
-    private LinkedList<Event> fetchedEvents = new LinkedList<>();
+    private LinkedList fetchedEvents = new LinkedList<>();
 
     @Override
     public boolean havePhotoGallery() {
@@ -67,22 +70,19 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
 
 
-        final LinkedList<Object> fetchedEvents = new LinkedList<>();// Event
-//        var fetchedPhotosTask = BFTask()
-
         Event.queryEventsRelatedRestaurant(self.restaurant)
                 .continueWith(new Continuation<Object, Object>() {
                     @Override
                     public Object then(Task<Object> task) throws Exception {
-                        self.fetchedEvents = new LinkedList<Event>((Collection<? extends Event>) task.getResult());
+                        self.fetchedEvents = new LinkedList((Collection<? extends Event>) task.getResult());
 
                         // Next, Load photo gallery.
                         return Photo.queryPhotosByRestaurant(self.restaurant);
-                     }
+                    }
                 }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-  //        fetchedPhotosTask = task;
+                self.fetchedPhotosTask = task;
 
                 // Next, Load Reviews.
                 return self.getReviewsReleatdModelQueryTask();
@@ -90,27 +90,24 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                if (task.getError() != null) {
-
-                } else {
-                    // Finally, hide hud.
-                    self.hideHUD();
+                // Finally, hide hud.
+                self.hideHUD();
 
 //            self.setRegisterCellClass(IEARestaurantDetailHeaderCell)
-//            self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.self)
+                self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.class, IEARestaurantEventsCell.layoutResId, RestaurantDetailSection.sectionEvents.ordinal());
 
 //            self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: RestaurantDetailSection.sectionHeader.rawValue)
 
 //            self.setSectionItems([IEARestaurantDetailHeader(viewController: self, model: self.restaurant!)], forSectionIndex: RestaurantDetailSection.sectionHeader.rawValue)
 
-//            self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.EventsRecorded.string), forSectionIndex: RestaurantDetailSection.sectionEvents.rawValue)
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
 
-                    self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
+//                self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
 
-                    self.configureEventSection(fetchedEvents);
+                self.configureEventSection(self.fetchedEvents);
 //            self.configurePhotoGallerySection(fetchedPhotosTask)
 //            self.configureReviewsSection(task.result as! [Team])
-                }
+
                 return null;
             }
         });
