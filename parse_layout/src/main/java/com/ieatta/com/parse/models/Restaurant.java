@@ -7,6 +7,7 @@ import bolts.Continuation;
 import bolts.Task;
 import bolts.TaskCompletionSource;
 
+import com.ieatta.com.parse.R;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -20,7 +21,7 @@ import com.ieatta.com.parse.models.enums.ReviewType;
  */
 public class Restaurant extends ParseModelSync {
     private  Restaurant self = this;
-    public static final String Default_FormattedAddress = "";
+    public static String Default_FormattedAddress ="";
 
     public static final double PAWRestaurantMaximumSearchDistance = 1; // Value in kilometers
 
