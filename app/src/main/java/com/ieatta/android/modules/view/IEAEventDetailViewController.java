@@ -3,8 +3,13 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
+import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
+import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
+import com.ieatta.android.modules.cells.headerview.IEAEventHeaderCell;
+import com.ieatta.android.modules.cells.model.IEAEventHeader;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
@@ -66,7 +71,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 .onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<LinkedList<ParseModelAbstract>>>() {
                     @Override
                     public Task<LinkedList<ParseModelAbstract>> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                                                self.fetchedPeopleInEvent = task.getResult();
+                        self.fetchedPeopleInEvent = task.getResult();
 //  Sort, by fetchedPeopleInEvent
 //                        PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
 
@@ -91,16 +96,14 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
             @Override
             public Void then(Task<Boolean> task) throws Exception {
 
-                    // Finally, hide hud.
-                    self.hideHUD();
+                // Finally, hide hud.
+                self.hideHUD();
 
-//                    self.setRegisterCellClass(IEAEventHeaderCell);
-//                    self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.self);
+                self.setRegisterCellClass(IEAEventHeaderCell.class, IEAEventHeaderCell.layoutResId, EventDetailSection.sectionHeader.ordinal());
+                self.setSectionItems(CollectionUtils.createList(new IEAEventHeader(self, self.event)), EventDetailSection.sectionHeader.ordinal());
 
-//                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: EventDetailSection.sectionHeader.rawValue)
-//                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.PeopleOrdered.string), forSectionIndex: EventDetailSection.sectionOrderedPeople.rawValue)
-
-//                    self.setSectionItems([new  IEAEventHeader(viewController: self, model:self.event!)], forSectionIndex: EventDetailSection.sectionHeader.ordinal());
+                self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.class, IEAOrderedPeopleCell.layoutResId, EventDetailSection.sectionOrderedPeople.ordinal());
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 
 //                    self.addOrderedPeopleSection(self.fetchedPeople);
 //                    .configureReviewsSection(task.result as! [Team]);
@@ -111,12 +114,11 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         }).continueWith(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
-                if(task.isFaulted() == true){
+                if (task.isFaulted() == true) {
                 }
                 return null;
             }
         });
-
 
 
 //        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
