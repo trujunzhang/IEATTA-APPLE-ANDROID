@@ -62,24 +62,41 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 
-
         PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
-                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
+                .onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<LinkedList<ParseModelAbstract>>>() {
                     @Override
-                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                        self.fetchedPeopleInEvent = task.getResult();
-
-                        // 2. Get all people in the event.
-                        return Team.queryTeamByPoints(self.fetchedPeopleInEvent);
+                    public Task<LinkedList<ParseModelAbstract>> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+                        return Team.queryTeam();
                     }
-                }).continueWith(new Continuation<Object, Object>() {
+                }).onSuccess(new Continuation<LinkedList<ParseModelAbstract>, Void>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Void then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
                 Object object = task;
-                self.fetchedPeople = new LinkedList((Collection<? extends Team>) task.getResult());
+                // Everything is done!
                 return null;
             }
         });
+
+
+//        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
+//                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
+//                    @Override
+//                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+//                        Object object = task;
+//                        self.fetchedPeopleInEvent = task.getResult();
+//
+//                        // 2. Get all people in the event.
+//                        return Team.queryTeamByPoints(self.fetchedPeopleInEvent);
+//                    }
+//                })
+//                .continueWith(new Continuation<Object, Object>() {
+//                    @Override
+//                    public Object then(Task<Object> task) throws Exception {
+//                        Object object = task;
+//                        self.fetchedPeople = new LinkedList((Collection<? extends Team>) task.getResult());
+//                        return null;
+//                    }
+//                });
 
 //        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
 //                .continueWith(new Continuation<Object, Object>() {
