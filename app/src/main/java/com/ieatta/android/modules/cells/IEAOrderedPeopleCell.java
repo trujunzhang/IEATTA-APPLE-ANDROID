@@ -8,17 +8,19 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
 
 public class IEAOrderedPeopleCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.near_restaurant_cell;
+    public static int layoutResId = R.layout.ordered_people_cell;
 
     private IEAOrderedPeopleCell self = this;
 
 //    @IBOutlet weak var avatarView: AvatarView!
 
     private TextView nameLabel;
-    private TextView subtitleLabel;
+    private TextView addressLabel;
 
     public IEAOrderedPeopleCell(View itemView) {
         super(itemView);
+        self.nameLabel = (TextView) itemView.findViewById(R.id.titleTextView);
+        self.addressLabel = (TextView) itemView.findViewById(R.id.addressTextView);
     }
 
     @Override

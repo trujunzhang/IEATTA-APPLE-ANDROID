@@ -47,7 +47,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         getTableManager().registerCellClass(cellClass, layoutResId, forSectionIndex);
     }
 
-    public void setSectionItems(LinkedList<ParseModelAbstract> items, int forSectionIndex) {
+    public void setSectionItems(LinkedList items, int forSectionIndex) {
         getMemoryStorage().setItems(items, forSectionIndex);
     }
 

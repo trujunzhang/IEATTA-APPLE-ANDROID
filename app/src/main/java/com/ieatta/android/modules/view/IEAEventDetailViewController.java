@@ -8,6 +8,7 @@ import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
 import com.ieatta.android.modules.cells.headerview.IEAEventHeaderCell;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
+import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
@@ -106,7 +107,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 
 //                    self.addOrderedPeopleSection(self.fetchedPeople);
-//                    .configureReviewsSection(task.result as! [Team]);
+//                    self.configureReviewsSection(task.result as! [Team]);
 
 
                 return null;
@@ -207,6 +208,11 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //            }
 //        });
 
+    }
+
+    /// Add rows for section "Ordered People".
+    private void addOrderedPeopleSection(LinkedList<ParseModelAbstract> orderedPeople){
+        setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event),  EventDetailSection.sectionOrderedPeople.ordinal());
     }
 
     @Override
