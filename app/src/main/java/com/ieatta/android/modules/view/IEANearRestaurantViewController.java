@@ -130,22 +130,16 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
             @Override
             public Object then(Task<Object> task) throws Exception {
 
-                self.executeUIThread();
+                if (self.fetchedRestaurants.size() != 0) {
+                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
+                }
+                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
+
+//                LocationObserver.sharedInstance.popLastLocation();
+
 
                 return null;
             }
         });
     }
-
-    @Override
-    protected void updateUI() {
-        if (self.fetchedRestaurants.size() != 0) {
-            self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
-        }
-        self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
-
-//                LocationObserver.sharedInstance.popLastLocation();
-
-    }
-
 }

@@ -15,16 +15,16 @@ public class RestaurantOrderedRecipesGenerator {
 
     static {
 
-        // people01
-        RecipeList.add(new Recipe("Amazing sticky rice!", 12.2, R.drawable.food01));
-        RecipeList.add(new Recipe("Drunken Mushroom!", 6.2, R.drawable.food02));
-        RecipeList.add(new Recipe("Vegan Glory", 4.4, R.drawable.food03));
-        // people02
-        RecipeList.add(new Recipe("Avocado curry", 2.4, R.drawable.food11));
-        // people03
-        RecipeList.add(new Recipe("Brown rice.", 3.2, R.drawable.food21));
-        RecipeList.add(new Recipe("Tofu satay", 6.1, R.drawable.food22));
-        RecipeList.add(new Recipe("Red curry tofu and green", 4.1, R.drawable.food23));
+//        // people01
+//        RecipeList.add(new Recipe("Amazing sticky rice!", 12.2, R.drawable.food01));
+//        RecipeList.add(new Recipe("Drunken Mushroom!", 6.2, R.drawable.food02));
+//        RecipeList.add(new Recipe("Vegan Glory", 4.4, R.drawable.food03));
+//        // people02
+//        RecipeList.add(new Recipe("Avocado curry", 2.4, R.drawable.food11));
+//        // people03
+//        RecipeList.add(new Recipe("Brown rice.", 3.2, R.drawable.food21));
+//        RecipeList.add(new Recipe("Tofu satay", 6.1, R.drawable.food22));
+//        RecipeList.add(new Recipe("Red curry tofu and green", 4.1, R.drawable.food23));
 
     }
 
