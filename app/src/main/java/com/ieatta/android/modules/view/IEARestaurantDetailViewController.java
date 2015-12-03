@@ -6,8 +6,11 @@ import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
+import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell;
+import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Photo;
@@ -93,16 +96,13 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 // Finally, hide hud.
                 self.hideHUD();
 
-//            self.setRegisterCellClass(IEARestaurantDetailHeaderCell)
-                self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.class, IEARestaurantEventsCell.layoutResId, RestaurantDetailSection.sectionEvents.ordinal());
 
-//            self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: RestaurantDetailSection.sectionHeader.rawValue)
-
-//            self.setSectionItems([IEARestaurantDetailHeader(viewController: self, model: self.restaurant!)], forSectionIndex: RestaurantDetailSection.sectionHeader.rawValue)
-
-                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
+                self.setRegisterCellClass(IEARestaurantDetailHeaderCell.class, IEARestaurantDetailHeaderCell.layoutResId, RestaurantDetailSection.sectionHeader.ordinal());
+                self.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(self, self.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
 
                 self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
+                self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.class, IEARestaurantEventsCell.layoutResId, RestaurantDetailSection.sectionEvents.ordinal());
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
 
                 self.configureEventSection(self.fetchedEvents);
 //            self.configurePhotoGallerySection(fetchedPhotosTask)
