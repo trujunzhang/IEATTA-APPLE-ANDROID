@@ -21,13 +21,13 @@ public class IEARestaurantDetailHeaderCell  extends IEAViewHolder {
     public IEARestaurantDetailHeaderCell(View itemView) {
         super(itemView);
 
-        self.formattedAddressLabel = (TextView) itemView.findViewById(R.id.formattedAddressLabel);
+//        self.formattedAddressLabel = (TextView) itemView.findViewById(R.id.formattedAddressLabel);
     }
 
     @Override
     public void updateWithModel(Object model) {
         IEARestaurantDetailHeader more  = (IEARestaurantDetailHeader) model;
-        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
+//        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
 
     }
 }
