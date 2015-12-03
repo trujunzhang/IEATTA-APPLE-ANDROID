@@ -96,7 +96,6 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 // Finally, hide hud.
                 self.hideHUD();
 
-
                 self.setRegisterCellClass(IEARestaurantDetailHeaderCell.class, IEARestaurantDetailHeaderCell.layoutResId, RestaurantDetailSection.sectionHeader.ordinal());
                 self.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(self, self.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
 
