@@ -4,8 +4,8 @@ package com.ieatta.android.modules.common.edit;
  * Created by djzhang on 12/1/15.
  */
 public class EditBaseCellModel {
-    IEAEditKey editKey  = IEAEditKey.Unknow;
-    int editValueResId;
+    public IEAEditKey editKey  = IEAEditKey.Unknow;
+    public int editValueResId;
 
     public EditBaseCellModel(IEAEditKey editKey) {
         this.editKey = editKey;
