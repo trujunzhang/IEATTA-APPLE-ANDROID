@@ -36,6 +36,11 @@ public class IEAEditRecipeViewController extends IEAEditBaseViewController {
     }
 
     @Override
+    protected void registerEditSection() {
+
+    }
+
+    @Override
     protected void postSaveModelSucess() {
 //        dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //                NSNotificationCenter.defaultCenter().postNotificationName(PARecipeCreatedNotification, object: nil)

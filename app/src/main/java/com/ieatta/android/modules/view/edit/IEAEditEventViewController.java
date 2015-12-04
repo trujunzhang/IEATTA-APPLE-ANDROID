@@ -35,6 +35,11 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
         return new IEAEditEventManager();
     }
 
+    @Override
+    protected void registerEditSection() {
+
+    }
+
     // MARK: Override IEAPhotoGalleryViewController methods
 
     @Override

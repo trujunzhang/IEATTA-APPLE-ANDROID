@@ -101,6 +101,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 //        .sharedInstance.resetObserver();
 
         // Register Cells by class.
+        self.registerEditSection();
 //        self.setRegisterCellClass(IEAEditTextFieldCell.getType());
 
         self.editManager = self.getEditManager();
@@ -108,8 +109,6 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         // TODO djzhang(test)
         self.prepareForEditTableView();
         self.setItemsInSection(self.editManager.getRowsInSection(self.editedModel, self));
-
-
 
 
 //        self.getQueryPhotosTask()
@@ -145,12 +144,13 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         return Photo.queryPhotosByModel(self.getPageModel());
     }
 
-    protected abstract void prepareForEditTableView() ;
+    protected abstract void prepareForEditTableView();
 
     protected abstract IEAEditBaseManager getEditManager();
 
-    // MARK: Override IEABaseTableViewController methods
+    protected abstract void registerEditSection();
 
+    // MARK: Override IEABaseTableViewController methods
     @Override
     public ParseModelAbstract getPageModel() {
         return self.editedModel;

@@ -5,6 +5,7 @@ import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitMasterViewController;
+import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
@@ -43,6 +44,11 @@ public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
     @Override
     protected IEAEditBaseManager getEditManager() {
         return new IEAEditRestaurantManager();
+    }
+
+    @Override
+    protected void registerEditSection() {
+        self.setRegisterCellClass(IEAEditTextFieldCell.getType(),EditRestaurantSection.sectionInformation.ordinal());
     }
 
     @Override
