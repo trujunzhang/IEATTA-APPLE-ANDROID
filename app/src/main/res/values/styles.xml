@@ -2339,7 +2339,7 @@
 
     <style name="YelpHoloEditText.Light" parent="@style/YelpHoloEditText">
         <item name="android:textColorHint">@color/gray_faint</item>
-        <!--<item name="android:background">@drawable/yelp_holo_underline_light</item>-->
+        <item name="android:background">@drawable/yelp_holo_underline_light</item>
     </style>
 
     <style name="YelpHoloSpinner">
