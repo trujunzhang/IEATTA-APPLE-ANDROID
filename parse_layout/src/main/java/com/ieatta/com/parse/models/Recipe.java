@@ -21,6 +21,7 @@ import bolts.TaskCompletionSource;
  * Created by djzhang on 11/27/15.
  */
 public class Recipe extends ParseModelSync {
+    final Recipe self = this;
 
     // Class key
     private static final String kPAPClassKey = "Recipe";
@@ -164,11 +165,9 @@ public class Recipe extends ParseModelSync {
 
     @Override
     public Task<Object> queryBelongToTask(ParseModelAbstract belongTo) {
-        final Recipe self = this;
-
-        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<Object, Object>() {
+        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<ParseModelAbstract, Object>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Object then(Task<ParseModelAbstract> task) throws Exception {
                 ParseModelAbstract model = ParseModelAbstract.getInstanceFromType(PQueryModelType.Event, self.eventRef);
                 return model.queryBelongToTask(self);
             }
@@ -179,9 +178,7 @@ public class Recipe extends ParseModelSync {
                 final Event event = (Event) task.getResult();
                 self.belongToModel = new Team(event);
 
-                TaskCompletionSource finalTask = new TaskCompletionSource();
-                finalTask.setResult(self);
-                return finalTask.getTask();
+                return  Task.forResult(self);
             }
         });
     }
