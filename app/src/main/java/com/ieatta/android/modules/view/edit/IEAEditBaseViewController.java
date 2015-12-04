@@ -20,7 +20,7 @@ import bolts.Task;
  * Created by djzhang on 12/1/15.
  */
 public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
-    private IEAEditBaseViewController self = this;
+    protected IEAEditBaseViewController self = this;
 
     @Override
     public boolean havePhotoGallery() {

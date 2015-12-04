@@ -13,7 +13,7 @@ import com.ieatta.com.parse.models.Restaurant;
  * Created by djzhang on 12/4/15.
  */
 
-class IEAEditRestaurantManager extends IEAEditAbstractManager {
+public class IEAEditRestaurantManager extends IEAEditAbstractManager {
     @Override
     public ParseModelAbstract convertToEditModel(Object[] rowModels, ParseModelAbstract model) {
         Restaurant restaurant = (Restaurant) model;

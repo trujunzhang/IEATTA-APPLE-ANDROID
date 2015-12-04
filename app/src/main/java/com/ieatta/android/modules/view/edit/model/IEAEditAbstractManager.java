@@ -15,7 +15,7 @@ import com.ieatta.com.parse.models.Team;
  * Created by djzhang on 12/4/15.
  */
 
-abstract class IEAEditAbstractManager implements IEAEditBaseManager {
+public abstract class IEAEditAbstractManager implements IEAEditBaseManager {
     private IEAEditAbstractManager self = this;
 
     @Override
