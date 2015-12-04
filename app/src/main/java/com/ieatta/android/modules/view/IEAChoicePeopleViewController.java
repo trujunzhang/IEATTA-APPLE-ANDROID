@@ -3,6 +3,7 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseTableViewController;
+import com.ieatta.android.modules.cells.headerfooterview.IEAChoicePeopleHeaderCell;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
 
@@ -76,7 +77,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
                 // Finally, hide hud.
                 self.hideHUD();
 
-//                    self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell);
+                    self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.class,IEAChoicePeopleHeaderCell.);
 //                    self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.self);
 
 //                    self.appendSectionTitleCell(new  SectionChoicePeopleCellModel( IEAEditKey.Section_Title, viewController: self),  ChoicePeopleSection.sectionPeople.ordinal());
