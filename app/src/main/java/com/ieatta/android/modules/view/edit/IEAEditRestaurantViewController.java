@@ -13,12 +13,13 @@ import com.ieatta.android.modules.view.edit.model.IEAEditRestaurantManager;
  * Created by djzhang on 12/1/15.
  */
 
-enum EditRestaurantSection  {
-         sectionInformation      ,//= 0
-         sectionPhotos           ,//= 1
-         sectionGoogleMapAddress ,//= 2
-        }
-public class IEAEditRestaurantViewController extends IEAEditBaseViewController{
+enum EditRestaurantSection {
+    sectionInformation,//= 0
+    sectionPhotos,//= 1
+    sectionGoogleMapAddress,//= 2
+}
+
+public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,9 @@ public class IEAEditRestaurantViewController extends IEAEditBaseViewController{
     @Override
     protected void prepareForEditTableView() {
         // Add rows for sections.
-        self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, R.string.Restaurant_Information),  EditRestaurantSection.sectionInformation.ordinal());
+        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), EditRestaurantSection.sectionInformation.ordinal());
 
-        if(self.newModel == false){
+        if (self.newModel == false) {
             self.showGoogleMapAddress(EditRestaurantSection.sectionGoogleMapAddress.ordinal());
         }
     }

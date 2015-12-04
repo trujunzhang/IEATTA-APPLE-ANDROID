@@ -12,11 +12,12 @@ import com.ieatta.android.modules.view.edit.model.IEAEditRecipeManager;
  * Created by djzhang on 12/1/15.
  */
 
-enum EditRecipeSection  {
-         sectionInformation ,//= 0
-         sectionPhotos      ,//= 1
-        }
-public class IEAEditRecipeViewController extends IEAEditBaseViewController{
+enum EditRecipeSection {
+    sectionInformation,//= 0
+    sectionPhotos,//= 1
+}
+
+public class IEAEditRecipeViewController extends IEAEditBaseViewController {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class IEAEditRecipeViewController extends IEAEditBaseViewController{
     @Override
     protected void prepareForEditTableView() {
         // Add rows for sections.
-        self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, R.string.Recipe_Information),  EditRecipeSection.sectionInformation.ordinal());
+        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), EditRecipeSection.sectionInformation.ordinal());
     }
 
     @Override

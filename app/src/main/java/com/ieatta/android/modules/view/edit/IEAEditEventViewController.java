@@ -26,7 +26,7 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
 //        self.setRegisterCellClass(IEADatePickerCell.class,IEADatePickerCell.);
 
         // Add rows for sections.
-        self.appendSectionTitleCell(new  SectionTitleCellModel( IEAEditKey.Section_Title, R.string.Event_Information),  EditEventSection.sectionInformation.ordinal());
+        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), EditEventSection.sectionInformation.ordinal());
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Date_of_Event), EditEventSection.sectionDurationDate.ordinal());
     }
 

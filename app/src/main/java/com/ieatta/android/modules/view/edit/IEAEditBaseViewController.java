@@ -29,7 +29,7 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 
     @Override
     public boolean shouldShowHUD() {
-        if(self.newModel == true){
+        if (self.newModel == true) {
             return false;
         }
         return true;
@@ -37,7 +37,7 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 
     @Override
     public boolean navigationShouldPopOnBackButton() {
-        if(self.newModel == false){
+        if (self.newModel == false) {
             return true;
         }
 //        if(EditChangedObserver.sharedInstance.hasTakenPhoto == true){
@@ -65,14 +65,14 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
     private IEAEditBaseManager editManager;
 
 
-    public  IEAEditBaseViewController setEditModel(ParseModelAbstract editedModel) {
+    public IEAEditBaseViewController setEditModel(ParseModelAbstract editedModel) {
         self.editedModel = editedModel;
         self.newModel = false;
 
         return self;
     }
 
-    public  IEAEditBaseViewController setEditModel(ParseModelAbstract editedModel,boolean newModel) {
+    public IEAEditBaseViewController setEditModel(ParseModelAbstract editedModel, boolean newModel) {
         self.editedModel = editedModel;
         self.newModel = newModel;
 
@@ -128,19 +128,19 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 
     }
 
-    protected Task<List<ParseModelAbstract>> getQueryPhotosTask(){
-        if(self.newModel == true){
+    protected Task<List<ParseModelAbstract>> getQueryPhotosTask() {
+        if (self.newModel == true) {
             List<ParseModelAbstract> empty = new LinkedList<>();
             return Task.forResult(empty);
         }
-        return Photo.queryPhotosByModel( self.getPageModel());
+        return Photo.queryPhotosByModel(self.getPageModel());
     }
 
-    protected void prepareForEditTableView(){
+    protected void prepareForEditTableView() {
 //        fatalError("prepareForTableView() has not been implemented")
     }
 
-    protected IEAEditBaseManager getEditManager()  {
+    protected IEAEditBaseManager getEditManager() {
 //        fatalError("getEditManager() has not been implemented")
         return null;
     }
@@ -152,11 +152,11 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
         return self.editedModel;
     }
 
-    private void setItemsInSection(Object[] rows){
+    private void setItemsInSection(Object[] rows) {
         self.rowModels = rows;
         for (int i = 0; i < rows.length; i++) {
-            Object[] items = (Object[])rows[i];
-            setSectionItems(CollectionUtils.createList(items),i);
+            Object[] items = (Object[]) rows[i];
+            setSectionItems(CollectionUtils.createList(items), i);
         }
     }
 
@@ -167,7 +167,7 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
         return self.rowModels.length;
     }
 
-    protected void postSaveModelSucess(){
+    protected void postSaveModelSucess() {
 //        fatalError("postSaveModelSucess() has not been implemented")
     }
 
@@ -215,7 +215,6 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 //    func saveNewModel(newModel:ParseModelAbstract) -> BFTask{
 //        return (newModel as! ParseModelQuery).pinInBackgroundWithNewRecord()
 //    }
-
 
 
 }

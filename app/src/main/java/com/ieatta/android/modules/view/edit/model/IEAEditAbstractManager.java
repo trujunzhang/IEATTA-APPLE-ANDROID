@@ -45,7 +45,7 @@ public abstract class IEAEditAbstractManager implements IEAEditBaseManager {
     }
 
     private void updateRow(EditCellModel row, ParseModelAbstract model) {
-        switch(row.editKey){
+        switch (row.editKey) {
             // ++++++++++++++++++++++ Restaurant ++++
             case rest_name:
 //                ((Restaurant)model).displayName = row.editValue;
@@ -55,24 +55,24 @@ public abstract class IEAEditAbstractManager implements IEAEditBaseManager {
 //                ((Event)model).displayName = row.editValue;
                 break;
             // ++++++++++++++++++++++ Team ++++
-            case person_name   :
+            case person_name:
 //                ((Team)model).displayName = row.editValue;
                 break;
-            case person_address :
+            case person_address:
 //                ((Team)model).address = row.editValue;
                 break;
-            case person_email   :
+            case person_email:
 //                ((Team)model).email = row.editValue;
                 break;
             // ++++++++++++++++++++++ Recipe ++++
-            case recipe_name :
+            case recipe_name:
 //                ((Recipe)model).displayName = row.editValue;
                 break;
-            case recipe_cost :
+            case recipe_cost:
 //                if let n = NSNumberFormatter().numberFromString(row.editValue) {
 //                (model as! Recipe).cost = CGFloat(n)
 //            }
-            break;
+                break;
             default:
                 break;
         }
@@ -86,7 +86,7 @@ public abstract class IEAEditAbstractManager implements IEAEditBaseManager {
 //    }
 
     private void updateRow(DatePickerCellModel row, ParseModelAbstract model) {
-        switch(row.editKey){
+        switch (row.editKey) {
             case event_starttime:
 //                ((Event)model ).startDate = row.date;
                 break;
