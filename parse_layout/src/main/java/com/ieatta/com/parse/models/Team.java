@@ -123,19 +123,18 @@ public class Team extends ParseModelSync {
     }
 
     // MARK: Support methods.
-    public static Task<Object> filterFrom(Task<LinkedList<ParseModelAbstract>> previous, LinkedList<Team> source) {
+    public static Task<LinkedList<ParseModelAbstract>> filterFrom(Task<LinkedList<ParseModelAbstract>> previous, LinkedList<Team> source) {
 
         LinkedList<ParseModelAbstract> result =  previous.getResult();
 
-        LinkedList<Team> filterUser = new LinkedList<>();
+        LinkedList<ParseModelAbstract> filterUser = new LinkedList<>();
         for (ParseModelAbstract model : result) {
             if (checkExist((Team)model, source)) {
                 filterUser.add((Team)model);
             }
         }
-        TaskCompletionSource finalTask = new TaskCompletionSource();
-        finalTask.setResult(filterUser);
-        return finalTask.getTask();
+
+        return Task.forResult(filterUser);
     }
 
     public static Task<LinkedList<ParseModelAbstract>> queryTeam() {
