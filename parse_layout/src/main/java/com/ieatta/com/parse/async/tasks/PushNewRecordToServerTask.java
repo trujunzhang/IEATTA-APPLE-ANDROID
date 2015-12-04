@@ -9,6 +9,7 @@ import com.parse.ParseQuery;
 import java.util.Collection;
 import java.util.List;
 import java.util.List;
+import java.util.Objects;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -23,13 +24,11 @@ public class PushNewRecordToServerTask {
 
         final Task.TaskCompletionSource tcs = Task.create();
 
-        ParseModelQuery.findLocalObjectsInBackground(query).onSuccess(new Continuation<List<ParseObject>, Object>() {
+        ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task>() {
             @Override
-            public Object then(Task<List<ParseObject>> task) throws Exception {
+            public Task then(Task<List<ParseObject>> task) throws Exception {
                 if (task.getError() != null) {
-                    TaskCompletionSource finalTask = new TaskCompletionSource();
-                    finalTask.setError(task.getError());
-                    return finalTask;
+                    return Task.forError(task.getError());
                 }
                 List<ParseObject> results = task.getResult();
 //                print("Push objects to Server: \(results.count)")

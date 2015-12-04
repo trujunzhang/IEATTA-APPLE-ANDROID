@@ -24,44 +24,44 @@ public class PullNewRecordFromServerTask {
     public static Task<Object> PullFromServerSeriesTask(ParseQuery query) {
         final TaskCompletionSource seriesTask = new TaskCompletionSource();
 
-//        query.findInBackground().continueWithTask(new Continuation() {
-//            @Override
-//            public Object then(Task task) throws Exception {
-//                if (task.getError() != null) {
-//                    TaskCompletionSource finalTask = new TaskCompletionSource();
-//                    finalTask.setError(task.getError());
-//                    return finalTask;
-//                }
-//                List<ParseObject> results = new List<ParseObject>((Collection<? extends ParseObject>) task.getResult());
-////                print("Pull objects from Server: \(results.count)");
-//
-//
-//                // Create a trivial completed task as a base case.
-//                Task<Void> _task = Task.forResult(null);
-//                for (final ParseObject result : results) {
-//                    // For each item, extend the task with a function to delete the item.
-//                    _task = _task.continueWithTask(new Continuation<Void, Task<Void>>() {
-//                        public Task<Void> then(Task<Void> ignored) throws Exception {
-//                            // Return a task that will be marked as completed when the delete is finished.
-//                            return PullObjectFromServerTask(result);
-//                        }
-//                    });
-//                }
-//
-//                return null;
-//            }
-//        }).continueWith(new Continuation() {
-//            @Override
-//            public Object then(Task task) throws Exception {
-//                // Every offline objects was pushed to Parse.com.
-//                if (task.getError() != null) {
-//                    seriesTask.setError(task.getError());
-//                } else {
-//                    seriesTask.setResult(true);
-//                }
-//                return null;
-//            }
-//        });
+        query.findInBackground().continueWithTask(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                if (task.getError() != null) {
+                    TaskCompletionSource finalTask = new TaskCompletionSource();
+                    finalTask.setError(task.getError());
+                    return finalTask;
+                }
+                List<ParseObject> results = (List<ParseObject>) task.getResult();
+//                print("Pull objects from Server: \(results.count)");
+
+
+                // Create a trivial completed task as a base case.
+                Task<Void> _task = Task.forResult(null);
+                for (final ParseObject result : results) {
+                    // For each item, extend the task with a function to delete the item.
+                    _task = _task.continueWithTask(new Continuation<Void, Task<Void>>() {
+                        public Task<Void> then(Task<Void> ignored) throws Exception {
+                            // Return a task that will be marked as completed when the delete is finished.
+                            return PullObjectFromServerTask(result);
+                        }
+                    });
+                }
+
+                return null;
+            }
+        }).continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                // Every offline objects was pushed to Parse.com.
+                if (task.getError() != null) {
+                    seriesTask.setError(task.getError());
+                } else {
+                    seriesTask.setResult(true);
+                }
+                return null;
+            }
+        });
 
         return seriesTask.getTask();
     }
