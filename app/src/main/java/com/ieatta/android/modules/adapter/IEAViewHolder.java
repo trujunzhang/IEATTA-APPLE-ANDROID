@@ -11,6 +11,7 @@ import com.ieatta.android.extensions.viewkit.ModelTransfer;
  */
 public abstract class IEAViewHolder extends RecyclerView.ViewHolder implements ModelTransfer {
 
+
     public IEAViewHolder(View itemView) {
         super(itemView);
     }
