@@ -8,7 +8,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
  */
 public interface IEAEditBaseManager {
     
-    public void getRowsInSection(ParseModelAbstract model,IEAEditBaseViewController viewController ) ;
+    public Object[] getRowsInSection(ParseModelAbstract model,IEAEditBaseViewController viewController ) ;
 public     ParseModelAbstract convertToEditModel( Object[] rowModels,  ParseModelAbstract model);
 }
 
