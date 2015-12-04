@@ -9,7 +9,7 @@ import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
 import com.ieatta.android.modules.cells.headerview.IEAEventHeaderCell;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
 import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;

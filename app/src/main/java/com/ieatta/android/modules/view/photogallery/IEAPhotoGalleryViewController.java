@@ -7,7 +7,7 @@ import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;

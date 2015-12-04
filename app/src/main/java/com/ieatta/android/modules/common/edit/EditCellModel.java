@@ -1,5 +1,7 @@
 package com.ieatta.android.modules.common.edit;
 
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+
 /**
  * Created by djzhang on 12/1/15.
  */

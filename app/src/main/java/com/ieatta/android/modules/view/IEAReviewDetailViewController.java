@@ -3,7 +3,7 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseTableViewController;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.enums.ReviewType;

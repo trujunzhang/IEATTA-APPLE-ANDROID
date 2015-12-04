@@ -3,7 +3,7 @@ package com.ieatta.android.modules.view.edit.model;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 import com.ieatta.android.modules.common.edit.EditCellModel;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;

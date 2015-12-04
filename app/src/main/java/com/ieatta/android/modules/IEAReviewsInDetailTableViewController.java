@@ -1,7 +1,7 @@
 package com.ieatta.android.modules;
 
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.models.Review;
 
 import java.util.List;

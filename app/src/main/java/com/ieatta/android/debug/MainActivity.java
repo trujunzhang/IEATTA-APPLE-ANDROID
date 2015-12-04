@@ -7,7 +7,7 @@ import com.ieatta.android.modules.IEABaseTableViewController;
 import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 
 import java.util.Arrays;

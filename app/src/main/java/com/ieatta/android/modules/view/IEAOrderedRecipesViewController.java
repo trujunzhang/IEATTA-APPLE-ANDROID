@@ -8,7 +8,7 @@ import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
 import com.ieatta.android.modules.cells.IEAOrderedRecipeCell;
 import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Recipe;

@@ -9,7 +9,7 @@ import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;

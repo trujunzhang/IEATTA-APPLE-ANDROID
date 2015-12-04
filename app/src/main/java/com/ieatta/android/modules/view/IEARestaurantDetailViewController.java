@@ -8,7 +8,7 @@ import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
 import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;

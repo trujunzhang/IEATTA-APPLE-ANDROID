@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.ieatta.android.modules.IEABaseTableViewController;
 import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAChoicePeopleHeaderCell;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionChoicePeopleCellModel;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
