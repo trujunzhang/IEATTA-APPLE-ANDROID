@@ -7,12 +7,14 @@ import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.modules.cells.IEAGoogleMapAddressCell;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.tools.TableViewHeightInfo;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Restaurant;
 import com.walnutlabs.android.ProgressHUD;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -91,14 +93,9 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     }
 
     public void showGoogleMapAddress(int sectionIndex) {
-        Restaurant restaurant = (Restaurant) self.getPageModel();
         self.setRegisterCellClass(IEAGoogleMapAddressCell.class, IEAGoogleMapAddressCell.layoutResId, sectionIndex);
-
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Current_Address), sectionIndex);
-
-        List list = new LinkedList();
-        list.add(restaurant);
-        self.setSectionItems(list, sectionIndex);
+        self.setSectionItems(CollectionUtils.createList(self.getPageModel()), sectionIndex);
     }
 
 
