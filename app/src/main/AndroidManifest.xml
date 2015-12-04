@@ -36,28 +36,32 @@
             android:screenOrientation="portrait">
 
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
         <activity
             android:name=".modules.view.IEAOrderedRecipesViewController"
             android:screenOrientation="portrait">
+
+
         </activity>
 
         <activity
             android:name=".modules.view.IEARecipeDetailViewController"
             android:screenOrientation="portrait">
+
+
         </activity>
 
         <activity
             android:name=".modules.view.IEAChoicePeopleViewController"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <!--The following is for editing models.-->
 
