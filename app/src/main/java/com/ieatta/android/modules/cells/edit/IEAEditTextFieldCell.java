@@ -32,5 +32,6 @@ public class IEAEditTextFieldCell  extends IEAViewHolder {
     public void updateWithModel(Object model) {
         self.model  = (EditCellModel) model;
         self.editText.setText(self.model.editValue);
+        self.editText.setHint(self.model.editPlaceHolderResId);
     }
 }
