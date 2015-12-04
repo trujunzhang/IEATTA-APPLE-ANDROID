@@ -10,7 +10,7 @@ import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
 
 public class IEAOrderedPeopleCell extends IEAViewHolder {
     public static CellType getType() {
-        return new CellType(IEANearRestaurantMoreCell.class, R.layout.ordered_people_cell);
+        return new CellType(IEAOrderedPeopleCell.class, R.layout.ordered_people_cell);
     }
 
     private IEAOrderedPeopleCell self = this;
