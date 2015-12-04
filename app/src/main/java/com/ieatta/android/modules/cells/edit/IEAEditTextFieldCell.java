@@ -10,7 +10,7 @@ import com.ieatta.com.parse.models.Restaurant;
  * Created by djzhang on 12/2/15.
  */
 public class IEAEditTextFieldCell  extends IEAViewHolder {
-    public static int layoutResId = R.layout.google_address_cll;
+    public static int layoutResId = R.layout.edit_text_field_cell;
 
     private IEAEditTextFieldCell self = this;
 

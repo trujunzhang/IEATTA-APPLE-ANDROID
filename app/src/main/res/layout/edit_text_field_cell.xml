@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/Edit_Cell">
+
+    <EditText
+        android:id="@+id/editText"
+        style="@style/YelpHoloEditText.Light"
+        android:layout_width="fill_parent"
+        android:layout_height="48.0dip"
+        android:imeOptions="actionNext|flagNoExtractUi"
+        android:inputType="textPersonName|textCapWords"
+        android:paddingLeft="16dp"
+        android:selectAllOnFocus="false"
+        android:textColor="@color/gray_dark" />
+
+</FrameLayout>
