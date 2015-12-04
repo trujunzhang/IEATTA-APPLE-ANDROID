@@ -6,6 +6,7 @@ import com.ieatta.com.parse.models.Restaurant;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by djzhang on 8/9/15.
@@ -19,7 +20,7 @@ public class RestaurantSortUtils {
         }
     }
 
-    public static LinkedList<ParseModelAbstract> sort(LinkedList<ParseModelAbstract> modelProtocols) {
+    public static List<ParseModelAbstract> sort(List<ParseModelAbstract> modelProtocols) {
         Collections.sort(modelProtocols, new SortByName());
         return modelProtocols;
     }

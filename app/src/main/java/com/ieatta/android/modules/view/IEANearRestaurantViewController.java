@@ -42,7 +42,7 @@ enum NearRestaurantSection {
 
 public class IEANearRestaurantViewController extends IEASplitMasterViewController {
     private IEANearRestaurantViewController self = this;
-    private LinkedList<ParseModelAbstract> fetchedRestaurants;
+    private List<ParseModelAbstract> fetchedRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,9 +117,9 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         // TODO djzhang(test)
 //        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
-        Restaurant.queryRestaurants().onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<Boolean>>() {
+        Restaurant.queryRestaurants().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
-            public Task<Boolean> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedRestaurants = task.getResult();
                 self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 

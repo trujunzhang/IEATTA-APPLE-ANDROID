@@ -17,6 +17,7 @@ import com.nostra13.universalimageloader.utils.L;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -66,11 +67,11 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
 
 
         Recipe.queryRecipes(self.orderedPeople, self.orderedPeople.belongToModel)
-                .onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<Boolean>>  ()
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>  ()
         {
             @Override
-            public Task<Boolean> then (Task < LinkedList < ParseModelAbstract >> task)throws Exception {
-            fetchedOrderedRecipes = task.getResult();
+            public Task<Boolean> then (Task <List< ParseModelAbstract >> task)throws Exception {
+            fetchedOrderedRecipes = (LinkedList<ParseModelAbstract>) task.getResult();
 
             // Next, fetch related photos
             return self.getPhotosForModelsTask(task);
@@ -78,18 +79,18 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
         }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
-                    // Finally, hide hud.
-                    self.hideHUD();
+                // Finally, hide hud.
+                self.hideHUD();
 
-                    self.setRegisterCellClass(IEAOrderedPeopleCell.class, IEAOrderedPeopleCell.layoutResId, OrderedRecipesSection.sectionOrderedPeople.ordinal());
-                    self.setRegisterCellClassWhenSelected(IEAOrderedRecipeCell.class, IEAOrderedRecipeCell.layoutResId, OrderedRecipesSection.sectionRecipes.ordinal());
+                self.setRegisterCellClass(IEAOrderedPeopleCell.class, IEAOrderedPeopleCell.layoutResId, OrderedRecipesSection.sectionOrderedPeople.ordinal());
+                self.setRegisterCellClassWhenSelected(IEAOrderedRecipeCell.class, IEAOrderedRecipeCell.layoutResId, OrderedRecipesSection.sectionRecipes.ordinal());
 
-                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_People), OrderedRecipesSection.sectionOrderedPeople.ordinal());
-                    self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title,  R.string.Ordered_Recipes),  OrderedRecipesSection.sectionRecipes.ordinal());
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_People), OrderedRecipesSection.sectionOrderedPeople.ordinal());
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_Recipes), OrderedRecipesSection.sectionRecipes.ordinal());
 
-                    self.setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.orderedPeople,  (self.orderedPeople.belongToModel),self),  OrderedRecipesSection.sectionOrderedPeople.ordinal());
+                self.setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.orderedPeople, (self.orderedPeople.belongToModel), self), OrderedRecipesSection.sectionOrderedPeople.ordinal());
 
-                    self.setSectionItems(fetchedOrderedRecipes,  OrderedRecipesSection.sectionRecipes.ordinal());
+                self.setSectionItems(fetchedOrderedRecipes, OrderedRecipesSection.sectionRecipes.ordinal());
 
                 return null;
             }

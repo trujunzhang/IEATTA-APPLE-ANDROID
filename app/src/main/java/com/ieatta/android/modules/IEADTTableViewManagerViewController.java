@@ -10,6 +10,7 @@ import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -47,7 +48,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         getTableManager().registerCellClass(cellClass, layoutResId, forSectionIndex);
     }
 
-    public void setSectionItems(LinkedList items, int forSectionIndex) {
+    public void setSectionItems(List items, int forSectionIndex) {
         getMemoryStorage().setItems(items, forSectionIndex);
     }
 

@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 import bolts.Task;
 import bolts.TaskCompletionSource;
@@ -54,8 +55,8 @@ public class IEACache {
         return  self.photoPointCache.get(ParseModelAbstract.getPoint(model));
     }
 
-    public boolean setPhotoPointForModels(Task<LinkedList<ParseModelAbstract>> previous){
-        LinkedList<ParseModelAbstract> fetchedPhotos =previous.getResult();
+    public boolean setPhotoPointForModels(Task<List<ParseModelAbstract>> previous){
+        List<ParseModelAbstract> fetchedPhotos =previous.getResult();
         for(Object photo : fetchedPhotos){
             self.setPhotoPoint((Photo)photo);
         }

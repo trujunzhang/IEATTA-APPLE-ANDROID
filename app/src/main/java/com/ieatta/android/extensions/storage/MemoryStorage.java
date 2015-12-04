@@ -7,6 +7,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -48,9 +49,9 @@ public class MemoryStorage {
     /// Set items for specific section. This will reload UI after updating.
     /// - Parameter items: items to set for section
     /// - Parameter forSectionIndex: index of section to update
-    public void setItems(LinkedList items, int forSectionIndex) {
+    public void setItems(List items, int forSectionIndex) {
         SectionModel section = self.verifySection(forSectionIndex);
-        section.items = items;
+        section.items = (LinkedList) items;
         self.sections.put(new Integer(forSectionIndex), section);
 
         self.reloadTableView();

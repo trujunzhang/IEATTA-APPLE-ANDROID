@@ -14,6 +14,7 @@ import com.ieatta.com.parse.models.Restaurant;
 import com.walnutlabs.android.ProgressHUD;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -78,12 +79,12 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
 //        return 0.0
 //    }
 
-    public Task<Boolean> getPhotosForModelsTask(final Task<LinkedList<ParseModelAbstract>> previous) {
+    public Task<Boolean> getPhotosForModelsTask(final Task<List<ParseModelAbstract>> previous) {
         // First of all, query relate photos task.
         return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous))
-                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Boolean>() {
+                .continueWith(new Continuation<List<ParseModelAbstract>, Boolean>() {
                     @Override
-                    public Boolean then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+                    public Boolean then(Task<List<ParseModelAbstract>> task) throws Exception {
                         // Next, Cache all models' uuid as key and photo's uuid as value.
                         return IEACache.sharedInstance.setPhotoPointForModels(task);
                     }

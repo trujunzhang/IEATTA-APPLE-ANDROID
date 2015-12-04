@@ -27,6 +27,8 @@ import java.util.List;
  * Created by djzhang on 11/27/15.
  */
 public class Photo extends ParseModelSync {
+    private Photo self = this;
+
     private static final String OS_TYPE = "Android";
 
     // Class key
@@ -304,18 +306,19 @@ public class Photo extends ParseModelSync {
 //    }
 
     public Task<Object> getRelatedPhoto() {
-        final Photo self = this;
-        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                return self.convertToLocalModelTask(task);
-            }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                return self.getThumbanilImage();
-            }
-        });
+//        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).continueWith(new Continuation<Object, Object>() {
+//            @Override
+//            public Object then(Task<Object> task) throws Exception {
+//                return self.convertToLocalModelTask(task);
+//            }
+//        }).continueWith(new Continuation<Object, Object>() {
+//            @Override
+//            public Object then(Task<Object> task) throws Exception {
+//                return self.getThumbanilImage();
+//            }
+//        });
+
+        return null;
     }
 
     public Task<Object> getThumbanilImage() {
