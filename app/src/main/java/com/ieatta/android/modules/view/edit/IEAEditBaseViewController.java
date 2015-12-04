@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
+import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.android.observers.EditChangedObserver;
@@ -153,11 +154,10 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 
     private void setItemsInSection(Object[] rows){
         self.rowModels = rows;
-
-//        for var i = 0; i < rows.count; ++i{
-//            let items:[AnyObject] = rows[i] as! [AnyObject]
-//            setSectionItems(items, forSectionIndex: i)
-//        }
+        for (int i = 0; i < rows.length; i++) {
+            Object[] items = (Object[])rows[i];
+            setSectionItems(CollectionUtils.createList(items),i);
+        }
     }
 
     // MARK: Override IEAPhotoGalleryViewController methods
