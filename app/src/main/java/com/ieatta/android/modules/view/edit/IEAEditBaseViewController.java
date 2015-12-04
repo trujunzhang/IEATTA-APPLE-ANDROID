@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
+import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -59,8 +60,8 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
     protected boolean newModel = false;
     protected ParseModelAbstract editedModel;
 
-//    var rowModels:[AnyObject] = [AnyObject]()
-//    private IEAEditBaseManager editManager;
+    protected Object[] rowModels = new Object[0];
+    private IEAEditBaseManager editManager;
 
 
     public  IEAEditBaseViewController setEditModel(ParseModelAbstract editedModel) {
@@ -94,7 +95,7 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightButtonTitle, style: .Plain, target: self, action: "saveModelAction")
 
-        .sharedInstance.resetObserver();
+//        .sharedInstance.resetObserver();
 
         // Register Cells by class.
 //        self.setRegisterCellClass(IEAEditTextFieldCell.class,IEAEditTextFieldCell);
@@ -138,7 +139,7 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 //        fatalError("prepareForTableView() has not been implemented")
     }
 
-    protected  IEAEditBaseManager getEditManager()  {
+    protected IEAEditBaseManager getEditManager()  {
 //        fatalError("getEditManager() has not been implemented")
         return null;
     }
