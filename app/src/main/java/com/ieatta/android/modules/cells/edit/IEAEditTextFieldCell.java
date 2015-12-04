@@ -1,9 +1,11 @@
 package com.ieatta.android.modules.cells.edit;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.common.edit.EditCellModel;
 import com.ieatta.com.parse.models.Restaurant;
 
 /**
@@ -14,17 +16,18 @@ public class IEAEditTextFieldCell  extends IEAViewHolder {
 
     private IEAEditTextFieldCell self = this;
 
-    private TextView formattedAddressLabel;
+    private TextView editText;
+    private EditCellModel model;
 
     public IEAEditTextFieldCell(View itemView) {
         super(itemView);
 
-        self.formattedAddressLabel = (TextView) itemView.findViewById(R.id.formattedAddressLabel);
+        self.editText = (EditText) itemView.findViewById(R.id.editText);
     }
 
     @Override
     public void updateWithModel(Object model) {
-        Restaurant more  = (Restaurant) model;
-        self.formattedAddressLabel.setText(more.getGoogleMapAddress());
+        self.model  = (EditCellModel) model;
+        self.editText.setText(self.model.editValueResId);
     }
 }
