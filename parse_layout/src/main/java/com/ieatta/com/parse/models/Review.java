@@ -189,9 +189,9 @@ public class Review extends ParseModelSync {
     }
 
 
-    public static List<String> getUserPoints(List<Object> reviews) {
+    public static List<String> getUserPoints(List<ParseModelAbstract> reviews) {
         LinkedList<String> userPoints = new LinkedList<>();
-        for (Object model : reviews) {
+        for (ParseModelAbstract model : reviews) {
             userPoints.add(((Review)model).userRef);
         }
         return userPoints;
