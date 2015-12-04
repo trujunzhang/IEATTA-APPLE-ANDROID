@@ -19,6 +19,7 @@ import com.ieatta.com.parse.models.Team;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -73,16 +74,16 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
 
 
-        Event.queryEventsRelatedRestaurant(self.restaurant).onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<LinkedList<ParseModelAbstract>>>() {
+        Event.queryEventsRelatedRestaurant(self.restaurant).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
-            public Task<LinkedList<ParseModelAbstract>> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                self.fetchedEvents =  task.getResult();
+            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.fetchedEvents = (LinkedList) task.getResult();
 
                 return Photo.queryPhotosByRestaurant(self.restaurant);
             }
-        }).onSuccess(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
+        }).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
             @Override
-            public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
+            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedPhotosTask = task;
 
                 // Finally, hide hud.

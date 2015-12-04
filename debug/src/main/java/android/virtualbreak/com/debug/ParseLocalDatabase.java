@@ -77,19 +77,19 @@ public class ParseLocalDatabase {
 
     // MARK: Retrieve offline database for test.
     public static void queryLocalDatastoreInBackground(ParseQuery query, final PQueryModelType classType ) {
-        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
-            @Override
-            public Object then(Task<List<ParseObject>> task) throws Exception {
-                LinkedList<Object> value = new LinkedList<Object>(task.getResult());
-                if(value.size() > 0){
-                    ParseModelAbstract instance = ParseModelAbstract.getInstanceFromType(classType);
-                    LinkedList<ParseModelAbstract> array = instance.convertToParseModelArray(value, true);
-                    ParseLocalDatabase.printList(classType,array);
-                }
-                
-                return null;
-            }
-        });
+//        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
+//            @Override
+//            public Object then(Task<List<ParseObject>> task) throws Exception {
+//                LinkedList<Object> value = new LinkedList<Object>(task.getResult());
+//                if(value.size() > 0){
+//                    ParseModelAbstract instance = ParseModelAbstract.getInstanceFromType(classType);
+//                    LinkedList<ParseModelAbstract> array = instance.convertToParseModelArray(value, true);
+//                    ParseLocalDatabase.printList(classType,array);
+//                }
+//
+//                return null;
+//            }
+//        });
     }
 
     public static void printList(PQueryModelType type,LinkedList<ParseModelAbstract> array){
