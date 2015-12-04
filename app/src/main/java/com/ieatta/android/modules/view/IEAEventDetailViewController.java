@@ -19,6 +19,7 @@ import com.ieatta.com.parse.models.Team;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -69,20 +70,20 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 
         PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
-                .onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<LinkedList<ParseModelAbstract>>>() {
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
                     @Override
-                    public Task<LinkedList<ParseModelAbstract>> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                        self.fetchedPeopleInEvent = task.getResult();
+                    public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        self.fetchedPeopleInEvent = (LinkedList<ParseModelAbstract>) task.getResult();
 //  Sort, by fetchedPeopleInEvent
 //                        PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
 
                         // 2. Get all people in the event.
                         return Team.queryTeamByPoints(self.fetchedPeopleInEvent);
                     }
-                }).onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Task<Boolean>>() {
+                }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
-            public Task<Boolean> then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-                self.fetchedPeople = task.getResult();
+            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.fetchedPeople = (LinkedList<ParseModelAbstract>) task.getResult();
 //
 //                // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
