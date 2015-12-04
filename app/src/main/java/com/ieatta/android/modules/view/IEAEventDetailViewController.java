@@ -99,10 +99,10 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 // Finally, hide hud.
                 self.hideHUD();
 
-                self.setRegisterCellClass(IEAEventHeaderCell.class, IEAEventHeaderCell.layoutResId, EventDetailSection.sectionHeader.ordinal());
+                self.setRegisterCellClass(IEAEventHeaderCell.getType(), EventDetailSection.sectionHeader.ordinal());
                 self.setSectionItems(CollectionUtils.createList(new IEAEventHeader(self, self.event)), EventDetailSection.sectionHeader.ordinal());
 
-                self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.class, IEAOrderedPeopleCell.layoutResId, EventDetailSection.sectionOrderedPeople.ordinal());
+                self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.getType(), EventDetailSection.sectionOrderedPeople.ordinal());
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 
                     self.addOrderedPeopleSection(self.fetchedPeople);

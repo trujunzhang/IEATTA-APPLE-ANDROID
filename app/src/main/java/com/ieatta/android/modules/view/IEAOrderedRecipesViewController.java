@@ -82,8 +82,8 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
                 // Finally, hide hud.
                 self.hideHUD();
 
-                self.setRegisterCellClass(IEAOrderedPeopleCell.class, IEAOrderedPeopleCell.layoutResId, OrderedRecipesSection.sectionOrderedPeople.ordinal());
-                self.setRegisterCellClassWhenSelected(IEAOrderedRecipeCell.class, IEAOrderedRecipeCell.layoutResId, OrderedRecipesSection.sectionRecipes.ordinal());
+                self.setRegisterCellClass(IEAOrderedPeopleCell.getType(), OrderedRecipesSection.sectionOrderedPeople.ordinal());
+                self.setRegisterCellClassWhenSelected(IEAOrderedRecipeCell.getType(), OrderedRecipesSection.sectionRecipes.ordinal());
 
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_People), OrderedRecipesSection.sectionOrderedPeople.ordinal());
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_Recipes), OrderedRecipesSection.sectionRecipes.ordinal());

@@ -64,8 +64,8 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
         // Finally, hide hud.
         self.hideHUD();
 
-                    self.setRegisterCellClass(IEARecipeDetailHeaderCell.class, IEARecipeDetailHeaderCell.layoutResId, RecipeDetailSection.sectionHeader.ordinal());
-                    self.setRegisterCellClass(IEAReviewUserCell.class, IEAReviewUserCell.layoutResId, RecipeDetailSection.sectionOrderedPeople.ordinal());
+                    self.setRegisterCellClass(IEARecipeDetailHeaderCell.getType(), RecipeDetailSection.sectionHeader.ordinal());
+                    self.setRegisterCellClass(IEAReviewUserCell.getType(), RecipeDetailSection.sectionOrderedPeople.ordinal());
 
                     self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_People), RecipeDetailSection.sectionOrderedPeople.ordinal());
 

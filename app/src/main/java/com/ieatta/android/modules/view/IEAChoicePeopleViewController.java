@@ -87,10 +87,10 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
                 // Finally, hide hud.
                 self.hideHUD();
 
-                self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.class, IEAChoicePeopleHeaderCell.layoutResId);
-                self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal(),IEAChoicePeopleHeaderCell.class, IEAChoicePeopleHeaderCell.layoutResId);
+                self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.getType());
+                self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal(),IEAChoicePeopleHeaderCell.getType());
 
-                self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.class, IEAPeopleInfoCell.layoutResId, ChoicePeopleSection.sectionPeople.ordinal());
+                self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
                 self.setSectionItems(self.fetchedPeople, ChoicePeopleSection.sectionPeople.ordinal());
 
                 return null;

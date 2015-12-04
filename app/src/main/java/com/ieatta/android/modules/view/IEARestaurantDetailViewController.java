@@ -89,11 +89,11 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 // Finally, hide hud.
                 self.hideHUD();
 
-                self.setRegisterCellClass(IEARestaurantDetailHeaderCell.class, IEARestaurantDetailHeaderCell.layoutResId, RestaurantDetailSection.sectionHeader.ordinal());
+                self.setRegisterCellClass(IEARestaurantDetailHeaderCell.getType(), RestaurantDetailSection.sectionHeader.ordinal());
                 self.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(self, self.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
 
                 self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
-                self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.class, IEARestaurantEventsCell.layoutResId, RestaurantDetailSection.sectionEvents.ordinal());
+                self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.getType(), RestaurantDetailSection.sectionEvents.ordinal());
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
 
                 self.configureEventSection(self.fetchedEvents);
