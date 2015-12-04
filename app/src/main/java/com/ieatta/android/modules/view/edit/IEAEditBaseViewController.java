@@ -100,10 +100,6 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
 //        .sharedInstance.resetObserver();
 
-        // Register Cells by class.
-        self.registerEditSection();
-//        self.setRegisterCellClass(IEAEditTextFieldCell.getType());
-
         self.editManager = self.getEditManager();
 
         // TODO djzhang(test)
@@ -147,8 +143,6 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     protected abstract void prepareForEditTableView();
 
     protected abstract IEAEditBaseManager getEditManager();
-
-    protected abstract void registerEditSection();
 
     // MARK: Override IEABaseTableViewController methods
     @Override

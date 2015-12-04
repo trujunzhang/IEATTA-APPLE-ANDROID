@@ -36,6 +36,8 @@ public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
         // Add rows for sections.
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), EditRestaurantSection.sectionInformation.ordinal());
 
+        self.setRegisterCellClass(IEAEditTextFieldCell.getType(),EditRestaurantSection.sectionInformation.ordinal());
+
         if (self.newModel == false) {
             self.showGoogleMapAddress(EditRestaurantSection.sectionGoogleMapAddress.ordinal());
         }
@@ -48,7 +50,7 @@ public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
 
     @Override
     protected void registerEditSection() {
-        self.setRegisterCellClass(IEAEditTextFieldCell.getType(),EditRestaurantSection.sectionInformation.ordinal());
+
     }
 
     @Override

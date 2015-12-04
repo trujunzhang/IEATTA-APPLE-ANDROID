@@ -35,10 +35,6 @@ public class IEAEditRecipeViewController extends IEAEditBaseViewController {
         return new IEAEditRecipeManager();
     }
 
-    @Override
-    protected void registerEditSection() {
-
-    }
 
     @Override
     protected void postSaveModelSucess() {

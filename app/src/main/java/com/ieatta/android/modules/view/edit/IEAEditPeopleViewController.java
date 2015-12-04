@@ -46,10 +46,6 @@ public class IEAEditPeopleViewController extends IEAEditBaseViewController {
         return new IEAEditPeopleManager();
     }
 
-    @Override
-    protected void registerEditSection() {
-
-    }
 
     @Override
     protected void postSaveModelSucess() {
