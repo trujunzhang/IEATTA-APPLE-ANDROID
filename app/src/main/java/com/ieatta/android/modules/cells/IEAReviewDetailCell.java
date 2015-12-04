@@ -10,8 +10,8 @@ import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.com.parse.models.Review;
 
 public class IEAReviewDetailCell extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+
+    public static CellType getType() {
         return new CellType(IEAReviewDetailCell.class, R.layout.near_restaurant_cell);
     }
 
