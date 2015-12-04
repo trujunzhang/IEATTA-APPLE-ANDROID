@@ -4,11 +4,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Recipe;
 
 public class IEAOrderedRecipeCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.ordered_recipe_cell;
+    @Override
+    public CellType getType() {
+        return new CellType(IEAOrderedRecipeCell.class, R.layout.ordered_recipe_cell);
+    }
 
     private IEAOrderedRecipeCell self = this;
 

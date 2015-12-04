@@ -4,11 +4,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 
 public class IEAPhotosCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.near_restaurant_cell;
+    @Override
+    public CellType getType() {
+        return new CellType(IEAPhotosCell.class, R.layout.near_restaurant_cell);
+    }
 
     private IEAPhotosCell self = this;
 

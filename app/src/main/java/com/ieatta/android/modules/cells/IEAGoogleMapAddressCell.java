@@ -4,11 +4,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Restaurant;
 
 public class IEAGoogleMapAddressCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.google_address_cll;
+    @Override
+    public CellType getType() {
+        return new CellType(IEAGoogleMapAddressCell.class, R.layout.google_address_cll);
+    }
 
     private IEAGoogleMapAddressCell self = this;
 
