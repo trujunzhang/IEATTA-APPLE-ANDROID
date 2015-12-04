@@ -12,8 +12,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
  * Created by djzhang on 12/2/15.
  */
 public class IEAPhotoGalleryHeaderCell  extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType  getType() {
         return new CellType(IEAPhotoGalleryHeaderCell.class, R.layout.choice_people_header_cell);
     }
 

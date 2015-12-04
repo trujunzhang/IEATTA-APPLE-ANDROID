@@ -9,8 +9,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 
 public class IEAAddPhotoCell extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType  getType() {
         return new CellType(IEAAddPhotoCell.class, R.layout.near_restaurant_cell);
     }
 

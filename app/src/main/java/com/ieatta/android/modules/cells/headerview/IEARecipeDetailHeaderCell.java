@@ -14,8 +14,7 @@ import com.ieatta.com.parse.models.Restaurant;
  * Created by djzhang on 12/2/15.
  */
 public class IEARecipeDetailHeaderCell  extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType  getType() {
         return new CellType(IEARecipeDetailHeaderCell.class, R.layout.restaurant_detail_header_cell);
     }
 

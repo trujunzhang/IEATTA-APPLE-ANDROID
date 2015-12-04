@@ -4,11 +4,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
 
 public class IEAOrderedPeopleCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.ordered_people_cell;
+    public static CellType getType() {
+        return new CellType(IEANearRestaurantMoreCell.class, R.layout.ordered_people_cell);
+    }
 
     private IEAOrderedPeopleCell self = this;
 

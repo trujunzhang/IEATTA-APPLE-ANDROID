@@ -13,8 +13,7 @@ import com.ieatta.com.parse.models.Restaurant;
  * Created by djzhang on 12/2/15.
  */
 public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType  getType() {
         return new CellType(IEAEditWaiterTextFieldCell.class,R.layout.edit_waiter_text_field_cell);
     }
 

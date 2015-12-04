@@ -9,8 +9,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Recipe;
 
 public class IEAOrderedRecipeCell extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType getType() {
         return new CellType(IEAOrderedRecipeCell.class, R.layout.ordered_recipe_cell);
     }
 

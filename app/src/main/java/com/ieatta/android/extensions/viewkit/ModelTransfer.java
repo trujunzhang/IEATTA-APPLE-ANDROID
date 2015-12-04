@@ -7,5 +7,4 @@ import com.ieatta.android.extensions.storage.CellType;
  */
 public interface ModelTransfer {
     public void updateWithModel(Object model);
-    public CellType getType();
 }

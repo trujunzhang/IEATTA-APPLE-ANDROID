@@ -9,8 +9,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Restaurant;
 
 public class IEAGoogleMapAddressCell extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType getType() {
         return new CellType(IEAGoogleMapAddressCell.class, R.layout.google_address_cll);
     }
 

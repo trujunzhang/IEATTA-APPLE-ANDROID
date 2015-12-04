@@ -13,8 +13,7 @@ import com.ieatta.android.modules.common.edit.SectionChoicePeopleCellModel;
  * Created by djzhang on 12/2/15.
  */
 public class IEAChoicePeopleHeaderCell extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType  getType() {
         return new CellType(IEAChoicePeopleHeaderCell.class,R.layout.choice_people_header_cell);
     }
 

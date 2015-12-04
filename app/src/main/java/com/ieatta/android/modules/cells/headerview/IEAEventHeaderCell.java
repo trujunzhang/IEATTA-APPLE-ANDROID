@@ -13,8 +13,7 @@ import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
  * Created by djzhang on 12/2/15.
  */
 public class IEAEventHeaderCell  extends IEAViewHolder {
-@Override
-    public CellType getType() {
+    public static CellType  getType() {
         return new CellType(IEAEventHeaderCell.class, R.layout.event_header_cell);
     }
 

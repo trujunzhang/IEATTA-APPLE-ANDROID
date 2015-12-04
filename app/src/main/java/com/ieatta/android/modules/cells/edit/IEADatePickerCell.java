@@ -20,8 +20,7 @@ import java.util.Date;
  * Created by djzhang on 12/2/15.
  */
 public class IEADatePickerCell  extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType getType() {
         return new CellType(IEADatePickerCell.class,R.layout.date_picker_cell);
     }
 

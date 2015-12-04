@@ -9,8 +9,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 
 public class IEASeeReviewsCell extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType getType() {
         return new CellType(IEASeeReviewsCell.class, R.layout.near_restaurant_cell);
     }
 

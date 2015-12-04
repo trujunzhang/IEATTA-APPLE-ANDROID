@@ -11,8 +11,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
  * Created by djzhang on 12/2/15.
  */
 public class IEAMoreReviewsFooterCell extends IEAViewHolder {
-    @Override
-    public CellType getType() {
+    public static CellType  getType() {
         return new CellType(IEAMoreReviewsFooterCell.class, R.layout.choice_people_header_cell);
     }
 
