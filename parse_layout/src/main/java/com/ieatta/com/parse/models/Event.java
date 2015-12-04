@@ -161,9 +161,9 @@ public class Event extends ParseModelSync {
     @Override
     public Task<Object> queryBelongToTask(ParseModelAbstract belongTo) {
         final Event self = this;
-        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<Object, Object>() {
+        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<ParseModelAbstract, Object>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Object then(Task<ParseModelAbstract> task) throws Exception {
                 return ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant, self.restaurantRef).queryBelongToTask(self);
             }
         });
