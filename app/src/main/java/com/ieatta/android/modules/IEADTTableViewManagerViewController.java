@@ -26,27 +26,27 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         super.onCreate(savedInstanceState);
 
         self.startManagingWithDelegate(manager);
-        self.setRegisterHeaderClass(new IEAViewForHeaderInSectionCell());
+        self.setRegisterHeaderClass( IEAViewForHeaderInSectionCell.getType());
     }
 
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
 //        fatalError("whenSelectedEvent() has not been implemented");
     }
 
-    public void setRegisterHeaderClass(IEAViewHolder holder) {
-        getTableManager().registerHeaderClass(holder.getType());
+    public void setRegisterHeaderClass(CellType type) {
+        getTableManager().registerHeaderClass(type);
     }
 
-    public void setRegisterFooterClass(IEAViewHolder holder) {
-        getTableManager().registerFooterClass(holder.getType());
+    public void setRegisterFooterClass(CellType type) {
+        getTableManager().registerFooterClass(type);
     }
 
-    public void setRegisterCellClass(Class cellClass, int layoutResId, int forSectionIndex) {
-        getTableManager().registerCellClass(new CellType(cellClass, layoutResId), forSectionIndex);
+    public void setRegisterCellClass(CellType type, int forSectionIndex) {
+        getTableManager().registerCellClass(type, forSectionIndex);
     }
 
-    public void setRegisterCellClassWhenSelected(Class cellClass, int layoutResId, int forSectionIndex) {
-        getTableManager().registerCellClass(new CellType(cellClass, layoutResId), forSectionIndex);
+    public void setRegisterCellClassWhenSelected(CellType type, int forSectionIndex) {
+        getTableManager().registerCellClass(type, forSectionIndex);
     }
 
     public void setSectionItems(List items, int forSectionIndex) {
@@ -62,11 +62,11 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
-        self.appendSectionTitleCell(cell, forSectionIndex,new IEAViewForHeaderInSectionCell());
+        self.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
-    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex,IEAViewHolder viewHolder) {
-        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex,viewHolder.getType());
+    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex,CellType type) {
+        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex,type);
     }
 
     public MemoryStorage getMemoryStorage() {
