@@ -1,6 +1,5 @@
 package com.ieatta.android.extensions.storage;
 
-import java.util.LinkedList;
 
 /**
  * Created by djzhang on 12/1/15.

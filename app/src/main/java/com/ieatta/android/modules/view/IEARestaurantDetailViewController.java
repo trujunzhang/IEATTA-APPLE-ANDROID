@@ -53,7 +53,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     // Selected model from tableview.
     private Event selectedModel;
     // Fetched list by quering database.
-    private LinkedList fetchedEvents = new LinkedList<>();
+    private List<ParseModelAbstract> fetchedEvents = new LinkedList<>();
 
     @Override
     public boolean havePhotoGallery() {
@@ -77,7 +77,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         Event.queryEventsRelatedRestaurant(self.restaurant).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedEvents = (LinkedList) task.getResult();
+                self.fetchedEvents =  task.getResult();
 
                 return Photo.queryPhotosByRestaurant(self.restaurant);
             }
@@ -166,7 +166,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     }
 
 
-    private void configureEventSection(LinkedList<ParseModelAbstract> fetchedEvents) {
+    private void configureEventSection(List<ParseModelAbstract> fetchedEvents) {
         self.setSectionItems(fetchedEvents, RestaurantDetailSection.sectionEvents.ordinal());
     }
 

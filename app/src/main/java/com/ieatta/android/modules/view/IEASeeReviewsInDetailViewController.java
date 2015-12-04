@@ -3,15 +3,10 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 
-import java.util.Collection;
-import java.util.LinkedList;
-
-import bolts.Continuation;
-import bolts.Task;
+import java.util.List;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -77,7 +72,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
 
     /// Add rows for section "Reviews".
     @Override
-    public void setItemsForReviewsSection(LinkedList<Object> fetchedReviewPeople) {
+    public void setItemsForReviewsSection(List<Object> fetchedReviewPeople) {
 //         Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
 
 //        var items:[SectionSeeReviewsCellModel] = [SectionSeeReviewsCellModel]()

@@ -1,8 +1,10 @@
 package com.ieatta.android.extensions.storage;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -11,16 +13,16 @@ import java.util.Set;
 public class TableViewUtils {
     private TableViewUtils self = this;
 
-    private LinkedHashMap<Integer, Integer> sectionInfo;
+    private HashMap<Integer, Integer> sectionInfo;
     private int rowLength = 0;
 
-    public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
+    public HashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
 
-    public void generateItems(LinkedHashMap<Integer, SectionModel> sections) {
+    public void generateItems(HashMap<Integer, SectionModel> sections) {
         self.sections = sections;
 
         Set<Integer> keySet = sections.keySet();
-        LinkedList<Integer> indexs = new LinkedList<>(keySet);
+        List<Integer> indexs = new LinkedList<>(keySet);
         Collections.sort(indexs);
 
         self.sectionInfo = new LinkedHashMap<>();

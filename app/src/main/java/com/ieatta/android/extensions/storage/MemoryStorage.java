@@ -5,8 +5,8 @@ import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
 import com.ieatta.com.parse.ParseModelAbstract;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,7 +18,7 @@ public class MemoryStorage {
     public IEATableViewControllerAdapter adapter;
     private TableViewUtils tableViewUtils = new TableViewUtils();
 
-    public LinkedHashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
+    public HashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
     public CellTypeUtils cellTypeUtils = new CellTypeUtils();
 
     private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
@@ -31,7 +31,7 @@ public class MemoryStorage {
     /// Add items to section with `toSection` number.
     /// - Parameter items: items to add
     /// - Parameter toSection: index of section to add items
-    public void addItems(LinkedList<Object> items, int toSection) {
+    public void addItems(List<Object> items, int toSection) {
 //        this.sections.put(new Integer(toSection), new SectionModel(items));
     }
 
@@ -51,7 +51,7 @@ public class MemoryStorage {
     /// - Parameter forSectionIndex: index of section to update
     public void setItems(List items, int forSectionIndex) {
         SectionModel section = self.verifySection(forSectionIndex);
-        section.items = (LinkedList) items;
+        section.items = items;
         self.sections.put(new Integer(forSectionIndex), section);
 
         self.reloadTableView();

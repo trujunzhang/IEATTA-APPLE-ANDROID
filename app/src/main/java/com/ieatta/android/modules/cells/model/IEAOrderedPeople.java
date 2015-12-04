@@ -7,7 +7,7 @@ import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Team;
 
 import java.util.LinkedList;
-import java.util.Objects;
+import java.util.List;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -25,20 +25,20 @@ public class IEAOrderedPeople {
     }
 
     public IEAOrderedPeople(Team model, Event event, IEAOrderedRecipesViewController viewController) {
-this(model, event);
+        this(model, event);
         self.hideButton = false;
         this.viewController = viewController;
     }
 
-public  static     LinkedList<Object>  convertToOrderedPeople(LinkedList<ParseModelAbstract> fetchedOrderedPeople, Event event){
-    LinkedList<Object> list = new LinkedList<>();
-for(ParseModelAbstract model : fetchedOrderedPeople){
-    list.add(new IEAOrderedPeople((Team)model,event));
-}
+    public static List<Object> convertToOrderedPeople(List<ParseModelAbstract> fetchedOrderedPeople, Event event) {
+        List<Object> list = new LinkedList<>();
+        for (ParseModelAbstract model : fetchedOrderedPeople) {
+            list.add(new IEAOrderedPeople((Team) model, event));
+        }
         return list;
     }
 
-    public static LinkedList convertToOrderedPeople(Team orderedPeople,Event event,IEAOrderedRecipesViewController viewController ) {
+    public static List convertToOrderedPeople(Team orderedPeople, Event event, IEAOrderedRecipesViewController viewController) {
         IEAOrderedPeople people = new IEAOrderedPeople(orderedPeople, event, viewController);
         return CollectionUtils.createList(people);
     }

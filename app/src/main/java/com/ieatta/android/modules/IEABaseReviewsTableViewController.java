@@ -9,6 +9,7 @@ import com.ieatta.com.parse.models.Team;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -25,7 +26,7 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
     // Selected model from tableview.
     protected Review selectedReview;
     // Fetched list by quering database.
-    LinkedList<Object> fetchedReviews = new LinkedList<>();//Review
+    List<ParseModelAbstract> fetchedReviews = new LinkedList<>();//Review
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +54,12 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 //                });
 //    }
 
-    protected void configureReviewsSection(LinkedList<Object> fetchedReviewPeople) {//Team
+    protected void configureReviewsSection(List<Object> fetchedReviewPeople) {//Team
 //        self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.ReviewHighlights.string), forSectionIndex: self.getReviewsSectionIndex())
         self.setItemsForReviewsSection(fetchedReviewPeople);
     }
 
-    protected abstract void setItemsForReviewsSection(LinkedList<Object> fetchedReviewPeople);//Team
+    protected abstract void setItemsForReviewsSection(List<Object> fetchedReviewPeople);//Team
 
     protected abstract void registerReviewTableCells();
 

@@ -29,7 +29,7 @@ private MainActivity self = this;
         IEANearRestaurantMore[] mores = {managerRestaurantItem};
         List<IEANearRestaurantMore> list = Arrays.asList(mores);
 
-//        self.setSectionItems(new LinkedList<Object>(list), 0);
+        self.setSectionItems(new LinkedList<Object>(list), 0);
 
 //        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe), 1);
     }

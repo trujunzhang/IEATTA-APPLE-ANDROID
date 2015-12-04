@@ -21,7 +21,7 @@ public class IEACache {
     private IEACache self = this;
     public static final IEACache sharedInstance = new IEACache();
 
-    private LinkedHashMap<String,Integer> averageRatingsCache = new LinkedHashMap<>();
+    private HashMap<String,Integer> averageRatingsCache = new LinkedHashMap<>();
 
     public void setAvarageRating(int value,Review review){
         self.averageRatingsCache.put(review.reviewRef,new Integer(value));
@@ -37,7 +37,7 @@ public class IEACache {
         self.averageRatingsCache = new LinkedHashMap<>();
     }
 
-    private LinkedHashMap<String,String> photoPointCache = new LinkedHashMap<>();
+    private HashMap<String,String> photoPointCache = new LinkedHashMap<>();
 
     public void setPhotoPoint(Photo photo){
 //        assert(photo.usedRef.isEmpty == false, "Must setup usedRef on the setPhotoPoint!")

@@ -5,7 +5,6 @@ import com.ieatta.com.parse.models.Restaurant;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

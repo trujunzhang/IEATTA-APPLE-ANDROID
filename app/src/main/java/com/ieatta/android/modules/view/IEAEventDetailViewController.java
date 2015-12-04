@@ -17,8 +17,6 @@ import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.PeopleInEvent;
 import com.ieatta.com.parse.models.Team;
 
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -50,8 +48,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     // Selected model from tableview.
     private Team selectedModel;
     // Fetched list by quering database.
-    private LinkedList<ParseModelAbstract/*Team*/> fetchedPeople;
-    private LinkedList<ParseModelAbstract/*PeopleInEvent*/> fetchedPeopleInEvent;
+    private List<ParseModelAbstract/*Team*/> fetchedPeople;
+    private List<ParseModelAbstract/*PeopleInEvent*/> fetchedPeopleInEvent;
     private boolean isTabBarHidden = false;
 
     @Override
@@ -73,7 +71,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
                     @Override
                     public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                        self.fetchedPeopleInEvent = (LinkedList<ParseModelAbstract>) task.getResult();
+                        self.fetchedPeopleInEvent = task.getResult();
 //  Sort, by fetchedPeopleInEvent
 //                        PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
 
@@ -83,7 +81,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedPeople = (LinkedList<ParseModelAbstract>) task.getResult();
+                self.fetchedPeople = task.getResult();
 //
 //                // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
@@ -212,7 +210,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     }
 
     /// Add rows for section "Ordered People".
-    private void addOrderedPeopleSection(LinkedList<ParseModelAbstract> orderedPeople){
+    private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople){
         setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event),  EventDetailSection.sectionOrderedPeople.ordinal());
     }
 

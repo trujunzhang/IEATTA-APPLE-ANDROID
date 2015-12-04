@@ -4,7 +4,7 @@ import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.com.parse.models.Review;
 
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -35,7 +35,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //    }
 
     @Override
-     public void setItemsForReviewsSection(LinkedList<Object> fetchedReviewPeople){
+     public void setItemsForReviewsSection(List<Object> fetchedReviewPeople){
 //        int startIndex = self.getReviewsSectionIndex();
 //
 //        let array = Review.getReviewItems(self.fetchedReviews, people: fetchedReviewPeople)

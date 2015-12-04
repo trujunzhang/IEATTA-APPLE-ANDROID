@@ -13,7 +13,6 @@ import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Restaurant;
 import com.walnutlabs.android.ProgressHUD;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -97,7 +96,7 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
 
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Current_Address), sectionIndex);
 
-        LinkedList list = new LinkedList();
+        List list = new LinkedList();
         list.add(restaurant);
         self.setSectionItems(list, sectionIndex);
     }

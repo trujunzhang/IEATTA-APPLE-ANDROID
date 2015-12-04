@@ -12,14 +12,7 @@ import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Recipe;
-import com.ieatta.com.parse.models.Team;
-
-import java.util.LinkedList;
-
-import bolts.Continuation;
-import bolts.Task;
 
 /**
  * Created by djzhang on 12/1/15.

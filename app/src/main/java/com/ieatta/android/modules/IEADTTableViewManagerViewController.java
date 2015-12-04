@@ -9,7 +9,6 @@ import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSecti
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 import com.ieatta.com.parse.ParseModelAbstract;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**

@@ -43,7 +43,7 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
     // Selected model from tableview.
     private Recipe selectedModel;
 
-    private LinkedList<ParseModelAbstract/*Recipe*/> fetchedOrderedRecipes = new LinkedList<>();
+    private List<ParseModelAbstract/*Recipe*/> fetchedOrderedRecipes = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
         {
             @Override
             public Task<Boolean> then (Task <List< ParseModelAbstract >> task)throws Exception {
-            fetchedOrderedRecipes = (LinkedList<ParseModelAbstract>) task.getResult();
+            fetchedOrderedRecipes =  task.getResult();
 
             // Next, fetch related photos
             return self.getPhotosForModelsTask(task);

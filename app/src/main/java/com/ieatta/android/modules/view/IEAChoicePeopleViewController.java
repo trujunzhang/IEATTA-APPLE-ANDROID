@@ -3,15 +3,10 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseTableViewController;
-import com.ieatta.android.modules.common.edit.IEAEditKey;
-import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 
-import bolts.Continuation;
-import bolts.Task;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -35,7 +30,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     }
 
     // MARK: Already ordered people
-    private LinkedList<Team> orderedPeople;
+    private List<Team> orderedPeople;
     private IEAChoicePeopleViewProtocol delegate;
 
     @Override
