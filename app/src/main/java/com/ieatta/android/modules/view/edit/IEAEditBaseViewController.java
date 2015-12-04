@@ -161,9 +161,11 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
     }
 
     // MARK: Override IEAPhotoGalleryViewController methods
-//    override func getPhotoGallerySectionIndex() -> Int{
-//        return rowModels.count
-//    }
+
+    @Override
+    protected int getPhotoGallerySectionIndex() {
+        return self.rowModels.length;
+    }
 
     protected void postSaveModelSucess(){
 //        fatalError("postSaveModelSucess() has not been implemented")

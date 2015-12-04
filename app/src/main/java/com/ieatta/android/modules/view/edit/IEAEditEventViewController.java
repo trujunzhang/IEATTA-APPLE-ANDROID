@@ -36,10 +36,11 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
     }
 
     // MARK: Override IEAPhotoGalleryViewController methods
-//    override func getPhotoGallerySectionIndex() -> Int{
-//        return EditEventSection.sectionPhotos.rawValue
-//    }
 
+    @Override
+    protected int getPhotoGallerySectionIndex() {
+        return EditEventSection.sectionPhotos.ordinal();
+    }
 
     @Override
     protected void postSaveModelSucess() {
