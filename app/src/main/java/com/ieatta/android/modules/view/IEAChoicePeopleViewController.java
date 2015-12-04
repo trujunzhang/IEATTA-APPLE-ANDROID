@@ -86,8 +86,8 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
                 self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.class, IEAChoicePeopleHeaderCell.layoutResId);
                 self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal());
 
-                    self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.class,IEAPeopleInfoCell.layoutResId,ChoicePeopleSection.sectionPeople.ordinal());
-                    self.setSectionItems(fetchedPeople,  ChoicePeopleSection.sectionPeople.ordinal());
+//                self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.class, IEAPeopleInfoCell.layoutResId, ChoicePeopleSection.sectionPeople.ordinal());
+//                self.setSectionItems(self.fetchedPeople, ChoicePeopleSection.sectionPeople.ordinal());
 
                 return null;
             }
