@@ -91,6 +91,8 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // TODO djzhang(test)
+        self.hideHUD();
 
 //        assert(self.editedModel != nil, "Must setup editedModel's instance.")
 
@@ -99,9 +101,16 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 //        .sharedInstance.resetObserver();
 
         // Register Cells by class.
-//        self.setRegisterCellClass(IEAEditTextFieldCell.class,IEAEditTextFieldCell);
+//        self.setRegisterCellClass(IEAEditTextFieldCell.class,IEAEditTextFieldCell.layoutResId);
 
         self.editManager = self.getEditManager();
+
+        // TODO djzhang(test)
+        self.prepareForEditTableView();
+        self.setItemsInSection(self.editManager.getRowsInSection(self.editedModel, self));
+
+
+
 
 //        self.getQueryPhotosTask()
 //                .continueWithBlock { (task) -> AnyObject? in
