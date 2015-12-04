@@ -3,6 +3,7 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseTableViewController;
+import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAChoicePeopleHeaderCell;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionChoicePeopleCellModel;
@@ -85,8 +86,8 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
                 self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.class, IEAChoicePeopleHeaderCell.layoutResId);
                 self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal());
 
-//                    self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.self);
-//                    self.setSectionItems(fetchedPeople,  ChoicePeopleSection.sectionPeople.ordinal());
+                    self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.class,IEAPeopleInfoCell.layoutResId,ChoicePeopleSection.sectionPeople.ordinal());
+                    self.setSectionItems(fetchedPeople,  ChoicePeopleSection.sectionPeople.ordinal());
 
                 return null;
             }

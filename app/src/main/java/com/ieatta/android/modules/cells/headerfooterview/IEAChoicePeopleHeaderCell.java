@@ -10,7 +10,7 @@ import com.ieatta.android.modules.common.edit.SectionChoicePeopleCellModel;
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEAChoicePeopleHeaderCell  extends IEAViewHolder {
+public class IEAChoicePeopleHeaderCell extends IEAViewHolder {
     public static int layoutResId = R.layout.choice_people_header_cell;
 
     private IEAChoicePeopleHeaderCell self = this;
@@ -25,7 +25,7 @@ public class IEAChoicePeopleHeaderCell  extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-        SectionChoicePeopleCellModel more  = (SectionChoicePeopleCellModel) model;
+        SectionChoicePeopleCellModel more = (SectionChoicePeopleCellModel) model;
         self.titleView.setText(R.string.Select_Person);
 
     }

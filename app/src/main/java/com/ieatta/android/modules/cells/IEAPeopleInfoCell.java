@@ -8,7 +8,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Team;
 
 public class IEAPeopleInfoCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.near_restaurant_cell;
+    public static int layoutResId = R.layout.people_info_cell;
 
     private IEAPeopleInfoCell self = this;
 
@@ -19,6 +19,9 @@ public class IEAPeopleInfoCell extends IEAViewHolder {
 
     public IEAPeopleInfoCell(View itemView) {
         super(itemView);
+
+        self.nameLabel = (TextView) itemView.findViewById(R.id.titleTextView);
+        self.emailLabel = (TextView) itemView.findViewById(R.id.addressTextView);
     }
 
     @Override
