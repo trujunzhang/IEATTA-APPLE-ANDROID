@@ -23,7 +23,7 @@ private MainActivity self = this;
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), 0);
 
 
-        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.class, IEANearRestaurantMoreCell.layoutResId, 0);
+        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.getType(), 0);
 
         IEANearRestaurantMore managerRestaurantItem = new IEANearRestaurantMore(R.drawable.restaurants_icon, R.string.Add_a_Restaurant, MainSegueIdentifier.editRestaurantSegueIdentifier);
         IEANearRestaurantMore[] mores = {managerRestaurantItem};
