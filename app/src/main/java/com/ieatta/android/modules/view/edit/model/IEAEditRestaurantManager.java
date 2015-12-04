@@ -30,7 +30,7 @@ public class IEAEditRestaurantManager extends IEAEditAbstractManager {
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
         Restaurant _model = (Restaurant) model;
 
-        EditBaseCellModel[] section1 = {
+        EditCellModel[] section1 = {
                 new EditCellModel(IEAEditKey.rest_name, _model.displayName, R.string.Restaurant_Name_info),
         };
         Object[] sections = {section1};
