@@ -25,7 +25,6 @@ public class IEAChoicePeopleHeaderCell extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-        SectionChoicePeopleCellModel more = (SectionChoicePeopleCellModel) model;
         self.titleView.setText(R.string.Select_Person);
 
     }

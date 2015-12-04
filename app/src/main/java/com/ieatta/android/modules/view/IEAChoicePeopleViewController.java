@@ -58,7 +58,11 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
 
 //        self.navigationItem.rightBarButtonItem  = UIBarButtonItem(title: L10n.AddRightButton.string,  style: .Plain, target: self, action: "addPeopleAction:")
 
-        self.queryPeopleOrderedList();
+        self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.class, IEAChoicePeopleHeaderCell.layoutResId);
+        self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal());
+
+
+//        self.queryPeopleOrderedList();
     }
 
     private void queryPeopleOrderedList() {
