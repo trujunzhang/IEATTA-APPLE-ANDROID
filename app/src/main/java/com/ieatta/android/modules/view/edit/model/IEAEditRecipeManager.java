@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.view.edit.model;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 import com.ieatta.android.modules.common.edit.EditCellModel;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
@@ -22,15 +23,14 @@ class IEAEditRecipeManager extends IEAEditAbstractManager {
 
         String costString = "";
 
-//        return {
-//                {
-//                        new EditCellModel( IEAEditKey.recipe_name,  _model.displayName, R.string.Recipe_Name_info),
-//        new EditCellModel( IEAEditKey.recipe_cost,  costString, R.string.add_a_Recipe)
-//
-//                }
-//        };
+        EditBaseCellModel[] section1 = {
+                new EditCellModel(IEAEditKey.recipe_name, _model.displayName, R.string.Recipe_Name_info),
+                new EditCellModel(IEAEditKey.recipe_cost, costString, R.string.add_a_Recipe)
 
-        return new Object[0];
+        };
+        Object[] sections = {section1};
+
+        return sections;
     }
 
 }

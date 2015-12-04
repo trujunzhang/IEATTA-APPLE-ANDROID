@@ -2,6 +2,7 @@ package com.ieatta.android.modules.view.edit.model;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.common.edit.DatePickerCellModel;
+import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 import com.ieatta.android.modules.common.edit.EditCellModel;
 import com.ieatta.android.modules.common.edit.EditWaiterCellModel;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
@@ -20,20 +21,21 @@ class IEAEditEventManager extends IEAEditAbstractManager {
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
         Event _model = (Event) model;
 
-//        return {
-//                {
-//new EditCellModel(IEAEditKey.event_name,         _model.displayName, R.string.Event_Name),
-//new EditWaiterCellModel(IEAEditKey.event_nameofserver,         _model.waiter, R.string.Name_of_Server, viewController),
-//        },
-//        {
-//   new PhotoGallery(IEAEditKey.photo_gallery, viewController),
-//        },
-//        {
-//      new DatePickerCellModel(IEAEditKey.event_starttime, _model.startDate,         R.string.Start_Time),
-//new        DatePickerCellModel(IEAEditKey.event_endtime, _model.endDate,         R.string.End_Time),
-//        }
-//        };
+        EditBaseCellModel[] section1 = {
+                new EditCellModel(IEAEditKey.event_name, _model.displayName, R.string.Event_Name),
+                new EditWaiterCellModel(IEAEditKey.event_nameofserver, _model.waiter, R.string.Name_of_Server, viewController),
+        };
+        EditBaseCellModel[] section2 = {
+                new PhotoGallery(IEAEditKey.photo_gallery, viewController),
+        };
+        EditBaseCellModel[] section3 = {
+                new DatePickerCellModel(IEAEditKey.event_starttime, _model.startDate, R.string.Start_Time),
+                new DatePickerCellModel(IEAEditKey.event_endtime, _model.endDate, R.string.End_Time),
 
-        return new Object[0];
+        };
+
+        Object[] sections = {section1, section2, section3};
+
+        return sections;
     }
 }

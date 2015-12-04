@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.view.edit.model;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 import com.ieatta.android.modules.common.edit.EditCellModel;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
@@ -28,12 +29,12 @@ class IEAEditRestaurantManager extends IEAEditAbstractManager {
     @Override
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
         Restaurant _model = (Restaurant) model;
-//        return {
-//                {
-//new EditCellModel( IEAEditKey.rest_name,  _model.displayName, R.string.Restaurant_Name_info),
-//                }
-//        };
 
-        return new Object[0];
+        EditBaseCellModel[] section1 = {
+                new EditCellModel(IEAEditKey.rest_name, _model.displayName, R.string.Restaurant_Name_info),
+        };
+        Object[] sections = {section1};
+
+        return sections;
     }
 }

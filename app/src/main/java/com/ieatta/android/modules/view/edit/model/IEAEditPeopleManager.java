@@ -1,5 +1,8 @@
 package com.ieatta.android.modules.view.edit.model;
 
+import com.ieatta.android.R;
+import com.ieatta.android.modules.common.edit.EditBaseCellModel;
+import com.ieatta.android.modules.common.edit.EditCellModel;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -14,14 +17,15 @@ class IEAEditPeopleManager extends IEAEditAbstractManager {
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
         Team _model = (Team) model;
 
-//        return [
-//        [
-//        EditCellModel(editKey: IEAEditKey.person_name, editValue: _model.displayName, editPlaceHolder: L10n.DisplayName.string),
-//        EditCellModel(editKey: IEAEditKey.person_address, editValue: _model.address, editPlaceHolder: L10n.Address.string),
-//        EditCellModel(editKey: IEAEditKey.person_email, editValue: _model.email, editPlaceHolder: L10n.Email.string)
-//        ]
-//        ]
-        return new Object[0];
+
+        EditBaseCellModel[] section1 = {
+                new EditCellModel(IEAEditKey.person_name, _model.displayName, R.string.Display_Name),
+                new EditCellModel(IEAEditKey.person_address, _model.address, R.string.Address),
+                new EditCellModel(IEAEditKey.person_email, _model.email, R.string.Email)
+        };
+        Object[] sections = {section1};
+
+        return sections;
     }
 
 }
