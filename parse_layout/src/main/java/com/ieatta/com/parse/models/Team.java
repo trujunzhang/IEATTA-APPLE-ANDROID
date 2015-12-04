@@ -11,6 +11,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.TaskCompletionSource;
@@ -127,7 +128,7 @@ public class Team extends ParseModelSync {
 
         List<ParseModelAbstract> result =  previous.getResult();
 
-        List<ParseModelAbstract> filterUser = new List<>();
+        List<ParseModelAbstract> filterUser = new LinkedList<>();
         for (ParseModelAbstract model : result) {
             if (checkExist((Team)model, source)) {
                 filterUser.add((Team)model);
@@ -148,7 +149,7 @@ public class Team extends ParseModelSync {
 
     // MARK: Support methods.
     public static List<String> getPeoplePoints(List<ParseModelAbstract> peopleInEvent) {
-        List<String> peoplePoints = new List<>();
+        List<String> peoplePoints = new LinkedList<>();
 
         for (ParseModelAbstract model : peopleInEvent) {
             peoplePoints.add(((PeopleInEvent)model).userRef);
@@ -171,7 +172,7 @@ public class Team extends ParseModelSync {
 
 
     static List<Team> convertToTeamArray(List<ParseObject> objectArray) {
-        List<Team> array = new List<>();
+        List<Team> array = new LinkedList<>();
 
         for (ParseObject object : objectArray) {
             array.add((Team) convertToModel(object, new Team()));

@@ -107,23 +107,25 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     public static Task<Object> sortOrderedPeople(Task<Object> previous, List<PeopleInEvent> peopleInEvents) {
-        List<Team> fetchedPeople = new List<>((Collection<? extends Team>) previous.getResult());
+        List<Team> fetchedPeople = (List<Team>) previous.getResult();
 
-        List<Team> sortedPeople = new List<>();
+//        List<Team> sortedPeople = new List<>();
+//
+//        for (PeopleInEvent peopleInEvent : peopleInEvents) {
+//            Team people = getPeople(peopleInEvent, fetchedPeople);
+//            if (people != null) {
+//                sortedPeople.add(people);
+//            } else {
+//                // TODO djzhang(fixing)
+////                return BFTask(error: NSError.getError(IEAErrorType.SortArray, description: "\(peopleInEvent.printDescription())"))
+//            }
+//        }
+//
+//        TaskCompletionSource finishTask = new TaskCompletionSource();
+//        finishTask.setResult(sortedPeople);
+//        return finishTask.getTask();
 
-        for (PeopleInEvent peopleInEvent : peopleInEvents) {
-            Team people = getPeople(peopleInEvent, fetchedPeople);
-            if (people != null) {
-                sortedPeople.add(people);
-            } else {
-                // TODO djzhang(fixing)
-//                return BFTask(error: NSError.getError(IEAErrorType.SortArray, description: "\(peopleInEvent.printDescription())"))
-            }
-        }
-
-        TaskCompletionSource finishTask = new TaskCompletionSource();
-        finishTask.setResult(sortedPeople);
-        return finishTask.getTask();
+        return null;
     }
 
     public Task<Object> saveTeam() {
