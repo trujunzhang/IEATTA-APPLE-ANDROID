@@ -5,6 +5,7 @@ import com.ieatta.com.parse.ParseModelSync;
 
 import bolts.Task;
 
+import com.parse.Parse;
 import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -114,7 +115,7 @@ public class Team extends ParseModelSync {
         return new Team();
     }
 
-    private static boolean checkExist(Team user, List<Team> inSource) {
+    private static boolean checkExist(ParseModelAbstract user, List<Team> inSource) {
         for (Team model : inSource) {
             if (model.equals(user)) {
                 return true;
@@ -130,8 +131,8 @@ public class Team extends ParseModelSync {
 
         List<ParseModelAbstract> filterUser = new LinkedList<>();
         for (ParseModelAbstract model : result) {
-            if (checkExist((Team)model, source)) {
-                filterUser.add((Team)model);
+            if (checkExist(model, source) == false) {
+                filterUser.add(model);
             }
         }
 

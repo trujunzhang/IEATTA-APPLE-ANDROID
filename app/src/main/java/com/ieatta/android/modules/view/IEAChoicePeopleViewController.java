@@ -62,6 +62,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 Object object = task;
+
                 // Next, filter ordered people
                 return Team.filterFrom(task, self.orderedPeople);
             }
