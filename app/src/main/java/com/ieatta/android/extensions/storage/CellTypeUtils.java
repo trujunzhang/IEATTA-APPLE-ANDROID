@@ -6,20 +6,10 @@ import java.util.LinkedHashMap;
  * Created by djzhang on 12/2/15.
  */
 public class CellTypeUtils {
-    public ModelType getModelType(int viewType) {
+    public CellType getModelType(int viewType) {
         Class aClass = self.rowTypes.get(new Integer(viewType));
         int layResId = self.modelTypes.get(aClass).intValue();
-        return new ModelType(aClass,layResId);
-    }
-
-    public class ModelType{
-        public int layoutResId;
-        public Class cellClass;
-
-        public ModelType(Class cellClass, int layoutResId) {
-            this.layoutResId = layoutResId;
-            this.cellClass = cellClass;
-        }
+        return new CellType(aClass,layResId);
     }
 
     private CellTypeUtils self = this;
