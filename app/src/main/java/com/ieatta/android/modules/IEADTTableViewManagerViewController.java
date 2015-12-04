@@ -2,6 +2,7 @@ package com.ieatta.android.modules;
 
 import android.os.Bundle;
 
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
@@ -40,19 +41,19 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void setRegisterCellClass(Class cellClass, int layoutResId, int forSectionIndex) {
-        getTableManager().registerCellClass(cellClass, layoutResId, forSectionIndex);
+        getTableManager().registerCellClass(new CellType(cellClass, layoutResId), forSectionIndex);
     }
 
     public void setRegisterCellClassWhenSelected(Class cellClass, int layoutResId, int forSectionIndex) {
-        getTableManager().registerCellClass(cellClass, layoutResId, forSectionIndex);
+        getTableManager().registerCellClass(new CellType(cellClass, layoutResId), forSectionIndex);
     }
 
     public void setSectionItems(List items, int forSectionIndex) {
         getMemoryStorage().setItems(items, forSectionIndex);
     }
 
-    public void setFooterModelInSection(Object model, int forSectionIndex,Class cellClass, int layoutResId) {
-        getMemoryStorage().setSectionFooterModel(model, forSectionIndex,cellClass,layoutResId);
+    public void setFooterModelInSection(Object model, int forSectionIndex,CellType type) {
+        getMemoryStorage().setSectionFooterModel(model, forSectionIndex,type);
     }
 
     public void removeSectionItemsAtIndexPaths(NSIndexPath[] indexPaths) {
@@ -60,11 +61,11 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
-        self.appendSectionTitleCell(cell, forSectionIndex,IEAViewForHeaderInSectionCell.class, IEAViewForHeaderInSectionCell.layoutResId);
+        self.appendSectionTitleCell(cell, forSectionIndex,new CellType(IEAViewForHeaderInSectionCell.class, IEAViewForHeaderInSectionCell.layoutResId));
     }
 
-    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex,Class cellClass, int layoutResId) {
-        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex,cellClass,layoutResId);
+    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex,CellType type) {
+        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex,type);
     }
 
     public MemoryStorage getMemoryStorage() {

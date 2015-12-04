@@ -64,8 +64,8 @@ public class DTTableViewManager {
         return viewHolder;
     }
 
-    public void registerCellClass(Class cellClass, int layoutResId, int forSectionIndex) {
-        self.memoryStorage.registerCellClass(cellClass, layoutResId, forSectionIndex);
+    public void registerCellClass(CellType type, int forSectionIndex) {
+        self.memoryStorage.registerCellClass(type.cellClass, type.layoutResId, forSectionIndex);
     }
 
 

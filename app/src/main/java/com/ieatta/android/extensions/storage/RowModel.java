@@ -8,26 +8,22 @@ import android.inputmethodservice.Keyboard;
 public class RowModel {
     private RowModel self = this;
 
-    public int layoutResId;
-    public Class cellClass;
+    public CellType cellType;
     public Object model;
 
 
     public RowModel(HeaderModel headerModel) {
         self.model = headerModel.item;
-        self.cellClass = headerModel.cellClass;
-        self.layoutResId = headerModel.layoutResId;
+        self.cellType = headerModel.cellType;
     }
 
-    public RowModel(Object model, Class cellClass, int layoutResId) {
-        this.layoutResId = layoutResId;
-        this.cellClass = cellClass;
+    public RowModel(Object model, CellType type) {
         this.model = model;
+        this.cellType = type;
     }
 
     public RowModel(FooterModel footerModel) {
         self.model = footerModel.item;
-        self.cellClass = footerModel.cellClass;
-        self.layoutResId = footerModel.layoutResId;
+        self.cellType = footerModel.cellType;
     }
 }

@@ -61,13 +61,13 @@ public class MemoryStorage {
     /// - Note: This does not update UI
     /// - Parameter model: model for section header at index
     /// - Parameter sectionIndex: index of section for setting header
-    public void setSectionHeaderModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
+    public void setSectionHeaderModel(Object model, int forSectionIndex, CellType type) {
         // Step1: Register cell type.
-        cellTypeUtils.registerType(cellClass,layoutResId);
+        cellTypeUtils.registerType(type);
 
         // Step2: Create/Add a Header Section.
         SectionModel section = self.verifySection(forSectionIndex);
-        section.setHeaderModel(new HeaderModel(model, cellClass, layoutResId));
+        section.setHeaderModel(new HeaderModel(model, type));
 
 //        self.reloadTableView();
     }
@@ -76,9 +76,9 @@ public class MemoryStorage {
     /// - Note: This does not update UI
     /// - Parameter model: model for section footer at index
     /// - Parameter sectionIndex: index of section for setting footer
-    public void setSectionFooterModel(Object model, int forSectionIndex, Class cellClass, int layoutResId) {
+    public void setSectionFooterModel(Object model, int forSectionIndex, CellType type) {
         SectionModel section = self.verifySection(forSectionIndex);
-        section.setFooterModel(new FooterModel(model, cellClass, layoutResId));
+        section.setFooterModel(new FooterModel(model, type));
 
 //        self.reloadTableView();
     }
@@ -99,14 +99,13 @@ public class MemoryStorage {
 
     }
 
-    public void registerCellClass(Class cellClass, int layoutResId, int forSectionIndex) {
+    public void registerCellClass(CellType type, int forSectionIndex) {
         // Step1: Register class type
-        cellTypeUtils.registerType(cellClass,layoutResId);
+        cellTypeUtils.registerType(type);
 
         // Step2: Create/Modify a section.
         SectionModel section = self.verifySection(forSectionIndex);
-        section.layoutResId = layoutResId;
-        section.cellClass = cellClass;
+        section.cellType = type;
     }
 
     public RowModel getRowModelFromPosition(int position) {

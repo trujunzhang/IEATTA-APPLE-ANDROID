@@ -22,12 +22,12 @@ public class CellTypeUtils {
 
     private LinkedHashMap<Class,Integer> modelTypes = new LinkedHashMap<>();
 
-    public void registerType(Class aClass, int layoutResId) {
-        modelTypes.put(aClass,layoutResId);
+    public void registerType(CellType type) {
+        modelTypes.put(type.cellClass,type.layoutResId);
 
-        if (self.isExistRegisterType(aClass) == false) {
+        if (self.isExistRegisterType(type.cellClass) == false) {
             int size = self.rowTypes.size();
-            self.rowTypes.put(new Integer(size), aClass);
+            self.rowTypes.put(new Integer(size), type.cellClass);
         }
     }
 

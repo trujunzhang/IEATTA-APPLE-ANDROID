@@ -16,8 +16,7 @@ public class SectionModel {
     /// - SeeAlso: `setItems:`
     public List items = new LinkedList<>();
     public int sectionIndex;
-    public int layoutResId;
-    public Class cellClass;
+    public CellType cellType;
 
     public HeaderModel headerModel;
     public FooterModel footerModel;
@@ -47,7 +46,7 @@ public class SectionModel {
             row--;
         }
         if(row < self.items.size()){
-            return new RowModel(self.items.get(row),cellClass,layoutResId);
+            return new RowModel(self.items.get(row),self.cellType);
         }
         else if(footerModel != null){
             return new RowModel(footerModel);
