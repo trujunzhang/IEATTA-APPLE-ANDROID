@@ -1,8 +1,10 @@
 package com.ieatta.android.modules.view.edit;
 
 import android.os.Bundle;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
@@ -32,6 +34,9 @@ public class IEAEditPeopleViewController extends IEAEditBaseViewController {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO djzhang(test)
+        self.setEditModel(ActivityModelDebug.getOrderedPeople());
+
         super.onCreate(savedInstanceState);
     }
 
@@ -39,6 +44,7 @@ public class IEAEditPeopleViewController extends IEAEditBaseViewController {
     protected void prepareForEditTableView() {
         // Add rows for sections.
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Information), EditPeopleSection.sectionInformation.ordinal());
+        self.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditPeopleSection.sectionInformation.ordinal());
     }
 
     @Override
