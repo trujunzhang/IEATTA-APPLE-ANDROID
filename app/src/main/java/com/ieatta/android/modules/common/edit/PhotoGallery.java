@@ -1,10 +1,15 @@
 package com.ieatta.android.modules.common.edit;
 
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
+import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
 
 public class PhotoGallery extends EditBaseCellModel {
     public PhotoGallery(IEAEditKey editKey) {
         super(editKey);
+    }
+
+    public PhotoGallery(IEAEditKey photo_gallery, IEAEditBaseViewController viewController) {
+        super(photo_gallery);
     }
 
 //    var collectionView: UICollectionView?

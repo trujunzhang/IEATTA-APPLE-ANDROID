@@ -11,6 +11,10 @@ public class EditCellModel extends EditBaseCellModel{
 
         this.editPlaceHolderResId = editPlaceHolderResId;
     }
+
+    public EditCellModel(IEAEditKey event_name, String displayName, int event_name1) {
+        super(event_name);
+    }
 }
 
 
