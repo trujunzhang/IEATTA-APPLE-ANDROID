@@ -12,7 +12,7 @@ import com.ieatta.com.parse.models.Team;
  * Created by djzhang on 12/4/15.
  */
 
-class IEAEditPeopleManager extends IEAEditAbstractManager {
+public class IEAEditPeopleManager extends IEAEditAbstractManager {
     @Override
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
         Team _model = (Team) model;
