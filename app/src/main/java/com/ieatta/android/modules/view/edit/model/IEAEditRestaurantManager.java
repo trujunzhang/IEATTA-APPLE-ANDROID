@@ -12,14 +12,14 @@ import com.ieatta.com.parse.models.Restaurant;
  * Created by djzhang on 12/4/15.
  */
 
-class IEAEditRestaurantManager  extends IEAEditAbstractManager{
+class IEAEditRestaurantManager extends IEAEditAbstractManager {
     @Override
     public ParseModelAbstract convertToEditModel(Object[] rowModels, ParseModelAbstract model) {
-        Restaurant restaurant = (Restaurant)model;
-        if(restaurant.location != null){
+        Restaurant restaurant = (Restaurant) model;
+        if (restaurant.location != null) {
             // Exist,Not update. **** Important ****
 //            assert(restaurant.location != nil, "Here already has location!")
-        }else{
+        } else {
             restaurant.location = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
         }
         return super.convertToEditModel(rowModels, model);

@@ -15,7 +15,7 @@ import com.ieatta.com.parse.models.Event;
  */
 
 
-class IEAEditEventManager  extends IEAEditAbstractManager{
+class IEAEditEventManager extends IEAEditAbstractManager {
     @Override
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
         Event _model = (Event) model;

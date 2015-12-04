@@ -10,7 +10,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
  * Created by djzhang on 12/4/15.
  */
 
-abstract class  IEAEditAbstractManager implements IEAEditBaseManager{
+abstract class IEAEditAbstractManager implements IEAEditBaseManager {
     @Override
     public ParseModelAbstract convertToEditModel(Object[] rowModels, ParseModelAbstract model) {
 //        for array in rowModels{
@@ -37,7 +37,7 @@ abstract class  IEAEditAbstractManager implements IEAEditBaseManager{
         return model;
     }
 
-    private void updateRow(EditCellModel row,ParseModelAbstract  model){
+    private void updateRow(EditCellModel row, ParseModelAbstract model) {
 //        switch(row.editKey){
 //            // ++++++++++++++++++++++ Restaurant ++++
 //            case IEAEditKey.rest_name:
@@ -71,14 +71,14 @@ abstract class  IEAEditAbstractManager implements IEAEditBaseManager{
 //        }
     }
 
-    private void updateRow(EditWaiterCellModel row,ParseModelAbstract  model){
+    private void updateRow(EditWaiterCellModel row, ParseModelAbstract model) {
 //        (model as! Event).waiter = row.editValue;
     }
 
 //    private void updateRow(WriteReviewInEventCellModel row,ParseModelAbstract  model){
 //    }
 
-    private void updateRow(DatePickerCellModel row,ParseModelAbstract  model){
+    private void updateRow(DatePickerCellModel row, ParseModelAbstract model) {
 //        switch(row.editKey){
 //            case IEAEditKey.event_starttime:
 //                (model as! Event).startDate = row.date;
