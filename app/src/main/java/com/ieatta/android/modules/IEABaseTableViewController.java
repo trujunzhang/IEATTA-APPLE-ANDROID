@@ -93,7 +93,7 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     }
 
     public void showGoogleMapAddress(int sectionIndex) {
-        self.setRegisterCellClass(IEAGoogleMapAddressCell.class, IEAGoogleMapAddressCell.layoutResId, sectionIndex);
+        self.setRegisterCellClass(IEAGoogleMapAddressCell.getType() sectionIndex);
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Current_Address), sectionIndex);
         self.setSectionItems(CollectionUtils.createList(self.getPageModel()), sectionIndex);
     }
