@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.view.edit;
 
 import android.os.Bundle;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
@@ -22,6 +23,9 @@ public class IEAEditRecipeViewController extends IEAEditBaseViewController {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO djzhang(test)
+        self.setEditModel(ActivityModelDebug.getOrderedRecipe());
+
         super.onCreate(savedInstanceState);
     }
 

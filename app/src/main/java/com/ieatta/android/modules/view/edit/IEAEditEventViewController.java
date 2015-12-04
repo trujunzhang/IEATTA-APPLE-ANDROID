@@ -1,5 +1,8 @@
 package com.ieatta.android.modules.view.edit;
 
+import android.os.Bundle;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
+
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.edit.IEADatePickerCell;
 import com.ieatta.android.modules.cells.edit.IEAEditWaiterTextFieldCell;
@@ -19,6 +22,13 @@ enum EditEventSection {
 }
 
 public class IEAEditEventViewController extends IEAEditBaseViewController {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // TODO djzhang(test)
+        self.setEditModel(ActivityModelDebug.getEventForEventDetail());
+
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     protected void prepareForEditTableView() {
