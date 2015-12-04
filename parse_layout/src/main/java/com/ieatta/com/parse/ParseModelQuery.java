@@ -145,13 +145,22 @@ public abstract class ParseModelQuery extends ParseJsoner {
     }
 
     @Override
-    public Task<Object> getFirstLocalModelArrayTask() {
-//        return this.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Object, Object>() {
+    public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
+
+//        return ParseModelQuery.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
 //            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                return convertToLocalModelTask(task);
+//            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
+//                ParseObject object  = task.getResult();
+//                return null;
 //            }
 //        });
+//
+//                .continueWith(new Continuation<Object, Object>() {
+//                    @Override
+//                    public Object then(Task<Object> task) throws Exception {
+//                        return convertToLocalModelTask(task);
+//                    }
+//                });
         return null;
     }
 
@@ -184,26 +193,26 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * - returns: the first object's array,like [PFObject's instance].
      */
     public static Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
-        final TaskCompletionSource findTask = new TaskCompletionSource();
+        final Task.TaskCompletionSource tcs = Task.create();
 
         ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
             @Override
             public Object then(Task<List<ParseObject>> task) throws Exception {
                 if (task.getError() != null) {
-                    findTask.setError(task.getError());
+                    tcs.setError(task.getError());
                 } else {
                     List<ParseObject> objects = task.getResult();
                     if (objects.size() == 0) {
-                        findTask.setResult(new LinkedList<ParseObject>());
+                        tcs.setResult(null);
                     } else {
-                        findTask.setResult(objects);
+                        tcs.setResult(objects.get(0));
                     }
                 }
                 return null;
             }
         });
 
-        return findTask.getTask();
+        return tcs.getTask();
     }
 
     public static Task<List<ParseObject>> findLocalObjectsInBackground(ParseQuery query) {

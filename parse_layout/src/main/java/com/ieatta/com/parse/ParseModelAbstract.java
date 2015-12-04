@@ -162,7 +162,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         object.put(kPAPFieldObjectUUIDKey, this.objectUUID);
     }
 
-    public abstract Task<Object> getFirstLocalModelArrayTask();
+    public abstract Task<ParseModelAbstract> getFirstLocalModelArrayTask();
 
     public abstract Task<Object> getFirstOnlineObjectTask();
 

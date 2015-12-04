@@ -139,17 +139,14 @@ public class Restaurant extends ParseModelSync {
             }
         }
 
-        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<Object, Object>() {
+        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<ParseModelAbstract, Object>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Object then(Task<ParseModelAbstract> task) throws Exception {
                 if (belongTo != null) {
                     final Event event = (Event) belongTo;
                     event.belongToModel = self;
                 }
-
-                TaskCompletionSource finalTask = new TaskCompletionSource();
-                finalTask.setResult(belongTo);
-                return finalTask.getTask();
+                return Task.forResult(belongTo);
             }
         });
     }
