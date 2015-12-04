@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseTableViewController;
 import com.ieatta.android.modules.cells.headerfooterview.IEAChoicePeopleHeaderCell;
+import com.ieatta.android.modules.common.edit.IEAEditKey;
+import com.ieatta.android.modules.common.edit.SectionChoicePeopleCellModel;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
 
@@ -37,6 +39,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
 
     // MARK: Already ordered people
     private List<Team> orderedPeople = null;// **** Important ****(init null)
+    private List<ParseModelAbstract/*Team*/> fetchedPeople = new LinkedList<>();
     private IEAChoicePeopleViewProtocol delegate;
 
     @Override
@@ -44,7 +47,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
         super.onCreate(savedInstanceState);
 
         // TODO djzhang(test)
-        self.orderedPeople =new LinkedList<>();
+        self.orderedPeople = new LinkedList<>();
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedPeople != nil, "Must setup orderedPeople's instance.")
@@ -61,14 +64,15 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
         Team.queryTeam().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                Object object = task;
-
                 // Next, filter ordered people
                 return Team.filterFrom(task, self.orderedPeople);
             }
         }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                Object object = task;
+
+                self.fetchedPeople = task.getResult();
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
             }
@@ -78,11 +82,10 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
                 // Finally, hide hud.
                 self.hideHUD();
 
-                    self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.class,IEAChoicePeopleHeaderCell.layoutResId);
+                self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.class, IEAChoicePeopleHeaderCell.layoutResId);
+                self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal());
+
 //                    self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.self);
-
-//                    self.appendSectionTitleCell(new  SectionChoicePeopleCellModel( IEAEditKey.Section_Title, viewController: self),  ChoicePeopleSection.sectionPeople.ordinal());
-
 //                    self.setSectionItems(fetchedPeople,  ChoicePeopleSection.sectionPeople.ordinal());
 
                 return null;
