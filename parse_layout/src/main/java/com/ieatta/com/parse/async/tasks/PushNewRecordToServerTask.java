@@ -24,7 +24,8 @@ public class PushNewRecordToServerTask {
 
         final Task.TaskCompletionSource tcs = Task.create();
 
-        ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task>() {
+
+        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Task>() {
             @Override
             public Task then(Task<List<ParseObject>> task) throws Exception {
                 if (task.getError() != null) {
