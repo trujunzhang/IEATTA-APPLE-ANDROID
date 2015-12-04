@@ -32,6 +32,6 @@ public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
     @Override
     public void updateWithModel(Object model) {
         self.model  = (EditWaiterCellModel) model;
-        self.editText.setText(self.model.editValueResId);
+        self.editText.setText(self.model.editValue);
     }
 }
