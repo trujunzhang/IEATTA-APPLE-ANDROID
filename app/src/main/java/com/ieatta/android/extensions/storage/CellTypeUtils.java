@@ -37,7 +37,7 @@ public class CellTypeUtils {
             if(classzz == null){
 //                assert("not found class type: "+classzz.getName()+",you need to register it.");
             }
-            if (rowModel.cellClass.equals(classzz)) {
+            if (rowModel.cellType.cellClass.equals(classzz)) {
                 return index.intValue();
             }
         }

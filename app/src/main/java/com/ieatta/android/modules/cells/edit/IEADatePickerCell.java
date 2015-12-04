@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Restaurant;
 
@@ -19,7 +20,10 @@ import java.util.Date;
  * Created by djzhang on 12/2/15.
  */
 public class IEADatePickerCell  extends IEAViewHolder {
-    public static int layoutResId = R.layout.date_picker_cell;
+    @Override
+    public CellType getType() {
+        return new CellType(IEADatePickerCell.class,R.layout.date_picker_cell);
+    }
 
     private IEADatePickerCell self = this;
 
@@ -65,6 +69,7 @@ public class IEADatePickerCell  extends IEAViewHolder {
     public void updateWithModel(Object model) {
         Restaurant more  = (Restaurant) model;
     }
+
 
 
     private SlideDateTimeListener listener = new SlideDateTimeListener() {
