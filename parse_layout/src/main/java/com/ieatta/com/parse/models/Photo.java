@@ -21,7 +21,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 
 import java.io.File;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -135,7 +135,7 @@ public class Photo extends ParseModelSync {
      * <p/>
      * - returns: query's instance
      */
-    private ParseQuery createQueryForBatchingPhoto(LinkedList<String> usedRefs) {
+    private ParseQuery createQueryForBatchingPhoto(List<String> usedRefs) {
         ParseQuery query = this.getParseQueryInstance();
 
         query.whereContainedIn(kPAPFieldUsedRefKey, usedRefs);
@@ -221,15 +221,15 @@ public class Photo extends ParseModelSync {
         }
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryPhotosByRestaurant(Restaurant restaurant) {
+    public static Task<List<ParseModelAbstract>> queryPhotosByRestaurant(Restaurant restaurant) {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Photo, new Photo().createQueryForRestaurantRef(restaurant));
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryPhotosByModel(ParseModelAbstract model) {
+    public static Task<List<ParseModelAbstract>> queryPhotosByModel(ParseModelAbstract model) {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Photo, new Photo(model).createQueryForUsedRefWithType());
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryPhotosFromUsedRefs(LinkedList<String> usedRefs) {
+    public static Task<List<ParseModelAbstract>> queryPhotosFromUsedRefs(List<String> usedRefs) {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Photo, new Photo().createQueryForBatchingPhoto(usedRefs));
     }
 

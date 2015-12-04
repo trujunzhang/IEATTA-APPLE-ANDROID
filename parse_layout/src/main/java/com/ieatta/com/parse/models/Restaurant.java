@@ -16,7 +16,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -154,16 +154,16 @@ public class Restaurant extends ParseModelSync {
         });
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryRestaurants() {
+    public static Task<List<ParseModelAbstract>> queryRestaurants() {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().makeParseQuery());
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryNearRestaurants(ParseGeoPoint geoPoint) {
+    public static Task<List<ParseModelAbstract>> queryNearRestaurants(ParseGeoPoint geoPoint) {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
     }
 
     @Override
-    public Task<LinkedList<ParseModelAbstract>> queryParseModels(String keyword) {
+    public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
         return Restaurant.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().createSearchDisplayNameQuery(keyword));
     }
 

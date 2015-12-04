@@ -7,7 +7,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.List;
 
 import bolts.Continuation;
@@ -30,7 +30,7 @@ public class PushNewRecordToServerTask {
                     finalTask.setError(task.getError());
                     return finalTask;
                 }
-                LinkedList<ParseObject> results = new LinkedList<ParseObject>((Collection<? extends ParseObject>) task.getResult());
+                List<ParseObject> results = new List<ParseObject>((Collection<? extends ParseObject>) task.getResult());
 //                print("Push objects to Server: \(results.count)")
 
                 // Create a trivial completed task as a base case.

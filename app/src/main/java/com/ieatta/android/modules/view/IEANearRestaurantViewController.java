@@ -85,31 +85,31 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
     }
 
     public void queryNearRestaurant111(ParseGeoPoint geoPoint) {
-        ParseQuery query = new Restaurant().makeParseQuery();
-        query.fromLocalDatastore();
-
-        query.findInBackground(new FindCallback() {
-            @Override
-            public void done(List objects, ParseException e) {
-                int x = 0;
-            }
-
-            @Override
-            public void done(Object o, Throwable throwable) {
-                Object object = o;
-                List<ParseObject> list = (List<ParseObject>) o;
-                LinkedList<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant).convertToParseModelArray(list, true);
-
-                LinkedList<Object> objects = new LinkedList<Object>();
-                for (ParseModelAbstract modelAbstract : array) {
-                    objects.add(modelAbstract);
-                }
-                if (array.size() != 0) {
-                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
-                }
-//                self.setSectionItems(objects, NearRestaurantSection.sectionRestaurants.ordinal());
-            }
-        });
+//        ParseQuery query = new Restaurant().makeParseQuery();
+//        query.fromLocalDatastore();
+//
+//        query.findInBackground(new FindCallback() {
+//            @Override
+//            public void done(List objects, ParseException e) {
+//                int x = 0;
+//            }
+//
+//            @Override
+//            public void done(Object o, Throwable throwable) {
+//                Object object = o;
+//                List<ParseObject> list = (List<ParseObject>) o;
+////                LinkedList<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant).convertToParseModelArray(list, true);
+//
+//                LinkedList<Object> objects = new LinkedList<Object>();
+//                for (ParseModelAbstract modelAbstract : array) {
+//                    objects.add(modelAbstract);
+//                }
+//                if (array.size() != 0) {
+//                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
+//                }
+////                self.setSectionItems(objects, NearRestaurantSection.sectionRestaurants.ordinal());
+//            }
+//        });
     }
 
     // MARK: Query near restaurant list.

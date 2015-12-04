@@ -12,7 +12,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
-import java.util.LinkedList;
+import java.util.List;
 
 import bolts.Task;
 import bolts.TaskCompletionSource;
@@ -80,7 +80,7 @@ public abstract class AbstractImageUtils {
         return this.getTakenPhoto(ParseModelAbstract.getPoint(model));
     }
 
-    public LinkedList listCacheImageNames(){
+    public List listCacheImageNames(){
 //        return this.getImageCache().getCacheFileList();
         return null;
     }

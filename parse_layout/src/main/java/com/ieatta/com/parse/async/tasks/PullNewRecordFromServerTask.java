@@ -9,7 +9,7 @@ import com.parse.ParseQuery;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -32,7 +32,7 @@ public class PullNewRecordFromServerTask {
                     finalTask.setError(task.getError());
                     return finalTask;
                 }
-                LinkedList<ParseObject> results = new LinkedList<ParseObject>((Collection<? extends ParseObject>) task.getResult());
+                List<ParseObject> results = new List<ParseObject>((Collection<? extends ParseObject>) task.getResult());
 //                print("Pull objects from Server: \(results.count)");
 
 

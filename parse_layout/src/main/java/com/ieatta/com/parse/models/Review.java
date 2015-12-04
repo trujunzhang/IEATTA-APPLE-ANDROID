@@ -15,6 +15,7 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.List;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -153,7 +154,7 @@ public class Review extends ParseModelSync {
         return ParseModelQuery.findLocalObjectsInBackground(this.createQueryForReviewRef()).continueWith(new Continuation<List<ParseObject>, Object>() {
             @Override
             public Object then(Task<List<ParseObject>> task) throws Exception {
-                LinkedList<ParseModelAbstract> array = new Review().convertToParseModelArray(task.getResult(), true);
+                List<ParseModelAbstract> array = new Review().convertToParseModelArray(task.getResult(), true);
                 TaskCompletionSource nextTask = new TaskCompletionSource();
                 int rating = Review.getRatingInReview(array);
                 nextTask.setResult(rating);
@@ -162,7 +163,7 @@ public class Review extends ParseModelSync {
         });
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryReviews(ParseModelAbstract model, int limit) {
+    public static Task<List<ParseModelAbstract>> queryReviews(ParseModelAbstract model, int limit) {
         ParseQuery query = new Review(model).createQueryForReviewRef();
         //        print("\(model.printDescription())")
         //        print("\(Review(refModel: model).printDescription())")
@@ -173,7 +174,7 @@ public class Review extends ParseModelSync {
     }
 
 
-    public static int getRatingInReview(LinkedList<ParseModelAbstract> list) {
+    public static int getRatingInReview(List<ParseModelAbstract> list) {
         if (list.size() == 0) {
             return 0;
         }
@@ -188,7 +189,7 @@ public class Review extends ParseModelSync {
     }
 
 
-    public static LinkedList<String> getUserPoints(LinkedList<Object> reviews) {
+    public static List<String> getUserPoints(List<Object> reviews) {
         LinkedList<String> userPoints = new LinkedList<>();
         for (Object model : reviews) {
             userPoints.add(((Review)model).userRef);
@@ -196,7 +197,7 @@ public class Review extends ParseModelSync {
         return userPoints;
     }
 
-    private static Team getPeople(Review review, LinkedList<Team> people) {
+    private static Team getPeople(Review review, List<Team> people) {
         for (Team user : people) {
             if (review.userRef.equals(ParseModelAbstract.getPoint(user))) {
                 return user;
@@ -205,7 +206,7 @@ public class Review extends ParseModelSync {
         return Team.getAnonymousUser();
     }
 
-    public static LinkedList<Object> getReviewItems(LinkedList<Review> reviews, LinkedList<Team> people) {
+    public static List<Object> getReviewItems(List<Review> reviews, List<Team> people) {
         LinkedList<Object> array = new LinkedList<>();
         for (Review model : reviews) {
             Team user = getPeople(model, people);

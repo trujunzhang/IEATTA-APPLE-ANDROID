@@ -16,7 +16,7 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 import com.twofortyfouram.assertion.Assertions;
 
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.List;
 
 //import com.twofortyfouram.assertion;
 
@@ -169,11 +169,11 @@ public class Event extends ParseModelSync {
         });
     }
 
-    public Task<LinkedList<ParseModelAbstract>> queryParseModels(String keyword) {
+    public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
         return Event.queryFromDatabase(PQueryModelType.Event, new Event().createSearchDisplayNameQuery(keyword));
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryEventsRelatedRestaurant(Restaurant restaurant) {
+    public static Task<List<ParseModelAbstract>> queryEventsRelatedRestaurant(Restaurant restaurant) {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Event, new Event().createQueryByRestaurantRef(restaurant));
     }
 

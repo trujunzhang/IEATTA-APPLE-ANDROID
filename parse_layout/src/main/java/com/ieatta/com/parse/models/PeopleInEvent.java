@@ -13,7 +13,7 @@ import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.List;
 
 /**
@@ -92,11 +92,11 @@ public class PeopleInEvent extends ParseModelSync {
         return new PeopleInEvent();
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryOrderedPeople(String eventRef) {
+    public static Task<List<ParseModelAbstract>> queryOrderedPeople(String eventRef) {
         return Event.queryFromDatabase(PQueryModelType.PeopleInEvent, new PeopleInEvent().createQueryByEventRef(eventRef));
     }
 
-    public static Team getPeople(PeopleInEvent peopleInEvent, LinkedList<Team> fetchedPeople) {
+    public static Team getPeople(PeopleInEvent peopleInEvent, List<Team> fetchedPeople) {
         for (Team people : fetchedPeople) {
             if (ParseModelAbstract.getPoint(people).equals(peopleInEvent.userRef)) {
                 return people;
@@ -106,10 +106,10 @@ public class PeopleInEvent extends ParseModelSync {
         return null;
     }
 
-    public static Task<Object> sortOrderedPeople(Task<Object> previous, LinkedList<PeopleInEvent> peopleInEvents) {
-        LinkedList<Team> fetchedPeople = new LinkedList<>((Collection<? extends Team>) previous.getResult());
+    public static Task<Object> sortOrderedPeople(Task<Object> previous, List<PeopleInEvent> peopleInEvents) {
+        List<Team> fetchedPeople = new List<>((Collection<? extends Team>) previous.getResult());
 
-        LinkedList<Team> sortedPeople = new LinkedList<>();
+        List<Team> sortedPeople = new List<>();
 
         for (PeopleInEvent peopleInEvent : peopleInEvents) {
             Team people = getPeople(peopleInEvent, fetchedPeople);

@@ -11,7 +11,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 
 import bolts.TaskCompletionSource;
 
@@ -113,7 +113,7 @@ public class Team extends ParseModelSync {
         return new Team();
     }
 
-    private static boolean checkExist(Team user, LinkedList<Team> inSource) {
+    private static boolean checkExist(Team user, List<Team> inSource) {
         for (Team model : inSource) {
             if (model.equals(user)) {
                 return true;
@@ -123,11 +123,11 @@ public class Team extends ParseModelSync {
     }
 
     // MARK: Support methods.
-    public static Task<LinkedList<ParseModelAbstract>> filterFrom(Task<LinkedList<ParseModelAbstract>> previous, LinkedList<Team> source) {
+    public static Task<List<ParseModelAbstract>> filterFrom(Task<List<ParseModelAbstract>> previous, List<Team> source) {
 
-        LinkedList<ParseModelAbstract> result =  previous.getResult();
+        List<ParseModelAbstract> result =  previous.getResult();
 
-        LinkedList<ParseModelAbstract> filterUser = new LinkedList<>();
+        List<ParseModelAbstract> filterUser = new List<>();
         for (ParseModelAbstract model : result) {
             if (checkExist((Team)model, source)) {
                 filterUser.add((Team)model);
@@ -137,18 +137,18 @@ public class Team extends ParseModelSync {
         return Task.forResult(filterUser);
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryTeam() {
+    public static Task<List<ParseModelAbstract>> queryTeam() {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Team, new Team().makeParseQuery());
     }
 
-    public static Task<LinkedList<ParseModelAbstract>> queryTeamByPoints(LinkedList<ParseModelAbstract> list) {
+    public static Task<List<ParseModelAbstract>> queryTeamByPoints(List<ParseModelAbstract> list) {
         // 1. Get ordered people reference.
         return new Team().queryParseModels(PQueryModelType.Team, Team.getPeoplePoints(list));
     }
 
     // MARK: Support methods.
-    public static LinkedList<String> getPeoplePoints(LinkedList<ParseModelAbstract> peopleInEvent) {
-        LinkedList<String> peoplePoints = new LinkedList<>();
+    public static List<String> getPeoplePoints(List<ParseModelAbstract> peopleInEvent) {
+        List<String> peoplePoints = new List<>();
 
         for (ParseModelAbstract model : peopleInEvent) {
             peoplePoints.add(((PeopleInEvent)model).userRef);
@@ -170,8 +170,8 @@ public class Team extends ParseModelSync {
     }
 
 
-    static LinkedList<Team> convertToTeamArray(LinkedList<ParseObject> objectArray) {
-        LinkedList<Team> array = new LinkedList<>();
+    static List<Team> convertToTeamArray(List<ParseObject> objectArray) {
+        List<Team> array = new List<>();
 
         for (ParseObject object : objectArray) {
             array.add((Team) convertToModel(object, new Team()));
