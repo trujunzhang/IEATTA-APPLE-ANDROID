@@ -53,11 +53,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
         self.reviewForModel.queryBelongToTask(self.reviewForModel).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                if(task.getError()!= null){
-
-                }else {
                     self.showReviewForModelCells(self.reviewForModel);
-                }
 
                 return null;
             }
