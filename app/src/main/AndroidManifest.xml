@@ -48,15 +48,31 @@
         <activity
             android:name=".modules.view.IEAChoicePeopleViewController"
             android:screenOrientation="portrait">
+
+        </activity>
+        <!--The following is for editing models.-->
+
+        <activity
+            android:name=".modules.view.edit.IEAEditRecipeViewController"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".modules.view.edit.IEAEditEventViewController"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".modules.view.edit.IEAEditRestaurantViewController"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
+        <activity
+            android:name=".modules.view.edit.IEAEditPeopleViewController"
+            android:screenOrientation="portrait">
+        </activity>
 
     </application>
 
