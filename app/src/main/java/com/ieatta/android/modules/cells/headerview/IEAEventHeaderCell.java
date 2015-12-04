@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
@@ -12,7 +13,11 @@ import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
  * Created by djzhang on 12/2/15.
  */
 public class IEAEventHeaderCell  extends IEAViewHolder {
-    public static int layoutResId = R.layout.event_header_cell;
+@Override
+    public CellType getType() {
+        return new CellType(IEAEventHeaderCell.class, R.layout.event_header_cell);
+    }
+
 
     private IEAEventHeaderCell self = this;
 

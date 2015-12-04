@@ -4,6 +4,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.EditWaiterCellModel;
 import com.ieatta.com.parse.models.Restaurant;
@@ -12,7 +13,11 @@ import com.ieatta.com.parse.models.Restaurant;
  * Created by djzhang on 12/2/15.
  */
 public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
-    public static int layoutResId = R.layout.edit_waiter_text_field_cell;
+    @Override
+    public CellType getType() {
+        return new CellType(IEAEditWaiterTextFieldCell.class,R.layout.edit_waiter_text_field_cell);
+    }
+
 
     private IEAEditWaiterTextFieldCell self = this;
 

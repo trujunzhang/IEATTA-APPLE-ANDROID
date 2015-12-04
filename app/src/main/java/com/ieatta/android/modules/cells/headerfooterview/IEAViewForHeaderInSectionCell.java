@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 
@@ -11,7 +12,10 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
  * Created by djzhang on 12/2/15.
  */
 public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
-    public static int layoutResId = R.layout.view_for_header_in_section_cell;
+    @Override
+    public CellType getType() {
+        return new CellType(IEAViewForHeaderInSectionCell.class, R.layout.view_for_header_in_section_cell);
+    }
 
     private IEAViewForHeaderInSectionCell self = this;
 
