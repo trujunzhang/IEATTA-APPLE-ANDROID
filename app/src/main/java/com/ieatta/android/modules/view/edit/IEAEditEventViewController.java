@@ -5,6 +5,7 @@ import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.edit.IEADatePickerCell;
+import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
 import com.ieatta.android.modules.cells.edit.IEAEditWaiterTextFieldCell;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
@@ -18,7 +19,6 @@ enum EditEventSection {
     sectionInformation,//= 0
     sectionPhotos,//= 1
     sectionDurationDate,//= 2
-    sectionGoogleMapAddress,//= 3
 }
 
 public class IEAEditEventViewController extends IEAEditBaseViewController {
@@ -32,8 +32,9 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
 
     @Override
     protected void prepareForEditTableView() {
-//        self.setRegisterCellClass(IEAEditWaiterTextFieldCell.class,IEAEditWaiterTextFieldCell.);
-//        self.setRegisterCellClass(IEADatePickerCell.class,IEADatePickerCell.);
+        self.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditEventSection.sectionInformation.ordinal());
+//        self.setRegisterCellClass(IEAEditWaiterTextFieldCell.getType(), EditEventSection.sectionInformation.ordinal());
+        self.setRegisterCellClass(IEADatePickerCell.getType(),EditEventSection.sectionDurationDate.ordinal());
 
         // Add rows for sections.
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), EditEventSection.sectionInformation.ordinal());
