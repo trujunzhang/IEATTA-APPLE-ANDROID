@@ -13,6 +13,9 @@ public class HeaderModel {
     public int layoutResId;
     public Class cellClass;
 
+    public HeaderModel() {
+    }
+
     public HeaderModel(Object item) {
         this.item = item;
     }

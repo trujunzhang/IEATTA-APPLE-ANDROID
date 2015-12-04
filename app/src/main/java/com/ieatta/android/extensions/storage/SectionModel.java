@@ -79,4 +79,11 @@ public class SectionModel {
         self.footerModel = footerModel;
         return self;
     }
+
+    public void setModelForHeader(Object model) {
+        if(self.headerModel == null){
+            self.headerModel = new HeaderModel();
+        }
+        self.headerModel.item = model;
+    }
 }
