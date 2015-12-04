@@ -11,6 +11,7 @@ import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -81,7 +82,7 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         IEANearRestaurantMore readReviews = new IEANearRestaurantMore(R.drawable.restaurants_icon, R.string.Read_Reviews, MainSegueIdentifier.readReviewsSegueIdentifier);
 
         IEANearRestaurantMore[] mores = {managerRestaurantItem, searchRestaurant, managerPeople, readReviews};
-        return Arrays.asList(mores);
+        return CollectionUtils.createList(mores);
     }
 
     public void queryNearRestaurant111(ParseGeoPoint geoPoint) {

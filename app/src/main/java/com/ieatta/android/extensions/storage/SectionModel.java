@@ -1,6 +1,8 @@
 package com.ieatta.android.extensions.storage;
 
 
+import com.ieatta.android.modules.tools.CollectionUtils;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class SectionModel {
     }
 
     public SectionModel setItems(Object[] items) {
-        this.items = new LinkedList(Arrays.asList(items));
+        this.items = CollectionUtils.createList(items);
         return self;
     }
 

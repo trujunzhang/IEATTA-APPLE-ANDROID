@@ -31,6 +31,6 @@ public class IEAEditTextFieldCell  extends IEAViewHolder {
     @Override
     public void updateWithModel(Object model) {
         self.model  = (EditCellModel) model;
-        self.editText.setText(self.model.editValueResId);
+//        self.editText.setText(self.model.editValueResId);
     }
 }
