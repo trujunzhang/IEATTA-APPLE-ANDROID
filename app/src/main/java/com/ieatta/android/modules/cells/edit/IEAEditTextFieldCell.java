@@ -17,7 +17,6 @@ public class IEAEditTextFieldCell  extends IEAViewHolder {
         return new CellType(IEAEditTextFieldCell.class,R.layout.edit_text_field_cell);
     }
 
-
     private IEAEditTextFieldCell self = this;
 
     private TextView editText;

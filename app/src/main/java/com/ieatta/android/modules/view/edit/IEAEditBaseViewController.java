@@ -19,7 +19,7 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
+public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
     protected IEAEditBaseViewController self = this;
 
     @Override
@@ -101,7 +101,7 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
 //        .sharedInstance.resetObserver();
 
         // Register Cells by class.
-//        self.setRegisterCellClass(IEAEditTextFieldCell.class,IEAEditTextFieldCell.layoutResId);
+//        self.setRegisterCellClass(IEAEditTextFieldCell.getType());
 
         self.editManager = self.getEditManager();
 
@@ -145,14 +145,9 @@ public class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
         return Photo.queryPhotosByModel(self.getPageModel());
     }
 
-    protected void prepareForEditTableView() {
-//        fatalError("prepareForTableView() has not been implemented")
-    }
+    protected abstract void prepareForEditTableView() ;
 
-    protected IEAEditBaseManager getEditManager() {
-//        fatalError("getEditManager() has not been implemented")
-        return null;
-    }
+    protected abstract IEAEditBaseManager getEditManager();
 
     // MARK: Override IEABaseTableViewController methods
 
