@@ -26,7 +26,6 @@ public class IEAEditRecipeManager extends IEAEditAbstractManager {
         EditBaseCellModel[] section1 = {
                 new EditCellModel(IEAEditKey.recipe_name, _model.displayName, R.string.Recipe_Name_info),
                 new EditCellModel(IEAEditKey.recipe_cost, costString, R.string.add_a_Recipe)
-
         };
         Object[] sections = {section1};
 
