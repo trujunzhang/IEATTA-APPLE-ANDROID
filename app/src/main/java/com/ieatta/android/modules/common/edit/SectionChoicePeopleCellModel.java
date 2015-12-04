@@ -1,5 +1,6 @@
 package com.ieatta.android.modules.common.edit;
 
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
 
 public class SectionChoicePeopleCellModel extends EditBaseCellModel {

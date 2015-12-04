@@ -1,4 +1,4 @@
-package com.ieatta.android.modules.common.edit;
+package com.ieatta.android.modules.common.edit.enums;
 
 /**
  * Created by djzhang on 12/1/15.

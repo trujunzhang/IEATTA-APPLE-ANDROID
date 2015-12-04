@@ -9,15 +9,12 @@ public class EditWaiterCellModel extends EditCellModel{
     int editPlaceHolderResId;
     IEAEditBaseViewController viewController;
 
-    public EditWaiterCellModel(IEAEditKey editKey, int editValueResId, int editPlaceHolderResId,IEAEditBaseViewController viewController) {
-        super(editKey,editValueResId,editPlaceHolderResId);
+    public EditWaiterCellModel(IEAEditKey editKey, String editValue, int editPlaceHolderResId,IEAEditBaseViewController viewController) {
+        super(editKey,editValue,editPlaceHolderResId);
 
         this.viewController = viewController;
     }
 
-    public EditWaiterCellModel(IEAEditKey event_nameofserver, String waiter, int name_of_server, IEAEditBaseViewController viewController) {
-        super(event_nameofserver,0,0);
-    }
 }
 
 

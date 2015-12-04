@@ -6,14 +6,11 @@ package com.ieatta.android.modules.common.edit;
 public class EditCellModel extends EditBaseCellModel{
     int editPlaceHolderResId;
 
-    public EditCellModel(IEAEditKey editKey, int editValueResId, int editPlaceHolderResId) {
-        super(editKey,editValueResId);
+
+    public EditCellModel(IEAEditKey editKey, String editValue, int editPlaceHolderResId) {
+        super(editKey,editValue);
 
         this.editPlaceHolderResId = editPlaceHolderResId;
-    }
-
-    public EditCellModel(IEAEditKey event_name, String displayName, int event_name1) {
-        super(event_name);
     }
 }
 
