@@ -259,12 +259,12 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      */
 
     public Task<Void> unpinInBackground(ParseQuery query) {
-        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
+        return ParseModelQuery.findFirstLocalObjectInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
             @Override
-            public Task<Void> then(Task<ParseObject> task) throws Exception {
-                ParseObject object = task.getResult();
-                if (object != null) {
-                    return ParseModelQuery.unpinObjectInBackground(object);
+            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
+                List<ParseObject> list = task.getResult();
+                if(list.size() != 0){
+                    return ParseModelQuery.unpinObjectInBackground(list.get(0));
                 }
                 // **** Important ****
                 // Here, return value is 'null' means that not found object.
@@ -273,6 +273,21 @@ public abstract class ParseModelQuery extends ParseModelConvert {
                 return Task.forResult(null);
             }
         });
+
+//        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<ParseObject> task) throws Exception {
+//                ParseObject object = task.getResult();
+//                if (object != null) {
+//                    return ParseModelQuery.unpinObjectInBackground(object);
+//                }
+//                // **** Important ****
+//                // Here, return value is 'null' means that not found object.
+//                // For example, if all newrecord objects already pushed to server.
+//                // No NewRecord rows on the local table. So not found NewRecord here.
+//                return Task.forResult(null);
+//            }
+//        });
     }
 
     /**
