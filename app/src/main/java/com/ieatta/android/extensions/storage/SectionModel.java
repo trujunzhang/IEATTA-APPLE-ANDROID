@@ -3,7 +3,6 @@ package com.ieatta.android.extensions.storage;
 
 import com.ieatta.android.modules.tools.CollectionUtils;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -21,7 +20,7 @@ public class SectionModel {
     public List items = new LinkedList<>();
     public int sectionIndex;
     public CellType cellType;
-    public HashMap<Integer,CellType> specailRows = new LinkedHashMap<>();
+    public HashMap<Integer, CellType> specailRows = new LinkedHashMap<>();
 
     public HeaderModel headerModel;
     public FooterModel footerModel;
@@ -50,15 +49,26 @@ public class SectionModel {
             }
             row--;
         }
-        if(row < self.items.size()){
-            return new RowModel(self.items.get(row),self.cellType);
-        }
-        else if(footerModel != null){
+        if (row < self.items.size()) {
+            CellType type = self.getRowType(row, self.cellType);
+            return new RowModel(self.items.get(row), type);
+        } else if (footerModel != null) {
             return new RowModel(footerModel);
         }
 
         return null;
     }
+
+    private CellType getRowType(int row, CellType type) {
+        // Step1: If have special row type.
+        CellType specialRowType = self.specailRows.get(row);
+        if(specialRowType!=null){
+            return  specialRowType;
+        }
+
+        return type;
+    }
+
 
     /// Number of items in current section
     public int numberOfItems() {
@@ -85,7 +95,7 @@ public class SectionModel {
     }
 
     public void setModelForHeader(Object model) {
-        if(self.headerModel == null){
+        if (self.headerModel == null) {
             self.headerModel = new HeaderModel();
         }
         self.headerModel.item = model;

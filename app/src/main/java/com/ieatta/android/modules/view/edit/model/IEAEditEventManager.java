@@ -22,7 +22,7 @@ public class IEAEditEventManager extends IEAEditAbstractManager {
         Event _model = (Event) model;
 
         EditBaseCellModel[] section1 = {
-                new EditCellModel(IEAEditKey.event_name, _model.displayName, R.string.Event_Name),
+//                new EditCellModel(IEAEditKey.event_name, _model.displayName, R.string.Event_Name),
                 new EditWaiterCellModel(IEAEditKey.event_nameofserver, _model.waiter, R.string.Name_of_Server, viewController),
         };
         EditBaseCellModel[] section2 = {
@@ -34,7 +34,8 @@ public class IEAEditEventManager extends IEAEditAbstractManager {
 
         };
 
-        Object[] sections = {section1, section2, section3};
+//        Object[] sections = {section1, section2, section3};
+        Object[] sections = {section1};
 
         return sections;
     }
