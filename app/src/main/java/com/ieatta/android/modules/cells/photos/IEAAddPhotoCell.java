@@ -10,15 +10,10 @@ import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 
 public class IEAAddPhotoCell extends IEAViewHolder {
     public static CellType  getType() {
-        return new CellType(IEAAddPhotoCell.class, R.layout.near_restaurant_cell);
+        return new CellType(IEAAddPhotoCell.class, R.layout.add_photo_cell);
     }
 
     private IEAAddPhotoCell self = this;
-
-//    @IBOutlet weak var avatarView: AvatarView!
-
-    private TextView titleLabel;
-    private TextView subtitleLabel;
 
     public IEAAddPhotoCell(View itemView) {
         super(itemView);
@@ -27,6 +22,6 @@ public class IEAAddPhotoCell extends IEAViewHolder {
     @Override
     public void render(Object model) {
         IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
-        self.titleLabel.setText(more.titleResId);
+
     }
 }
