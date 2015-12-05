@@ -35,9 +35,9 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
 
     }
 
-    private void createModels(){
-        final Team whteam = new Team("wh","wh@gmail.com","wh.st",123);
-        final Team djteam = new Team("jd","dj@gmail.com","dj.st",234);
+    private void createModels() {
+        final Team whteam = new Team("wh", "wh@gmail.com", "wh.st", 123);
+        final Team djteam = new Team("jd", "dj@gmail.com", "dj.st", 234);
 
         whteam.pinInBackgroundForModel().onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -47,11 +47,15 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
-                return  ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeParseQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeParseQuery(), PQueryModelType.Team);
             }
         }).continueWith(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
+                if (task.isFaulted()) {
+                    int x = 0;
+
+                }
                 return null;
             }
         });
