@@ -141,12 +141,12 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
     @Override
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-       return ParseModelQuery.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
-            @Override
-            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
-                return convertToLocalModelTask(task);
-            }
-        });
+       return ParseModelQuery.findFirstLocalObjectInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
+           @Override
+           public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
+               return convertToLocalModelTask(task);
+           }
+       });
     }
 
     @Override
@@ -177,28 +177,28 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - returns: the first object's array,like [PFObject's instance].
      */
-    public static Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
-        final Task.TaskCompletionSource tcs = Task.create();
-
-        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
-            @Override
-            public Object then(Task<List<ParseObject>> task) throws Exception {
-                if (task.getError() != null) {
-                    tcs.setError(task.getError());
-                } else {
-                    List<ParseObject> objects = task.getResult();
-                    if (objects.size() == 0) {
-                        tcs.setResult(null);
-                    } else {
-                        tcs.setResult(objects.get(0));
-                    }
-                }
-                return null;
-            }
-        });
-
-        return tcs.getTask();
-    }
+//    public static Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
+//        final Task.TaskCompletionSource tcs = Task.create();
+//
+//        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
+//            @Override
+//            public Object then(Task<List<ParseObject>> task) throws Exception {
+//                if (task.getError() != null) {
+//                    tcs.setError(task.getError());
+//                } else {
+//                    List<ParseObject> objects = task.getResult();
+//                    if (objects.size() == 0) {
+//                        tcs.setResult(null);
+//                    } else {
+//                        tcs.setResult(objects.get(0));
+//                    }
+//                }
+//                return null;
+//            }
+//        });
+//
+//        return tcs.getTask();
+//    }
 
     public static Task<List<ParseObject>> findLocalObjectsInBackground(ParseQuery query) {
         // *** Important ***
@@ -273,21 +273,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
                 return Task.forResult(null);
             }
         });
-
-//        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
-//            @Override
-//            public Task<Void> then(Task<ParseObject> task) throws Exception {
-//                ParseObject object = task.getResult();
-//                if (object != null) {
-//                    return ParseModelQuery.unpinObjectInBackground(object);
-//                }
-//                // **** Important ****
-//                // Here, return value is 'null' means that not found object.
-//                // For example, if all newrecord objects already pushed to server.
-//                // No NewRecord rows on the local table. So not found NewRecord here.
-//                return Task.forResult(null);
-//            }
-//        });
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.ieatta.com.parse.debugspec;
+package com.ieatta.com.parse.debugspec.query;
 
 import android.test.InstrumentationTestCase;
 import android.virtualbreak.com.debug.ParseLocalDatabase;
@@ -18,7 +18,7 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/5/15.
  */
-public class ParseModelQuerySpec extends InstrumentationTestCase {
+public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
 
     public void setUp() throws Exception {
         super.setUp();
@@ -83,7 +83,9 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
                     Exception error = task.getError();
                     String message = error.getLocalizedMessage();
                     String errorMessage = error.getMessage();
+
                     fail(message);
+
                     signal.countDown();
                     return null;
                 }
