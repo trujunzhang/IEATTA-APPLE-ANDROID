@@ -58,7 +58,7 @@ public class NewRecord extends ParseModelSync {
     public ParseQuery createQueryForDeletedModel() {
         ParseQuery query = this.makeParseQuery();
 
-        query.whereEqualTo(kPAPFieldModelTypeKey, this.modelType.ordinal());
+        query.whereEqualTo(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));
         query.whereEqualTo(kPAPFieldModelPointKey, this.modelPoint);
 
         return query;
@@ -76,7 +76,7 @@ public class NewRecord extends ParseModelSync {
 
     @Override
     public void writeCommonObject(ParseObject object) {
-        object.put(kPAPFieldModelTypeKey, this.modelType.ordinal());// ***Important***
+        object.put(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));// ***Important***
         object.put(kPAPFieldModelPointKey, this.modelPoint);
         object.put(kPAPFieldModelCreatedDateKey, this.modelCreatedDate);
     }
