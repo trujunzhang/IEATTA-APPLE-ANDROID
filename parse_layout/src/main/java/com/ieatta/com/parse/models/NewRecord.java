@@ -1,5 +1,6 @@
 package com.ieatta.com.parse.models;
 
+import com.ieatta.com.parse.ParseModelConvert;
 import com.ieatta.com.parse.ParseModelSync;
 
 import com.parse.ParseObject;
@@ -44,7 +45,7 @@ public class NewRecord extends ParseModelSync {
 
 
     public static ParseModelAbstract getRecordedInstance( ParseObject pulledNewRecordObject)  {
-        NewRecord newRecord = (NewRecord) ParseModelAbstract.convertToOnlineModel(pulledNewRecordObject,new NewRecord() );
+        NewRecord newRecord = (NewRecord) ParseModelConvert.convertToOnlineModel(pulledNewRecordObject, new NewRecord());
 
         return newRecord.getRecordedModel();
     }

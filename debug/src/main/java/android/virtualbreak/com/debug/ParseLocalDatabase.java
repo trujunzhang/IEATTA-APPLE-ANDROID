@@ -1,6 +1,7 @@
 package android.virtualbreak.com.debug;
 
 import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.ParseModelConvert;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.NewRecord;
@@ -82,7 +83,7 @@ public class ParseLocalDatabase {
             public Void then(Task<List<ParseObject>> task) throws Exception {
                 List<ParseObject> value = task.getResult();
                 if(value.size() > 0){
-                    ParseModelAbstract instance = ParseModelAbstract.getInstanceFromType(classType);
+                    ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(classType);
                     List<ParseModelAbstract> array = instance.convertToParseModelArray(value, true);
                     ParseLocalDatabase.printList(classType,array);
                 }
