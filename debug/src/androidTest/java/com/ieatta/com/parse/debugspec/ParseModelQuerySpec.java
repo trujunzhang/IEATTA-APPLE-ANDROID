@@ -35,7 +35,9 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
 
     }
 
-    private void createModels() {
+    public void testUnpinInBackground() throws Exception {
+        final CountDownLatch signal = new CountDownLatch(1);
+
         final Team whteam = new Team("wh", "wh@gmail.com", "wh.st", 123);
         final Team djteam = new Team("jd", "dj@gmail.com", "dj.st", 234);
 
@@ -59,13 +61,6 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
                 return null;
             }
         });
-
-    }
-
-    public void testUnpinInBackground() throws Exception {
-        final CountDownLatch signal = new CountDownLatch(1);
-
-        this.createModels();
 
 //        signal.countDown();
 

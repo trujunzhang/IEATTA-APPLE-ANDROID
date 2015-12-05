@@ -94,7 +94,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     public String displayName = "";
     public ParseModelFlag modelFlag = ParseModelFlag.Normal;
 
-    public Date objectCreatedDate;
+    public Date objectCreatedDate = new Date();
 
     public int sampleFileName ;// Image's offline Image Path.
 
