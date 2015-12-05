@@ -52,7 +52,7 @@ public class IEADatePickerCell extends IEAViewHolder {
                     return;
                 }
 
-                new SlideDateTimePicker.Builder(EnvironmentUtils.sharedInstance.getFragmentManager())
+                new SlideDateTimePicker.Builder(EnvironmentUtils.sharedInstance.getCurrentFragmentManager())
                         .setListener(listener)
                         .setInitialDate(editedDate)
                                 //.setMinDate(minDate)

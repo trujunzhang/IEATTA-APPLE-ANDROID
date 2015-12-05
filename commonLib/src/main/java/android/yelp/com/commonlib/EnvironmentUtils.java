@@ -1,8 +1,7 @@
 package android.yelp.com.commonlib;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -10,12 +9,12 @@ import android.support.v4.app.FragmentManager;
 public class EnvironmentUtils {
     public static final EnvironmentUtils sharedInstance = new EnvironmentUtils();
 
-    private Activity activity;
+    private AppCompatActivity activity;
 
     private EnvironmentUtils() {
     }
 
-    public void registerGlobalContext(Activity activity){
+    public void registerGlobalContext(AppCompatActivity activity){
         this.activity = activity;
     }
 
@@ -23,7 +22,7 @@ public class EnvironmentUtils {
         return this.activity;
     }
 
-    public FragmentManager getFragmentManager() {
-        return this.getFragmentManager();
+    public android.support.v4.app.FragmentManager getCurrentFragmentManager() {
+        return this.activity.getSupportFragmentManager();
     }
 }
