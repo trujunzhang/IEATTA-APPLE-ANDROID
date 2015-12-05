@@ -3,6 +3,7 @@ package com.ieatta.com.parse.async;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.yelp.com.commonlib.EnvironmentUtils;
+import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseQuery;
@@ -64,7 +65,7 @@ public class AsyncCacheInfo {
 
     public void printDescription(String info) {
         if (this.lastRecordCreateAt != null) {
-//            print("last newRecordDate from \(info): \(theDate.debugFormatted)")
+            LogUtils.debug("last newRecordDate from " + info + ": " + this.lastRecordCreateAt.toString());
         }
     }
 }
