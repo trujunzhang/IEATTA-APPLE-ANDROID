@@ -345,6 +345,7 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
                     Exception error = task.getError();
                     String message = error.getLocalizedMessage();
                     String errorMessage = error.getMessage();
+
                     fail(message);
                     signal.countDown();
                     return null;
