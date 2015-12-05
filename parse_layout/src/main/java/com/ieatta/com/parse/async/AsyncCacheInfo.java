@@ -22,7 +22,7 @@ public class AsyncCacheInfo {
     public Date lastRecordCreateAt = null;
     private String storeKey;
 
-    SharedPreferences mSharedPreferences;
+    SharedPreferences sharedPreferences;
 
     private AsyncCacheInfo() {
 //        assert(false, "This constructor is not allowed!");
@@ -32,11 +32,11 @@ public class AsyncCacheInfo {
         this.storeKey = storeKey;
 
         // Access the device's key-value storage
-        mSharedPreferences = EnvironmentUtils.sharedInstance.getGlobalContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        sharedPreferences = EnvironmentUtils.sharedInstance.getGlobalContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
         // Read the user's name,
         // or an empty string if nothing found
-        long dateValue = mSharedPreferences.getLong(this.storeKey, Long.MIN_VALUE);
+        long dateValue = sharedPreferences.getLong(this.storeKey, Long.MIN_VALUE);
 
         this.lastRecordCreateAt = null;
         if (dateValue != Long.MIN_VALUE) {
@@ -48,7 +48,7 @@ public class AsyncCacheInfo {
 
     public void storeNewRecordDate(Date newDate) {
         // Put it into memory (don't forget to commit!)
-        SharedPreferences.Editor e = mSharedPreferences.edit();
+        SharedPreferences.Editor e = sharedPreferences.edit();
         e.putLong(this.storeKey, newDate.getTime());
         e.commit();
 
