@@ -21,6 +21,8 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
 
     public IEAPhotoGalleryCell(View itemView) {
         super(itemView);
+
+        self.collectionView = (RecyclerView) itemView.findViewById(R.id.section_list);
     }
 
     @Override
