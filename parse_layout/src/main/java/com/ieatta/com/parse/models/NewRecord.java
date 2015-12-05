@@ -58,7 +58,7 @@ public class NewRecord extends ParseModelSync {
     public ParseQuery createQueryForDeletedModel() {
         ParseQuery query = this.makeParseQuery();
 
-        query.whereEqualTo(kPAPFieldModelTypeKey, this.modelType);
+        query.whereEqualTo(kPAPFieldModelTypeKey, this.modelType.ordinal());
         query.whereEqualTo(kPAPFieldModelPointKey, this.modelPoint);
 
         return query;

@@ -102,7 +102,7 @@ public class Review extends ParseModelSync {
         object.put(kPAPFieldRateKey, this.rate);
         object.put(kPAPFieldUserRefKey, this.userRef);
         object.put(kPAPFieldReviewRefKey, this.reviewRef);
-        object.put(kPAPFieldReviewTypeKey, this.reviewType.ordinal()); // *** Important ***
+        object.put(kPAPFieldReviewTypeKey, ReviewType.getInt(this.reviewType)); // *** Important ***
     }
 
     @Override

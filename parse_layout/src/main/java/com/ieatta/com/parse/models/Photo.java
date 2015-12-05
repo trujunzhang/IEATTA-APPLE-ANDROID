@@ -153,7 +153,7 @@ public class Photo extends ParseModelSync {
         object.put(kPAPFieldOSTypeKey, OS_TYPE);
         object.put(kPAPFieldLocalRestaurantKey, this.restaurantRef);
         object.put(kPAPFieldUsedRefKey, this.usedRef);
-        object.put(kPAPFieldUsedTypeKey, this.usedType.ordinal()); // *** Important ***
+        object.put(kPAPFieldUsedTypeKey, PhotoUsedType.getInt(this.usedType)); // *** Important ***
     }
 
     @Override

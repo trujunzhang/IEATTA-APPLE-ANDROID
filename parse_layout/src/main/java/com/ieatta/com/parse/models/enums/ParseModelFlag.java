@@ -8,6 +8,10 @@ public enum ParseModelFlag {
     Normal,
     deleted;
 
+    public static int getInt(ParseModelFlag type){
+        return type.ordinal();
+    }
+
     public static ParseModelFlag fromInteger(int x) {
         switch (x) {
             case 0:

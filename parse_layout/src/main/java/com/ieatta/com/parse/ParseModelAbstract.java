@@ -148,7 +148,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         this.checkAndMakeObjectUUID(object);
 
         object.put(kPAPFieldObjectCreatedDateKey, this.objectCreatedDate);
-        object.put(kPAPFieldFlagKey, this.modelFlag.ordinal());
+        object.put(kPAPFieldFlagKey, ParseModelFlag.getInt(this.modelFlag));
     }
 
     public void checkAndMakeObjectUUID(ParseObject object) {

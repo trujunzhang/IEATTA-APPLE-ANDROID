@@ -9,6 +9,10 @@ public enum ReviewType {
     Review_Event,
     Review_Unknow;// Default
 
+    public static int getInt(ReviewType type){
+        return type.ordinal();
+    }
+
     public static ReviewType fromInteger(int x) {
         switch (x) {
             case 0:

@@ -23,6 +23,10 @@ public enum PQueryModelType {
 
     unkown;// 10
 
+    public static int getInt(PQueryModelType type){
+        return type.ordinal();
+    }
+
     public static PQueryModelType fromInteger(int x) {
         switch(x) {
             case 0:
@@ -69,7 +73,7 @@ public enum PQueryModelType {
 
                 "unkown",
         };
-        return PQeuryModelTypeNames[type.ordinal()];
+        return PQeuryModelTypeNames[PQueryModelType.getInt(type)];
     }
 
 }
