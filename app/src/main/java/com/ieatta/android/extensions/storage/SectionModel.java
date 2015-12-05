@@ -61,7 +61,7 @@ public class SectionModel {
 
     private CellType getRowType(int row, CellType type) {
         // Step1: If have special row type.
-        CellType specialRowType = self.specailRows.get(row);
+        CellType specialRowType = self.specailRows.get(new Integer(row));
         if(specialRowType!=null){
             return  specialRowType;
         }
