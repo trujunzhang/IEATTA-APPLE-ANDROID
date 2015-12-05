@@ -17,10 +17,9 @@ public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
         return new CellType(IEAEditWaiterTextFieldCell.class,R.layout.edit_waiter_text_field_cell);
     }
 
-
     private IEAEditWaiterTextFieldCell self = this;
 
-    private TextView editText;
+    private EditText editText;
     private EditWaiterCellModel model;
 
     public IEAEditWaiterTextFieldCell(View itemView) {

@@ -19,7 +19,7 @@ public class IEAEditTextFieldCell  extends IEAViewHolder {
 
     private IEAEditTextFieldCell self = this;
 
-    private TextView editText;
+    private EditText editText;
     private EditCellModel model;
 
     public IEAEditTextFieldCell(View itemView) {
