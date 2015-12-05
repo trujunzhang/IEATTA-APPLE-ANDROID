@@ -207,7 +207,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query.findInBackground();
     }
 
-    public static Task<List<ParseObject>> findFirstLocalObjectInBackground(ParseQuery query) {
+    public static Task<ParseObject> findFirstLocalObjectInBackground(ParseQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 
@@ -259,12 +259,12 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      */
 
     public Task<Void> unpinInBackground(ParseQuery query) {
-        return ParseModelQuery.findFirstLocalObjectInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
+        return ParseModelQuery.findFirstLocalObjectInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
             @Override
-            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
-                List<ParseObject> list = task.getResult();
-                if(list.size() != 0){
-                    return ParseModelQuery.unpinObjectInBackground(list.get(0));
+            public Task<Void> then(Task<ParseObject> task) throws Exception {
+                ParseObject object = task.getResult();
+                if (object != null) {
+                    return ParseModelQuery.unpinObjectInBackground(object);
                 }
                 // **** Important ****
                 // Here, return value is 'null' means that not found object.
