@@ -20,6 +20,18 @@ enum EditEventSection {
     sectionPhotos,//= 1
     sectionDurationDate,//= 2
 }
+// enum showing Row index in the section.
+enum EditEventRows{
+    RowWaiter(1);
+
+    int row;
+    EditEventRows(int p) {
+        row = p;
+    }
+    int getRow() {
+        return row;
+    }
+}
 
 public class IEAEditEventViewController extends IEAEditBaseViewController {
     @Override
@@ -33,8 +45,8 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
     @Override
     protected void prepareForEditTableView() {
         self.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditEventSection.sectionInformation.ordinal());
-//        self.setRegisterCellClass(IEAEditWaiterTextFieldCell.getType(), EditEventSection.sectionInformation.ordinal());
-        self.setRegisterCellClass(IEADatePickerCell.getType(),EditEventSection.sectionDurationDate.ordinal());
+        self.setRegisterCellClass(IEADatePickerCell.getType(), EditEventSection.sectionDurationDate.ordinal());
+                self.setRegisterCellClass(IEAEditWaiterTextFieldCell.getType(), EditEventSection.sectionInformation.ordinal());
 
         // Add rows for sections.
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), EditEventSection.sectionInformation.ordinal());
