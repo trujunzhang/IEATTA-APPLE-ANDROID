@@ -7,6 +7,6 @@ import android.util.Log;
  */
 public class LogUtils {
     public static void debug(String message){
-        Log.d("IEATTA_Debug",message);
+        Log.d("IEATTA_Async",message);
     }
 }

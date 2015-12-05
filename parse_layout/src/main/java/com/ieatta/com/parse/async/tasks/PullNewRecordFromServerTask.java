@@ -7,6 +7,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.async.AsyncCacheInfo;
 import com.ieatta.com.parse.async.AsyncPullNotify;
 import com.ieatta.com.parse.models.NewRecord;
+import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -27,43 +28,54 @@ public class PullNewRecordFromServerTask {
     public static Task<Object> PullFromServerSeriesTask(ParseQuery query) {
         final TaskCompletionSource seriesTask = new TaskCompletionSource();
 
-        query.findInBackground().continueWithTask(new Continuation() {
+        query.findInBackground().onSuccessTask(new Continuation<List<ParseObject>,Void>() {
             @Override
-            public Object then(Task task) throws Exception {
-                if (task.getError() != null) {
-                    TaskCompletionSource finalTask = new TaskCompletionSource();
-                    finalTask.setError(task.getError());
-                    return finalTask;
-                }
-                List<ParseObject> results = (List<ParseObject>) task.getResult();
+            public Void then(Task<List<ParseObject>> task) throws Exception {
+                List<ParseObject> results =  task.getResult();
                 LogUtils.debug("Pull objects from Server: "+results.size());
 
-                // Create a trivial completed task as a base case.
-                Task<Void> _task = Task.forResult(null);
-                for (final ParseObject result : results) {
-                    // For each item, extend the task with a function to delete the item.
-                    _task = _task.continueWithTask(new Continuation<Void, Task<Void>>() {
-                        public Task<Void> then(Task<Void> ignored) throws Exception {
-                            // Return a task that will be marked as completed when the delete is finished.
-                            return PullObjectFromServerTask(result);
-                        }
-                    });
-                }
-
-                return null;
-            }
-        }).continueWith(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                // Every offline objects was pushed to Parse.com.
-                if (task.getError() != null) {
-                    seriesTask.setError(task.getError());
-                } else {
-                    seriesTask.setResult(true);
-                }
+                int x = 0;
                 return null;
             }
         });
+
+//        query.findInBackground().continueWithTask(new Continuation() {
+//            @Override
+//            public Object then(Task task) throws Exception {
+//                if (task.getError() != null) {
+//                    TaskCompletionSource finalTask = new TaskCompletionSource();
+//                    finalTask.setError(task.getError());
+//                    return finalTask;
+//                }
+//                List<ParseObject> results = (List<ParseObject>) task.getResult();
+//                LogUtils.debug("Pull objects from Server: "+results.size());
+//
+//                // Create a trivial completed task as a base case.
+//                Task<Void> _task = Task.forResult(null);
+//                for (final ParseObject result : results) {
+//                    // For each item, extend the task with a function to delete the item.
+//                    _task = _task.continueWithTask(new Continuation<Void, Task<Void>>() {
+//                        public Task<Void> then(Task<Void> ignored) throws Exception {
+//                            // Return a task that will be marked as completed when the delete is finished.
+//                            return PullObjectFromServerTask(result);
+//                        }
+//                    });
+//                }
+//
+//                return null;
+//            }
+//        }).continueWith(new Continuation() {
+//            @Override
+//            public Object then(Task task) throws Exception {
+//                // Every offline objects was pushed to Parse.com.
+//                if (task.getError() != null) {
+//                    seriesTask.setError(task.getError());
+//                } else {
+//                    seriesTask.setResult(true);
+//                }
+//                return null;
+//            }
+//        });
 
         return seriesTask.getTask();
     }
