@@ -117,7 +117,6 @@ public class MemoryStorage {
         section.specailRows.put(new Integer(forRowIndex),type);
     }
 
-
     public RowModel getRowModelFromPosition(int position) {
         return self.tableViewUtils.getItem(position);
     }
