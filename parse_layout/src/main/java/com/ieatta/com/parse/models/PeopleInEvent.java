@@ -128,7 +128,7 @@ public class PeopleInEvent extends ParseModelSync {
         return null;
     }
 
-    public Task<Object> saveTeam() {
+    public Task<Void> saveTeam() {
         return this.pinInBackgroundWithNewRecord();
     }
 

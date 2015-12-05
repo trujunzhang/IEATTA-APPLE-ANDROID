@@ -280,7 +280,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * <p/>
      * - parameter deletedModel:    ParseModelAbstract's instance that want to delete
      */
-    Task<Void> unpinInBackgroundWithNewRecord() {
+    public Task<Void> unpinInBackgroundWithNewRecord() {
         final ParseQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
 
         return this.unpinInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
