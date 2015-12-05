@@ -69,10 +69,6 @@ public abstract class ParseModelConvert extends ParseJsoner {
     }
 
     public Task<List<ParseModelAbstract>> convertToParseModelsTask(Task<List<ParseObject>> previous, boolean offline) {
-        if (previous.isFaulted()) {
-            return Task.forError(previous.getError());
-        }
-
         List<ParseModelAbstract> array = new LinkedList<>();
 
         for (ParseObject object : previous.getResult()) {
