@@ -170,14 +170,14 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * <p/>
      * - parameter query:           query's instance
      */
-    protected Task<Integer> countLocalObjects(ParseQuery query) {
+    public Task<Integer> countLocalObjects(ParseQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 
         return query.countInBackground();
     }
 
-    Task<Integer> countObjects(ParseQuery query) {
+    public Task<Integer> countObjects(ParseQuery query) {
         return query.countInBackground();
     }
 

@@ -4,6 +4,7 @@ import android.test.InstrumentationTestCase;
 
 import com.ieatta.com.parse.ParseAPI;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import android.test.InstrumentationTestCase;
@@ -39,31 +40,49 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
     public void testUnpinInBackground() throws Exception {
         final CountDownLatch signal = new CountDownLatch(1);
 
-        final Team whteam = new Team("wh", "wh@gmail.com", "wh.st", 123);
-        final Team djteam = new Team("jd", "dj@gmail.com", "dj.st", 234);
-        final ParseQuery whQuery = whteam.createQueryByObjectUUID();
-        final ParseQuery djuery = whteam.createQueryByObjectUUID();
+        final Team whTeam = new Team("wh", "wh@gmail.com", "wh.st", 123);
+        final ParseQuery whQuery = whTeam.createQueryByObjectUUID();
+        final ParseQuery teamCountQurey = whTeam.makeParseQuery();
 
-        whteam.pinInBackgroundForModel().onSuccessTask(new Continuation<Void, Task<Void>>() {
+        final Team countTeam = new Team();
+
+        final int[] expectCount = {0, 0};
+        countTeam.countLocalObjects(teamCountQurey).onSuccessTask(new Continuation<Integer, Task<Void>>() {
             @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                return djteam.pinInBackgroundForModel();
+            public Task<Void> then(Task<Integer> task) throws Exception {
+                expectCount[0] = task.getResult();
+                // Step02: Save it.
+                return whTeam.pinInBackgroundForModel();
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
+                // Step03: List table.
                 return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeParseQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // **** Important **** (Test function here)
-                return whteam.unpinInBackground(whQuery);
+                // Step04: Delete it.
+                return whTeam.unpinInBackground(whQuery);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
+                // Step05: List table.
                 return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeParseQuery(), PQueryModelType.Team);
+            }
+        }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
+            @Override
+            public Task<Integer> then(Task<Void> task) throws Exception {
+                return countTeam.countLocalObjects(teamCountQurey);
+            }
+        }).onSuccess(new Continuation<Integer, Void>() {
+            @Override
+            public Void then(Task<Integer> task) throws Exception {
+                expectCount[1] = task.getResult();
+                return null;
             }
         }).continueWith(new Continuation<Void, Object>() {
             @Override
@@ -72,12 +91,15 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
                     Exception error = task.getError();
                     String message = error.getLocalizedMessage();
                     String errorMessage = error.getMessage();
+                    Assert.fail(message);
+                    signal.countDown();
+                    return null;
                 }
+                Assert.assertEquals("Save/Delete ",expectCount[0] == expectCount[1]);
+                signal.countDown();
                 return null;
             }
         });
-
-//        signal.countDown();
 
         signal.await(10000, TimeUnit.SECONDS);
     }
