@@ -125,7 +125,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
                         if (task.getError() != null) {
                             tcs.setError(task.getError());
                         } else {
-                            List<ParseModelAbstract> array = ParseModelAbstract.getInstanceFromType(type).convertToParseModelArray(task.getResult(), true);
+                            List<ParseModelAbstract> array = ((ParseModelConvert)ParseModelAbstract.getInstanceFromType(type)).convertToParseModelArray(task.getResult(), true);
                             tcs.setResult(array);
                         }
                         return null;
@@ -141,28 +141,12 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
     @Override
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-        ParseModelQuery.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
+       return ParseModelQuery.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
             @Override
             public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
                 return convertToLocalModelTask(task);
             }
         });
-
-//        return ParseModelQuery.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
-//            @Override
-//            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
-//                ParseObject object  = task.getResult();
-//                return null;
-//            }
-//        });
-//
-//                .continueWith(new Continuation<Object, Object>() {
-//                    @Override
-//                    public Object then(Task<Object> task) throws Exception {
-//                        return convertToLocalModelTask(task);
-//                    }
-//                });
-        return null;
     }
 
     @Override

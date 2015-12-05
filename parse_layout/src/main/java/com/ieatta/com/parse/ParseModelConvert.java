@@ -32,6 +32,18 @@ public abstract class ParseModelConvert extends ParseJsoner {
         super();
     }
 
+
+    public Task<ParseModelAbstract> convertToLocalModelTask(Task<ParseObject> firstObjectTask) {
+        ParseObject firstObject = firstObjectTask.getResult();
+        if(firstObject!= null){
+            this.readObjectLocal(firstObject);
+            return Task.forResult(self);
+        }
+
+//        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
+        return Task.forError(new NullPointerException("not found the first object"));
+    }
+
     /**
      * Convert fetched result's value as ParseObject array to Model array.
      * <p/>
@@ -89,29 +101,7 @@ public abstract class ParseModelConvert extends ParseJsoner {
         return Task.forError(new Exception(""));
     }
 
-    public Task<ParseModelAbstract> convertToLocalModelTask(Task<ParseObject> firstObjectTask) {
-        ParseObject result = firstObjectTask.getResult();
 
-
-//        Object result = firstObjectTask.getResult();
-//        if (result != null) {
-//            List<Object> array = new List<>((Collection<?>) result);
-//            if (array.size() >= 1) {
-//                ParseObject firstObject = (ParseObject) array.get(0);
-//                this.readObjectLocal(firstObject);
-//                TaskCompletionSource<Object> finishTask = new TaskCompletionSource<>();
-//                finishTask.setResult(true);
-//                return finishTask.getTask();
-//            }
-//        }
-
-//        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
-
-        TaskCompletionSource finishTask = new TaskCompletionSource<>();
-//        finishTask.setError(new Error(""));
-        return finishTask.getTask();
-
-    }
 
     //
     static public ParseModelAbstract convertToFirstLocalModel(Object result, ParseModelAbstract instance) {

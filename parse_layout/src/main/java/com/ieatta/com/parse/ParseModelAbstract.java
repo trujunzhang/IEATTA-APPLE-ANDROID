@@ -24,6 +24,7 @@ import bolts.TaskCompletionSource;
  * Created by djzhang on 11/27/15.
  */
 public abstract class ParseModelAbstract implements ParseModelProtocol {
+    protected ParseModelAbstract self = this;
 
     static public ParseModelAbstract convertToModel(Object object, ParseModelAbstract instance) {
         instance.readObjectLocal((ParseObject) object);
