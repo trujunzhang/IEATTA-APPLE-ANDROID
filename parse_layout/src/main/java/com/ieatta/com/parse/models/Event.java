@@ -72,8 +72,9 @@ private Event self = this;
         self.displayName = displayName;
         self.startDate = startDate;
         self.endDate = endDate;
+        self.whatToEat = content;
+        self.remarks = remarks;
     }
-
 
     // MARK: ParseModel
     public ParseQuery createQueryByRestaurantRef(Restaurant restaurant) {
