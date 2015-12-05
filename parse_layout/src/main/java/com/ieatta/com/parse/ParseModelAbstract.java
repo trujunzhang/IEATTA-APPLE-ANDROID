@@ -347,8 +347,11 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return Task.forError(new Exception(""));
     }
 
-    public Task<Object> convertToLocalModelTask(Task<Object> firstObjectArray) {
-//        Object result = firstObjectArray.getResult();
+    public Task<ParseModelAbstract> convertToLocalModelTask(Task<ParseObject> firstObjectTask) {
+        ParseObject result = firstObjectTask.getResult();
+
+
+//        Object result = firstObjectTask.getResult();
 //        if (result != null) {
 //            List<Object> array = new List<>((Collection<?>) result);
 //            if (array.size() >= 1) {

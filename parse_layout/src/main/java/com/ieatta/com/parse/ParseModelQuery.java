@@ -142,6 +142,12 @@ public abstract class ParseModelQuery extends ParseJsoner {
 
     @Override
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
+        ParseModelQuery.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
+            @Override
+            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
+                return convertToLocalModelTask(task);
+            }
+        });
 
 //        return ParseModelQuery.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
 //            @Override
@@ -216,6 +222,13 @@ public abstract class ParseModelQuery extends ParseJsoner {
         query.fromLocalDatastore();
 
         return query.findInBackground();
+    }
+
+    public static Task<List<ParseObject>> findFirstLocalObjectInBackground(ParseQuery query) {
+        // *** Important ***
+        query.fromLocalDatastore();
+
+        return query.getFirstInBackground();
     }
 
     private ParseObject makeObject() {
