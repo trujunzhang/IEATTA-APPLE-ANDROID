@@ -81,7 +81,7 @@ public class Review extends ParseModelSync {
         ParseQuery query = this.makeParseQuery();
 
         query.whereEqualTo(kPAPFieldReviewRefKey, this.reviewRef);
-        query.whereEqualTo(kPAPFieldReviewTypeKey, this.reviewType);
+        query.whereEqualTo(kPAPFieldReviewTypeKey, ReviewType.getInt(this.reviewType));
 
         return query;
     }
