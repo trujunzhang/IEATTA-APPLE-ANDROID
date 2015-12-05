@@ -55,8 +55,9 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted()) {
-                    int x = 0;
-
+                    Exception error = task.getError();
+                    String message = error.getLocalizedMessage();
+                    String errorMessage = error.getMessage();
                 }
                 return null;
             }
