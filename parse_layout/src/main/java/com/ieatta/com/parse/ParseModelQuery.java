@@ -18,8 +18,7 @@ import bolts.TaskCompletionSource;
 /**
  * Created by djzhang on 11/27/15.
  */
-public abstract class ParseModelQuery extends ParseJsoner {
-
+public abstract class ParseModelQuery extends ParseModelConvert {
 
     private static final String kPAPFieldModelOnlineCreatedAtKey = "createdAt";
 
