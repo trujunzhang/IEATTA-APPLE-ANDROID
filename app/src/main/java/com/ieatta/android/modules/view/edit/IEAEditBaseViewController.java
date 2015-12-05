@@ -154,6 +154,9 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         self.rowModels = rows;
         for (int i = 0; i < rows.length; i++) {
             Object[] items = (Object[]) rows[i];
+            if(items == null){
+                continue;
+            }
             setSectionItems(CollectionUtils.createList(items), i);
         }
     }

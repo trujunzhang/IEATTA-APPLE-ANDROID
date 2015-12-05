@@ -11,6 +11,7 @@ import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.common.edit.DatePickerCellModel;
 import com.ieatta.com.parse.models.Restaurant;
 
 import java.text.SimpleDateFormat;
@@ -35,6 +36,8 @@ public class IEADatePickerCell  extends IEAViewHolder {
     private FrameLayout datePickerLayout;
     private Button clickedView;
 
+
+    private DatePickerCellModel model;
 
     public IEADatePickerCell(View itemView) {
         super(itemView);
@@ -66,7 +69,9 @@ public class IEADatePickerCell  extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-        Restaurant more  = (Restaurant) model;
+         self.model  = (DatePickerCellModel) model;
+
+
     }
 
 
