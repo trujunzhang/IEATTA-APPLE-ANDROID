@@ -1,8 +1,12 @@
 package com.ieatta.com.parse.async;
 
+import android.util.Log;
+
 import com.ieatta.com.parse.async.tasks.PullNewRecordFromServerTask;
 import com.ieatta.com.parse.async.tasks.PushNewRecordToServerTask;
 import com.ieatta.com.parse.models.NewRecord;
+
+import java.util.logging.Logger;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -16,7 +20,6 @@ public class ParseAsyncHandler {
     private static final int PAGE_NUMBER_PUSH_NEW_RECORD = 2;
 
     public static final ParseAsyncHandler sharedInstance = new ParseAsyncHandler();
-
 
     private boolean didEndAsync = true;
 
@@ -53,9 +56,9 @@ public class ParseAsyncHandler {
 
     private void endAsyncTasks(Exception error) {
         if (error != null) {
-//            print("Error when async database: \(_error.userInfo)");
+            Log.d("Async","Error when async database:"+error.getLocalizedMessage());
         } else {
-//            print("Async database task end sucessfully!");
+            Log.d("Async","Async database task end sucessfully!");
         }
 
         this.didEndAsync = true;
