@@ -47,7 +47,7 @@ public class TableViewUtils {
     public RowModel getItem(int position) {
         int total = 0;
 
-        if(position == 6){
+        if(position == 1){
             int x = 0;
         }
 
