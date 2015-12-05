@@ -4,8 +4,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
+import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
@@ -50,16 +52,16 @@ public class IEADatePickerCell extends IEAViewHolder {
                     return;
                 }
 
-//                new SlideDateTimePicker.Builder(IntentUtils.sharedInstance.supportFragmentManager)
-//                        .setListener(listener)
-//                        .setInitialDate(editedDate)
-//                                //.setMinDate(minDate)
-//                                //.setMaxDate(maxDate)
-//                        .setIs24HourTime(true)
-////                                .setTheme(SlideDateTimePicker.HOLO_DARK)
-////                                .setIndicatorColor(Color.parseColor("#990000"))
-//                        .build()
-//                        .show();
+                new SlideDateTimePicker.Builder(EnvironmentUtils.sharedInstance.getFragmentManager())
+                        .setListener(listener)
+                        .setInitialDate(editedDate)
+                                //.setMinDate(minDate)
+                                //.setMaxDate(maxDate)
+                        .setIs24HourTime(true)
+//                                .setTheme(SlideDateTimePicker.HOLO_DARK)
+//                                .setIndicatorColor(Color.parseColor("#990000"))
+                        .build()
+                        .show();
             }
         });
     }
