@@ -21,6 +21,7 @@ public class DTTableViewManager {
     public  MemoryStorage memoryStorage ;
 
     public DTTableViewManager(TableViewConfiguration configuration) {
+        self.configuration = configuration;
         self.memoryStorage = new MemoryStorage(new IEATableViewControllerAdapter(self, configuration.builder.context));
     }
 
