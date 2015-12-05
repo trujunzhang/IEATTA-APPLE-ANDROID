@@ -27,7 +27,7 @@ public class IEAReviewDetailCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         Review more  = (Review) model;
 //        self.titleLabel.setText(more.titleResId);
     }

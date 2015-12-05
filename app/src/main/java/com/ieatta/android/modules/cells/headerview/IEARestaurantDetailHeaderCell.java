@@ -28,7 +28,7 @@ public class IEARestaurantDetailHeaderCell  extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         IEARestaurantDetailHeader more  = (IEARestaurantDetailHeader) model;
 //        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
 

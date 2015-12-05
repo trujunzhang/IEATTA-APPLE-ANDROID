@@ -28,7 +28,7 @@ public class IEAPeopleInfoCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         Team more  = (Team) model;
         self.nameLabel.setText(more.displayName);
         self.emailLabel.setText(more.email);

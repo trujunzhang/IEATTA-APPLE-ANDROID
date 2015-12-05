@@ -1,18 +1,15 @@
 package com.ieatta.android.modules.cells.edit;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
-import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.DatePickerCellModel;
-import com.ieatta.com.parse.models.Restaurant;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -68,17 +65,16 @@ public class IEADatePickerCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         self.model = (DatePickerCellModel) model;
-        self.updateWithModel(self.model.date);
+        self.reloadTableRow(self.model.date);
     }
-
 
     private SlideDateTimeListener listener = new SlideDateTimeListener() {
 
         @Override
         public void onDateTimeSet(Date date) {
-            updateTableRow(date);
+            reloadTableRow(date);
         }
 
         // Optional cancel listener
@@ -87,7 +83,7 @@ public class IEADatePickerCell extends IEAViewHolder {
         }
     };
 
-    private void updateTableRow(Date date) {
+    private void reloadTableRow(Date date) {
         self.editedDate = date;
         this.editText.setText(dateFormatter.format(editedDate));
         isDialog = false;

@@ -10,7 +10,7 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
  * Created by djzhang on 12/1/15.
  */
 public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewHolder> {
-    private  Context context;
+    private Context context;
     private DTTableViewManager manager;
 
     private IEATableViewControllerAdapter self = this;
@@ -22,21 +22,21 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
 
     @Override
     public IEAViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == 6){
+        if (viewType == 6) {
             int x = 0;
         }
-        return self.manager.createViewHolder(parent,viewType);
+        return self.manager.createViewHolder(parent, viewType);
     }
 
     @Override
     public void onBindViewHolder(IEAViewHolder holder, int position) {
         Object model = self.manager.memoryStorage.getRowModel(position);
-        if(position ==6){
-        Class<? extends IEAViewHolder> aClass = holder.getClass();
-        int x = 0;
+        if (position == 2) {
+            Class<? extends IEAViewHolder> aClass = holder.getClass();
+            int x = 0;
+        }
+        holder.render(model);
     }
-    holder.updateWithModel(model);
-}
 
     @Override
     public int getItemCount() {
@@ -46,10 +46,10 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
     @Override
     public int getItemViewType(int position) {
         int itemViewType = self.manager.memoryStorage.getItemViewType(position);
-        if(position == 3){
+        if (position == 3) {
             int x = 0;
         }
-        if(position == 6){
+        if (position == 6) {
             int x = 0;
         }
         return itemViewType;

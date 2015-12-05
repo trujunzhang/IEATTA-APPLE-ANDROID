@@ -29,7 +29,7 @@ public class IEANearRestaurantsCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         Restaurant more  = (Restaurant) model;
         self.titleLabel.setText(more.displayName);
         self.subtitleLabel.setText(((Restaurant) model).getGoogleMapAddress());

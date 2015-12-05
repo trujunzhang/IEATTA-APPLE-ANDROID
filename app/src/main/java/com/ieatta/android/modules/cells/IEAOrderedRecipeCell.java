@@ -28,7 +28,7 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         Recipe more  = (Recipe) model;
         self.displayNameLabel.setText(more.displayName);
 

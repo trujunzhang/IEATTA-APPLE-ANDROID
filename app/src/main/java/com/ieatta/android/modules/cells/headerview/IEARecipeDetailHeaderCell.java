@@ -29,7 +29,7 @@ public class IEARecipeDetailHeaderCell  extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         IEARecipeHeader more  = (IEARecipeHeader) model;
 //        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
 

@@ -29,7 +29,7 @@ public class IEAReadReviewsHeader   extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         IEAEventHeader more  = (IEAEventHeader) model;
 //        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
 

@@ -28,7 +28,7 @@ public class IEAReadReviewsCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         RatedModelReviewCount more  = (RatedModelReviewCount) model;
 //        self.titleLabel.setText(more.titleResId);
     }

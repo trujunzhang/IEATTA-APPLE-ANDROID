@@ -24,7 +24,7 @@ public class IEAGoogleMapAddressCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         Restaurant more  = (Restaurant) model;
         self.formattedAddressLabel.setText(more.getGoogleMapAddress());
     }

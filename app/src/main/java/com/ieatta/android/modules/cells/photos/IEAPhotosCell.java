@@ -26,7 +26,7 @@ public class IEAPhotosCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
         self.titleLabel.setText(more.titleResId);
     }

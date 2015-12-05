@@ -26,7 +26,7 @@ public class IEANearRestaurantMoreCell extends IEAViewHolder {
     }
 
     @Override
-    public void updateWithModel(Object model) {
+    public void render(Object model) {
         IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
 
         self.iconImageView.setImageResource(more.iconResId);
