@@ -18,6 +18,7 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
     private IEAPhotoGalleryCell self = this;
 
     private RecyclerView collectionView;
+    private PhotoGallery model;
 
     public IEAPhotoGalleryCell(View itemView) {
         super(itemView);
@@ -27,7 +28,8 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
 
     @Override
     public void render(Object model) {
-        PhotoGallery more = (PhotoGallery) model;
+        self.model = (PhotoGallery) model;
+
 
     }
 }
