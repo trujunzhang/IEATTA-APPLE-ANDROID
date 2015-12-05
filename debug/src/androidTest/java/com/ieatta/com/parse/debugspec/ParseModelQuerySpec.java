@@ -83,7 +83,7 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
                     signal.countDown();
                     return null;
                 }
-                assertEquals("Save/Delete ", expectCount[0], expectCount[1] + 1);
+                assertEquals("Save/Delete ", expectCount[0], expectCount[1]);
                 signal.countDown();
                 return null;
             }
