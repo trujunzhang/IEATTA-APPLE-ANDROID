@@ -1,5 +1,8 @@
 package com.ieatta.com.parse.async.tasks;
 
+import android.util.Log;
+import android.yelp.com.commonlib.LogUtils;
+
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.models.NewRecord;
@@ -32,7 +35,7 @@ public class PushNewRecordToServerTask {
                     return Task.forError(task.getError());
                 }
                 List<ParseObject> results = task.getResult();
-//                print("Push objects to Server: \(results.count)")
+                LogUtils.debug("Push objects to Server: " + results.size());
 
                 // Create a trivial completed task as a base case.
                 Task<Void> _task = Task.forResult(null);
@@ -65,20 +68,20 @@ public class PushNewRecordToServerTask {
     }
 
     /**
-     Push all offline objects to Parse.com.
-
-     - parameter newRecordObject: A row data on the NewRecord table.
+     * Push all offline objects to Parse.com.
+     * <p/>
+     * - parameter newRecordObject: A row data on the NewRecord table.
      */
     private static Task PushObjectToServerTask(final ParseObject newRecordObject) {
         // Convert newRecordObject to Model instance.
         NewRecord newRecord = (NewRecord) new NewRecord().convertToLocalModel(newRecordObject);
 
-//        print("push to server: \(newRecord.printDescription())")
+        LogUtils.debug("push to server: " + newRecord.printDescription());
 
         // 1. Get the recoreded model instance from NewRecord, by the modelType and the modelPoint.
         // (such as photo,restaurant,event etc)
         final ParseModelAbstract model = newRecord.getRecordedModel();
-//        print("push to server: \(model.printDescription())")
+        LogUtils.debug("push to server: " + model.printDescription());
 
         return model.pushToServer().onSuccess(new Continuation() {
             @Override
@@ -108,7 +111,6 @@ public class PushNewRecordToServerTask {
             }
         });
     }
-
 
 
 }
