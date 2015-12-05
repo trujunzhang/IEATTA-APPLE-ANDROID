@@ -1,6 +1,7 @@
 package com.ieatta.com.parse.async;
 
 import android.util.Log;
+import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.async.tasks.PullNewRecordFromServerTask;
 import com.ieatta.com.parse.async.tasks.PushNewRecordToServerTask;
@@ -56,9 +57,9 @@ public class ParseAsyncHandler {
 
     private void endAsyncTasks(Exception error) {
         if (error != null) {
-            Log.d("Async","Error when async database:"+error.getLocalizedMessage());
+            LogUtils.debug("Error when async database:" + error.getLocalizedMessage());
         } else {
-            Log.d("Async","Async database task end sucessfully!");
+            LogUtils.debug("Async database task end sucessfully!");
         }
 
         this.didEndAsync = true;

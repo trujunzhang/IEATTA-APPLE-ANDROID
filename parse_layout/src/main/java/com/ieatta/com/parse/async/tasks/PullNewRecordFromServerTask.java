@@ -1,5 +1,8 @@
 package com.ieatta.com.parse.async.tasks;
 
+import android.util.Log;
+import android.yelp.com.commonlib.LogUtils;
+
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.async.AsyncCacheInfo;
 import com.ieatta.com.parse.async.AsyncPullNotify;
@@ -33,8 +36,7 @@ public class PullNewRecordFromServerTask {
                     return finalTask;
                 }
                 List<ParseObject> results = (List<ParseObject>) task.getResult();
-//                print("Pull objects from Server: \(results.count)");
-
+                LogUtils.debug("Pull objects from Server: "+results.size());
 
                 // Create a trivial completed task as a base case.
                 Task<Void> _task = Task.forResult(null);
@@ -78,7 +80,7 @@ public class PullNewRecordFromServerTask {
 
         // 1. Create model instance from record's modelType.
         final ParseModelAbstract model = NewRecord.getRecordedInstance(pulledNewRecordObject);
-        //        print("NewRecord from parse.com: \(model.printDescription())")
+        LogUtils.debug("NewRecord from parse.com: " + model.printDescription());
 
 
         // 2. Pull from server.
