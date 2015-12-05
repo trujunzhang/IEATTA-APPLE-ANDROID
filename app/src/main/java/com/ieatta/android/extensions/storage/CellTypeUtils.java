@@ -35,6 +35,7 @@ public class CellTypeUtils {
         for (Integer index : self.rowTypes.keySet()) {
             Class classzz = self.rowTypes.get(index);
             if(classzz == null){
+                int x = 0;
 //                assert("not found class type: "+classzz.getName()+",you need to register it.");
             }
             if (rowModel.cellType.cellClass.equals(classzz)) {

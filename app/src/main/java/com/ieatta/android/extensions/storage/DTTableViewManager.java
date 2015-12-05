@@ -22,7 +22,7 @@ public class DTTableViewManager {
 
     public DTTableViewManager(Context context) {
         self.context = context;
-        self.memoryStorage = new MemoryStorage(new IEATableViewControllerAdapter(self, self.context));
+        self.memoryStorage = new MemoryStorage(new IEATableViewControllerAdapter(self, context));
     }
 
     public IEATableViewControllerAdapter getAdapter(){

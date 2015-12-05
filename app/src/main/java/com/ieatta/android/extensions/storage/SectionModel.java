@@ -5,6 +5,7 @@ import com.ieatta.android.modules.tools.CollectionUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class SectionModel {
     public List items = new LinkedList<>();
     public int sectionIndex;
     public CellType cellType;
-    public HashMap<Integer,CellType> specailRows;
+    public HashMap<Integer,CellType> specailRows = new LinkedHashMap<>();
 
     public HeaderModel headerModel;
     public FooterModel footerModel;
