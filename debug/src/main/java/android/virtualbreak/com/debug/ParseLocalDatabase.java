@@ -74,8 +74,6 @@ public class ParseLocalDatabase {
 //        ParseLocalDatabase.listAllCacheImageNames();
     }
 
-
-
     // MARK: Retrieve offline database for test.
     public static Task<Void> queryLocalDatastoreInBackground(ParseQuery query, final PQueryModelType classType ) {
         return ParseModelQuery.findLocalObjectsInBackground(query)
