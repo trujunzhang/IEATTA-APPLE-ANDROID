@@ -263,8 +263,6 @@ public abstract class ParseModelQuery extends ParseJsoner {
      */
 
     public Task<Void> unpinInBackground(ParseQuery query) {
-        final TaskCompletionSource unpinTask = new TaskCompletionSource();
-
         return this.getFirstLocalObjectArrayInBackground(query)
                 .onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
                     @Override
