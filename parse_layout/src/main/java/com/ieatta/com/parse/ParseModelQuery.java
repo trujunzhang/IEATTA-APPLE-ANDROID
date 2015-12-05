@@ -263,53 +263,16 @@ public abstract class ParseModelQuery extends ParseJsoner {
      */
 
     public Task<Void> unpinInBackground(ParseQuery query) {
-        return this.getFirstLocalObjectArrayInBackground(query)
-                .onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<ParseObject> task) throws Exception {
-                        ParseObject object = task.getResult();
-                        if (object != null) {
-                            return ParseModelQuery.unpinObjectInBackground(object);
-                        }
-                        return Task.forResult(null);
-                    }
-                });
-
-//        this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<ParseObject, Object>() {
-//            @Override
-//            public Object then(Task<ParseObject> task) throws Exception {
-//                if (task.getError() != null) {
-//                    unpinTask.setResult(task.getError());
-//                } else {
-//                    List<ParseObject> value = task.getResult();
-//                    if (value.size() >= 1) {
-//                        ParseObject object = (ParseObject) value.get(0);
-//                        ParseModelQuery.unpinObjectInBackground(object).continueWith(new Continuation<Void, Object>() {
-//                            @Override
-//                            public Object then(Task<Void> task) throws Exception {
-//                                if (task.getError() != null) {
-//                                    unpinTask.setError(task.getError());
-//                                } else {
-//                                    unpinTask.setResult(true);
-//                                }
-//                                return null;
-//                            }
-//                        });
-//                    } else {
-//                        // **** Important ****
-//                        // Here, return value is false means that not found object.
-//                        // For example, if all newrecord objects already pushed to server.
-//                        // No newrecord rows on the local table. So not found newrecord here.
-//                        unpinTask.setResult(false);
-//                    }
-//
-//                }
-//
-//                return null;
-//            }
-//        });
-//
-//        return unpinTask.getTask();
+        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
+            @Override
+            public Task<Void> then(Task<ParseObject> task) throws Exception {
+                ParseObject object = task.getResult();
+                if (object != null) {
+                    return ParseModelQuery.unpinObjectInBackground(object);
+                }
+                return Task.forResult(null);
+            }
+        });
     }
 
     /**
@@ -317,11 +280,12 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * <p/>
      * - parameter deletedModel:    ParseModelAbstract's instance that want to delete
      */
-    Task<Object> unpinInBackgroundWithNewRecord() {
+    Task<Void> unpinInBackgroundWithNewRecord() {
         final ParseQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
-        return this.unpinInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Void, Object>() {
+
+        return this.unpinInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
-            public Object then(Task<Void> task) throws Exception {
+            public Task<Void> then(Task<Void> task) throws Exception {
                 return unpinInBackground(newRecordQuery);
             }
         });
