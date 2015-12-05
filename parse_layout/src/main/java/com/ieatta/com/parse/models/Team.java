@@ -52,8 +52,11 @@ public class Team extends ParseModelSync {
         this.belongToModel = belongToModel;
     }
 
-    public Team(String s, String s1, String s2, int clarencemorgan) {
-
+    public Team(String displayName, String email, String address, int sampleFileName) {
+        this.displayName = displayName;
+        this.email = email;
+        this.address = address;
+        this.sampleFileName = sampleFileName;
     }
 
     // MARK: Anonymous User
@@ -127,7 +130,7 @@ public class Team extends ParseModelSync {
     // MARK: Support methods.
     public static Task<List<ParseModelAbstract>> filterFrom(Task<List<ParseModelAbstract>> previous, List<Team> source) {
 
-        List<ParseModelAbstract> result =  previous.getResult();
+        List<ParseModelAbstract> result = previous.getResult();
 
         List<ParseModelAbstract> filterUser = new LinkedList<>();
         for (ParseModelAbstract model : result) {
@@ -153,7 +156,7 @@ public class Team extends ParseModelSync {
         List<String> peoplePoints = new LinkedList<>();
 
         for (ParseModelAbstract model : peopleInEvent) {
-            peoplePoints.add(((PeopleInEvent)model).userRef);
+            peoplePoints.add(((PeopleInEvent) model).userRef);
         }
 
         return peoplePoints;

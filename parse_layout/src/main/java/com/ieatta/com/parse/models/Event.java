@@ -59,6 +59,7 @@ private Event self = this;
         this.belongToModel = belongToModel;
         this.restaurantRef = ParseModelAbstract.getPoint(belongToModel);
     }
+
     private Date getNextHourDate() {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());

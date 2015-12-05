@@ -20,6 +20,7 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
+
 /**
  * Created by djzhang on 11/30/15.
  */
@@ -76,10 +77,11 @@ public class ParseLocalDatabase {
 
 
     // MARK: Retrieve offline database for test.
-    public static void queryLocalDatastoreInBackground(ParseQuery query, final PQueryModelType classType ) {
-        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Object>() {
+    public static Task<Void> queryLocalDatastoreInBackground(ParseQuery query, final PQueryModelType classType ) {
+        return ParseModelQuery.findLocalObjectsInBackground(query)
+                .continueWith(new Continuation<List<ParseObject>, Void>() {
             @Override
-            public Object then(Task<List<ParseObject>> task) throws Exception {
+            public Void then(Task<List<ParseObject>> task) throws Exception {
                 List<ParseObject> value = task.getResult();
                 if(value.size() > 0){
                     ParseModelAbstract instance = ParseModelAbstract.getInstanceFromType(classType);
