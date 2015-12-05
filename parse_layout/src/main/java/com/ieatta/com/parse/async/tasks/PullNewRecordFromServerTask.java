@@ -26,7 +26,7 @@ public class PullNewRecordFromServerTask {
 
 
     public static Task<Object> PullFromServerSeriesTask(ParseQuery query) {
-        final TaskCompletionSource seriesTask = new TaskCompletionSource();
+        final Task.TaskCompletionSource tcs = Task.create();
 
         query.findInBackground().onSuccessTask(new Continuation<List<ParseObject>,Void>() {
             @Override
@@ -34,7 +34,32 @@ public class PullNewRecordFromServerTask {
                 List<ParseObject> results =  task.getResult();
                 LogUtils.debug("Pull objects from Server: "+results.size());
 
-                int x = 0;
+                // Create a trivial completed task as a base case.
+                Task<Void> singleTask = Task.forResult(null);
+                for (final ParseObject result : results) {
+                    // For each item, extend the task with a function to delete the item.
+                    singleTask = singleTask.continueWithTask(new Continuation<Void, Task<Void>>() {
+                        public Task<Void> then(Task<Void> ignored) throws Exception {
+                            // Return a task that will be marked as completed when the delete is finished.
+                            return PullObjectFromServerTask(result);
+                        }
+                    });
+                }
+
+                return null;
+            }
+        }).onSuccess(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                tcs.setResult(true);
+                return null;
+            }
+        }).continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                if (task.isFaulted()) {
+                    tcs.setError(task.getError());
+                }
                 return null;
             }
         });
@@ -77,7 +102,7 @@ public class PullNewRecordFromServerTask {
 //            }
 //        });
 
-        return seriesTask.getTask();
+        return tcs.getTask();
     }
 
 
@@ -93,7 +118,6 @@ public class PullNewRecordFromServerTask {
         // 1. Create model instance from record's modelType.
         final ParseModelAbstract model = NewRecord.getRecordedInstance(pulledNewRecordObject);
         LogUtils.debug("NewRecord from parse.com: " + model.printDescription());
-
 
         // 2. Pull from server.
         model.pullFromServerAndPin().continueWith(new Continuation<Object, Object>() {
