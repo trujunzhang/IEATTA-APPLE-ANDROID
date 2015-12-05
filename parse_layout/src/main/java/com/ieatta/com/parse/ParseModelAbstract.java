@@ -1,6 +1,5 @@
 package com.ieatta.com.parse;
 
-import android.content.Context;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.models.NewRecord;
@@ -9,12 +8,10 @@ import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.ParseModelFlag;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
-import com.ieatta.com.parse.tools.TaskUtils;
 import com.lukazakrajsek.timeago.TimeAgo;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -73,10 +70,8 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return null;
     }
 
-    public Task<Object> eventAfterPushToServer() {
-        TaskCompletionSource finalTask = new TaskCompletionSource();
-        finalTask.setResult(true);
-        return finalTask.getTask();
+    public Task<Boolean> eventAfterPushToServer() {
+        return Task.forResult(true);
     }
 
     public abstract Task<Object> pullFromServerAndPin();
@@ -339,21 +334,17 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
      * @param getFirstObjectTask
      * @return
      */
-    public Task<Object> convertToOnlineModelTask(Task<Object> getFirstObjectTask) {
+    public Task<Boolean> convertToOnlineModelTask(Task<Object> getFirstObjectTask) {
         Object result = getFirstObjectTask.getResult();
         if (result != null) {
             ParseObject firstObject = (ParseObject) result;
             this.readObject(firstObject);
 
-            TaskCompletionSource<Object> finishTask = new TaskCompletionSource<>();
-            finishTask.setResult(true);
-            return finishTask.getTask();
+            return Task.forResult(true);
         }
 
 //        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
-        TaskCompletionSource finishTask = new TaskCompletionSource<>();
-//        finishTask.setError(new Error(""));
-        return finishTask.getTask();
+        return Task.forError(new Exception(""));
     }
 
     public Task<Object> convertToLocalModelTask(Task<Object> firstObjectArray) {

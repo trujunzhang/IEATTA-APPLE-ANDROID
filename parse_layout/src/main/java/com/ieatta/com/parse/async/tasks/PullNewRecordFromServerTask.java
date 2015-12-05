@@ -120,6 +120,20 @@ public class PullNewRecordFromServerTask {
         LogUtils.debug("NewRecord from parse.com: " + model.printDescription());
 
         // 2. Pull from server.
+//        model.pullFromServerAndPin()
+//                .onSuccessTask(new Continuation<Object, Void>() {
+//                    @Override
+//                    public Void then(Task<Object> task) throws Exception {
+//
+//                        return null;
+//                    }
+//                }).continueWith(new Continuation<Object, Void>() {
+//            @Override
+//            public Void then(Task<Object> task) throws Exception {
+//                return null;
+//            }
+//        });
+
         model.pullFromServerAndPin().continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {

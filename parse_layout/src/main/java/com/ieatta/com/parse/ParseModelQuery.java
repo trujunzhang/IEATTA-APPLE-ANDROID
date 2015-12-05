@@ -2,7 +2,6 @@ package com.ieatta.com.parse;
 
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseQuery;
 
@@ -11,10 +10,7 @@ import bolts.Task;
 
 import com.parse.ParseObject;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.List;
 
 import bolts.TaskCompletionSource;
@@ -266,15 +262,27 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * - parameter query:           query's instance
      */
 
-    Task<Object> unpinInBackground(ParseQuery query) {
+    public Task<Void> unpinInBackground(ParseQuery query) {
         final TaskCompletionSource unpinTask = new TaskCompletionSource();
 
-        this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<ParseObject, Object>() {
-            @Override
-            public Object then(Task<ParseObject> task) throws Exception {
-                if (task.getError() != null) {
-                    unpinTask.setResult(task.getError());
-                } else {
+        return this.getFirstLocalObjectArrayInBackground(query)
+                .onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<ParseObject> task) throws Exception {
+                        ParseObject object = task.getResult();
+                        if (object != null) {
+                            return ParseModelQuery.unpinObjectInBackground(object);
+                        }
+                        return Task.forResult(null);
+                    }
+                });
+
+//        this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<ParseObject, Object>() {
+//            @Override
+//            public Object then(Task<ParseObject> task) throws Exception {
+//                if (task.getError() != null) {
+//                    unpinTask.setResult(task.getError());
+//                } else {
 //                    List<ParseObject> value = task.getResult();
 //                    if (value.size() >= 1) {
 //                        ParseObject object = (ParseObject) value.get(0);
@@ -296,14 +304,14 @@ public abstract class ParseModelQuery extends ParseJsoner {
 //                        // No newrecord rows on the local table. So not found newrecord here.
 //                        unpinTask.setResult(false);
 //                    }
-
-                }
-
-                return null;
-            }
-        });
-
-        return unpinTask.getTask();
+//
+//                }
+//
+//                return null;
+//            }
+//        });
+//
+//        return unpinTask.getTask();
     }
 
     /**
@@ -313,9 +321,9 @@ public abstract class ParseModelQuery extends ParseJsoner {
      */
     Task<Object> unpinInBackgroundWithNewRecord() {
         final ParseQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
-        return this.unpinInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Object, Object>() {
+        return this.unpinInBackground(this.createQueryByObjectUUID()).continueWith(new Continuation<Void, Object>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Object then(Task<Void> task) throws Exception {
                 return unpinInBackground(newRecordQuery);
             }
         });
@@ -347,7 +355,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
      * - parameter query:           query's instance
      */
     Task<Object> deleteOnlineObjectInBackground(ParseQuery query) {
-        return  null;
+        return null;
 //        return this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<Object, Object>() {
 //            @Override
 //            public Object then(Task<Object> task) throws Exception {

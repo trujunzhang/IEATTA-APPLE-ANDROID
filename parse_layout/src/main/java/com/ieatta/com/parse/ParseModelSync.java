@@ -26,6 +26,15 @@ public abstract class ParseModelSync extends ParseModelQuery {
     @Override
     public Task<Object> pullFromServerAndPin() {
         // 1. Retrieve object from parse.com.
+        this.createQueryFromRecord().getFirstInBackground()
+                .onSuccessTask(new Continuation() {
+                    @Override
+                    public Task<Boolean> then(Task task) throws Exception {
+                        // 2.1 Convert to the online Model.
+                        return convertToOnlineModelTask(task);
+                    }
+                });
+
         return this.createQueryFromRecord().getFirstInBackground().continueWith(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
@@ -49,9 +58,9 @@ public abstract class ParseModelSync extends ParseModelQuery {
         // 1. Check wheather exist.
         final ParseQuery query = ParseModelQuery.createQuery(this.getModelType(), this);
 
-        return this.eventAfterPushToServer().continueWith(new Continuation<Object, Object>() {
+        return this.eventAfterPushToServer().continueWith(new Continuation<Boolean, Object>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Object then(Task<Boolean> task) throws Exception {
                 return unpinInBackground(query);
             }
         }).continueWith(new Continuation<Object, Object>() {
