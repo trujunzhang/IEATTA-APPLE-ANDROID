@@ -117,22 +117,13 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     }
 
     public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final ParseQuery query) {
-        final Task<List<ParseModelAbstract>>.TaskCompletionSource tcs = Task.create();
-        ParseModelQuery.findLocalObjectsInBackground(query)
-                .continueWith(new Continuation<List<ParseObject>, Object>() {
-                    @Override
-                    public Object then(Task<List<ParseObject>> task) throws Exception {
-                        if (task.getError() != null) {
-                            tcs.setError(task.getError());
-                        } else {
-                            List<ParseModelAbstract> array = ((ParseModelConvert)ParseModelAbstract.getInstanceFromType(type)).convertToParseModelArray(task.getResult(), true);
-                            tcs.setResult(array);
-                        }
-                        return null;
-                    }
-                });
-
-        return tcs.getTask();
+        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<List<ParseModelAbstract>>>() {
+            @Override
+            public Task<List<ParseModelAbstract>> then(Task<List<ParseObject>> task) throws Exception {
+                ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(type);
+                return instance.convertToParseModelsTask(task,true);
+            }
+        });
     }
 
     protected Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
