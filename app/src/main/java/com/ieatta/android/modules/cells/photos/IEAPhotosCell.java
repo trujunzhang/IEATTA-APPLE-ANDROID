@@ -5,8 +5,10 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
+import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.com.parse.models.Photo;
 
 public class IEAPhotosCell extends IEAViewHolder {
 
@@ -16,18 +18,16 @@ public class IEAPhotosCell extends IEAViewHolder {
 
     private IEAPhotosCell self = this;
 
-//    @IBOutlet weak var avatarView: AvatarView!
-
-    private TextView titleLabel;
-    private TextView subtitleLabel;
+    private AvatarView avatarView;
 
     public IEAPhotosCell(View itemView) {
         super(itemView);
+        self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
     }
 
     @Override
     public void render(Object model) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
-        self.titleLabel.setText(more.titleResId);
+        Photo more  = (Photo) model;
+
     }
 }

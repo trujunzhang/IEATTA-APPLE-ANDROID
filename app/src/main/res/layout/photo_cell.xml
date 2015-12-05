@@ -4,9 +4,9 @@
     android:layout_width="@dimen/Gallery_Cell_Collection_Width"
     android:layout_height="@dimen/Gallery_Cell_Collection_Height">
 
-    <ImageView
+    <com.ieatta.android.extensions.viewkit.AvatarView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imageView" />
+        android:id="@+id/avatarView" />
 
 </LinearLayout>
