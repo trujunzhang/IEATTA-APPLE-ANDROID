@@ -6,16 +6,14 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 
         import com.ieatta.android.R;
         import com.ieatta.android.extensions.storage.CellType;
-        import com.ieatta.android.modules.adapter.IEAViewHolder;
 
 /**
  * Created by djzhang on 12/2/15.
  */
 public class IEAPhotoGalleryHeaderCell  extends IEAViewHolder {
     public static CellType  getType() {
-        return new CellType(IEAPhotoGalleryHeaderCell.class, R.layout.choice_people_header_cell);
+        return new CellType(IEAPhotoGalleryHeaderCell.class, R.layout.photo_gallery_header_cell);
     }
-
 
     private IEAPhotoGalleryHeaderCell self = this;
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.modules.IEASplitDetailViewController;
+import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
@@ -46,9 +47,9 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
     protected void configurePhotoGallery(){
         // Register Cells by class.
-//        self.setRegisterCellClass(IEAPhotoGalleryCell.class,IEAPhotoGalleryCell.layoutResId)
+        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(),self.getPhotoGallerySectionIndex());
 
-//        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.class)
+        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
 //        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell)
     }
 
