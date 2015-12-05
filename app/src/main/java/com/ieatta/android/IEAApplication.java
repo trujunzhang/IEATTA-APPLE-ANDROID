@@ -20,8 +20,6 @@ public class IEAApplication extends Application{
         AppConfigure.setup(this);
         ParseAPI.setup(this);
 
-        EnvironmentUtils.sharedInstance.registerGlobalContext(this.getApplicationContext());
-
         AppDebugManager.show();
 
         new ParseAsyncTimer().prepareTimer();
