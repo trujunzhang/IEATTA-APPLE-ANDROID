@@ -108,6 +108,16 @@ public class MemoryStorage {
         section.cellType = type;
     }
 
+    public void registerCellClassInSpecialRow(CellType type, int forSectionIndex, int forRowIndex) {
+        // Step1: Register class type
+        cellTypeUtils.registerType(type);
+
+        // Step2: Create/Modify a section.
+        SectionModel section = self.verifySection(forSectionIndex);
+        section.cellType = type;
+    }
+
+
     public RowModel getRowModelFromPosition(int position) {
         return self.tableViewUtils.getItem(position);
     }

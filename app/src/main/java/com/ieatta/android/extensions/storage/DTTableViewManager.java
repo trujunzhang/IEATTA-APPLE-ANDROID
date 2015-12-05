@@ -67,6 +67,7 @@ public class DTTableViewManager {
     public void registerCellClass(CellType type, int forSectionIndex) {
         self.memoryStorage.registerCellClass(type, forSectionIndex);
     }
-
-
+    public void registerCellClassInSpecialRow(CellType type, int forSectionIndex, int forRowIndex) {
+        self.memoryStorage.registerCellClassInSpecialRow(type, forSectionIndex,forRowIndex);
+    }
 }
