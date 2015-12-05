@@ -1,5 +1,6 @@
 package com.ieatta.android.modules.cells.photos;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -7,18 +8,16 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.android.modules.common.edit.PhotoGallery;
 
 public class IEAPhotoGalleryCell extends IEAViewHolder {
-    public static CellType  getType() {
-        return new CellType(IEAPhotoGalleryCell.class, R.layout.near_restaurant_cell);
+    public static CellType getType() {
+        return new CellType(IEAPhotoGalleryCell.class, R.layout.photo_gallery_cell);
     }
 
     private IEAPhotoGalleryCell self = this;
 
-//    @IBOutlet weak var avatarView: AvatarView!
-
-    private TextView titleLabel;
-    private TextView subtitleLabel;
+    private RecyclerView collectionView;
 
     public IEAPhotoGalleryCell(View itemView) {
         super(itemView);
@@ -26,7 +25,7 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
 
     @Override
     public void render(Object model) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
-        self.titleLabel.setText(more.titleResId);
+        PhotoGallery more = (PhotoGallery) model;
+
     }
 }
