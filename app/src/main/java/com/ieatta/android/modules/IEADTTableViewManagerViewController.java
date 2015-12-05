@@ -1,10 +1,12 @@
 package com.ieatta.android.modules;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
+import com.ieatta.android.extensions.storage.TableViewConfiguration;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
@@ -18,14 +20,19 @@ import java.util.List;
  */
 public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController {
     private IEADTTableViewManagerViewController self = this;
-    private DTTableViewManager manager = new DTTableViewManager(this);
+    private DTTableViewManager manager = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.startManagingWithDelegate(manager);
+        TableViewConfiguration config =
+                new TableViewConfiguration.Builder(self.getBaseContext())
+                .setLayoutManager(new LinearLayoutManager(self, LinearLayoutManager.VERTICAL, false))
+                .build();
+        self.manager  =new  DTTableViewManager(config);
+        self.startManagingWithDelegate(self.manager);
         self.setRegisterHeaderClass( IEAViewForHeaderInSectionCell.getType());
     }
 

@@ -26,12 +26,12 @@ public class TableViewConfiguration {
         }
         public RecyclerView.LayoutManager manager;
         public RecyclerView.ItemDecoration decoration;
-        protected Builder setLayoutManager(RecyclerView.LayoutManager manager) {
+        public Builder setLayoutManager(RecyclerView.LayoutManager manager) {
             this.manager = manager;
             return this;
         }
 
-        protected Builder setItemDecoration(RecyclerView.ItemDecoration decoration) {
+        public Builder setItemDecoration(RecyclerView.ItemDecoration decoration) {
             this.decoration = decoration;
             return this;
         }

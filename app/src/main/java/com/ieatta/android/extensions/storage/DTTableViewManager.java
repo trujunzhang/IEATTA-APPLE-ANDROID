@@ -17,12 +17,11 @@ import java.lang.reflect.InvocationTargetException;
 public class DTTableViewManager {
     private DTTableViewManager self = this;
 
-    private Context context;
+    private TableViewConfiguration configuration;
     public  MemoryStorage memoryStorage ;
 
-    public DTTableViewManager(Context context) {
-        self.context = context;
-        self.memoryStorage = new MemoryStorage(new IEATableViewControllerAdapter(self, context));
+    public DTTableViewManager(TableViewConfiguration configuration) {
+        self.memoryStorage = new MemoryStorage(new IEATableViewControllerAdapter(self, configuration.builder.context));
     }
 
     public IEATableViewControllerAdapter getAdapter(){
@@ -48,7 +47,7 @@ public class DTTableViewManager {
 
         Constructor[] ctors = cellClass.getDeclaredConstructors();
         Constructor viewConstructor = TableViewFactory.getConstructorForView(ctors);
-        View view = LayoutInflater.from(self.context).inflate(layoutResId, parent, false);
+        View view = LayoutInflater.from(self.configuration.builder.context).inflate(layoutResId, parent, false);
 
         IEAViewHolder viewHolder = null;
         try {
