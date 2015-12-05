@@ -38,7 +38,7 @@ public class IEARestaurantEventsCell extends IEAViewHolder {
             self.timeInfoLabel.setText(more.waiter);
         }
 
-//        self.timeAgoLabelLabel = more.getTimeAgoString();
+        self.timeAgoLabelLabel = more.getTimeAgoString();
 
     }
 }

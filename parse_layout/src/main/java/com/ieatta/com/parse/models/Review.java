@@ -211,7 +211,7 @@ public class Review extends ParseModelSync {
         for (Review model : reviews) {
             Team user = getPeople(model, people);
             // TODO djzhang(fixing)
-//        user.writedReviewTimeAgo = model.getTimeAgoString();
+        user.writedReviewTimeAgo = model.getTimeAgoString();
 
             array.add(user);
             array.add(model);

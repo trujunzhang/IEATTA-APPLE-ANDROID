@@ -1,6 +1,7 @@
 package com.ieatta.com.parse;
 
 import android.content.Context;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.Team;
@@ -110,11 +111,10 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         this.makeObjectUUID();
     }
 
-
     // MARK: Common methond.
 
-    public String getTimeAgoString(Context context) {
-        TimeAgo timeAgo = new TimeAgo(context);
+    public String getTimeAgoString() {
+        TimeAgo timeAgo = new TimeAgo(EnvironmentUtils.sharedInstance.getGlobalContext());
 
         return timeAgo.timeAgo(this.objectCreatedDate);
     }

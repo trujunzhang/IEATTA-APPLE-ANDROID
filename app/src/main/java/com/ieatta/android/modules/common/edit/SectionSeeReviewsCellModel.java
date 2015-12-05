@@ -21,7 +21,7 @@ public class SectionSeeReviewsCellModel extends EditBaseCellModel {
 
         self.writedReview = (Review)review ;
 
-//        self.timeAgoString = writedReview.getTimeAgoString();
+        self.timeAgoString = writedReview.getTimeAgoString();
         self.ratingValue = writedReview.rate;
         self.reviewContent = writedReview.content;
     }
