@@ -50,10 +50,6 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         self.setRegisterCellClass(IEAPhotoGalleryCell.getType(),self.getPhotoGallerySectionIndex());
 
         self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
-        // 1. Set photo gallery section title(contains a 'take a photo' icon).
-        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex());
-
-
 //        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell)
     }
 
@@ -61,8 +57,6 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     protected int getPhotoGallerySectionIndex() {
         return Integer.MIN_VALUE;
     }
-
-
 
     /**
      **** Important ****
