@@ -270,6 +270,10 @@ public abstract class ParseModelQuery extends ParseJsoner {
                 if (object != null) {
                     return ParseModelQuery.unpinObjectInBackground(object);
                 }
+                // **** Important ****
+                // Here, return value is 'null' means that not found object.
+                // For example, if all newrecord objects already pushed to server.
+                // No NewRecord rows on the local table. So not found NewRecord here.
                 return Task.forResult(null);
             }
         });
