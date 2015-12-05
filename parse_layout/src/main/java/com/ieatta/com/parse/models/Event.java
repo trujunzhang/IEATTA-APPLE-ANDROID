@@ -69,6 +69,9 @@ private Event self = this;
 
     public Event(String displayName, Date startDate, Date endDate, String content, String remarks) {
         this();
+        self.displayName = displayName;
+        self.startDate = startDate;
+        self.endDate = endDate;
     }
 
 
