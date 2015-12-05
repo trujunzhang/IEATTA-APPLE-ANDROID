@@ -1,21 +1,9 @@
 package com.ieatta.com.parse.debugspec;
 
 import android.test.InstrumentationTestCase;
-
-import com.ieatta.com.parse.ParseAPI;
-
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
-import android.test.InstrumentationTestCase;
-import android.virtualbreak.com.debug.AppDebugManager;
 import android.virtualbreak.com.debug.ParseLocalDatabase;
 
 import com.ieatta.com.parse.ParseAPI;
-import com.ieatta.com.parse.ParseModelQuery;
-import com.ieatta.com.parse.async.ParseAsyncHandler;
-import com.ieatta.com.parse.async.ParseAsyncTimer;
-import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
@@ -91,11 +79,11 @@ public class ParseModelQuerySpec extends InstrumentationTestCase {
                     Exception error = task.getError();
                     String message = error.getLocalizedMessage();
                     String errorMessage = error.getMessage();
-                    Assert.fail(message);
+                    fail(message);
                     signal.countDown();
                     return null;
                 }
-                Assert.assertEquals("Save/Delete ",expectCount[0] == expectCount[1]);
+                assertEquals("Save/Delete ", expectCount[0], expectCount[1] + 1);
                 signal.countDown();
                 return null;
             }
