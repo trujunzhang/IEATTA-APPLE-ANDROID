@@ -7,7 +7,6 @@ import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
  * Created by djzhang on 12/1/15.
  */
 public class EditWaiterCellModel extends EditCellModel{
-    public int editPlaceHolderResId;
     public IEAEditBaseViewController viewController;
 
     public EditWaiterCellModel(IEAEditKey editKey, String editValue, int editPlaceHolderResId,IEAEditBaseViewController viewController) {
