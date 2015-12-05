@@ -11,6 +11,8 @@
     <dimen name="DEFAULT_SECTION_HEADER_HEIGHT">4dip</dimen>
 
     <!--Photo gallery-->
+    <dimen name="Gallery_Cell_Collection_Width">132dp</dimen>
+    <dimen name="Gallery_Cell_Collection_Height">124dp</dimen>
     <dimen name="Gallery_Cell_Height">140dip</dimen>
     <!--GoogleMapAddress-->
     <dimen name="Google_MapAddress">44dip</dimen>

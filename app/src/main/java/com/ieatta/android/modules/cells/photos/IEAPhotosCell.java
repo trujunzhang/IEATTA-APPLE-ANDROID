@@ -11,7 +11,7 @@ import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 public class IEAPhotosCell extends IEAViewHolder {
 
     public static CellType getType() {
-        return new CellType(IEAPhotosCell.class, R.layout.near_restaurant_cell);
+        return new CellType(IEAPhotosCell.class, R.layout.photo_cell);
     }
 
     private IEAPhotosCell self = this;
