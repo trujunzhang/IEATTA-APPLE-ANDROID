@@ -15,6 +15,7 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 
 import com.twofortyfouram.assertion.Assertions;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import java.util.List;
  * Created by djzhang on 11/27/15.
  */
 public class Event extends ParseModelSync {
-
+private Event self = this;
     // Class key
     private static final String kPAPClassKey = "Event";
 
@@ -37,7 +38,7 @@ public class Event extends ParseModelSync {
     private static final String kPAPFieldWaiterKey = "waiter";
     private static final String kPAPFieldLocalRestaurantKey = "restaurantRef";
 
-    public Date startDate;
+    public Date startDate = new Date();
     public Date endDate;
     public String whatToEat = "";
     public String remarks = "";
@@ -49,19 +50,24 @@ public class Event extends ParseModelSync {
 
     public Event() {
         super();
+        self.startDate = new Date();
+        self.endDate = self.getNextHourDate();
     }
 
     public Event(Restaurant belongToModel) {
-        super();
+        this();
         this.belongToModel = belongToModel;
         this.restaurantRef = ParseModelAbstract.getPoint(belongToModel);
     }
+    private Date getNextHourDate() {
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.HOUR, 1);
+        Date d = c.getTime();
+        return d;
+    }
 
-    public Event(String s, Date date, Date date1, String s1, String remarks1) {
-
-
-
-
+    public Event(String displayName, Date startDate, Date endDate, String content, String remarks) {
     }
 
 

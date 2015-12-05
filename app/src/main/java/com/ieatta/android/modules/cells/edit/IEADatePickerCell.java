@@ -20,9 +20,9 @@ import java.util.Date;
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEADatePickerCell  extends IEAViewHolder {
+public class IEADatePickerCell extends IEAViewHolder {
     public static CellType getType() {
-        return new CellType(IEADatePickerCell.class,R.layout.date_picker_cell);
+        return new CellType(IEADatePickerCell.class, R.layout.date_picker_cell);
     }
 
     private IEADatePickerCell self = this;
@@ -69,11 +69,9 @@ public class IEADatePickerCell  extends IEAViewHolder {
 
     @Override
     public void updateWithModel(Object model) {
-         self.model  = (DatePickerCellModel) model;
-
-
+        self.model = (DatePickerCellModel) model;
+        self.updateWithModel(self.model.date);
     }
-
 
 
     private SlideDateTimeListener listener = new SlideDateTimeListener() {
@@ -90,7 +88,7 @@ public class IEADatePickerCell  extends IEAViewHolder {
     };
 
     private void updateTableRow(Date date) {
-        editedDate = date;
+        self.editedDate = date;
         this.editText.setText(dateFormatter.format(editedDate));
         isDialog = false;
     }
