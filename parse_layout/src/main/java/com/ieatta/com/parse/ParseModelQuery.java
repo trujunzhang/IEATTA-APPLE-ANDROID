@@ -67,7 +67,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return query;
     }
 
-    ParseQuery createQueryByObjectUUID() {
+    public ParseQuery createQueryByObjectUUID() {
         ParseQuery query = this.makeParseQuery();
 
         query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
@@ -75,7 +75,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return query;
     }
 
-    ParseQuery createQueryForBatching(List<String> points) {
+    public ParseQuery createQueryForBatching(List<String> points) {
         ParseQuery query = this.getParseQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
 
@@ -84,7 +84,7 @@ public abstract class ParseModelQuery extends ParseJsoner {
         return query;
     }
 
-    protected ParseQuery createSearchDisplayNameQuery(String keyword) {
+    public ParseQuery createSearchDisplayNameQuery(String keyword) {
         ParseQuery query = this.makeParseQuery();
 
         query.whereMatches(kPAPFieldDisplayNameKey, keyword, "i");
