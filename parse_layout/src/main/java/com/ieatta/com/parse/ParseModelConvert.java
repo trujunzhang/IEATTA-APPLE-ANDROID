@@ -56,11 +56,13 @@ public abstract class ParseModelConvert extends ParseJsoner {
         LinkedList<ParseModelAbstract> array = new LinkedList<>();
 
         for (ParseObject object : value) {
+            ParseModelAbstract instance = this.getNewInstance();
             if (offline == true) {
-                array.add(ParseModelConvert.convertToLocalModel(object, this.getNewInstance()));
+                instance.readObjectLocal(object);
             } else {
-                array.add(ParseModelConvert.convertToOnlineModel(object, this.getNewInstance()));
+                instance.readObject(object);
             }
+            array.add(instance);
         }
 
         return array;
