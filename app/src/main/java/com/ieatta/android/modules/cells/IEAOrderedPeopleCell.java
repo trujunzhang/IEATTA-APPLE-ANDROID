@@ -34,5 +34,21 @@ private AvatarView avatarView;
         IEAOrderedPeople model  = (IEAOrderedPeople) value;
         self.nameLabel.setText(model.model.displayName);
         self.avatarView.loadNewPhotoByModel(model.model, R.drawable.blank_user_small);
+
+//        Recipe.queryOrderedRecipesCount(model.model!, event: model.event!).continueWithBlock { (task) -> AnyObject? in
+//
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//
+//            if let _ = task.error{
+//                self.setRecipeInformation(L10n.FetchRecipeCountFailure.string)
+//            }else{
+//                let recipesCount = task.result as! Int
+//                model.model?.recipesCount = recipesCount
+//                self.setRecipeInformation(tr(L10n.ReipesOrderedCount(recipesCount)))
+//            }
+//            })
+//
+//            return nil
+//        }
     }
 }
