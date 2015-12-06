@@ -36,7 +36,6 @@ public class IEANearRestaurantsCell extends IEAViewHolder {
         self.titleLabel.setText(more.displayName);
         self.subtitleLabel.setText(((Restaurant) model).getGoogleMapAddress());
 
-        self.avatarView.loadNewPhotoByModel(more,R.drawable.black_biz);
-//        self.avatarView.loadNewPhoto(byModel: model, placeHolder: UIImage.DefaultRestaurantIcon())
+        self.avatarView.loadNewPhotoByModel(more,R.drawable.blank_biz);
     }
 }

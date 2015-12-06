@@ -67,7 +67,7 @@ private AvatarView self = this;
         if(photoPoint == null || photoPoint.isEmpty() == true){
             self.configureAvatar(placeHolder);
         }else{
-//            self.loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
+            self.loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
         }
 
         return Task.forResult(true);

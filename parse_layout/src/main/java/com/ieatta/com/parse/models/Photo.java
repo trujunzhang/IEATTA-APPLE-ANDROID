@@ -314,7 +314,7 @@ public class Photo extends ParseModelSync {
             }
         }).onSuccessTask(new Continuation<ParseModelAbstract, Task<Bitmap>>() {
             @Override
-            public Task<Bitmap>  then(Task<ParseModelAbstract> task) throws Exception {
+            public Task<Bitmap> then(Task<ParseModelAbstract> task) throws Exception {
                 return self.getThumbanilImage();
             }
         });
@@ -326,7 +326,12 @@ public class Photo extends ParseModelSync {
             return  Task.forResult(image);
         }
 //            return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "When fetching Image for NewPhoto, and the photo's UUID is \(objectUUID)"))
-        return Task.forError(new  FileNotFoundException(""));
+        return Task.forError(new FileNotFoundException(""));
     }
 
+    public static Photo getInstanceFromPhotoPoint(String photoPoint) {
+        Photo photo = new Photo();
+        photo.objectUUID = photoPoint;
+        return photo;
+    }
 }
