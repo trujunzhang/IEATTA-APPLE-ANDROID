@@ -58,6 +58,10 @@ public final class StorageUtils {
         return getCacheDirectory(context, true);
     }
 
+    public static File getCacheDirectory(Context context, boolean preferExternal) {
+        return getCacheDirectory(context,preferExternal,DEFAULT_CACHE_DIR);
+    }
+
     /**
      * Returns application cache directory. Cache directory will be created on SD card
      * <i>("/Android/data/[app_package_name]/cache")</i> (if card is mounted and app has appropriate permission) or
@@ -69,7 +73,7 @@ public final class StorageUtils {
      * <b>NOTE:</b> Can be null in some unpredictable cases (if SD card is unmounted and
      * {@link android.content.Context#getCacheDir() Context.getCacheDir()} returns null).
      */
-    public static File getCacheDirectory(Context context, boolean preferExternal) {
+    public static File getCacheDirectory(Context context, boolean preferExternal,String subDir) {
         File appCacheDir = null;
         String externalStorageState;
         try {
