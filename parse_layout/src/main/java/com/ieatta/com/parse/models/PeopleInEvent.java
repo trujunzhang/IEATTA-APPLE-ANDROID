@@ -96,8 +96,9 @@ public class PeopleInEvent extends ParseModelSync {
         return Event.queryFromDatabase(PQueryModelType.PeopleInEvent, new PeopleInEvent().createQueryByEventRef(eventRef));
     }
 
-    public static Team getPeople(PeopleInEvent peopleInEvent, List<Team> fetchedPeople) {
-        for (Team people : fetchedPeople) {
+    public static Team getPeople(PeopleInEvent peopleInEvent, List<ParseModelAbstract/*Team*/> fetchedPeople) {
+        for (ParseModelAbstract model : fetchedPeople) {
+            Team people = (Team) model;
             if (ParseModelAbstract.getPoint(people).equals(peopleInEvent.userRef)) {
                 return people;
             }
@@ -106,13 +107,13 @@ public class PeopleInEvent extends ParseModelSync {
         return null;
     }
 
-    public static Task<List<Team>> sortOrderedPeople(Task<Object> previous, List<PeopleInEvent> peopleInEvents) {
-        List<Team> fetchedPeople = (List<Team>) previous.getResult();
+    public static Task<List<Team>> sortOrderedPeople(Task<List<ParseModelAbstract>> previous, List<ParseModelAbstract/*PeopleInEvent*/> peopleInEvents) {
+        List<ParseModelAbstract> fetchedPeople = previous.getResult();
 
         List<Team> sortedPeople = new LinkedList<>();
 
-        for (PeopleInEvent peopleInEvent : peopleInEvents) {
-            Team people = getPeople(peopleInEvent, fetchedPeople);
+        for (ParseModelAbstract peopleInEvent : peopleInEvents) {
+            Team people = getPeople((PeopleInEvent) peopleInEvent, fetchedPeople);
             if (people != null) {
                 sortedPeople.add(people);
             } else {
