@@ -179,7 +179,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         ParseModelQuery.findFirstLocalObjectInBackground(query).continueWith(new Continuation<ParseObject, Object>() {
             @Override
             public Object then(Task<ParseObject> task) throws Exception {
-                ParseObject object = task.getResult();
                 if (task.isFaulted()) {
                     com.parse.ParseException exception = (com.parse.ParseException) task.getError();
                     if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
@@ -192,7 +191,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
                         tcs.setError(task.getError());
                     }
                 } else {
-                    tcs.setResult(object);
+                    tcs.setResult(task.getResult());
                 }
                 return null;
             }
