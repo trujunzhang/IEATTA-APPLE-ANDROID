@@ -13,6 +13,7 @@ import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 
 import java.io.File;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -45,6 +46,8 @@ public class ThumbnailImageUtilsSpec extends InstrumentationTestCase{
         ThumbnailImageUtils.sharedInstance.saveTakenPhoto(bm, photo);
 
         File file = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
+
+//        URI uri = new URI(file.getAbsolutePath());
 
         bm = null;
 
