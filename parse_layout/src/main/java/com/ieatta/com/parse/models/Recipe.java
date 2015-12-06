@@ -62,8 +62,11 @@ public class Recipe extends ParseModelSync {
         this.cost = cost;
     }
 
-    public Recipe(String s, double v, int food01) {
-
+    public Recipe(String displayName, float cost, int sampleFileName) {
+        super();
+        this.displayName = displayName;
+        this.cost = cost;
+        this.sampleFileName = sampleFileName;
     }
 
     // MARK: ParseModel
@@ -178,7 +181,7 @@ public class Recipe extends ParseModelSync {
                 final Event event = (Event) task.getResult();
                 self.belongToModel = new Team(event);
 
-                return  Task.forResult(self);
+                return Task.forResult(self);
             }
         });
     }

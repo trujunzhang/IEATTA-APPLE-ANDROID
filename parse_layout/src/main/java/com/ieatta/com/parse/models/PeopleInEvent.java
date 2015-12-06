@@ -75,7 +75,6 @@ public class PeopleInEvent extends ParseModelSync {
         object.put(kPAPFieldEventKey, this.eventRef);
     }
 
-
     @Override
     public void readCommonObject(ParseObject object) {
         Object theUserRef = this.getValueFromObject(object, kPAPFieldUserKey);
