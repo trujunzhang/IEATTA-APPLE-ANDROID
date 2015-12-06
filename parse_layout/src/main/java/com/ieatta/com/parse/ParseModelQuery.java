@@ -10,11 +10,8 @@ import bolts.Task;
 
 import com.parse.ParseObject;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-
-import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -141,10 +138,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         });
     }
 
-    @Override
-    public Task<Object> getFirstOnlineObjectTask() {
-        return this.createQueryByObjectUUID().getFirstInBackground();
-    }
+
 
     /**
      * Get count of objects on the offline datastore.
@@ -162,6 +156,35 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query.countInBackground();
     }
 
+    @Override
+    public Task<ParseObject> getFirstOnlineObjectTask(ParseQuery query) {
+        final Task.TaskCompletionSource tcs = Task.create();
+
+        // **** Important ****
+        // If not found Parse's getFirstInBackground
+         query.getFirstInBackground().continueWith(new Continuation<ParseObject, Object>() {
+            @Override
+            public Object then(Task<ParseObject> task) throws Exception {
+                if (task.isFaulted()) {
+                    com.parse.ParseException exception = (com.parse.ParseException) task.getError();
+                    if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
+                        // **** Important ****
+                        // Here, return value is 'null' means that not found object.
+                        // For example, if all newrecord objects already pushed to server.
+                        // No NewRecord rows on the local table. So not found NewRecord here.
+                        tcs.setResult(null);
+                    } else {
+                        tcs.setError(task.getError());
+                    }
+                } else {
+                    tcs.setResult(task.getResult());
+                }
+                return null;
+            }
+        });
+
+        return tcs.getTask();
+    }
     /**
      * **** Important ****
      * <p/>

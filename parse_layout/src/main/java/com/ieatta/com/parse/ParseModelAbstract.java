@@ -11,6 +11,7 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 import com.lukazakrajsek.timeago.TimeAgo;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -160,7 +161,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public abstract Task<ParseModelAbstract> getFirstLocalModelArrayTask();
 
-    public abstract Task<Object> getFirstOnlineObjectTask();
+    public abstract Task<ParseObject> getFirstOnlineObjectTask(ParseQuery query);
 
     // MARK: Support common methonds for reading ParseObject.
 

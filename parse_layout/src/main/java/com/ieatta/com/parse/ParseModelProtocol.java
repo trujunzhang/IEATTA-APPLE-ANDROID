@@ -3,6 +3,7 @@ package com.ieatta.com.parse;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import bolts.Task;
 
@@ -56,7 +57,7 @@ public interface ParseModelProtocol {
      */
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask();
 
-    public Task<Object> getFirstOnlineObjectTask();
+    public Task<ParseObject> getFirstOnlineObjectTask(ParseQuery query);
 
     public Task<Object> queryBelongToTask(ParseModelAbstract belongTo);
 }

@@ -82,7 +82,9 @@ public class PullNewRecordFromServerTask {
         final ParseModelAbstract model = NewRecord.getRecordedInstance(pulledNewRecordObject);
         LogUtils.debug("{NewRecord from parse.com}: " + model.printDescription());
 
+
         // 2. Pull from server.
+
 //        model.pullFromServerAndPin()
 //                .onSuccessTask(new Continuation<Object, Void>() {
 //                    @Override
