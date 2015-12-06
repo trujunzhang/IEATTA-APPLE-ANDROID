@@ -3,6 +3,7 @@ package com.ieatta.com.parse.utils.cache;
 import android.graphics.Bitmap;
 
 import com.ieatta.com.parse.models.Photo;
+import com.ieatta.com.parse.tools.Thumbnail;
 import com.parse.ParseFile;
 
 import java.io.File;
@@ -45,16 +46,16 @@ public class ImageOptimizeUtils {
     }
 
     public static Bitmap generateOriginalImage(Bitmap anImage) {
+        Bitmap orignailImage = Thumbnail.create(anImage).centerCrop(560, 560).getBitmap();
 //        let orignailImage = anImage.resizedImageWithContentMode(.ScaleAspectFit, bounds: CGSizeMake(560.0, 560.0), interpolationQuality: .Medium)
 
-//        return orignailImage;
-        return  null;
+        return  orignailImage;
     }
 
     public static Bitmap generateThumbnailImage(Bitmap anImage) {
-//        let thumbnailImage = anImage.thumbnailImage(86, transparentBorder: 0, cornerRadius: 0, interpolationQuality: .Default)
+        Bitmap thumbnailImage = Thumbnail.create(anImage).centerCrop(86, 86).getBitmap();
+//        let  = anImage.thumbnailImage(86, transparentBorder: 0, cornerRadius: 0, interpolationQuality: .Default)
 
-//        return thumbnailImage
-        return null;
+        return thumbnailImage;
     }
 }
