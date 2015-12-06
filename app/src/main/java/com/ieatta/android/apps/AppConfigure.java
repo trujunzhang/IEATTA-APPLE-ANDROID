@@ -36,6 +36,9 @@ public class AppConfigure {
                 .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
                 .writeDebugLogs()
                 .build();
+
+        // Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config);
     }
 
 }
