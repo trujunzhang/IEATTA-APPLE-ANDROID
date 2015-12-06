@@ -21,6 +21,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -282,21 +283,21 @@ public class Photo extends ParseModelSync {
                 '}';
     }
 
-//    @Override
-//    public Task<Object> eventBeforePullFromServer() {
-//        // 1. First of all,to decrease client storage,so just save online thumbnail image as offline file.
-//        return this.downloadThumbnailImageFromServer();
-//    }
+    @Override
+    public Task<Object> eventBeforePullFromServer() {
+        // 1. First of all,to decrease client storage,so just save online thumbnail image as offline file.
+        return this.downloadThumbnailImageFromServer();
+    }
 
-    Task<Object> downloadThumbnailImageFromServer() {
+    public Task<Object> downloadThumbnailImageFromServer() {
         return ThumbnailImageUtils.sharedInstance.downloadImageFromServer(this, this.thumbnailUrl);
     }
 
-    Task<Object> downloadOriginalImageFromServer() {
+    public Task<Object> downloadOriginalImageFromServer() {
         return OriginalImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
     }
 
-    Task<Object> downloadCacheImageFromServer() {
+    public Task<Object> downloadCacheImageFromServer() {
         return CacheImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
     }
 
@@ -322,18 +323,12 @@ public class Photo extends ParseModelSync {
     }
 
     public Task<Bitmap> getThumbanilImage() {
-        TaskCompletionSource finalTask = new TaskCompletionSource();
-
         Bitmap image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(ParseModelAbstract.getPoint(this));
         if (image != null) {
-            finalTask.setResult(image);
-
-        } else {
-//            return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "When fetching Image for NewPhoto, and the photo's UUID is \(objectUUID)"))
-//            finalTask.setError();
+            return  Task.forResult(image);
         }
-
-        return finalTask.getTask();
+//            return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "When fetching Image for NewPhoto, and the photo's UUID is \(objectUUID)"))
+        return Task.forError(new  FileNotFoundException(""));
     }
 
 }
