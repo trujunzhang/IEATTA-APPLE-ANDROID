@@ -2,7 +2,10 @@ package com.ieatta.android.modules;
 
 import android.os.Bundle;
 
+import com.ieatta.android.R;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
+import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
@@ -26,7 +29,7 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
     // Selected model from tableview.
     protected Review selectedReview;
     // Fetched list by quering database.
-    List<ParseModelAbstract> fetchedReviews = new LinkedList<>();//Review
+    protected List<ParseModelAbstract> fetchedReviews = new LinkedList<>();//Review
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,20 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
         self.registerReviewTableCells();
     }
 
-//
-//    protected Task<Object> getReviewsReleatdModelQueryTask() {
+    protected Task<Boolean> getReviewsReleatdModelQueryTask() {
+        return Review.queryReviews(self.getPageModel(),self.getQueriedReviewsLimit()).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+            @Override
+            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.fetchedReviews = task.getResult();//Review
+                return Team.queryTeamByPoints(Review.getUserPoints(self.fetchedReviews));
+            }
+        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean> >() {
+            @Override
+            public Task<Boolean>  then(Task<List<ParseModelAbstract>> task) throws Exception {
+                return self.getPhotosForModelsTask(task);
+            }
+        });
+
 //        return Review.queryReviews(self.getPageModel(), self.getQueriedReviewsLimit())
 //                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
 //                    @Override
@@ -52,10 +67,10 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 //                        return self.getPhotosForModelsTask(task);
 //                    }
 //                });
-//    }
+    }
 
     protected void configureReviewsSection(List<Object> fetchedReviewPeople) {//Team
-//        self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.ReviewHighlights.string), forSectionIndex: self.getReviewsSectionIndex())
+        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), self.getReviewsSectionIndex());
         self.setItemsForReviewsSection(fetchedReviewPeople);
     }
 
@@ -70,13 +85,12 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
     protected abstract int getReviewsSectionIndex();
 
     protected Review getReview(NSIndexPath indexPath) {
-//        return self.fetchedReviews[(indexPath.section - self.getReviewsSectionIndex())];
-        return null;
+        return (Review) self.fetchedReviews.get(indexPath.section- self.getReviewsSectionIndex());
     }
 
-//    func performSegueForWritingReview(){
+    public void performSegueForWritingReview(){
 //        self.presentViewController(UINavigationController(rootViewController: IEAWriteReviewViewController.createInstance(self.getPageModel())), animated: true, completion: nil)
-//    }
+    }
 
 //    override func segueForReviewDetailViewController(destination:IEAReviewDetailViewController){
 //        destination.transferToReviewDetail(self.getPageModel(), review: self.selectedReview!)
