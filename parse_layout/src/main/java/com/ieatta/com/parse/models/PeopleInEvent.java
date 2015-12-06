@@ -13,6 +13,7 @@ import com.parse.ParseQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.List;
 
@@ -106,26 +107,23 @@ public class PeopleInEvent extends ParseModelSync {
         return null;
     }
 
-    public static Task<Object> sortOrderedPeople(Task<Object> previous, List<PeopleInEvent> peopleInEvents) {
+    public static Task<List<Team>> sortOrderedPeople(Task<Object> previous, List<PeopleInEvent> peopleInEvents) {
         List<Team> fetchedPeople = (List<Team>) previous.getResult();
 
-//        List<Team> sortedPeople = new List<>();
-//
-//        for (PeopleInEvent peopleInEvent : peopleInEvents) {
-//            Team people = getPeople(peopleInEvent, fetchedPeople);
-//            if (people != null) {
-//                sortedPeople.add(people);
-//            } else {
-//                // TODO djzhang(fixing)
-////                return BFTask(error: NSError.getError(IEAErrorType.SortArray, description: "\(peopleInEvent.printDescription())"))
-//            }
-//        }
-//
-//        TaskCompletionSource finishTask = new TaskCompletionSource();
-//        finishTask.setResult(sortedPeople);
-//        return finishTask.getTask();
+        List<Team> sortedPeople = new LinkedList<>();
 
-        return null;
+        for (PeopleInEvent peopleInEvent : peopleInEvents) {
+            Team people = getPeople(peopleInEvent, fetchedPeople);
+            if (people != null) {
+                sortedPeople.add(people);
+            } else {
+                // TODO djzhang(fixing)
+//                return BFTask(error: NSError.getError(IEAErrorType.SortArray, description: "\(peopleInEvent.printDescription())"))
+                return Task.forError(new Exception(""));
+            }
+        }
+
+        return Task.forResult(sortedPeople);
     }
 
     public Task<Void> saveTeam() {
