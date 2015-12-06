@@ -34,6 +34,8 @@ public final class StorageUtils {
 
 	private static final String EXTERNAL_STORAGE_PERMISSION = "android.permission.WRITE_EXTERNAL_STORAGE";
 	private static final String INDIVIDUAL_DIR_NAME = "uil-images";
+	public static final String DEFAULT_CACHE_DIR = "cache";
+
 
 	private StorageUtils() {
 	}
@@ -74,10 +76,12 @@ public final class StorageUtils {
 			externalStorageState = "";
 		}
 		if (preferExternal && MEDIA_MOUNTED.equals(externalStorageState) && hasExternalStoragePermission(context)) {
-			appCacheDir = getExternalCacheDir(context);
+//			appCacheDir = getExternalCacheDir(context);
 		}
 		if (appCacheDir == null) {
-			appCacheDir = context.getCacheDir();
+			// TODO djzhang(ignore)
+			// **** important **** (unused)
+//			appCacheDir = context.getCacheDir();
 		}
 		if (appCacheDir == null) {
 			String cacheDirPath = "/data/data/" + context.getPackageName() + "/cache/";
@@ -159,7 +163,7 @@ public final class StorageUtils {
 
 	private static File getExternalCacheDir(Context context) {
 		File dataDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
-		File appCacheDir = new File(new File(dataDir, context.getPackageName()), "cache");
+		File appCacheDir = new File(new File(dataDir, context.getPackageName()), DEFAULT_CACHE_DIR);
 		if (!appCacheDir.exists()) {
 			if (!appCacheDir.mkdirs()) {
 				L.w("Unable to create external cache directory");
