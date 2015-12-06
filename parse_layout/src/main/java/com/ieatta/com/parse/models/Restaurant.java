@@ -121,7 +121,6 @@ public class Restaurant extends ParseModelSync {
         }
     }
 
-
     @Override
     public ParseModelAbstract getNewInstance() {
         return new Restaurant();

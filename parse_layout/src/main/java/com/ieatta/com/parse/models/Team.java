@@ -32,7 +32,6 @@ public class Team extends ParseModelSync {
     private static final String kPAPFieldEmailKey = "email";
     private static final String kPAPFieldAddressKey = "address";
 
-
     public String email = "";
     public String address = "";
 
@@ -161,7 +160,6 @@ public class Team extends ParseModelSync {
 
         return peoplePoints;
     }
-
 
     // MARK: Description
     @Override

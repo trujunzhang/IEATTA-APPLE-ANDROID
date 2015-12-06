@@ -220,7 +220,6 @@ public class Review extends ParseModelSync {
         return array;
     }
 
-
     // MARK: Description
     @Override
     public String printDescription() {
