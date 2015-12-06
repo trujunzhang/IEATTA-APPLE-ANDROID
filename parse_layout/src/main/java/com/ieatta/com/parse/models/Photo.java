@@ -300,10 +300,10 @@ public class Photo extends ParseModelSync {
         return CacheImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
     }
 
-//    @Override
-//    public Task<Object> eventAfterPushToServer() {
-//        return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
-//    }
+    @Override
+    public Task<Boolean> eventAfterPushToServer() {
+        return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
+    }
 
     public Task<Object> getRelatedPhoto() {
 //        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).continueWith(new Continuation<Object, Object>() {
