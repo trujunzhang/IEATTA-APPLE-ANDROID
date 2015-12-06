@@ -11,7 +11,6 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 import com.lukazakrajsek.timeago.TimeAgo;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -19,7 +18,6 @@ import java.util.List;
 import java.util.UUID;
 
 import bolts.Task;
-import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -63,7 +61,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     }
 
     // MARK: Async methods.
-    public abstract Task<Object> pinAfterPullFromServer();
+    public abstract Task<Void> pinAfterPullFromServer();
 
     public abstract Task<Object> pushToServer();
 
@@ -76,7 +74,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return Task.forResult(true);
     }
 
-    public abstract Task<Object> pullFromServerAndPin();
+    public abstract Task<Void> pullFromServerAndPin();
 
     public Task<Object> queryBelongToTask(ParseModelAbstract belongTo) {
         return null;

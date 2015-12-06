@@ -1,5 +1,6 @@
 package com.ieatta.com.parse;
 
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import bolts.Continuation;
@@ -24,26 +25,16 @@ public abstract class ParseModelSync extends ParseModelQuery {
      * if not found, must return Result.Failure().
      */
     @Override
-    public Task<Object> pullFromServerAndPin() {
+    public Task<Void> pullFromServerAndPin() {
         // 1. Retrieve object from parse.com.
-        this.createQueryFromRecord().getFirstInBackground()
-                .onSuccessTask(new Continuation() {
-                    @Override
-                    public Task<Boolean> then(Task task) throws Exception {
-                        // 2.1 Convert to the online Model.
-                        return convertToOnlineModelTask(task);
-                    }
-                });
-
-        return this.createQueryFromRecord().getFirstInBackground().continueWith(new Continuation() {
+        return ParseModelQuery.getFirstOnlineObjectTask(this.createQueryFromRecord()).onSuccessTask(new Continuation<ParseObject, Task<Boolean> >() {
             @Override
-            public Object then(Task task) throws Exception {
-                // 2.1 Convert to the online Model.
+            public Task<Boolean>  then(Task<ParseObject> task) throws Exception {
                 return convertToOnlineModelTask(task);
             }
-        }).continueWith(new Continuation() {
+        }).onSuccessTask(new Continuation<Boolean, Task<Void>>() {
             @Override
-            public Object then(Task task) throws Exception {
+            public Task<Void> then(Task<Boolean> task) throws Exception {
                 return pinAfterPullFromServer();
             }
         });
@@ -54,18 +45,18 @@ public abstract class ParseModelSync extends ParseModelQuery {
      * If offline already exist, delete it first.
      */
     @Override
-    public Task<Object> pinAfterPullFromServer() {
+    public Task<Void> pinAfterPullFromServer() {
         // 1. Check wheather exist.
         final ParseQuery query = ParseModelQuery.createQuery(this.getModelType(), this);
 
-        return this.eventAfterPushToServer().continueWith(new Continuation<Boolean, Object>() {
+        return this.eventAfterPushToServer().onSuccessTask(new Continuation<Boolean, Task<Void>>() {
             @Override
-            public Object then(Task<Boolean> task) throws Exception {
+            public Task<Void> then(Task<Boolean> task) throws Exception {
                 return unpinInBackground(query);
             }
-        }).continueWith(new Continuation<Object, Object>() {
+        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Task<Void> then(Task<Void> task) throws Exception {
                 return pinInBackgroundForModel();
             }
         });

@@ -104,15 +104,14 @@ public abstract class ParseModelConvert extends ParseJsoner {
     /**
      * Convert from the online PFObject to the Model instance.
      *
-     * @param getFirstObjectTask
+     * @param previous
      * @return
      */
-    public Task<Boolean> convertToOnlineModelTask(Task<Object> getFirstObjectTask) {
-        Object result = getFirstObjectTask.getResult();
-        if (result != null) {
-            ParseObject firstObject = (ParseObject) result;
-            this.readObject(firstObject);
+    public Task<Boolean> convertToOnlineModelTask(Task<ParseObject> previous) {
+        ParseObject firstObject = previous.getResult();
 
+        if (firstObject != null) {
+            this.readObject(firstObject);
             return Task.forResult(true);
         }
 

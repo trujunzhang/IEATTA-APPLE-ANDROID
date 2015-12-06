@@ -34,7 +34,7 @@ public interface ParseModelProtocol {
     public ParseACL getACL();
 
     // MARK: Async methods.
-    public Task<Object> pinAfterPullFromServer();
+    public Task<Void> pinAfterPullFromServer();
 
     /**
      * Step1: getFirstLocalObject
@@ -48,7 +48,7 @@ public interface ParseModelProtocol {
     public Task<Object> eventBeforePullFromServer();
     public Task<Boolean> eventAfterPushToServer();
 
-    public Task<Object> pullFromServerAndPin();
+    public Task<Void> pullFromServerAndPin();
 
     /**
      * Get the offline models array.

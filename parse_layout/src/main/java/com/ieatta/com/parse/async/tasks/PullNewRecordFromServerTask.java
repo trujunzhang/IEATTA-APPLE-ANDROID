@@ -75,52 +75,28 @@ public class PullNewRecordFromServerTask {
      * - parameter pulledNewRecordObject: A row data on the NewRecord table.
      */
     private static Task PullObjectFromServerTask(ParseObject pulledNewRecordObject) {
-        final TaskCompletionSource pullTask = new TaskCompletionSource();
         final Date lastRecordCreateAt = pulledNewRecordObject.getCreatedAt();
 
         // 1. Create model instance from record's modelType.
         final ParseModelAbstract model = NewRecord.getRecordedInstance(pulledNewRecordObject);
         LogUtils.debug("{NewRecord from parse.com}: " + model.printDescription());
 
-
         // 2. Pull from server.
-
-//        model.pullFromServerAndPin()
-//                .onSuccessTask(new Continuation<Object, Void>() {
-//                    @Override
-//                    public Void then(Task<Object> task) throws Exception {
-//
-//                        return null;
-//                    }
-//                }).continueWith(new Continuation<Object, Void>() {
-//            @Override
-//            public Void then(Task<Object> task) throws Exception {
-//                return null;
-//            }
-//        });
-
-        model.pullFromServerAndPin().continueWith(new Continuation<Object, Object>() {
+        return model.pullFromServerAndPin().onSuccess(new Continuation<Void, Void>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
-                if (task.getError() != null) {
-                    pullTask.setError(task.getError());
-                } else {
+            public Void then(Task<Void> task) throws Exception {
 
-                    /// 1. Update last synched date.
-                    new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).storeNewRecordDate(lastRecordCreateAt);
+                /// 1. Update last synched date.
+                new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).storeNewRecordDate(lastRecordCreateAt);
 
-                    /// 2. When pull from server successfully, sometimes need to notify have new parse models.
-                    //  AsyncPullNotify.notify(model);
+                /// 2. When pull from server successfully, sometimes need to notify have new parse models.
+                //  AsyncPullNotify.notify(model);
 
-                    /// 3. Next task.
-                    pullTask.setResult(true);
-
-                }
+                /// 3. Next task.
                 return null;
             }
         });
 
-        return pullTask.getTask();
     }
 
 }
