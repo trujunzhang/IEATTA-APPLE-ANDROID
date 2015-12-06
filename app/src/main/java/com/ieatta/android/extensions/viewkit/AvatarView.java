@@ -77,6 +77,7 @@ private AvatarView self = this;
         return photo.getThumbanilImage().onSuccess(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
+                Object object = task;
 //                self.displayImage(task,placeHolder: placeHolder)
                 return null;
             }
