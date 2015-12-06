@@ -2,6 +2,7 @@ package com.ieatta.com.parse.utils.cache;
 
 import android.graphics.Bitmap;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.tools.Thumbnail;
 import com.parse.ParseFile;
@@ -21,7 +22,7 @@ public class ImageOptimizeUtils {
      - returns:  PFFile's instance of the original image
      */
     public static ParseFile getPFFileForOrginalImage(Photo photo) {
-        File _originalImage = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
+        File _originalImage = OriginalImageUtils.sharedInstance.getTakenPhotoFile(ParseModelAbstract.getPoint(photo));
         if(_originalImage!=null){
             return new ParseFile(_originalImage);
         }
@@ -37,7 +38,7 @@ public class ImageOptimizeUtils {
      - returns:  PFFile's instance of the thumbnail image
      */
     public static ParseFile getPFFileForThumbnailImage(Photo photo) {
-        File _thumbnailImage = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
+        File _thumbnailImage = ThumbnailImageUtils.sharedInstance.getTakenPhotoFile(ParseModelAbstract.getPoint(photo));
         if(_thumbnailImage != null){
             return new ParseFile(_thumbnailImage);
         }

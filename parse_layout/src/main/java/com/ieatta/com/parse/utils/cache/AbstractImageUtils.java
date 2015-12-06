@@ -57,6 +57,10 @@ public abstract class AbstractImageUtils {
         return true;
     }
 
+    public File getTakenPhotoFile(String objectUUID) {
+        return this.getImageCache().get(objectUUID);
+    }
+
     /**
      Query the disk cache synchronously after checking the memory cache.
 
@@ -64,14 +68,16 @@ public abstract class AbstractImageUtils {
 
      - returns: Image Cache
      */
-    public File getTakenPhoto(String objectUUID) {
-        if(objectUUID == null || objectUUID.equals("") == true){
+    public Bitmap getTakenPhoto(String objectUUID) {
+        File imageFile = this.getTakenPhotoFile(objectUUID);
+        if(imageFile == null || imageFile.exists() == false){
             return null;
         }
 
-        return this.getImageCache().get(objectUUID);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        return BitmapFactory.decodeFile(imageFile.getAbsolutePath(), options);
     }
-
     /**
      Query the disk cache synchronously after checking the memory cache.
 
@@ -80,14 +86,7 @@ public abstract class AbstractImageUtils {
      - returns: Image Cache
      */
     public Bitmap getTakenPhoto(Photo model) {
-        File imageFile = this.getTakenPhoto(ParseModelAbstract.getPoint(model));
-        if(imageFile == null || imageFile.exists() == false){
-            return null;
-        }
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        return BitmapFactory.decodeFile(imageFile.getAbsolutePath(), options);
+       return this.getTakenPhoto(ParseModelAbstract.getPoint(model));
     }
 
     public List listCacheImageNames(){
