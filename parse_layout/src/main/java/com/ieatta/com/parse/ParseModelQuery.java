@@ -17,6 +17,7 @@ import java.util.List;
  * Created by djzhang on 11/27/15.
  */
 public abstract class ParseModelQuery extends ParseModelConvert {
+    private ParseModelQuery self = this;
 
     private static final String kPAPFieldModelOnlineCreatedAtKey = "createdAt";
 
@@ -156,8 +157,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query.countInBackground();
     }
 
-    @Override
-    public Task<ParseObject> getFirstOnlineObjectTask(ParseQuery query) {
+
+    public static Task<ParseObject> getFirstOnlineObjectTask(ParseQuery query) {
         final Task.TaskCompletionSource tcs = Task.create();
 
         // **** Important ****
@@ -185,6 +186,32 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
         return tcs.getTask();
     }
+
+    /**
+     * Because Task will return Exception,'no results found for query'(code is com.parse.ParseException.OBJECT_NOT_FOUND),
+     * when no the first object found.
+     *
+     *
+     * @param previous
+     * @return
+     */
+    private static Task<ParseObject> getFirstParseObjectTask(Task<ParseObject>previous) {
+        ParseObject object = previous.getResult();
+        if (previous.isFaulted()) {
+            com.parse.ParseException exception = (com.parse.ParseException) previous.getError();
+            if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
+                // **** Important ****
+                // Here, return value is 'null' means that not found object.
+                // For example, if all newrecord objects already pushed to server.
+                // No NewRecord rows on the local table. So not found NewRecord here.
+                object = null;
+            } else {
+                return Task.forError(previous.getError());
+            }
+        }
+
+        return Task.forResult(object);
+    }
     /**
      * **** Important ****
      * <p/>
@@ -195,33 +222,43 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - returns: the first object's array,like [PFObject's instance].
      */
     public static Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
-        final Task.TaskCompletionSource tcs = Task.create();
-
         // **** Important ****
         // If not found Parse's findLocalObjectsInBackground
-        ParseModelQuery.findFirstLocalObjectInBackground(query).continueWith(new Continuation<ParseObject, Object>() {
+        return ParseModelQuery.findFirstLocalObjectInBackground(query).continueWithTask(new Continuation<ParseObject, Task<ParseObject>>() {
             @Override
-            public Object then(Task<ParseObject> task) throws Exception {
-                if (task.isFaulted()) {
-                    com.parse.ParseException exception = (com.parse.ParseException) task.getError();
-                    if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
-                        // **** Important ****
-                        // Here, return value is 'null' means that not found object.
-                        // For example, if all newrecord objects already pushed to server.
-                        // No NewRecord rows on the local table. So not found NewRecord here.
-                        tcs.setResult(null);
-                    } else {
-                        tcs.setError(task.getError());
-                    }
-                } else {
-                    tcs.setResult(task.getResult());
-                }
-                return null;
+            public Task<ParseObject> then(Task<ParseObject> task) throws Exception {
+                return ParseModelQuery.getFirstParseObjectTask(task);
             }
         });
-
-        return tcs.getTask();
     }
+//    public static Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
+//        final Task.TaskCompletionSource tcs = Task.create();
+//
+//        // **** Important ****
+//        // If not found Parse's findLocalObjectsInBackground
+//        ParseModelQuery.findFirstLocalObjectInBackground(query).continueWith(new Continuation<ParseObject, Object>() {
+//            @Override
+//            public Object then(Task<ParseObject> task) throws Exception {
+//                if (task.isFaulted()) {
+//                    com.parse.ParseException exception = (com.parse.ParseException) task.getError();
+//                    if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
+//                        // **** Important ****
+//                        // Here, return value is 'null' means that not found object.
+//                        // For example, if all newrecord objects already pushed to server.
+//                        // No NewRecord rows on the local table. So not found NewRecord here.
+//                        tcs.setResult(null);
+//                    } else {
+//                        tcs.setError(task.getError());
+//                    }
+//                } else {
+//                    tcs.setResult(task.getResult());
+//                }
+//                return null;
+//            }
+//        });
+//
+//        return tcs.getTask();
+//    }
 
     public static Task<List<ParseObject>> findLocalObjectsInBackground(ParseQuery query) {
         // *** Important ***
