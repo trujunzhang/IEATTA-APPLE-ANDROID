@@ -303,7 +303,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter object:          PFObject's instance
      * - parameter completionBlock: callback variable
      */
-    static public Task<Void> unpinObjectInBackground(ParseObject object) {
+    public static  Task<Void> unpinObjectInBackground(ParseObject object) {
         return object.unpinInBackground("Offline");
     }
 
