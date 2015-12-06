@@ -27,6 +27,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Base disk cache.
@@ -160,6 +164,14 @@ public abstract class BaseDiskCache implements DiskCache {
 				f.delete();
 			}
 		}
+	}
+
+	public List<File> getCacheFileList() {
+		File[] files = cacheDir.listFiles();
+		if (files != null) {
+			new LinkedList<File>(Arrays.asList(files));
+		}
+		return new LinkedList<File>();
 	}
 
 	/** Returns file object (not null) for incoming image URI. File object can reference to non-existing file. */

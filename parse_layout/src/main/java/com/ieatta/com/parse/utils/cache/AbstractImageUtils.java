@@ -12,6 +12,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import bolts.Task;
@@ -83,8 +84,7 @@ public abstract class AbstractImageUtils {
     }
 
     public List listCacheImageNames(){
-//        return this.getImageCache().getCacheFileList();
-        return null;
+        return this.getImageCache().getCacheFileList();
     }
 
     /**
@@ -97,7 +97,11 @@ public abstract class AbstractImageUtils {
     public Task<Bitmap> saveTakenPhoto(Bitmap image,Photo model) {
 
         // ** Important ** Must store to Disk.
-//        this.getImageCache().storeImage(image, forKey: ParseModelAbstract.getPoint(model),toDisk: true);
+        try {
+            this.getImageCache().save(ParseModelAbstract.getPoint(model),image);
+        } catch (IOException e) {
+            return Task.forError(e);
+        }
 
         return Task.forResult(image);
     }
@@ -114,8 +118,8 @@ public abstract class AbstractImageUtils {
         return Task.forResult(null);
     }
 
-    public Task<Object> downloadImageWithURL(String URL) {
-        final TaskCompletionSource downloadTask = new TaskCompletionSource();
+    public Task<Bitmap> downloadImageWithURL(String URL) {
+        final Task.TaskCompletionSource tcs = Task.create();
 
         ImageLoader.getInstance().loadImage(URL, new ImageLoadingListener() {
             @Override
@@ -125,26 +129,27 @@ public abstract class AbstractImageUtils {
 
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-//                downloadTask.setError(failReason);
+                tcs.setError(new Exception("Download image failed!",failReason.getCause()));
             }
 
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                downloadTask.setResult(loadedImage);
+                tcs.setResult(loadedImage);
             }
 
             @Override
             public void onLoadingCancelled(String imageUri, View view) {
-//                downloadTask.setError(failReason);
+                tcs.setError(new Exception("Loading cancelled!"));
             }
         });
 
-        return downloadTask.getTask();
+        return tcs.getTask();
     }
 
     public Task<Object> downloadImageFromServer(Photo model,String url) {
 
         /// If the image already exist on the cache folder, we don't download it from the Parse.com.
+//        this.getTakenPhoto(model);
 //        if let _image = this.getTakenPhoto(model){
 //            return BFTask(result: _image)
 //        }
