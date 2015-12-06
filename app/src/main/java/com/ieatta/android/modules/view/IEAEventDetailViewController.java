@@ -106,7 +106,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 
                 self.addOrderedPeopleSection(self.fetchedPeople);
-                    self.configureReviewsSection(self.fetchedPeople);
+//                self.configureReviewsSection(self.fetchedPeople);
 
 
                 return null;
@@ -115,98 +115,11 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted() == true) {
+                    int x = 0;
                 }
                 return null;
             }
         });
-
-
-//        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
-//                .continueWith(new Continuation<Object, Object>() {
-//                    @Override
-//                    public Object then(Task<Object> task) throws Exception {
-//                        self.fetchedPeopleInEvent = new LinkedList((Collection<? extends PeopleInEvent>) task.getResult());
-// // Sort, by fetchedPeopleInEvent
-////                        PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
-//
-//                        // 2. Get all people in the event.
-//                        return Team.queryTeam(self.fetchedPeopleInEvent);
-//                    }
-//                }).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                Object object = task;
-//                self.fetchedPeople = new LinkedList((Collection<? extends Team>) task.getResult());
-//
-//                // Next, fetch related photos
-//                return self.getPhotosForModelsTask(task);
-//            }
-////        }).continueWith(new Continuation<Object, Object>() {
-////            @Override
-////            public Object then(Task<Object> task) throws Exception {
-////                // Next, Load Reviews.
-////                return self.getReviewsReleatdModelQueryTask();
-////            }
-//        }).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                Object object = task;
-//                return null;
-//            }
-//        });
-
-//        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
-//                .continueWith(new Continuation<Object, Object>() {
-//                    @Override
-//                    public Object then(Task<Object> task) throws Exception {
-//                        self.fetchedPeopleInEvent = new LinkedList((Collection<? extends PeopleInEvent>) task.getResult());
-//
-//                        // 2. Get all people in the event.
-//                        return Team.queryTeam(self.fetchedPeopleInEvent);
-//                    }
-//                }).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                Object object = task;
-//
-//                // Next, fetch related photos
-//                return self.getPhotosForModelsTask(task);
-//            }
-//        }).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                // Sort, by fetchedPeopleInEvent
-//                return PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
-//            }
-//        }).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                self.fetchedPeople = new LinkedList<Team>((Collection<? extends Team>) task.getResult());
-//                // Next, Load Reviews.
-//                return self.getReviewsReleatdModelQueryTask();
-//            }
-//        }).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                    // Finally, hide hud.
-//                    self.hideHUD();
-//
-////                    self.setRegisterCellClass(IEAEventHeaderCell);
-////                    self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.self);
-//
-////                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: EventDetailSection.sectionHeader.rawValue)
-////                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.PeopleOrdered.string), forSectionIndex: EventDetailSection.sectionOrderedPeople.rawValue)
-//
-////                    self.setSectionItems([new  IEAEventHeader(viewController: self, model:self.event!)], forSectionIndex: EventDetailSection.sectionHeader.ordinal());
-//
-////                    self.addOrderedPeopleSection(self.fetchedPeople);
-////                    .configureReviewsSection(task.result as! [Team]);
-//
-//
-//                return null;
-//            }
-//        });
-
     }
 
     /// Add rows for section "Ordered People".
