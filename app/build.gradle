@@ -58,4 +58,6 @@ dependencies {
     compile project(':manualdatabase')
     compile project(':android-weak-handler')
     compile project(':slideDateTimePicker')
+    compile project(':Android-Universal-Image-Loader')
+    compile project(':squarecamera')
 }
