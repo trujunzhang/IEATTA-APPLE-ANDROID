@@ -19,7 +19,7 @@ public class ThumbnailImageUtilsSpec extends InstrumentationTestCase{
     }
 
     public void testConstructor() throws Exception {
-        String info = self.getInstrumentation().getContext().getResources().getString(R.string.debug_info);
+         self.getInstrumentation().getContext().getResources();
 
         UnlimitedDiskCache imageCache = ThumbnailImageUtils.sharedInstance.getImageCache();
 
