@@ -27,17 +27,21 @@ public class ParseAsyncHandler {
     public void PullObjectsFromServer() {
 
         PullNewRecordFromServerTask.PullFromServerSeriesTask(new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD))
-                .continueWith(new Continuation<Object, Object>() {
-                    @Override
-                    public Object then(Task<Object> task) throws Exception {
-                        if (task.getError() != null) {
-                            endAsyncTasks(task.getError());
-                        } else {
-                            PushLocalNewRecordToServer();
-                        }
-                        return null;
-                    }
-                });
+                .onSuccess(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                PushLocalNewRecordToServer();
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted()) {
+                    endAsyncTasks(task.getError());
+                }
+                return null;
+            }
+        });
     }
 
     private void PushLocalNewRecordToServer() {

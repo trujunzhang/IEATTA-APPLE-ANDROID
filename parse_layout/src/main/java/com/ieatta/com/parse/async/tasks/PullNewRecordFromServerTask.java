@@ -25,14 +25,13 @@ import bolts.TaskCompletionSource;
 public class PullNewRecordFromServerTask {
 
 
-    public static Task<Object> PullFromServerSeriesTask(ParseQuery query) {
-        final Task.TaskCompletionSource tcs = Task.create();
+    public static Task<Void> PullFromServerSeriesTask(ParseQuery query) {
 
-        query.findInBackground().onSuccessTask(new Continuation<List<ParseObject>,Void>() {
+        return query.findInBackground().onSuccessTask(new Continuation<List<ParseObject>, Void>() {
             @Override
             public Void then(Task<List<ParseObject>> task) throws Exception {
-                List<ParseObject> results =  task.getResult();
-                LogUtils.debug("Pull objects from Server: "+results.size());
+                List<ParseObject> results = task.getResult();
+                LogUtils.debug("Pull objects from Server: " + results.size());
 
                 // Create a trivial completed task as a base case.
                 Task<Void> singleTask = Task.forResult(null);
@@ -48,24 +47,7 @@ public class PullNewRecordFromServerTask {
 
                 return null;
             }
-        }).onSuccess(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                tcs.setResult(true);
-                return null;
-            }
-        }).continueWith(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                if (task.isFaulted()) {
-                    tcs.setError(task.getError());
-                }
-                return null;
-            }
         });
-
-
-        return tcs.getTask();
     }
 
 
