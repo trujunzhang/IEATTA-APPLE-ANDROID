@@ -88,7 +88,8 @@ public final class StorageUtils {
         }
         // if (appCacheDir == null) {
         // TODO djzhang(ignore)
-        // **** important **** (unused)
+        // **** important ****
+        // **** (unused) ****
         //appCacheDir = context.getCacheDir();
         // }
         if (appCacheDir == null) {
