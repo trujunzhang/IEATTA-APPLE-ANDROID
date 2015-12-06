@@ -44,11 +44,7 @@ public class ThumbnailImageUtilsSpec extends InstrumentationTestCase{
         Photo photo = new Photo();
         ThumbnailImageUtils.sharedInstance.saveTakenPhoto(bm, photo);
 
-        File imageFile = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
-
-//        URI uri = new URI(imageFile.getAbsolutePath());
-
-//        Bitmap bitmap = decodeImage(imageFile);
+        Bitmap bitmap = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
 
         bm = null;
 
