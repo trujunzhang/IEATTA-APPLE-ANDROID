@@ -76,13 +76,13 @@ public final class StorageUtils {
 			externalStorageState = "";
 		}
 		if (preferExternal && MEDIA_MOUNTED.equals(externalStorageState) && hasExternalStoragePermission(context)) {
-//			appCacheDir = getExternalCacheDir(context);
+			appCacheDir = getExternalCacheDir(context);
 		}
-		if (appCacheDir == null) {
+		// if (appCacheDir == null) {
 			// TODO djzhang(ignore)
 			// **** important **** (unused)
-//			appCacheDir = context.getCacheDir();
-		}
+			//appCacheDir = context.getCacheDir();
+		// }
 		if (appCacheDir == null) {
 			String cacheDirPath = "/data/data/" + context.getPackageName() + "/cache/";
 			L.w("Can't define system cache directory! '%s' will be used.", cacheDirPath);
