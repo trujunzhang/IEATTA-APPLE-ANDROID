@@ -3,11 +3,13 @@ package com.ieatta.com.parse.utils.cache;
 import android.graphics.Bitmap;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import bolts.Task;
 
@@ -34,15 +36,15 @@ public     final static OriginalImageUtils sharedInstance  = new  OriginalImageU
 
      - parameter photo: photo's instance
      */
-    public Task<Object> removeOriginalImage(Photo photo) {
-//        boolean exist = this.getImageCache().diskImageExistsWithKey(ParseModelAbstract.getPoint(photo));
-//        if(exist == true){
-//            this.getImageCache().removeImageForKey(ParseModelAbstract.getPoint(photo), fromDisk: true);
-//            return BFTask(result:true);
-//        }
-//        return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "\(photo.printDescription())"))
+    public Task<Boolean> removeOriginalImage(Photo photo) {
+        File file = this.getImageCache().get(ParseModelAbstract.getPoint(photo));
+        if(file == null || file.exists() == false){
+            //return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "\(photo.printDescription())"))
+            return Task.forError(new FileNotFoundException(""));
+        }
+        boolean isRemove = this.getImageCache().remove(ParseModelAbstract.getPoint(photo));
 
-        return null;
+        return Task.forResult(isRemove);
     }
 
     @Override
