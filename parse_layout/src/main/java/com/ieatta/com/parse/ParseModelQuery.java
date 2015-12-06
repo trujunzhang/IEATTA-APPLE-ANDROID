@@ -159,32 +159,14 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
 
     public static Task<ParseObject> getFirstOnlineObjectTask(ParseQuery query) {
-        final Task.TaskCompletionSource tcs = Task.create();
-
         // **** Important ****
         // If not found Parse's getFirstInBackground
-         query.getFirstInBackground().continueWith(new Continuation<ParseObject, Object>() {
+        return query.getFirstInBackground().continueWithTask(new Continuation<ParseObject, Task<ParseObject>>() {
             @Override
-            public Object then(Task<ParseObject> task) throws Exception {
-                if (task.isFaulted()) {
-                    com.parse.ParseException exception = (com.parse.ParseException) task.getError();
-                    if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
-                        // **** Important ****
-                        // Here, return value is 'null' means that not found object.
-                        // For example, if all newrecord objects already pushed to server.
-                        // No NewRecord rows on the local table. So not found NewRecord here.
-                        tcs.setResult(null);
-                    } else {
-                        tcs.setError(task.getError());
-                    }
-                } else {
-                    tcs.setResult(task.getResult());
-                }
-                return null;
+            public Task<ParseObject> then(Task<ParseObject> task) throws Exception {
+                return ParseModelQuery.getFirstParseObjectTask(task);
             }
         });
-
-        return tcs.getTask();
     }
 
     /**
