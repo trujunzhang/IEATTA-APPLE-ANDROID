@@ -3,10 +3,14 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
+import com.ieatta.android.modules.cells.IEASeeReviewsCell;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 
 import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -34,23 +38,19 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         // Do any additional setup after loading the view.
 //        assert(self.reviewForModel != nil, "Must setup reviewForModel's instance.")
 
-//        self.getReviewsReleatdModelQueryTask().continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                if(task.getError()!=null){
-//
-//                }else {
-//                    self.configureReviewsSection(new LinkedList<Object>((Collection<?>) task.getResult()));
-//                }
-//                return null;
-//            }
-//        });
+        self.getReviewsReleatdModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
+            @Override
+            public Object then(Task<Boolean> task) throws Exception {
+                self.configureReviewsSection(self.fetchedReviews);
+                return null;
+            }
+        });
     }
 
     // MARK: Override IEAReviewsTableViewController methods
     @Override
     public void registerReviewTableCells() {
-//        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.self);
+//        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType());
     }
 
 
@@ -72,7 +72,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
 
     /// Add rows for section "Reviews".
     @Override
-    public void setItemsForReviewsSection(List<Object> fetchedReviewPeople) {
+    public void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople) {
 //         Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
 
 //        var items:[SectionSeeReviewsCellModel] = [SectionSeeReviewsCellModel]()

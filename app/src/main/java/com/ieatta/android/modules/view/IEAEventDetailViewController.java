@@ -72,9 +72,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                     @Override
                     public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
                         self.fetchedPeopleInEvent = task.getResult();
-//  Sort, by fetchedPeopleInEvent
+                        //  Sort, by fetchedPeopleInEvent
                         PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
-
 
                         // 2. Get all people in the event.
                         return Team.queryTeamByPeopleInEvent(self.fetchedPeopleInEvent);
@@ -83,8 +82,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedPeople = task.getResult();
-//
-//                // Next, fetch related photos
+
+                // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
             }
 ////        }).continueWith(new Continuation<Object, Object>() {
@@ -106,8 +105,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.getType(), EventDetailSection.sectionOrderedPeople.ordinal());
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 
-                    self.addOrderedPeopleSection(self.fetchedPeople);
-//                    self.configureReviewsSection(task.result as! [Team]);
+                self.addOrderedPeopleSection(self.fetchedPeople);
+                    self.configureReviewsSection(self.fetchedPeople);
 
 
                 return null;
@@ -211,8 +210,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     }
 
     /// Add rows for section "Ordered People".
-    private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople){
-        setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event),  EventDetailSection.sectionOrderedPeople.ordinal());
+    private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople) {
+        setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event), EventDetailSection.sectionOrderedPeople.ordinal());
     }
 
     @Override

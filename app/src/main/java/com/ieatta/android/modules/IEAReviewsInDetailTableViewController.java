@@ -1,7 +1,11 @@
 package com.ieatta.android.modules;
 
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
+import com.ieatta.android.modules.cells.IEAReviewUserCell;
+import com.ieatta.android.modules.cells.IEAReviewsCell;
+import com.ieatta.android.modules.cells.headerfooterview.IEAMoreReviewsFooterCell;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 
 import java.util.List;
@@ -17,10 +21,10 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
 
     protected void registerReviewTableCells(){
-//        self.setRegisterCellClass(IEAReviewUserCell);
-//        self.setRegisterCellClassWhenSelected(IEAReviewsCell.self);
+//        self.setRegisterCellClass(IEAReviewUserCell.getType());
+//        self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType());
 
-//        self.setRegisterFooterClass(IEAMoreReviewsFooterCell);
+//        self.setRegisterFooterClass(IEAMoreReviewsFooterCell.getType());
     }
 
 
@@ -35,7 +39,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //    }
 
     @Override
-     public void setItemsForReviewsSection(List<Object> fetchedReviewPeople){
+     public void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople){
 //        int startIndex = self.getReviewsSectionIndex();
 //
 //        let array = Review.getReviewItems(self.fetchedReviews, people: fetchedReviewPeople)
@@ -61,9 +65,9 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //    }
 
     // MARK: Show all posted reviews for Restaurant,Recipe and Event.
-//    func performSegueForSeeReviews(){
+    public void performSegueForSeeReviews(){
 //        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier.rawValue, sender: self)
-//    }
+    }
 
     @Override
     protected int getReviewsSectionIndex() {
