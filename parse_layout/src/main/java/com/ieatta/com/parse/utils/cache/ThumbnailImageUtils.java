@@ -38,7 +38,7 @@ public class ThumbnailImageUtils extends AbstractImageUtils{
      */
     @Override
     public Task<Bitmap> generateTakenPhoto(Bitmap image, Photo model) {
-        Bitmap thumbnailImage = ImageOptimizeUtils.generateOriginalImage(image);
+        Bitmap thumbnailImage = ImageOptimizeUtils.generateThumbnailImage(image);
 
         return super.saveTakenPhoto(thumbnailImage,  model);
     }

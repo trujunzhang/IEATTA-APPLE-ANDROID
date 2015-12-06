@@ -8,8 +8,12 @@ import android.virtualbreak.com.debug.R;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.models.Photo;
+import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * Created by djzhang on 12/6/15.
@@ -25,18 +29,24 @@ public class ThumbnailImageUtilsSpec extends InstrumentationTestCase{
         EnvironmentUtils.sharedInstance.registerGlobalContext(this.context);
     }
 
-    public void testConstructor() throws Exception {
-        Bitmap bm = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.rest01);
-
-        ThumbnailImageUtils.sharedInstance.saveTakenPhoto(bm,new Photo());
-
+    public void txestConstructor() throws Exception {
         UnlimitedDiskCache imageCache = ThumbnailImageUtils.sharedInstance.getImageCache();
-
-
+        List<File> list = imageCache.getCacheFileList();
     }
 
-    public void testGenerateTakenPhoto() throws Exception {
 
+    public void testGenerateTakenPhoto() throws Exception {
+        Bitmap bm = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.rest01);
+
+//        bm = ImageOptimizeUtils.generateOriginalImage(bm);
+        bm = ImageOptimizeUtils.generateThumbnailImage(bm);
+
+        Photo photo = new Photo();
+        ThumbnailImageUtils.sharedInstance.saveTakenPhoto(bm, photo);
+
+        File file = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
+
+        bm = null;
 
     }
 }

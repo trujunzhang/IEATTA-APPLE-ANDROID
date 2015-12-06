@@ -68,8 +68,7 @@ public abstract class AbstractImageUtils {
             return null;
         }
 
-//        return this.getImageCache().imageFromDiskCacheForKey(objectUUID);
-        return null;
+        return this.getImageCache().get(objectUUID);
     }
 
     /**
