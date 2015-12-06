@@ -59,7 +59,7 @@ public final class StorageUtils {
     }
 
     public static File getCacheDirectory(Context context, boolean preferExternal) {
-        return getCacheDirectory(context,preferExternal,DEFAULT_CACHE_DIR);
+        return getCacheDirectory(context, preferExternal, DEFAULT_CACHE_DIR);
     }
 
     /**
@@ -73,7 +73,7 @@ public final class StorageUtils {
      * <b>NOTE:</b> Can be null in some unpredictable cases (if SD card is unmounted and
      * {@link android.content.Context#getCacheDir() Context.getCacheDir()} returns null).
      */
-    public static File getCacheDirectory(Context context, boolean preferExternal,String subDir) {
+    public static File getCacheDirectory(Context context, boolean preferExternal, String subDir) {
         File appCacheDir = null;
         String externalStorageState;
         try {
@@ -92,7 +92,7 @@ public final class StorageUtils {
         //appCacheDir = context.getCacheDir();
         // }
         if (appCacheDir == null) {
-            String cacheDirPath = "/data/data/" + context.getPackageName() + "/cache/";
+            String cacheDirPath = "/data/data/" + context.getPackageName() + "/" + subDir + "/";
             L.w("Can't define system cache directory! '%s' will be used.", cacheDirPath);
             appCacheDir = new File(cacheDirPath);
         }
@@ -170,8 +170,12 @@ public final class StorageUtils {
     }
 
     private static File getExternalCacheDir(Context context) {
+        return getExternalCacheDir(context,DEFAULT_CACHE_DIR);
+    }
+
+    private static File getExternalCacheDir(Context context,String subDir) {
         File dataDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
-        File appCacheDir = new File(new File(dataDir, context.getPackageName()), DEFAULT_CACHE_DIR);
+        File appCacheDir = new File(new File(dataDir, context.getPackageName()), subDir);
         if (!appCacheDir.exists()) {
             if (!appCacheDir.mkdirs()) {
                 L.w("Unable to create external cache directory");
