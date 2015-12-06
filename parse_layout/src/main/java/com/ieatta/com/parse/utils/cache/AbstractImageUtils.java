@@ -1,6 +1,7 @@
 package com.ieatta.com.parse.utils.cache;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.view.View;
 
@@ -78,8 +79,15 @@ public abstract class AbstractImageUtils {
 
      - returns: Image Cache
      */
-    public File getTakenPhoto(Photo model) {
-        return this.getTakenPhoto(ParseModelAbstract.getPoint(model));
+    public Bitmap getTakenPhoto(Photo model) {
+        File imageFile = this.getTakenPhoto(ParseModelAbstract.getPoint(model));
+        if(imageFile == null || imageFile.exists() == false){
+            return null;
+        }
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        return BitmapFactory.decodeFile(imageFile.getAbsolutePath(), options);
     }
 
     public List listCacheImageNames(){
