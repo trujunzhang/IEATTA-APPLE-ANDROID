@@ -1,9 +1,13 @@
 package com.ieatta.com.parse.utils.cache;
 
 import android.graphics.Bitmap;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.models.Photo;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.utils.StorageUtils;
+
+import java.io.File;
 
 import bolts.Task;
 
@@ -21,8 +25,8 @@ public class CacheImageUtils extends AbstractImageUtils{
      */
     @Override
     protected UnlimitedDiskCache getImageCache() {
-//        return SDImageCache.sharedImageCache();
-        return null;
+        File cacheDir = StorageUtils.getCacheDirectory(EnvironmentUtils.sharedInstance.getGlobalContext(), "cache");
+        return new  UnlimitedDiskCache(cacheDir);
     }
 
     public void clearCacheDisk() {
