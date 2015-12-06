@@ -183,6 +183,10 @@ public abstract class ParseModelQuery extends ParseModelConvert {
                 if (task.isFaulted()) {
                     com.parse.ParseException exception = (com.parse.ParseException) task.getError();
                     if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
+                        // **** Important ****
+                        // Here, return value is 'null' means that not found object.
+                        // For example, if all newrecord objects already pushed to server.
+                        // No NewRecord rows on the local table. So not found NewRecord here.
                         tcs.setResult(null);
                     } else {
                         tcs.setError(task.getError());
