@@ -321,10 +321,10 @@ public class Photo extends ParseModelSync {
         return null;
     }
 
-    public Task<Object> getThumbanilImage() {
+    public Task<Bitmap> getThumbanilImage() {
         TaskCompletionSource finalTask = new TaskCompletionSource();
 
-        File image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(ParseModelAbstract.getPoint(this));
+        Bitmap image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(ParseModelAbstract.getPoint(this));
         if (image != null) {
             finalTask.setResult(image);
 
