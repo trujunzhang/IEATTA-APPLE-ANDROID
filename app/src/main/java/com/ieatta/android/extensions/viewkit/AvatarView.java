@@ -1,6 +1,7 @@
 package com.ieatta.android.extensions.viewkit;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.util.AttributeSet;
 
@@ -14,8 +15,8 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class AvatarView extends RoundedImageView{
-private AvatarView self = this;
+public class AvatarView extends RoundedImageView {
+    private AvatarView self = this;
 
     private Context context;
 
@@ -43,65 +44,54 @@ private AvatarView self = this;
 
     // MARK: Set circle effect.
     void setCircle(int placeHolder) {
-            self.configureAvatar(placeHolder);
+        self.configureAvatar(placeHolder);
     }
 
     // MARK: Set rect effect.
-    void setCornerRadius(int value,int placeHolder){
+    void setCornerRadius(int value, int placeHolder) {
 //        self.cornerRadius(value)
 //        self.avatarImageView.cornerRadius(value)
 
-            self.configureAvatar(placeHolder);
+        self.configureAvatar(placeHolder);
     }
 
     // MARK: Setup image.
-    void configureAvatar(int imageRefId){
-//        self.avatarImageView.image = image
+    void configureAvatar(int imageRefId) {
+        self.setImageResource(imageRefId);
     }
 
-
-    public Task loadNewPhotoByModel(ParseModelAbstract model,int placeHolder) {
+    public Task loadNewPhotoByModel(ParseModelAbstract model, int placeHolder) {
         // Cache photo point.
         String photoPoint = IEACache.sharedInstance.photoPoint(model);
 
-        if(photoPoint == null || photoPoint.isEmpty() == true){
+        if (photoPoint == null || photoPoint.isEmpty() == true) {
             self.configureAvatar(placeHolder);
-        }else{
+        } else {
             self.loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
         }
 
         return Task.forResult(true);
     }
 
-    public Task loadNewPhotoByPhoto(Photo photo,int placeHolder) {
+    public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {
         return photo.getThumbanilImage().onSuccess(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
                 Object object = task;
+                Bitmap bitmap = (Bitmap) task.getResult();
 //                self.displayImage(task,placeHolder: placeHolder)
+                self.setImageBitmap(bitmap);
                 return null;
             }
         }).continueWith(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
-                 if (task.isFaulted()) {
-
-                       return null;
-                     }
+                if (task.isFaulted()) {
+                    self.configureAvatar(placeHolder);
+                    return null;
+                }
                 return null;
             }
         });
     }
-
-    private Task displayImage(Task task,int placeHolder){
-         if (task.isFaulted()) {
-             self.configureAvatar(placeHolder);
-         }
-
-//        self.configureAvatar(image);
-
-        return Task.forResult(true);
-    }
-
-
 }
