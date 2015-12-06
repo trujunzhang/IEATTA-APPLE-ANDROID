@@ -48,9 +48,11 @@ public abstract class AbstractImageUtils {
     }
 
     public boolean diskImageExistsWithKey(Photo model) {
-        // TODO djzhang(fixiing)
-//        return this.getImageCache().diskImageExistsWithKey(ParseModelAbstract.getPoint(model));
-        return false;
+        File file = this.getImageCache().get(ParseModelAbstract.getPoint(model));
+        if(file == null || file.exists() == false){
+            return false;
+        }
+        return true;
     }
 
     /**

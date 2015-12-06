@@ -37,8 +37,8 @@ public     final static OriginalImageUtils sharedInstance  = new  OriginalImageU
      - parameter photo: photo's instance
      */
     public Task<Boolean> removeOriginalImage(Photo photo) {
-        File file = this.getImageCache().get(ParseModelAbstract.getPoint(photo));
-        if(file == null || file.exists() == false){
+        boolean imageExist = this.diskImageExistsWithKey(photo);
+        if(imageExist == false){
             //return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "\(photo.printDescription())"))
             return Task.forError(new FileNotFoundException(""));
         }

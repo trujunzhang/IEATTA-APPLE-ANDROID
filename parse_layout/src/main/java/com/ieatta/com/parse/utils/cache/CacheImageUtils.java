@@ -30,7 +30,7 @@ public class CacheImageUtils extends AbstractImageUtils{
     }
 
     public void clearCacheDisk() {
-//        this.getImageCache().clearDisk();
+        this.getImageCache().clear();
     }
 
 }
