@@ -25,7 +25,7 @@ public class ThumbnailImageUtils extends AbstractImageUtils{
      */
     @Override
     public UnlimitedDiskCache getImageCache() {
-        File cacheDir = StorageUtils.getCacheDirectory(EnvironmentUtils.sharedInstance.getGlobalContext());
+        File cacheDir = StorageUtils.getCacheDirectory(EnvironmentUtils.sharedInstance.getGlobalContext(),"thumbnail");
         return new  UnlimitedDiskCache(cacheDir);
     }
 
