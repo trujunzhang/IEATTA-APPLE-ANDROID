@@ -24,6 +24,7 @@ import bolts.TaskCompletionSource;
  * Created by djzhang on 12/6/15.
  */
 public abstract class ParseModelConvert extends ParseJsoner {
+    private ParseModelConvert self = this;
     public ParseModelConvert(String objectUUID) {
         super(objectUUID);
     }
@@ -37,7 +38,7 @@ public abstract class ParseModelConvert extends ParseJsoner {
         ParseObject firstObject = firstObjectTask.getResult();
         if (firstObject != null) {
             this.readObjectLocal(firstObject);
-            return Task.forResult(self);
+            return Task.forResult((ParseModelAbstract)self);
         }
 
 //        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
