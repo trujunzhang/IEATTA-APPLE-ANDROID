@@ -28,12 +28,12 @@ public class ParseAsyncHandler {
 
         PullNewRecordFromServerTask.PullFromServerSeriesTask(new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD))
                 .onSuccess(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                PushLocalNewRecordToServer();
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
+                    @Override
+                    public Object then(Task<Void> task) throws Exception {
+                        PushLocalNewRecordToServer();
+                        return null;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
@@ -46,17 +46,21 @@ public class ParseAsyncHandler {
 
     private void PushLocalNewRecordToServer() {
         PushNewRecordToServerTask.PushToServerSeriesTask(new NewRecord().createQueryForPushObjectsToServer(PAGE_NUMBER_PUSH_NEW_RECORD))
-                .continueWith(new Continuation<Object, Object>() {
+                .onSuccess(new Continuation() {
                     @Override
-                    public Object then(Task<Object> task) throws Exception {
-                        if (task.getError() != null) {
-                            endAsyncTasks(task.getError());
-                        } else {
-                            endAsyncTasks(null);
-                        }
+                    public Object then(Task task) throws Exception {
+                        endAsyncTasks(null);
                         return null;
                     }
-                });
+                }).continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                if (task.isFaulted()) {
+                    endAsyncTasks(task.getError());
+                }
+                return null;
+            }
+        });
     }
 
     private void endAsyncTasks(Exception error) {
