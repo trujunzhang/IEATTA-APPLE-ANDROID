@@ -231,34 +231,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
             }
         });
     }
-//    public static Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
-//        final Task.TaskCompletionSource tcs = Task.create();
-//
-//        // **** Important ****
-//        // If not found Parse's findLocalObjectsInBackground
-//        ParseModelQuery.findFirstLocalObjectInBackground(query).continueWith(new Continuation<ParseObject, Object>() {
-//            @Override
-//            public Object then(Task<ParseObject> task) throws Exception {
-//                if (task.isFaulted()) {
-//                    com.parse.ParseException exception = (com.parse.ParseException) task.getError();
-//                    if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
-//                        // **** Important ****
-//                        // Here, return value is 'null' means that not found object.
-//                        // For example, if all newrecord objects already pushed to server.
-//                        // No NewRecord rows on the local table. So not found NewRecord here.
-//                        tcs.setResult(null);
-//                    } else {
-//                        tcs.setError(task.getError());
-//                    }
-//                } else {
-//                    tcs.setResult(task.getResult());
-//                }
-//                return null;
-//            }
-//        });
-//
-//        return tcs.getTask();
-//    }
 
     public static Task<List<ParseObject>> findLocalObjectsInBackground(ParseQuery query) {
         // *** Important ***
