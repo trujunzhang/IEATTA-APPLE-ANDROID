@@ -55,7 +55,7 @@ public final class StorageUtils {
      * {@link android.content.Context#getCacheDir() Context.getCacheDir()} returns null).
      */
     public static File getCacheDirectory(Context context, String subDir) {
-        return getCacheDirectory(context, true);
+        return getCacheDirectory(context, true, subDir);
     }
 
     public static File getCacheDirectory(Context context, boolean preferExternal) {
@@ -84,7 +84,7 @@ public final class StorageUtils {
             externalStorageState = "";
         }
         if (preferExternal && MEDIA_MOUNTED.equals(externalStorageState) && hasExternalStoragePermission(context)) {
-            appCacheDir = getExternalCacheDir(context);
+            appCacheDir = getExternalCacheDir(context, subDir);
         }
         // if (appCacheDir == null) {
         // TODO djzhang(ignore)
@@ -171,10 +171,10 @@ public final class StorageUtils {
     }
 
     private static File getExternalCacheDir(Context context) {
-        return getExternalCacheDir(context,DEFAULT_CACHE_DIR);
+        return getExternalCacheDir(context, DEFAULT_CACHE_DIR);
     }
 
-    private static File getExternalCacheDir(Context context,String subDir) {
+    private static File getExternalCacheDir(Context context, String subDir) {
         File dataDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
         File appCacheDir = new File(new File(dataDir, context.getPackageName()), subDir);
         if (!appCacheDir.exists()) {
