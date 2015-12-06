@@ -67,18 +67,15 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 
-        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
-                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
-                    @Override
-                    public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                        self.fetchedPeopleInEvent = task.getResult();
-                        //  Sort, by fetchedPeopleInEvent
-                        PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
+        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event)).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+            @Override
+            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.fetchedPeopleInEvent = task.getResult();
 
-                        // 2. Get all people in the event.
-                        return Team.queryTeamByPeopleInEvent(self.fetchedPeopleInEvent);
-                    }
-                }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+                // 2. Get all people in the event.
+                return Team.queryTeamByPeopleInEvent(self.fetchedPeopleInEvent);
+            }
+        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedPeople = task.getResult();
@@ -86,13 +83,19 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
             }
+        }).onSuccessTask(new Continuation<Boolean, Task<? extends Object>>() {
+            @Override
+            public Task<? extends Object> then(Task<Boolean> task) throws Exception {
+                //  Sort, by fetchedPeopleInEvent
+                return PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
+            }
 ////        }).continueWith(new Continuation<Object, Object>() {
 ////            @Override
 ////            public Object then(Task<Object> task) throws Exception {
 ////                // Next, Load Reviews.
 ////                return self.getReviewsReleatdModelQueryTask();
 ////            }
-        }).onSuccess(new Continuation<Boolean, Void>() {
+    }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
 
@@ -115,6 +118,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted() == true) {
+                    Object object = task;
                     int x = 0;
                 }
                 return null;
