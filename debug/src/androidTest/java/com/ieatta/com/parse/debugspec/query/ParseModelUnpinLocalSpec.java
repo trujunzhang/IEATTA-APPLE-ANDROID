@@ -23,7 +23,6 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
     public void setUp() throws Exception {
         super.setUp();
         ParseAPI.setup(this.getInstrumentation().getContext());
-
     }
 
     public void txestUnpinInBackground() throws Exception {
@@ -164,7 +163,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
     }
 
 
-    public void testUnpinInBackgroundWithNewRecord() throws Exception {
+    public void txestUnpinInBackgroundWithNewRecord() throws Exception {
         final CountDownLatch signal = new CountDownLatch(1);
 
         final Team whTeam = new Team("whWithNewRecord", "whWithNewRecord@gmail.com", "whWithNewRecord.st", 123);
