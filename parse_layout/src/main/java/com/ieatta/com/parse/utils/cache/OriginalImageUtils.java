@@ -47,8 +47,8 @@ public     final static OriginalImageUtils sharedInstance  = new  OriginalImageU
 
     @Override
     public Task<Bitmap> generateTakenPhoto(Bitmap image, Photo model) {
-        Bitmap orignailImage = ImageOptimizeUtils.generateOriginalImage(image);
+        Bitmap originalImage = ImageOptimizeUtils.generateOriginalImage(image);
 
-        return super.saveTakenPhoto(orignailImage,  model);
+        return super.saveTakenPhoto(originalImage,  model);
     }
 }
