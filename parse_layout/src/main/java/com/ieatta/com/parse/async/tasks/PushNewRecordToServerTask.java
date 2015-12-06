@@ -24,24 +24,17 @@ import bolts.TaskCompletionSource;
 public class PushNewRecordToServerTask {
 
     public static Task PushToServerSeriesTask(ParseQuery query) {
-
-        final Task.TaskCompletionSource tcs = Task.create();
-
-
-        ParseModelQuery.findLocalObjectsInBackground(query).continueWith(new Continuation<List<ParseObject>, Task>() {
+        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
             @Override
-            public Task then(Task<List<ParseObject>> task) throws Exception {
-                if (task.getError() != null) {
-                    return Task.forError(task.getError());
-                }
+            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
                 List<ParseObject> results = task.getResult();
-                LogUtils.debug("Push objects to Server: " + results.size());
+                LogUtils.debug("Pull objects from Server: " + results.size());
 
                 // Create a trivial completed task as a base case.
-                Task<Void> _task = Task.forResult(null);
+                Task<Void> singleTask = Task.forResult(null);
                 for (final ParseObject result : results) {
                     // For each item, extend the task with a function to delete the item.
-                    _task = _task.continueWithTask(new Continuation<Void, Task<Void>>() {
+                    singleTask = singleTask.continueWithTask(new Continuation<Void, Task<Void>>() {
                         public Task<Void> then(Task<Void> ignored) throws Exception {
                             // Return a task that will be marked as completed when the delete is finished.
                             return PushObjectToServerTask(result);
@@ -49,22 +42,9 @@ public class PushNewRecordToServerTask {
                     });
                 }
 
-                return null;
-            }
-        }).continueWith(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                // Every offline objects was pushed to Parse.com.
-                if (task.getError() != null) {
-                    tcs.setError(task.getError());
-                } else {
-                    tcs.setResult(true);
-                }
-                return null;
+                return singleTask;
             }
         });
-
-        return tcs.getTask();
     }
 
     /**

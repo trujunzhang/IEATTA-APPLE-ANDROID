@@ -27,9 +27,9 @@ public class PullNewRecordFromServerTask {
 
     public static Task<Void> PullFromServerSeriesTask(ParseQuery query) {
 
-        return query.findInBackground().onSuccessTask(new Continuation<List<ParseObject>, Void>() {
+        return query.findInBackground().onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
             @Override
-            public Void then(Task<List<ParseObject>> task) throws Exception {
+            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
                 List<ParseObject> results = task.getResult();
                 LogUtils.debug("Pull objects from Server: " + results.size());
 
@@ -45,7 +45,7 @@ public class PullNewRecordFromServerTask {
                     });
                 }
 
-                return null;
+                return singleTask;
             }
         });
     }
@@ -61,7 +61,7 @@ public class PullNewRecordFromServerTask {
 
         // 1. Create model instance from record's modelType.
         final ParseModelAbstract model = NewRecord.getRecordedInstance(pulledNewRecordObject);
-        LogUtils.debug("{NewRecord from parse.com}: " + model.printDescription());
+        LogUtils.debug("{ NewRecord from parse.com }: " + model.printDescription());
 
         // 2. Pull from server.
         return model.pullFromServerAndPin().onSuccess(new Continuation<Void, Void>() {
