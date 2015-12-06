@@ -152,7 +152,7 @@ public abstract class AbstractImageUtils {
         return tcs.getTask();
     }
 
-    public Task<Object> downloadImageFromServer(Photo model,String url) {
+    public Task downloadImageFromServer(Photo model,String url) {
 
         /// If the image already exist on the cache folder, we don't download it from the Parse.com.
 //        this.getTakenPhoto(model);
@@ -175,7 +175,7 @@ public abstract class AbstractImageUtils {
 //            return BFTask(error: NSError.getError(IEAErrorType.OnlineImage, description: "\(model.printDescription())"))
 //        }
 
-        return null;
+        return Task.forError(new Exception(" Downloading image failed!"));
     }
 
 
