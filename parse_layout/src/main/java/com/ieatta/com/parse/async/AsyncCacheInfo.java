@@ -42,7 +42,7 @@ public class AsyncCacheInfo {
         if (dateValue != Long.MIN_VALUE) {
             this.lastRecordCreateAt = new Date(dateValue);
             // 3. Print date info.
-            this.printDescription("Constructor");
+//            this.printDescription("Constructor");
         }
     }
 
