@@ -264,7 +264,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - parameter query:           query's instance
      */
-
     public Task<Void> unpinInBackground(ParseQuery query) {
         return ParseModelQuery.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
             @Override
@@ -308,38 +307,4 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return object.unpinInBackground("Offline");
     }
 
-    /**
-     * Delete the first online object, after creating a query instance by objectUUID.
-     * <p/>
-     * - parameter type:            ParseModel's type
-     * - parameter model:           insance of query
-     */
-    Task<Object> deleteOnlineObjectInBackground(PQueryModelType type, ParseModelAbstract model) {
-        return this.deleteOnlineObjectInBackground(ParseModelQuery.createQuery(type, model));
-    }
-
-    /**
-     * Delete the first online object by query instance.
-     * <p/>
-     * - parameter query:           query's instance
-     */
-    Task<Object> deleteOnlineObjectInBackground(ParseQuery query) {
-        return null;
-//        return this.getFirstLocalObjectArrayInBackground(query).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                ParseObject object = (ParseObject) task.getResult();
-//                return deleteOnlineObjectBackgroundForObject(object);
-//            }
-//        });
-    }
-
-    /**
-     * Delete the online object by a given PFObject's instance.
-     * <p/>
-     * - parameter object:          PFObject's instance
-     */
-    Task<Void> deleteOnlineObjectBackgroundForObject(ParseObject object) {
-        return object.deleteInBackground();
-    }
 }
