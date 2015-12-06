@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import bolts.Continuation;
 import bolts.Task;
 import bolts.TaskCompletionSource;
 
@@ -29,7 +30,7 @@ import bolts.TaskCompletionSource;
 ///   2.2 When pushed successfully, delete offline original image.
 ///   3.  When pulling from server, just download a thumbnail image from server.
 public abstract class AbstractImageUtils {
-
+    private AbstractImageUtils self = this;
 
     protected abstract UnlimitedDiskCache getImageCache() ;
 
@@ -152,30 +153,24 @@ public abstract class AbstractImageUtils {
         return tcs.getTask();
     }
 
-    public Task downloadImageFromServer(Photo model,String url) {
+    public Task downloadImageFromServer(final Photo model,String url) {
 
         /// If the image already exist on the cache folder, we don't download it from the Parse.com.
-//        this.getTakenPhoto(model);
-//        if let _image = this.getTakenPhoto(model){
-//            return BFTask(result: _image)
-//        }
-//        else if(url.isEmpty == true){
+        Bitmap bitmap = this.getTakenPhoto(model);
+        if(bitmap != null){
+            return Task.forResult(bitmap);
+        }
+        if(url == null || url.isEmpty() == true){
 //            return BFTask(error: NSError.getError(IEAErrorType.EmptyURL, description: "\(model.printDescription())"))
-//        }
-//        if let URL = NSURL(string: url){
-//            return this.downloadImageWithURL(URL).continueWithBlock { (task) -> AnyObject? in
-//
-//                if let _ = task.error{
-//                    return BFTask(error: NSError.getError(IEAErrorType.OnlineImage, description: "\(model.printDescription())"))
-//                }else{
-//                    return this.saveTakenPhoto(task.result as! UIImage, model: model)
-//                }
-//            }
-//        }else{
-//            return BFTask(error: NSError.getError(IEAErrorType.OnlineImage, description: "\(model.printDescription())"))
-//        }
+            return Task.forError(new Exception(""));
+        }
 
-        return Task.forError(new Exception(" Downloading image failed!"));
+        return this.downloadImageWithURL(url).onSuccessTask(new Continuation<Bitmap, Task<Bitmap> >() {
+            @Override
+            public Task<Bitmap>  then(Task<Bitmap> task) throws Exception {
+                return self.saveTakenPhoto(task.getResult(), model);
+            }
+        });
     }
 
 
