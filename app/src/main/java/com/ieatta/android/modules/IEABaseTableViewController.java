@@ -82,14 +82,13 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
 
     public Task<Boolean> getPhotosForModelsTask(final Task<List<ParseModelAbstract>> previous) {
         // First of all, query relate photos task.
-        return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous))
-                .continueWith(new Continuation<List<ParseModelAbstract>, Boolean>() {
-                    @Override
-                    public Boolean then(Task<List<ParseModelAbstract>> task) throws Exception {
-                        // Next, Cache all models' uuid as key and photo's uuid as value.
-                        return IEACache.sharedInstance.setPhotoPointForModels(task);
-                    }
-                });
+        return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous)).onSuccess(new Continuation<List<ParseModelAbstract>, Boolean>() {
+            @Override
+            public Boolean then(Task<List<ParseModelAbstract>> task) throws Exception {
+                // Next, Cache all models' uuid as key and photo's uuid as value.
+                return IEACache.sharedInstance.setPhotoPointForModels(task);
+            }
+        });
     }
 
     public void showGoogleMapAddress(int sectionIndex) {
