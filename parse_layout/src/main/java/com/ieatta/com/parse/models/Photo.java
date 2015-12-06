@@ -306,20 +306,18 @@ public class Photo extends ParseModelSync {
         return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
     }
 
-    public Task<Object> getRelatedPhoto() {
-//        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                return self.convertToLocalModelTask(task);
-//            }
-//        }).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                return self.getThumbanilImage();
-//            }
-//        });
-
-        return null;
+    public Task getRelatedPhoto() {
+        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract> >() {
+            @Override
+            public Task<ParseModelAbstract>  then(Task<ParseObject> task) throws Exception {
+                return self.convertToLocalModelTask(task);
+            }
+        }).onSuccessTask(new Continuation<ParseModelAbstract, Task<Bitmap>>() {
+            @Override
+            public Task<Bitmap>  then(Task<ParseModelAbstract> task) throws Exception {
+                return self.getThumbanilImage();
+            }
+        });
     }
 
     public Task<Bitmap> getThumbanilImage() {
