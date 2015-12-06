@@ -25,7 +25,6 @@ import bolts.Task;
 public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTableViewController {
     private IEABaseReviewsTableViewController self = this;
 
-
     // Selected model from tableview.
     protected Review selectedReview;
     // Fetched list by quering database.
@@ -51,22 +50,6 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
                 return self.getPhotosForModelsTask(task);
             }
         });
-
-//        return Review.queryReviews(self.getPageModel(), self.getQueriedReviewsLimit())
-//                .continueWith(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
-//                    @Override
-//                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-//                        self.fetchedReviews = new LinkedList<Object>((Collection<?>) task.getResult());//Review
-//                return Team.queryTeam(Review.getUserPoints(self.fetchedReviews));
-////                        return null;
-//                    }
-//                }).continueWith(new Continuation<Object, Object>() {
-//                    @Override
-//                    public Object then(Task<Object> task) throws Exception {
-//
-//                        return self.getPhotosForModelsTask(task);
-//                    }
-//                });
     }
 
     protected void configureReviewsSection(List<ParseModelAbstract/*Team*/> fetchedReviewPeople) {//Team
