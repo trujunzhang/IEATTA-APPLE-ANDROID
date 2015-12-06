@@ -99,7 +99,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
     }
 
 
-    public void testUnpinEmptyInBackground() throws Exception {
+    public void txestUnpinEmptyInBackground() throws Exception {
         final CountDownLatch signal = new CountDownLatch(1);
 
         final Team whTeam = new Team("empty", "empty@gmail.com", "empty.st", 123);
@@ -164,7 +164,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
     }
 
 
-    public void txestUnpinInBackgroundWithNewRecord() throws Exception {
+    public void testUnpinInBackgroundWithNewRecord() throws Exception {
         final CountDownLatch signal = new CountDownLatch(1);
 
         final Team whTeam = new Team("whWithNewRecord", "whWithNewRecord@gmail.com", "whWithNewRecord.st", 123);
