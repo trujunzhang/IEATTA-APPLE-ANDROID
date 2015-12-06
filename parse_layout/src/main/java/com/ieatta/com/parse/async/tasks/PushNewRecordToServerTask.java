@@ -56,36 +56,28 @@ public class PushNewRecordToServerTask {
         // Convert newRecordObject to Model instance.
         NewRecord newRecord = (NewRecord) new NewRecord().convertToLocalModel(newRecordObject);
 
-        LogUtils.debug("push to server: " + newRecord.printDescription());
+        LogUtils.debug(" { newRecord in push to server }: " + newRecord.printDescription());
 
         // 1. Get the recoreded model instance from NewRecord, by the modelType and the modelPoint.
         // (such as photo,restaurant,event etc)
         final ParseModelAbstract model = newRecord.getRecordedModel();
-        LogUtils.debug("push to server: " + model.printDescription());
+        LogUtils.debug(" { model in push to server }: " + model.printDescription());
 
-        return model.pushToServer().onSuccess(new Continuation() {
+        return model.pushToServer().onSuccessTask(new Continuation<Object, Task<Void>>() {
             @Override
-            public Object then(Task task) throws Exception {
-
-                if (task.getError() != null) {
-                    TaskCompletionSource finalTask = new TaskCompletionSource();
-                    finalTask.setError(task.getError());
-                    return finalTask;
-                }
-
+            public Task<Void> then(Task<Object> task) throws Exception {
                 // Save NewRecord to Parse.com
                 return newRecordObject.saveInBackground();
             }
-        }).continueWith(new Continuation() {
+        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
-            public Object then(Task task) throws Exception {
-
+            public Task<Void> then(Task<Void> task) throws Exception {
                 // Unpin the offline NewRecord
                 return ParseModelQuery.unpinObjectInBackground(newRecordObject);
             }
-        }).continueWith(new Continuation() {
+        }).onSuccessTask(new Continuation<Void, Task<Boolean>>() {
             @Override
-            public Object then(Task task) throws Exception {
+            public Task<Boolean> then(Task<Void> task) throws Exception {
                 // For the specail photo here.
                 return model.eventAfterPushToServer();
             }
