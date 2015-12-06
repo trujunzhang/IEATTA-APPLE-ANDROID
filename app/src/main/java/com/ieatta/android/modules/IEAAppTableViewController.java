@@ -1,8 +1,6 @@
 package com.ieatta.android.modules;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +9,6 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
-import com.ieatta.android.modules.view.enums.HandlerType;
-
-import com.badoo.mobile.util.WeakHandler;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -27,7 +22,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.table_view_controller);
 
-        EnvironmentUtils.sharedInstance.registerGlobalContext(this);
+        EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 
         this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));

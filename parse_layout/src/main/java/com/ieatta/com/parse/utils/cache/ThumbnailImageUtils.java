@@ -1,9 +1,13 @@
 package com.ieatta.com.parse.utils.cache;
 
 import android.graphics.Bitmap;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.models.Photo;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.utils.StorageUtils;
+
+import java.io.File;
 
 import bolts.Task;
 
@@ -20,9 +24,9 @@ public class ThumbnailImageUtils extends AbstractImageUtils{
      - returns: SDImageCache's instance
      */
     @Override
-    protected UnlimitedDiskCache getImageCache() {
-//        return SDImageCache.sharedImageCache();
-        return null;
+    public UnlimitedDiskCache getImageCache() {
+        File cacheDir = StorageUtils.getCacheDirectory(EnvironmentUtils.sharedInstance.getGlobalContext());
+        return new  UnlimitedDiskCache(cacheDir);
     }
 
     /**
