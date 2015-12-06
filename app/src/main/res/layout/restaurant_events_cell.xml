@@ -9,7 +9,7 @@
         android:layout_width="@dimen/NearRestaurant_More_Icon_Width"
         android:layout_height="@dimen/NearRestaurant_More_Icon_Height"
         android:layout_gravity="center_vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_centerVertical="true"
         android:src="@drawable/nav_events" />
 
@@ -17,9 +17,9 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_toRightOf="@+id/eventIconImageView"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="Medium Text"
         android:textSize="@dimen/abc_text_size_menu_material" />
 
@@ -28,10 +28,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:paddingTop="2dp"
+        android:layout_marginTop="2dp"
         android:layout_toRightOf="@+id/eventIconImageView"
         android:layout_below="@+id/titleTextView"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="Medium Text"
         android:textSize="@dimen/abc_text_size_caption_material" />
 
