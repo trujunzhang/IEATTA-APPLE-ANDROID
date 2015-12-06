@@ -75,19 +75,19 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 // 2. Get all people in the event.
                 return Team.queryTeamByPeopleInEvent(self.fetchedPeopleInEvent);
             }
+        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+            @Override
+            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.fetchedPeople = task.getResult();
+
+                //  Sort, by fetchedPeopleInEvent
+                return PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
+            }
         }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedPeople = task.getResult();
-
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
-            }
-        }).onSuccessTask(new Continuation<Boolean, Task<? extends Object>>() {
-            @Override
-            public Task<? extends Object> then(Task<Boolean> task) throws Exception {
-                //  Sort, by fetchedPeopleInEvent
-                return PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
             }
 ////        }).continueWith(new Continuation<Object, Object>() {
 ////            @Override

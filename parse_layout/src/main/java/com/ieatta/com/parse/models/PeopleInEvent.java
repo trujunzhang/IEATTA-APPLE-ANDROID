@@ -107,10 +107,10 @@ public class PeopleInEvent extends ParseModelSync {
         return null;
     }
 
-    public static Task<List<Team>> sortOrderedPeople(Task<List<ParseModelAbstract>> previous, List<ParseModelAbstract/*PeopleInEvent*/> peopleInEvents) {
+    public static Task<List<ParseModelAbstract>> sortOrderedPeople(Task<List<ParseModelAbstract>> previous, List<ParseModelAbstract/*PeopleInEvent*/> peopleInEvents) {
         List<ParseModelAbstract> fetchedPeople = previous.getResult();
 
-        List<Team> sortedPeople = new LinkedList<>();
+        List<ParseModelAbstract> sortedPeople = new LinkedList<>();
 
         for (ParseModelAbstract peopleInEvent : peopleInEvents) {
             Team people = getPeople((PeopleInEvent) peopleInEvent, fetchedPeople);
