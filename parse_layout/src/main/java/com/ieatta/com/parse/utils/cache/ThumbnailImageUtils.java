@@ -37,11 +37,10 @@ public class ThumbnailImageUtils extends AbstractImageUtils{
      - parameter completionBlock: callback variable
      */
     @Override
-    public Task<Object> generateTakenPhoto(Bitmap image,Photo model) {
-//        Bitmap thumbnailImage = ImageOptimizeUtils.generateOriginalImage(image)
+    public Task<Bitmap> generateTakenPhoto(Bitmap image, Photo model) {
+        Bitmap thumbnailImage = ImageOptimizeUtils.generateOriginalImage(image);
 
-//        return super.saveTakenPhoto(thumbnailImage, model: model)
-        return null;
+        return super.saveTakenPhoto(thumbnailImage,  model);
     }
 
 

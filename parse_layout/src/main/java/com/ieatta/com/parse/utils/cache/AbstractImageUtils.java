@@ -92,14 +92,12 @@ public abstract class AbstractImageUtils {
      - parameter model:           photo's instance
      - parameter completionBlock: callback variable
      */
-    public Task<Object> saveTakenPhoto(Bitmap image,Photo model) {
+    public Task<Bitmap> saveTakenPhoto(Bitmap image,Photo model) {
 
         // ** Important ** Must store to Disk.
 //        this.getImageCache().storeImage(image, forKey: ParseModelAbstract.getPoint(model),toDisk: true);
 
-        TaskCompletionSource finalTask = new TaskCompletionSource();
-        finalTask.setResult(image);
-        return finalTask.getTask();
+        return Task.forResult(image);
     }
 
     /**
@@ -110,10 +108,9 @@ public abstract class AbstractImageUtils {
 
      - returns: task's instance
      */
-    public  Task<Object> generateTakenPhoto(Bitmap image, Photo model) {
-        return null;
+    public Task<Bitmap> generateTakenPhoto(Bitmap image, Photo model) {
+        return Task.forResult(null);
     }
-
 
     public Task<Object> downloadImageWithURL(String URL) {
         final TaskCompletionSource downloadTask = new TaskCompletionSource();

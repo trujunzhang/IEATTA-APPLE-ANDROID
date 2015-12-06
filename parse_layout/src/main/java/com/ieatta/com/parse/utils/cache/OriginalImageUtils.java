@@ -3,7 +3,6 @@ package com.ieatta.com.parse.utils.cache;
 import android.graphics.Bitmap;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
-import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.utils.StorageUtils;
@@ -47,13 +46,9 @@ public     final static OriginalImageUtils sharedInstance  = new  OriginalImageU
     }
 
     @Override
-    public Task<Object> generateTakenPhoto(Bitmap image,Photo model) {
-//        Bitmap orignailImage = ImageOptimizeUtils.generateOriginalImage(image)
+    public Task<Bitmap> generateTakenPhoto(Bitmap image, Photo model) {
+        Bitmap orignailImage = ImageOptimizeUtils.generateOriginalImage(image);
 
-//        return super.saveTakenPhoto(orignailImage, model: model)
-        return null;
+        return super.saveTakenPhoto(orignailImage,  model);
     }
-
-
-
 }
