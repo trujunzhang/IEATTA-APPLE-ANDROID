@@ -28,7 +28,7 @@ public class PushNewRecordToServerTask {
             @Override
             public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
                 List<ParseObject> results = task.getResult();
-                LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
+                LogUtils.debug("{ count in Push objects to Server }: " + results.size());
 
                 // Create a trivial completed task as a base case.
                 Task<Void> singleTask = Task.forResult(null);
