@@ -28,9 +28,10 @@ public class IEACache {
     }
 
     public Integer avarageRating(Review review) {
-        Integer integer = self.averageRatingsCache.get(review.reviewRef);
-
-        return integer;
+        if(self.averageRatingsCache.containsKey(review.reviewRef)) {
+            return  self.averageRatingsCache.get(review.reviewRef);
+        }
+        return null;
     }
 
     public void clearAvarageRatingCache(){
@@ -52,7 +53,10 @@ public class IEACache {
     }
 
     public String photoPoint(ParseModelAbstract model){
-        return  self.photoPointCache.get(ParseModelAbstract.getPoint(model));
+        if(self.photoPointCache.containsKey(ParseModelAbstract.getPoint(model))) {
+            return self.photoPointCache.get(ParseModelAbstract.getPoint(model));
+        }
+        return null;
     }
 
     public boolean setPhotoPointForModels(Task<List<ParseModelAbstract>> previous){

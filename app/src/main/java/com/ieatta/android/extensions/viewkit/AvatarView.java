@@ -4,12 +4,18 @@ import android.content.Context;
 import android.graphics.Point;
 import android.util.AttributeSet;
 
+import com.ieatta.android.cache.IEACache;
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by djzhang on 12/1/15.
  */
 public class AvatarView extends RoundedImageView{
+private AvatarView self = this;
 
     private Context context;
 
@@ -32,7 +38,69 @@ public class AvatarView extends RoundedImageView{
     }
 
     private void configureView() {
-//        this.setBorderWidth(0.0f);
+        // Setup avatarBackgroundView
     }
+
+    // MARK: Set circle effect.
+    void setCircle(int placeHolder) {
+            self.configureAvatar(placeHolder);
+    }
+
+    // MARK: Set rect effect.
+    void setCornerRadius(int value,int placeHolder){
+//        self.cornerRadius(value)
+//        self.avatarImageView.cornerRadius(value)
+
+            self.configureAvatar(placeHolder);
+    }
+
+    // MARK: Setup image.
+    void configureAvatar(int imageRefId){
+//        self.avatarImageView.image = image
+    }
+
+
+    public Task loadNewPhotoByModel(ParseModelAbstract model,int placeHolder) {
+        // Cache photo point.
+        String photoPoint = IEACache.sharedInstance.photoPoint(model);
+
+        if(photoPoint == null || photoPoint.isEmpty() == true){
+            self.configureAvatar(placeHolder);
+        }else{
+//            self.loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
+        }
+
+        return Task.forResult(true);
+    }
+
+    public Task loadNewPhotoByPhoto(Photo photo,int placeHolder) {
+        return photo.getThumbanilImage().onSuccess(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+//                self.displayImage(task,placeHolder: placeHolder)
+                return null;
+            }
+        }).continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                 if (task.isFaulted()) {
+
+                       return null;
+                     }
+                return null;
+            }
+        });
+    }
+
+    private Task displayImage(Task task,int placeHolder){
+         if (task.isFaulted()) {
+             self.configureAvatar(placeHolder);
+         }
+
+//        self.configureAvatar(image);
+
+        return Task.forResult(true);
+    }
+
 
 }
