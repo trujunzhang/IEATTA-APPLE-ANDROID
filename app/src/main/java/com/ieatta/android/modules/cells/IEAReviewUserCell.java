@@ -28,8 +28,8 @@ public class IEAReviewUserCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        Team more  = (Team) model;
+    public void render(Object value) {
+        Team more  = (Team) value;
         self.titleLabel.setText(more.displayName);
     }
 }

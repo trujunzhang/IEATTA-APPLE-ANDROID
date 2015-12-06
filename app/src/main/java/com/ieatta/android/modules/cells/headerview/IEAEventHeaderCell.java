@@ -7,7 +7,6 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
-import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -29,8 +28,8 @@ public class IEAEventHeaderCell  extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        IEAEventHeader more  = (IEAEventHeader) model;
+    public void render(Object value) {
+        IEAEventHeader more  = (IEAEventHeader) value;
 //        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
 
     }

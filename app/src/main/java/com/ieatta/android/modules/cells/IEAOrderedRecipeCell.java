@@ -28,8 +28,8 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        Recipe more  = (Recipe) model;
+    public void render(Object value) {
+        Recipe more  = (Recipe) value;
         self.displayNameLabel.setText(more.displayName);
 
     }

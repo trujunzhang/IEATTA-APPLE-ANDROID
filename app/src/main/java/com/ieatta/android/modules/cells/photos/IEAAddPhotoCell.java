@@ -1,7 +1,6 @@
 package com.ieatta.android.modules.cells.photos;
 
 import android.view.View;
-import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
@@ -20,8 +19,8 @@ public class IEAAddPhotoCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
+    public void render(Object value) {
+        IEANearRestaurantMore more  = (IEANearRestaurantMore) value;
 
     }
 }

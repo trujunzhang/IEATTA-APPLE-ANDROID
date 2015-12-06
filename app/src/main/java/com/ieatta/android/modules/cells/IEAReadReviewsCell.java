@@ -7,7 +7,6 @@ import com.ieatta.android.R;
 import com.ieatta.android.cache.RatedModelReviewCount;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 
 public class IEAReadReviewsCell extends IEAViewHolder {
 
@@ -28,8 +27,8 @@ public class IEAReadReviewsCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        RatedModelReviewCount more  = (RatedModelReviewCount) model;
+    public void render(Object value) {
+        RatedModelReviewCount more  = (RatedModelReviewCount) value;
 //        self.titleLabel.setText(more.titleResId);
     }
 }

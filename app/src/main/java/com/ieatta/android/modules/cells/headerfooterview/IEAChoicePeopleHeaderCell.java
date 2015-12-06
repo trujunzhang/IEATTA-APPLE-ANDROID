@@ -6,8 +6,6 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.cells.edit.IEADatePickerCell;
-import com.ieatta.android.modules.common.edit.SectionChoicePeopleCellModel;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -28,7 +26,7 @@ public class IEAChoicePeopleHeaderCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
+    public void render(Object value) {
         self.titleView.setText(R.string.Select_Person);
 
     }

@@ -25,8 +25,8 @@ public class IEAReviewsCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) model;
+    public void render(Object value) {
+        IEANearRestaurantMore more  = (IEANearRestaurantMore) value;
         self.titleLabel.setText(more.titleResId);
     }
 }

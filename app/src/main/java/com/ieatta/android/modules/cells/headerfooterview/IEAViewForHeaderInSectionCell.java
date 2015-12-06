@@ -27,8 +27,8 @@ public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        SectionTitleCellModel more  = (SectionTitleCellModel) model;
+    public void render(Object value) {
+        SectionTitleCellModel more  = (SectionTitleCellModel) value;
         self.titleLabel.setText(more.titleResId);
     }
 }

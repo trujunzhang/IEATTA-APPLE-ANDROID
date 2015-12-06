@@ -7,8 +7,6 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEARecipeHeader;
-import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
-import com.ieatta.com.parse.models.Restaurant;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -29,8 +27,8 @@ public class IEARecipeDetailHeaderCell  extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        IEARecipeHeader more  = (IEARecipeHeader) model;
+    public void render(Object value) {
+        IEARecipeHeader more  = (IEARecipeHeader) value;
 //        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
 
     }

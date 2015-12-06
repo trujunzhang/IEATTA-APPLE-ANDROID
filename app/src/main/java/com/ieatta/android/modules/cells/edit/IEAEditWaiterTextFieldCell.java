@@ -1,13 +1,11 @@
 package com.ieatta.android.modules.cells.edit;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.EditWaiterCellModel;
-import com.ieatta.com.parse.models.Restaurant;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -29,8 +27,8 @@ public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        self.model  = (EditWaiterCellModel) model;
+    public void render(Object value) {
+        self.model  = (EditWaiterCellModel) value;
         self.editText.setText(self.model.editValue);
         self.editText.setHint(self.model.editPlaceHolderResId);
     }

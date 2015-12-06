@@ -67,8 +67,8 @@ public class IEADatePickerCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        self.model = (DatePickerCellModel) model;
+    public void render(Object value) {
+        self.model = (DatePickerCellModel) value;
         self.reloadTableRow(self.model.date);
     }
 

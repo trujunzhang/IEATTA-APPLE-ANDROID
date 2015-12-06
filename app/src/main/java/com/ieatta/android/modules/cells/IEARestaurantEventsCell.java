@@ -28,8 +28,8 @@ public class IEARestaurantEventsCell extends IEAViewHolder {
     }
 
     @Override
-    public void render(Object model) {
-        Event more = (Event) model;
+    public void render(Object value) {
+        Event more = (Event) value;
 
         self.infoLabel.setText(more.displayName);
         if (more.waiter == null || more.waiter.equals("")) {
