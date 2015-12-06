@@ -270,8 +270,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return ParseModelQuery.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
             @Override
             public Task<Void> then(Task<ParseObject> task) throws Exception {
-                Object objectx = task;
-
                 ParseObject object = task.getResult();
                 if (object != null) {
                     return ParseModelQuery.unpinObjectInBackground(object);
