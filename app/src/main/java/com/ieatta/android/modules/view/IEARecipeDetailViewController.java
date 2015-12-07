@@ -99,7 +99,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
-
+Object object = task;
                     return null;
                 }
                 return null;
