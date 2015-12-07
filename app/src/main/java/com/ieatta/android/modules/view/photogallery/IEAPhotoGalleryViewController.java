@@ -97,7 +97,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         // 2. Set empty items for the photo gallery collection cell.
         self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
 
-//        self.photoGallery.refreshCollection();
+        self.photoGallery.refreshCollection(self.fetchedPhotos);
         self.refreshFooterViewAtPhotoGallery();
     }
 

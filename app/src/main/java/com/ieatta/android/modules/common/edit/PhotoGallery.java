@@ -5,7 +5,10 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
+
+import java.util.List;
 
 public class PhotoGallery extends EditBaseCellModel {
     private PhotoGallery self = this;
@@ -18,12 +21,12 @@ public class PhotoGallery extends EditBaseCellModel {
         self.viewController = viewController;
     }
 
-    private void insertNewPhotoAtFirst(Photo photo) {
+    public void insertNewPhotoAtFirst(Photo photo) {
 //        self.manager.
     }
 
-    private void refreshCollection() {
-
+    public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
+        self.manager.memoryStorage.setItems(fetchedPhotos,0);
     }
 
 

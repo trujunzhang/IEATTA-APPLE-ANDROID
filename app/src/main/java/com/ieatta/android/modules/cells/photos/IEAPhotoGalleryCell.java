@@ -44,7 +44,6 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Object x  = value;
         self.model = (PhotoGallery) value;
 
         model.manager = self.manager;
