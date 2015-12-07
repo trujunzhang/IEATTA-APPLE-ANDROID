@@ -103,12 +103,12 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
 
         final Team whTeam = new Team("empty", "empty@gmail.com", "empty.st", 123);
         final ParseQuery whQuery = whTeam.createQueryByObjectUUID();
-        final ParseQuery teamCountQurey = whTeam.makeParseQuery();
+        final ParseQuery teamCountQuery = whTeam.makeParseQuery();
 
         final Team countTeam = new Team();
 
         final int[] expectCount = {-1, 1};
-        countTeam.countLocalObjects(teamCountQurey).onSuccessTask(new Continuation<Integer, Task<Void>>() {
+        countTeam.countLocalObjects(teamCountQuery).onSuccessTask(new Continuation<Integer, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Integer> task) throws Exception {
                 expectCount[0] = task.getResult();
@@ -134,7 +134,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
             @Override
             public Task<Integer> then(Task<Void> task) throws Exception {
-                return countTeam.countLocalObjects(teamCountQurey);
+                return countTeam.countLocalObjects(teamCountQuery);
             }
         }).onSuccess(new Continuation<Integer, Void>() {
             @Override
@@ -169,17 +169,18 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final Team whTeam = new Team("whWithNewRecord", "whWithNewRecord@gmail.com", "whWithNewRecord.st", 123);
 
         final Team countTeam = new Team();
-        final ParseQuery teamCountQurey = countTeam.makeParseQuery();
-        final NewRecord countNewRecord = new NewRecord();
-        final ParseQuery newRecordCountQuery = countNewRecord.makeParseQuery();
+        final ParseQuery countTeamQurey = countTeam.makeParseQuery();
 
+        final NewRecord countNewRecord = new NewRecord();
+        final ParseQuery countNewRecordQuery = countNewRecord.makeParseQuery();
 
         final int[] expectCount = {-1, 1, -1, 1};
-        countTeam.countLocalObjects(teamCountQurey).onSuccessTask(new Continuation<Integer, Task<Integer>>() {
+
+        countTeam.countLocalObjects(countTeamQurey).onSuccessTask(new Continuation<Integer, Task<Integer>>() {
             @Override
             public Task<Integer> then(Task<Integer> task) throws Exception {
                 expectCount[0] = task.getResult();
-                return countNewRecord.countLocalObjects(newRecordCountQuery);
+                return countNewRecord.countLocalObjects(countNewRecordQuery);
             }
         }).onSuccessTask(new Continuation<Integer, Task<Void>>() {
             @Override
@@ -225,13 +226,13 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
             @Override
             public Task<Integer> then(Task<Void> task) throws Exception {
-                return countTeam.countLocalObjects(teamCountQurey);
+                return countTeam.countLocalObjects(countTeamQurey);
             }
         }).onSuccessTask(new Continuation<Integer, Task<Integer>>() {
             @Override
             public Task<Integer> then(Task<Integer> task) throws Exception {
                 expectCount[1] = task.getResult();
-                return countNewRecord.countLocalObjects(newRecordCountQuery);
+                return countNewRecord.countLocalObjects(countNewRecordQuery);
             }
         }).onSuccess(new Continuation<Integer, Void>() {
             @Override
