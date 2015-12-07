@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.modules.IEASplitDetailViewController;
+import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
@@ -90,7 +91,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
     // Refresh footer view about the photo count at the photo gallery section.
     private void refreshFooterViewAtPhotoGallery(){
-//        setFooterModelInSection(new SectionPhotoGalleryFooterCellModel( IEAEditKey.Section_Title,  self.getPhotoGalleryCount(), self),  self.getPhotoGallerySectionIndex());
+        setFooterModelInSection(new SectionPhotoGalleryFooterCellModel( IEAEditKey.Section_Title,  self.getPhotoGalleryCount(), self),  self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
     }
 
     protected void presentPhotoGallery(int rowIndex){
