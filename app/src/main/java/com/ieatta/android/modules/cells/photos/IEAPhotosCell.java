@@ -27,5 +27,6 @@ public class IEAPhotosCell extends IEAViewHolder {
     public void render(Object value) {
         Photo model  = (Photo) value;
 
+        self.avatarView.loadNewPhotoByPhoto(model,R.drawable.placeholder_photo);
     }
 }
