@@ -6,7 +6,6 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 
 /**
@@ -29,7 +28,7 @@ public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        SectionPhotoGalleryHeaderCellModel model  = (SectionPhotoGalleryHeaderCellModel) value;
-        self.titleLabel.setText(R.string.PhotosGallery);
+        SectionTitleCellModel more  = (SectionTitleCellModel) value;
+        self.titleLabel.setText(more.titleResId);
     }
 }

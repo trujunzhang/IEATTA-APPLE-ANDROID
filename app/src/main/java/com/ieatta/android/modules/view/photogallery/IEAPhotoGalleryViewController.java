@@ -39,16 +39,16 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(self.havePhotoGallery() == true){
+        if (self.havePhotoGallery() == true) {
 //            NSNotificationCenter.defaultCenter().addObserver(self, selector: "TakenPhotoWasChanged:", name: PAModelTakenPhotoNotification, object: nil)
             self.configurePhotoGallery();
         }
     }
 
 
-    protected void configurePhotoGallery(){
+    protected void configurePhotoGallery() {
         // Register Cells by class.
-        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(),self.getPhotoGallerySectionIndex());
+        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
 
         self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
 //        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell)
@@ -60,41 +60,41 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     /**
-     **** Important ****
-     This method just @IEARestaurantDetailViewController override it.
-
-     - parameter completionBlock: callback variable
+     * *** Important ****
+     * This method just @IEARestaurantDetailViewController override it.
+     * <p/>
+     * - parameter completionBlock: callback variable
      */
-    protected Task<List<ParseModelAbstract>>  queryPhotoGallery(){
-        return Photo.queryPhotosByModel( self.getPageModel());
+    protected Task<List<ParseModelAbstract>> queryPhotoGallery() {
+        return Photo.queryPhotosByModel(self.getPageModel());
     }
 
-    protected void reloadPhotoGallery(){
+    protected void reloadPhotoGallery() {
 //        self.queryPhotoGallery().continueWithSuccessBlock { (task) -> AnyObject? in
 //            self.configurePhotoGallerySection(task)
 //            return nil
 //        }
     }
 
-    protected void configurePhotoGallerySection(Task task){
+    protected void configurePhotoGallerySection(Task task) {
 //        self.fetchedPhotos = task.getResult();
 
         // 1. Set photo gallery section title(contains a 'take a photo' icon).
-        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex());
+        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
 
         // 2. Set empty items for the photo gallery collection cell.
-        self.setSectionItems(CollectionUtils.createList(self.photoGallery),  self.getPhotoGallerySectionIndex());
+        self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
 
 //        self.photoGallery.refreshCollection();
         self.refreshFooterViewAtPhotoGallery();
     }
 
     // Refresh footer view about the photo count at the photo gallery section.
-    private void refreshFooterViewAtPhotoGallery(){
-        setFooterModelInSection(new SectionPhotoGalleryFooterCellModel( IEAEditKey.Section_Title,  self.getPhotoGalleryCount(), self),  self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
+    private void refreshFooterViewAtPhotoGallery() {
+        setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
     }
 
-    protected void presentPhotoGallery(int rowIndex){
+    protected void presentPhotoGallery(int rowIndex) {
 //        let photoPagesController: EBPhotoPagesController = EBPhotoPagesController(dataSource: self, delegate: self,photoAtIndex: rowIndex)
 //        self.presentViewController(photoPagesController, animated: true, completion: nil)
     }
@@ -104,12 +104,12 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         return self.fetchedPhotos.size();
     }
 
-    protected Photo getPhoto(int index)  {
+    protected Photo getPhoto(int index) {
         return (Photo) self.fetchedPhotos.get(index);
     }
 
-    protected String getPhotoUUID(int index)  {
-        return ParseModelAbstract.getPoint(self.getPhoto( index));
+    protected String getPhotoUUID(int index) {
+        return ParseModelAbstract.getPoint(self.getPhoto(index));
     }
 
     // MARK: All the following methonds for taking photos
@@ -118,7 +118,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 //        self.presentViewController(navigationController, animated: true, completion: nil)
     }
 
-    protected void updatePhotoGalleryAfterTakePhoto(Bitmap image){
+    protected void updatePhotoGalleryAfterTakePhoto(Bitmap image) {
 
         // When taken photo in the edit page, and show the hint if user tapped the left BarButtonItem called "Back".
         EditChangedObserver.sharedInstance.takenPhotoListener();
@@ -145,7 +145,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 //        }
     }
 
-    private void insertItemAtFirstOnCollection(Photo photo){
+    private void insertItemAtFirstOnCollection(Photo photo) {
 //        self.fetchedPhotos.insert(photo,  0);
 //        self.photoGallery.insertNewPhotoAtFirst(forNewPhoto: photo)
 
