@@ -84,21 +84,6 @@ public class ParseLocalDatabase {
                 return null;
             }
         });
-
-//        return ParseModelQuery.findLocalObjectsInBackground(query)
-//                .continueWith(new Continuation<List<ParseObject>, Void>() {
-//            @Override
-//            public Void then(Task<List<ParseObject>> task) throws Exception {
-//                List<ParseObject> value = task.getResult();
-//                if(value.size() > 0){
-//                    ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(classType);
-//                    List<ParseModelAbstract> array = instance.convertToParseModelArray(value, true);
-//                    ParseLocalDatabase.printList(classType,array);
-//                }
-//
-//                return null;
-//            }
-//        });
     }
 
     public static void printList(PQueryModelType type,List<ParseModelAbstract> array){
