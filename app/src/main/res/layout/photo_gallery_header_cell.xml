@@ -11,8 +11,9 @@
         style="@style/SectionText"
         android:text="Medium Text"
         android:id="@+id/headerTextView"
-        android:paddingLeft="8dp"
-        android:paddingBottom="8dp"
-        android:layout_centerInParent="true" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

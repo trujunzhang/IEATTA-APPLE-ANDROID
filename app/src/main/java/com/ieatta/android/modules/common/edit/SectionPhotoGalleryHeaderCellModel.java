@@ -7,7 +7,6 @@ import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewControlle
 public class SectionPhotoGalleryHeaderCellModel extends EditBaseCellModel {
     IEAPhotoGalleryViewController viewController;
 
-
     public SectionPhotoGalleryHeaderCellModel(IEAEditKey editKey, IEAPhotoGalleryViewController viewController) {
         super(editKey);
         this.viewController = viewController;

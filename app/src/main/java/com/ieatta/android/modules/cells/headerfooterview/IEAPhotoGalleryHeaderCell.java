@@ -6,6 +6,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 
         import com.ieatta.android.R;
         import com.ieatta.android.extensions.storage.CellType;
+import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -17,6 +18,8 @@ public class IEAPhotoGalleryHeaderCell  extends IEAViewHolder {
 
     private IEAPhotoGalleryHeaderCell self = this;
 
+    private SectionPhotoGalleryHeaderCellModel model;
+
     private TextView titleView;
 
     public IEAPhotoGalleryHeaderCell(View itemView) {
@@ -27,7 +30,9 @@ public class IEAPhotoGalleryHeaderCell  extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        self.titleView.setText(R.string.Select_Person);
+        self.model = (SectionPhotoGalleryHeaderCellModel) value;
+
+        self.titleView.setText(R.string.PhotosGallery);
 
     }
 }
