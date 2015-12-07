@@ -155,10 +155,8 @@ public class Review extends ParseModelSync {
             @Override
             public Object then(Task<List<ParseObject>> task) throws Exception {
                 List<ParseModelAbstract> array = new Review().convertToParseModelArray(task.getResult(), true);
-                TaskCompletionSource nextTask = new TaskCompletionSource();
                 int rating = Review.getRatingInReview(array);
-                nextTask.setResult(rating);
-                return nextTask;
+                return Task.forResult(rating);
             }
         });
     }
