@@ -120,14 +120,14 @@ public abstract class ParseModelConvert extends ParseJsoner {
     }
 
 
-    //
-    static public ParseModelAbstract convertToFirstLocalModel(Object result, ParseModelAbstract instance) {
-//        List<Object> array =  result;
-//        if (array.size() == 1) {
-//            return instance.convertToLocalModel(array.get(0));
-//        }
-
-        return null;
-    }
+//    //
+//    static public ParseModelAbstract convertToFirstLocalModel(Object result, ParseModelAbstract instance) {
+////        List<Object> array =  result;
+////        if (array.size() == 1) {
+////            return instance.convertToLocalModel(array.get(0));
+////        }
+//
+//        return null;
+//    }
 
 }
