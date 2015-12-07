@@ -21,6 +21,7 @@ import com.ieatta.com.parse.models.Photo;
 import java.util.LinkedList;
 import java.util.List;
 
+import bolts.Continuation;
 import bolts.Task;
 
 /**
@@ -51,7 +52,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
 
         self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
-//        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell)
+        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
     }
 
 
@@ -70,14 +71,26 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     protected void reloadPhotoGallery() {
-//        self.queryPhotoGallery().continueWithSuccessBlock { (task) -> AnyObject? in
-//            self.configurePhotoGallerySection(task)
-//            return nil
-//        }
+        self.queryPhotoGallery().onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+            @Override
+            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.configurePhotoGallerySection(task);
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted()) {
+
+                    return null;
+                }
+                return null;
+            }
+        });
     }
 
-    protected void configurePhotoGallerySection(Task task) {
-//        self.fetchedPhotos = task.getResult();
+    protected void configurePhotoGallerySection(Task<List<ParseModelAbstract>> task) {
+        self.fetchedPhotos = task.getResult();
 
         // 1. Set photo gallery section title(contains a 'take a photo' icon).
         self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
