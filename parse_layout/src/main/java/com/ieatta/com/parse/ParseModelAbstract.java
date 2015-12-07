@@ -65,7 +65,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public abstract Task<Object> pushToServer();
 
-    public Task eventBeforePullFromServer() {
+    public Task beforePullFromServer() {
         return Task.forResult(true);
     }
 

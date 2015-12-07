@@ -284,7 +284,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public Task eventBeforePullFromServer() {
+    public Task beforePullFromServer() {
         // 1. First of all,to decrease client storage,so just save online thumbnail image as offline file.
         return this.downloadThumbnailImageFromServer();
     }

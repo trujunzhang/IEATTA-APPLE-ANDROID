@@ -49,7 +49,7 @@ public abstract class ParseModelSync extends ParseModelQuery {
         // 1. Check wheather exist.
         final ParseQuery query = ParseModelQuery.createQuery(this.getModelType(), this);
 
-        return this.eventBeforePullFromServer().onSuccessTask(new Continuation<Boolean, Task<Void>>() {
+        return this.beforePullFromServer().onSuccessTask(new Continuation<Boolean, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Boolean> task) throws Exception {
                 return unpinInBackground(query);
