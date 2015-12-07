@@ -33,7 +33,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
     protected Task fetchedPhotosTask = Task.forResult(new LinkedList<>());
 
-    private PhotoGallery photoGallery = null;//new PhotoGallery(IEAEditKey.photo_gallery,self);
+    private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, self);
     protected List<ParseModelAbstract/*fetchedPhotos*/> fetchedPhotos;
 
     @Override
@@ -45,7 +45,6 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
             self.configurePhotoGallery();
         }
     }
-
 
     protected void configurePhotoGallery() {
         // Register Cells by class.

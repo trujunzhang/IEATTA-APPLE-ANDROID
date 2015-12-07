@@ -4,15 +4,16 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
+import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.com.parse.models.Photo;
 
 public class PhotoGallery extends EditBaseCellModel {
     private PhotoGallery self = this;
 
     public DTTableViewManager manager;
-    private  IEAEditBaseViewController viewController;
+    private IEAPhotoGalleryViewController viewController;
 
-    public PhotoGallery(IEAEditKey photo_gallery, IEAEditBaseViewController viewController) {
+    public PhotoGallery(IEAEditKey photo_gallery, IEAPhotoGalleryViewController viewController) {
         super(photo_gallery);
         self.viewController = viewController;
     }
