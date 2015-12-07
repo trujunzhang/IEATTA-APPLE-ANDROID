@@ -28,6 +28,5 @@ public class IEAPhotoGalleryFooterCell  extends IEAViewHolder {
     @Override
     public void render(Object value) {
         self.titleView.setText(R.string.Select_Person);
-
     }
 }
