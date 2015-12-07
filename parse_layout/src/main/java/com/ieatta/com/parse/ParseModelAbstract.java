@@ -69,7 +69,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return Task.forResult(true);
     }
 
-    public Task<Boolean> eventAfterPushToServer() {
+    public Task<Boolean> afterPushToServer() {
         return Task.forResult(true);
     }
 

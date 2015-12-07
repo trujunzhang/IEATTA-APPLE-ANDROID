@@ -302,7 +302,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public Task<Boolean> eventAfterPushToServer() {
+    public Task<Boolean> afterPushToServer() {
         return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
     }
 

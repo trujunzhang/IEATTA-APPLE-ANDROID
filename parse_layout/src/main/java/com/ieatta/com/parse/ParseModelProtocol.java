@@ -46,7 +46,7 @@ public interface ParseModelProtocol {
     public Task<Object> pushToServer();
 
     public Task beforePullFromServer();
-    public Task<Boolean> eventAfterPushToServer();
+    public Task<Boolean> afterPushToServer();
 
     public Task<Void> pullFromServerAndPin();
 

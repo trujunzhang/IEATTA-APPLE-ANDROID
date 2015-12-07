@@ -1,6 +1,5 @@
 package com.ieatta.com.parse.async.tasks;
 
-import android.util.Log;
 import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -9,14 +8,10 @@ import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.List;
-import java.util.Objects;
 
 import bolts.Continuation;
 import bolts.Task;
-import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/30/15.
@@ -79,7 +74,7 @@ public class PushNewRecordToServerTask {
             @Override
             public Task<Boolean> then(Task<Void> task) throws Exception {
                 // For the specail photo here.
-                return model.eventAfterPushToServer();
+                return model.afterPushToServer();
             }
         });
     }
