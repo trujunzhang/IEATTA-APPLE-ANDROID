@@ -86,7 +86,7 @@ public class Photo extends ParseModelSync {
     public ParseQuery createQueryForUsedRefWithType() {
         ParseQuery query = this.makeParseQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
-        query.whereEqualTo(kPAPFieldUsedTypeKey, this.usedType);
+        query.whereEqualTo(kPAPFieldUsedTypeKey, PhotoUsedType.getInt(this.usedType));
 
         return query;
     }
