@@ -12,8 +12,6 @@ import com.ieatta.android.extensions.storage.TableViewConfiguration;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 
-import java.util.Objects;
-
 public class IEAPhotoGalleryCell extends IEAViewHolder {
 
     public static CellType getType() {
@@ -46,7 +44,7 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
     public void render(Object value) {
         self.model = (PhotoGallery) value;
 
-        model.manager = self.manager;
+        model.delegate = self.manager;
 
     }
 }
