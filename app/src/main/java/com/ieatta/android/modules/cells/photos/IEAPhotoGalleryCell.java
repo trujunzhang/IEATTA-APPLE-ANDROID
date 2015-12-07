@@ -21,7 +21,7 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
     private IEAPhotoGalleryCell self = this;
 
     private RecyclerView collectionView;
-    private  DTTableViewManager manager;
+    private  DTTableViewManager delegate;
     private PhotoGallery model;
 
     public IEAPhotoGalleryCell(View itemView) {
@@ -34,17 +34,17 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
                         .setLayoutManager(
                                 new LinearLayoutManager(EnvironmentUtils.sharedInstance.getGlobalContext(), LinearLayoutManager.HORIZONTAL, false))
                         .build();
-        self.manager = new DTTableViewManager(config);
-        self.collectionView.setAdapter(manager.getAdapter());
+        self.delegate = new DTTableViewManager(config);
+        self.collectionView.setAdapter(delegate.getAdapter());
 
-        self.manager.registerCellClass(IEAPhotosCell.getType(), 0);
+        self.delegate.registerCellClass(IEAPhotosCell.getType(), 0);
     }
 
     @Override
     public void render(Object value) {
         self.model = (PhotoGallery) value;
 
-        model.delegate = self.manager;
+        model.delegate = self.delegate;
 
     }
 }
