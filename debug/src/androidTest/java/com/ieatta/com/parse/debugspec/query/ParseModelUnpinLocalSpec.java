@@ -220,7 +220,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
-                // Step03: List table.
+                // Step05: List table.
                 return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeParseQuery(), PQueryModelType.NewRecord);
             }
         }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
