@@ -204,7 +204,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     public  Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
         // **** Important ****
         // If not found Parse's findLocalObjectsInBackground
-        return ParseModelQuery.findFirstLocalObjectInBackground(query).continueWithTask(new Continuation<ParseObject, Task<ParseObject>>() {
+        return ParseModelQuery.findFirstLocalObjectInBackground(query).continueWithTask/*[No]Success*/(new Continuation<ParseObject, Task<ParseObject>>() {
             @Override
             public Task<ParseObject> then(Task<ParseObject> task) throws Exception {
                 return ParseModelQuery.getFirstParseObjectTask(task);
