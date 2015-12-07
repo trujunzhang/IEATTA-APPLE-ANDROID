@@ -29,11 +29,11 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
 
         TableViewConfiguration config =
                 new TableViewConfiguration.Builder(self.getBaseContext())
-                .setLayoutManager(new LinearLayoutManager(self, LinearLayoutManager.VERTICAL, false))
-                .build();
-        self.manager  =new  DTTableViewManager(config);
+                        .setLayoutManager(new LinearLayoutManager(self, LinearLayoutManager.VERTICAL, false))
+                        .build();
+        self.manager = new DTTableViewManager(config);
         self.startManagingWithDelegate(self.manager);
-        self.setRegisterHeaderClass( IEAViewForHeaderInSectionCell.getType());
+        self.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
     }
 
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
@@ -48,8 +48,8 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         getTableManager().registerFooterClass(type);
     }
 
-    public void setRegisterCellClassInSpecialRow(CellType type, int forSectionIndex,int forRowIndex) {
-        getTableManager().registerCellClassInSpecialRow(type, forSectionIndex,forRowIndex);
+    public void setRegisterCellClassInSpecialRow(CellType type, int forSectionIndex, int forRowIndex) {
+        getTableManager().registerCellClassInSpecialRow(type, forSectionIndex, forRowIndex);
     }
 
     public void setRegisterCellClass(CellType type, int forSectionIndex) {
@@ -64,8 +64,8 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         getMemoryStorage().setItems(items, forSectionIndex);
     }
 
-    public void setFooterModelInSection(Object model, int forSectionIndex,CellType type) {
-        getMemoryStorage().setSectionFooterModel(model, forSectionIndex,type);
+    public void setFooterModelInSection(Object model, int forSectionIndex, CellType type) {
+        getMemoryStorage().setSectionFooterModel(model, forSectionIndex, type);
     }
 
     public void removeSectionItemsAtIndexPaths(NSIndexPath[] indexPaths) {
@@ -76,8 +76,8 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         self.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
-    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex,CellType type) {
-        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex,type);
+    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex, CellType type) {
+        getMemoryStorage().setSectionHeaderModel(cell, forSectionIndex, type);
     }
 
     public MemoryStorage getMemoryStorage() {
