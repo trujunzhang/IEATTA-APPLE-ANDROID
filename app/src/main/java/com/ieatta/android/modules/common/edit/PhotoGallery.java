@@ -1,17 +1,30 @@
 package com.ieatta.android.modules.common.edit;
 
+import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
+import com.ieatta.com.parse.models.Photo;
 
 public class PhotoGallery extends EditBaseCellModel {
-    public PhotoGallery(IEAEditKey editKey) {
-        super(editKey);
-    }
+    private PhotoGallery self = this;
+
+    public DTTableViewManager manager;
+    private  IEAEditBaseViewController viewController;
 
     public PhotoGallery(IEAEditKey photo_gallery, IEAEditBaseViewController viewController) {
         super(photo_gallery);
+        self.viewController = viewController;
     }
+
+    private void insertNewPhotoAtFirst(Photo photo) {
+//        self.manager.
+    }
+
+    private void refreshCollection() {
+
+    }
+
 
 //    var collectionView: UICollectionView?
 //    var delegate:protocol<UICollectionViewDelegate,UICollectionViewDataSource>?

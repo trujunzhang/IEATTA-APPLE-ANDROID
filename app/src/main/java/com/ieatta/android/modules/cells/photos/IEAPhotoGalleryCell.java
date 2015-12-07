@@ -37,12 +37,15 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
                         .build();
         self.manager = new DTTableViewManager(config);
         self.collectionView.setAdapter(manager.getAdapter());
+
+        self.manager.registerCellClass(IEAPhotosCell.getType(), 0);
     }
 
     @Override
     public void render(Object value) {
         self.model = (PhotoGallery) value;
 
+        model.manager = self.manager;
 
     }
 }

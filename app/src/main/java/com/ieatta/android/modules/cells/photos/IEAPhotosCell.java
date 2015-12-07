@@ -25,7 +25,7 @@ public class IEAPhotosCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Photo more  = (Photo) value;
+        Photo model  = (Photo) value;
 
     }
 }
