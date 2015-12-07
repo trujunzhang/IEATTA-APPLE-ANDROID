@@ -12,7 +12,7 @@ import com.ieatta.android.extensions.storage.CellType;
  */
 public class IEAPhotoGalleryFooterCell  extends IEAViewHolder {
     public static CellType  getType() {
-        return new CellType(IEAPhotoGalleryFooterCell.class, R.layout.people_gallery_footer_cell);
+        return new CellType(IEAPhotoGalleryFooterCell.class, R.layout.photo_gallery_footer_cell);
     }
 
     private IEAPhotoGalleryFooterCell self = this;
