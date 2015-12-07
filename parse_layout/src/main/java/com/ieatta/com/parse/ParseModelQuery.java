@@ -139,8 +139,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         });
     }
 
-
-
     /**
      * Get count of objects on the offline datastore.
      * <p/>
