@@ -203,7 +203,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - returns: the first object's array,like [PFObject's instance].
      */
-    public static Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
+    public  Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
         // **** Important ****
         // If not found Parse's findLocalObjectsInBackground
         return ParseModelQuery.findFirstLocalObjectInBackground(query).continueWithTask(new Continuation<ParseObject, Task<ParseObject>>() {
@@ -279,7 +279,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter query:           query's instance
      */
     public Task<Void> unpinInBackground(ParseQuery query) {
-        return ParseModelQuery.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
+        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
             @Override
             public Task<Void> then(Task<ParseObject> task) throws Exception {
                 ParseObject object = task.getResult();
