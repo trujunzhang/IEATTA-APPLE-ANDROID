@@ -12,7 +12,13 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Recipe;
+
+import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -61,20 +67,44 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 
 
-        // Finally, hide hud.
-        self.hideHUD();
+        Photo.queryPhotosByModel(self.getPageModel()).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                fetchedPhotosTask = task;
 
-                    self.setRegisterCellClass(IEARecipeDetailHeaderCell.getType(), RecipeDetailSection.sectionHeader.ordinal());
-                    self.setRegisterCellClass(IEAReviewUserCell.getType(), RecipeDetailSection.sectionOrderedPeople.ordinal());
+                // Next, Load Reviews.
+                return self.getReviewsReleatdModelQueryTask();
+            }
+        }).onSuccess(new Continuation<Boolean, Object>() {
+            @Override
+            public Object then(Task<Boolean> task) throws Exception {
 
-                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_People), RecipeDetailSection.sectionOrderedPeople.ordinal());
+                // Finally, hide hud.
+                self.hideHUD();
 
-                    self.setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
-                    self.setSectionItems(CollectionUtils.createList(self.orderedRecipe.belongToModel), RecipeDetailSection.sectionOrderedPeople.ordinal());
+                self.setRegisterCellClass(IEARecipeDetailHeaderCell.getType(), RecipeDetailSection.sectionHeader.ordinal());
+                self.setRegisterCellClass(IEAReviewUserCell.getType(), RecipeDetailSection.sectionOrderedPeople.ordinal());
+
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Ordered_People), RecipeDetailSection.sectionOrderedPeople.ordinal());
+
+                self.setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
+                self.setSectionItems(CollectionUtils.createList(self.orderedRecipe.belongToModel), RecipeDetailSection.sectionOrderedPeople.ordinal());
 
 //                    self.configureReviewsSection(task.result as! [Team])
 //                    self.configurePhotoGallerySection(fetchedPhotosTask)
 
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted()) {
+
+                    return null;
+                }
+                return null;
+            }
+        });
 
 
 //        Task<Object> fetchedPhotosTask = null;
