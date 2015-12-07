@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.CellType;
+import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.Team;
 
@@ -15,21 +16,22 @@ public class IEAReviewUserCell extends IEAViewHolder {
 
     private IEAReviewUserCell self = this;
 
-//    @IBOutlet weak var avatarView: AvatarView!
+    private AvatarView avatarView;
 
     private TextView titleLabel;
     private TextView subtitleLabel;
 
     public IEAReviewUserCell(View itemView) {
         super(itemView);
-
+        self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
         self.titleLabel = (TextView) itemView.findViewById(R.id.titleTextView);
         self.subtitleLabel = (TextView) itemView.findViewById(R.id.addressTextView);
     }
 
     @Override
     public void render(Object value) {
-        Team more  = (Team) value;
-        self.titleLabel.setText(more.displayName);
+        Team model  = (Team) value;
+        self.titleLabel.setText(model.displayName);
+        self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_biz);
     }
 }
