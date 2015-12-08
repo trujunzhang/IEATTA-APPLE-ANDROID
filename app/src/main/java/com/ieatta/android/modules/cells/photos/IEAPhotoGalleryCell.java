@@ -32,7 +32,7 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
         TableViewConfiguration config =
                 new TableViewConfiguration.Builder(EnvironmentUtils.sharedInstance.getGlobalContext())
                         .setLayoutManager(
-                                new LinearLayoutManager(EnvironmentUtils.sharedInstance.getGlobalContext(), LinearLayoutManager.HORIZONTAL, false))
+                                new LinearLayoutManager(EnvironmentUtils.sharedInstance.getGlobalContext(), LinearLayoutManager.VERTICAL, false))
                         .setDebugInfo("Photo_Gallery_Cell")
                         .build();
         self.delegate = new DTTableViewManager(config);
