@@ -13,6 +13,7 @@ public class PhotoGallery extends EditBaseCellModel {
 
     public DTTableViewManager delegate;
     private IEAPhotoGalleryViewController viewController;
+    private List<ParseModelAbstract> fetchedPhotos;
 
     public PhotoGallery(IEAEditKey photo_gallery, IEAPhotoGalleryViewController viewController) {
         super(photo_gallery);
@@ -23,10 +24,14 @@ public class PhotoGallery extends EditBaseCellModel {
 //        self.delegate.
     }
 
-    public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
-        self.delegate.memoryStorage.setItems(fetchedPhotos,0);
+    public void setDelegate(DTTableViewManager delegate){
+        self.delegate = delegate;
+        self.delegate.memoryStorage.setItems(self.fetchedPhotos,0);
     }
 
+    public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
+        self.fetchedPhotos = fetchedPhotos;
+    }
 
 //    var collectionView: UICollectionView?
 //    var delegate:protocol<UICollectionViewDelegate,UICollectionViewDataSource>?

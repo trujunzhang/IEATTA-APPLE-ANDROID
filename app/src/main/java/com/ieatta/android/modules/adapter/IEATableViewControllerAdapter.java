@@ -10,10 +10,10 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
  * Created by djzhang on 12/1/15.
  */
 public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewHolder> {
+    private IEATableViewControllerAdapter self = this;
+
     private Context context;
     private DTTableViewManager manager;
-
-    private IEATableViewControllerAdapter self = this;
 
     public IEATableViewControllerAdapter(DTTableViewManager manager, Context context) {
         self.manager = manager;
@@ -40,7 +40,8 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
 
     @Override
     public int getItemCount() {
-        return self.manager.getItemCount();
+        int itemCount = self.manager.getItemCount();
+        return itemCount;
     }
 
     @Override

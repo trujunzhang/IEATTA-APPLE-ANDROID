@@ -44,7 +44,6 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
     public void render(Object value) {
         self.model = (PhotoGallery) value;
 
-        model.delegate = self.delegate;
-
+        model.setDelegate(self.delegate);
     }
 }
