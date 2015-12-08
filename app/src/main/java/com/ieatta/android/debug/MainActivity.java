@@ -1,9 +1,13 @@
 package com.ieatta.android.debug;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
@@ -21,34 +25,39 @@ public class MainActivity extends IEAPhotoGalleryViewController {
 private MainActivity self = this;
 
     private List<ParseModelAbstract> fetchedPhotos;
-    private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, self);
+    private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, null);
+
     private RecyclerView collectionView;
+    public IEAPhotoGalleryAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        EnvironmentUtils.sharedInstance.registerCurrentActivity(self);
+
         self.fetchedPhotos = new LinkedList<>();
         self.fetchedPhotos.add(new Photo());
 
-//        self.showPhotoGalleryCell();
+        self.showPhotoGalleryCell();
 
-        self.showPhotoGallery();
+//        self.showPhotoGallery();
     }
 
     private void showPhotoGallery() {
         self.setContentView(R.layout.photo_gallery_cell);
 
         self.collectionView = (RecyclerView) self.findViewById(R.id.section_list);
+        self.collectionView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        self.photoGallery.refreshCollection(self.fetchedPhotos);
-        self.photoGallery.setCollectionView(self.collectionView);
+        self.adapter = new IEAPhotoGalleryAdapter(self,self.fetchedPhotos);
 
+        self.collectionView.setAdapter(self.adapter);
+
+        self.adapter.notifyDataSetChanged();
     }
 
     private void showPhotoGalleryCell() {
-
-
         // Register Cells by class.
         self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
 

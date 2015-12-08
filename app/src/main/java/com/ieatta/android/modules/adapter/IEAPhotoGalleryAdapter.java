@@ -42,9 +42,4 @@ private IEAPhotoGalleryAdapter self = this;
         int itemCount = self.fetchedPhotos.size();
         return itemCount;
     }
-
-    @Override
-    public int getItemViewType(int position) {
-        return 0;
-    }
 }
