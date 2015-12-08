@@ -1,25 +1,19 @@
 package com.ieatta.android.debug;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 
 import com.ieatta.android.R;
-import com.ieatta.android.modules.IEABaseTableViewController;
-import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
-import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
-import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
-import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,11 +22,27 @@ private MainActivity self = this;
 
     private List<ParseModelAbstract> fetchedPhotos;
     private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, self);
+    private RecyclerView collectionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        self.showPhotoGalleryCell();
 
+        self.showPhotoGallery();
+    }
+
+    private void showPhotoGallery() {
+        self.setContentView(R.layout.photo_gallery_cell);
+
+        self.collectionView = (RecyclerView) self.findViewById(R.id.section_list);
+
+        self.photoGallery.refreshCollection(self.fetchedPhotos);
+        self.photoGallery.setCollectionView(self.collectionView);
+
+    }
+
+    private void showPhotoGalleryCell() {
         self.fetchedPhotos = new LinkedList<>();
         self.fetchedPhotos.add(new Photo());
 

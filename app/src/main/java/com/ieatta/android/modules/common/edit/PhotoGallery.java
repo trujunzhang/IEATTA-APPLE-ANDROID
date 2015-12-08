@@ -37,6 +37,8 @@ public class PhotoGallery extends EditBaseCellModel {
     public void setCollectionView(RecyclerView collectionView){
         self.collectionView = collectionView;
         self.collectionView.setAdapter(self.adapter);
+
+        self.adapter.notifyDataSetChanged();
     }
 
     public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
