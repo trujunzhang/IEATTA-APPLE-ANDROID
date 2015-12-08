@@ -5,33 +5,51 @@ import android.os.Bundle;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEABaseTableViewController;
 import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
+import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
+import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
+import com.ieatta.android.modules.common.edit.PhotoGallery;
+import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
+import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.Photo;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainActivity extends IEABaseTableViewController {
+public class MainActivity extends IEAPhotoGalleryViewController {
 private MainActivity self = this;
+
+    private List<ParseModelAbstract> fetchedPhotos;
+    private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, self);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), 0);
+        self.fetchedPhotos = new LinkedList<>();
+        self.fetchedPhotos.add(new Photo());
 
+        // Register Cells by class.
+        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
 
-        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.getType(), 0);
+        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
+//        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
 
-        IEANearRestaurantMore managerRestaurantItem = new IEANearRestaurantMore(R.drawable.restaurants_icon, R.string.Add_a_Restaurant, MainSegueIdentifier.editRestaurantSegueIdentifier);
-        IEANearRestaurantMore[] mores = {managerRestaurantItem};
-        List<IEANearRestaurantMore> list = Arrays.asList(mores);
+        // 1. Set photo gallery section title(contains a 'take a photo' icon).
+        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
 
-        self.setSectionItems(new LinkedList<Object>(list), 0);
+        // 2. Set empty items for the photo gallery collection cell.
+        self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
 
-//        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe), 1);
+        self.photoGallery.refreshCollection(self.fetchedPhotos);
+
     }
 
 }
