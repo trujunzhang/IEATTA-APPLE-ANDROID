@@ -15,6 +15,7 @@ public class TableViewConfiguration {
     public static class Builder {
 
         public final Context context;
+        private String type;
 
         public Builder(Context context) {
             this.context = context.getApplicationContext();
@@ -26,6 +27,7 @@ public class TableViewConfiguration {
         }
         public RecyclerView.LayoutManager manager;
         public RecyclerView.ItemDecoration decoration;
+
         public Builder setLayoutManager(RecyclerView.LayoutManager manager) {
             this.manager = manager;
             return this;
@@ -33,6 +35,11 @@ public class TableViewConfiguration {
 
         public Builder setItemDecoration(RecyclerView.ItemDecoration decoration) {
             this.decoration = decoration;
+            return this;
+        }
+
+        public Builder setTableViewType(String type){
+            this.type = type;
             return this;
         }
     }

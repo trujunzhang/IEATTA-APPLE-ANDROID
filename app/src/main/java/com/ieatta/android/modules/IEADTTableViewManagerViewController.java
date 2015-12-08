@@ -30,6 +30,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         TableViewConfiguration config =
                 new TableViewConfiguration.Builder(self.getBaseContext())
                         .setLayoutManager(new LinearLayoutManager(self, LinearLayoutManager.VERTICAL, false))
+                        .setTableViewType("Activity_Table_View")
                         .build();
         self.manager = new DTTableViewManager(config);
         self.startManagingWithDelegate(self.manager);
