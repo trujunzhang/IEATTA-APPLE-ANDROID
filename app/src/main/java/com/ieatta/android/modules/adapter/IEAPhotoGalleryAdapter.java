@@ -1,0 +1,49 @@
+package com.ieatta.android.modules.adapter;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.ieatta.android.extensions.storage.DTTableViewManager;
+import com.ieatta.android.modules.cells.photos.IEAPhotosCell;
+import com.ieatta.com.parse.ParseModelAbstract;
+
+import java.util.List;
+
+/**
+ * Created by djzhang on 12/8/15.
+ */
+public class IEAPhotoGalleryAdapter extends RecyclerView.Adapter<IEAPhotosCell> {
+private IEAPhotoGalleryAdapter self = this;
+
+    private List<ParseModelAbstract> fetchedPhotos;
+    private Context context;
+
+    public IEAPhotoGalleryAdapter( Context context) {
+        self.context = context;
+    }
+
+    @Override
+    public IEAPhotosCell onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(self.context).inflate(IEAPhotosCell.getType().layoutResId, parent, false);
+        return new IEAPhotosCell(view);
+    }
+
+    @Override
+    public void onBindViewHolder(IEAPhotosCell holder, int position) {
+        holder.render(self.fetchedPhotos.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        int itemCount = self.fetchedPhotos.size();
+        return itemCount;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return 0;
+    }
+}
