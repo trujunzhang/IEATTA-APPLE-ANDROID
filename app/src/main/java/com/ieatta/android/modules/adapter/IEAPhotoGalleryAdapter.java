@@ -21,8 +21,9 @@ private IEAPhotoGalleryAdapter self = this;
     private List<ParseModelAbstract> fetchedPhotos;
     private Context context;
 
-    public IEAPhotoGalleryAdapter( Context context) {
+    public IEAPhotoGalleryAdapter(Context context, List<ParseModelAbstract> fetchedPhotos) {
         self.context = context;
+        self.fetchedPhotos = fetchedPhotos;
     }
 
     @Override

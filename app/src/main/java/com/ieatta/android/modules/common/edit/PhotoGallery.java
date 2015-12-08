@@ -1,6 +1,11 @@
 package com.ieatta.android.modules.common.edit;
 
+import android.support.v7.widget.RecyclerView;
+import android.yelp.com.commonlib.EnvironmentUtils;
+
+import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
+import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -11,9 +16,14 @@ import java.util.List;
 public class PhotoGallery extends EditBaseCellModel {
     private PhotoGallery self = this;
 
-    public DTTableViewManager delegate;
+    private RecyclerView collectionView;
+    public IEAPhotoGalleryAdapter adapter;
+
     private IEAPhotoGalleryViewController viewController;
     private List<ParseModelAbstract> fetchedPhotos;
+
+    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+
 
     public PhotoGallery(IEAEditKey photo_gallery, IEAPhotoGalleryViewController viewController) {
         super(photo_gallery);
@@ -24,13 +34,15 @@ public class PhotoGallery extends EditBaseCellModel {
 //        self.delegate.
     }
 
-    public void setDelegate(DTTableViewManager delegate){
-        self.delegate = delegate;
-        self.delegate.memoryStorage.setItems(self.fetchedPhotos,0);
+    public void setCollectionView(RecyclerView collectionView){
+        self.collectionView = collectionView;
+        self.collectionView.setAdapter(self.adapter);
     }
 
     public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
         self.fetchedPhotos = fetchedPhotos;
+
+        self.adapter = new IEAPhotoGalleryAdapter(EnvironmentUtils.sharedInstance.getGlobalContext(),self.fetchedPhotos);
     }
 
 //    var collectionView: UICollectionView?
