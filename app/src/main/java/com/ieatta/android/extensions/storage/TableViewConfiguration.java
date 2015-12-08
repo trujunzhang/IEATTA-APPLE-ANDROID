@@ -15,7 +15,7 @@ public class TableViewConfiguration {
     public static class Builder {
 
         public final Context context;
-        private String type;
+        private String debugType;
 
         public Builder(Context context) {
             this.context = context.getApplicationContext();
@@ -38,8 +38,8 @@ public class TableViewConfiguration {
             return this;
         }
 
-        public Builder setTableViewType(String type){
-            this.type = type;
+        public Builder setDebugInfo(String debugType){
+            this.debugType = debugType;
             return this;
         }
     }

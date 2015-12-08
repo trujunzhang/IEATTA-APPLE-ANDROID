@@ -8,10 +8,8 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.storage.TableViewConfiguration;
 import com.ieatta.android.extensions.viewkit.NSIndexPath;
-import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
-import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         TableViewConfiguration config =
                 new TableViewConfiguration.Builder(self.getBaseContext())
                         .setLayoutManager(new LinearLayoutManager(self, LinearLayoutManager.VERTICAL, false))
-                        .setTableViewType("Activity_Table_View")
+                        .setDebugInfo("Activity_Table_View")
                         .build();
         self.manager = new DTTableViewManager(config);
         self.startManagingWithDelegate(self.manager);
