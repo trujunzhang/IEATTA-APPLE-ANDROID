@@ -27,6 +27,10 @@ private MainActivity self = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        self.fetchedPhotos = new LinkedList<>();
+        self.fetchedPhotos.add(new Photo());
+
 //        self.showPhotoGalleryCell();
 
         self.showPhotoGallery();
@@ -43,8 +47,7 @@ private MainActivity self = this;
     }
 
     private void showPhotoGalleryCell() {
-        self.fetchedPhotos = new LinkedList<>();
-        self.fetchedPhotos.add(new Photo());
+
 
         // Register Cells by class.
         self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
