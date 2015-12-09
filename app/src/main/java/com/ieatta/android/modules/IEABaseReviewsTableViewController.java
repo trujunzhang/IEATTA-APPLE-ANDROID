@@ -41,6 +41,7 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
         return Review.queryReviews(self.getPageModel(),self.getQueriedReviewsLimit()).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                Object object = task;
                 self.fetchedReviews = task.getResult();//Review
                 return Team.queryTeamByPoints(Review.getUserPoints(self.fetchedReviews));
             }
