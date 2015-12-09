@@ -32,6 +32,8 @@ public class IEAReviewUserCell extends IEAViewHolder {
     public void render(Object value) {
         Team model  = (Team) value;
         self.titleLabel.setText(model.displayName);
+        self.subtitleLabel.setText(model.getTimeAgoString());
+
         self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_biz);
     }
 }
