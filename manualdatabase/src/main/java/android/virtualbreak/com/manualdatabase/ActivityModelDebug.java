@@ -31,7 +31,8 @@ public class ActivityModelDebug {
 
     public static Recipe getOrderedRecipe() {
         Recipe recipe=new Recipe();
-        recipe.objectUUID = "B46474CD-FA02-4D7E-AE0F-B9439F4C8E8F";
+        recipe.objectUUID ="641619A3-9215-4DAA-9027-A5BCB7C65943";
+//                "B46474CD-FA02-4D7E-AE0F-B9439F4C8E8F";
         return recipe;
     }
 }
