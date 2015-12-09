@@ -26,7 +26,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
         int reviewSectionIndex = self.getReviewsSectionIndex();
         for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
             self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
-            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i);
+            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
         }
 
 //        self.setRegisterFooterClass(IEAMoreReviewsFooterCell.getType());

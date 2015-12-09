@@ -59,6 +59,11 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         getTableManager().registerCellClass(type, forSectionIndex);
     }
 
+    public void setRegisterCellClassWhenSelected(CellType type, int forSectionIndex, int forRowIndex) {
+        getTableManager().registerCellClassInSpecialRow(type, forSectionIndex,forRowIndex);
+    }
+
+
     public void setSectionItems(List items, int forSectionIndex) {
         getMemoryStorage().setItems(items, forSectionIndex);
     }

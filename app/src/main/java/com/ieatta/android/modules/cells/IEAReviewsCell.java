@@ -27,6 +27,6 @@ public class IEAReviewsCell extends IEAViewHolder {
     @Override
     public void render(Object value) {
         Object object = value;
-        Review more  = (Review) value;
+//        Review more  = (Review) value;
     }
 }
