@@ -3,6 +3,7 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
+import com.ieatta.android.modules.cells.IEASeeReviewsCell;
 import com.ieatta.android.modules.common.edit.SectionSeeReviewsCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -52,7 +53,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
     // MARK: Override IEAReviewsTableViewController methods
     @Override
     public void registerReviewTableCells() {
-//        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType());
+        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType(),SeeReviewsInDetailSection.sectionReviews.ordinal());
     }
 
 
