@@ -3,9 +3,12 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
+import com.ieatta.android.modules.common.edit.SectionSeeReviewsCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -72,14 +75,14 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
     /// Add rows for section "Reviews".
     @Override
     public void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople) {
-//         Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
+        List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
 
-//        var items:[SectionSeeReviewsCellModel] = [SectionSeeReviewsCellModel]()
-//        for var i = 0; i <  array.count / 2; ++i{
-//            items.append(SectionSeeReviewsCellModel(editKey: IEAEditKey.Section_Title, user: array[i*2+0], review: array[i*2+1]))
-//        }
+        List<SectionSeeReviewsCellModel> items = new LinkedList<>();
+        for (int i = 0; i < array.size() / 2; ++i) {
+            items.add(new SectionSeeReviewsCellModel(IEAEditKey.Section_Title, array.get(i * 2 + 0), array.get(i * 2 + 1)));
+        }
 
-//        setSectionItems(items,  SeeReviewsInDetailSection.sectionReviews.ordinal()  );
+        setSectionItems(items, SeeReviewsInDetailSection.sectionReviews.ordinal());
     }
 
 }
