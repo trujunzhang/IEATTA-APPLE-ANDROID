@@ -3,7 +3,6 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
-import com.ieatta.android.modules.cells.IEASeeReviewsCell;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 
@@ -38,7 +37,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         // Do any additional setup after loading the view.
 //        assert(self.reviewForModel != nil, "Must setup reviewForModel's instance.")
 
-        self.getReviewsReleatdModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
+        self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
                 self.configureReviewsSection(self.fetchedReviews);

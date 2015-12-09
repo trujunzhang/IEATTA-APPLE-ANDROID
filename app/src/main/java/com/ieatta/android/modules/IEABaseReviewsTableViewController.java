@@ -37,7 +37,7 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
         self.registerReviewTableCells();
     }
 
-    protected Task<Boolean> getReviewsReleatdModelQueryTask() {
+    protected Task<Boolean> getReviewsRelatedModelQueryTask() {
         return Review.queryReviews(self.getPageModel(),self.getQueriedReviewsLimit()).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {

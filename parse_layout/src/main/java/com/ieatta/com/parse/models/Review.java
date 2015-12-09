@@ -190,26 +190,25 @@ public class Review extends ParseModelSync {
     public static List<String> getUserPoints(List<ParseModelAbstract> reviews) {
         LinkedList<String> userPoints = new LinkedList<>();
         for (ParseModelAbstract model : reviews) {
-            userPoints.add(((Review)model).userRef);
+            userPoints.add(((Review) model).userRef);
         }
         return userPoints;
     }
 
-    private static Team getPeople(Review review, List<Team> people) {
-        for (Team user : people) {
+    private static Team getPeople(Review review, List<ParseModelAbstract/*Team*/> people) {
+        for (ParseModelAbstract user : people) {
             if (review.userRef.equals(ParseModelAbstract.getPoint(user))) {
-                return user;
+                return (Team) user;
             }
         }
         return Team.getAnonymousUser();
     }
 
-    public static List<Object> getReviewItems(List<Review> reviews, List<Team> people) {
+    public static List<Object> getReviewItems(List<ParseModelAbstract/*Review*/> reviews, List<ParseModelAbstract/*Team*/> people) {
         LinkedList<Object> array = new LinkedList<>();
-        for (Review model : reviews) {
-            Team user = getPeople(model, people);
-            // TODO djzhang(fixing)
-        user.writedReviewTimeAgo = model.getTimeAgoString();
+        for (ParseModelAbstract model : reviews) {
+            Team user = getPeople((Review) model, people);
+            user.writedReviewTimeAgo = model.getTimeAgoString();
 
             array.add(user);
             array.add(model);

@@ -73,7 +73,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
                 fetchedPhotosTask = task;
 
                 // Next, Load Reviews.
-                return self.getReviewsReleatdModelQueryTask();
+                return self.getReviewsRelatedModelQueryTask();
             }
         }).onSuccess(new Continuation<Boolean, Object>() {
             @Override
@@ -90,7 +90,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
                 self.setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
                 self.setSectionItems(CollectionUtils.createList(self.orderedRecipe.belongToModel), RecipeDetailSection.sectionOrderedPeople.ordinal());
 
-//                    self.configureReviewsSection(task.result as! [Team])
+                self.configureReviewsSection(task.getResult());
                 self.configurePhotoGallerySection(fetchedPhotosTask);
 
                 return null;
@@ -105,48 +105,6 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
                 return null;
             }
         });
-
-
-//        Task<Object> fetchedPhotosTask = null;
-//
-//        Photo.queryPhotosByModel(self.getPageModel())
-//                .onSuccessTask(new Continuation<LinkedList<ParseModelAbstract>, Object>() {
-//                    @Override
-//                    public Object then(Task<LinkedList<ParseModelAbstract>> task) throws Exception {
-////                        fetchedPhotosTask = task;
-//
-//                        // Next, Load Reviews.
-//                        return self.getReviewsReleatdModelQueryTask();
-//                    }
-//                }).onSuccessTask(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//
-//                if (task.getError() != null) {
-//
-//                } else {
-//
-//                    // Finally, hide hud.
-//                    self.hideHUD();
-//
-////                    self.setRegisterCellClass(IEARecipeDetailHeaderCell);
-////                    self.setRegisterCellClass(IEAReviewUserCell);
-//
-////                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: RecipeDetailSection.sectionHeader.rawValue)
-////                    self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.OrderedPeople.string), forSectionIndex: RecipeDetailSection.sectionOrderedPeople.rawValue)
-//
-////                    self.setSectionItems([IEARecipeHeader(viewController: self, model: self.orderedRecipe!)], forSectionIndex: RecipeDetailSection.sectionHeader.rawValue)
-////                    self.setSectionItems([self.orderedRecipe?.belongToModel],forSectionIndex: RecipeDetailSection.sectionOrderedPeople.rawValue)
-//
-////                    self.configureReviewsSection(task.result as! [Team])
-////                    self.configurePhotoGallerySection(fetchedPhotosTask)
-//
-//                }
-//
-//                return null;
-//            }
-//        });
-
     }
 
 

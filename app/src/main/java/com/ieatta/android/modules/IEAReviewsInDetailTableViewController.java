@@ -4,7 +4,9 @@ import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAReviewUserCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAMoreReviewsFooterCell;
+import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 
@@ -16,11 +18,11 @@ import java.util.List;
 /// IEAReviewsInDetailTableViewController <|-- IEARestaurantDetailViewController
 /// IEAReviewsInDetailTableViewController <|-- IEAEventDetailViewController
 /// IEAReviewsInDetailTableViewController <|-- IEARecipeDetailViewController
-public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableViewController{
+public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableViewController {
     private IEAReviewsInDetailTableViewController self = this;
 
 
-    protected void registerReviewTableCells(){
+    protected void registerReviewTableCells() {
 //        self.setRegisterCellClass(IEAReviewUserCell.getType());
 //        self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType());
 
@@ -39,23 +41,24 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //    }
 
     @Override
-     public void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople){
-//        int startIndex = self.getReviewsSectionIndex();
-//
-//        let array = Review.getReviewItems(self.fetchedReviews, people: fetchedReviewPeople)
-//        let sectionCount = array.count / 2
-//        for var i = 0; i < sectionCount; ++i{
-//            setSectionItems([array[i*2+0],array[i*2+1]], forSectionIndex: startIndex + i )
-//        }
+    public void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople) {
+        int startIndex = self.getReviewsSectionIndex();
+
+        List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
+        int sectionCount = array.size() / 2;
+        for (int i = 0; i < sectionCount; i++) {
+            Object[] item = {array.get(i * 2 + 0), array.get(i * 2 + 1)};
+            setSectionItems(CollectionUtils.createList(item), startIndex + i);
+        }
 
         // 2. refresh section tableview footer view.
-//        setFooterModelInSection(SectionMoreReviewsFooterCellModel(editKey: IEAEditKey.Section_Title, reviewForModel: self.getPageModel(),viewController: self), forSectionIndex: self.getMoreReviewSectionIndex());
+//        setFooterModelInSection(new SectionMoreReviewsFooterCellModel(IEAEditKey.Section_Title, self.getPageModel(), self), self.getMoreReviewSectionIndex());
     }
 
     // MARK: NSNotificationCenter notification handlers
 //    func ReviewWasCreated(note:NSNotification){
 //
-//        self.getReviewsReleatdModelQueryTask().continueWithBlock { (task) -> AnyObject? in
+//        self.getReviewsRelatedModelQueryTask().continueWithBlock { (task) -> AnyObject? in
 //            dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //                    self.configureReviewsSection(task.result as! [Team])
 //            })
@@ -65,7 +68,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //    }
 
     // MARK: Show all posted reviews for Restaurant,Recipe and Event.
-    public void performSegueForSeeReviews(){
+    public void performSegueForSeeReviews() {
 //        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier.rawValue, sender: self)
     }
 

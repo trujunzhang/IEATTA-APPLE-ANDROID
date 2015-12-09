@@ -93,7 +93,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 ////            @Override
 ////            public Object then(Task<Object> task) throws Exception {
 ////                // Next, Load Reviews.
-////                return self.getReviewsReleatdModelQueryTask();
+////                return self.getReviewsRelatedModelQueryTask();
 ////            }
     }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
