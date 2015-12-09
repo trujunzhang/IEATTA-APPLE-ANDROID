@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.cells;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
@@ -15,18 +16,20 @@ public class IEAReviewsCell extends IEAViewHolder {
 
     private IEAReviewsCell self = this;
 
-//    @IBOutlet weak var avatarView: AvatarView!
-
-    private TextView titleLabel;
-    private TextView subtitleLabel;
+    private ImageView business_review_star_rating;
+    private TextView reviewContentLabel;
 
     public IEAReviewsCell(View itemView) {
         super(itemView);
+
+        self.business_review_star_rating = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
+        self.reviewContentLabel = (TextView) itemView.findViewById(R.id.reviewContentLabel);
     }
 
     @Override
     public void render(Object value) {
-        Object object = value;
-//        Review more  = (Review) value;
+        Review model = (Review) value;
+        self.business_review_star_rating.setImageLevel(model.rate);
+        self.reviewContentLabel.setText(model.content);
     }
 }
