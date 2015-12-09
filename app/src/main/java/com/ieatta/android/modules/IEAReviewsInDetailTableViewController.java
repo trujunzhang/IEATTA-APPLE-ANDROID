@@ -23,8 +23,11 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
 
     protected void registerReviewTableCells() {
-//        self.setRegisterCellClass(IEAReviewUserCell.getType());
-//        self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType());
+        int reviewSectionIndex = self.getReviewsSectionIndex();
+        for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
+            self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
+            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i);
+        }
 
 //        self.setRegisterFooterClass(IEAMoreReviewsFooterCell.getType());
     }
