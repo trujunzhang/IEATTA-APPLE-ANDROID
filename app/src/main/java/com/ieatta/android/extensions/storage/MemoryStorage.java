@@ -148,7 +148,7 @@ public class MemoryStorage {
         return type;
     }
 
-    public Object getItem(int position){
+    public RowModel getItem(int position){
         return self.tableViewUtils.getItem(position);
     }
 

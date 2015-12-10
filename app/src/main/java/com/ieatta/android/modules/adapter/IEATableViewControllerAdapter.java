@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ieatta.android.extensions.storage.DTTableViewManager;
+import com.ieatta.android.extensions.storage.models.RowModel;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -35,8 +36,8 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
         holder.setClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
-                Object item = self.manager.memoryStorage.getItem(position);
-                self.itemClickListener.onItemClick(view,item,position, null, isLongClick);
+                RowModel item = self.manager.memoryStorage.getItem(position);
+                self.itemClickListener.onItemClick(view, item.indexPath, item.model, position, isLongClick);
             }
         });
     }
