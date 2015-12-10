@@ -8,7 +8,12 @@ public class NSIndexPath {
     public int section;
 
     public NSIndexPath(int section, int row) {
-        this.row = row;
         this.section = section;
+        this.row = row;
+    }
+
+    @Override
+    public String toString() {
+        return "NSIndexPath, section: " + section + " row: " + row;
     }
 }
