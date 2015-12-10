@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ieatta.android.R;
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
@@ -154,7 +155,8 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     @Override
     protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination,Intent sender){
         // Edit Restaurant
-//        destination.setEditModel(self.restaurant);
+        self.setTransferedModel(sender,self.restaurant);
+        sender.putExtra(IntentCache.newModel,true);
     }
 
     @Override
