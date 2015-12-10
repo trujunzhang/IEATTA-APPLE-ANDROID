@@ -1,10 +1,12 @@
 package com.ieatta.android.modules;
 
 import android.content.Intent;
-import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.extensions.UIDevice;
+import com.ieatta.android.extensions.UIUserInterfaceIdiom;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
+import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 import com.ieatta.com.parse.models.Restaurant;
 
@@ -61,5 +63,27 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
 //        splitViewController.viewControllers = [(splitViewController.viewControllers.first)!,detailViewController]
     }
 
+    @Override
+     protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender){
+        // TODO djzhang(used for iPhone)
+        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+            /// Add restaurant
+            Restaurant model = new Restaurant();
+            IntentCache.sharedInstance.setIntentModel(model);
+            sender.putExtra(IntentCache.intentUUID, model.intentUUID);
+            sender.putExtra(IntentCache.newModel,true);
+        }
+    }
+
+    @Override
+    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender){
+        // TODO djzhang(used for iPhone)
+        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+            /// Show detailed restaurant
+            IntentCache.sharedInstance.setIntentModel(self.selectedModel);
+            sender.putExtra(IntentCache.intentUUID, self.selectedModel.intentUUID);
+//            destination.restaurant =  self.selectedModel
+        }
+    }
 
 }

@@ -9,12 +9,15 @@ import java.util.LinkedHashMap;
  * Created by djzhang on 12/10/15.
  */
 public class IntentCache {
+    public static String intentUUID = "intentUUID";
+    public static String newModel = "newModel";
     private IntentCache self = this;
-    public static final IEACache sharedInstance = new IEACache();
+    public static final IntentCache sharedInstance = new IntentCache();
 
     private HashMap<String,ParseModelAbstract> intentModelCache = new LinkedHashMap<>();
 
-    public void cacheIntentModel(ParseModelAbstract model){
+
+    public void setIntentModel(ParseModelAbstract model){
         self.intentModelCache.put(model.intentUUID, model);
     }
 

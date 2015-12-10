@@ -29,62 +29,15 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
     public void performSegueWithIdentifier(MainSegueIdentifier identifier, IEAAppTableViewController sender) {
         Intent intent = new Intent(EnvironmentUtils.sharedInstance.getGlobalContext(), identifier.getActivity());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        self.prepareForSegue(identifier);
+        self.prepareForSegue(identifier,intent);
         self.startActivity(intent);
     }
 
-//
-//    public void prepareForSegue(MainSegueIdentifier identifier) {
-//        Class<?> cls = null;
-//        switch (identifier) {
-//
-//            // Four menus in the near restaurant page.
-//            case editRestaurantSegueIdentifier:
-//
-//
-//                break;
-//            case searchRestaurantSegueIdentifier:
-//                break;
-//            case managerPeopleSegueIdentifier:
-//                break;
-//            case readReviewsSegueIdentifier:
-//                break;
-//
-//            // Four detail pages.
-//            case detailRestaurantSegueIdentifier:
-//                break;
-//            case detailEventSegueIdentifier:
-//                break;
-//            case detailOrderedRecipesSegueIdentifier:
-//                break;
-//            case detailRecipeSegueIdentifier:
-//                break;
-//            // Show all posted reviews for restaurant,recipe.
-//            case detailSeeReviewSegueIdentifier:
-//                break;
-//
-//            // Show detail review from review list.
-//            case detailReviewSegueIdentifier:
-//                break;
-//
-//            // Four new/edit model pages.(the following three, and restaurant)
-//            case editEventSegueIdentifier:
-//                break;
-//            case editPeopleSegueIdentifier:
-//                break;
-//            case editRecipeSegueIdentifier:
-//                break;
-//            // Choice Person in the event page.
-//            case choicePeopleSegueIdentifier:
-//                break;
-//        }
-//    }
-
-    public void prepareForSegue(MainSegueIdentifier identifier) {
+    public void prepareForSegue(MainSegueIdentifier identifier, Intent sender) {
         switch (identifier) {
             // Four menus in the near restaurant page.
             case editRestaurantSegueIdentifier:
-//                self.segueForEditRestaurantViewController((segue.destinationViewController as ? IEAEditRestaurantViewController) !)
+                self.segueForEditRestaurantViewController(null,sender/*(segue.destinationViewController as ? IEAEditRestaurantViewController) !*/);
                 break;
             case searchRestaurantSegueIdentifier:
                 break;
@@ -94,47 +47,47 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
                 break;
             // Four detail pages.
             case detailRestaurantSegueIdentifier:
-//                self.segueForRestaurantDetailViewController((segue.destinationViewController as ? IEARestaurantDetailViewController) !)
+                self.segueForRestaurantDetailViewController(null, sender/*(segue.destinationViewController as ? IEARestaurantDetailViewController) !*/);
                 break;
             case detailEventSegueIdentifier:
-//                self.segueForEventDetailViewController((segue.destinationViewController as ? IEAEventDetailViewController) !)
+//                self.segueForEventDetailViewController((segue.destinationViewController as ? IEAEventDetailViewController) !);
                 break;
             case detailOrderedRecipesSegueIdentifier:
-//                self.segueForOrderedRecipesViewController((segue.destinationViewController as ? IEAOrderedRecipesViewController) !)
+//                self.segueForOrderedRecipesViewController((segue.destinationViewController as ? IEAOrderedRecipesViewController) !);
                 break;
             case detailRecipeSegueIdentifier:
-//                self.segueForRecipeDetailViewController((segue.destinationViewController as ? IEARecipeDetailViewController) !)
+//                self.segueForRecipeDetailViewController((segue.destinationViewController as ? IEARecipeDetailViewController) !);
                 break;
 
             // Show all posted reviews for restaurant,recipe.
             case detailSeeReviewSegueIdentifier:
-//                self.segueForSeeReviewsInDetailViewController((segue.destinationViewController as ? IEASeeReviewsInDetailViewController) !)
+//                self.segueForSeeReviewsInDetailViewController((segue.destinationViewController as ? IEASeeReviewsInDetailViewController) !);
                 break;
             // Show detail review from review list.
             case detailReviewSegueIdentifier:
-//                self.segueForReviewDetailViewController((segue.destinationViewController as ? IEAReviewDetailViewController) !)
+//                self.segueForReviewDetailViewController((segue.destinationViewController as ? IEAReviewDetailViewController) !);
                 break;
             // Four new/edit model pages.(the following three, and restaurant)
             case editEventSegueIdentifier:
-//                self.segueForEditEventViewController((segue.destinationViewController as ? IEAEditEventViewController) !)
+//                self.segueForEditEventViewController((segue.destinationViewController as ? IEAEditEventViewController) !);
                 break;
             case editPeopleSegueIdentifier:
-//                self.segueForEditPeopleViewController((segue.destinationViewController as ? IEAEditPeopleViewController) !)
+//                self.segueForEditPeopleViewController((segue.destinationViewController as ? IEAEditPeopleViewController) !);
                 break;
             case editRecipeSegueIdentifier:
-//                self.segueForEditRecipeViewController((segue.destinationViewController as ? IEAEditRecipeViewController) !)
+//                self.segueForEditRecipeViewController((segue.destinationViewController as ? IEAEditRecipeViewController) !);
                 break;
             // Choice Person in the event page.
             case choicePeopleSegueIdentifier:
-//                self.segueForChoicePeopleViewController((segue.destinationViewController as ? IEAChoicePeopleViewController) !)
+//                self.segueForChoicePeopleViewController((segue.destinationViewController as ? IEAChoicePeopleViewController) !);
                 break;
         }
     }
 
-    protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination) {
+    protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender) {
     }
 
-    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination) {
+    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
     }
 
     protected void segueForEventDetailViewController(IEAEventDetailViewController destination) {
