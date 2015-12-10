@@ -31,7 +31,7 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
     public void performSegueWithIdentifier(MainSegueIdentifier identifier, IEAAppTableViewController sender) {
         Intent intent = new Intent(EnvironmentUtils.sharedInstance.getGlobalContext(), identifier.getActivity());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        self.prepareForSegue(identifier,intent);
+        self.prepareForSegue(identifier, intent);
         self.startActivity(intent);
     }
 
@@ -39,7 +39,7 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
         switch (identifier) {
             // Four menus in the near restaurant page.
             case editRestaurantSegueIdentifier:
-                self.segueForEditRestaurantViewController(null,sender/*(segue.destinationViewController as ? IEAEditRestaurantViewController) !*/);
+                self.segueForEditRestaurantViewController(null, sender);
                 break;
             case searchRestaurantSegueIdentifier:
                 break;
@@ -49,39 +49,39 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
                 break;
             // Four detail pages.
             case detailRestaurantSegueIdentifier:
-                self.segueForRestaurantDetailViewController(null, sender/*(segue.destinationViewController as ? IEARestaurantDetailViewController) !*/);
+                self.segueForRestaurantDetailViewController(null, sender);
                 break;
             case detailEventSegueIdentifier:
-                self.segueForEventDetailViewController(null,sender/*(segue.destinationViewController as ? IEAEventDetailViewController) !*/);
+                self.segueForEventDetailViewController(null, sender);
                 break;
             case detailOrderedRecipesSegueIdentifier:
-//                self.segueForOrderedRecipesViewController((segue.destinationViewController as ? IEAOrderedRecipesViewController) !);
+                self.segueForOrderedRecipesViewController(null, sender);
                 break;
             case detailRecipeSegueIdentifier:
-//                self.segueForRecipeDetailViewController((segue.destinationViewController as ? IEARecipeDetailViewController) !);
+                self.segueForRecipeDetailViewController(null, sender);
                 break;
 
             // Show all posted reviews for restaurant,recipe.
             case detailSeeReviewSegueIdentifier:
-//                self.segueForSeeReviewsInDetailViewController((segue.destinationViewController as ? IEASeeReviewsInDetailViewController) !);
+                self.segueForSeeReviewsInDetailViewController(null, sender);
                 break;
             // Show detail review from review list.
             case detailReviewSegueIdentifier:
-//                self.segueForReviewDetailViewController((segue.destinationViewController as ? IEAReviewDetailViewController) !);
+                self.segueForReviewDetailViewController(null, sender);
                 break;
             // Four new/edit model pages.(the following three, and restaurant)
             case editEventSegueIdentifier:
-                self.segueForEditEventViewController(null,sender/*(segue.destinationViewController as ? IEAEditEventViewController) !*/);
+                self.segueForEditEventViewController(null, sender);
                 break;
             case editPeopleSegueIdentifier:
-//                self.segueForEditPeopleViewController((segue.destinationViewController as ? IEAEditPeopleViewController) !);
+                self.segueForEditPeopleViewController(null, sender);
                 break;
             case editRecipeSegueIdentifier:
-//                self.segueForEditRecipeViewController((segue.destinationViewController as ? IEAEditRecipeViewController) !);
+                self.segueForEditRecipeViewController(null, sender);
                 break;
             // Choice Person in the event page.
             case choicePeopleSegueIdentifier:
-//                self.segueForChoicePeopleViewController((segue.destinationViewController as ? IEAChoicePeopleViewController) !);
+                self.segueForChoicePeopleViewController(null, sender);
                 break;
         }
     }
@@ -98,25 +98,25 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
     protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
     }
 
-    protected void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination) {
+    protected void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination, Intent sender) {
     }
 
-    protected void segueForChoicePeopleViewController(IEAChoicePeopleViewController destination) {
+    protected void segueForChoicePeopleViewController(IEAChoicePeopleViewController destination, Intent sender) {
     }
 
-    protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination) {
+    protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
     }
 
-    protected void segueForRecipeDetailViewController(IEARecipeDetailViewController destination) {
+    protected void segueForRecipeDetailViewController(IEARecipeDetailViewController destination, Intent sender) {
     }
 
-    protected void segueForEditRecipeViewController(IEAEditRecipeViewController destination) {
+    protected void segueForEditRecipeViewController(IEAEditRecipeViewController destination, Intent sender) {
     }
 
-    protected void segueForReviewDetailViewController(IEAReviewDetailViewController destination) {
+    protected void segueForReviewDetailViewController(IEAReviewDetailViewController destination, Intent sender) {
     }
 
-    protected void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination) {
+    protected void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination, Intent sender) {
     }
 
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
@@ -133,17 +133,19 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
         }
     }
 
-    protected ParseModelAbstract getTransferedModel(){
-    String intentUUID = self.getIntent().getExtras().getString(IntentCache.intentUUID);
-    ParseModelAbstract transferedModel = IntentCache.sharedInstance.getIntentModel(intentUUID);
+    protected ParseModelAbstract getTransferedModel() {
+        String intentUUID = self.getIntent().getExtras().getString(IntentCache.intentUUID);
+        ParseModelAbstract transferedModel = IntentCache.sharedInstance.getIntentModel(intentUUID);
         return transferedModel;
     }
-    protected void setTransferedModel(Intent sender,ParseModelAbstract model){
+
+    protected void setTransferedModel(Intent sender, ParseModelAbstract model) {
         IntentCache.sharedInstance.setIntentModel(model);
         sender.putExtra(IntentCache.intentUUID, model.intentUUID);
     }
-    protected void setTransferedModelForEdit(Intent sender,ParseModelAbstract model,boolean newModel){
-        self.setTransferedModel(sender,model);
-        sender.putExtra(IntentCache.newModel,true);
+
+    protected void setTransferedModelForEdit(Intent sender, ParseModelAbstract model, boolean newModel) {
+        self.setTransferedModel(sender, model);
+        sender.putExtra(IntentCache.newModel, true);
     }
 }

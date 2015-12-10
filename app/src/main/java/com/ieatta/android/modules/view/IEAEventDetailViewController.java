@@ -1,7 +1,7 @@
 package com.ieatta.android.modules.view;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
@@ -14,6 +14,7 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.PeopleInEvent;
@@ -95,7 +96,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 ////                // Next, Load Reviews.
 ////                return self.getReviewsRelatedModelQueryTask();
 ////            }
-    }).onSuccess(new Continuation<Boolean, Void>() {
+        }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
 
@@ -136,14 +137,30 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        if(indexPath.section == EventDetailSection.sectionOrderedPeople.ordinal()){
-            IEAOrderedPeople people = (IEAOrderedPeople)model;
+        if (indexPath.section == EventDetailSection.sectionOrderedPeople.ordinal()) {
+            IEAOrderedPeople people = (IEAOrderedPeople) model;
 
             people.model.belongToModel = self.event;
             self.selectedModel = people.model;
-            self.performSegueWithIdentifier(MainSegueIdentifier.detailOrderedRecipesSegueIdentifier,  self);
-        }else{
+            self.performSegueWithIdentifier(MainSegueIdentifier.detailOrderedRecipesSegueIdentifier, self);
+        } else {
             super.whenSelectedEvent(model, indexPath);
         }
+    }
+
+    @Override
+    public void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination, Intent sender) {
+        self.setTransferedModel(sender, self.selectedModel);
+    }
+
+    @Override
+    public void segueForChoicePeopleViewController(IEAChoicePeopleViewController destination, Intent sender) {
+//        destination.delegate = self
+//        destination.orderedPeople = self.fetchedPeople
+    }
+
+    @Override
+    public void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
+        self.setTransferedModelForEdit(sender, self.event, true);
     }
 }
