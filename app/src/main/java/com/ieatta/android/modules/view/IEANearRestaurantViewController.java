@@ -118,10 +118,10 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
         if(indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()){
-//            self.whenSelectedCellTaped((model as! IENearRestaurantMore).identifier);
+            self.whenSelectedCellTaped(((IEANearRestaurantMore)model).identifier);
         }else{
-//            self.selectedModel = (Restaurant)model;
-//            self.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
+            self.selectedModel = (Restaurant)model;
+            self.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
         }
     }
 }
