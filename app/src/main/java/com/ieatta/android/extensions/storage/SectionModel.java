@@ -5,6 +5,7 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.storage.models.FooterModel;
 import com.ieatta.android.extensions.storage.models.HeaderModel;
 import com.ieatta.android.extensions.storage.models.RowModel;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.tools.CollectionUtils;
 
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class SectionModel {
     public List items = new LinkedList<>();
     public int sectionIndex;
     public CellType cellType;
-    public HashMap<Integer, CellType> specailRows = new LinkedHashMap<>();
+    public HashMap<Integer, CellType> specialRows = new LinkedHashMap<>();
 
     public HeaderModel headerModel;
     public FooterModel footerModel;
@@ -55,7 +56,7 @@ public class SectionModel {
         }
         if (row < self.items.size()) {
             CellType type = self.getRowType(row, self.cellType);
-            return new RowModel(self.items.get(row), type);
+            return new RowModel(self.items.get(row), type, new NSIndexPath(sectionIndex,row));
         } else if (footerModel != null) {
             return new RowModel(footerModel);
         }
@@ -65,7 +66,7 @@ public class SectionModel {
 
     private CellType getRowType(int row, CellType type) {
         // Step1: If have special row type.
-        CellType specialRowType = self.specailRows.get(new Integer(row));
+        CellType specialRowType = self.specialRows.get(new Integer(row));
         if(specialRowType!=null){
             return  specialRowType;
         }

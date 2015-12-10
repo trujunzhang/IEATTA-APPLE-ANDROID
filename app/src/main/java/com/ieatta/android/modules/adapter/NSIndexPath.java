@@ -6,4 +6,9 @@ package com.ieatta.android.modules.adapter;
 public class NSIndexPath {
     public int row;
     public int section;
+
+    public NSIndexPath(int section, int row) {
+        this.row = row;
+        this.section = section;
+    }
 }

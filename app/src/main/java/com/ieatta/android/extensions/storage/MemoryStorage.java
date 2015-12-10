@@ -117,7 +117,7 @@ public class MemoryStorage {
 
         // Step2: Create/Modify a section.
         SectionModel section = self.verifySection(forSectionIndex);
-        section.specailRows.put(new Integer(forRowIndex),type);
+        section.specialRows.put(new Integer(forRowIndex),type);
     }
 
     public RowModel getRowModelFromPosition(int position) {
