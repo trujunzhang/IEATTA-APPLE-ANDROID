@@ -68,9 +68,7 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
         // TODO djzhang(used for iPhone)
         if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
             /// Add restaurant
-            Restaurant model = new Restaurant();
-            IntentCache.sharedInstance.setIntentModel(model);
-            sender.putExtra(IntentCache.intentUUID, model.intentUUID);
+            self.setTransferedModel(sender,new Restaurant());
             sender.putExtra(IntentCache.newModel,true);
         }
     }
@@ -80,8 +78,7 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
         // TODO djzhang(used for iPhone)
         if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
             /// Show detailed restaurant
-            IntentCache.sharedInstance.setIntentModel(self.selectedModel);
-            sender.putExtra(IntentCache.intentUUID, self.selectedModel.intentUUID);
+            self.setTransferedModel(sender,self.selectedModel);
 //            destination.restaurant =  self.selectedModel
         }
     }

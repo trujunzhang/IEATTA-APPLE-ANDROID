@@ -2,6 +2,7 @@ package com.ieatta.android.modules.view.edit;
 
 import android.os.Bundle;
 
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
@@ -87,6 +88,9 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        boolean newModel = self.getIntent().getExtras().getBoolean(IntentCache.newModel);
+        self.setEditModel(self.getTransferedModel(),newModel);
 
         // TODO djzhang(test)
         self.hideHUD();

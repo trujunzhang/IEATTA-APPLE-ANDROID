@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Toast;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
@@ -19,6 +20,7 @@ import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
+import com.ieatta.com.parse.ParseModelAbstract;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -129,5 +131,15 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
         } else {
             Toast.makeText(self, "#" + position + " - " + indexPath.toString(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    protected ParseModelAbstract getTransferedModel(){
+    String intentUUID = self.getIntent().getExtras().getString(IntentCache.intentUUID);
+    ParseModelAbstract transferedModel = IntentCache.sharedInstance.getIntentModel(intentUUID);
+        return transferedModel;
+    }
+    protected void setTransferedModel(Intent sender,ParseModelAbstract model){
+        IntentCache.sharedInstance.setIntentModel(model);
+        sender.putExtra(IntentCache.intentUUID, model.intentUUID);
     }
 }
