@@ -14,6 +14,11 @@ public class IEAReviewUserCell extends IEAViewHolder {
         return new CellType(IEAReviewUserCell.class, R.layout.review_user_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
     private IEAReviewUserCell self = this;
 
     private AvatarView avatarView;
