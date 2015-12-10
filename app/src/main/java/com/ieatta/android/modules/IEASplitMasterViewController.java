@@ -1,7 +1,11 @@
 package com.ieatta.android.modules;
 
+import android.content.Intent;
+import android.yelp.com.commonlib.EnvironmentUtils;
+
 import com.ieatta.android.extensions.UIDevice;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
+import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 import com.ieatta.com.parse.models.Restaurant;
 
 /**
@@ -31,6 +35,8 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
 
             // Four menus in the near restaurant page.
             case editRestaurantSegueIdentifier:
+                Intent intent = new Intent(EnvironmentUtils.sharedInstance.getGlobalContext(), IEAEditRestaurantViewController.class);
+                EnvironmentUtils.sharedInstance.getGlobalContext().startActivity(intent);
                 break;
             case searchRestaurantSegueIdentifier:
                 break;
