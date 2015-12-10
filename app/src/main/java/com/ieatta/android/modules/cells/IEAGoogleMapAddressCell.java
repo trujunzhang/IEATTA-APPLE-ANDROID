@@ -13,6 +13,11 @@ public class IEAGoogleMapAddressCell extends IEAViewHolder {
         return new CellType(IEAGoogleMapAddressCell.class, R.layout.google_address_cll);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
     private IEAGoogleMapAddressCell self = this;
 
     private TextView formattedAddressLabel;
