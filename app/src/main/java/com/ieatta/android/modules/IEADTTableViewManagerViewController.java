@@ -21,7 +21,6 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     private IEADTTableViewManagerViewController self = this;
     private DTTableViewManager manager = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
