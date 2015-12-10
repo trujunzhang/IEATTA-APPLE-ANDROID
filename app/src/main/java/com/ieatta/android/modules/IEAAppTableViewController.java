@@ -9,6 +9,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -95,6 +96,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
     public void didReceiveMemoryWarning() {
         // Dispose of any resources that can be recreated.
     }
+
 
 
 }

@@ -1,7 +1,9 @@
 package com.ieatta.android.modules;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
@@ -24,7 +26,60 @@ import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 public class IEAAppSegureTableViewController extends IEAAppTableViewController  implements RecyclerItemClickListener {
     private IEAAppSegureTableViewController self = this;
 
+    public void performSegueWithIdentifier(MainSegueIdentifier identifier,IEAAppTableViewController sender){
+        self.prepareForSegue(identifier);
+    }
+
+
     public void prepareForSegue(MainSegueIdentifier identifier) {
+        Class<?> cls = null;
+        switch (identifier) {
+
+            // Four menus in the near restaurant page.
+            case editRestaurantSegueIdentifier:
+
+                Intent intent = new Intent(EnvironmentUtils.sharedInstance.getGlobalContext(), cls);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                EnvironmentUtils.sharedInstance.getGlobalContext().startActivity(intent);
+                break;
+            case searchRestaurantSegueIdentifier:
+                break;
+            case managerPeopleSegueIdentifier:
+                break;
+            case readReviewsSegueIdentifier:
+                break;
+
+            // Four detail pages.
+            case detailRestaurantSegueIdentifier:
+                break;
+            case detailEventSegueIdentifier:
+                break;
+            case detailOrderedRecipesSegueIdentifier:
+                break;
+            case detailRecipeSegueIdentifier:
+                break;
+            // Show all posted reviews for restaurant,recipe.
+            case detailSeeReviewSegueIdentifier:
+                break;
+
+            // Show detail review from review list.
+            case detailReviewSegueIdentifier:
+                break;
+
+            // Four new/edit model pages.(the following three, and restaurant)
+            case editEventSegueIdentifier:
+                break;
+            case editPeopleSegueIdentifier:
+                break;
+            case editRecipeSegueIdentifier:
+                break;
+            // Choice Person in the event page.
+            case choicePeopleSegueIdentifier:
+                break;
+        }
+    }
+
+    public void prepareForSegue123(MainSegueIdentifier identifier) {
 //        switch (identifier) {
 //            // Four menus in the near restaurant page.
 //            case editRestaurantSegueIdentifier:
@@ -114,7 +169,7 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController  
 
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
-
+        self.whenSelectedEvent(model,indexPath);
         if (isLongClick) {
             Toast.makeText(self, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
         } else {
