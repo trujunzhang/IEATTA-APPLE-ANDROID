@@ -142,4 +142,8 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
         IntentCache.sharedInstance.setIntentModel(model);
         sender.putExtra(IntentCache.intentUUID, model.intentUUID);
     }
+    protected void setTransferedModelForEdit(Intent sender,ParseModelAbstract model,boolean newModel){
+        self.setTransferedModel(sender,model);
+        sender.putExtra(IntentCache.newModel,true);
+    }
 }

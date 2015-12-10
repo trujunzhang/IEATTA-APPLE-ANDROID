@@ -54,7 +54,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     // Transferd Model from previous page.
     private Restaurant restaurant;
     // Selected model from tableview.
-    private Event selectedModel;
+    private ParseModelAbstract selectedModel;
     // Fetched list by quering database.
     private List<ParseModelAbstract> fetchedEvents = new LinkedList<>();
 
@@ -155,20 +155,20 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     @Override
     protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination,Intent sender){
         // Edit Restaurant
-        self.setTransferedModel(sender,self.restaurant);
-        sender.putExtra(IntentCache.newModel,true);
+        self.setTransferedModelForEdit(sender,self.restaurant,true);
     }
 
     @Override
     protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender){
         /// Show detailed event
+        self.setTransferedModel(sender,self.selectedModel);
 //        destination.event      = self.selectedModel;
     }
 
     @Override
     protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender){
         // Add Event
-        Event event = new Event(self.restaurant);
+        self.setTransferedModelForEdit(sender,new Event(self.restaurant),true);
 //        destination.setEditModel(Event(belongToModel: self.restaurant!), newModel: true)
     }
 }

@@ -68,8 +68,7 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
         // TODO djzhang(used for iPhone)
         if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
             /// Add restaurant
-            self.setTransferedModel(sender,new Restaurant());
-            sender.putExtra(IntentCache.newModel,true);
+            self.setTransferedModelForEdit(sender,new Restaurant(),true);
         }
     }
 
