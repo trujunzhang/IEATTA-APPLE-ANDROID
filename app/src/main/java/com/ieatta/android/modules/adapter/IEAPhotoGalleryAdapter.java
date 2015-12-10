@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.cells.photos.IEAPhotosCell;
@@ -35,6 +36,16 @@ private IEAPhotoGalleryAdapter self = this;
     @Override
     public void onBindViewHolder(IEAPhotosCell holder, int position) {
         holder.render(self.fetchedPhotos.get(position));
+        holder.setClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick) {
+                if (isLongClick) {
+                    Toast.makeText(self.context, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(self.context, "#" + position + " - ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
