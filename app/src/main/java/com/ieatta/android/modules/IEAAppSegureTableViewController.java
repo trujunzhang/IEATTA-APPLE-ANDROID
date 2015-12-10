@@ -1,5 +1,8 @@
 package com.ieatta.android.modules;
 
+import android.view.View;
+
+import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
 import com.ieatta.android.modules.view.IEAEventDetailViewController;
@@ -18,7 +21,7 @@ import static com.ieatta.android.modules.common.MainSegueIdentifier.*;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEAAppSegureTableViewController extends IEAAppTableViewController {
+public class IEAAppSegureTableViewController extends IEAAppTableViewController  implements RecyclerItemClickListener {
     private IEAAppSegureTableViewController self = this;
 
     public void prepareForSegue(MainSegueIdentifier identifier) {
@@ -103,5 +106,10 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController {
     }
 
     protected void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination) {
+    }
+
+    @Override
+    public void onItemClick(View view, Object model, int position) {
+
     }
 }

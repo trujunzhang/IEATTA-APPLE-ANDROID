@@ -3,6 +3,8 @@ package com.ieatta.android.extensions.storage;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
+import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
+
 /**
  * Created by djzhang on 12/5/15.
  */
@@ -27,6 +29,7 @@ public class TableViewConfiguration {
         }
         public RecyclerView.LayoutManager manager;
         public RecyclerView.ItemDecoration decoration;
+        public RecyclerItemClickListener itemClickListener;
 
         public Builder setLayoutManager(RecyclerView.LayoutManager manager) {
             this.manager = manager;

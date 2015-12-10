@@ -16,10 +16,12 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
 
     private Context context;
     private DTTableViewManager manager;
+    private RecyclerItemClickListener itemClickListener;
 
-    public IEATableViewControllerAdapter(DTTableViewManager manager, Context context) {
-        self.manager = manager;
+    public IEATableViewControllerAdapter(Context context, DTTableViewManager manager, RecyclerItemClickListener itemClickListener) {
         self.context = context;
+        self.manager = manager;
+        self.itemClickListener = itemClickListener;
     }
 
     @Override
@@ -28,12 +30,14 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
     }
 
     @Override
-    public void onBindViewHolder(IEAViewHolder holder, int position) {
+    public void onBindViewHolder(final IEAViewHolder holder, int position) {
         Object model = self.manager.memoryStorage.getRowModel(position);
         holder.render(model);
         holder.setClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
+                Object item = self.manager.memoryStorage.getItem(position);
+                self.itemClickListener.onItemClick(holder.itemView,item,position);
                 if (isLongClick) {
                     Toast.makeText(self.context, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
                 } else {
