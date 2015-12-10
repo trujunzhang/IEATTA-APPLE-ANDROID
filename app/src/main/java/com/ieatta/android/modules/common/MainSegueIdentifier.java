@@ -1,97 +1,63 @@
 package com.ieatta.android.modules.common;
 
+import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
+import com.ieatta.android.modules.view.IEAEventDetailViewController;
+import com.ieatta.android.modules.view.IEAOrderedRecipesViewController;
+import com.ieatta.android.modules.view.IEARecipeDetailViewController;
+import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
+import com.ieatta.android.modules.view.IEASeeReviewsInDetailViewController;
+import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
+import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
+import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
+import com.ieatta.android.modules.view.search.IEAManagerPeopleViewController;
+import com.ieatta.android.modules.view.search.IEAReadReviewsViewController;
+import com.ieatta.android.modules.view.search.IEASearchRestaurantViewController;
+
 /**
  * Created by djzhang on 12/1/15.
  */
 
 
 public enum MainSegueIdentifier {
-    Unspecified {
-        public String toString() {
-            return "";
-        }
-    },
+
+    Unspecified("",null),
 
     // Four menus in the near restaurant page.
-    editRestaurantSegueIdentifier {
-        public String toString() {
-            return "addEditRestaurant";
-        }
-    },
-    searchRestaurantSegueIdentifier {
-        public String toString() {
-            return "searchRestaurant";
-        }
-    },
-    managerPeopleSegueIdentifier {
-        public String toString() {
-            return "managerPeople";
-        }
-    },
-    readReviewsSegueIdentifier {
-        public String toString() {
-            return "addEditRestaurant";
-        }
-    },
-
+    editRestaurantSegueIdentifier("addEditRestaurant", IEAEditRestaurantViewController.class),
+    
+    searchRestaurantSegueIdentifier("searchRestaurant", IEASearchRestaurantViewController.class),
+    managerPeopleSegueIdentifier("managerPeople", IEAManagerPeopleViewController.class),
+    readReviewsSegueIdentifier("addEditRestaurant", IEAReadReviewsViewController.class),
     // Four detail pages.
-    detailRestaurantSegueIdentifier {
-        public String toString() {
-            return "detailRestaurant";
-        }
-    },
-    detailEventSegueIdentifier {
-        public String toString() {
-            return "detailEvent";
-        }
-    },
-    detailOrderedRecipesSegueIdentifier {
-        public String toString() {
-            return "detailOrderedRecipes";
-        }
-    },
-    detailRecipeSegueIdentifier {
-        public String toString() {
-            return "detailRecipe";
-        }
-    },
+    detailRestaurantSegueIdentifier("detailRestaurant", IEARestaurantDetailViewController.class),
+    detailEventSegueIdentifier("detailEvent", IEAEventDetailViewController.class),
+    detailOrderedRecipesSegueIdentifier("detailOrderedRecipes", IEAOrderedRecipesViewController.class),
+    detailRecipeSegueIdentifier("detailRecipe", IEARecipeDetailViewController.class),
 
     // Show all posted reviews for restaurant,recipe.
-    detailSeeReviewSegueIdentifier {
-        public String toString() {
-            return "seeReviewsInDetail";
-        }
-    },
+    detailSeeReviewSegueIdentifier("seeReviewsInDetail", IEASeeReviewsInDetailViewController.class),
 
     // Show detail review from review list.
-    detailReviewSegueIdentifier {
-        public String toString() {
-            return "detailReview";
-        }
-    },
+    detailReviewSegueIdentifier("detailReview",IEASeeReviewsInDetailViewController.class),
 
     // Four new/edit model pages.(the following three, and restaurant)
-    editEventSegueIdentifier {
-        public String toString() {
-            return "addEditEvent";
-        }
-    },
-    editPeopleSegueIdentifier {
-        public String toString() {
-            return "addEditPeople";
-        }
-    },
-    editRecipeSegueIdentifier {
-        public String toString() {
-            return "addEditRecipe";
-        }
-    },
+    editEventSegueIdentifier("addEditEvent", IEAEditEventViewController.class),
+    editPeopleSegueIdentifier("addEditPeople", IEAEditPeopleViewController.class),
+    editRecipeSegueIdentifier("addEditRecipe",IEARecipeDetailViewController.class),
     // Choice Person in the event page.
-    choicePeopleSegueIdentifier {
-        public String toString() {
-            return "choicePeople";
-        }
-    },
+    choicePeopleSegueIdentifier("choicePeople", IEAChoicePeopleViewController.class),
 
+
+    private String name;
+    private Class<?> activity;
+
+    MainSegueIdentifier(String name, Class<?> activity) {
+        this.name = name;
+        this.activity = activity;
+    }
+
+    public static Class<?> getActivity(MainSegueIdentifier type){
+        return type.activity;
+    }
 
 }
