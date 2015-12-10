@@ -24,19 +24,12 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
 
     @Override
     public IEAViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == 6) {
-            int x = 0;
-        }
         return self.manager.createViewHolder(parent, viewType);
     }
 
     @Override
     public void onBindViewHolder(IEAViewHolder holder, int position) {
         Object model = self.manager.memoryStorage.getRowModel(position);
-        if (position == 2) {
-            Class<? extends IEAViewHolder> aClass = holder.getClass();
-            int x = 0;
-        }
         holder.render(model);
         holder.setClickListener(new ItemClickListener() {
             @Override
@@ -59,17 +52,6 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
     @Override
     public int getItemViewType(int position) {
         int itemViewType = self.manager.memoryStorage.getItemViewType(position);
-        if (position == 3) {
-            int x = 0;
-        }
-        if (position == 6) {
-            int x = 0;
-        }
         return itemViewType;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return super.getItemId(position);
     }
 }
