@@ -56,16 +56,13 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO djzhang(test)
-        self.orderedRecipe = ActivityModelDebug.getOrderedRecipe();
-        self.orderedRecipe.belongToModel = ActivityModelDebug.getOrderedPeople();
+        self.orderedRecipe = (Recipe) self.getTransferedModel();
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedRecipe?.belongToModel != nil, "Must setup OrderedPeople's instance.")
 //        assert(self.orderedRecipe != nil, "Must setup orderedRecipe's instance.")
 
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
-
 
         Photo.queryPhotosByModel(self.getPageModel()).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
@@ -90,7 +87,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
                 self.setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
                 self.setSectionItems(CollectionUtils.createList(self.orderedRecipe.belongToModel), RecipeDetailSection.sectionOrderedPeople.ordinal());
 
-                self.configureReviewsSection(self.fetchedReviews);
+//                self.configureReviewsSection(self.fetchedReviews);
                 self.configurePhotoGallerySection(fetchedPhotosTask);
 
                 return null;

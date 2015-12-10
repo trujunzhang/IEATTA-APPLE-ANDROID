@@ -126,7 +126,7 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
     }
 
     // MARK: Cell's Events
-    public void performSegueForAddingRecipe(){
-        self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier,  self);
+    public void performSegueForAddingRecipe() {
+        self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier, self);
     }
 }
