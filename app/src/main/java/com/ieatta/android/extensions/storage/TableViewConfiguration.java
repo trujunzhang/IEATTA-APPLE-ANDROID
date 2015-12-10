@@ -41,6 +41,11 @@ public class TableViewConfiguration {
             return this;
         }
 
+        public Builder setOnItemClickListener(RecyclerItemClickListener itemClickListener){
+            this.itemClickListener = itemClickListener;
+            return this;
+        }
+
         public Builder setDebugInfo(String debugType){
             this.debugType = debugType;
             return this;

@@ -37,12 +37,7 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
                 Object item = self.manager.memoryStorage.getItem(position);
-                self.itemClickListener.onItemClick(holder.itemView,item,position);
-                if (isLongClick) {
-                    Toast.makeText(self.context, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(self.context, "#" + position + " - ", Toast.LENGTH_SHORT).show();
-                }
+                self.itemClickListener.onItemClick(view,item,position,isLongClick);
             }
         });
     }

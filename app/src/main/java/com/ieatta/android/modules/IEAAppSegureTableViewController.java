@@ -1,6 +1,7 @@
 package com.ieatta.android.modules;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
@@ -15,8 +16,6 @@ import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
-
-import static com.ieatta.android.modules.common.MainSegueIdentifier.*;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -109,7 +108,11 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController  
     }
 
     @Override
-    public void onItemClick(View view, Object model, int position) {
-
+    public void onItemClick(View view, Object model, int position, boolean isLongClick) {
+        if (isLongClick) {
+            Toast.makeText(self, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(self, "#" + position + " - ", Toast.LENGTH_SHORT).show();
+        }
     }
 }
