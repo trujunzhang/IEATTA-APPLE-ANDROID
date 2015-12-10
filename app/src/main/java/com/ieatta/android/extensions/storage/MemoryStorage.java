@@ -1,8 +1,8 @@
 package com.ieatta.android.extensions.storage;
 
 import com.badoo.mobile.util.WeakHandler;
-import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.HashMap;

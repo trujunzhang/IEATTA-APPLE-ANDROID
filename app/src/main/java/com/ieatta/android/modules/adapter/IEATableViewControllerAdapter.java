@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 
@@ -37,7 +36,7 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
                 Object item = self.manager.memoryStorage.getItem(position);
-                self.itemClickListener.onItemClick(view,item,position,isLongClick);
+                self.itemClickListener.onItemClick(view,item,position, null, isLongClick);
             }
         });
     }
