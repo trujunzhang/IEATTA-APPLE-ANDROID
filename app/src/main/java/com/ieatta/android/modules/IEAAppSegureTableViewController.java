@@ -52,7 +52,7 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
                 self.segueForRestaurantDetailViewController(null, sender/*(segue.destinationViewController as ? IEARestaurantDetailViewController) !*/);
                 break;
             case detailEventSegueIdentifier:
-//                self.segueForEventDetailViewController((segue.destinationViewController as ? IEAEventDetailViewController) !);
+                self.segueForEventDetailViewController(null,sender/*(segue.destinationViewController as ? IEAEventDetailViewController) !*/);
                 break;
             case detailOrderedRecipesSegueIdentifier:
 //                self.segueForOrderedRecipesViewController((segue.destinationViewController as ? IEAOrderedRecipesViewController) !);
@@ -71,7 +71,7 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
                 break;
             // Four new/edit model pages.(the following three, and restaurant)
             case editEventSegueIdentifier:
-//                self.segueForEditEventViewController((segue.destinationViewController as ? IEAEditEventViewController) !);
+                self.segueForEditEventViewController(null,sender/*(segue.destinationViewController as ? IEAEditEventViewController) !*/);
                 break;
             case editPeopleSegueIdentifier:
 //                self.segueForEditPeopleViewController((segue.destinationViewController as ? IEAEditPeopleViewController) !);
@@ -92,10 +92,10 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
     protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
     }
 
-    protected void segueForEventDetailViewController(IEAEventDetailViewController destination) {
+    protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender) {
     }
 
-    protected void segueForEditEventViewController(IEAEditEventViewController destination) {
+    protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
     }
 
     protected void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination) {

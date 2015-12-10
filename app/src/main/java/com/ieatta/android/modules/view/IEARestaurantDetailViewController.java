@@ -1,16 +1,20 @@
 package com.ieatta.android.modules.view;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
 import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
+import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Photo;
@@ -135,5 +139,34 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         return RestaurantDetailSection.sectionPhotos.ordinal();
     }
 
+    @Override
+    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+        if(indexPath.section == RestaurantDetailSection.sectionEvents.ordinal()){
+            Event event =(Event) model;
+            event.belongToModel = self.restaurant;
+            self.selectedModel = event;
+            self.performSegueWithIdentifier(MainSegueIdentifier.detailEventSegueIdentifier,  self);
+        }else{
+            super.whenSelectedEvent(model, indexPath);
+        }
+    }
 
+    @Override
+    protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination,Intent sender){
+        // Edit Restaurant
+//        destination.setEditModel(self.restaurant);
+    }
+
+    @Override
+    protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender){
+        /// Show detailed event
+//        destination.event      = self.selectedModel;
+    }
+
+    @Override
+    protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender){
+        // Add Event
+        Event event = new Event(self.restaurant);
+//        destination.setEditModel(Event(belongToModel: self.restaurant!), newModel: true)
+    }
 }
