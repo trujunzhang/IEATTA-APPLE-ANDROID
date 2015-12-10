@@ -114,6 +114,7 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController  
 
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
+
         if (isLongClick) {
             Toast.makeText(self, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
         } else {
