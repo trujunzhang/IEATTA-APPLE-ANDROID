@@ -3,6 +3,7 @@ package com.ieatta.android.modules;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
@@ -105,6 +106,10 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController  
     }
 
     protected void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination) {
+    }
+
+    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+//        fatalError("whenSelectedEvent() has not been implemented");
     }
 
     @Override

@@ -37,10 +37,6 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         self.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
     }
 
-    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-//        fatalError("whenSelectedEvent() has not been implemented");
-    }
-
     public void setRegisterHeaderClass(CellType type) {
         getTableManager().registerHeaderClass(type);
     }
