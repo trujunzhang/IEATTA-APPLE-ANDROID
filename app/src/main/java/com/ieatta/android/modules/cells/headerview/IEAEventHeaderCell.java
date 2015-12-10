@@ -16,6 +16,10 @@ public class IEAEventHeaderCell  extends IEAViewHolder {
         return new CellType(IEAEventHeaderCell.class, R.layout.event_header_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
 
     private IEAEventHeaderCell self = this;
 

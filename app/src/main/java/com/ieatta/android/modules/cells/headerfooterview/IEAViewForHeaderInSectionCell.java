@@ -16,6 +16,11 @@ public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
         return new CellType(IEAViewForHeaderInSectionCell.class, R.layout.view_for_header_in_section_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
     private IEAViewForHeaderInSectionCell self = this;
 
     private TextView titleLabel;

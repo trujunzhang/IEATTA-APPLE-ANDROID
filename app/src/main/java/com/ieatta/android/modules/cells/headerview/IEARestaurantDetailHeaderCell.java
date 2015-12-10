@@ -16,6 +16,11 @@ public class IEARestaurantDetailHeaderCell  extends IEAViewHolder {
         return new CellType(IEARestaurantDetailHeaderCell.class, R.layout.restaurant_detail_header_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
     private IEARestaurantDetailHeaderCell self = this;
 
     private TextView formattedAddressLabel;

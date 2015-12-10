@@ -16,6 +16,11 @@ public class IEARecipeDetailHeaderCell  extends IEAViewHolder {
         return new CellType(IEARecipeDetailHeaderCell.class, R.layout.restaurant_detail_header_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
     private IEARecipeDetailHeaderCell self = this;
 
     private TextView formattedAddressLabel;

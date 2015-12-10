@@ -15,6 +15,11 @@ public class IEAPhotoGalleryFooterCell  extends IEAViewHolder {
         return new CellType(IEAPhotoGalleryFooterCell.class, R.layout.photo_gallery_footer_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
     private IEAPhotoGalleryFooterCell self = this;
 
     private TextView titleView;

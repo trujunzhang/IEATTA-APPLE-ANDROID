@@ -15,6 +15,10 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
         return new CellType(IEAMoreReviewsFooterCell.class, R.layout.choice_people_header_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
 
     private IEAMoreReviewsFooterCell self = this;
 

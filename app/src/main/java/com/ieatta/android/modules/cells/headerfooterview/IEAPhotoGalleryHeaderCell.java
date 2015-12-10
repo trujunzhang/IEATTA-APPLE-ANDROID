@@ -15,6 +15,10 @@ public class IEAPhotoGalleryHeaderCell  extends IEAViewHolder {
     public static CellType  getType() {
         return new CellType(IEAPhotoGalleryHeaderCell.class, R.layout.photo_gallery_header_cell);
     }
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
 
     private IEAPhotoGalleryHeaderCell self = this;
 

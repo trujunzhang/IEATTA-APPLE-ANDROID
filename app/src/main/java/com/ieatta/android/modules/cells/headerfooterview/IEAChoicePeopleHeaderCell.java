@@ -15,6 +15,11 @@ public class IEAChoicePeopleHeaderCell extends IEAViewHolder {
         return new CellType(IEAChoicePeopleHeaderCell.class,R.layout.choice_people_header_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
     private IEAChoicePeopleHeaderCell self = this;
 
     private TextView titleView;

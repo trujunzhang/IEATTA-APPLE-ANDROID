@@ -16,6 +16,10 @@ public class IEAReadReviewsHeader   extends IEAViewHolder {
         return new CellType(IEAReadReviewsHeader.class, R.layout.event_header_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
 
     private IEAReadReviewsHeader self = this;
 
