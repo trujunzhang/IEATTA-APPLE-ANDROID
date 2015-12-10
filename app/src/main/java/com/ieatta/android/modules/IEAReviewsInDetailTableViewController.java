@@ -2,6 +2,7 @@ package com.ieatta.android.modules;
 
 import com.ieatta.android.modules.cells.IEAReviewUserCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
@@ -19,11 +20,11 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
 
     protected void registerReviewTableCells() {
-        int reviewSectionIndex = self.getReviewsSectionIndex();
-        for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
-            self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
-            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
-        }
+//        int reviewSectionIndex = self.getReviewsSectionIndex();
+//        for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
+//            self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
+//            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
+//        }
 
 //        self.setRegisterFooterClass(IEAMoreReviewsFooterCell.getType());
     }
@@ -68,7 +69,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
     // MARK: Show all posted reviews for Restaurant,Recipe and Event.
     public void performSegueForSeeReviews() {
-//        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier.rawValue, sender: self)
+        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier,  self);
     }
 
     protected int getMoreReviewSectionIndex() {
