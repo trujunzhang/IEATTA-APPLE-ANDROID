@@ -124,4 +124,9 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
         // Add recipe
         self.setTransferedModelForEdit(sender, new Recipe(self.orderedPeople), true);
     }
+
+    // MARK: Cell's Events
+    public void performSegueForAddingRecipe(){
+        self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier,  self);
+    }
 }
