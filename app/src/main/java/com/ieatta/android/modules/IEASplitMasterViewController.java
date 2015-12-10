@@ -7,30 +7,69 @@ import com.ieatta.com.parse.models.Restaurant;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEASplitMasterViewController extends IEABaseTableViewController{
+public class IEASplitMasterViewController extends IEABaseTableViewController {
     private IEASplitMasterViewController self = this;
 
     // Selected model from tableview.
     protected Restaurant selectedModel;
 
-    protected void whenSelectedCellTaped(MainSegueIdentifier type){
-        switch(UIDevice.currentDevice().userInterfaceIdiom){
+    protected void whenSelectedCellTaped(MainSegueIdentifier type) {
+        switch (UIDevice.currentDevice().userInterfaceIdiom) {
             case Pad:
-            IEASplitMasterViewController.whenSelectedCellTapedForiPad(type, self, self.selectedModel);
-            break;
+                IEASplitMasterViewController.whenSelectedCellTapedForiPad(type, self, self.selectedModel);
+                break;
             case Phone:
                 IEASplitMasterViewController.whenSelectedCellTapedForPhone(type, self);
-            break;
+                break;
             default:
                 break;
         }
     }
 
-    static void whenSelectedCellTapedForPhone(MainSegueIdentifier type,IEAAppTableViewController sender){
+    static void whenSelectedCellTapedForPhone(MainSegueIdentifier type, IEAAppTableViewController sender) {
+        switch (type) {
 
+            // Four menus in the near restaurant page.
+            case editRestaurantSegueIdentifier:
+                break;
+            case searchRestaurantSegueIdentifier:
+                break;
+            case managerPeopleSegueIdentifier:
+                break;
+            case readReviewsSegueIdentifier:
+                break;
+
+            // Four detail pages.
+            case detailRestaurantSegueIdentifier:
+                break;
+            case detailEventSegueIdentifier:
+                break;
+            case detailOrderedRecipesSegueIdentifier:
+                break;
+            case detailRecipeSegueIdentifier:
+                break;
+            // Show all posted reviews for restaurant,recipe.
+            case detailSeeReviewSegueIdentifier:
+                break;
+
+            // Show detail review from review list.
+            case detailReviewSegueIdentifier:
+                break;
+
+            // Four new/edit model pages.(the following three, and restaurant)
+            case editEventSegueIdentifier:
+                break;
+            case editPeopleSegueIdentifier:
+                break;
+            case editRecipeSegueIdentifier:
+                break;
+            // Choice Person in the event page.
+            case choicePeopleSegueIdentifier:
+                break;
+        }
     }
 
-    static void whenSelectedCellTapedForiPad(MainSegueIdentifier type,IEAAppTableViewController rootViewController,Restaurant selectedModel){
+    static void whenSelectedCellTapedForiPad(MainSegueIdentifier type, IEAAppTableViewController rootViewController, Restaurant selectedModel) {
 //        var viewController = UIViewController()
 //        switch(type){
 //            // 4 more cell items.
