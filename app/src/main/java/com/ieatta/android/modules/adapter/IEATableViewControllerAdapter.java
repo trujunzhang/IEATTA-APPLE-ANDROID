@@ -2,7 +2,9 @@ package com.ieatta.android.modules.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 
@@ -36,6 +38,16 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
             int x = 0;
         }
         holder.render(model);
+        holder.setClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick) {
+                if (isLongClick) {
+                    Toast.makeText(self.context, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(self.context, "#" + position + " - ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
