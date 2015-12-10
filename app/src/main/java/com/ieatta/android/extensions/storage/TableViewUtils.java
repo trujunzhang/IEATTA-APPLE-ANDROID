@@ -1,5 +1,7 @@
 package com.ieatta.android.extensions.storage;
 
+import com.ieatta.android.extensions.storage.models.RowModel;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;

@@ -2,6 +2,9 @@ package com.ieatta.android.extensions.storage;
 
 
 import com.ieatta.android.extensions.storage.models.CellType;
+import com.ieatta.android.extensions.storage.models.FooterModel;
+import com.ieatta.android.extensions.storage.models.HeaderModel;
+import com.ieatta.android.extensions.storage.models.RowModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 
 import java.util.HashMap;

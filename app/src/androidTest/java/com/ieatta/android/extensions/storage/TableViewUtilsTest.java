@@ -3,6 +3,8 @@ package com.ieatta.android.extensions.storage;
 import android.test.InstrumentationTestCase;
 import android.test.InstrumentationTestSuite;
 
+import com.ieatta.android.extensions.storage.models.RowModel;
+
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
