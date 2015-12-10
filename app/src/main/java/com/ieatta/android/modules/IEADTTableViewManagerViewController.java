@@ -3,11 +3,11 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.storage.TableViewConfiguration;
-import com.ieatta.android.extensions.viewkit.NSIndexPath;
+import com.ieatta.android.extensions.storage.models.CellType;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.decoration.DividerDecoration;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;

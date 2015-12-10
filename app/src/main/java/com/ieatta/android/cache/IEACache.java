@@ -3,16 +3,12 @@ package com.ieatta.android.cache;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Review;
-import com.ieatta.com.parse.tools.TaskUtils;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Task;
-import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 12/1/15.

@@ -2,7 +2,6 @@ package com.ieatta.android.extensions.viewkit;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.util.AttributeSet;
 
 import com.ieatta.android.cache.IEACache;

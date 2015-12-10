@@ -8,14 +8,12 @@ import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
 import com.ieatta.android.modules.cells.IEAOrderedRecipeCell;
 import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Team;
-import com.nostra13.universalimageloader.utils.L;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 

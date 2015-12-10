@@ -1,13 +1,9 @@
 package com.ieatta.android.apps;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.media.Image;
 
 import com.ieatta.android.R;
 import com.ieatta.com.parse.models.Restaurant;
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;

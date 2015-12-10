@@ -3,16 +3,14 @@ package com.ieatta.android.modules.view.photogallery;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
-import com.ieatta.android.apps.AppAlertView;
-import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;

@@ -4,10 +4,9 @@ import android.os.Bundle;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
-import com.ieatta.android.modules.IEASplitMasterViewController;
 import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.edit.model.IEAEditRestaurantManager;
 

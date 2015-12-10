@@ -1,15 +1,9 @@
 package com.ieatta.android.modules.view.edit.model;
 
 import com.ieatta.android.modules.common.edit.DatePickerCellModel;
-import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 import com.ieatta.android.modules.common.edit.EditCellModel;
 import com.ieatta.android.modules.common.edit.EditWaiterCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Event;
-import com.ieatta.com.parse.models.Recipe;
-import com.ieatta.com.parse.models.Restaurant;
-import com.ieatta.com.parse.models.Team;
 
 /**
  * Created by djzhang on 12/4/15.

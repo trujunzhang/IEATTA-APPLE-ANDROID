@@ -1,7 +1,5 @@
 package com.ieatta.android.modules.tools;
 
-import com.nostra13.universalimageloader.utils.L;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.ieatta.android.debug;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.yelp.com.commonlib.EnvironmentUtils;

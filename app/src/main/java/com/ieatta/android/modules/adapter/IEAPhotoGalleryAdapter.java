@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.cells.photos.IEAPhotosCell;
 import com.ieatta.com.parse.ParseModelAbstract;
 

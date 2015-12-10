@@ -9,25 +9,16 @@ import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.ieatta.com.parse.tools.TaskUtils;
-import com.ieatta.android.observers.LocationObserver;
 import com.ieatta.com.parse.models.Restaurant;
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 import bolts.Continuation;
 import bolts.Task;

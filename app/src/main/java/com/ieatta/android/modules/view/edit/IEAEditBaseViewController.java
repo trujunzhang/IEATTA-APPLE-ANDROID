@@ -2,12 +2,9 @@ package com.ieatta.android.modules.view.edit;
 
 import android.os.Bundle;
 
-import com.ieatta.android.apps.AppAlertView;
-import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
-import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 

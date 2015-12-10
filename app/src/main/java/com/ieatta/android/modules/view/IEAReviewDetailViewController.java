@@ -3,16 +3,12 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseTableViewController;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
 import bolts.Continuation;
 import bolts.Task;
-
-import static com.ieatta.com.parse.models.enums.ReviewType.Review_Event;
-import static com.ieatta.com.parse.models.enums.ReviewType.Review_Restaurant;
 
 /**
  * Created by djzhang on 12/1/15.

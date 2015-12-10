@@ -8,16 +8,14 @@ import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
 import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Restaurant;
-import com.ieatta.com.parse.models.Team;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 

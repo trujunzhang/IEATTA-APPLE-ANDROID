@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.badoo.mobile.util.WeakHandler;
-import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;

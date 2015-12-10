@@ -2,7 +2,6 @@ package com.ieatta.android;
 
 import android.app.Application;
 import android.virtualbreak.com.debug.AppDebugManager;
-import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.apps.AppConfigure;
 import com.ieatta.com.parse.ParseAPI;

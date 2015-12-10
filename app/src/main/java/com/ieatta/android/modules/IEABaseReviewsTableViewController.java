@@ -3,14 +3,13 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.viewkit.NSIndexPath;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 

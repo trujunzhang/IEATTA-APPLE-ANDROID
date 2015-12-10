@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.tools;
 
-import com.ieatta.android.extensions.viewkit.NSIndexPath;
+
+import com.ieatta.android.modules.adapter.NSIndexPath;
 
 import java.util.LinkedHashMap;
 

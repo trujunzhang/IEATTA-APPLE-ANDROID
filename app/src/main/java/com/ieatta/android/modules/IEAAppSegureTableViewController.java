@@ -3,7 +3,6 @@ package com.ieatta.android.modules;
 import android.view.View;
 import android.widget.Toast;
 
-import com.ieatta.android.extensions.viewkit.NSIndexPath;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.common.MainSegueIdentifier;

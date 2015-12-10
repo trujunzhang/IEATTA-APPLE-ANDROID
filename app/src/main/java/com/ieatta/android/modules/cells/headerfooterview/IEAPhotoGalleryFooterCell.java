@@ -1,11 +1,11 @@
 package com.ieatta.android.modules.cells.headerfooterview;
 
-import com.ieatta.android.modules.adapter.IEAViewHolder;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
+import com.ieatta.android.modules.adapter.IEAViewHolder;
 
 /**
  * Created by djzhang on 12/2/15.
