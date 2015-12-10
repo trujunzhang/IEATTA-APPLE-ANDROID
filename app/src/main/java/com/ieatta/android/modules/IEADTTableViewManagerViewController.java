@@ -3,7 +3,7 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.ieatta.android.extensions.storage.CellType;
+import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.storage.TableViewConfiguration;

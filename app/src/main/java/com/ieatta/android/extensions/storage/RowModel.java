@@ -2,6 +2,8 @@ package com.ieatta.android.extensions.storage;
 
 import android.inputmethodservice.Keyboard;
 
+import com.ieatta.android.extensions.storage.models.CellType;
+
 /**
  * Created by djzhang on 12/2/15.
  */

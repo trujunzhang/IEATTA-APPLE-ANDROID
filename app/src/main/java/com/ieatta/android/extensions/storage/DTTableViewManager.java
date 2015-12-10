@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 

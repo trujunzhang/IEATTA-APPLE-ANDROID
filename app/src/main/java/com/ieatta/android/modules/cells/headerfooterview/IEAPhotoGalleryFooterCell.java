@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.storage.CellType;
+import com.ieatta.android.extensions.storage.models.CellType;
 
 /**
  * Created by djzhang on 12/2/15.

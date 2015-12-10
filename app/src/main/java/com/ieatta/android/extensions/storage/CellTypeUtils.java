@@ -1,5 +1,7 @@
 package com.ieatta.android.extensions.storage;
 
+import com.ieatta.android.extensions.storage.models.CellType;
+
 import java.util.LinkedHashMap;
 
 /**

@@ -1,4 +1,4 @@
-package com.ieatta.android.extensions.storage;
+package com.ieatta.android.extensions.storage.models;
 
 /**
  * Created by djzhang on 12/4/15.

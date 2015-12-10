@@ -3,7 +3,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.storage.CellType;
+import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.EditCellModel;
 

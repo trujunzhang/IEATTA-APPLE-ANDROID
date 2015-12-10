@@ -1,6 +1,8 @@
 package com.ieatta.android.extensions.storage;
 
 
+import com.ieatta.android.extensions.storage.models.CellType;
+
 /**
  * Created by djzhang on 12/1/15.
  */

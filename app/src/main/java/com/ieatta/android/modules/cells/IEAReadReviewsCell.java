@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.cache.RatedModelReviewCount;
-import com.ieatta.android.extensions.storage.CellType;
+import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 
 public class IEAReadReviewsCell extends IEAViewHolder {
