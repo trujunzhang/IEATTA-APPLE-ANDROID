@@ -45,7 +45,7 @@ public enum MainSegueIdentifier {
     editPeopleSegueIdentifier("addEditPeople", IEAEditPeopleViewController.class),
     editRecipeSegueIdentifier("addEditRecipe",IEARecipeDetailViewController.class),
     // Choice Person in the event page.
-    choicePeopleSegueIdentifier("choicePeople", IEAChoicePeopleViewController.class),
+    choicePeopleSegueIdentifier("choicePeople", IEAChoicePeopleViewController.class);
 
 
     private String name;
@@ -56,8 +56,8 @@ public enum MainSegueIdentifier {
         this.activity = activity;
     }
 
-    public static Class<?> getActivity(MainSegueIdentifier type){
-        return type.activity;
+    public Class<?> getActivity(){
+        return this.activity;
     }
 
 }
