@@ -117,7 +117,7 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController  
         if (isLongClick) {
             Toast.makeText(self, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(self, "#" + position + " - ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(self, "#" + position + " - "+ indexPath.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 }
