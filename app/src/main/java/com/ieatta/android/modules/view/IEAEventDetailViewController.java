@@ -5,10 +5,12 @@ import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
 import com.ieatta.android.modules.cells.headerview.IEAEventHeaderCell;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
 import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
@@ -130,5 +132,18 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     @Override
     public void didSelectPeople(Team people) {
 
+    }
+
+    @Override
+    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+        if(indexPath.section == EventDetailSection.sectionOrderedPeople.ordinal()){
+            IEAOrderedPeople people = (IEAOrderedPeople)model;
+
+            people.model.belongToModel = self.event;
+            self.selectedModel = people.model;
+            self.performSegueWithIdentifier(MainSegueIdentifier.detailOrderedRecipesSegueIdentifier,  self);
+        }else{
+            super.whenSelectedEvent(model, indexPath);
+        }
     }
 }
