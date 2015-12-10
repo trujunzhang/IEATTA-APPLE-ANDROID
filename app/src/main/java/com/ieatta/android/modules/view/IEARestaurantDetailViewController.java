@@ -62,8 +62,10 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        self.transfer((Restaurant) self.getTransferedModel());
+
         // TODO djzhang(test)
-        self.restaurant = ActivityModelDebug.getRestaurantForRestaurantDetail();
+//        self.restaurant = ActivityModelDebug.getRestaurantForRestaurantDetail();
 
         // Do any additional setup after loading the view.
 //        assert(self.restaurant != nil, "Must setup selected restaurant.")
