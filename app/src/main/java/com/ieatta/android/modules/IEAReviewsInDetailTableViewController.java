@@ -71,8 +71,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier.rawValue, sender: self)
     }
 
-    @Override
-    protected int getReviewsSectionIndex() {
+    protected int getMoreReviewSectionIndex() {
         return (self.getReviewsSectionIndex() + Review.MAX_FETCHED_REVIEWS_IN_DetailPage + 1);
     }
 

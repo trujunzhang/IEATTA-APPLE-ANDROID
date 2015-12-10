@@ -56,8 +56,9 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        self.event = (Event) self.getTransferedModel();
         // TODO djzhang(test)
-        self.event = ActivityModelDebug.getEventForEventDetail();
+//        self.event = ActivityModelDebug.getEventForEventDetail();
 
 
         // Do any additional setup after loading the view.
@@ -118,8 +119,6 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted() == true) {
-                    Object object = task;
-                    int x = 0;
                 }
                 return null;
             }

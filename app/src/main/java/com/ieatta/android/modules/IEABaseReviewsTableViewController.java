@@ -37,16 +37,16 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
     }
 
     protected Task<Boolean> getReviewsRelatedModelQueryTask() {
-        return Review.queryReviews(self.getPageModel(),self.getQueriedReviewsLimit()).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+        return Review.queryReviews(self.getPageModel(), self.getQueriedReviewsLimit()).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 Object object = task;
                 self.fetchedReviews = task.getResult();//Review
                 return Team.queryTeamByPoints(Review.getUserPoints(self.fetchedReviews));
             }
-        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean> >() {
+        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
-            public Task<Boolean>  then(Task<List<ParseModelAbstract>> task) throws Exception {
+            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 return self.getPhotosForModelsTask(task);
             }
         });
@@ -65,13 +65,15 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
         return Review.MAX_FETCHED_REVIEWS_IN_DetailPage;
     }
 
-    protected abstract int getReviewsSectionIndex();
-
-    protected Review getReview(NSIndexPath indexPath) {
-        return (Review) self.fetchedReviews.get(indexPath.section- self.getReviewsSectionIndex());
+    protected int getReviewsSectionIndex() {
+        return -1;
     }
 
-    public void performSegueForWritingReview(){
+    protected Review getReview(NSIndexPath indexPath) {
+        return (Review) self.fetchedReviews.get(indexPath.section - self.getReviewsSectionIndex());
+    }
+
+    public void performSegueForWritingReview() {
 //        self.presentViewController(UINavigationController(rootViewController: IEAWriteReviewViewController.createInstance(self.getPageModel())), animated: true, completion: nil)
     }
 
