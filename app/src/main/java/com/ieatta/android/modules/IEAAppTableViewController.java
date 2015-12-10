@@ -26,6 +26,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
 
         this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        this.recyclerView.setHasFixedSize(true);
 
 //        self.view.backgroundColor = UIColor(named: .MainBody)
 //        self.tableView.backgroundColor = UIColor(named: .MainBody)
