@@ -21,6 +21,8 @@ public class ActivityModelDebug {
         Event event = new Event();
         event.objectUUID = "C9970CF0-6925-42C5-8C52-4E37A8A250A1";
         event.displayName = "California Hot Sauce Expo";
+
+        event.belongToModel = ActivityModelDebug.getRestaurantForRestaurantDetail();
         return event;
     }
 
