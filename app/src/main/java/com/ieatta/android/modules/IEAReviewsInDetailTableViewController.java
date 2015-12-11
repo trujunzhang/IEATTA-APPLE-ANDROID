@@ -20,11 +20,11 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
 
     protected void registerReviewTableCells() {
-//        int reviewSectionIndex = self.getReviewsSectionIndex();
-//        for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
-//            self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
-//            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
-//        }
+        int reviewSectionIndex = self.getReviewsSectionIndex();
+        for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
+            self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
+            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
+        }
 
 //        self.setRegisterFooterClass(IEAMoreReviewsFooterCell.getType());
     }
@@ -72,7 +72,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
         self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier,  self);
     }
 
-    protected int getMoreReviewSectionIndex() {
+    private int getMoreReviewSectionIndex() {
         return (self.getReviewsSectionIndex() + Review.MAX_FETCHED_REVIEWS_IN_DetailPage + 1);
     }
 

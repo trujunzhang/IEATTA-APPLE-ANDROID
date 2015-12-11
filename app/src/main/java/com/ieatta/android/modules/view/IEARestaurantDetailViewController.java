@@ -82,14 +82,21 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         Event.queryEventsRelatedRestaurant(self.restaurant).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedEvents =  task.getResult();
+                self.fetchedEvents = task.getResult();
 
                 return Photo.queryPhotosByRestaurant(self.restaurant);
             }
-        }).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
-            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedPhotosTask = task;
+
+                // Next, Load Reviews.
+                return self.getReviewsRelatedModelQueryTask();
+            }
+        }).onSuccess(new Continuation<Boolean, Object>() {
+            @Override
+            public Object then(Task<Boolean> task) throws Exception {
 
                 // Finally, hide hud.
                 self.hideHUD();
@@ -102,8 +109,8 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
 
                 self.configureEventSection(self.fetchedEvents);
-//            self.configurePhotoGallerySection(fetchedPhotosTask)
-//            self.configureReviewsSection(task.result as! [Team])
+                self.configureReviewsSection(self.fetchedReviews);
+                self.configurePhotoGallerySection(fetchedPhotosTask);
 
                 return null;
             }
