@@ -67,13 +67,6 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/divideHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/businesspage_divider_background" />
-
-
     <!--buttonsView-->
     <include layout="@layout/restaurant_buttons_bar"/>
 
