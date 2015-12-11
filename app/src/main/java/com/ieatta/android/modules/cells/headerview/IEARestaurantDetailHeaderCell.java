@@ -39,15 +39,20 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
         self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
 
         self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
+        self.editButton.setText(R.string.Edit_Restaurant);
         self.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
+        self.firstButton.setText(R.string.Add_Event);
         self.secondButton = (TextView) itemView.findViewById(R.id.secondTextView);
+        self.secondButton.setText(R.string.Write_Review);
         self.thirdButton = (TextView) itemView.findViewById(R.id.thirdTextView);
+        self.thirdButton.setText(R.string.See_Reviews);
     }
 
     @Override
     public void render(Object value) {
         IEARestaurantDetailHeader model = (IEARestaurantDetailHeader) value;
 
+        self.restaurantNameLabel.setText(model.model.displayName);
 
     }
 }
