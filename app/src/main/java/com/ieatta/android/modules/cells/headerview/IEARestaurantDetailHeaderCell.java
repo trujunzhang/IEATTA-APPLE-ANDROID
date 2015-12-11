@@ -24,7 +24,7 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
 
     private IEARestaurantDetailHeaderCell self = this;
 
-    private TextView restaurantNameLabel;
+    private TextView displayNameLabel;
     private ImageView ratingImageView;
 
     private TextView editButton;
@@ -35,7 +35,7 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     public IEARestaurantDetailHeaderCell(View itemView) {
         super(itemView);
 
-        self.restaurantNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
+        self.displayNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
         self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
 
         self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
@@ -52,7 +52,7 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     public void render(Object value) {
         IEARestaurantDetailHeader model = (IEARestaurantDetailHeader) value;
 
-        self.restaurantNameLabel.setText(model.model.displayName);
+        self.displayNameLabel.setText(model.model.displayName);
         self.ratingImageView.setImageLevel(2);
     }
 }
