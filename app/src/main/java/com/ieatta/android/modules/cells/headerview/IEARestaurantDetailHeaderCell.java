@@ -27,11 +27,6 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     private TextView restaurantNameLabel;
     private ImageView ratingImageView;
 
-    private TextView divideHorizontal;
-
-    private TextView divideView1;
-    private TextView divideView2;
-
     private TextView editButton;
     private TextView firstButton;
     private TextView secondButton;
@@ -40,13 +35,8 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     public IEARestaurantDetailHeaderCell(View itemView) {
         super(itemView);
 
-        self.restaurantNameLabel = (TextView) itemView.findViewById(R.id.addressTextView);
-        self.ratingImageView = (ImageView) itemView.findViewById(R.id.addressTextView);
-
-        self.divideHorizontal = (TextView) itemView.findViewById(R.id.addressTextView);
-
-        self.divideView1 = (TextView) itemView.findViewById(R.id.addressTextView);
-        self.divideView2 = (TextView) itemView.findViewById(R.id.addressTextView);
+        self.restaurantNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
+        self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
 
         self.editButton = (TextView) itemView.findViewById(R.id.addressTextView);
         self.firstButton = (TextView) itemView.findViewById(R.id.addressTextView);
