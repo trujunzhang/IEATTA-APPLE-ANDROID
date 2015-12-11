@@ -15,14 +15,27 @@
         <include layout="@layout/detail_header_edit_bar" />
 
         <!--Name Label-->
+
+        <!--Name Label-->
         <TextView
+            android:id="@+id/displayNameTextView"
             android:layout_width="match_parent"
-            android:layout_height="34dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:gravity="center_vertical"
             android:text="@string/Add_Event"
             android:textAlignment="center"
             android:textSize="@dimen/abc_text_size_large_material" />
+
+        <TextView
+            android:id="@+id/priceNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:text="@string/Add_Event"
+            android:textAlignment="center"
+            android:textSize="@dimen/abc_text_size_small_material" />
 
         <ImageView
             android:id="@+id/business_review_star_rating"

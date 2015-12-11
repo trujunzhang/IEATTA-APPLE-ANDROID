@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.cells.headerview;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
@@ -23,18 +24,34 @@ public class IEARecipeDetailHeaderCell  extends IEAViewHolder {
 
     private IEARecipeDetailHeaderCell self = this;
 
-    private TextView formattedAddressLabel;
+    private TextView displayNameLabel;
+    private TextView priceNameLabel;
+    private ImageView ratingImageView;
+
+    private TextView editButton;
+    private TextView secondButton;
+    private TextView thirdButton;
 
     public IEARecipeDetailHeaderCell(View itemView) {
         super(itemView);
 
-//        self.formattedAddressLabel = (TextView) itemView.findViewById(R.id.formattedAddressLabel);
+        self.displayNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
+        self.priceNameLabel = (TextView) itemView.findViewById(R.id.priceNameTextView);
+        self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
+
+        self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
+        self.editButton.setText(R.string.Edit_Recipe);
+        self.secondButton = (TextView) itemView.findViewById(R.id.secondTextView);
+        self.secondButton.setText(R.string.Write_Review);
+        self.thirdButton = (TextView) itemView.findViewById(R.id.thirdTextView);
+        self.thirdButton.setText(R.string.See_Reviews);
     }
 
     @Override
     public void render(Object value) {
-        IEARecipeHeader more  = (IEARecipeHeader) value;
-//        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
+        IEARecipeHeader model  = (IEARecipeHeader) value;
 
+        self.displayNameLabel.setText(model.model.displayName);
+        self.priceNameLabel.setText(""+model.model.cost);
     }
 }
