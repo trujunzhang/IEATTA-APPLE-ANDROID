@@ -59,7 +59,6 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
 //        self.orderedRecipe = (Recipe) self.getTransferedModel();
         // TODO djzhang(test)
         self.orderedRecipe = ActivityModelDebug.getOrderedRecipe();
-        self.orderedRecipe.belongToModel = ActivityModelDebug.getOrderedPeople();
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedRecipe?.belongToModel != nil, "Must setup OrderedPeople's instance.")
