@@ -12,6 +12,7 @@ import com.ieatta.com.parse.models.Photo;
 import java.util.LinkedList;
 import java.util.List;
 
+import bolts.Continuation;
 import bolts.Task;
 
 /**
@@ -89,8 +90,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        boolean newModel = self.getIntent().getExtras().getBoolean(IntentCache.newModel);
-        self.setEditModel(self.getTransferedModel(),newModel);
+//        self.setEditModel(self.getTransferedModel(),self.getIntent().getExtras().getBoolean(IntentCache.newModel));
 
         // TODO djzhang(test)
         self.hideHUD();
@@ -104,32 +104,30 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         self.editManager = self.getEditManager();
 
         // TODO djzhang(test)
-        self.prepareForEditTableView();
-        self.setItemsInSection(self.editManager.getRowsInSection(self.editedModel, self));
+//        self.prepareForEditTableView();
+//        self.setItemsInSection(self.editManager.getRowsInSection(self.editedModel, self));
 
+        self.getQueryPhotosTask().onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+            @Override
+            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.prepareForEditTableView();
+                self.setItemsInSection(self.editManager.getRowsInSection(self.editedModel, self));
+                self.configurePhotoGallerySection(task);
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                // Finally, hide hud.
+                if (self.newModel == false) {
+                    self.hideHUD();
+                }
+                if (task.isFaulted()) {
 
-//        self.getQueryPhotosTask()
-//                .continueWithBlock { (task) -> AnyObject? in
-//
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//            if let _ = task.error{
-//
-//            }else{
-//                // Finally, hide hud.
-//                if(self.newModel == false){
-//                    self.hideHUD()
-//                }
-//
-//                self.prepareForEditTableView()
-//
-//                self.setItemsInSection(self.editManager!.getRowsInSection(self.editedModel!,viewController: self))
-//
-//                self.configurePhotoGallerySection(task)
-//            }
-//            })
-//
-//            return nil
-//        }
+                }
+                return null;
+            }
+        });
 
     }
 
@@ -155,7 +153,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         self.rowModels = rows;
         for (int i = 0; i < rows.length; i++) {
             Object[] items = (Object[]) rows[i];
-            if(items == null){
+            if (items == null) {
                 continue;
             }
             setSectionItems(CollectionUtils.createList(items), i);
