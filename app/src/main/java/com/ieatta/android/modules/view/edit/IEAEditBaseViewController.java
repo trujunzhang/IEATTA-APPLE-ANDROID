@@ -88,20 +88,17 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // **** Important ****
+        self.editManager = self.getEditManager();
+        self.rowModels = self.editManager.getRowsInSection(self.editedModel, self);
+
         super.onCreate(savedInstanceState);
-
-//        self.setEditModel(self.getTransferedModel(),self.getIntent().getExtras().getBoolean(IntentCache.newModel));
-
-        // TODO djzhang(test)
-        self.hideHUD();
 
 //        assert(self.editedModel != nil, "Must setup editedModel's instance.")
 
 //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightButtonTitle, style: .Plain, target: self, action: "saveModelAction")
 
 //        .sharedInstance.resetObserver();
-
-        self.editManager = self.getEditManager();
 
         // TODO djzhang(test)
 //        self.prepareForEditTableView();
@@ -111,8 +108,10 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
             @Override
             public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.prepareForEditTableView();
-                self.setItemsInSection(self.editManager.getRowsInSection(self.editedModel, self));
+
+                self.setItemsInSection(self.rowModels);
                 self.configurePhotoGallerySection(task);
+
                 return null;
             }
         }).continueWith(new Continuation<Object, Object>() {
