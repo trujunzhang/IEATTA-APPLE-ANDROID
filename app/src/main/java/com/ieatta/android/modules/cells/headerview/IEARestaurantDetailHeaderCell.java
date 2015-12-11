@@ -53,6 +53,6 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
         IEARestaurantDetailHeader model = (IEARestaurantDetailHeader) value;
 
         self.restaurantNameLabel.setText(model.model.displayName);
-
+        self.ratingImageView.setImageLevel(2);
     }
 }

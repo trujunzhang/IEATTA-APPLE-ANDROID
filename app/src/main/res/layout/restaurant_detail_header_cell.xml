@@ -19,6 +19,7 @@
             android:id="@+id/displayNameTextView"
             android:layout_width="match_parent"
             android:layout_height="34dp"
+            android:textAppearance="@style/LargeDarkText"
             android:text="@string/Add_Event"
             android:textSize="@dimen/abc_text_size_large_material"
             android:textAlignment="center"
