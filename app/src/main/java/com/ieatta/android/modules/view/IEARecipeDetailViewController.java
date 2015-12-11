@@ -56,7 +56,10 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.orderedRecipe = (Recipe) self.getTransferedModel();
+//        self.orderedRecipe = (Recipe) self.getTransferedModel();
+        // TODO djzhang(test)
+        self.orderedRecipe = ActivityModelDebug.getOrderedRecipe();
+        self.orderedRecipe.belongToModel = ActivityModelDebug.getOrderedPeople();
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedRecipe?.belongToModel != nil, "Must setup OrderedPeople's instance.")
