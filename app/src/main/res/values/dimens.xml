@@ -147,12 +147,12 @@
     <dimen name="base_text_padding">10.0dip</dimen>
     <dimen name="blur_image_height">30.0px</dimen>
     <dimen name="blur_image_width">40.0px</dimen>
-    <dimen name="border">4.0dp</dimen>
+    <dimen name="border">1.0dp</dimen>
     <dimen name="business_page_viewpager_height">50.0dip</dimen>
     <dimen name="businesspage_cell_half_review_height">22.0dip</dimen>
     <dimen name="businesspage_cell_min_height">40.0dip</dimen>
     <dimen name="businesspage_header_cell_bar_bottom_spacing">8.0dip</dimen>
-    <dimen name="businesspage_header_cell_top_spacing">27.0dip</dimen>
+    <dimen name="businesspage_header_cell_top_spacing">8.0dip</dimen>
     <dimen name="businesspage_review_page_button">44.0dip</dimen>
     <dimen name="button_height">54.0dip</dimen>
     <dimen name="button_padding">9.0dip</dimen>
