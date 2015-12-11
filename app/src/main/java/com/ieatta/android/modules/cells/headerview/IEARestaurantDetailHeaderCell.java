@@ -38,16 +38,16 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
         self.restaurantNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
         self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
 
-        self.editButton = (TextView) itemView.findViewById(R.id.addressTextView);
-        self.firstButton = (TextView) itemView.findViewById(R.id.addressTextView);
-        self.secondButton = (TextView) itemView.findViewById(R.id.addressTextView);
-        self.thirdButton = (TextView) itemView.findViewById(R.id.addressTextView);
+        self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
+        self.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
+        self.secondButton = (TextView) itemView.findViewById(R.id.secondTextView);
+        self.thirdButton = (TextView) itemView.findViewById(R.id.thirdTextView);
     }
 
     @Override
     public void render(Object value) {
-        IEARestaurantDetailHeader more = (IEARestaurantDetailHeader) value;
-//        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
+        IEARestaurantDetailHeader model = (IEARestaurantDetailHeader) value;
+
 
     }
 }
