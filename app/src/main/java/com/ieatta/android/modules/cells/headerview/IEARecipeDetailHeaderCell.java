@@ -13,7 +13,7 @@ import com.ieatta.android.modules.cells.model.IEARecipeHeader;
  */
 public class IEARecipeDetailHeaderCell  extends IEAViewHolder {
     public static CellType  getType() {
-        return new CellType(IEARecipeDetailHeaderCell.class, R.layout.restaurant_detail_header_cell);
+        return new CellType(IEARecipeDetailHeaderCell.class, R.layout.recipe_detail_header_cell);
     }
 
     @Override
