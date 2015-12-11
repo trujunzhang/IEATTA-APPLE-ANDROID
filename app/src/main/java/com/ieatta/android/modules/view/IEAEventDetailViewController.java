@@ -92,12 +92,12 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
             }
-////        }).continueWith(new Continuation<Object, Object>() {
-////            @Override
-////            public Object then(Task<Object> task) throws Exception {
-////                // Next, Load Reviews.
-////                return self.getReviewsRelatedModelQueryTask();
-////            }
+        }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(Task<Boolean> task) throws Exception {
+                // Next, Load Reviews.
+                return self.getReviewsRelatedModelQueryTask();
+            }
         }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
@@ -112,8 +112,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 
                 self.addOrderedPeopleSection(self.fetchedPeople);
-//                self.configureReviewsSection(self.fetchedPeople);
-
+                self.configureReviewsSection(self.fetchedReviews);
 
                 return null;
             }
@@ -130,6 +129,11 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     /// Add rows for section "Ordered People".
     private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople) {
         setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event), EventDetailSection.sectionOrderedPeople.ordinal());
+    }
+
+    @Override
+    protected int getReviewsSectionIndex() {
+        return EventDetailSection.sectionReviews.ordinal();
     }
 
     @Override
