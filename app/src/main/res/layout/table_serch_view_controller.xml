@@ -23,7 +23,7 @@
         <EditText
             android:textAppearance="@style/LargeText"
             android:textColor="@color/black_yoni"
-            android:id="@+id/activity_config_yelp_host"
+            android:id="@+id/searchTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/Search_Hint_Event"
@@ -31,7 +31,7 @@
             android:layout_toRightOf="@+id/activity_config_host_label" />
 
         <ImageView
-            android:id="@+id/activity_config_yelp_host_clear"
+            android:id="@+id/search_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/close_icon"

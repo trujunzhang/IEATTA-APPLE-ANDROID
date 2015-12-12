@@ -1,6 +1,8 @@
 package com.ieatta.android.modules.view.search;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
@@ -20,6 +22,8 @@ enum SearchRestaurantSection {
  */
 public class IEASearchRestaurantViewController extends IEASplitDetailViewController {
     private IEASearchRestaurantViewController self = this;
+    private EditText searchTextView;
+    private ImageView search_clear_Button;
 
     protected int getContentView(){
         return R.layout.table_serch_view_controller;
@@ -28,6 +32,9 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        self.searchTextView =(EditText) self.findViewById(R.id.searchTextView);
+        self.search_clear_Button =(ImageView) self.findViewById(R.id.search_clear);
 
         self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(), SearchRestaurantSection.sectionRestaurants.ordinal());
     }

@@ -9,4 +9,5 @@ import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewControlle
 ///   IEABaseReviewsTableViewController
 ///   IEAReadReviewsBaseViewController
 public class IEAReviewSegueTableViewController extends IEAPhotoGalleryViewController {
+
 }
