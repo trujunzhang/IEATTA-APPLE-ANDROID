@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+
+
+import com.ieatta.android.R;
 import com.yelp.android.ui.widgets.SpannedTextView;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,9 +36,14 @@ public class Field extends SpannedTextView
     public Field(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
     {
         super(paramContext, paramAttributeSet, paramInt);
+        TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet,
+                new int[] { R.attr.attachmentIcon,R.attr.emptyText,R.attr.position },  // attribute[s] to access
+                paramInt,
+                paramInt);  // Style to access
+
 //        TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet, b.AddBusinessField, paramInt, paramInt);
-//        setAttributes(localTypedArray);
-//        localTypedArray.recycle();
+        setAttributes(localTypedArray);
+        localTypedArray.recycle();
     }
 
     private boolean a()
@@ -151,7 +159,9 @@ public class Field extends SpannedTextView
         this.g = paramTypedArray.getResourceId(0, 0);
         this.h = paramTypedArray.getResourceId(1, 0);
         this.i = paramTypedArray.getResourceId(2, 0);
-        setHint(paramTypedArray.getText(3));
+        CharSequence text = paramTypedArray.getText(3);
+//        text = "wanghao";
+        setHint(text);
         a(getText(), (Parcelable)null);
     }
 
