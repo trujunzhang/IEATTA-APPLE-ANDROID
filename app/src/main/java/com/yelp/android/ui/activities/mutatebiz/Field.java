@@ -37,7 +37,7 @@ public class Field extends SpannedTextView
     {
         super(paramContext, paramAttributeSet, paramInt);
         TypedArray localTypedArray = paramContext.obtainStyledAttributes(paramAttributeSet,
-                new int[] { R.attr.attachmentIcon,R.attr.emptyText,R.attr.position },  // attribute[s] to access
+                new int[] { R.attr.attachmentIcon,R.attr.position,R.attr.emptyText},  // attribute[s] to access
                 paramInt,
                 paramInt);  // Style to access
 
