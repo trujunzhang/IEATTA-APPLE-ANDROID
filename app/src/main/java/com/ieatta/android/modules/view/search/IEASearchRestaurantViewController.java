@@ -122,7 +122,4 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
         self.setTransferedModel(sender, self.selectedModel);
     }
 
-    private void updateTableView(List<ParseModelAbstract> items) {
-        self.setSectionItems(items, SearchRestaurantSection.sectionRestaurants.ordinal());
-    }
 }
