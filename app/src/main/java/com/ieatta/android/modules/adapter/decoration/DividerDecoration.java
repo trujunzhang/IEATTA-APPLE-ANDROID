@@ -28,7 +28,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
 
 //        mInsets = 8;//context.getResources().getDimensionPixelSize(R.dimen.card_insets);
 
-        mInsets = 80;
+        mInsets = 0;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
 
     /** Draw dividers underneath each child view */
     public void drawVertical(Canvas c, RecyclerView parent) {
-        final int left = 100;//parent.getPaddingLeft();
+        final int left = 0;//parent.getPaddingLeft();
         final int right = parent.getWidth() - parent.getPaddingRight();
 
         final int childCount = parent.getChildCount();
@@ -47,7 +47,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
             final int top = child.getBottom() + params.bottomMargin + mInsets;
-            final int bottom = top + 5;//mDivider.getIntrinsicHeight();
+            final int bottom = top + mDivider.getIntrinsicHeight();
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
