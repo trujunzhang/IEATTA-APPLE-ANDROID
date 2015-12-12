@@ -14,7 +14,7 @@ import com.ieatta.android.R;
 
 
 public class RoundedImageView extends ImageView {
-    private static int a;
+    private static int cornerRadius;
 
     public RoundedImageView(Context paramContext) {
         super(paramContext);
@@ -46,7 +46,7 @@ public class RoundedImageView extends ImageView {
     }
 
     private void setupView() {
-        a = (int) getResources().getDimension(R.dimen.corner_radius);
+        cornerRadius = (int) getResources().getDimension(R.dimen.corner_radius);
     }
 
     public void setImageBitmap(Bitmap paramBitmap) {
@@ -54,7 +54,7 @@ public class RoundedImageView extends ImageView {
             super.setImageBitmap(null);
             return;
         }
-        super.setImageDrawable(new ai(paramBitmap, a));
+        super.setImageDrawable(new ai(paramBitmap, cornerRadius));
     }
 
     public void setImageDrawable(Drawable paramDrawable) {
@@ -67,7 +67,7 @@ public class RoundedImageView extends ImageView {
             super.setImageDrawable(paramDrawable);
             return;
         }
-        super.setImageDrawable(new ai(localBitmap, a));
+        super.setImageDrawable(new ai(localBitmap, cornerRadius));
     }
 
     public void setImageResource(int paramInt) {
