@@ -3,7 +3,7 @@ package com.ieatta.android.modules.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.ieatta.android.extensions.viewkit.ModelTransfer;
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -15,11 +15,17 @@ public abstract class IEAViewHolder extends RecyclerView.ViewHolder implements M
         return true;
     }
 
+    @Override
+    public ViewHolderType getViewHolderType() {
+        return ViewHolderType.cell;
+    }
+
     private ItemClickListener clickListener;
 
     public IEAViewHolder(View itemView) {
         super(itemView);
 
+        itemView.setTag(self.getViewHolderType().ordinal());
         if(self.shouldClickItem() == true) {
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
