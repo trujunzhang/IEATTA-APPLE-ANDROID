@@ -6,7 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 
 /**
  * ItemDecoration implementation that applies and inset margin
@@ -38,7 +41,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
 
     /** Draw dividers underneath each child view */
     public void drawVertical(Canvas c, RecyclerView parent) {
-        final int left = 0;//parent.getPaddingLeft();
+
         final int right = parent.getWidth() - parent.getPaddingRight();
 
         final int childCount = parent.getChildCount();
@@ -46,12 +49,31 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
             final View child = parent.getChildAt(i);
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
-            int tag = (int) child.getTag();
+            final int left = this.getLeft(parent,child,i,childCount);
+
             final int top = child.getBottom() + params.bottomMargin + mInsets;
             final int bottom = top + mDivider.getIntrinsicHeight();
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
+    }
+
+    private int getLeft(RecyclerView parent,View child,int position,int childCount){
+        int tag = (int) child.getTag();
+//        Log.v("decoration","tag: "+tag);
+        View nextChild = null;
+        int nextTag = -1;
+        if(position<childCount -1){
+            nextChild = parent.getChildAt(position+1);
+            nextTag = (int) nextChild.getTag();
+        }
+        if(nextChild!= null){
+            if((tag == ViewHolderType.cell.ordinal()) && (nextTag == ViewHolderType.cell.ordinal())){
+                return  100;
+            }
+        }
+
+        return 0;
     }
 
     @Override
