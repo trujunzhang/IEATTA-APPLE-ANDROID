@@ -49,6 +49,14 @@
                 yelp:position="bottom|left"
                 style="@style/ButtonFullBleed.WithArrow" />
 
+            <com.yelp.android.ui.activities.mutatebiz.Field
+                android:id="@+id/business_categories1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                yelp:emptyText="@string/add_categories"
+                yelp:position="bottom|left"
+                style="@style/ButtonFullBleed.WithArrow" />
+
             <TextView
                 android:text="@string/hours"
                 style="@style/Widget.TextView.ListSeparatorYelp.GrayBackground" />
