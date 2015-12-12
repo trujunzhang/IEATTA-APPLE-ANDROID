@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 
 /**
@@ -18,6 +19,10 @@ public class IEAPhotoGalleryHeaderCell  extends IEAViewHolder {
     @Override
     protected boolean shouldClickItem() {
         return false;
+    }
+    @Override
+    public ViewHolderType getViewHolderType() {
+        return ViewHolderType.header;
     }
 
     private IEAPhotoGalleryHeaderCell self = this;

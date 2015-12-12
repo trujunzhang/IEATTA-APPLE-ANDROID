@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 
 /**
@@ -19,6 +20,11 @@ public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
     @Override
     protected boolean shouldClickItem() {
         return false;
+    }
+
+    @Override
+    public ViewHolderType getViewHolderType() {
+        return ViewHolderType.header;
     }
 
     private IEAViewForHeaderInSectionCell self = this;

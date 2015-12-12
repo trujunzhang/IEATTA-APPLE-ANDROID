@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -18,6 +19,10 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     @Override
     protected boolean shouldClickItem() {
         return false;
+    }
+    @Override
+    public ViewHolderType getViewHolderType() {
+        return ViewHolderType.footer;
     }
 
     private IEAMoreReviewsFooterCell self = this;
