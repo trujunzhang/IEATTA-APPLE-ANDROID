@@ -78,7 +78,6 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
         if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
             /// Show detailed restaurant
             self.setTransferedModel(sender,self.selectedModel);
-//            destination.restaurant =  self.selectedModel
         }
     }
 

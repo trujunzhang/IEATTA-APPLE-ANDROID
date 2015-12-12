@@ -1,5 +1,6 @@
 package com.ieatta.android.modules.view.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,10 +12,13 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
+import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -32,6 +36,7 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     private EditText searchTextView;
     private ImageView search_clear_Button;
     private List<ParseModelAbstract/*Restaurant*/> fetchedRestaurants;
+    private Restaurant selectedModel;
 
     protected int getContentView() {
         return R.layout.table_serch_view_controller;
@@ -72,9 +77,14 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     }
 
     private void queryNearRestaurant(String keyword) {
+        if (keyword.isEmpty() == true) {
+            self.setSectionItems(new LinkedList<ParseModelAbstract>(), SearchRestaurantSection.sectionRestaurants.ordinal());
+            return;
+        }
         new Restaurant().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                Object object = task;
                 self.fetchedRestaurants = task.getResult();
                 self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
@@ -101,7 +111,14 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     }
 
     private void showSelectedModel(Restaurant model) {
-//        self.getManagerNavigationViewController().pushViewController(UIStoryboard.Storyboard.Controllers.restaurantDetailViewController().transfer(model), animated: true)
+        self.selectedModel = (Restaurant) model;
+        self.performSegueWithIdentifier(MainSegueIdentifier.detailRestaurantSegueIdentifier, self);
+    }
+
+    @Override
+    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
+        /// Show detailed restaurant
+        self.setTransferedModel(sender, self.selectedModel);
     }
 
     private void updateTableView(List<ParseModelAbstract> items) {
