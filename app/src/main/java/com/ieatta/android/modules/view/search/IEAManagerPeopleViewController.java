@@ -1,5 +1,6 @@
 package com.ieatta.android.modules.view.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,6 +12,8 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
+import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
 
@@ -108,14 +111,14 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
     private void showSelectedModel(Team model) {
         self.selectedModel = (Team) model;
-//        self.performSegueWithIdentifier(MainSegueIdentifier.detailRestaurantSegueIdentifier, self);
+        self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
     }
 
-//    @Override
-//    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
-//        /// Show detailed restaurant
-//        self.setTransferedModel(sender, self.selectedModel);
-//    }
+    @Override
+    protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
+        /// Show detailed people
+        self.setTransferedModel(sender, self.selectedModel);
+    }
 
 
 }
