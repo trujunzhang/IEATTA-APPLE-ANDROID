@@ -11,7 +11,6 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
 
@@ -55,7 +54,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                self.queryNearRestaurant(s.toString());
+                self.queryTeams(s.toString());
             }
 
             @Override
@@ -74,7 +73,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
         self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(),ManagerPeopleSection.sectionTeam.ordinal());
     }
 
-    private void queryNearRestaurant(String keyword) {
+    private void queryTeams(String keyword) {
         self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
         if (keyword.isEmpty() == true) {
             return;
