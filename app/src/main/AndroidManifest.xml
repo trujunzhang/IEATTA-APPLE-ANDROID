@@ -59,6 +59,14 @@
         <activity
             android:name=".modules.view.search.IEAManagerPeopleViewController"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".modules.view.search.IEAReadReviewsViewController"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".modules.view.search.IEASearchRestaurantViewController"
+            android:screenOrientation="portrait"></activity>
+
+
 
     </application>
 
