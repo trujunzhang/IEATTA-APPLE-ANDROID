@@ -1,11 +1,25 @@
 package com.ieatta.android.modules.view.search;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 enum ManagerPeopleSection  {
          sectionTeam ;//= 0
@@ -16,11 +30,76 @@ enum ManagerPeopleSection  {
 public class IEAManagerPeopleViewController extends IEASplitDetailViewController {
     private IEAManagerPeopleViewController self = this;
 
+    private EditText searchTextView;
+    private ImageView search_clear_Button;
+    private List<ParseModelAbstract/*Restaurant*/> fetchedTeam;
+    private Team selectedModel;
+
+    protected int getContentView() {
+        return R.layout.table_serch_view_controller;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        self.searchTextView = (EditText) self.findViewById(R.id.searchTextView);
+        self.search_clear_Button = (ImageView) self.findViewById(R.id.search_clear);
+
+        self.searchTextView.setHint(R.string.Search_Hint_Team);
+        self.searchTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                self.queryNearRestaurant(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        self.search_clear_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                self.searchTextView.setText("");
+            }
+        });
+
         self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(),ManagerPeopleSection.sectionTeam.ordinal());
+    }
+
+    private void queryNearRestaurant(String keyword) {
+        self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
+        if (keyword.isEmpty() == true) {
+            return;
+        }
+        new Team().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                Object object = task;
+                self.fetchedTeam = task.getResult();
+
+                // Next, fetch related photos
+                return self.getPhotosForModelsTask(task);
+            }
+        }).onSuccess(new Continuation<Boolean, Object>() {
+            @Override
+            public Object then(Task<Boolean> task) throws Exception {
+                self.setSectionItems(self.fetchedTeam, ManagerPeopleSection.sectionTeam.ordinal());
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return null;
+            }
+        });
     }
 
     @Override
@@ -28,13 +107,16 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
         self.showSelectedModel((Team)model);
     }
 
-    public void showSelectedModel(Team model){
-//        self.getManagerNavigationViewController().pushViewController(UIStoryboard.Storyboard.Controllers.editPeopleViewController().transfer(model), animated: true)
+    private void showSelectedModel(Team model) {
+        self.selectedModel = (Team) model;
+//        self.performSegueWithIdentifier(MainSegueIdentifier.detailRestaurantSegueIdentifier, self);
     }
 
-    // MARK: Navigation item actions
-    public void addPeopleAction() {
-//        self.getManagerNavigationViewController().pushViewController(UIStoryboard.Storyboard.Controllers.editPeopleViewController().transfer(Team(), newModel: true), animated: true)
-    }
+//    @Override
+//    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
+//        /// Show detailed restaurant
+//        self.setTransferedModel(sender, self.selectedModel);
+//    }
+
 
 }

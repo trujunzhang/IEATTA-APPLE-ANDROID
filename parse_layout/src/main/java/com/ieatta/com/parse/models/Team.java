@@ -141,6 +141,11 @@ public class Team extends ParseModelSync {
         return Task.forResult(filterUser);
     }
 
+    @Override
+    public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
+        return Restaurant.queryFromDatabase(PQueryModelType.Team, new Restaurant().createSearchDisplayNameQuery(keyword));
+    }
+
     public static Task<List<ParseModelAbstract>> queryTeam() {
         return ParseModelQuery.queryFromDatabase(PQueryModelType.Team, new Team().makeParseQuery());
     }

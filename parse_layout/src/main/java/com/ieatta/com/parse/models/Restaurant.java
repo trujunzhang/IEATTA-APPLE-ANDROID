@@ -7,7 +7,6 @@ import bolts.Continuation;
 import bolts.Task;
 import bolts.TaskCompletionSource;
 
-import com.ieatta.com.parse.R;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
