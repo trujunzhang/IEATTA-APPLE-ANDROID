@@ -9,13 +9,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/IEATTAAppTheme">
-        <activity
-            android:name=".debug.MainActivity"
-            android:label="@string/app_name"></activity>
-        <activity
-            android:name=".debug.EffectActivity"
-            android:label="@string/app_name">
+        <activity android:name=".debug.MainActivity"></activity>
+        <activity android:name=".debug.EffectActivity">
 
+
+        </activity>
+        <activity
+            android:name=".modules.view.IEANearRestaurantViewController"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,11 +24,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".modules.view.IEANearRestaurantViewController"
-            android:screenOrientation="portrait"></activity>
-        <activity
             android:name=".modules.view.IEARestaurantDetailViewController"
             android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".modules.view.IEAEventDetailViewController"
             android:screenOrientation="portrait"></activity>
