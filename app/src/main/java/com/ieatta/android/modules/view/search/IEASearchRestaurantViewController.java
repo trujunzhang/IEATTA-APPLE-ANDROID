@@ -49,12 +49,7 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
         self.searchTextView = (EditText) self.findViewById(R.id.searchTextView);
         self.search_clear_Button = (ImageView) self.findViewById(R.id.search_clear);
 
-        self.search_clear_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                self.searchTextView.setText("");
-            }
-        });
+        self.searchTextView.setHint(R.string.Search_Hint_Restaurant);
         self.searchTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -72,6 +67,12 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
             }
         });
 
+        self.search_clear_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                self.searchTextView.setText("");
+            }
+        });
 
         self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(), SearchRestaurantSection.sectionRestaurants.ordinal());
     }
