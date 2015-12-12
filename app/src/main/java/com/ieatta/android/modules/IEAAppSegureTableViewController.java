@@ -126,11 +126,11 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
         self.whenSelectedEvent(model, indexPath);
-        if (isLongClick) {
-            Toast.makeText(self, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(self, "#" + position + " - " + indexPath.toString(), Toast.LENGTH_SHORT).show();
-        }
+//        if (isLongClick) {
+//            Toast.makeText(self, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(self, "#" + position + " - " + indexPath.toString(), Toast.LENGTH_SHORT).show();
+//        }
     }
 
     protected ParseModelAbstract getTransferedModel() {

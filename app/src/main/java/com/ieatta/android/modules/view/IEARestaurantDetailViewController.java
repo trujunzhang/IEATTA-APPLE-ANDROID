@@ -97,10 +97,6 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         }).onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
-
-                // Finally, hide hud.
-                self.hideHUD();
-
                 self.setRegisterCellClass(IEARestaurantDetailHeaderCell.getType(), RestaurantDetailSection.sectionHeader.ordinal());
                 self.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(self, self.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
 
@@ -117,6 +113,9 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
+                // Finally, hide hud.
+                self.hideHUD();
+
                 if (task.isFaulted() == true) {
                 }
                 return null;

@@ -2,6 +2,7 @@ package com.ieatta.android.modules;
 
 import com.ieatta.android.modules.cells.IEAReviewUserCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
+import com.ieatta.android.modules.cells.headerfooterview.IEAMoreReviewsFooterCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
