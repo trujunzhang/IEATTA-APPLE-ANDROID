@@ -1,6 +1,9 @@
 package com.ieatta.android.modules.view.search;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -36,7 +39,35 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
         self.searchTextView =(EditText) self.findViewById(R.id.searchTextView);
         self.search_clear_Button =(ImageView) self.findViewById(R.id.search_clear);
 
+        self.search_clear_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                self.searchTextView.setText("");
+            }
+        });
+        self.searchTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                self.queryNearRestaurant(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
         self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(), SearchRestaurantSection.sectionRestaurants.ordinal());
+    }
+
+    private void queryNearRestaurant(String keyword) {
+
     }
 
     @Override
