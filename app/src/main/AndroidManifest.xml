@@ -55,6 +55,10 @@
         <activity
             android:name=".modules.view.edit.IEAEditPeopleViewController"
             android:screenOrientation="portrait"></activity>
+        <!--The following is for searching models.-->
+        <activity
+            android:name=".modules.view.search.IEAManagerPeopleViewController"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 
