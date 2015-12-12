@@ -19,7 +19,7 @@ import com.ieatta.android.modules.adapter.enums.ViewHolderType;
  */
 public class DividerDecoration extends RecyclerView.ItemDecoration {
 
-    private static final int[] ATTRS = { android.R.attr.listDivider };
+    private static final int[] ATTRS = {android.R.attr.listDivider};
 
     private Drawable mDivider;
     private int mInsets;
@@ -39,7 +39,9 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
         drawVertical(c, parent);
     }
 
-    /** Draw dividers underneath each child view */
+    /**
+     * Draw dividers underneath each child view
+     */
     public void drawVertical(Canvas c, RecyclerView parent) {
 
         final int right = parent.getWidth() - parent.getPaddingRight();
@@ -49,7 +51,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
             final View child = parent.getChildAt(i);
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
-            final int left = this.getLeft(parent,child,i,childCount);
+            final int left = this.getLeft(parent, child, i, childCount);
 
             final int top = child.getBottom() + params.bottomMargin + mInsets;
             final int bottom = top + mDivider.getIntrinsicHeight();
@@ -58,15 +60,17 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    private int getLeft(RecyclerView parent,View child,int position,int childCount){
+    private int getLeft(RecyclerView parent, View child, int position, int childCount) {
         int tag = (int) child.getTag();
 //        Log.v("decoration","tag: "+tag);
         View nextChild = null;
-        if(position<childCount -1){
-            nextChild = parent.getChildAt(position+1);
+        if (position < childCount - 1) {
+            nextChild = parent.getChildAt(position + 1);
             int nextTag = (int) nextChild.getTag();
-            if((tag == ViewHolderType.cell.ordinal()) && (nextTag == ViewHolderType.cell.ordinal())){
-                return  120;
+            if(nextTag == ViewHolderType.cell.ordinal()) {
+                if (((tag == ViewHolderType.cell.ordinal()) || (tag == ViewHolderType.special.ordinal()))) {
+                    return 120;
+                }
             }
         }
 
