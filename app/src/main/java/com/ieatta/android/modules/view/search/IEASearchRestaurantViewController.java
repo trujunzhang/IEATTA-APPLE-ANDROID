@@ -11,10 +11,14 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
+import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 
 import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 enum SearchRestaurantSection {
     sectionRestaurants //;= 0
@@ -27,8 +31,9 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     private IEASearchRestaurantViewController self = this;
     private EditText searchTextView;
     private ImageView search_clear_Button;
+    private List<ParseModelAbstract/*Restaurant*/> fetchedRestaurants;
 
-    protected int getContentView(){
+    protected int getContentView() {
         return R.layout.table_serch_view_controller;
     }
 
@@ -36,8 +41,8 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.searchTextView =(EditText) self.findViewById(R.id.searchTextView);
-        self.search_clear_Button =(ImageView) self.findViewById(R.id.search_clear);
+        self.searchTextView = (EditText) self.findViewById(R.id.searchTextView);
+        self.search_clear_Button = (ImageView) self.findViewById(R.id.search_clear);
 
         self.search_clear_Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +72,27 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     }
 
     private void queryNearRestaurant(String keyword) {
+        new Restaurant().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.fetchedRestaurants = task.getResult();
+                self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
+                // Next, fetch related photos
+                return self.getPhotosForModelsTask(task);
+            }
+        }).onSuccess(new Continuation<Boolean, Object>() {
+            @Override
+            public Object then(Task<Boolean> task) throws Exception {
+                self.setSectionItems(self.fetchedRestaurants, SearchRestaurantSection.sectionRestaurants.ordinal());
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                return null;
+            }
+        });
     }
 
     @Override
