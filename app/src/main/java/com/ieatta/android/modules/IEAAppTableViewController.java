@@ -21,7 +21,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.table_view_controller);
+        setContentView(self.getContentView());
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 
@@ -34,6 +34,14 @@ public class IEAAppTableViewController extends AppCompatActivity {
 //        if(self.showNavigationTitle() == true){
 //            self.navigationItem.titleView = setTitle(L10n.AppTitle.string,subtitle: L10n.AppSubtitle.string);
 //        }
+    }
+
+    /**
+     * Default content view.
+     * @return
+     */
+    protected int getContentView(){
+        return R.layout.table_view_controller;
     }
 
     protected void startManagingWithDelegate(DTTableViewManager manager) {

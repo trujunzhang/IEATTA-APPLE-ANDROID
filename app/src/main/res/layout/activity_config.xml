@@ -56,7 +56,7 @@
             <CheckBox
                 android:textColor="@android:color/black"
                 android:id="@+id/activity_config_cbUseMyOverlayForMaps"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Use google maps 'my location' pin" />
@@ -64,7 +64,7 @@
             <CheckBox
                 android:textColor="@android:color/black"
                 android:id="@+id/activity_config_cbSubmitAnalytics"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit Analytics" />
@@ -72,7 +72,7 @@
             <CheckBox
                 android:textColor="@android:color/black"
                 android:id="@+id/activity_config_cbSimulateBusinessKill"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Simulate business page terminated" />
@@ -80,7 +80,7 @@
             <CheckBox
                 android:textColor="@android:color/black"
                 android:id="@+id/activity_config_cbForceBizReviewsFail"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Force Biz Reviews Fail" />
@@ -88,7 +88,7 @@
             <CheckBox
                 android:textColor="@android:color/black"
                 android:id="@+id/activity_config_cbForceBizDetailsFail"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Force Biz Details Fail" />
@@ -96,7 +96,7 @@
             <CheckBox
                 android:textColor="@android:color/black"
                 android:id="@+id/activity_config_cbNotifyCacheHits"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Notify on biz search cache hits" />

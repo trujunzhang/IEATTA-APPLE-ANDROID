@@ -10,19 +10,21 @@ import com.ieatta.com.parse.models.Restaurant;
 
 import java.util.List;
 
-enum SearchRestaurantSection  {
-         sectionRestaurants //;= 0
-        }
+enum SearchRestaurantSection {
+    sectionRestaurants //;= 0
+}
+
 /**
  * Created by djzhang on 12/1/15.
  */
 public class IEASearchRestaurantViewController extends IEASplitDetailViewController {
-private IEASearchRestaurantViewController self = this;
+    private IEASearchRestaurantViewController self = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(),SearchRestaurantSection.sectionRestaurants.ordinal());
+        self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(), SearchRestaurantSection.sectionRestaurants.ordinal());
     }
 
     @Override
@@ -30,11 +32,11 @@ private IEASearchRestaurantViewController self = this;
         self.showSelectedModel((Restaurant) model);
     }
 
-    private void showSelectedModel(Restaurant model){
+    private void showSelectedModel(Restaurant model) {
 //        self.getManagerNavigationViewController().pushViewController(UIStoryboard.Storyboard.Controllers.restaurantDetailViewController().transfer(model), animated: true)
     }
 
-    private void updateTableView(List<ParseModelAbstract> items ){
+    private void updateTableView(List<ParseModelAbstract> items) {
         self.setSectionItems(items, SearchRestaurantSection.sectionRestaurants.ordinal());
     }
 }
