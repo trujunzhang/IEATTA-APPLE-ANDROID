@@ -2,6 +2,7 @@ package com.ieatta.android.modules.view.search;
 
 import android.os.Bundle;
 
+import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
@@ -19,6 +20,10 @@ enum SearchRestaurantSection {
  */
 public class IEASearchRestaurantViewController extends IEASplitDetailViewController {
     private IEASearchRestaurantViewController self = this;
+
+    protected int getContentView(){
+        return R.layout.table_serch_view_controller;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
