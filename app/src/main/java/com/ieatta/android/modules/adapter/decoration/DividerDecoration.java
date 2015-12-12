@@ -69,7 +69,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
         }
         if(nextChild!= null){
             if((tag == ViewHolderType.cell.ordinal()) && (nextTag == ViewHolderType.cell.ordinal())){
-                return  100;
+                return  120;
             }
         }
 
