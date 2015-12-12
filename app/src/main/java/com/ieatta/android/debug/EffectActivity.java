@@ -14,6 +14,7 @@ public class EffectActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_confirm_reservation_form);
 //        setContentView(R.layout.debug_text_styles_activity);
 //        setContentView(R.layout.debug_colors_activity);
-        setContentView(R.layout.debug_gap_sizes_activity);
+//        setContentView(R.layout.debug_gap_sizes_activity);
+        setContentView(R.layout.activity_edit_business);
     }
 }
