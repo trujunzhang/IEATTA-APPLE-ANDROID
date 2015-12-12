@@ -26,7 +26,6 @@ public class IEAAppTableViewController extends AppCompatActivity {
         EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 
         this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
-        this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         this.recyclerView.setHasFixedSize(true);
 
 //        self.view.backgroundColor = UIColor(named: .MainBody)
@@ -39,6 +38,8 @@ public class IEAAppTableViewController extends AppCompatActivity {
 
     protected void startManagingWithDelegate(DTTableViewManager manager) {
         self.recyclerView.setAdapter(manager.getAdapter());
+        self.recyclerView.setLayoutManager(manager.configuration.builder.manager);
+        self.recyclerView.addItemDecoration(manager.configuration.builder.decoration);
     }
 
     public boolean navigationShouldPopOnBackButton() {

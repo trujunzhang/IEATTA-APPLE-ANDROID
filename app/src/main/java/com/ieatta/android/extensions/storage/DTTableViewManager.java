@@ -17,7 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 public class DTTableViewManager {
     private DTTableViewManager self = this;
 
-    private TableViewConfiguration configuration;
+    public TableViewConfiguration configuration;
     public  MemoryStorage memoryStorage ;
 
     public DTTableViewManager(TableViewConfiguration configuration) {
