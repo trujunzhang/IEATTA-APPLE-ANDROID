@@ -2350,9 +2350,9 @@
     <style name="Widget.TextView.ListSeparatorYelp" parent="@android:style/Widget.TextView">
         <item name="android:textAppearance">@style/SubtitleDarkText</item>
         <item name="android:background">@drawable/white_cell_with_gray_gutter</item>
-        <item name="android:paddingLeft">?attr/leftGapSize</item>
+        <item name="android:paddingLeft">10.0dip</item>
         <item name="android:paddingTop">24.0dip</item>
-        <item name="android:paddingRight">?attr/rightGapSize</item>
+        <item name="android:paddingRight">10.0dip</item>
         <item name="android:paddingBottom">6.0dip</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>

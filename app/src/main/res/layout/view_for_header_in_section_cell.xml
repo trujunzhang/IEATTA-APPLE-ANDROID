@@ -2,16 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/DEFAULT_SECTION_TITLE_HEADER_HEIGHT">
+    android:layout_height="@dimen/DEFAULT_SECTION_TITLE_HEADER_HEIGHT"
+    >
 
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="@style/LargeBoldLightText"-->
+        <!--android:text="Medium Text"-->
+        <!--android:id="@+id/headerTextView"-->
+        <!--android:paddingLeft="8dp"-->
+        <!--android:paddingBottom="8dp"-->
+        <!--android:layout_gravity="bottom|left" />-->
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/LargeBoldLightText"
-        android:text="Medium Text"
         android:id="@+id/headerTextView"
-        android:paddingLeft="8dp"
-        android:paddingBottom="8dp"
-        android:layout_gravity="bottom|left" />
+        android:text="@string/name"
+        style="@style/Widget.TextView.ListSeparatorYelp.GrayBackground" />
 </LinearLayout>
