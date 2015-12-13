@@ -1,6 +1,7 @@
 package com.ieatta.android.debug;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.yelp.com.commonlib.EnvironmentUtils;
@@ -22,7 +23,7 @@ import com.ieatta.com.parse.models.Photo;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainActivity extends IEAReviewsInDetailTableViewController {
+public class MainActivity extends AppCompatActivity {
 private MainActivity self = this;
 
     private List<ParseModelAbstract> fetchedPhotos;
@@ -48,7 +49,8 @@ private MainActivity self = this;
     }
 
     private void showReviewSection() {
-        self.configureReviewsSection(self.fetchedReviews);
+        self.setContentView(R.layout.businesspage_section_footer);
+//        self.configureReviewsSection(self.fetchedReviews);
     }
 
     protected int getReviewsSectionIndex() {
@@ -69,19 +71,19 @@ private MainActivity self = this;
     }
 
     private void showPhotoGalleryCell() {
-        // Register Cells by class.
-        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
-
-        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
-//        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
-
-        // 1. Set photo gallery section title(contains a 'take a photo' icon).
-        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
-
-        // 2. Set empty items for the photo gallery collection cell.
-        self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
-
-        self.photoGallery.refreshCollection(self.fetchedPhotos);
+//        // Register Cells by class.
+//        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
+//
+//        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
+////        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
+//
+//        // 1. Set photo gallery section title(contains a 'take a photo' icon).
+//        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
+//
+//        // 2. Set empty items for the photo gallery collection cell.
+//        self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
+//
+//        self.photoGallery.refreshCollection(self.fetchedPhotos);
 
     }
 

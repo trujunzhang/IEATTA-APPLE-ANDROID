@@ -33,13 +33,13 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     public IEAMoreReviewsFooterCell(View itemView) {
         super(itemView);
 
-        self.footerLargeButton = (Button) itemView.findViewById(R.id.footer_large_button);
+//        self.footerLargeButton = (Button) itemView.findViewById(R.id.footer_large_button);
     }
 
     @Override
     public void render(Object value) {
         SectionMoreReviewsFooterCellModel model = (SectionMoreReviewsFooterCellModel) value;
 
-        self.footerLargeButton.setText(R.string.See_More_Reviews);
+//        self.footerLargeButton.setText(R.string.See_More_Reviews);
     }
 }

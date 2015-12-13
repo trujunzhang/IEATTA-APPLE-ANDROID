@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/IEATTAAppTheme">
         <activity android:name=".debug.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".debug.EffectActivity">
 
@@ -25,11 +29,7 @@
             android:name=".modules.view.IEARestaurantDetailViewController"
             android:screenOrientation="portrait">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
