@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="horizontal"
-    android:paddingLeft="?smallGapSize"
-    android:paddingTop="?smallGapSize"
-    android:paddingRight="?smallGapSize"
+    android:paddingLeft="@dimen/smallGapSize"
+    android:paddingTop="@dimen/smallGapSize"
+    android:paddingRight="@dimen/smallGapSize"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -20,11 +20,11 @@
         android:textAppearance="@style/StandardDarkText"
         android:layout_gravity="center_vertical"
         android:id="@+id/footer_small_button"
-        android:paddingTop="?baseGapSize"
-        android:paddingBottom="?baseGapSize"
+        android:paddingTop="@dimen/baseGapSize"
+        android:paddingBottom="@dimen/baseGapSize"
         android:layout_width="100.0dip"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="?baseGapSize"
+        android:layout_marginLeft="@dimen/baseGapSize"
         android:includeFontPadding="false" />
 
     <Button
@@ -33,13 +33,13 @@
         android:id="@+id/footer_large_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="?smallGapSize"
-        android:layout_marginRight="?smallGapSize"
+        android:layout_marginLeft="@dimen/smallGapSize"
+        android:layout_marginRight="@dimen/smallGapSize"
         android:maxWidth="200.0dip"
         android:minWidth="175.0dip"
         android:includeFontPadding="false"
         android:drawableRight="@drawable/arrow_graphic"
-        android:drawablePadding="?baseGapSize"
+        android:drawablePadding="@dimen/baseGapSize"
         android:layout_weight="1.0"
         style="@style/Widget.Button.BusinessPage" />
 </LinearLayout>

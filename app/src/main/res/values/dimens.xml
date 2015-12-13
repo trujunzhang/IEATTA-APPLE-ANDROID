@@ -41,6 +41,17 @@
     <dimen name="Read_Reviews_Header">50dip</dimen>
     <dimen name="Read_Reviews">40dip</dimen>
 
+     <!--the following is my customize dimens-->
+    <dimen name="smallGapSize">5.0dip</dimen>
+    <dimen name="baseGapSize">10.0dip</dimen>
+    <dimen name="largeGapSize">15.0dip</dimen>
+    <dimen name="imageGapSize">8.0dip</dimen>
+    <dimen name="smallImageGapSize">5.0dip</dimen>
+    <dimen name="leftGapSize">?baseGapSize</dimen>
+    <dimen name="rightGapSize">?baseGapSize</dimen>
+    <dimen name="topGapSize">?largeGapSize</dimen>
+    <dimen name="bottomGapSize">?largeGapSize</dimen>
+
     <!--the following is yelp's dimens-->
 
     <dimen name="abc_alert_dialog_button_bar_height">48.0dip</dimen>
