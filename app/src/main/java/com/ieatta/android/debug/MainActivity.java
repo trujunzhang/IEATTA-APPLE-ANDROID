@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.IEABaseReviewsTableViewController;
+import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
@@ -20,7 +22,7 @@ import com.ieatta.com.parse.models.Photo;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainActivity extends IEAPhotoGalleryViewController {
+public class MainActivity extends IEAReviewsInDetailTableViewController {
 private MainActivity self = this;
 
     private List<ParseModelAbstract> fetchedPhotos;
@@ -38,9 +40,19 @@ private MainActivity self = this;
         self.fetchedPhotos = new LinkedList<>();
         self.fetchedPhotos.add(new Photo());
 
-        self.showPhotoGalleryCell();
+//        self.showPhotoGalleryCell();
 
 //        self.showPhotoGallery();
+
+        self.showReviewSection();
+    }
+
+    private void showReviewSection() {
+        self.configureReviewsSection(self.fetchedReviews);
+    }
+
+    protected int getReviewsSectionIndex() {
+        return 0;
     }
 
     private void showPhotoGallery() {

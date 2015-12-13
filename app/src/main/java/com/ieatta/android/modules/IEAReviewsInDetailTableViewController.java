@@ -30,7 +30,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
             self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
         }
 
-//        self.setRegisterFooterClass(IEAMoreReviewsFooterCell.getType());
+        self.setRegisterFooterClass(IEAMoreReviewsFooterCell.getType());
     }
 
 
