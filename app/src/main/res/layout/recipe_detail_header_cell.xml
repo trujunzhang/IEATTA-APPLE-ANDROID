@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/priceNameTextView"
             android:layout_width="match_parent"
-            android:layout_height="14dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:gravity="center_vertical"
             android:text="@string/Add_Event"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_toRightOf="@+id/user_photo"
             android:contentDescription="@null"
             android:src="@drawable/business_stars_medium" />
