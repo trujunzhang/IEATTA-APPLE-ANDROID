@@ -13,7 +13,7 @@ import com.ieatta.android.modules.adapter.enums.ViewHolderType;
  */
 public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     public static CellType  getType() {
-        return new CellType(IEAMoreReviewsFooterCell.class, R.layout.choice_people_header_cell);
+        return new CellType(IEAMoreReviewsFooterCell.class, R.layout.more_reviews_footer_cell);
     }
 
     @Override
