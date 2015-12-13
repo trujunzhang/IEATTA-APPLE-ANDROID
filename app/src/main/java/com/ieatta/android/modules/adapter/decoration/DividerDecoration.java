@@ -49,9 +49,14 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
+            int tag = (int) child.getTag();
+//        Log.v("decoration","tag: "+tag);
+            if(tag == ViewHolderType.None.ordinal()){
+                continue;
+            }
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
-            final int left = this.getLeft(parent, child, i, childCount);
+            final int left = this.getLeft(parent, tag, i, childCount);
 
             final int top = child.getBottom() + params.bottomMargin + mInsets;
             final int bottom = top + mDivider.getIntrinsicHeight();
@@ -60,9 +65,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    private int getLeft(RecyclerView parent, View child, int position, int childCount) {
-        int tag = (int) child.getTag();
-//        Log.v("decoration","tag: "+tag);
+    private int getLeft(RecyclerView parent, int tag, int position, int childCount) {
         View nextChild = null;
         if (position < childCount - 1) {
             nextChild = parent.getChildAt(position + 1);

@@ -22,7 +22,7 @@ public class IEAReviewUserCell extends IEAViewHolder {
 
     @Override
     public ViewHolderType getViewHolderType() {
-        return ViewHolderType.special;
+        return ViewHolderType.None;
     }
 
     private IEAReviewUserCell self = this;
