@@ -5,7 +5,8 @@
     android:orientation="horizontal"
     android:paddingLeft="@dimen/smallGapSize"
     android:paddingRight="@dimen/smallGapSize"
-    android:paddingTop="@dimen/smallGapSize">
+    android:paddingTop="@dimen/smallGapSize"
+    android:paddingBottom="@dimen/smallGapSize">
 
     <View
         android:id="@+id/footer_line"
@@ -19,6 +20,7 @@
         android:id="@+id/footer_small_button"
         android:layout_width="100.0dip"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/baseGapSize"
         android:includeFontPadding="false"
