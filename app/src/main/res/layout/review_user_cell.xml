@@ -20,7 +20,7 @@
         android:layout_toRightOf="@+id/avatarView"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="Medium Text"
-        android:textSize="@dimen/abc_text_size_menu_material"
+        android:textAppearance="@style/TitleText"
         android:layout_centerVertical="true" />
 
     <TextView
@@ -30,7 +30,7 @@
         android:singleLine="true"
         android:layout_marginRight="8dp"
         android:text=""
-        android:textSize="@dimen/abc_text_size_caption_material"
+        android:textAppearance="@style/RelativeTimeAgoText"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true" />
 

@@ -23,7 +23,7 @@
             android:gravity="center_vertical"
             android:text="@string/Add_Event"
             android:textAlignment="center"
-            android:textSize="@dimen/abc_text_size_large_material" />
+            android:textAppearance="@style/TitleTextDeprecated" />
 
         <TextView
             android:id="@+id/displayNameTextView"
@@ -33,7 +33,7 @@
             android:gravity="center_vertical"
             android:text="@string/Add_Event"
             android:textAlignment="center"
-            android:textSize="@dimen/abc_text_size_small_material" />
+            android:textAppearance="@style/SubtitleGrayText" />
 
         <ImageView
             android:id="@+id/business_review_star_rating"

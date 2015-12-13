@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/timeAgoTextView"
-        android:textAppearance="@style/SubtitleGrayText"
+        android:textAppearance="@style/RelativeTimeAgoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
