@@ -35,17 +35,17 @@
         android:layout_below="@+id/titleTextView"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="Medium Text"
-        android:textSize="@dimen/abc_text_size_caption_material" />
+        />
 
     <TextView
         android:id="@+id/timeAgoTextView"
+        android:textAppearance="@style/SubtitleGrayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:paddingTop="10dp"
+        android:paddingTop="8dp"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:text="Medium Text"
-        android:textSize="@dimen/abc_text_size_caption_material"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true" />
 
