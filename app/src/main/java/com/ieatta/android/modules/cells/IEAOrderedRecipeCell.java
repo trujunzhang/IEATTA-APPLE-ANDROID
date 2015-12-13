@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.cells;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
@@ -20,18 +21,22 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
 
     private TextView displayNameLabel;
     private TextView subtitleLabel;
+    private ImageView ratingImageView;
 
     public IEAOrderedRecipeCell(View itemView) {
         super(itemView);
         self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
         self.displayNameLabel = (TextView) itemView.findViewById(R.id.titleTextView);
         self.subtitleLabel = (TextView) itemView.findViewById(R.id.addressTextView);
+        self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
     }
 
     @Override
     public void render(Object value) {
         Recipe model  = (Recipe) value;
         self.displayNameLabel.setText(model.displayName);
+//        self.subtitleLabel.setText("");
+//        self.ratingImageView.setImageLevel(model.);
 
         self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_biz);
     }
