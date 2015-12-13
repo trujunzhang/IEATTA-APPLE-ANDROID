@@ -16,7 +16,6 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
 
     private IEAOrderedPeopleCell self = this;
 
-
     private AvatarView avatarView;
 
     private TextView nameLabel;
