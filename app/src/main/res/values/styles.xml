@@ -124,15 +124,15 @@
         <item name="android:apiKey">@string/google_maps_api_key</item>
         <item name="android:fadeScrollbars">true</item>
         <item name="drawerArrowStyle">@style/Hamburger</item>
-        <item name="smallGapSize">5.0dip</item>
-        <item name="baseGapSize">10.0dip</item>
-        <item name="largeGapSize">15.0dip</item>
-        <item name="imageGapSize">8.0dip</item>
-        <item name="smallImageGapSize">5.0dip</item>
-        <item name="leftGapSize">?baseGapSize</item>
-        <item name="rightGapSize">?baseGapSize</item>
-        <item name="topGapSize">?largeGapSize</item>
-        <item name="bottomGapSize">?largeGapSize</item>
+        <!--<item name="smallGapSize">5.0dip</item>-->
+        <!--<item name="baseGapSize">10.0dip</item>-->
+        <!--<item name="largeGapSize">15.0dip</item>-->
+        <!--<item name="imageGapSize">8.0dip</item>-->
+        <!--<item name="smallImageGapSize">5.0dip</item>-->
+        <!--<item name="leftGapSize">?baseGapSize</item>-->
+        <!--<item name="rightGapSize">?baseGapSize</item>-->
+        <!--<item name="topGapSize">?largeGapSize</item>-->
+        <!--<item name="bottomGapSize">?largeGapSize</item>-->
         <item name="mapHeight">@dimen/map_height</item>
         <item name="mapBorders">@drawable/map_edge</item>
         <item name="mapCorners">@drawable/selector_rounded_cell</item>
@@ -193,8 +193,8 @@
 
     <style name="RadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
         <item name="android:textAppearance">@style/HeadlineTextDeprecated</item>
-        <item name="android:paddingLeft">?attr/baseGapSize</item>
-        <item name="android:layout_marginLeft">?attr/baseGapSize</item>
+        <item name="android:paddingLeft">@dimen/baseGapSize</item>
+        <item name="android:layout_marginLeft">@dimen/baseGapSize</item>
         <item name="android:minHeight">@dimen/clickable_size</item>
     </style>
 
@@ -1102,9 +1102,9 @@
         <item name="android:textAppearance">@style/SectionText</item>
         <item name="android:gravity">left</item>
         <item name="android:background">@drawable/selector_full_bleed</item>
-        <item name="android:paddingLeft">?attr/largeGapSize</item>
+        <item name="android:paddingLeft">@dimen/largeGapSize</item>
         <item name="android:paddingTop">@dimen/see_more_button_padding</item>
-        <item name="android:paddingRight">?attr/baseGapSize</item>
+        <item name="android:paddingRight">@dimen/baseGapSize</item>
         <item name="android:paddingBottom">@dimen/see_more_button_padding</item>
         <item name="android:includeFontPadding">false</item>
     </style>
@@ -1202,8 +1202,8 @@
     <style name="FullBleedButton">
         <item name="android:textAppearance">@style/LargeBoldLightText</item>
         <item name="android:background">@drawable/button_flat_design</item>
-        <item name="android:paddingTop">?attr/baseGapSize</item>
-        <item name="android:paddingBottom">?attr/baseGapSize</item>
+        <item name="android:paddingTop">@dimen/baseGapSize</item>
+        <item name="android:paddingBottom">@dimen/baseGapSize</item>
     </style>
 
     <style name="GalleryButton">
@@ -1385,7 +1385,7 @@
         <item name="android:textColor">?attr/passportStatsTextColor</item>
         <item name="android:paddingTop">1.0dip</item>
         <item name="android:paddingBottom">0.0dip</item>
-        <item name="android:layout_marginLeft">?attr/baseGapSize</item>
+        <item name="android:layout_marginLeft">@dimen/baseGapSize</item>
         <item name="android:singleLine">true</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:drawablePadding">2.0dip</item>
@@ -1460,8 +1460,8 @@
 
     <style name="SpanOfPhotosViewBusiness">
         <item name="android:gravity">center</item>
-        <item name="android:paddingTop">?attr/baseGapSize</item>
-        <item name="android:paddingBottom">?attr/baseGapSize</item>
+        <item name="android:paddingTop">@dimen/baseGapSize</item>
+        <item name="android:paddingBottom">@dimen/baseGapSize</item>
     </style>
 
     <style name="SpinnerDropDownItemDark" parent="@android:style/Widget.DropDownItem.Spinner">
@@ -1519,9 +1519,9 @@
 
     <style name="Sublist.FullBleed" parent="@style/Sublist">
         <item name="android:background">@drawable/selector_full_bleed</item>
-        <item name="android:paddingLeft">?attr/largeGapSize</item>
-        <item name="android:paddingTop">?attr/baseGapSize</item>
-        <item name="android:paddingBottom">?attr/baseGapSize</item>
+        <item name="android:paddingLeft">@dimen/largeGapSize</item>
+        <item name="android:paddingTop">@dimen/baseGapSize</item>
+        <item name="android:paddingBottom">@dimen/baseGapSize</item>
     </style>
 
     <style name="Sublist.FullBleed.SpannedTextView" parent="@style/Sublist.FullBleed">
@@ -1774,7 +1774,7 @@
 
     <style name="Theme.Yelp.BusinessList" parent="@style/Theme.Yelp">
         <item name="topGapSize">0.0dip</item>
-        <item name="bottomGapSize">?attr/baseGapSize</item>
+        <item name="bottomGapSize">@dimen/baseGapSize</item>
     </style>
 
     <style name="Theme.Yelp.BusinessList.Deals" parent="@style/Theme.Yelp.BusinessList">
@@ -1923,7 +1923,7 @@
         <item name="android:textSize">12.0sp</item>
         <item name="android:textColor">@color/gray_yoni_light_text</item>
         <item name="android:background">@drawable/button_transparent</item>
-        <item name="android:layout_marginTop">?attr/baseGapSize</item>
+        <item name="android:layout_marginTop">@dimen/baseGapSize</item>
     </style>
 
     <style name="TwoTierButton" parent="@style/Widget.Button">
@@ -1990,7 +1990,7 @@
 
     <style name="Wide.ListCellSquare" parent="@style/Wide">
         <item name="android:background">@drawable/selector_list_cell_white_gutter</item>
-        <item name="android:padding">?attr/baseGapSize</item>
+        <item name="android:padding">@dimen/baseGapSize</item>
     </style>
 
     <style name="Wide.ListCellSquare.PhotoViewer" parent="@style/Wide.ListCellSquare">
@@ -2021,9 +2021,9 @@
         <item name="android:textAppearance">@style/SubtitleText</item>
         <item name="android:gravity">left|center</item>
         <item name="android:paddingLeft">?attr/leftGapSize</item>
-        <item name="android:paddingTop">?attr/baseGapSize</item>
+        <item name="android:paddingTop">@dimen/baseGapSize</item>
         <item name="android:paddingRight">?attr/rightGapSize</item>
-        <item name="android:paddingBottom">?attr/baseGapSize</item>
+        <item name="android:paddingBottom">@dimen/baseGapSize</item>
         <item name="android:minHeight">@dimen/clickable_size</item>
         <item name="android:maxLines">3</item>
         <item name="android:drawablePadding">@dimen/base_container_margin</item>
@@ -2148,7 +2148,7 @@
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="@style/RtlOverlay.Widget.AppCompat.Toolbar.Button.Navigation" />
 
     <style name="Widget.Button" parent="@style/Widget">
-        <item name="android:textAppearance">?attr/android:textAppearanceSmallInverse</item>
+        <!--<item name="android:textAppearance">?attr/android:textAppearanceSmallInverse</item>-->
         <item name="android:textColor">@android:color/primary_text_light</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/button_flat_design</item>
@@ -2173,8 +2173,8 @@
         <item name="android:textAppearance">@style/StandardDarkText</item>
         <item name="android:gravity">left|center</item>
         <item name="android:paddingLeft">?attr/smallGapSize</item>
-        <item name="android:paddingTop">?attr/baseGapSize</item>
-        <item name="android:paddingBottom">?attr/baseGapSize</item>
+        <item name="android:paddingTop">@dimen/baseGapSize</item>
+        <item name="android:paddingBottom">@dimen/baseGapSize</item>
         <item name="android:button">@null</item>
         <item name="android:drawablePadding">?attr/smallGapSize</item>
     </style>
@@ -2369,13 +2369,13 @@
 
     <style name="Widget.TextView.ListSeparatorYelp.NarrowTransparentBackground" parent="@style/Widget.TextView.ListSeparatorYelp">
         <item name="android:background">@null</item>
-        <item name="android:paddingLeft">?attr/baseGapSize</item>
-        <item name="android:paddingTop">?attr/largeGapSize</item>
+        <item name="android:paddingLeft">@dimen/baseGapSize</item>
+        <item name="android:paddingTop">@dimen/largeGapSize</item>
     </style>
 
     <style name="Widget.TextView.ListSeparatorYelp.TransparentBackground" parent="@style/Widget.TextView.ListSeparatorYelp">
         <item name="android:background">@null</item>
-        <item name="android:paddingLeft">?attr/largeGapSize</item>
+        <item name="android:paddingLeft">@dimen/largeGapSize</item>
         <item name="android:paddingTop">@dimen/title_padding_top</item>
     </style>
 
