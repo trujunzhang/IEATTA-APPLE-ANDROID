@@ -1,7 +1,7 @@
 package com.ieatta.android.modules.cells.headerfooterview;
 
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
@@ -14,7 +14,7 @@ import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
  */
 public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     public static CellType  getType() {
-        return new CellType(IEAMoreReviewsFooterCell.class, R.layout.more_reviews_footer_cell);
+        return new CellType(IEAMoreReviewsFooterCell.class, R.layout.businesspage_section_footer);
     }
 
     @Override
@@ -28,19 +28,18 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
 
     private IEAMoreReviewsFooterCell self = this;
 
-    private TextView titleView;
+    private Button footerLargeButton;
 
     public IEAMoreReviewsFooterCell(View itemView) {
         super(itemView);
 
-        self.titleView = (TextView) itemView.findViewById(R.id.headerTextView);
+        self.footerLargeButton = (Button) itemView.findViewById(R.id.footer_large_button);
     }
 
     @Override
     public void render(Object value) {
         SectionMoreReviewsFooterCellModel model = (SectionMoreReviewsFooterCellModel) value;
 
-        self.titleView.setText(R.string.Select_Person);
-
+        self.footerLargeButton.setText(R.string.See_More_Reviews);
     }
 }
