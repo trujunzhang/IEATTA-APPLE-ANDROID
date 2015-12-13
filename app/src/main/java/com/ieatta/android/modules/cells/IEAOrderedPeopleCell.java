@@ -17,7 +17,7 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
     private IEAOrderedPeopleCell self = this;
 
 
-private AvatarView avatarView;
+    private AvatarView avatarView;
 
     private TextView nameLabel;
     private TextView addressLabel;
@@ -31,8 +31,9 @@ private AvatarView avatarView;
 
     @Override
     public void render(Object value) {
-        IEAOrderedPeople model  = (IEAOrderedPeople) value;
+        IEAOrderedPeople model = (IEAOrderedPeople) value;
         self.nameLabel.setText(model.model.displayName);
+        self.addressLabel.setText(model.model.address);
         self.avatarView.loadNewPhotoByModel(model.model, R.drawable.blank_user_small);
 
 //        Recipe.queryOrderedRecipesCount(model.model!, event: model.event!).continueWithBlock { (task) -> AnyObject? in

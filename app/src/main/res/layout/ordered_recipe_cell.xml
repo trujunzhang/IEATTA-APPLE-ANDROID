@@ -21,7 +21,7 @@
         android:layout_toRightOf="@+id/avatarView"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="Medium Text"
-        android:textSize="@dimen/abc_text_size_menu_material" />
+        android:textAppearance="@style/TitleText" />
 
     <TextView
         android:id="@+id/addressTextView"
@@ -33,7 +33,7 @@
         android:layout_below="@+id/titleTextView"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="Medium Text"
-        android:textSize="@dimen/abc_text_size_caption_material" />
+        android:textAppearance="@style/SubtitleText" />
 
     <ImageView
         android:id="@+id/business_review_star_rating"
@@ -41,9 +41,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:contentDescription="@null"
-        android:src="@drawable/business_stars_medium"
+        android:src="@drawable/business_stars"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"/>
 
 </RelativeLayout>
