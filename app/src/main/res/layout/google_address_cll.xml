@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="Medium Text"
         android:id="@+id/formattedAddressLabel"
+        android:textAppearance="@style/TitleText"
         android:singleLine="true"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"

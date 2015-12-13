@@ -45,6 +45,6 @@ public class IEAReviewUserCell extends IEAViewHolder {
         self.titleLabel.setText(model.displayName);
         self.subtitleLabel.setText(model.getTimeAgoString());
 
-        self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_biz);
+        self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_user_small);
     }
 }
