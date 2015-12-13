@@ -7,6 +7,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
+import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 
 /**
  * Created by djzhang on 12/2/15.
@@ -37,6 +38,8 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
+        SectionMoreReviewsFooterCellModel model = (SectionMoreReviewsFooterCellModel) value;
+
         self.titleView.setText(R.string.Select_Person);
 
     }
