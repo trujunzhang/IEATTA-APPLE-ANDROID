@@ -32,7 +32,7 @@
     <!--Ordered Recipes-->
     <dimen name="OrderedRecipes_Recipes">80dip</dimen>
     <!--Recipe detail-->
-    <dimen name="RecipeDetail_Header">175dip</dimen>
+    <dimen name="RecipeDetail_Header">180dip</dimen>
     <!--Edit Event-->
     <dimen name="Edit_Event_WriteReview">150dip</dimen>
     <!--Choice People-->
