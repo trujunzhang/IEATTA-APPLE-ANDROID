@@ -6,3 +6,5 @@ include ':Android-Universal-Image-Loader'
 include ':android-weak-handler'
 include ':slideDateTimePicker'
 include ':squarecamera'
+
+include ':android-segmented-control'

@@ -46,8 +46,6 @@
         <item name="colorControlActivated">@color/blue_sky</item>
         <item name="autoCompleteTextViewStyle">@style/YelpAutoCompleteTextView</item>
         <item name="buttonStyle">@style/Widget.Button</item>
-        <item name="checkboxStyle">@style/Widget.CompoundButton.CheckBox</item>
-        <item name="radioButtonStyle">@style/Widget.CompoundButton.RadioButton</item>
         <item name="titlebarBackground">?colorPrimary</item>
         <item name="contributionSearchBackground">?titlebarBackground</item>
         <item name="searchButtonDrawable">@drawable/selector_button_search</item>
@@ -145,8 +143,6 @@
         <item name="colorControlActivated">@color/blue_sky</item>
         <item name="autoCompleteTextViewStyle">@style/YelpAutoCompleteTextView</item>
         <item name="buttonStyle">@style/Widget.Button</item>
-        <item name="checkboxStyle">@style/Widget.CompoundButton.CheckBox</item>
-        <item name="radioButtonStyle">@style/Widget.CompoundButton.RadioButton</item>
         <item name="titlebarBackground">?colorPrimary</item>
         <item name="contributionSearchBackground">?titlebarBackground</item>
         <item name="searchButtonDrawable">@drawable/selector_button_search</item>
@@ -190,13 +186,6 @@
     <style name="Base.Theme.AppCompat.DialogWhenLarge" parent="@style/Theme.AppCompat" />
 
     <style name="Base.Theme.AppCompat.Light.DialogWhenLarge" parent="@style/Theme.AppCompat.Light" />
-
-    <style name="RadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
-        <item name="android:textAppearance">@style/HeadlineTextDeprecated</item>
-        <item name="android:paddingLeft">@dimen/baseGapSize</item>
-        <item name="android:layout_marginLeft">@dimen/baseGapSize</item>
-        <item name="android:minHeight">@dimen/clickable_size</item>
-    </style>
 
     <style name="Widget.ListView.NoScrollCache" parent="@android:style/Widget.ListView">
         <item name="android:scrollingCache">false</item>
@@ -512,11 +501,6 @@
     <style name="Base.Widget.AppCompat.CompoundButton.CheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:button">?attr/android:listChoiceIndicatorMultiple</item>
-    </style>
-
-    <style name="Base.Widget.AppCompat.CompoundButton.RadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:button">?attr/android:listChoiceIndicatorSingle</item>
     </style>
 
     <style name="Base.Widget.AppCompat.DropDownItem.Spinner" parent="">
@@ -968,9 +952,7 @@
         <item name="autoCompleteTextViewStyle">@style/Widget.AppCompat.AutoCompleteTextView</item>
         <item name="buttonStyle">@style/Widget.AppCompat.Button</item>
         <item name="buttonStyleSmall">@style/Widget.AppCompat.Button.Small</item>
-        <item name="checkboxStyle">@style/Widget.AppCompat.CompoundButton.CheckBox</item>
         <item name="editTextStyle">@style/Widget.AppCompat.EditText</item>
-        <item name="radioButtonStyle">@style/Widget.AppCompat.CompoundButton.RadioButton</item>
         <item name="ratingBarStyle">@style/Widget.AppCompat.RatingBar</item>
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner</item>
         <item name="switchStyle">@style/Widget.AppCompat.CompoundButton.Switch</item>
@@ -2074,8 +2056,6 @@
 
     <style name="Widget.AppCompat.CompoundButton.CheckBox" parent="@style/Base.Widget.AppCompat.CompoundButton.CheckBox" />
 
-    <style name="Widget.AppCompat.CompoundButton.RadioButton" parent="@style/Base.Widget.AppCompat.CompoundButton.RadioButton" />
-
     <style name="Widget.AppCompat.CompoundButton.Switch" parent="@style/Base.Widget.AppCompat.CompoundButton.Switch" />
 
     <style name="Widget.AppCompat.DrawerArrowToggle" parent="@style/Base.Widget.AppCompat.DrawerArrowToggle">
@@ -2306,11 +2286,6 @@
         <item name="android:button">@drawable/btn_check_transparent</item>
     </style>
 
-    <style name="Widget.CompoundButton.RadioButton" parent="@style/Widget.CompoundButton">
-        <item name="android:background">@drawable/btn_radio_label_background</item>
-        <item name="android:button">@drawable/btn_radio</item>
-    </style>
-
     <style name="Widget.ListView.White.NoScrollCache" parent="@android:style/Widget.ListView.White">
         <item name="android:scrollingCache">false</item>
         <item name="android:overScrollMode">ifContentScrolls</item>
@@ -2422,20 +2397,6 @@
 
     <style name="YelpHoloSpinner">
         <!--<item name="android:background">@drawable/yelp_holo_spinner_selector</item>-->
-    </style>
-
-    <style name="YelpRadioButtons">
-        <item name="android:textSize">16.0sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/android:textColorPrimaryInverse</item>
-        <item name="android:gravity">center</item>
-        <item name="android:background">@color/red_shirley_temple</item>
-        <item name="android:button">@null</item>
-        <item name="android:shadowDx">1.2</item>
-    </style>
-
-    <style name="YelpRadioButtons.Small" parent="@style/YelpRadioButtons">
-        <item name="android:textSize">12.0sp</item>
     </style>
 
     <style name="YelpTabs">

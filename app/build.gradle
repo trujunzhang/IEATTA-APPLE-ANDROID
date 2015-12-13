@@ -60,4 +60,6 @@ dependencies {
     compile project(':slideDateTimePicker')
     compile project(':Android-Universal-Image-Loader')
     compile project(':squarecamera')
+
+    compile project( ':android-segmented-control')
 }

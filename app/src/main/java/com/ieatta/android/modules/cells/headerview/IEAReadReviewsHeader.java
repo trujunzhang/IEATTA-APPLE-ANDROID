@@ -11,9 +11,9 @@ import com.ieatta.android.modules.cells.model.IEAEventHeader;
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEAReadReviewsHeader   extends IEAViewHolder {
-    public static CellType  getType() {
-        return new CellType(IEAReadReviewsHeader.class, R.layout.event_header_cell);
+public class IEAReadReviewsHeader extends IEAViewHolder {
+    public static CellType getType() {
+        return new CellType(IEAReadReviewsHeader.class, R.layout.read_reviews_header);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class IEAReadReviewsHeader   extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        IEAEventHeader more  = (IEAEventHeader) value;
+        IEAEventHeader more = (IEAEventHeader) value;
 //        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
 
     }

@@ -7,16 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
-import com.ieatta.android.modules.IEABaseReviewsTableViewController;
-import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
-import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
-import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
-import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
-import com.ieatta.android.modules.tools.CollectionUtils;
-import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 
@@ -45,11 +38,11 @@ private MainActivity self = this;
 
 //        self.showPhotoGallery();
 
-        self.showReviewSection();
+        self.showContentView();
     }
 
-    private void showReviewSection() {
-        self.setContentView(R.layout.businesspage_section_footer);
+    private void showContentView() {
+        self.setContentView(R.layout.read_reviews_header);
 //        self.configureReviewsSection(self.fetchedReviews);
     }
 
