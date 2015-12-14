@@ -6,6 +6,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
@@ -30,6 +31,9 @@ public class RatingImageView extends ImageView{
         super(context, attrs, defStyleAttr);
     }
 
+    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public RatingImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -48,9 +52,15 @@ public class RatingImageView extends ImageView{
             review.queryRatingInReviews().onSuccess(new Continuation<Integer, Object>() {
                 @Override
                 public Object then(Task<Integer> task) throws Exception {
-                    int count = task.getResult();
-                    IEACache.sharedInstance.setAvarageRating(count,review);
-                    self.setImageLevel(count);
+                    final int count = task.getResult();
+                    IEACache.sharedInstance.setAvarageRating(count, review);
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            self.setImageLevel(count);
+                        }
+                    }, 1);
+
                     return null;
                 }
             });
