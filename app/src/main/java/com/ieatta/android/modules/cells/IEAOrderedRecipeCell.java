@@ -38,6 +38,6 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
 //        self.subtitleLabel.setText("");
 //        self.ratingImageView.setImageLevel(model.);
 
-        self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_biz);
+        self.avatarView.loadNewPhotoByModel(model, R.drawable.placeholder_photo);
     }
 }

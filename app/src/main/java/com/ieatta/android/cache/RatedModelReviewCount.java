@@ -43,7 +43,7 @@ private RatedModelReviewCount self = this;
             case Review_Restaurant:
                 return R.drawable.blank_biz;
             case Review_Recipe:
-                return R.drawable.blank_biz;
+                return R.drawable.placeholder_photo;
             case Review_Event:
                 return R.drawable.nav_events;
             default:
