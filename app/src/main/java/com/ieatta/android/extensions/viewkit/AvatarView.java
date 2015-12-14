@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
 
+import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
@@ -18,6 +19,8 @@ public class AvatarView extends RoundedImageView {
     private AvatarView self = this;
 
     private Context context;
+
+    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
 
     public AvatarView(Context context) {
         super(context);
@@ -77,9 +80,14 @@ public class AvatarView extends RoundedImageView {
             @Override
             public Object then(Task task) throws Exception {
                 Object object = task;
-                Bitmap bitmap = (Bitmap) task.getResult();
-//                self.displayImage(task,placeHolder: placeHolder)
-                self.setImageBitmap(bitmap);
+                final Bitmap bitmap = (Bitmap) task.getResult();
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        self.setImageBitmap(bitmap);
+                    }
+                }, 1);
+
                 return null;
             }
         }).continueWith(new Continuation() {
