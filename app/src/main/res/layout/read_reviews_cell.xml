@@ -6,14 +6,13 @@
     android:orientation="horizontal">
 
 
-    <ImageView
+    <com.ieatta.android.extensions.viewkit.AvatarView
         android:id="@+id/avatarView"
         android:layout_width="@dimen/NearRestaurant_More_Icon_Width"
         android:layout_height="@dimen/NearRestaurant_More_Icon_Height"
+        android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:src="@drawable/blank_biz"
-        android:layout_centerVertical="true" />
+        android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
     <TextView
         android:id="@+id/titleTextView"
