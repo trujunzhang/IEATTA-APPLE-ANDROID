@@ -107,9 +107,9 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
         }).continueWith(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
-                 if (task.isFaulted()) {
+                if (task.isFaulted()) {
 
-                     }
+                }
                 return null;
             }
         });
@@ -117,10 +117,10 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        if(indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()){
-            self.whenSelectedCellTaped(((IEANearRestaurantMore)model).identifier);
-        }else{
-            self.selectedModel = (Restaurant)model;
+        if (indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()) {
+            self.whenSelectedCellTaped(((IEANearRestaurantMore) model).identifier);
+        } else {
+            self.selectedModel = (Restaurant) model;
             self.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
         }
     }

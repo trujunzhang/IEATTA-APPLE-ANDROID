@@ -18,7 +18,10 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.LinkedList;
+import java.util.List;
 
+import bolts.Continuation;
+import bolts.Task;
 import info.hoang8f.android.segmented.SegmentedGroup;
 
 enum ReadReviewsSection {
@@ -35,6 +38,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
     // Selected model from tableview.
     private RatedModelReviewCount selectedModel;
     private int reviewType = ReviewType.Review_Restaurant.ordinal();
+    private List<ParseModelAbstract> fetchedList = new LinkedList<>();
 
     protected int getContentView() {
         return R.layout.table_reviews_view_controller;
@@ -89,8 +93,30 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
         if (keyword.isEmpty() == true) {
             return;
         }
-        ParseModelAbstract model = ReviewType.getParseModelInstance(self.reviewType);
 
+        ParseModelAbstract model = ReviewType.getParseModelInstance(self.reviewType);
+        model.queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.fetchedList = task.getResult();
+                return self.getPhotosForModelsTask(task);
+            }
+        }).onSuccess(new Continuation<Boolean, Object>() {
+            @Override
+            public Object then(Task<Boolean> task) throws Exception {
+                List<RatedModelReviewCount> list = RatedModelReviewCount.convertToRatedModelReviewCounts(self.fetchedList);
+                self.setSectionItems(list,  ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted()) {
+
+                }
+                return null;
+            }
+        });
     }
 
     @Override

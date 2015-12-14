@@ -100,6 +100,9 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
         }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted()) {
+
+                }
                 return null;
             }
         });
