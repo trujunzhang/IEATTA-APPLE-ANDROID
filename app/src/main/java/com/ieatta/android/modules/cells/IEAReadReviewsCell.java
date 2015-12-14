@@ -33,7 +33,7 @@ public class IEAReadReviewsCell extends IEAViewHolder {
     @Override
     public void render(Object value) {
         RatedModelReviewCount model  = (RatedModelReviewCount) value;
-        self.titleLabel.setText(model.displayName);
+        self.titleLabel.setText(model.reviewTitle);
 
         if(model.reviewType == ReviewType.Review_Event){
             self.avatarView.configureAvatar(R.drawable.nav_events);

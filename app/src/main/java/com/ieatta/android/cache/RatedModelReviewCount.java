@@ -15,8 +15,8 @@ import java.util.List;
 public class RatedModelReviewCount extends Review{
 private RatedModelReviewCount self = this;
 
-    String reviewTitle = "";
-    PQueryModelType modelType = PQueryModelType.unkown;
+    public String reviewTitle = "";
+    public PQueryModelType modelType = PQueryModelType.unkown;
 
     public RatedModelReviewCount(ParseModelAbstract model) {
         super();
