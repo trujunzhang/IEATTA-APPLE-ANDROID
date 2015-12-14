@@ -86,10 +86,13 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 
 
         self.setRegisterCellClassWhenSelected(IEAReadReviewsCell.getType(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
+
+        // TODO djzhang:test
+        self.queryRatedModels("a");
     }
 
     private void queryRatedModels(String keyword) {
-        self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
+        self.setSectionItems(new LinkedList<ParseModelAbstract>(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
         if (keyword.isEmpty() == true) {
             return;
         }
@@ -98,6 +101,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
         model.queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                Object object = task.getResult();
                 self.fetchedList = task.getResult();
                 return self.getPhotosForModelsTask(task);
             }
