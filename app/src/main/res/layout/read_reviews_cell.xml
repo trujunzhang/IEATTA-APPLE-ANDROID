@@ -24,7 +24,7 @@
         android:layout_toRightOf="@+id/avatarView"
         android:layout_centerVertical="true" />
 
-    <ImageView
+    <com.ieatta.android.extensions.viewkit.RatingImageView
         android:id="@+id/business_review_star_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

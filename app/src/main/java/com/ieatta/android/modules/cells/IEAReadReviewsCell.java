@@ -8,6 +8,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.cache.RatedModelReviewCount;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
+import com.ieatta.android.extensions.viewkit.RatingImageView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
@@ -21,13 +22,13 @@ public class IEAReadReviewsCell extends IEAViewHolder {
 
     private AvatarView avatarView;
     private TextView titleLabel;
-    private ImageView ratingImageView;
+    private RatingImageView ratingImageView;
 
     public IEAReadReviewsCell(View itemView) {
         super(itemView);
         self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
         self.titleLabel = (TextView) itemView.findViewById(R.id.titleTextView);
-        self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
+        self.ratingImageView = (RatingImageView) itemView.findViewById(R.id.business_review_star_rating);
     }
 
     @Override
@@ -40,5 +41,6 @@ public class IEAReadReviewsCell extends IEAViewHolder {
         }else{
             self.avatarView.loadNewPhotoByModel(model, model.getPlaceHolderImage());
         }
+        self.ratingImageView.queryRatingInReviewsByReview(model);
     }
 }
