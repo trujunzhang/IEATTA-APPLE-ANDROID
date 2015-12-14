@@ -167,7 +167,7 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public Task<Object> queryBelongToTask(ParseModelAbstract belongTo) {
+    public Task queryBelongToTask(ParseModelAbstract belongTo) {
         return this.getFirstLocalModelArrayTask().continueWith(new Continuation<ParseModelAbstract, Object>() {
             @Override
             public Object then(Task<ParseModelAbstract> task) throws Exception {

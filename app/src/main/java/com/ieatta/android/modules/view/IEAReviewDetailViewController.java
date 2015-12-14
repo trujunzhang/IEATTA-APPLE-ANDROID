@@ -46,19 +46,21 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
         self.setRegisterCellClass(IEAReviewDetailForModelCell.getType(), ReviewDetailSection.sectionReviewForModel.ordinal());
 //        self.setRegisterCellClass(IEAReviewDetailCell.getType());
 
-//        self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, -1),  ReviewDetailSection.sectionReviewForModel.ordinal());
+        setSectionItems(CollectionUtils.createList(new ReviewDetailForModelCell(self.reviewForModel, self.review)), ReviewDetailSection.sectionReviewForModel.ordinal());
 
-        setSectionItems(CollectionUtils.createList(new ReviewDetailForModelCell( self.reviewForModel,  self.review)),  ReviewDetailSection.sectionReviewForModel.ordinal());
+        self.reviewForModel.queryBelongToTask(self.reviewForModel).onSuccess(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                self.showReviewForModelCells(self.reviewForModel);
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
 
-//        self.reviewForModel.queryBelongToTask(self.reviewForModel).continueWith(new Continuation<Object, Object>() {
-//            @Override
-//            public Object then(Task<Object> task) throws Exception {
-//                self.showReviewForModelCells(self.reviewForModel);
-//
-//                return null;
-//            }
-//        });
-
+                return null;
+            }
+        });
     }
 
     private void showReviewForModelCells(ParseModelAbstract model) {

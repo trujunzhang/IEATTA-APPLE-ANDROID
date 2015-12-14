@@ -171,8 +171,7 @@ private Event self = this;
     }
 
     @Override
-    public Task<Object> queryBelongToTask(ParseModelAbstract belongTo) {
-        final Event self = this;
+    public Task queryBelongToTask(ParseModelAbstract belongTo) {
         return this.getFirstLocalModelArrayTask().continueWith(new Continuation<ParseModelAbstract, Object>() {
             @Override
             public Object then(Task<ParseModelAbstract> task) throws Exception {
