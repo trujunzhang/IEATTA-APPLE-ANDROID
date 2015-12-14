@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:minHeight="80dp">
+    android:minHeight="@dimen/Read_Reviews_Header">
 
     <info.hoang8f.android.segmented.SegmentedGroup
         android:id="@+id/segmentedControl"

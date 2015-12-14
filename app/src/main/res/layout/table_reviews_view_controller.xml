@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/search_header_cell" />
     <include layout="@layout/read_reviews_header"/>
-
     <include layout="@layout/table_view_controller"/>
 
 </LinearLayout>
