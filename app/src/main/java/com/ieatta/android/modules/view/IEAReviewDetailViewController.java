@@ -6,6 +6,10 @@ import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEABaseTableViewController;
 import com.ieatta.android.modules.cells.IEAReviewDetailCell;
 import com.ieatta.android.modules.cells.IEAReviewDetailForModelCell;
+import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
+import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -39,22 +43,21 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
 
         self.transferToReviewDetail(self.getTransferedModel(), (Review) self.getTransferedModel(IntentCache.selectedReview));
 
-//        self.setRegisterCellClass(IEAReviewDetailForModelCell.getType())
-//        self.setRegisterCellClass(IEAReviewDetailCell.getType())
+        self.setRegisterCellClass(IEAReviewDetailForModelCell.getType(), ReviewDetailSection.sectionReviewForModel.ordinal());
+//        self.setRegisterCellClass(IEAReviewDetailCell.getType());
 
-//        self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: ReviewDetailSection.sectionReviewForModel.rawValue)
+        self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, -1),  ReviewDetailSection.sectionReviewForModel.ordinal());
 
-//        setSectionItems([ReviewDetailForModelCell(reviewForModel: self.reviewForModel!, review: self.review!)], forSectionIndex: ReviewDetailSection.sectionReviewForModel.rawValue)
+        setSectionItems(CollectionUtils.createList(new ReviewDetailForModelCell( self.reviewForModel,  self.review)),  ReviewDetailSection.sectionReviewForModel.ordinal());
 
-
-        self.reviewForModel.queryBelongToTask(self.reviewForModel).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                self.showReviewForModelCells(self.reviewForModel);
-
-                return null;
-            }
-        });
+//        self.reviewForModel.queryBelongToTask(self.reviewForModel).continueWith(new Continuation<Object, Object>() {
+//            @Override
+//            public Object then(Task<Object> task) throws Exception {
+//                self.showReviewForModelCells(self.reviewForModel);
+//
+//                return null;
+//            }
+//        });
 
     }
 

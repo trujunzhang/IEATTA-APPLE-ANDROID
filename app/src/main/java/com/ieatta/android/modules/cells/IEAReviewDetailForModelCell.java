@@ -7,6 +7,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
 
 public class IEAReviewDetailForModelCell extends IEAViewHolder {
     public static CellType getType() {
@@ -14,8 +15,6 @@ public class IEAReviewDetailForModelCell extends IEAViewHolder {
     }
 
     private IEAReviewDetailForModelCell self = this;
-
-//    @IBOutlet weak var avatarView: AvatarView!
 
     private TextView titleLabel;
     private TextView subtitleLabel;
@@ -26,7 +25,6 @@ public class IEAReviewDetailForModelCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        IEANearRestaurantMore more = (IEANearRestaurantMore) value;
-        self.titleLabel.setText(more.titleResId);
+        ReviewDetailForModelCell model = (ReviewDetailForModelCell) value;
     }
 }
