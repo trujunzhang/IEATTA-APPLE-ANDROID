@@ -17,26 +17,46 @@
         android:layout_height="match_parent"
         android:layout_toRightOf="@+id/avatarView">
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="2dp"
-        android:text="Medium Text"
-        android:textAppearance="@style/TitleText" />
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="2dp"
+            android:text="Medium Text"
+            android:textAppearance="@style/TitleText" />
 
-    <TextView
-        android:id="@+id/addressTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="8dp"
-        android:singleLine="true"
-        android:layout_marginTop="4dp"
-        android:text="xxx"
-        android:textAppearance="@style/RelativeTimeAgoText" />
+        <TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:singleLine="true"
+            android:text="xxx"
+            android:textAppearance="@style/RelativeTimeAgoText" />
 
+        <ImageView
+            android:id="@+id/business_review_star_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@null"
+            android:src="@drawable/business_stars"
+            android:layout_below="@+id/titleTextView" />
+
+        <TextView
+            android:id="@+id/reviewContentLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="8dp"
+            android:text="Medium Text"
+            android:textSize="@dimen/abc_text_size_menu_material"
+            android:layout_below="@+id/business_review_star_rating" />
 
 
     </RelativeLayout>
