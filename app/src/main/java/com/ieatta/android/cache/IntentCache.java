@@ -11,11 +11,11 @@ import java.util.LinkedHashMap;
 public class IntentCache {
     public static String intentUUID = "intentUUID";
     public static String newModel = "newModel";
+    public static String selectedReview = "selectedReview";
     private IntentCache self = this;
     public static final IntentCache sharedInstance = new IntentCache();
 
     private HashMap<String,ParseModelAbstract> intentModelCache = new LinkedHashMap<>();
-
 
     public void setIntentModel(ParseModelAbstract model){
         self.intentModelCache.put(model.intentUUID, model);

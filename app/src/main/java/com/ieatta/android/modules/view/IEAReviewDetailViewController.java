@@ -2,7 +2,10 @@ package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
 
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEABaseTableViewController;
+import com.ieatta.android.modules.cells.IEAReviewDetailCell;
+import com.ieatta.android.modules.cells.IEAReviewDetailForModelCell;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -34,15 +37,10 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ParseModelAbstract transferedModel = self.getTransferedModel();
-        self.transferToReviewDetail(transferedModel,null);
+        self.transferToReviewDetail(self.getTransferedModel(), (Review) self.getTransferedModel(IntentCache.selectedReview));
 
-        // Do any additional setup after loading the view.
-//        assert(self.reviewForModel != nil, "Must setup reviewForModel's instance.")
-//        assert(self.review != nil, "Must setup selectedReview's instance.")
-
-//        self.setRegisterCellClass(IEAReviewDetailForModelCell)
-//        self.setRegisterCellClass(IEAReviewDetailCell)
+//        self.setRegisterCellClass(IEAReviewDetailForModelCell.getType())
+//        self.setRegisterCellClass(IEAReviewDetailCell.getType())
 
 //        self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: ""), forSectionIndex: ReviewDetailSection.sectionReviewForModel.rawValue)
 

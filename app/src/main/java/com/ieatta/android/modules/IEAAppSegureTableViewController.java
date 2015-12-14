@@ -134,19 +134,28 @@ public class IEAAppSegureTableViewController extends IEAAppTableViewController i
     }
 
     protected ParseModelAbstract getTransferedModel() {
-        String intentUUID = self.getIntent().getExtras().getString(IntentCache.intentUUID);
+        return self.getTransferedModel(IntentCache.intentUUID);
+    }
+
+    protected ParseModelAbstract getTransferedModel(String name) {
+        String intentUUID = self.getIntent().getExtras().getString(name);
         ParseModelAbstract transferedModel = IntentCache.sharedInstance.getIntentModel(intentUUID);
         return transferedModel;
     }
 
     protected void setTransferedModel(Intent sender, ParseModelAbstract model) {
+        self.setTransferedModel(sender, model, IntentCache.intentUUID);
+    }
+
+    protected void setTransferedModel(Intent sender, ParseModelAbstract model, String name) {
         IntentCache.sharedInstance.setIntentModel(model);
-        sender.putExtra(IntentCache.intentUUID, model.intentUUID);
+        sender.putExtra(name, model.intentUUID);
     }
 
     protected void setTransferedModelForEdit(Intent sender, ParseModelAbstract model) {
-        self.setTransferedModelForEdit(sender,model,false);
+        self.setTransferedModelForEdit(sender, model, false);
     }
+
     protected void setTransferedModelForEdit(Intent sender, ParseModelAbstract model, boolean newModel) {
         self.setTransferedModel(sender, model);
         sender.putExtra(IntentCache.newModel, true);
