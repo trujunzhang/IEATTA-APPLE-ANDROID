@@ -46,7 +46,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
         self.setRegisterCellClass(IEAReviewDetailForModelCell.getType(), ReviewDetailSection.sectionReviewForModel.ordinal());
 //        self.setRegisterCellClass(IEAReviewDetailCell.getType());
 
-        self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, -1),  ReviewDetailSection.sectionReviewForModel.ordinal());
+//        self.appendSectionTitleCell(new SectionTitleCellModel( IEAEditKey.Section_Title, -1),  ReviewDetailSection.sectionReviewForModel.ordinal());
 
         setSectionItems(CollectionUtils.createList(new ReviewDetailForModelCell( self.reviewForModel,  self.review)),  ReviewDetailSection.sectionReviewForModel.ordinal());
 
