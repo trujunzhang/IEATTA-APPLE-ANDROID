@@ -11,23 +11,21 @@ import com.ieatta.com.parse.models.Review;
 public class IEAReviewDetailCell extends IEAViewHolder {
 
     public static CellType getType() {
-        return new CellType(IEAReviewDetailCell.class, R.layout.near_restaurant_cell);
+        return new CellType(IEAReviewDetailCell.class, R.layout.review_detail_cell);
     }
 
     private IEAReviewDetailCell self = this;
 
-//    @IBOutlet weak var avatarView: AvatarView!
-
-    private TextView titleLabel;
-    private TextView subtitleLabel;
+    private TextView reviewContentLabel;
 
     public IEAReviewDetailCell(View itemView) {
         super(itemView);
+        self.reviewContentLabel = (TextView) itemView.findViewById(R.id.reviewContentLabel);
     }
 
     @Override
     public void render(Object value) {
-        Review more  = (Review) value;
-//        self.titleLabel.setText(more.titleResId);
+        Review model  = (Review) value;
+        self.reviewContentLabel.setText(model.content);
     }
 }

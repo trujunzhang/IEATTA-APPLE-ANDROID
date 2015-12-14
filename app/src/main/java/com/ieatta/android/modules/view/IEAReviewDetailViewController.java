@@ -2,8 +2,10 @@ package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
 
+import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEABaseTableViewController;
+import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
 import com.ieatta.android.modules.cells.IEAReviewDetailCell;
 import com.ieatta.android.modules.cells.IEAReviewDetailForModelCell;
 import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
@@ -31,6 +33,8 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
     // Transferd Model from previous page.
     private ParseModelAbstract reviewForModel;
     private Review review;
+    private int step = 0;
+
 
     public void transferToReviewDetail(ParseModelAbstract reviewForModel, Review review) {
         self.reviewForModel = reviewForModel;
@@ -44,7 +48,6 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
         self.transferToReviewDetail(self.getTransferedModel(), (Review) self.getTransferedModel(IntentCache.selectedReview));
 
         self.setRegisterCellClass(IEAReviewDetailForModelCell.getType(), ReviewDetailSection.sectionReviewForModel.ordinal());
-//        self.setRegisterCellClass(IEAReviewDetailCell.getType());
 
         setSectionItems(CollectionUtils.createList(new ReviewDetailForModelCell(self.reviewForModel, self.review)), ReviewDetailSection.sectionReviewForModel.ordinal());
 
@@ -69,11 +72,11 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
         switch (reviewType) {
             case Review_Restaurant:
 //                self.getTableViewHeightInfo().setHeightForRowAtIndexPath(1,value: CellsHeight.NearRestaurant_Restaurants.rawValue)
+                self.step = 1;
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), 1);
 
-//                self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.RestaurantInformation.string), forSectionIndex: 1)
-
-//                self.setRegisterCellClass(IEANearRestaurantsCell)
-//                self.setSectionItems([model], forSectionIndex: 1)
+                self.setRegisterCellClass(IEANearRestaurantsCell.getType(), 1);
+                self.setSectionItems(CollectionUtils.createList(model), 1);
 
                 self.showReviewForModelCells(self.review);
                 break;
@@ -99,13 +102,14 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                 break;
             default:
                 // Add Review Content cell.
-//                int rowCount = self.getTableViewHeightInfo().getRowCount();
+                int rowCount = self.step;
+                self.setRegisterCellClass(IEAReviewDetailCell.getType(), rowCount);
                 /// 1. Set current review index.
 //                self.getTableViewHeightInfo().setReviewSectionIndex(rowCount);
-                /// 2. Add section title cell.
-//                self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.ReviewHighlights.string), forSectionIndex:rowCount)
+                // 2. Add section title cell.
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), rowCount);
                 /// 3. Set section items.
-//                self.setSectionItems([model],  rowCount);
+                self.setSectionItems(CollectionUtils.createList(model), rowCount);
                 break;
         }
 
