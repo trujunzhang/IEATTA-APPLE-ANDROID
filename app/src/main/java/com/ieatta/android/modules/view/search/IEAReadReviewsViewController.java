@@ -13,6 +13,7 @@ import com.ieatta.android.cache.RatedModelReviewCount;
 import com.ieatta.android.modules.IEAReviewSegueTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAReadReviewsCell;
+import com.ieatta.android.modules.cells.enums.IEAReadReviewsHeaderSegmentedType;
 import com.ieatta.android.modules.cells.headerview.IEAReadReviewsHeader;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -37,7 +38,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 
     // Selected model from tableview.
     private RatedModelReviewCount selectedModel;
-    private int reviewType = ReviewType.Review_Restaurant.ordinal();
+    private int reviewType = ReviewType.getInt(ReviewType.Review_Restaurant);
     private List<ParseModelAbstract> fetchedList = new LinkedList<>();
     private String keyword;
 
@@ -143,7 +144,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        self.reviewType = IEAReadReviewsHeader.convertToReviewType(checkedId).ordinal();
+        self.reviewType = IEAReadReviewsHeaderSegmentedType.convertToReviewType(checkedId).ordinal();
         self.queryRatedModels();
     }
 }

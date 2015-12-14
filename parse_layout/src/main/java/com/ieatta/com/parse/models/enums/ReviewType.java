@@ -9,13 +9,19 @@ import com.ieatta.com.parse.models.Restaurant;
  * Created by djzhang on 7/16/15.
  */
 public enum ReviewType {
-    Review_Restaurant,
-    Review_Recipe,
-    Review_Event,
-    Review_Unknow;// Default
+    Review_Restaurant(0),
+    Review_Recipe(1),
+    Review_Event(2),
+    Review_Unknow(3);// Default
+
+    private int position = -1;
+
+    ReviewType(int position) {
+        this.position = position;
+    }
 
     public static int getInt(ReviewType type) {
-        return type.ordinal();
+        return type.position;
     }
 
     public static ReviewType fromInteger(int x) {
@@ -32,15 +38,14 @@ public enum ReviewType {
         return null;
     }
 
-    public static ParseModelAbstract getParseModelInstance(int reviewType) {
-        if (reviewType == ReviewType.Review_Restaurant.ordinal()) {
+    public static ParseModelAbstract getParseModelInstance(int type) {
+        if (type == ReviewType.Review_Restaurant.position) {
             return new Restaurant();
-        } else if (reviewType == ReviewType.Review_Recipe.ordinal()) {
+        } else if (type == ReviewType.Review_Recipe.position) {
             return new Recipe();
-        } else if (reviewType == ReviewType.Review_Event.ordinal()) {
+        } else if (type == ReviewType.Review_Event.position) {
             return new Event();
         }
-
         return null;
     }
 

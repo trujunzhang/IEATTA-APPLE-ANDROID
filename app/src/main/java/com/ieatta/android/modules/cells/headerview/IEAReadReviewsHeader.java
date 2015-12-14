@@ -19,21 +19,10 @@ import info.hoang8f.android.segmented.SegmentedGroup;
  */
 public class IEAReadReviewsHeader extends IEAViewHolder implements RadioGroup.OnCheckedChangeListener {
 
-    private  SegmentedGroup segmentedControl;
+    private SegmentedGroup segmentedControl;
 
     public static CellType getType() {
         return new CellType(IEAReadReviewsHeader.class, R.layout.read_reviews_header);
-    }
-
-    public static ReviewType convertToReviewType(int index)  {
-        if(index ==IEAReadReviewsHeaderSegmentedType.Segment_Restaurant.ordinal()){
-            return ReviewType.Review_Restaurant;
-        }else if(index ==IEAReadReviewsHeaderSegmentedType.Segment_Event.ordinal()){
-            return ReviewType.Review_Event;
-        }else if(index ==IEAReadReviewsHeaderSegmentedType.Segment_Recipe.ordinal()){
-            return ReviewType.Review_Recipe;
-        }
-        return ReviewType.Review_Unknow;
     }
 
     @Override
@@ -59,8 +48,5 @@ public class IEAReadReviewsHeader extends IEAViewHolder implements RadioGroup.On
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        ReviewType reviewType = IEAReadReviewsHeader.convertToReviewType(checkedId);
-
-//        NSNotificationCenter.defaultCenter().postNotificationName(PAReadReviewsSegmentedValueChanged, object: nil,userInfo: [PANotificationUserInfoForReadReviews:reviewType])
     }
 }
