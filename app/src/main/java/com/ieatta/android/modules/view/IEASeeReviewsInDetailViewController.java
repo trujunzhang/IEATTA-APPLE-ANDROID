@@ -39,12 +39,20 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         super.onCreate(savedInstanceState);
 
         // Do any additional setup after loading the view.
-//        assert(self.reviewForModel != nil, "Must setup reviewForModel's instance.")
+        self.transfer(self.getTransferedModel());
 
         self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
                 self.configureReviewsSection(self.fetchedReviews);
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted()) {
+
+                }
                 return null;
             }
         });
@@ -55,7 +63,6 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
     public void registerReviewTableCells() {
         self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType(),SeeReviewsInDetailSection.sectionReviews.ordinal());
     }
-
 
     @Override
     public int getQueriedReviewsLimit() {
