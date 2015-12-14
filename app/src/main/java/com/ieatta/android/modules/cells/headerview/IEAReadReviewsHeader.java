@@ -25,7 +25,7 @@ public class IEAReadReviewsHeader extends IEAViewHolder implements RadioGroup.On
         return new CellType(IEAReadReviewsHeader.class, R.layout.read_reviews_header);
     }
 
-    private static ReviewType convertToReviewType(int index)  {
+    public static ReviewType convertToReviewType(int index)  {
         if(index ==IEAReadReviewsHeaderSegmentedType.Segment_Restaurant.ordinal()){
             return ReviewType.Review_Restaurant;
         }else if(index ==IEAReadReviewsHeaderSegmentedType.Segment_Event.ordinal()){

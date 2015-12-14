@@ -10,11 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/IEATTAAppTheme">
         <activity android:name=".debug.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".debug.EffectActivity">
 
@@ -70,7 +66,13 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".modules.view.search.IEAReadReviewsViewController"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".modules.view.search.IEASearchRestaurantViewController"
             android:screenOrientation="portrait"></activity>
