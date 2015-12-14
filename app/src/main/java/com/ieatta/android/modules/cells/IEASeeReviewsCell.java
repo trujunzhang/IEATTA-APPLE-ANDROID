@@ -28,11 +28,22 @@ public class IEASeeReviewsCell extends IEAViewHolder {
 
     public IEASeeReviewsCell(View itemView) {
         super(itemView);
+
+        self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
+        self.titleLabel = (TextView) itemView.findViewById(R.id.titleTextView);
+        self.timeAgoTextView = (TextView) itemView.findViewById(R.id.timeAgoTextView);
+
+        self.business_review_star_rating = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
+        self.reviewContentLabel = (TextView) itemView.findViewById(R.id.reviewContentLabel);
     }
 
     @Override
     public void render(Object value) {
         SectionSeeReviewsCellModel model  = (SectionSeeReviewsCellModel) value;
 
+        self.titleLabel.setText(model.user.displayName);
+        self.timeAgoTextView.setText(model.timeAgoString);
+
+        self.avatarView.loadNewPhotoByModel(model.user, R.drawable.blank_user_small);
     }
 }

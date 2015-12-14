@@ -6,19 +6,20 @@ import com.ieatta.com.parse.models.Team;
 
 public class SectionSeeReviewsCellModel extends EditBaseCellModel {
     private SectionSeeReviewsCellModel self = this;
-    Team user;
-     Review writedReview;
 
-    String timeAgoString = "";
-    int ratingValue  = 0;
-    String reviewContent = "";
+    public Team user = null;
+    public Review writedReview = null;
 
-    public SectionSeeReviewsCellModel(IEAEditKey editKey,Object user,Object review) {
+    public String timeAgoString = "";
+    public int ratingValue = 0;
+    public String reviewContent = "";
+
+    public SectionSeeReviewsCellModel(IEAEditKey editKey, Object user, Object review) {
         super(editKey);
 
-        self.user = (Team)user;
+        self.user = (Team) user;
 
-        self.writedReview = (Review)review ;
+        self.writedReview = (Review) review;
 
         self.timeAgoString = writedReview.getTimeAgoString();
         self.ratingValue = writedReview.rate;
