@@ -10,7 +10,7 @@ import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 
 public class IEAReviewDetailForModelCell extends IEAViewHolder {
     public static CellType getType() {
-        return new CellType(IEAReviewDetailForModelCell.class, R.layout.near_restaurant_cell);
+        return new CellType(IEAReviewDetailForModelCell.class, R.layout.review_detail_for_model_cell);
     }
 
     private IEAReviewDetailForModelCell self = this;
@@ -26,7 +26,7 @@ public class IEAReviewDetailForModelCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) value;
+        IEANearRestaurantMore more = (IEANearRestaurantMore) value;
         self.titleLabel.setText(more.titleResId);
     }
 }
