@@ -15,16 +15,17 @@ import bolts.Task;
  */
 
 enum ReviewDetailSection {
-         sectionReviewForModel   ,//= 0
-        }
+    sectionReviewForModel,//= 0
+}
+
 public class IEAReviewDetailViewController extends IEABaseTableViewController {
-    private IEAReviewDetailViewController self =this;
+    private IEAReviewDetailViewController self = this;
 
     // Transferd Model from previous page.
     private ParseModelAbstract reviewForModel;
     private Review review;
 
-    public void transferToReviewDetail(ParseModelAbstract reviewForModel,Review review){
+    public void transferToReviewDetail(ParseModelAbstract reviewForModel, Review review) {
         self.reviewForModel = reviewForModel;
         self.review = review;
     }
@@ -33,6 +34,8 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ParseModelAbstract transferedModel = self.getTransferedModel();
+        self.transferToReviewDetail(transferedModel,null);
 
         // Do any additional setup after loading the view.
 //        assert(self.reviewForModel != nil, "Must setup reviewForModel's instance.")
@@ -49,7 +52,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
         self.reviewForModel.queryBelongToTask(self.reviewForModel).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
-                    self.showReviewForModelCells(self.reviewForModel);
+                self.showReviewForModelCells(self.reviewForModel);
 
                 return null;
             }
@@ -60,7 +63,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
     private void showReviewForModelCells(ParseModelAbstract model) {
         ReviewType reviewType = (model.getReviewType());
 
-        switch(reviewType){
+        switch (reviewType) {
             case Review_Restaurant:
 //                self.getTableViewHeightInfo().setHeightForRowAtIndexPath(1,value: CellsHeight.NearRestaurant_Restaurants.rawValue)
 

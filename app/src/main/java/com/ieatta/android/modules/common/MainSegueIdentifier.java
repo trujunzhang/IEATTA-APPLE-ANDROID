@@ -5,6 +5,7 @@ import com.ieatta.android.modules.view.IEAEventDetailViewController;
 import com.ieatta.android.modules.view.IEAOrderedRecipesViewController;
 import com.ieatta.android.modules.view.IEARecipeDetailViewController;
 import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
+import com.ieatta.android.modules.view.IEAReviewDetailViewController;
 import com.ieatta.android.modules.view.IEASeeReviewsInDetailViewController;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
@@ -38,7 +39,7 @@ public enum MainSegueIdentifier {
     detailSeeReviewSegueIdentifier("seeReviewsInDetail", IEASeeReviewsInDetailViewController.class),
 
     // Show detail review from review list.
-    detailReviewSegueIdentifier("detailReview",IEASeeReviewsInDetailViewController.class),
+    detailReviewSegueIdentifier("detailReview",IEAReviewDetailViewController.class),
 
     // Four new/edit model pages.(the following three, and restaurant)
     editEventSegueIdentifier("addEditEvent", IEAEditEventViewController.class),

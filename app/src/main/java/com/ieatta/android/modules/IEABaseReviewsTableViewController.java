@@ -1,11 +1,13 @@
 package com.ieatta.android.modules;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.android.modules.view.IEAReviewDetailViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
@@ -80,5 +82,11 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 //    override func segueForReviewDetailViewController(destination:IEAReviewDetailViewController){
 //        destination.transferToReviewDetail(self.getPageModel(), review: self.selectedReview!)
 //    }
+
+    @Override
+    protected void segueForReviewDetailViewController(IEAReviewDetailViewController destination, Intent sender){
+        self.setTransferedModel(sender,self.getPageModel());
+//        destination.transferToReviewDetail(self.getPageModel(), review: self.selectedReview!)
+    }
 
 }
