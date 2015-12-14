@@ -81,8 +81,9 @@
             android:name=".modules.view.IEASeeReviewsInDetailViewController"
             android:screenOrientation="portrait"></activity>
 
-
-
+        <activity
+            android:name=".modules.view.IEAReviewDetailViewController"
+            android:screenOrientation="portrait"></activity>
 
 
     </application>
