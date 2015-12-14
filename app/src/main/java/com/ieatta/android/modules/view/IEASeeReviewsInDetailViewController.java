@@ -3,7 +3,9 @@ package com.ieatta.android.modules.view;
 import android.os.Bundle;
 
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEASeeReviewsCell;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionSeeReviewsCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -93,4 +95,11 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         setSectionItems(items, SeeReviewsInDetailSection.sectionReviews.ordinal());
     }
 
+    @Override
+    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+        SectionSeeReviewsCellModel cellModel = (SectionSeeReviewsCellModel) model;
+
+        self.selectedReview = cellModel.writedReview;
+        self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier,  self);
+    }
 }

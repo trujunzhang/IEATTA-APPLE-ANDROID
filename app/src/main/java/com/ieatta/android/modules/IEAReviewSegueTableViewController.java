@@ -36,7 +36,6 @@ public class IEAReviewSegueTableViewController extends IEAPhotoGalleryViewContro
      */
     protected void prepareForSeeReviewSegueIdentifier(/*UINavigationController navigationViewController*/){
         self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier,self);
-//        navigationViewController.pushViewController(UIStoryboard.Storyboard.Controllers.seeReviewsInDetailViewController().transfer(self.getPageModel()), animated: true)
     }
 
 }
