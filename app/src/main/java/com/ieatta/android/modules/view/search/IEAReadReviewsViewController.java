@@ -39,6 +39,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
     private RatedModelReviewCount selectedModel;
     private int reviewType = ReviewType.Review_Restaurant.ordinal();
     private List<ParseModelAbstract> fetchedList = new LinkedList<>();
+    private String keyword;
 
     protected int getContentView() {
         return R.layout.table_reviews_view_controller;
@@ -55,7 +56,6 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
         self.segmentedControl = (SegmentedGroup) self.findViewById(R.id.segmentedControl);
         self.segmentedControl.setOnCheckedChangeListener(this);
 
-
         self.searchTextView = (EditText) self.findViewById(R.id.searchTextView);
         self.search_clear_Button = (ImageView) self.findViewById(R.id.search_clear);
 
@@ -68,7 +68,8 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                self.queryRatedModels(s.toString());
+                self.keyword = s.toString();
+                self.queryRatedModels();
             }
 
             @Override
@@ -88,17 +89,19 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
         self.setRegisterCellClassWhenSelected(IEAReadReviewsCell.getType(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
 
         // TODO djzhang:test
-        self.queryRatedModels("a");
+        self.keyword = "a";
+        self.queryRatedModels();
     }
 
-    private void queryRatedModels(String keyword) {
+    private void queryRatedModels() {
+
         self.setSectionItems(new LinkedList<ParseModelAbstract>(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
         if (keyword.isEmpty() == true) {
             return;
         }
 
         ParseModelAbstract model = ReviewType.getParseModelInstance(self.reviewType);
-        model.queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+        model.queryParseModels(self.keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 Object object = task.getResult();
@@ -141,5 +144,6 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         self.reviewType = IEAReadReviewsHeader.convertToReviewType(checkedId).ordinal();
+        self.queryRatedModels();
     }
 }
