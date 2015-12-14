@@ -26,19 +26,15 @@ public class IEAReadReviewsHeader extends IEAViewHolder implements RadioGroup.On
     }
 
     private static ReviewType convertToReviewType(int index)  {
-        switch(index){
-            case IEAReadReviewsHeaderSegmentedType.Segment_Restaurant.ordinal():
-                return ReviewType.Review_Restaurant;
-            case IEAReadReviewsHeaderSegmentedType.Segment_Event.ordinal():
-                return ReviewType.Review_Event;
-            case IEAReadReviewsHeaderSegmentedType.Segment_Recipe.ordinal():
-                return ReviewType.Review_Recipe;
-            default:
-                break;
+        if(index ==IEAReadReviewsHeaderSegmentedType.Segment_Restaurant.ordinal()){
+            return ReviewType.Review_Restaurant;
+        }else if(index ==IEAReadReviewsHeaderSegmentedType.Segment_Event.ordinal()){
+            return ReviewType.Review_Event;
+        }else if(index ==IEAReadReviewsHeaderSegmentedType.Segment_Recipe.ordinal()){
+            return ReviewType.Review_Recipe;
         }
         return ReviewType.Review_Unknow;
     }
-
 
     @Override
     protected boolean shouldClickItem() {
