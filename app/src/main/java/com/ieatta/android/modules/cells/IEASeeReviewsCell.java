@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.cells;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
@@ -18,8 +19,12 @@ public class IEASeeReviewsCell extends IEAViewHolder {
     private IEASeeReviewsCell self = this;
 
     private AvatarView avatarView;
+
     private TextView titleLabel;
-    private TextView subtitleLabel;
+    private TextView timeAgoTextView;
+
+    private ImageView business_review_star_rating;
+    private TextView reviewContentLabel;
 
     public IEASeeReviewsCell(View itemView) {
         super(itemView);

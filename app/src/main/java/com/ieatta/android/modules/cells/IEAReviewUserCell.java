@@ -30,20 +30,20 @@ public class IEAReviewUserCell extends IEAViewHolder {
     private AvatarView avatarView;
 
     private TextView titleLabel;
-    private TextView subtitleLabel;
+    private TextView timeAgoTextView;
 
     public IEAReviewUserCell(View itemView) {
         super(itemView);
         self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
         self.titleLabel = (TextView) itemView.findViewById(R.id.titleTextView);
-        self.subtitleLabel = (TextView) itemView.findViewById(R.id.addressTextView);
+        self.timeAgoTextView = (TextView) itemView.findViewById(R.id.timeAgoTextView);
     }
 
     @Override
     public void render(Object value) {
         Team model  = (Team) value;
         self.titleLabel.setText(model.displayName);
-        self.subtitleLabel.setText(model.getTimeAgoString());
+        self.timeAgoTextView.setText(model.getTimeAgoString());
 
         self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_user_small);
     }
