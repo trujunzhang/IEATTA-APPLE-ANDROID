@@ -93,7 +93,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                 break;
             default:
                 // Add Review Content cell.
-                int rowCount = self.getTableViewHeightInfo().getRowCount();
+//                int rowCount = self.getTableViewHeightInfo().getRowCount();
                 /// 1. Set current review index.
 //                self.getTableViewHeightInfo().setReviewSectionIndex(rowCount);
                 /// 2. Add section title cell.

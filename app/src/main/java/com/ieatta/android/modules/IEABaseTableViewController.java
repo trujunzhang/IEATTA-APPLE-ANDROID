@@ -48,35 +48,6 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
         return null;
     }
 
-    public TableViewHeightInfo getTableViewHeightInfo() {
-//        return TableViewHeightInfo.getEmptyInfo()
-        return null;
-    }
-
-//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if let accessoryType = self.getTableViewHeightInfo().accessoryType[indexPath.section]{
-//            cell.accessoryType = accessoryType
-//        }else{
-//            cell.selectionStyle = .None
-//        }
-//    }
-
-//    override tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if let height = self.getTableViewHeightInfo().getHeightForHeaderInSection(section){
-//            return height
-//        }
-//        return DEFAULT_SECTION_TITLE_HEADER_HEIGHT
-//    }
-
-//    override tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if let height = self.getTableViewHeightInfo().getHeightForRowAtIndexPath(indexPath){
-//            return height
-//        }
-//
-//        assert(false, "Must set row height at row: \(indexPath.row), section: \(indexPath.section)")
-//        return 0.0
-//    }
-
     public Task<Boolean> getPhotosForModelsTask(final Task<List<ParseModelAbstract>> previous) {
         // First of all, query relate photos task.
         return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous)).onSuccess(new Continuation<List<ParseModelAbstract>, Boolean>() {
