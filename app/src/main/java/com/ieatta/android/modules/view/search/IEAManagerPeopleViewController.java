@@ -34,6 +34,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
     private EditText searchTextView;
     private ImageView search_clear_Button;
+
     private List<ParseModelAbstract/*Restaurant*/> fetchedTeam;
     private Team selectedModel;
 

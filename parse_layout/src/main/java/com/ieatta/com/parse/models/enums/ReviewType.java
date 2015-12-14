@@ -1,5 +1,10 @@
 package com.ieatta.com.parse.models.enums;
 
+import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.Event;
+import com.ieatta.com.parse.models.Recipe;
+import com.ieatta.com.parse.models.Restaurant;
+
 /**
  * Created by djzhang on 7/16/15.
  */
@@ -9,7 +14,7 @@ public enum ReviewType {
     Review_Event,
     Review_Unknow;// Default
 
-    public static int getInt(ReviewType type){
+    public static int getInt(ReviewType type) {
         return type.ordinal();
     }
 
@@ -24,6 +29,18 @@ public enum ReviewType {
             case 3:
                 return Review_Unknow;
         }
+        return null;
+    }
+
+    public static ParseModelAbstract getParseModelInstance(int reviewType) {
+        if (reviewType == ReviewType.Review_Restaurant.ordinal()) {
+            return new Restaurant();
+        } else if (reviewType == ReviewType.Review_Recipe.ordinal()) {
+            return new Recipe();
+        } else if (reviewType == ReviewType.Review_Event.ordinal()) {
+            return new Event();
+        }
+
         return null;
     }
 

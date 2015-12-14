@@ -1,6 +1,11 @@
 package com.ieatta.android.modules.view.search;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.ieatta.android.R;
@@ -11,6 +16,8 @@ import com.ieatta.android.modules.cells.IEAReadReviewsCell;
 import com.ieatta.android.modules.cells.headerview.IEAReadReviewsHeader;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.ReviewType;
+
+import java.util.LinkedList;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
 
@@ -34,6 +41,8 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
     }
 
     private SegmentedGroup segmentedControl;
+    private EditText searchTextView;
+    private ImageView search_clear_Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +51,46 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
         self.segmentedControl = (SegmentedGroup) self.findViewById(R.id.segmentedControl);
         self.segmentedControl.setOnCheckedChangeListener(this);
 
-        self.setRegisterCellClassWhenSelected(IEAReadReviewsCell.getType(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
 
-//        self.setSectionHeader(self.reviewType);
+        self.searchTextView = (EditText) self.findViewById(R.id.searchTextView);
+        self.search_clear_Button = (ImageView) self.findViewById(R.id.search_clear);
+
+        self.searchTextView.setHint(R.string.Search_Hint_Team);
+        self.searchTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                self.queryRatedModels(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        self.search_clear_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                self.searchTextView.setText("");
+            }
+        });
+
+
+        self.setRegisterCellClassWhenSelected(IEAReadReviewsCell.getType(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
+    }
+
+    private void queryRatedModels(String keyword) {
+        self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
+        if (keyword.isEmpty() == true) {
+            return;
+        }
+        ParseModelAbstract model = ReviewType.getParseModelInstance(self.reviewType);
+
     }
 
     @Override
@@ -55,10 +101,6 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
     @Override
     public ParseModelAbstract getPageModel() {
         return super.getPageModel();
-    }
-
-    private void setSectionHeader(int reviewType) {
-//        setSectionItems([IEAReadReviewsHeader(reviewType:reviewType,viewController: self)], forSectionIndex: ReadReviewsSection.sectionHeader.rawValue)
     }
 
     private void showSelectedModel(RatedModelReviewCount model) {
