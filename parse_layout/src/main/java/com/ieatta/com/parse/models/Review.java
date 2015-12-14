@@ -149,14 +149,14 @@ public class Review extends ParseModelSync {
         });
     }
 
-    public Task<Object> queryRatingInReviews() {
+    public Task<Integer> queryRatingInReviews() {
         // First of all, query all reviews.
-        return ParseModelQuery.findLocalObjectsInBackground(this.createQueryForReviewRef()).continueWith(new Continuation<List<ParseObject>, Object>() {
+        return ParseModelQuery.findLocalObjectsInBackground(this.createQueryForReviewRef()).onSuccess(new Continuation<List<ParseObject>, Integer>() {
             @Override
-            public Object then(Task<List<ParseObject>> task) throws Exception {
+            public Integer then(Task<List<ParseObject>> task) throws Exception {
                 List<ParseModelAbstract> array = new Review().convertToParseModelArray(task.getResult(), true);
                 int rating = Review.getRatingInReview(array);
-                return Task.forResult(rating);
+                return rating;
             }
         });
     }
