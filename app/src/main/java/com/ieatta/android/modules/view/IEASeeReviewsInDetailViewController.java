@@ -61,7 +61,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
     // MARK: Override IEAReviewsTableViewController methods
     @Override
     public void registerReviewTableCells() {
-        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType(),SeeReviewsInDetailSection.sectionReviews.ordinal());
+        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType(), SeeReviewsInDetailSection.sectionReviews.ordinal());
     }
 
     @Override
