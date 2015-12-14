@@ -1,20 +1,44 @@
 package com.ieatta.android.modules.cells.headerview;
 
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.cells.enums.IEAReadReviewsHeaderSegmentedType;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
+import com.ieatta.com.parse.models.enums.ReviewType;
+
+import info.hoang8f.android.segmented.SegmentedGroup;
+
 
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEAReadReviewsHeader extends IEAViewHolder {
+public class IEAReadReviewsHeader extends IEAViewHolder implements RadioGroup.OnCheckedChangeListener {
+
+    private  SegmentedGroup segmentedControl;
+
     public static CellType getType() {
         return new CellType(IEAReadReviewsHeader.class, R.layout.read_reviews_header);
     }
+
+    private static ReviewType convertToReviewType(int index)  {
+        switch(index){
+            case IEAReadReviewsHeaderSegmentedType.Segment_Restaurant.ordinal():
+                return ReviewType.Review_Restaurant;
+            case IEAReadReviewsHeaderSegmentedType.Segment_Event.ordinal():
+                return ReviewType.Review_Event;
+            case IEAReadReviewsHeaderSegmentedType.Segment_Recipe.ordinal():
+                return ReviewType.Review_Recipe;
+            default:
+                break;
+        }
+        return ReviewType.Review_Unknow;
+    }
+
 
     @Override
     protected boolean shouldClickItem() {
@@ -23,18 +47,24 @@ public class IEAReadReviewsHeader extends IEAViewHolder {
 
     private IEAReadReviewsHeader self = this;
 
-    private TextView formattedAddressLabel;
-
     public IEAReadReviewsHeader(View itemView) {
         super(itemView);
 
-//        self.formattedAddressLabel = (TextView) itemView.findViewById(R.id.formattedAddressLabel);
+        self.segmentedControl = (SegmentedGroup) itemView.findViewById(R.id.segmentedControl);
+        self.segmentedControl.setOnCheckedChangeListener(this);
     }
 
     @Override
     public void render(Object value) {
-        IEAEventHeader more = (IEAEventHeader) value;
-//        self.formattedAddressLabel.setText(more.model.getGoogleMapAddress());
+        IEAReadReviewsHeader model = (IEAReadReviewsHeader) value;
 
+
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        ReviewType reviewType = IEAReadReviewsHeader.convertToReviewType(checkedId);
+
+//        NSNotificationCenter.defaultCenter().postNotificationName(PAReadReviewsSegmentedValueChanged, object: nil,userInfo: [PANotificationUserInfoForReadReviews:reviewType])
     }
 }
