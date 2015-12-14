@@ -7,6 +7,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.android.modules.common.edit.SectionSeeReviewsCellModel;
 
 public class IEASeeReviewsCell extends IEAViewHolder {
     public static CellType getType() {
@@ -26,7 +27,7 @@ public class IEASeeReviewsCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) value;
-        self.titleLabel.setText(more.titleResId);
+        SectionSeeReviewsCellModel model  = (SectionSeeReviewsCellModel) value;
+
     }
 }
