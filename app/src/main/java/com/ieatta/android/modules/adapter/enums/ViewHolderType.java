@@ -9,4 +9,6 @@ public enum  ViewHolderType {
     header,
     cell,
     footer;
+
+
 }

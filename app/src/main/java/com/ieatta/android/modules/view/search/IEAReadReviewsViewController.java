@@ -144,7 +144,17 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        self.reviewType = IEAReadReviewsHeaderSegmentedType.convertToReviewType(checkedId).ordinal();
+        switch (checkedId){
+            case R.id.button31:
+                self.reviewType = ReviewType.Review_Restaurant.ordinal();
+                break;
+            case R.id.button32:
+                self.reviewType = ReviewType.Review_Recipe.ordinal();
+                break;
+            case R.id.button33:
+                self.reviewType = ReviewType.Review_Event.ordinal();
+                break;
+        }
         self.queryRatedModels();
     }
 }
