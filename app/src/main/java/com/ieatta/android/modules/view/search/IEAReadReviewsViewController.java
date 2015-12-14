@@ -148,10 +148,10 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
                 self.reviewType = ReviewType.Review_Restaurant.ordinal();
                 break;
             case R.id.button32:
-                self.reviewType = ReviewType.Review_Recipe.ordinal();
+                self.reviewType = ReviewType.Review_Event.ordinal();
                 break;
             case R.id.button33:
-                self.reviewType = ReviewType.Review_Event.ordinal();
+                self.reviewType = ReviewType.Review_Recipe.ordinal();
                 break;
         }
         self.queryRatedModels();
