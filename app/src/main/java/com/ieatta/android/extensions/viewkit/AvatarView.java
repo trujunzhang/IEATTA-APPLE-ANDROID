@@ -55,7 +55,7 @@ public class AvatarView extends RoundedImageView {
     }
 
     // MARK: Setup image.
-    void configureAvatar(int imageRefId) {
+    public void configureAvatar(int imageRefId) {
         self.setImageResource(imageRefId);
     }
 

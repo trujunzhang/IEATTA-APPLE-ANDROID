@@ -9,6 +9,7 @@ import com.ieatta.android.cache.RatedModelReviewCount;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.com.parse.models.enums.ReviewType;
 
 public class IEAReadReviewsCell extends IEAViewHolder {
 
@@ -32,6 +33,12 @@ public class IEAReadReviewsCell extends IEAViewHolder {
     @Override
     public void render(Object value) {
         RatedModelReviewCount model  = (RatedModelReviewCount) value;
+        self.titleLabel.setText(model.displayName);
 
+        if(model.reviewType == ReviewType.Review_Event){
+            self.avatarView.configureAvatar(R.drawable.nav_events);
+        }else{
+            self.avatarView.loadNewPhotoByModel(model, model.getPlaceHolderImage());
+        }
     }
 }

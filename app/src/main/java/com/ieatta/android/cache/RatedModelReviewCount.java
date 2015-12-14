@@ -45,7 +45,7 @@ private RatedModelReviewCount self = this;
             case Review_Recipe:
                 return R.drawable.blank_biz;
             case Review_Event:
-                return R.drawable.blank_biz;
+                return R.drawable.nav_events;
             default:
                 return -1;
         }
