@@ -23,7 +23,7 @@
             android:textAlignment="center"
             android:textAppearance="@style/TitleTextDeprecated" />
 
-        <ImageView
+        <com.ieatta.android.extensions.viewkit.RatingImageView
             android:id="@+id/business_review_star_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:src="@drawable/business_stars_medium" />
 
         <TextView
-            android:id="@+id/timeAgoLabel"
+            android:id="@+id/dayOfVisitLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

@@ -8,9 +8,9 @@ import com.ieatta.com.parse.models.Review;
  */
 public class ReviewDetailForModelCell {
 
-    ParseModelAbstract reviewForModel;
-    int ratingValue = Review.Rating_Default_Value;
-    String timeAgoString = "";
+    public ParseModelAbstract reviewForModel;
+    public int ratingValue = Review.Rating_Default_Value;
+    public String timeAgoString = "";
 
     public ReviewDetailForModelCell(ParseModelAbstract reviewForModel, Review review) {
         this.reviewForModel = reviewForModel;
