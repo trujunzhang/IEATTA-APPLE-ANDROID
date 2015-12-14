@@ -3,6 +3,7 @@ package com.ieatta.android.modules;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.view.IEASeeReviewsInDetailViewController;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 
@@ -33,7 +34,7 @@ public class IEAReviewSegueTableViewController extends IEAPhotoGalleryViewContro
      - parameter navigationViewController: UINavigationController's instance
      */
     protected void prepareForSeeReviewSegueIdentifier(/*UINavigationController navigationViewController*/){
-//        IEASeeReviewsInDetailViewController
+        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier,self);
 //        navigationViewController.pushViewController(UIStoryboard.Storyboard.Controllers.seeReviewsInDetailViewController().transfer(self.getPageModel()), animated: true)
     }
 

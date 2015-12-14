@@ -77,6 +77,12 @@
             android:name=".modules.view.search.IEASearchRestaurantViewController"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".modules.view.IEASeeReviewsInDetailViewController"
+            android:screenOrientation="portrait"></activity>
+
+
+
 
 
     </application>
