@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.Button;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
@@ -37,6 +38,10 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
 
     private Button footerLargeButton;
 
+
+    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+
+
     public IEAMoreReviewsFooterCell(View itemView) {
         super(itemView);
 
@@ -59,8 +64,14 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
         new Review(model.reviewForModel).queryReviewsCount().onSuccess(new Continuation<Integer, Object>() {
             @Override
             public Object then(Task<Integer> task) throws Exception {
-                int count = task.getResult();
-                self.configureButton(count);
+                final int count = task.getResult();
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        self.configureButton(count);
+                    }
+                }, 1);
+
                 return null;
             }
         }).continueWith(new Continuation<Object, Object>() {
