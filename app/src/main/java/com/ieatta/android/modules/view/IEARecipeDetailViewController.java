@@ -12,6 +12,7 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Recipe;
@@ -121,7 +122,13 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
     }
 
     // MARK: TableView header events
-    public void performSegueForEditingModel(){
-        self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier,  self);
+    public void performSegueForEditingModel() {
+        self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier, self);
+    }
+
+    // MARK: NSNotificationCenter notification handlers
+    @Override
+    protected void RecipeWasCreated(NSNotification note) {
+        setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
     }
 }
