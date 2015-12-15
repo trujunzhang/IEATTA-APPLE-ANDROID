@@ -13,8 +13,8 @@ import com.ieatta.android.modules.cells.model.IEARecipeHeader;
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEARecipeDetailHeaderCell  extends IEAViewHolder {
-    public static CellType  getType() {
+public class IEARecipeDetailHeaderCell extends IEAViewHolder {
+    public static CellType getType() {
         return new CellType(IEARecipeDetailHeaderCell.class, R.layout.recipe_detail_header_cell);
     }
 
@@ -69,10 +69,10 @@ public class IEARecipeDetailHeaderCell  extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        self.model  = (IEARecipeHeader) value;
+        self.model = (IEARecipeHeader) value;
 
         self.displayNameLabel.setText(model.model.displayName);
-        self.priceNameLabel.setText(""+model.model.cost);
+        self.priceNameLabel.setText("$ " + model.model.cost);
 
         self.ratingImageView.queryRatingInReviewsByModel(self.model.model);
     }
