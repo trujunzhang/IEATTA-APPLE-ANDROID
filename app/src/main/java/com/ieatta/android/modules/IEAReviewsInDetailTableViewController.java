@@ -1,5 +1,6 @@
 package com.ieatta.android.modules;
 
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAReviewUserCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAMoreReviewsFooterCell;
@@ -35,14 +36,16 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
 
     // MARK: Override IEADTTableViewManagerViewController methods
-//    override func whenSelectedEvent(model:AnyObject,NSIndexPath indexPath){
-//        if(indexPath.section >= self.getReviewsSectionIndex()){
-//            let review = model  as! Review
-//
-//            self.selectedReview = review
-//            self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier.rawValue, sender: self)
-//        }
-//    }
+
+    @Override
+    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+        if(indexPath.section >= self.getReviewsSectionIndex()){
+            Review review = (Review) model;
+
+            self.selectedReview = review;
+            self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier,  self);
+        }
+    }
 
     @Override
     public void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople) {
