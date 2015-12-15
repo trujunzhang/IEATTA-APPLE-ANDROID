@@ -11,6 +11,8 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.edit.model.IEAEditEventManager;
+import com.ieatta.android.notification.NSNotificationCenter;
+import com.ieatta.android.notification.NotifyType;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -72,9 +74,7 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
 
     @Override
     protected void postSaveModelSucess() {
-//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                NSNotificationCenter.defaultCenter().postNotificationName(PAModelCreateEventNotification, object: nil)
-//        })
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreateEventNotification, null);
     }
 
 
