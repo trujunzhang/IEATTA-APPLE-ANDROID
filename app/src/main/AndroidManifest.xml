@@ -86,6 +86,10 @@
             android:name=".modules.view.IEAReviewDetailViewController"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".modules.view.posts.IEAWriteReviewViewController"
+            android:screenOrientation="portrait"></activity>
+
 
     </application>
 
