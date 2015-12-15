@@ -138,8 +138,8 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     // MARK: All the following methonds for taking photos
-    protected void takeAPhotoButtonTapped() {
-// Start CameraActivity
+    public void takeAPhotoButtonTapped() {
+        // Start CameraActivity
         Intent startCustomCameraIntent = new Intent(this, CameraActivity.class);
         startActivityForResult(startCustomCameraIntent, REQUEST_CAMERA);
     }
@@ -179,7 +179,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
         final Photo newPhoto = Photo.getTakenPhotoInstance(self.getPageModel());
 
-        Photo.pinPhotoAndCacheImage(newPhoto,image).onSuccess(new Continuation<Void, Object>() {
+        Photo.pinPhotoAndCacheImage(newPhoto, image).onSuccess(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
                 // 1. Update photoPoint cache.
