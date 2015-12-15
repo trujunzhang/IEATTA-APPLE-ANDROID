@@ -4,13 +4,16 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.view.Display;
 import android.view.View;
 
 import com.desmond.squarecamera.CameraActivity;
+import com.desmond.squarecamera.ImageUtility;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.debug.MainActivity;
 import com.ieatta.android.modules.IEASplitDetailViewController;
@@ -43,6 +46,8 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     private IEAPhotoGalleryViewController self = this;
 
     private static final int REQUEST_CAMERA = 0;
+    private static final int REQUEST_CAMERA_PERMISSION = 1;
+    private Point mSize;
 
     protected Task fetchedPhotosTask = Task.forResult(new LinkedList<>());
 
@@ -56,6 +61,10 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         if (self.havePhotoGallery() == true) {
 //            NSNotificationCenter.defaultCenter().addObserver(self, selector: "TakenPhotoWasChanged:", name: PAModelTakenPhotoNotification, object: nil)
             self.configurePhotoGallery();
+
+            Display display = getWindowManager().getDefaultDisplay();
+            mSize = new Point();
+            display.getSize(mSize);
         }
     }
 
@@ -167,7 +176,13 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
         if (requestCode == REQUEST_CAMERA) {
             Uri photoUri = data.getData();
+
             String path = photoUri.getPath();
+
+            // Get the bitmap in according to the width of the device
+            Bitmap bitmap = ImageUtility.decodeSampledBitmapFromPath(photoUri.getPath(), mSize.x, mSize.x);
+//            ((ImageView) findViewById(R.id.image)).setImageBitmap(bitmap);
+            self.updatePhotoGalleryAfterTakePhoto(bitmap);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
