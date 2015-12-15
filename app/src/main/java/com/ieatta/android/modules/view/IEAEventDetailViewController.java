@@ -169,4 +169,13 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     public void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
         self.setTransferedModelForEdit(sender, self.event, true);
     }
+
+    // MARK: Header cell events
+    public void addPeopleTaped() {
+        self.performSegueWithIdentifier(MainSegueIdentifier.choicePeopleSegueIdentifier, self);
+    }
+
+    public void performSegueForEditingModel() {
+        self.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier, self);
+    }
 }

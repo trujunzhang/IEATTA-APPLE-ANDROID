@@ -35,7 +35,7 @@
             android:textAlignment="center"
             android:textAppearance="@style/SubtitleGrayText" />
 
-        <ImageView
+        <com.ieatta.android.extensions.viewkit.RatingImageView
             android:id="@+id/business_review_star_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

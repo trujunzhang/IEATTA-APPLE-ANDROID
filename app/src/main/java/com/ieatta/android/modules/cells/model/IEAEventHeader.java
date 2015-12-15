@@ -8,8 +8,8 @@ import com.ieatta.com.parse.models.Event;
  */
 public class IEAEventHeader {
 
-public     IEAEventDetailViewController viewController ;
-public     Event model;
+    public IEAEventDetailViewController viewController;
+    public Event model;
 
     public IEAEventHeader(IEAEventDetailViewController viewController, Event model) {
         this.viewController = viewController;
