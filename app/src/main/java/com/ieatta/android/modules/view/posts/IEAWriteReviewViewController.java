@@ -12,15 +12,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.apps.AppAlertView;
+import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.extensions.viewkit.AvatarView;
+import com.ieatta.android.notification.NSNotificationCenter;
+import com.ieatta.android.notification.NotifyType;
+import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.ReviewType;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEAWriteReviewViewController extends AppCompatActivity{
-private  IEAWriteReviewViewController self = this;
+public class IEAWriteReviewViewController extends AppCompatActivity {
+    private IEAWriteReviewViewController self = this;
 
     private Context context;
 
@@ -43,6 +52,7 @@ private  IEAWriteReviewViewController self = this;
     private int ratingValue = 5;
     public String reviewRef;
     private ReviewType type;
+    private ParseModelAbstract reviewForModel;
     private Team people = Team.getAnonymousUser();
 
     @Override
@@ -131,6 +141,36 @@ private  IEAWriteReviewViewController self = this;
 //        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // MARK: Navigation item actions
+    private void postAction() {
+
+        Review savedReview = new Review(self.people, self.reviewForModel, self.reviewTextView.getText().toString(), self.ratingValue);
+        savedReview.pinInBackgroundWithNewRecord().onSuccess(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                self.postSaveModelSucess();
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted()) {
+//                    AppAlertView.showError(L10n.SavedFailure.string)
+                }
+                return null;
+            }
+        });
+
+    }
+
+    protected void postSaveModelSucess() {
+        // 1. Clear up avarage rating cache.
+        IEACache.sharedInstance.clearAvarageRatingCache();
+
+        // 2. Nofity "ReviewPost".
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAReviewPostNotification, null);
     }
 
 
