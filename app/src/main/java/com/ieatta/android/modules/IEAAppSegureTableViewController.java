@@ -25,7 +25,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEAAppSegureTableViewController extends IEAAppTableViewController implements RecyclerItemClickListener {
+public class IEAAppSegureTableViewController extends IEANotificationTableViewController implements RecyclerItemClickListener {
     private IEAAppSegureTableViewController self = this;
 
     public void performSegueWithIdentifier(MainSegueIdentifier identifier, IEAAppTableViewController sender) {

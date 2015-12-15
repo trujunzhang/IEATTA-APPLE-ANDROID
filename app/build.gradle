@@ -35,8 +35,7 @@ dependencies {
     compile group:'com.android.support', name:'design', version:"${SUPPORT_DESIGN_ANDROID_VERSION}"
     compile "com.android.support:recyclerview-v7:23.1.0"
 
-    compile 'de.greenrobot:eventbus:2.4.0'
-
+    compile group:'de.greenrobot', name:'eventbus', version:"${EVENTBUS_ANDROID_VERSION}"
     compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
 
     // Android library listening network connection state and change of the WiFi signal strength with RxJava Observables

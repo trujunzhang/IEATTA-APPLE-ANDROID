@@ -55,26 +55,6 @@ public class IEAConstants {
     public static final String kPAFilterDistanceKey = "filterDistance";
     public static final String kPALocationKey = "location";
 
-    // Notification names:
-    public static final String PAModelCreatedRestaurantNotification = "PAModelCreatedRestaurantNotification";
-    public static final String PAModelCreateEventNotification = "PAModelCreateEventNotification";
-
-    /// For classes: (IEAOrderedRecipesViewController,IEAPhotoGalleryViewController)
-    public static final String PAModelTakenPhotoNotification = "PAModelTakenPhotoNotification";
-
-    public static final String PAPeopleSelectedNotification = "PAPeopleSelectedNotification";
-    public static final String PAPeopleCreatedNotification = "PAPeopleCreatedNotification";
-
-    public static final String PARecipeCreatedNotification = "PARecipeCreatedNotification";
-
-    public static final String PAReviewPostNotification = "PARviewPostNotification";
-
-    public static final String PACurrentLocationDidChangeNotification = "PACurrentLocationDidChangeNotification";
-    public static final String PAFilterDistanceDidChangeNotification = "PAFilterDistanceDidChangeNotification";
-
-    public static final String PAReadReviewsSegmentedValueChanged = "PAReadReviewsSegmentedValueChanged";
-
-    public static final String PANotificationUserInfoForReadReviews = "reviewType";
 
 
 }
