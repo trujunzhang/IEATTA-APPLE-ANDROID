@@ -83,6 +83,6 @@ public class IEAEventHeaderCell  extends IEAViewHolder {
         self.restaurantNameLabel.setText(model.model.belongToModel.displayName);
         self.displayNameLabel.setText(model.model.displayName);
 
-        self.ratingImageView.queryRatingInReviews(byModel: model.model!)
+        self.ratingImageView.queryRatingInReviewsByModel(model.model);
     }
 }
