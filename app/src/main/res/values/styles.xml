@@ -2416,5 +2416,10 @@
         <item name="android:shadowDy">-1.0</item>
         <item name="android:shadowRadius">0.25</item>
     </style>
+
+    <style name="AvatarViewStyle">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
 </resources>
 

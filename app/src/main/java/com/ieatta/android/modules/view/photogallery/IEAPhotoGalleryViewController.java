@@ -1,9 +1,18 @@
 package com.ieatta.android.modules.view.photogallery;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.view.View;
 
+import com.desmond.squarecamera.CameraActivity;
 import com.ieatta.android.cache.IEACache;
+import com.ieatta.android.debug.MainActivity;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
@@ -32,6 +41,8 @@ import bolts.Task;
 public class IEAPhotoGalleryViewController extends IEASplitDetailViewController {
 
     private IEAPhotoGalleryViewController self = this;
+
+    private static final int REQUEST_CAMERA = 0;
 
     protected Task fetchedPhotosTask = Task.forResult(new LinkedList<>());
 
@@ -128,8 +139,37 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
     // MARK: All the following methonds for taking photos
     protected void takeAPhotoButtonTapped() {
-//        let navigationController:TGCameraNavigationController = TGCameraNavigationController.newWithCameraDelegate(self)
-//        self.presentViewController(navigationController, animated: true, completion: nil)
+// Start CameraActivity
+        Intent startCustomCameraIntent = new Intent(this, CameraActivity.class);
+        startActivityForResult(startCustomCameraIntent, REQUEST_CAMERA);
+    }
+
+    // Check for camera permission in MashMallow
+    public void requestForCameraPermission(View view) {
+        final String permission = Manifest.permission.CAMERA;
+        if (ContextCompat.checkSelfPermission(IEAPhotoGalleryViewController.this, permission)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(IEAPhotoGalleryViewController.this, permission)) {
+                // Show permission rationale
+            } else {
+                // Handle the result in Activity#onRequestPermissionResult(int, String[], int[])
+//                ActivityCompat.requestPermissions(IEAPhotoGalleryViewController.this, new String[]{permission}, REQUEST_CAMERA_PERMISSION);
+            }
+        } else {
+            // Start CameraActivity
+        }
+    }
+
+    // Receive Uri of saved square photo
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) return;
+
+        if (requestCode == REQUEST_CAMERA) {
+            Uri photoUri = data.getData();
+            String path = photoUri.getPath();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     protected void updatePhotoGalleryAfterTakePhoto(Bitmap image) {

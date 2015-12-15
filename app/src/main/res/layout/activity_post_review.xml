@@ -48,12 +48,11 @@
         android:layout_marginRight="16.0dip"
         android:orientation="horizontal">
 
-        <com.restaurant.tracking.app.widgets.AvatarView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.ieatta.android.extensions.viewkit.AvatarView
             android:id="@+id/user_photo"
             style="@style/AvatarViewStyle"
             android:layout_width="32.0dip"
             android:layout_height="32.0dip"
-            app:riv_corner_radius="4dip"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:src="@drawable/blank_user_small" />
