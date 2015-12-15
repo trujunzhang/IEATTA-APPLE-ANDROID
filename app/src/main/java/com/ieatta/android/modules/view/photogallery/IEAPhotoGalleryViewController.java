@@ -12,6 +12,7 @@ import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
@@ -163,14 +164,11 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     // MARK: NSNotificationCenter notification handlers
-//    func TakenPhotoWasChanged(note:NSNotification){
-//        if let userInfo = note.userInfo{
-//            let dict = userInfo as! [String:Photo]
-//            if let newPhoto = dict["newPhoto"]{
-//                self.insertItemAtFirstOnCollection(forNewPhoto: newPhoto)
-//            }
-//        }
-//    }
+    @Override
+    protected void TakenPhotoWasChanged(NSNotification note) {
+        Photo newPhoto = (Photo) note.anObject;
+        self.insertItemAtFirstOnCollection(newPhoto);
+    }
 
 
 }
