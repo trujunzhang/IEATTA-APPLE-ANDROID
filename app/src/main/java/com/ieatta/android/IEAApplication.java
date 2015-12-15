@@ -19,8 +19,8 @@ public class IEAApplication extends Application{
         AppConfigure.setup(this);
         ParseAPI.setup(this);
 
-        AppDebugManager.show();
+//        AppDebugManager.show();
 
-        new ParseAsyncTimer().prepareTimer();
+//        new ParseAsyncTimer().prepareTimer();
     }
 }
