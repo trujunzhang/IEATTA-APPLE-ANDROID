@@ -9,10 +9,14 @@ import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
 import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 
 import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by djzhang on 12/1/15.
@@ -63,16 +67,16 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
     }
 
     // MARK: NSNotificationCenter notification handlers
-//    func ReviewWasCreated(note:NSNotification){
-//
-//        self.getReviewsRelatedModelQueryTask().continueWithBlock { (task) -> AnyObject? in
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    self.configureReviewsSection(task.result as! [Team])
-//            })
-//            return nil
-//        }
-//
-//    }
+    @Override
+    protected void ReviewWasCreated(NSNotification note){
+        self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
+            @Override
+            public Object then(Task<Boolean> task) throws Exception {
+                self.configureReviewsSection(self.fetchedReviews);
+                return null;
+            }
+        });
+    }
 
     // MARK: Show all posted reviews for Restaurant,Recipe and Event.
     public void performSegueForSeeReviews() {
@@ -82,5 +86,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
     private int getMoreReviewSectionIndex() {
         return (self.getReviewsSectionIndex() + Review.MAX_FETCHED_REVIEWS_IN_DetailPage + 1);
     }
+
+
 
 }

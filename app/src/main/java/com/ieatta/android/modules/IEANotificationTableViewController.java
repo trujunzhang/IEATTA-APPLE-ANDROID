@@ -45,6 +45,7 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
                 break;
 
             case PAReviewPostNotification:
+                self.ReviewWasCreated(note);
                 break;
 
             case PACurrentLocationDidChangeNotification:
@@ -60,6 +61,10 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
                 break;
 
         }
+    }
+
+    protected void ReviewWasCreated(NSNotification note) {
+
     }
 
     protected void TakenPhotoWasChanged(NSNotification note) {
