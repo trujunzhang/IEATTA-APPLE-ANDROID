@@ -17,6 +17,7 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Photo;
@@ -178,10 +179,29 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 
     // MARK: TableView header events
     public void performSegueForEditingModel(){
-        self.performSegueWithIdentifier(MainSegueIdentifier.editRestaurantSegueIdentifier,  self);
+        self.performSegueWithIdentifier(MainSegueIdentifier.editRestaurantSegueIdentifier, self);
     }
 
     public void performSegueForAddingEvent(){
-        self.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier,  self);
+        self.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier, self);
+    }
+
+    // MARK: NSNotificationCenter notification handlers
+    @Override
+    protected void RestaurantWasCreated(NSNotification note){
+        setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader( self,  self.restaurant)),  RestaurantDetailSection.sectionHeader.ordinal());
+    }
+
+    @Override
+    protected void EventWasCreated(NSNotification note){
+        // 3. load events related restaurant.
+        Event.queryEventsRelatedRestaurant(self.restaurant).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+            @Override
+            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+                self.fetchedEvents = task.getResult();
+                self.configureEventSection(self.fetchedEvents);
+                return null;
+            }
+        });
     }
 }
