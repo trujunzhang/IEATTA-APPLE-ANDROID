@@ -3,6 +3,7 @@ package com.ieatta.android.modules.view.photogallery;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
@@ -13,6 +14,8 @@ import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.notification.NSNotification;
+import com.ieatta.android.notification.NSNotificationCenter;
+import com.ieatta.android.notification.NotifyType;
 import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
@@ -134,26 +137,31 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         // When taken photo in the edit page, and show the hint if user tapped the left BarButtonItem called "Back".
         EditChangedObserver.sharedInstance.takenPhotoListener();
 
-        Photo newPhoto = Photo.getTakenPhotoInstance(self.getPageModel());
+        final Photo newPhoto = Photo.getTakenPhotoInstance(self.getPageModel());
 
-//        Photo.pinPhotoAndCacheImage( newPhoto,  image);
-//        .continueWithBlock { (task) -> AnyObject? in
-//            // Every offline objects was pushed to Parse.com.
-//            if let _ = task.error{
-//                AppAlertView.showError(L10n.SavePhotoFailure.string)
-//            }else{
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        // 1. Update photoPoint cache.
-//                        IEACache.sharedInstance.setPhotoPoint(newPhoto)
-//
-//
-//                        // 2. Notify "TakenPhotoWasChanged".
-//                        NSNotificationCenter.defaultCenter().postNotificationName(PAModelTakenPhotoNotification, object:nil,
-//                        userInfo:["newPhoto":newPhoto])
-//                })
-//            }
-//            return nil
-//        }
+        Photo.pinPhotoAndCacheImage(newPhoto,image).onSuccess(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                // 1. Update photoPoint cache.
+                IEACache.sharedInstance.setPhotoPoint(newPhoto);
+
+                // 2. Notify "TakenPhotoWasChanged".
+                NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelTakenPhotoNotification, newPhoto);
+
+                return null;
+            }
+        }).continueWith(new Continuation<Object, Object>() {
+            @Override
+            public Object then(Task<Object> task) throws Exception {
+                if (task.isFaulted()) {
+                    if (task.isFaulted()) {
+//                        AppAlertView.showError(L10n.SavePhotoFailure.string)
+                    }
+                }
+                return null;
+            }
+        });
+
     }
 
     private void insertItemAtFirstOnCollection(Photo photo) {
