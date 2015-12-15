@@ -75,7 +75,6 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
 
         switch (reviewType) {
             case Review_Restaurant:
-//                self.getTableViewHeightInfo().setHeightForRowAtIndexPath(1,value: CellsHeight.NearRestaurant_Restaurants.rawValue)
                 self.step = 1;
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), 1);
 
@@ -85,8 +84,6 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                 self.showReviewForModelCells(self.review);
                 break;
             case Review_Recipe:
-//                self.getTableViewHeightInfo().setHeightForRowAtIndexPath(3,value: CellsHeight.OrderedRecipes_Recipes.rawValue)
-
                 self.step = 3;
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), 3);
 
@@ -96,7 +93,6 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                 self.showReviewForModelCells((((Recipe) model).belongToModel).belongToModel);
                 break;
             case Review_Event:
-//                self.getTableViewHeightInfo().setHeightForRowAtIndexPath(2,value: CellsHeight.RestaurantDetail_Events.rawValue)
                 self.step = 2;
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), 2);
 //
