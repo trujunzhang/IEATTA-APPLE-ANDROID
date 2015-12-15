@@ -94,9 +94,12 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                 break;
             case Review_Event:
                 self.step = 2;
+
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), 2);
+
                 self.setRegisterCellClass(IEARestaurantEventsCell.getType(), 2);
                 self.setSectionItems(CollectionUtils.createList(model), 2);
+
                 self.showReviewForModelCells(((Event) model).belongToModel);
                 break;
             default:
