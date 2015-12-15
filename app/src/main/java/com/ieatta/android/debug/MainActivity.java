@@ -8,18 +8,24 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
+import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
+import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
+import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
+import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
+import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends IEAPhotoGalleryViewController {
 private MainActivity self = this;
 
-    private List<ParseModelAbstract> fetchedPhotos;
     private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, null);
 
     private RecyclerView collectionView;
@@ -34,11 +40,11 @@ private MainActivity self = this;
         self.fetchedPhotos = new LinkedList<>();
         self.fetchedPhotos.add(new Photo());
 
-//        self.showPhotoGalleryCell();
+        self.showPhotoGalleryCell();
 
 //        self.showPhotoGallery();
 
-        self.showContentView();
+//        self.showContentView();
     }
 
     private void showContentView() {
@@ -64,19 +70,21 @@ private MainActivity self = this;
     }
 
     private void showPhotoGalleryCell() {
-//        // Register Cells by class.
-//        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
-//
-//        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
-////        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
-//
-//        // 1. Set photo gallery section title(contains a 'take a photo' icon).
-//        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
-//
-//        // 2. Set empty items for the photo gallery collection cell.
-//        self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
-//
-//        self.photoGallery.refreshCollection(self.fetchedPhotos);
+        // Register Cells by class.
+        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
+
+        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
+//        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
+
+        // 1. Set photo gallery section title(contains a 'take a photo' icon).
+        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
+
+        // 2. Set empty items for the photo gallery collection cell.
+        self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
+
+        setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
+
+        self.photoGallery.refreshCollection(self.fetchedPhotos);
 
     }
 
