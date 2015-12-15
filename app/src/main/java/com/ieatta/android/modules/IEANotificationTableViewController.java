@@ -26,6 +26,7 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
                 self.RestaurantWasCreated(note);
                 break;
             case PAModelCreateEventNotification:
+                self.EventWasCreated(note);
                 break;
 
             /// For classes: (IEAOrderedRecipesViewController,IEAPhotoGalleryViewController)
@@ -39,6 +40,7 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
                 break;
 
             case PARecipeCreatedNotification:
+                self.RecipeWasCreated(note);
                 break;
 
             case PAReviewPostNotification:
@@ -57,6 +59,14 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
                 break;
 
         }
+    }
+
+    protected void RecipeWasCreated(NSNotification note) {
+
+    }
+
+    protected void EventWasCreated(NSNotification note) {
+
     }
 
     protected void PeopleWasCreated(NSNotification note) {

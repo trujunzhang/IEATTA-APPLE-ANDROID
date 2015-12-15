@@ -16,6 +16,7 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.PeopleInEvent;
@@ -178,4 +179,17 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     public void performSegueForEditingModel() {
         self.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier, self);
     }
+
+    // MARK: NSNotificationCenter notification handlers
+    @Override
+    protected void RecipeWasCreated(NSNotification note) {
+        self.addOrderedPeopleSection(self.fetchedPeople);
+    }
+
+    @Override
+    protected void EventWasCreated(NSNotification note) {
+        self.setSectionItems(CollectionUtils.createList(new IEAEventHeader(self, self.event)), EventDetailSection.sectionHeader.ordinal());
+    }
+
+
 }
