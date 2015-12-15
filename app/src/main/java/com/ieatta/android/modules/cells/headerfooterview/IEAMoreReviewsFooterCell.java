@@ -39,7 +39,8 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     private Button footerLargeButton;
 
 
-    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+    private WeakHandler mHandler = new WeakHandler();
+    ; // We still need at least one hard reference to WeakHandler
 
 
     public IEAMoreReviewsFooterCell(View itemView) {
@@ -84,13 +85,13 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
         });
     }
 
-    private  void configureButton(int reviewsCount){
+    private void configureButton(int reviewsCount) {
         String buttonTitle = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.No_More_Reviews);
         self.footerLargeButton.setEnabled(true);
-        if(reviewsCount > 0){
+        if (reviewsCount > 0) {
             String moreReviews = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.See_More_Reviews);
             buttonTitle = reviewsCount + moreReviews;
-        }else{
+        } else {
             self.footerLargeButton.setEnabled(false);
         }
 
