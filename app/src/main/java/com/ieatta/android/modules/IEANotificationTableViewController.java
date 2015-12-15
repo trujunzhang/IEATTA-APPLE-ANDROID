@@ -35,6 +35,7 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
             case PAPeopleSelectedNotification:
                 break;
             case PAPeopleCreatedNotification:
+                self.PeopleWasCreated(note);
                 break;
 
             case PARecipeCreatedNotification:
@@ -56,6 +57,10 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
                 break;
 
         }
+    }
+
+    protected void PeopleWasCreated(NSNotification note) {
+
     }
 
     // MARK: NSNotificationCenter notification handlers
