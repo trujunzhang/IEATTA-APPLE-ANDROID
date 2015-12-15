@@ -6,8 +6,17 @@
     <string name="App_Subtitle">Eating Experience Tracker</string>
 
 
+
+
     <!--_Common                                                                       -->
     <string name="PhotosGallery">Photos</string>
+
+    <string name="menu_post_review">Post</string>
+    <string name="menu_add">Add</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_update">Update</string>
+    <string name="prompt_post">Post a Review</string>
 
     <!--_Nearby_Restaurant_screen                                                     -->
     <string name="Nearby_Restaurants">Nearby Restaurants</string>

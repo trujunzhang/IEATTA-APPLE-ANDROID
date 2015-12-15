@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/rating_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8.0dip"
+        android:background="@drawable/review_stars_4_inline">
+
+        <View
+            android:id="@+id/rating_button1"
+            android:layout_width="@dimen/review_star_width"
+            android:layout_height="@dimen/review_star_height" />
+
+        <View
+            android:id="@+id/rating_button2"
+            android:layout_width="@dimen/review_star_width"
+            android:layout_height="@dimen/review_star_height" />
+
+        <View
+            android:id="@+id/rating_button3"
+            android:layout_width="@dimen/review_star_width"
+            android:layout_height="@dimen/review_star_height" />
+
+        <View
+            android:id="@+id/rating_button4"
+            android:layout_width="@dimen/review_star_width"
+            android:layout_height="@dimen/review_star_height" />
+
+        <View
+            android:id="@+id/rating_button5"
+            android:layout_width="@dimen/review_star_width"
+            android:layout_height="@dimen/review_star_height" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48.0dip"
+        android:layout_marginLeft="16.0dip"
+        android:layout_marginRight="16.0dip"
+        android:orientation="horizontal">
+
+        <com.restaurant.tracking.app.widgets.AvatarView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/user_photo"
+            style="@style/AvatarViewStyle"
+            android:layout_width="32.0dip"
+            android:layout_height="32.0dip"
+            app:riv_corner_radius="4dip"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/blank_user_small" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8.0dip"
+            android:layout_toRightOf="@+id/user_photo"
+            android:text="Anonymous"
+            android:textAppearance="@style/SubtitleDarkText" />
+
+        <Button
+            android:id="@+id/select_people_button"
+            android:layout_width="80.0dip"
+            android:layout_height="40.0dip"
+            android:layout_alignParentRight="true"
+            android:background="@color/white"
+            android:text="Select"
+            android:textColor="@color/orange_announcement" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1.0dip"
+        android:layout_marginBottom="4.0dip"
+        android:layout_marginLeft="16.0dip"
+        android:layout_marginRight="16.0dip"
+        android:layout_marginTop="4.0dip"
+        android:background="@color/gray_list_divider">
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/post_edittext"
+        style="@style/YelpHoloEditText.Light"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="@string/prompt_post"
+        android:inputType="textMultiLine"
+        android:textColor="@color/gray_dark">
+
+        <requestFocus />
+
+    </EditText>
+
+
+</LinearLayout>

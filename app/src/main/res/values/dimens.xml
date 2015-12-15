@@ -10,6 +10,10 @@
     <dimen name="SECTION_BUTTON_FOOTER_HEIGHT">60dip</dimen>
     <dimen name="DEFAULT_SECTION_HEADER_HEIGHT">4dip</dimen>
 
+    <dimen name="review_star_width">37.0dip</dimen>
+    <dimen name="review_star_height">30.0dip</dimen>
+
+
     <!--Photo gallery-->
     <dimen name="Gallery_Cell_Collection_Width">132.0dip</dimen>
     <dimen name="Gallery_Cell_Collection_Height">132.0dip</dimen>
