@@ -74,7 +74,7 @@ private MainActivity self = this;
         self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
 
         self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
-//        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
+        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
 
         // 1. Set photo gallery section title(contains a 'take a photo' icon).
         self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
@@ -82,7 +82,7 @@ private MainActivity self = this;
         // 2. Set empty items for the photo gallery collection cell.
         self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
 
-        setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
+        self.setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
 
         self.photoGallery.refreshCollection(self.fetchedPhotos);
 
