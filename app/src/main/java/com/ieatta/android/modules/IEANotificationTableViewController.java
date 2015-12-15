@@ -3,6 +3,7 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 
 import com.ieatta.android.notification.NSNotificationCenter;
+import com.ieatta.android.notification.NotifyType;
 
 import de.greenrobot.event.EventBus;
 
@@ -21,6 +22,6 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
 
 
     public void onEventPostThread(Object event) {
-        NSNotificationCenter.defaultCenter().postNotificationName(PAModelCreatedRestaurantNotification,  null);
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreatedRestaurantNotification,  null);
     }
 }
