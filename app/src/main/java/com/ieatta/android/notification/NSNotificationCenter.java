@@ -12,9 +12,9 @@ public class NSNotificationCenter {
         return instance;
     }
 
-    public void postNotificationName(NotifyType type,Object anObject){
+    public void postNotificationName(NotifyType type, Object anObject) {
         EventBus.getDefault().post(
-                new NotifyEvent(type,anObject));
+                new NotifyEvent(type, anObject));
     }
 
 }

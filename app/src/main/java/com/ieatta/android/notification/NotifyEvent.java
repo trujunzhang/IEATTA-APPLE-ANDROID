@@ -6,11 +6,11 @@ package com.ieatta.android.notification;
 public class NotifyEvent {
     private NotifyEvent self = this;
 
-    private  NotifyType type;
-    private  Object anObject;
+    private NotifyType type;
+    private Object anObject;
 
     public NotifyEvent(NotifyType type, Object anObject) {
-    self.type = type;
+        self.type = type;
         self.anObject = anObject;
     }
 }
