@@ -168,14 +168,12 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender){
         /// Show detailed event
         self.setTransferedModel(sender,self.selectedModel);
-//        destination.event      = self.selectedModel;
     }
 
     @Override
     protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender){
         // Add Event
         self.setTransferedModelForEdit(sender,new Event(self.restaurant),true);
-//        destination.setEditModel(Event(belongToModel: self.restaurant!), newModel: true)
     }
 
     // MARK: TableView header events

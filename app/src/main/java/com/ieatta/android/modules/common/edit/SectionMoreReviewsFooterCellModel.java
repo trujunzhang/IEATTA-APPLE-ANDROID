@@ -5,8 +5,8 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.com.parse.ParseModelAbstract;
 
 public class SectionMoreReviewsFooterCellModel extends EditBaseCellModel {
-    IEAReviewsInDetailTableViewController viewController;
-    ParseModelAbstract reviewForModel ;
+    public IEAReviewsInDetailTableViewController viewController;
+    public ParseModelAbstract reviewForModel ;
 
     public SectionMoreReviewsFooterCellModel(IEAEditKey editKey, ParseModelAbstract reviewForModel, IEAReviewsInDetailTableViewController viewController) {
         super(editKey);

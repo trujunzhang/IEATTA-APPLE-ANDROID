@@ -137,14 +137,12 @@ public class Review extends ParseModelSync {
         return new Review();
     }
 
-    public Task<Object> queryReviewsCount() {
-        return this.countLocalObjects(this.createQueryForReviewRef()).continueWith(new Continuation<Integer, Object>() {
+    public Task<Integer> queryReviewsCount() {
+        return this.countLocalObjects(this.createQueryForReviewRef()).onSuccessTask(new Continuation<Integer, Task<Integer>>() {
             @Override
-            public Object then(Task<Integer> task) throws Exception {
-                TaskCompletionSource nextTask = new TaskCompletionSource();
+            public Task<Integer> then(Task<Integer> task) throws Exception {
                 int value = task.getResult().intValue() - Review.MAX_FETCHED_REVIEWS_IN_DetailPage;
-                nextTask.setResult(value);
-                return nextTask;
+                return Task.forResult(value);
             }
         });
     }
