@@ -59,10 +59,6 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
 
 //        self.navigationItem.rightBarButtonItem  = UIBarButtonItem(title: L10n.AddRightButton.string,  style: .Plain, target: self, action: "addPeopleAction:")
 
-//        self.hideHUD();
-//        self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.class, IEAChoicePeopleHeaderCell.layoutResId);
-
-
         self.queryPeopleOrderedList();
     }
 
@@ -76,8 +72,6 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
         }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                Object object = task;
-
                 self.fetchedPeople = task.getResult();
                 // Next, fetch related photos
                 return self.getPhotosForModelsTask(task);
