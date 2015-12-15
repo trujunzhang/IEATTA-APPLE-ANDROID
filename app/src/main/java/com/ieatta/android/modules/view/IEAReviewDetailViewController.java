@@ -6,6 +6,8 @@ import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEABaseTableViewController;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
+import com.ieatta.android.modules.cells.IEAOrderedRecipeCell;
+import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
 import com.ieatta.android.modules.cells.IEAReviewDetailCell;
 import com.ieatta.android.modules.cells.IEAReviewDetailForModelCell;
 import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
@@ -13,6 +15,8 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.Event;
+import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
@@ -83,22 +87,23 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
             case Review_Recipe:
 //                self.getTableViewHeightInfo().setHeightForRowAtIndexPath(3,value: CellsHeight.OrderedRecipes_Recipes.rawValue)
 
-//                self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.RecipeInformation.string), forSectionIndex: 3)
+                self.step = 3;
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), 3);
 
-//                self.setRegisterCellClass(IEAOrderedRecipeCell)
-//                self.setSectionItems([model], forSectionIndex: 3)
+                self.setRegisterCellClass(IEAOrderedRecipeCell.getType(), 3);
+                self.setSectionItems(CollectionUtils.createList(model), 3);
 
-//                self.showReviewForModelCells(((model as! Recipe).belongToModel! ).belongToModel!)
+                self.showReviewForModelCells((((Recipe) model).belongToModel).belongToModel);
                 break;
             case Review_Event:
 //                self.getTableViewHeightInfo().setHeightForRowAtIndexPath(2,value: CellsHeight.RestaurantDetail_Events.rawValue)
+                self.step = 2;
+                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), 2);
 //
-//                self.appendSectionTitleCell(SectionTitleCellModel(editKey: IEAEditKey.Section_Title, title: L10n.EventInformation.string), forSectionIndex: 2)
+                self.setRegisterCellClass(IEARestaurantEventsCell.getType(), 2);
+                self.setSectionItems(CollectionUtils.createList(model), 2);
 //
-//                self.setRegisterCellClass(IEARestaurantEventsCell)
-//                self.setSectionItems([model], forSectionIndex: 2)
-//
-//                self.showReviewForModelCells((model as! Event).belongToModel!)
+                self.showReviewForModelCells(((Event) model).belongToModel);
                 break;
             default:
                 // Add Review Content cell.
