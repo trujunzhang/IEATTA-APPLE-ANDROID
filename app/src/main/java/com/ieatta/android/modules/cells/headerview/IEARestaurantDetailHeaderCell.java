@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
+import com.ieatta.android.extensions.viewkit.RatingImageView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
 
@@ -27,7 +28,7 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     private IEARestaurantDetailHeader model;
 
     private TextView displayNameLabel;
-    private ImageView ratingImageView;
+    private RatingImageView ratingImageView;
 
     private TextView editButton;
     private TextView firstButton;
@@ -38,7 +39,7 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
         super(itemView);
 
         self.displayNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
-        self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
+        self.ratingImageView = (RatingImageView) itemView.findViewById(R.id.business_review_star_rating);
 
         self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
         self.editButton.setText(R.string.Edit_Restaurant);
@@ -79,6 +80,6 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
          self.model = (IEARestaurantDetailHeader) value;
 
         self.displayNameLabel.setText(self.model.model.displayName);
-        self.ratingImageView.setImageLevel(2);
+        self.ratingImageView.queryRatingInReviewsByModel(self.model.model);
     }
 }
