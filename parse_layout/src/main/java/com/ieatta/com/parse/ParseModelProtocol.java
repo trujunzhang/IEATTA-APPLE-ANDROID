@@ -57,5 +57,5 @@ public interface ParseModelProtocol {
      */
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask();
 
-    public Task queryBelongToTask(ParseModelAbstract belongTo);
+    public Task<Boolean> queryBelongToTask(ParseModelAbstract belongTo);
 }

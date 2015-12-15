@@ -75,7 +75,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public abstract Task<Void> pullFromServerAndPin();
 
-    public Task queryBelongToTask(ParseModelAbstract belongTo) {
+    public Task<Boolean> queryBelongToTask(ParseModelAbstract belongTo) {
         return null;
     }
 

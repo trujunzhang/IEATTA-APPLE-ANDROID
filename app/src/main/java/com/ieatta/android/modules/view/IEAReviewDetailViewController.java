@@ -55,9 +55,9 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
 
         setSectionItems(CollectionUtils.createList(new ReviewDetailForModelCell(self.reviewForModel, self.review)), ReviewDetailSection.sectionReviewForModel.ordinal());
 
-        self.reviewForModel.queryBelongToTask(self.reviewForModel).onSuccess(new Continuation<Object, Object>() {
+        self.reviewForModel.queryBelongToTask(self.reviewForModel).onSuccess(new Continuation<Boolean, Object>() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
+            public Object then(Task<Boolean> task) throws Exception {
                 self.showReviewForModelCells(self.reviewForModel);
                 return null;
             }

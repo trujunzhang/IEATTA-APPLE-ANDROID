@@ -171,10 +171,10 @@ private Event self = this;
     }
 
     @Override
-    public Task queryBelongToTask(ParseModelAbstract belongTo) {
-        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<ParseModelAbstract, Object>() {
+    public Task<Boolean> queryBelongToTask(ParseModelAbstract belongTo) {
+        return this.getFirstLocalModelArrayTask().onSuccessTask(new Continuation<ParseModelAbstract, Task<Boolean>>() {
             @Override
-            public Object then(Task<ParseModelAbstract> task) throws Exception {
+            public Task<Boolean> then(Task<ParseModelAbstract> task) throws Exception {
                 return ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant, self.restaurantRef).queryBelongToTask(self);
             }
         });
