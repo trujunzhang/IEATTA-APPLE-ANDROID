@@ -10,6 +10,7 @@ import de.greenrobot.event.EventBus;
  * Created by djzhang on 12/15/15.
  */
 public class IEANotificationTableViewController extends IEAAppTableViewController {
+    private IEANotificationTableViewController self = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +20,10 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
         EventBus.getDefault().register(this);
     }
 
-    public void onEventBackgroundThread(NSNotification event) {
-        switch (event.type) {
+    public void onEventBackgroundThread(NSNotification note) {
+        switch (note.type) {
             case PAModelCreatedRestaurantNotification:
+                self.RestaurantWasCreated(note);
                 break;
             case PAModelCreateEventNotification:
                 break;
@@ -42,6 +44,7 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
                 break;
 
             case PACurrentLocationDidChangeNotification:
+                self.LocationDidChange(note);
                 break;
             case PAFilterDistanceDidChangeNotification:
                 break;
@@ -54,7 +57,6 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
 
         }
     }
-
 
     // MARK: NSNotificationCenter notification handlers
     protected void RestaurantWasCreated(NSNotification note) {
