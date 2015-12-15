@@ -84,7 +84,7 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
         self.footerLargeButton.setEnabled(true);
         if (reviewsCount > 0) {
             String moreReviews = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.See_More_Reviews);
-            buttonTitle = reviewsCount + moreReviews;
+            buttonTitle = reviewsCount +" "+ moreReviews;
         } else {
             self.footerLargeButton.setEnabled(false);
         }

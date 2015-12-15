@@ -91,12 +91,12 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
         // 1. Set photo gallery section title(contains a 'take a photo' icon).
         self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
+        self.refreshFooterViewAtPhotoGallery();
 
         // 2. Set empty items for the photo gallery collection cell.
         self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
 
         self.photoGallery.refreshCollection(self.fetchedPhotos);
-        self.refreshFooterViewAtPhotoGallery();
     }
 
     // Refresh footer view about the photo count at the photo gallery section.
