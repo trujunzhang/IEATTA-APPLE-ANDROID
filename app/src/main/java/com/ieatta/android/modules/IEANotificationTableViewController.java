@@ -31,6 +31,7 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
 
             /// For classes: (IEAOrderedRecipesViewController,IEAPhotoGalleryViewController)
             case PAModelTakenPhotoNotification:
+                self.TakenPhotoWasChanged(note);
                 break;
 
             case PAPeopleSelectedNotification:
@@ -59,6 +60,10 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
                 break;
 
         }
+    }
+
+    protected void TakenPhotoWasChanged(NSNotification note) {
+
     }
 
     protected void RecipeWasCreated(NSNotification note) {

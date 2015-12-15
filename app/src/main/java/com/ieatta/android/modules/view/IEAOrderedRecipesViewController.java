@@ -14,6 +14,7 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Team;
@@ -128,5 +129,17 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
     // MARK: Cell's Events
     public void performSegueForAddingRecipe() {
         self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier, self);
+    }
+
+    // MARK: NSNotificationCenter notification handlers
+    @Override
+    protected void TakenPhotoWasChanged(NSNotification note) {
+        // 1. load photo related restaurant.
+        self.queryOrderedRecipesList();
+    }
+
+    @Override
+    protected void RecipeWasCreated(NSNotification note) {
+        self.queryOrderedRecipesList();
     }
 }
