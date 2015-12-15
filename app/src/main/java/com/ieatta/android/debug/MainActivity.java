@@ -69,6 +69,11 @@ private MainActivity self = this;
         self.adapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected int getPhotoGallerySectionIndex() {
+        return 0;
+    }
+
     private void showPhotoGalleryCell() {
         // Register Cells by class.
         self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());

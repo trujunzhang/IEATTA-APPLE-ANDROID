@@ -93,16 +93,8 @@ public class SectionModel {
         return self;
     }
 
-
     public SectionModel setFooterModel(FooterModel footerModel) {
         self.footerModel = footerModel;
         return self;
-    }
-
-    public void setModelForHeader(Object model) {
-        if (self.headerModel == null) {
-            self.headerModel = new HeaderModel();
-        }
-        self.headerModel.item = model;
     }
 }
