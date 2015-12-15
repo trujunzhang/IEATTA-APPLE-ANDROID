@@ -29,8 +29,6 @@
             android:name=".modules.view.IEARestaurantDetailViewController"
             android:screenOrientation="portrait">
 
-
-
         </activity>
         <activity
             android:name=".modules.view.IEAEventDetailViewController"
@@ -90,6 +88,7 @@
             android:name=".modules.view.posts.IEAWriteReviewViewController"
             android:screenOrientation="portrait"></activity>
 
+        <activity android:name="com.desmond.squarecamera.CameraActivity" />
 
     </application>
 
