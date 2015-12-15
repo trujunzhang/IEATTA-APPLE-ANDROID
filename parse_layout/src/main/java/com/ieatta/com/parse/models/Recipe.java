@@ -168,22 +168,22 @@ public class Recipe extends ParseModelSync {
 
     @Override
     public Task<Boolean> queryBelongToTask(ParseModelAbstract belongTo) {
+        final ParseModelAbstract[] event = {null};
         return this.getFirstLocalModelArrayTask().onSuccessTask(new Continuation<ParseModelAbstract, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<ParseModelAbstract> task) throws Exception {
-                ParseModelAbstract model = ParseModelAbstract.getInstanceFromType(PQueryModelType.Event, self.eventRef);
-                return model.queryBelongToTask(self);
+                event[0] = ParseModelAbstract.getInstanceFromType(PQueryModelType.Event, self.eventRef);
+                return event[0].queryBelongToTask(self);
+            }
+        }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(Task<Boolean> task) throws Exception {
+                final Event instance = (Event) event[0];
+                self.belongToModel = new Team(instance);
+
+                return Task.forResult(true);
             }
         });
-//                .onSuccessTask(new Continuation() {
-//            @Override
-//            public Object then(Task task) throws Exception {
-//                final Event event = (Event) task.getResult();
-//                self.belongToModel = new Team(event);
-//
-//                return Task.forResult(true);
-//            }
-//        });
     }
 
     public static Task<Integer> queryOrderedRecipesCount(Team people, Event event) {
