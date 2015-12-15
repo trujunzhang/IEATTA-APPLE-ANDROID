@@ -19,7 +19,11 @@
         <activity
             android:name=".modules.view.IEANearRestaurantViewController"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".modules.view.IEARestaurantDetailViewController"
@@ -67,11 +71,7 @@
         <activity
             android:name=".modules.view.search.IEAReadReviewsViewController"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".modules.view.search.IEASearchRestaurantViewController"
