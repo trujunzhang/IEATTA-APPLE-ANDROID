@@ -24,6 +24,7 @@ public enum  NotifyType {
     /// For class: IEAReadReviewsBaseViewController(used in iOS)
     PAReadReviewsSegmentedValueChanged("PAReadReviewsSegmentedValueChanged"),
 
+    /// For class: IEAReadReviewsHeaderCell(used in iOS)
     PANotificationUserInfoForReadReviews("reviewType");
 
     private String value;
