@@ -72,10 +72,10 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
 
     private void showReviewForModelCells(ParseModelAbstract model) {
         ReviewType reviewType = (model.getReviewType());
+        self.step ++;
 
         switch (reviewType) {
             case Review_Restaurant:
-                self.step = 1;
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), 1);
 
                 self.setRegisterCellClass(IEANearRestaurantsCell.getType(), 1);
@@ -84,7 +84,6 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                 self.showReviewForModelCells(self.review);
                 break;
             case Review_Recipe:
-                self.step = 3;
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), 3);
 
                 self.setRegisterCellClass(IEAOrderedRecipeCell.getType(), 3);
@@ -93,8 +92,6 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                 self.showReviewForModelCells((((Recipe) model).belongToModel).belongToModel);
                 break;
             case Review_Event:
-                self.step = 2;
-
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), 2);
 
                 self.setRegisterCellClass(IEARestaurantEventsCell.getType(), 2);
