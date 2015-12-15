@@ -14,6 +14,7 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 import com.parse.ParseGeoPoint;
@@ -123,5 +124,16 @@ public class IEANearRestaurantViewController extends IEASplitMasterViewControlle
             self.selectedModel = (Restaurant) model;
             self.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
         }
+    }
+
+    // MARK: NSNotificationCenter notification handlers
+    @Override
+    protected void RestaurantWasCreated(NSNotification note){
+
+    }
+
+    @Override
+    protected void LocationDidChange(NSNotification note){
+
     }
 }
