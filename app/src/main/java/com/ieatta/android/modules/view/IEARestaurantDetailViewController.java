@@ -177,4 +177,13 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         self.setTransferedModelForEdit(sender,new Event(self.restaurant),true);
 //        destination.setEditModel(Event(belongToModel: self.restaurant!), newModel: true)
     }
+
+    // MARK: TableView header events
+    public void performSegueForEditingModel(){
+        self.performSegueWithIdentifier(MainSegueIdentifier.editRestaurantSegueIdentifier,  self);
+    }
+
+    public void performSegueForAddingEvent(){
+        self.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier,  self);
+    }
 }
