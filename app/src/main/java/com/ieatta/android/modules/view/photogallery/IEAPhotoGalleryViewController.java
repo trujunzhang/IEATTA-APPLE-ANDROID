@@ -104,7 +104,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
     }
 
-    protected void presentPhotoGallery(int rowIndex) {
+    public void presentPhotoGallery(int rowIndex) {
 //        let photoPagesController: EBPhotoPagesController = EBPhotoPagesController(dataSource: self, delegate: self,photoAtIndex: rowIndex)
 //        self.presentViewController(photoPagesController, animated: true, completion: nil)
     }

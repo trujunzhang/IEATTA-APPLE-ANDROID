@@ -37,11 +37,7 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     private SectionMoreReviewsFooterCellModel model;
 
     private Button footerLargeButton;
-
-
-    private WeakHandler mHandler = new WeakHandler();
-    ; // We still need at least one hard reference to WeakHandler
-
+    private WeakHandler mHandler = new WeakHandler(); // We still need at least one hard reference to WeakHandler
 
     public IEAMoreReviewsFooterCell(View itemView) {
         super(itemView);
@@ -58,8 +54,6 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     @Override
     public void render(Object value) {
         self.model = (SectionMoreReviewsFooterCellModel) value;
-
-//        self.footerLargeButton.setText(R.string.See_More_Reviews);
 
         // update UI
         new Review(model.reviewForModel).queryReviewsCount().onSuccess(new Continuation<Integer, Object>() {
