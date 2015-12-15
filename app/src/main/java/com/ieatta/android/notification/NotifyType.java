@@ -21,6 +21,7 @@ public enum  NotifyType {
     PACurrentLocationDidChangeNotification("PACurrentLocationDidChangeNotification"),
     PAFilterDistanceDidChangeNotification("PAFilterDistanceDidChangeNotification"),
 
+    /// For class: IEAReadReviewsBaseViewController(used in iOS)
     PAReadReviewsSegmentedValueChanged("PAReadReviewsSegmentedValueChanged"),
 
     PANotificationUserInfoForReadReviews("reviewType");
