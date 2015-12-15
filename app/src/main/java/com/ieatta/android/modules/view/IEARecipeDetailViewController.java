@@ -8,6 +8,7 @@ import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.cells.IEAReviewUserCell;
 import com.ieatta.android.modules.cells.headerview.IEARecipeDetailHeaderCell;
 import com.ieatta.android.modules.cells.model.IEARecipeHeader;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
@@ -117,5 +118,10 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
 //    @Override
     public int getPhotoGallerySectionIndex() {
         return RecipeDetailSection.sectionPhotos.ordinal();
+    }
+
+    // MARK: TableView header events
+    public void performSegueForEditingModel(){
+        self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier,  self);
     }
 }
