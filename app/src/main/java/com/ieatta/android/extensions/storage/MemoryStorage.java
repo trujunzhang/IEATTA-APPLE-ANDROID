@@ -26,7 +26,6 @@ public class MemoryStorage {
 
     private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
 
-
     public MemoryStorage(IEATableViewControllerAdapter adapter) {
         self.adapter = adapter;
     }
@@ -135,16 +134,7 @@ public class MemoryStorage {
 
     public int getItemViewType(int position) {
         RowModel rowModel = self.getRowModelFromPosition(position);
-
         int type = cellTypeUtils.getRowModelType(rowModel);
-
-        if (type == 1) {
-            int x = 0;
-        }
-        if (position == 6) {
-            int x = 0;
-        }
-
         return type;
     }
 
