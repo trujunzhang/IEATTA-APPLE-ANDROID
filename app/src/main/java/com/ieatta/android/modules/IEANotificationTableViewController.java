@@ -83,7 +83,7 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
 
     }
 
-    // MARK: NSNotificationCenter notification handlers
+
     protected void RestaurantWasCreated(NSNotification note) {
 
     }
