@@ -52,7 +52,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     protected Task fetchedPhotosTask = Task.forResult(new LinkedList<>());
 
     private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, self);
-    protected List<ParseModelAbstract/*fetchedPhotos*/> fetchedPhotos;
+    protected LinkedList<ParseModelAbstract/*fetchedPhotos*/> fetchedPhotos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +111,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     protected void configurePhotoGallerySection(Task<List<ParseModelAbstract>> task) {
-        self.fetchedPhotos = task.getResult();
+        self.fetchedPhotos = new LinkedList<>(task.getResult());
 
         // 1. Set photo gallery section title(contains a 'take a photo' icon).
         self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
@@ -220,8 +220,8 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     private void insertItemAtFirstOnCollection(Photo photo) {
-//        self.fetchedPhotos.insert(photo,  0);
-//        self.photoGallery.insertNewPhotoAtFirst(forNewPhoto: photo)
+        self.fetchedPhotos.addFirst(photo);
+        self.photoGallery.insertNewPhotoAtFirst( photo);
 
         self.refreshFooterViewAtPhotoGallery();
     }
