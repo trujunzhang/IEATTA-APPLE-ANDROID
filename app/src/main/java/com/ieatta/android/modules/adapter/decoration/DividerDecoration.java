@@ -66,7 +66,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
     }
 
     private boolean isIgnorDivider(int tag) {
-        return (tag == ViewHolderType.None.ordinal()) || (tag == ViewHolderType.header.ordinal()) || (tag == ViewHolderType.footer.ordinal());
+        return (tag == ViewHolderType.None.ordinal()) || (tag == ViewHolderType.footer.ordinal());
     }
 
     private int getLeft(RecyclerView parent, int tag, int position, int childCount) {
