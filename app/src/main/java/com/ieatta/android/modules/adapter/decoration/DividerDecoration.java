@@ -51,7 +51,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
             final View child = parent.getChildAt(i);
             int tag = (int) child.getTag();
 //        Log.v("decoration","tag: "+tag);
-            if(tag == ViewHolderType.None.ordinal()){
+            if(this.isIgnorDivider(tag)){
                 continue;
             }
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
@@ -63,6 +63,10 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
+    }
+
+    private boolean isIgnorDivider(int tag) {
+        return (tag == ViewHolderType.None.ordinal()) || (tag == ViewHolderType.header.ordinal()) || (tag == ViewHolderType.footer.ordinal());
     }
 
     private int getLeft(RecyclerView parent, int tag, int position, int childCount) {
