@@ -20,6 +20,7 @@ public class IEAChoicePeopleHeaderCell extends IEAViewHolder {
     protected boolean shouldClickItem() {
         return false;
     }
+
     @Override
     public ViewHolderType getViewHolderType() {
         return ViewHolderType.header;
