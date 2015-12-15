@@ -90,7 +90,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
         self.setRegisterCellClassWhenSelected(IEAReadReviewsCell.getType(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
 
         // TODO djzhang:test
-        self.searchTextView.setText("a");
+        self.searchTextView.setText("ma");
     }
 
     private void queryRatedModels() {

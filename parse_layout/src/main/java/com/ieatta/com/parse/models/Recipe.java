@@ -168,16 +168,15 @@ public class Recipe extends ParseModelSync {
 
     @Override
     public Task queryBelongToTask(ParseModelAbstract belongTo) {
-        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<ParseModelAbstract, Object>() {
+        return this.getFirstLocalModelArrayTask().onSuccessTask(new Continuation<ParseModelAbstract, Task>() {
             @Override
-            public Object then(Task<ParseModelAbstract> task) throws Exception {
+            public Task then(Task<ParseModelAbstract> task) throws Exception {
                 ParseModelAbstract model = ParseModelAbstract.getInstanceFromType(PQueryModelType.Event, self.eventRef);
                 return model.queryBelongToTask(self);
             }
-        }).continueWith(new Continuation<Object, Object>() {
+        }).onSuccessTask(new Continuation() {
             @Override
-            public Object then(Task<Object> task) throws Exception {
-
+            public Object then(Task task) throws Exception {
                 final Event event = (Event) task.getResult();
                 self.belongToModel = new Team(event);
 
