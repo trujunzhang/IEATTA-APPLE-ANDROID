@@ -1269,6 +1269,10 @@
         <item name="android:textColor">@color/black_yoni</item>
     </style>
 
+    <style name="HeaderButtonText" parent="@style/LargeText">
+        <item name="android:textColor">@color/green_money</item>
+    </style>
+
     <style name="LargeTextOnBlack" parent="@style/LargeText">
         <item name="android:textColor">@color/white_on_black</item>
     </style>

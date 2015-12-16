@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Select_Person"
                 android:id="@+id/firstTextView"
-                android:textAppearance="@style/LargeText"
+                android:textAppearance="@style/HeaderButtonText"
                 android:layout_centerInParent="true" />
         </RelativeLayout>
 
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Write_Review"
                 android:id="@+id/secondTextView"
-                android:textAppearance="@style/LargeText"
+                android:textAppearance="@style/HeaderButtonText"
                 android:layout_centerInParent="true" />
 
         </RelativeLayout>
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/See_Reviews"
                 android:id="@+id/thirdTextView"
-                android:textAppearance="@style/LargeText"
+                android:textAppearance="@style/HeaderButtonText"
                 android:layout_centerInParent="true" />
 
         </RelativeLayout>
