@@ -54,18 +54,21 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.reviewForModel = (ParseModelAbstract) self.getTransferedModel();
+        self.reviewForModel = self.getTransferedModel();
+        self.type = self.reviewForModel.getReviewType();
 
-        this.type = self.reviewForModel.getReviewType();
+        self.findAllViews();
 
-        this.findAllViews();
-
-        ratingImageView.setBackgroundResource(self.getRatingTitleImage(ratingValue));
+        self.ratingImageView.setBackgroundResource(self.getRatingTitleImage(ratingValue));
     }
 
     @Override
     protected int getContentView() {
         return R.layout.table_controller_post_review;
+    }
+    @Override
+    protected boolean hasRecycleView(){
+        return false;
     }
 
     private void findAllViews() {
