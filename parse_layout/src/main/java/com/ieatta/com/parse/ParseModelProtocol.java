@@ -34,7 +34,6 @@ public interface ParseModelProtocol {
     public ParseACL getACL();
 
     // MARK: Async methods.
-    public Task<Void> pinAfterPullFromServer();
 
     /**
      * Step1: getFirstLocalObject

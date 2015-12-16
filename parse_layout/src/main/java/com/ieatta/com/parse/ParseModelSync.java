@@ -10,6 +10,8 @@ import bolts.Task;
  * Created by djzhang on 11/27/15.
  */
 public abstract class ParseModelSync extends ParseModelQuery {
+    private ParseModelSync self = this;
+
     public ParseModelSync(String objectUUID) {
         super(objectUUID);
     }
@@ -35,24 +37,13 @@ public abstract class ParseModelSync extends ParseModelQuery {
         }).onSuccessTask(new Continuation<Boolean, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Boolean> task) throws Exception {
-                return pinAfterPullFromServer();
+                return self.beforePullFromServer();
             }
-        });
-    }
-
-    /**
-     * Pull Fetched online object to offline database.
-     * If offline already exist, delete it first.
-     */
-    @Override
-    public Task<Void> pinAfterPullFromServer() {
-        // 1. Check wheather exist.
-        final ParseQuery query = ParseModelQuery.createQuery(this.getModelType(), this);
-
-        return this.beforePullFromServer().onSuccessTask(new Continuation<Boolean, Task<Void>>() {
+        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
-            public Task<Void> then(Task<Boolean> task) throws Exception {
-                return unpinInBackground(query);
+            public Task<Void> then(Task<Void> task) throws Exception {
+                // 1. Check wheather exist.
+                return unpinInBackground(self.createQueryByObjectUUID());
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
