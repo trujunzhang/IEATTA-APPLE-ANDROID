@@ -10,6 +10,7 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.IEAReviewDetailViewController;
+import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
@@ -79,6 +80,11 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 
     public void performSegueForWritingReview() {
         self.performSegueWithIdentifier(MainSegueIdentifier.postReviewSegueIdentifier,self);
+    }
+
+    @Override
+    protected void segueForPostReviewViewController(IEAWriteReviewViewController destination, Intent sender) {
+        self.setTransferedModel(sender,self.getPageModel());
     }
 
     @Override

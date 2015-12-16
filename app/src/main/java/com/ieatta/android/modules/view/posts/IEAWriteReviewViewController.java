@@ -1,8 +1,6 @@
 package com.ieatta.android.modules.view.posts;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +12,7 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.extensions.viewkit.AvatarView;
+import com.ieatta.android.modules.IEAAppSegureTableViewController;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -27,10 +26,8 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class IEAWriteReviewViewController extends AppCompatActivity {
+public class IEAWriteReviewViewController extends IEAAppSegureTableViewController {
     private IEAWriteReviewViewController self = this;
-
-    private Context context;
 
     private View rateButton1;
     private View rateButton2;
@@ -42,14 +39,13 @@ public class IEAWriteReviewViewController extends AppCompatActivity {
 
     private LinearLayout ratingImageView;
 
-    private AvatarView avatarBackgroundView;
+    private AvatarView avatarView;
     private TextView nameLabel;
     private Button selectPeopleButton;
 
     private EditText reviewTextView;
 
     private int ratingValue = 5;
-    public String reviewRef;
     private ReviewType type;
     private ParseModelAbstract reviewForModel;
     private Team people = Team.getAnonymousUser();
@@ -58,15 +54,18 @@ public class IEAWriteReviewViewController extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.table_controller_post_review);
-        this.context = this;
+        self.reviewForModel = (ParseModelAbstract) self.getTransferedModel();
 
-//        this.type = IntentUtils.sharedInstance.reviewType;
-//        this.reviewRef = IntentUtils.sharedInstance.getStringExtra(IntentUtils.key_reviewRef, this.getIntent());
+        this.type = self.reviewForModel.getReviewType();
 
         this.findAllViews();
 
-//        ratingImageView.setBackgroundResource(UIImage.getRatingTitleImage(ratingValue));
+        ratingImageView.setBackgroundResource(self.getRatingTitleImage(ratingValue));
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.table_controller_post_review;
     }
 
     private void findAllViews() {
@@ -92,7 +91,7 @@ public class IEAWriteReviewViewController extends AppCompatActivity {
 
 
         ratingImageView = (LinearLayout) this.findViewById(R.id.rating_background);
-        avatarBackgroundView = (AvatarView) this.findViewById(R.id.user_photo);
+        avatarView = (AvatarView) this.findViewById(R.id.user_photo);
         nameLabel = (TextView) this.findViewById(R.id.user_name);
         selectPeopleButton = (Button) this.findViewById(R.id.select_people_button);
 
@@ -107,20 +106,13 @@ public class IEAWriteReviewViewController extends AppCompatActivity {
     }
 
     private void setupPeopleInformation() {
-//        this.avatarBackgroundView.loadPhoto(this.people, UIImage.DefaultPeopleCellIcon(), null);
+//        this.avatarView.loadPhoto(this.people, UIImage.DefaultPeopleCellIcon(), null);
 //        this.nameLabel.setText(this.people.displayName);
     }
 
     private void setRatingImageViewBackground(int tag) {
         this.ratingValue = tag;
-//        ratingImageView.setBackgroundResource(UIImage.getRatingTitleImage(tag));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_post_review, menu);
-        return true;
+        ratingImageView.setBackgroundResource(self.getRatingTitleImage(tag));
     }
 
     @Override
@@ -170,5 +162,17 @@ public class IEAWriteReviewViewController extends AppCompatActivity {
         NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAReviewPostNotification, null);
     }
 
+    private static int[] ratingTitleImages = {
+            -1,
+            R.drawable.review_stars_1_inline,
+            R.drawable.review_stars_2_inline,
+            R.drawable.review_stars_3_inline,
+            R.drawable.review_stars_4_inline,
+            R.drawable.review_stars_5_inline,
+    };
+
+    private int getRatingTitleImage(int rate) { // 141,25
+        return ratingTitleImages[rate];
+    }
 
 }

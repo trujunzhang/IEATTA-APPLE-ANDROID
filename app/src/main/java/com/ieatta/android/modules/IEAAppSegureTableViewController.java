@@ -2,7 +2,6 @@ package com.ieatta.android.modules;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.Toast;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.cache.IntentCache;
@@ -20,6 +19,7 @@ import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
+import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 
 /**
@@ -83,7 +83,15 @@ public class IEAAppSegureTableViewController extends IEANotificationTableViewCon
             case choicePeopleSegueIdentifier:
                 self.segueForChoicePeopleViewController(null, sender);
                 break;
+            case postReviewSegueIdentifier:
+                self.segueForPostReviewViewController(null, sender);
+                break;
+
         }
+    }
+
+    protected void segueForPostReviewViewController(IEAWriteReviewViewController destination, Intent sender) {
+
     }
 
     protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender) {
