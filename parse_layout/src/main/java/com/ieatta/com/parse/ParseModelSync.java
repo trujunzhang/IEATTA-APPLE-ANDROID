@@ -29,31 +29,32 @@ public abstract class ParseModelSync extends ParseModelQuery {
     @Override
     public Task<Void> pullFromServerAndPin() {
         // 1. Retrieve object from parse.com.
-        return ParseModelQuery.getFirstOnlineObjectTask(this.createQueryFromRecord()).onSuccessTask(new Continuation<ParseObject, Task<Boolean>>() {
-            @Override
-            public Task<Boolean> then(Task<ParseObject> task) throws Exception {
-                return convertToOnlineModelTask(task);
-            }
-        }).onSuccessTask(new Continuation<Boolean, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Boolean> task) throws Exception {
-                return self.beforePullFromServer();
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                // 1. Check wheather exist.
-                return unpinInBackground(self.createQueryByObjectUUID());
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
+        return this.createQueryFromRecord().getFirstInBackground()
+                .onSuccessTask(new Continuation<ParseObject, Task<Boolean>>() {
+                    @Override
+                    public Task<Boolean> then(Task<ParseObject> task) throws Exception {
+                        return convertToOnlineModelTask(task);
+                    }
+                }).onSuccessTask(new Continuation<Boolean, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Boolean> task) throws Exception {
+                        return self.beforePullFromServer();
+                    }
+                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        // 1. Check wheather exist.
+                        return unpinInBackground(self.createQueryByObjectUUID());
+                    }
+                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
 //                if ("67499179-6AA8-4C5A-B59E-F5B2D0B57302".equals(ParseModelAbstract.getPoint(self))) {
 //                    return Task.forError(new NullPointerException("djzhang's pinAfterPullFromServer"));
 //                }
-                return pinInBackgroundForModel();
-            }
-        });
+                        return pinInBackgroundForModel();
+                    }
+                });
     }
 
     /**

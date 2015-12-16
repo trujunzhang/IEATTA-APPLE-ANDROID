@@ -11,6 +11,7 @@ import bolts.Task;
 import com.parse.ParseObject;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -131,7 +132,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
     @Override
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-        return ParseModelQuery.findFirstLocalObjectInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
+        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
             @Override
             public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
                 return convertToLocalModelTask(task);
@@ -155,18 +156,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query.countInBackground();
     }
 
-
-    public static Task<ParseObject> getFirstOnlineObjectTask(ParseQuery query) {
-        // **** Important ****
-        // If not found Parse's getFirstInBackground
-        return query.getFirstInBackground().continueWithTask(new Continuation<ParseObject, Task<ParseObject>>() {
-            @Override
-            public Task<ParseObject> then(Task<ParseObject> task) throws Exception {
-                return ParseModelQuery.getFirstParseObjectTask(task);
-            }
-        });
-    }
-
     /**
      * Because Task will return Exception,'no results found for query'(code is com.parse.ParseException.OBJECT_NOT_FOUND),
      * when no the first object found.
@@ -175,23 +164,20 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * @param previous
      * @return
      */
-    private static Task<ParseObject> getFirstParseObjectTask(Task<ParseObject>previous) {
-        ParseObject object = previous.getResult();
-        if (previous.isFaulted()) {
-            com.parse.ParseException exception = (com.parse.ParseException) previous.getError();
-            if (exception.getCode() == com.parse.ParseException.OBJECT_NOT_FOUND) {
-                // **** Important ****
-                // Here, return value is 'null' means that not found object.
-                // For example, if all newrecord objects already pushed to server.
-                // No NewRecord rows on the local table. So not found NewRecord here.
-                object = null;
-            } else {
-                return Task.forError(previous.getError());
-            }
+    private static Task<ParseObject> getFirstParseObjectTask(Task<List<ParseObject>> previous) {
+        LinkedList<ParseObject> objects = new LinkedList<>(previous.getResult());
+        if(objects.size() == 0){
+
+            // **** Important ****
+            // Here, return value is 'null' means that not found object.
+            // For example, if all newrecord objects already pushed to server.
+            // No NewRecord rows on the local table. So not found NewRecord here.
+            return Task.forResult(null);
         }
 
-        return Task.forResult(object);
+        return Task.forResult(objects.getFirst());
     }
+
     /**
      * **** Important ****
      * <p/>
@@ -204,12 +190,13 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     public  Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
         // **** Important ****
         // If not found Parse's findLocalObjectsInBackground
-        return ParseModelQuery.findFirstLocalObjectInBackground(query).continueWithTask/*[No]Success*/(new Continuation<ParseObject, Task<ParseObject>>() {
-            @Override
-            public Task<ParseObject> then(Task<ParseObject> task) throws Exception {
-                return ParseModelQuery.getFirstParseObjectTask(task);
-            }
-        });
+        return ParseModelQuery.findFirstLocalObjectInBackground(query)
+                .onSuccessTask(new Continuation<List<ParseObject>, Task<ParseObject>>() {
+                    @Override
+                    public Task<ParseObject> then(Task<List<ParseObject>> task) throws Exception {
+                        return ParseModelQuery.getFirstParseObjectTask(task);
+                    }
+                });
     }
 
     public static Task<List<ParseObject>> findLocalObjectsInBackground(ParseQuery query) {
@@ -226,11 +213,13 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * @param query
      * @return
      */
-    private static Task<ParseObject> findFirstLocalObjectInBackground(ParseQuery query) {
+    private static Task<List<ParseObject>> findFirstLocalObjectInBackground(ParseQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
+        // *** Just get the first object.
+        query.setLimit(1);
 
-        return query.getFirstInBackground();
+        return query.findInBackground();
     }
 
     private ParseObject makeObject() {
