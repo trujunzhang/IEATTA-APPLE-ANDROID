@@ -5,6 +5,8 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <include layout="@layout/navigation_bar" />
+
     <LinearLayout
         android:id="@+id/rating_background"
         android:layout_width="wrap_content"
@@ -73,6 +75,7 @@
             android:layout_width="80.0dip"
             android:layout_height="40.0dip"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:background="@color/white"
             android:text="Select"
             android:textColor="@color/orange_announcement" />

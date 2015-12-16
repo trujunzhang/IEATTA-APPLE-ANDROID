@@ -5,8 +5,10 @@
     android:background="@color/white_dirty_snow"
     android:orientation="vertical">
 
+    <include layout="@layout/navigation_bar" />
+
     <include layout="@layout/search_header_cell" />
 
-    <include layout="@layout/table_controller_view" />
+    <include layout="@layout/content_main" />
 
 </LinearLayout>
