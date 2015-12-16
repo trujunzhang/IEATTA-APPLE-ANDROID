@@ -70,7 +70,7 @@ public class PullNewRecordFromServerTask {
 
         // 1. Create model instance from record's modelType.
         final ParseModelAbstract model = NewRecord.getRecordedInstance(pulledNewRecordObject);
-//        LogUtils.debug("{ NewRecord from parse.com }: " + model.printDescription());
+//        LogUtils.debug(" [NewRecord from parse.com]: " + model.printDescription());
 
         // 2. Pull from server.
         return model.pullFromServerAndPin().onSuccess(new Continuation<Void, Void>() {
