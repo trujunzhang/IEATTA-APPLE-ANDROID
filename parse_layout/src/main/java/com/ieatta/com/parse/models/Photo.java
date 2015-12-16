@@ -66,11 +66,6 @@ public class Photo extends ParseModelSync {
         this.usedRef = usedRef;
     }
 
-//    public Photo(String photoPoint){
-//        super();
-//        this.objectUUID = photoPoint;
-//    }
-
     public Photo(ParseModelAbstract model) {
         this(ParseModelAbstract.getPoint(model), model.getPhotoUsedType());
     }
