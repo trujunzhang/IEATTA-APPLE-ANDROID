@@ -16,7 +16,7 @@ import bolts.Task;
  * Created by djzhang on 11/27/15.
  */
 public class ParseAsyncHandler {
-
+    private ParseAsyncHandler self = this;
     private static final int PAGE_NUMBER_FETCH_NEW_RECORD = 10;
     private static final int PAGE_NUMBER_PUSH_NEW_RECORD = 2;
 
@@ -24,43 +24,15 @@ public class ParseAsyncHandler {
 
     private boolean didEndAsync = true;
 
-    public void PullObjectsFromServer() {
+    public Task PullObjectsFromServer() {
 
-        PullNewRecordFromServerTask.PullFromServerSeriesTask(new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD))
-                .onSuccess(new Continuation<Void, Object>() {
+        return PullNewRecordFromServerTask.PullFromServerSeriesTask(new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD))
+                .onSuccessTask(new Continuation<Void, Task>() {
                     @Override
-                    public Object then(Task<Void> task) throws Exception {
-                        PushLocalNewRecordToServer();
-                        return null;
+                    public Task then(Task<Void> task) throws Exception {
+                        return PushNewRecordToServerTask.PushToServerSeriesTask(new NewRecord().createQueryForPushObjectsToServer(PAGE_NUMBER_PUSH_NEW_RECORD));
                     }
-                }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                if (task.isFaulted()) {
-                    endAsyncTasks(task.getError());
-                }
-                return null;
-            }
-        });
-    }
-
-    private void PushLocalNewRecordToServer() {
-        PushNewRecordToServerTask.PushToServerSeriesTask(new NewRecord().createQueryForPushObjectsToServer(PAGE_NUMBER_PUSH_NEW_RECORD))
-                .onSuccess(new Continuation() {
-                    @Override
-                    public Object then(Task task) throws Exception {
-                        endAsyncTasks(null);
-                        return null;
-                    }
-                }).continueWith(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                if (task.isFaulted()) {
-                    endAsyncTasks(task.getError());
-                }
-                return null;
-            }
-        });
+                });
     }
 
     private void endAsyncTasks(Exception error) {
@@ -85,7 +57,13 @@ public class ParseAsyncHandler {
 
         // 1. Prepare tasks.
         this.didEndAsync = false;
-        this.PullObjectsFromServer();
+        this.PullObjectsFromServer().continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                self.endAsyncTasks(task.getError());
+                return null;
+            }
+        });
     }
 
 
