@@ -6,6 +6,7 @@ import android.yelp.com.commonlib.LogUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.async.AsyncCacheInfo;
 import com.ieatta.com.parse.async.AsyncPullNotify;
+import com.ieatta.com.parse.async.SerialTasksManager;
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -23,33 +24,41 @@ import bolts.TaskCompletionSource;
  * Created by djzhang on 11/30/15.
  */
 public class PullNewRecordFromServerTask {
+    private PullNewRecordFromServerTask self = this;
 
+    public static Task PullFromServerSeriesTask(ParseQuery query) {
 
-    public static Task<Void> PullFromServerSeriesTask(ParseQuery query) {
-
-        return query.findInBackground().onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
+        return query.findInBackground().onSuccessTask(new Continuation() {
             @Override
-            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
-                List<ParseObject> results = task.getResult();
-                LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
-
-                // Create a trivial completed task as a base case.
-                Task<Void> singleTask = Task.forResult(null);
-                for (final ParseObject result : results) {
-                    // For each item, extend the task with a function to delete the item.
-                    singleTask = singleTask.continueWithTask(new Continuation<Void, Task<Void>>() {
-                        public Task<Void> then(Task<Void> ignored) throws Exception {
-                            // Return a task that will be marked as completed when the delete is finished.
-                            return PullObjectFromServerTask(result);
-                        }
-                    });
-                }
-
-                return singleTask;
+            public Object then(Task task) throws Exception {
+                return executeSerialTasks(task);
             }
         });
     }
 
+    private static Task executeSerialTasks(Task previous) {
+        List<ParseObject> results = (List<ParseObject>) previous.getResult();
+        LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
+
+        SerialTasksManager manager = new SerialTasksManager(results);
+        if (manager.hasNext() == false) {
+            return Task.forResult(true);
+        }
+
+        return startPullFromServerSingleTask(manager);
+    }
+
+    private static Task startPullFromServerSingleTask(final SerialTasksManager manager) {
+        return PullObjectFromServerTask(manager.next()).onSuccessTask(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                if (manager.hasNext() == false) {
+                    return Task.forResult(true);
+                }
+                return startPullFromServerSingleTask(manager);
+            }
+        });
+    }
 
     /**
      * Pull online objects from Parse.com.
@@ -73,8 +82,6 @@ public class PullNewRecordFromServerTask {
 
                 /// 2. When pull from server successfully, sometimes need to notify have new parse models.
                 //  AsyncPullNotify.notify(model);
-
-                /// 3. Next task.
                 return null;
             }
         });
