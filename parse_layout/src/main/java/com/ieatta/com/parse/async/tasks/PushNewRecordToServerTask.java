@@ -20,9 +20,10 @@ import bolts.Task;
 public class PushNewRecordToServerTask {
 
     public static Task PushToServerSeriesTask(ParseQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task>() {
+
+        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
             @Override
-            public Task then(Task<List<ParseObject>> task) throws Exception {
+            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
                 return executeSerialTasks(task);
             }
         });
