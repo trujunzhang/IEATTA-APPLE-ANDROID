@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
-import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.notification.NSNotificationCenter;
@@ -59,10 +58,8 @@ public class IEAWriteReviewViewController extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.setContentView(R.layout.activity_post_review);
+        this.setContentView(R.layout.table_controller_post_review);
         this.context = this;
-
-        this.setTitle("Post a Review");
 
 //        this.type = IntentUtils.sharedInstance.reviewType;
 //        this.reviewRef = IntentUtils.sharedInstance.getStringExtra(IntentUtils.key_reviewRef, this.getIntent());
