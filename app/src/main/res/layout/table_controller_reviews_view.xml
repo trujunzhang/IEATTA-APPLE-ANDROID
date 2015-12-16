@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white_dirty_snow"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <include layout="@layout/search_header_cell" />
-
-    <include layout="@layout/table_view_controller" />
+    <include layout="@layout/read_reviews_header"/>
+    <include layout="@layout/table_controller_view"/>
 
 </LinearLayout>

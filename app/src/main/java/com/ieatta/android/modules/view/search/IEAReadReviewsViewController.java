@@ -13,8 +13,6 @@ import com.ieatta.android.cache.RatedModelReviewCount;
 import com.ieatta.android.modules.IEAReviewSegueTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAReadReviewsCell;
-import com.ieatta.android.modules.cells.enums.IEAReadReviewsHeaderSegmentedType;
-import com.ieatta.android.modules.cells.headerview.IEAReadReviewsHeader;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
@@ -43,7 +41,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
     private String keyword;
 
     protected int getContentView() {
-        return R.layout.table_reviews_view_controller;
+        return R.layout.table_controller_reviews_view;
     }
 
     private SegmentedGroup segmentedControl;

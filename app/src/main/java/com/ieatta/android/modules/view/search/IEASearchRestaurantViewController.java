@@ -39,7 +39,7 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     private Restaurant selectedModel;
 
     protected int getContentView() {
-        return R.layout.table_serch_view_controller;
+        return R.layout.table_controller_serch_view;
     }
 
     @Override
