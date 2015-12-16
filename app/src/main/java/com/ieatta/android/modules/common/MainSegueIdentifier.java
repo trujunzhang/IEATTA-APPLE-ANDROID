@@ -10,6 +10,7 @@ import com.ieatta.android.modules.view.IEASeeReviewsInDetailViewController;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
+import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
 import com.ieatta.android.modules.view.search.IEAManagerPeopleViewController;
 import com.ieatta.android.modules.view.search.IEAReadReviewsViewController;
 import com.ieatta.android.modules.view.search.IEASearchRestaurantViewController;
@@ -46,7 +47,11 @@ public enum MainSegueIdentifier {
     editPeopleSegueIdentifier("addEditPeople", IEAEditPeopleViewController.class),
     editRecipeSegueIdentifier("addEditRecipe",IEARecipeDetailViewController.class),
     // Choice Person in the event page.
-    choicePeopleSegueIdentifier("choicePeople", IEAChoicePeopleViewController.class);
+    choicePeopleSegueIdentifier("choicePeople", IEAChoicePeopleViewController.class),
+
+    // Show detail review from review list.
+    postReviewSegueIdentifier("postReview",IEAWriteReviewViewController.class);
+
 
 
     private String name;

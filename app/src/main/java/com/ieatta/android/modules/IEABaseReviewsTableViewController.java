@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.adapter.NSIndexPath;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.IEAReviewDetailViewController;
@@ -77,12 +78,8 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
     }
 
     public void performSegueForWritingReview() {
-//        self.presentViewController(UINavigationController(rootViewController: IEAWriteReviewViewController.createInstance(self.getPageModel())), animated: true, completion: nil)
+        self.performSegueWithIdentifier(MainSegueIdentifier.postReviewSegueIdentifier,self);
     }
-
-//    override func segueForReviewDetailViewController(destination:IEAReviewDetailViewController){
-//        destination.transferToReviewDetail(self.getPageModel(), review: self.selectedReview!)
-//    }
 
     @Override
     protected void segueForReviewDetailViewController(IEAReviewDetailViewController destination, Intent sender){
