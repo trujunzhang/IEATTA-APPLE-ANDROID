@@ -4,6 +4,7 @@ import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.async.SerialTasksManager;
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -19,25 +20,34 @@ import bolts.Task;
 public class PushNewRecordToServerTask {
 
     public static Task PushToServerSeriesTask(ParseQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
+        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task>() {
             @Override
-            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
-                List<ParseObject> results = task.getResult();
-                LogUtils.debug("{ count in Push objects to Server }: " + results.size());
+            public Task then(Task<List<ParseObject>> task) throws Exception {
+                return executeSerialTasks(task);
+            }
+        });
+    }
 
-                // Create a trivial completed task as a base case.
-                Task<Void> singleTask = Task.forResult(null);
-                for (final ParseObject result : results) {
-                    // For each item, extend the task with a function to delete the item.
-                    singleTask = singleTask.continueWithTask(new Continuation<Void, Task<Void>>() {
-                        public Task<Void> then(Task<Void> ignored) throws Exception {
-                            // Return a task that will be marked as completed when the delete is finished.
-                            return PushObjectToServerTask(result);
-                        }
-                    });
+    private static Task executeSerialTasks(Task previous) {
+        List<ParseObject> results = (List<ParseObject>) previous.getResult();
+        LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
+
+        SerialTasksManager manager = new SerialTasksManager(results);
+        if (manager.hasNext() == false) {
+            return Task.forResult(true);
+        }
+
+        return startPullFromServerSingleTask(manager);
+    }
+
+    private static Task startPullFromServerSingleTask(final SerialTasksManager manager) {
+        return PushObjectToServerTask(manager.next()).onSuccessTask(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                if (manager.hasNext() == false) {
+                    return Task.forResult(true);
                 }
-
-                return singleTask;
+                return startPullFromServerSingleTask(manager);
             }
         });
     }
@@ -51,12 +61,12 @@ public class PushNewRecordToServerTask {
         // Convert newRecordObject to Model instance.
         NewRecord newRecord = (NewRecord) new NewRecord().convertToLocalModel(newRecordObject);
 
-        LogUtils.debug(" { newRecord in push to server }: " + newRecord.printDescription());
+//        LogUtils.debug(" [ newRecord in push to server ]: " + newRecord.printDescription());
 
         // 1. Get the recoreded model instance from NewRecord, by the modelType and the modelPoint.
         // (such as photo,restaurant,event etc)
         final ParseModelAbstract model = newRecord.getRecordedModel();
-        LogUtils.debug(" { model in push to server }: " + model.printDescription());
+//        LogUtils.debug(" [ model in push to server ]: " + model.printDescription());
 
         return model.pushToServer().onSuccessTask(new Continuation<Object, Task<Void>>() {
             @Override
