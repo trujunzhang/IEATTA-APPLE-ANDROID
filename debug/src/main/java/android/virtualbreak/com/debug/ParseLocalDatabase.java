@@ -93,7 +93,7 @@ public class ParseLocalDatabase {
         LogConfigure.DDLogVerbose("-------------------------------------------------------");
         for(ParseModelAbstract model:array){
             // Print instance's description
-            LogConfigure.DDLogVerbose(model.printDescription());
+//            LogConfigure.DDLogVerbose(model.printDescription());
         }
         LogConfigure.DDLogVerbose("------------------------------------------------------->>");
         LogConfigure.DDLogVerbose("");
