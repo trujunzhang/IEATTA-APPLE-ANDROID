@@ -30,16 +30,16 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    testCompile group:'junit', name:'junit', version:"${JUNIT_VERSION}"
-    compile group:'com.android.support', name:'appcompat-v7', version:"${SUPPORT_APPCOMPAT_ANDROID_VERSION}"
-    compile group:'com.android.support', name:'design', version:"${SUPPORT_DESIGN_ANDROID_VERSION}"
+    testCompile group: 'junit', name: 'junit', version: "${JUNIT_VERSION}"
+    compile group: 'com.android.support', name: 'appcompat-v7', version: "${SUPPORT_APPCOMPAT_ANDROID_VERSION}"
+    compile group: 'com.android.support', name: 'design', version: "${SUPPORT_DESIGN_ANDROID_VERSION}"
     compile "com.android.support:recyclerview-v7:23.1.0"
 
-    compile group:'de.greenrobot', name:'eventbus', version:"${EVENTBUS_ANDROID_VERSION}"
-    compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
+    compile group: 'de.greenrobot', name: 'eventbus', version: "${EVENTBUS_ANDROID_VERSION}"
+    compile group: 'com.parse', name: 'parse-android', version: "${PARSE_ANDROID_VERSION}"
 
     // Android library listening network connection state and change of the WiFi signal strength with RxJava Observables
-    compile group:'com.github.pwittchen', name:'reactivenetwork',version:"0.1.3"
+    compile group: 'com.github.pwittchen', name: 'reactivenetwork', version: "0.1.3"
 
     // Small library that wraps Google Play Service API in brilliant RxJava Observables reducing boilerplate to minimum.
     compile 'pl.charmas.android:android-reactive-location:0.8@aar'
@@ -60,5 +60,6 @@ dependencies {
     compile project(':Android-Universal-Image-Loader')
     compile project(':squarecamera')
 
-    compile project( ':android-segmented-control')
+    compile project(':android-segmented-control')
+    compile project(':subsampling-scale-image-view')
 }
