@@ -2390,7 +2390,7 @@
 
     <style name="YelpHoloEditText" parent="@android:style/Widget.EditText">
         <item name="android:textAppearance">@style/SubtitleText</item>
-        <item name="android:textColorHint">@color/hint_foreground_light</item>
+        <!--<item name="android:textColorHint">@color/hint_foreground_light</item>-->
         <!--<item name="android:background">@drawable/yelp_holo_underline_selector</item>-->
     </style>
 
