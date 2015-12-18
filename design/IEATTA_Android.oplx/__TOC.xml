@@ -1,22 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<omniplan xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
-  <window x="175" y="238" w="899" h="630">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<omniplan xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2" xmlns:opnx="http://www.omnigroup.com/namespace/OmniPlan/v2">
+  <window x="175" y="276" w="899" h="592">
     <editing-scenario>ni4FnsJyC6o</editing-scenario>
     <view>task</view>
     <change-tracking/>
-    <draw-folded/>
     <status-display>basic</status-display>
     <task-view>
       <split-view-divider-position>306</split-view-divider-position>
-      <outline x="0" y="0" w="306" h="508">
+      <outline x="0" y="0" w="306" h="493">
         <column name="Violations" width="20"/>
         <column name="Notes" width="20"/>
         <column name="Title" width="191"/>
         <column name="Effort" width="70"/>
-        <expanded-items idrefs="t1"/>
-        <selected-items-at-filter-time idrefs="t3 t2"/>
+        <expanded-items idrefs="t9 t1"/>
+        <selected-items-at-filter-time idrefs="t12 t11 t10 t3 t2 t9"/>
       </outline>
-      <gantt-view x="-29" y="0" w="577" h="508">
+      <gantt-view x="-54" y="0" w="576" h="493">
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>
@@ -58,18 +57,19 @@
         <scale scale-name="Quarter" full-day-width="9.6"/>
         <scale scale-name="Week" full-day-width="162"/>
         <scale scale-name="Year" full-day-width="2.3625"/>
+        <offtime-display>none</offtime-display>
       </gantt-view>
     </task-view>
     <resource-view>
       <split-view-divider-position>306</split-view-divider-position>
-      <outline x="0" y="0" w="306" h="523">
-        <column name="IM" width="20"/>
+      <outline x="0" y="0" w="291" h="818">
         <column name="Notes" width="20"/>
         <column name="Type" width="49"/>
         <column name="Resource" width="135"/>
         <column name="#" width="75"/>
       </outline>
-      <timeline x="-71" y="0" w="564" h="523">
+      <timeline x="-354" y="0" w="1089" h="818">
+        <offtime-display>none</offtime-display>
         <show-project-end/>
         <task-bar-label task-type="group" position="left">
           <key>Title</key>
@@ -112,18 +112,30 @@
     </resource-view>
     <calendar>
       <split-view-divider-position>290</split-view-divider-position>
-      <outline x="0" y="0" w="275" h="477">
-        <column name="IM" width="20"/>
+      <outline x="0" y="0" w="275" h="794">
         <column name="Notes" width="20"/>
         <column name="Type" width="49"/>
-        <column name="Resource" width="150"/>
+        <column name="Resource" width="160"/>
         <column name="Custom Work Week" width="20"/>
         <column name="Schedule Exception" width="20"/>
       </outline>
     </calendar>
+    <network-view>
+      <network-view>
+        <task-table-style>Title
+Start:
+End:
+Effort:</task-table-style>
+        <milestone-table-style>Title
+End</milestone-table-style>
+        <group-table-style>Title
+Start:
+End:</group-table-style>
+      </network-view>
+    </network-view>
   </window>
   <project>
-    <next-task-id>4</next-task-id>
+    <next-task-id>13</next-task-id>
     <next-resource-id>2</next-resource-id>
     <scenario id="ni4FnsJyC6o" name="Actual" filename="Actual.xml"/>
     <date-display dates="true" times="true" seconds="false"/>

@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<scenario xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2" id="ni4FnsJyC6o">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<scenario xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2" xmlns:opns="http://www.omnigroup.com/namespace/OmniPlan/v2" id="ni4FnsJyC6o">
   <start-date>2015-12-05T16:00:00.000Z</start-date>
   <prototype-task>
-    <task id="t4294967294">
+    <task id="t-2">
       <title>Task 1</title>
       <effort>28800</effort>
     </task>
   </prototype-task>
   <prototype-task>
-    <task id="t4294967293">
+    <task id="t-3">
       <title>Milestone 1</title>
       <type>milestone</type>
     </task>
   </prototype-task>
   <prototype-task>
-    <task id="t4294967292">
+    <task id="t-4">
       <title>Group 1</title>
       <type>group</type>
     </task>
   </prototype-task>
   <prototype-resource>
-    <resource id="r4294967294">
+    <resource id="r-2">
       <name>Resource 1</name>
       <type>Staff</type>
     </resource>
   </prototype-resource>
   <prototype-resource>
-    <resource id="r4294967293">
+    <resource id="r-3">
       <name>Equipment 1</name>
       <type>Equipment</type>
     </resource>
   </prototype-resource>
   <prototype-resource>
-    <resource id="r4294967292">
+    <resource id="r-4">
       <name>Material 1</name>
       <type>Material</type>
       <units-available>0</units-available>
@@ -40,7 +40,7 @@
     </resource>
   </prototype-resource>
   <prototype-resource>
-    <resource id="r4294967291">
+    <resource id="r-5">
       <name>Group 1</name>
       <type>Group</type>
     </resource>
@@ -58,6 +58,7 @@
   <task id="t-1">
     <type>group</type>
     <child-task idref="t1"/>
+    <child-task idref="t9"/>
   </task>
   <task id="t1">
     <title>Modified from android to iOS</title>
@@ -72,6 +73,33 @@
   <task id="t3">
     <title>all Bolts tasks.</title>
     <effort>28800</effort>
+  </task>
+  <task id="t9">
+    <title>12-18</title>
+    <type>group</type>
+    <start-constraint-date>2015-12-18T00:00:00.000Z</start-constraint-date>
+    <child-task idref="t10"/>
+    <child-task idref="t11"/>
+    <child-task idref="t12"/>
+    <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t10">
+    <title>Android Launcher icon</title>
+    <effort>28800</effort>
+    <start-constraint-date>2015-12-18T00:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t11">
+    <title>Lean Realm for Android</title>
+    <effort>28800</effort>
+    <start-constraint-date>2015-12-18T00:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t12">
+    <title>Fix Review section(no team image show)</title>
+    <effort>28800</effort>
+    <start-constraint-date>2015-12-18T00:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>

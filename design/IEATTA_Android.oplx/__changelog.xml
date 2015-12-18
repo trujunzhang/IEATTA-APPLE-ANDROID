@@ -1,29 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <changelog xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
   <version>2.1</version>
-  <task-change-set user="djzhang" date="2015-12-06T14:30:56.199Z" timestamp="2015-12-06T14:30:56.199Z">
-    <change idref="t1" attribute="isGroup" type="real" from="0" to="1" resolved="yes"/>
-    <change idref="t1" attribute="isSplittableTask" type="real" from="1" resolved="yes"/>
-    <change idref="t1" attribute="taskType" type="real" from="0" to="2" resolved="yes"/>
-    <change idref="t1" attribute="title" type="string" from="Task 1" to="Modified from android to iOS" resolved="yes"/>
-    <change idref="t1" attribute="resourceAssignmentType" type="real" from="0" resolved="yes"/>
-    <change idref="t1" attribute="staticCost" type="real" from="0" resolved="yes"/>
-    <change idref="t1" attribute="effort" type="real" from="28800" resolved="yes"/>
-    <change idref="t1" attribute="isSplitChunk" type="real" from="0" resolved="yes"/>
-    <change idref="t1" attribute="scheduleType" type="real" from="0" resolved="yes"/>
-    <change idref="t1" attribute="internalAssignments" type="string" from="" resolved="yes"/>
-    <change idref="t1" attribute="isSplitTask" type="real" from="0" resolved="yes"/>
-    <change idref="t1" attribute="internalEffortDone" type="real" from="0" resolved="yes"/>
-    <change idref="t2" to="t1" to-position="0" resolved="yes">
-      <change idref="t2" attribute="title" type="string" to="sortOrderedPeople in the IEAEventDetailViewController."/>
+  <task-change-set user="djzhang" date="2015-12-18T09:09:28.157Z" timestamp="2015-12-18T09:09:28.157Z">
+    <change idref="t9" to="t-1" to-position="1" resolved="yes">
+      <change idref="t9" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t9" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
+      <change idref="t9" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t9" attribute="title" type="string" to="12-18"/>
+    </change>
+    <change idref="t10" to="t9" to-position="0" resolved="yes">
+      <change idref="t10" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
+      <change idref="t10" attribute="title" type="string" to="Android Launcher icon"/>
+    </change>
+    <change idref="t11" to="t9" to-position="1" resolved="yes">
+      <change idref="t11" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
+      <change idref="t11" attribute="title" type="string" to="Lean Realm for Android"/>
+    </change>
+    <change idref="t12" to="t9" to-position="2" resolved="yes">
+      <change idref="t12" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
+      <change idref="t12" attribute="title" type="string" to="Fix Review section(no team image show)"/>
     </change>
   </task-change-set>
-  <task-change-set user="djzhang" date="2015-12-06T14:31:25.319Z" timestamp="2015-12-06T14:31:25.319Z">
-    <change idref="t3" to="t1" to-position="1" resolved="yes">
-      <change idref="t3" attribute="title" type="string" to="all Bolts tasks."/>
-    </change>
-  </task-change-set>
-  <metadata-change-set user="djzhang" date="2015-12-06T14:29:25.428Z" timestamp="2015-12-06T14:29:25.428Z">
-    <change idref="m1" attribute="fixedDate" type="date" from="2007-01-01T20:00:00.000Z" to="2015-12-05T16:00:00.000Z" resolved="yes"/>
-  </metadata-change-set>
 </changelog>
