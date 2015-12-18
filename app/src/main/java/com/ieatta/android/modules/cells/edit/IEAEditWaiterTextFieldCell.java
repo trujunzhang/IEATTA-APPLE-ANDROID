@@ -34,6 +34,12 @@ public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
         super(itemView);
 
         self.editText = (EditText) itemView.findViewById(R.id.editText);
+        itemView.findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                self.model.viewController.takeAPhotoButtonTapped();
+            }
+        });
     }
 
     @Override

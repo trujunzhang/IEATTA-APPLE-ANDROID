@@ -11,7 +11,19 @@
         android:layout_toLeftOf="@+id/activity_config_yelp_host_clear"
         android:layout_toRightOf="@+id/activity_config_host_label"
         android:hint="@string/Search_Hint_Event"
+        android:layout_marginRight="44dp"
         android:textAppearance="@style/LargeText"
         android:textColor="@color/black_yoni" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="24dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/photo_icon"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_gravity="center_vertical|right" />
 
 </FrameLayout>
