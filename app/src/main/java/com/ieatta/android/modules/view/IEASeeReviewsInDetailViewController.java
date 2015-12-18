@@ -1,6 +1,8 @@
 package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
+import android.virtualbreak.com.debug.AppDebugManager;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
@@ -41,7 +43,9 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         super.onCreate(savedInstanceState);
 
         // Do any additional setup after loading the view.
-        self.transfer(self.getTransferedModel());
+//        self.transfer(self.getTransferedModel());
+        // TODO djzhang: test
+        self.transfer(ActivityModelDebug.getRestaurantForRestaurantDetail());
 
         self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override
