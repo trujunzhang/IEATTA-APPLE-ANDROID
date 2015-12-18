@@ -51,7 +51,7 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
         self.configModelsInMoreSection();
 
         // TOOD djzhang(test)
-        self.queryNearRestaurant(null);
+//        self.queryNearRestaurant(null);
     }
 
     /// Add rows for section "More".
