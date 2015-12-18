@@ -29,7 +29,7 @@ public class LocationObserveActivity extends IEASplitMasterViewController {
     private LocationObserveActivity self = this;
     private LocationManager lm;
 
-    private static final String TAG = "GpsActivity";
+    private static final String TAG = "LocationObserveActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

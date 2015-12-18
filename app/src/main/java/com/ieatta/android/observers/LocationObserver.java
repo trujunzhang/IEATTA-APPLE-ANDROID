@@ -8,40 +8,45 @@ import com.ieatta.android.notification.NotifyType;
 import com.parse.Parse;
 import com.parse.ParseGeoPoint;
 
+import java.util.Objects;
 import java.util.Stack;
 
 /**
  * Created by djzhang on 12/1/15.
  */
 public class LocationObserver {
-    private LocationObserver self =this;
+    private LocationObserver self = this;
     public static final LocationObserver sharedInstance = new LocationObserver();
-    private ParseGeoPoint currentGeoPoint;
-    private ParseGeoPoint DefaultGeoPoint =new  ParseGeoPoint( 0.0,  0.0);
+
+    private ParseGeoPoint DefaultGeoPoint = new ParseGeoPoint(0.0, 0.0);
+    private ParseGeoPoint currentGeoPoint = DefaultGeoPoint;
+
     private Stack<ParseGeoPoint> observerStack = new Stack<>();
 
-    public ParseGeoPoint getCurrentPFGeoPoint()  {
+    public ParseGeoPoint getCurrentPFGeoPoint() {
 
         //TODO: djzhang(test)(Special GeoPoint)
-                        return RestaurantListGenerator.getCurrentLocationAndCulculateDistance();
+        return RestaurantListGenerator.getCurrentLocationAndCulculateDistance();
 
 //        return self.currentGeoPoint;
     }
 
     public void updateLocation(Location location) {
-        double distance = currentGeoPoint.distanceInKilometersTo(new ParseGeoPoint(location.getLatitude(),location.getLongitude()))*1000;
+        Object object = location;
+        ParseGeoPoint newPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+        double distance = (currentGeoPoint.distanceInKilometersTo(newPoint)) * 1000;
         if (distance > 10) {
-            self.checkLocationAndNotification(location);
+            self.checkLocationAndNotification(newPoint);
         }
     }
 
-    private void checkLocationAndNotification(Location location) {
+    private void checkLocationAndNotification(ParseGeoPoint newPoint) {
         boolean isEmpty = self.observerStack.empty();
 
-        self.observerStack.push(new ParseGeoPoint(location.getLatitude(),location.getLongitude()));
+        self.observerStack.push(newPoint);
 
         // If the last is empty, then notify.
-        if(isEmpty == true){
+        if (isEmpty == true) {
             notifyCurrentLocationDidChange();
         }
     }
