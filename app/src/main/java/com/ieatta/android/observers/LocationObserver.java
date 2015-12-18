@@ -32,7 +32,9 @@ public class LocationObserver {
     }
 
     public void updateLocation(Location location) {
-        Object object = location;
+        if(location == null){
+            return;
+        }
         ParseGeoPoint newPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
         double distance = (currentGeoPoint.distanceInKilometersTo(newPoint)) * 1000;
         if (distance > 10) {
