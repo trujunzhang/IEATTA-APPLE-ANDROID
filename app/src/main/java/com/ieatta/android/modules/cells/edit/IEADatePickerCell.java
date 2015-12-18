@@ -11,6 +11,7 @@ import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.DatePickerCellModel;
 
 import java.text.SimpleDateFormat;
@@ -24,9 +25,18 @@ public class IEADatePickerCell extends IEAViewHolder {
         return new CellType(IEADatePickerCell.class, R.layout.date_picker_cell);
     }
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+    @Override
+    public ViewHolderType getViewHolderType() {
+        return ViewHolderType.None;
+    }
+
     private IEADatePickerCell self = this;
 
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("MMMM dd yyyy hh:mm aa");
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yy, h:mm aa");
     private boolean isDialog = false;
 
     private Date editedDate;

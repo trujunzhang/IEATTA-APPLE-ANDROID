@@ -5,6 +5,7 @@ import android.widget.EditText;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.EditCellModel;
 
 /**
@@ -16,6 +17,15 @@ public class IEAEditTextFieldCell  extends IEAViewHolder {
     }
 
     private IEAEditTextFieldCell self = this;
+
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+    @Override
+    public ViewHolderType getViewHolderType() {
+        return ViewHolderType.None;
+    }
 
     private EditText editText;
     private EditCellModel model;
