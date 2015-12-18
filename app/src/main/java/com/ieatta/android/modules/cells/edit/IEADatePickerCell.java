@@ -13,6 +13,7 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.DatePickerCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +43,8 @@ public class IEADatePickerCell extends IEAViewHolder {
     private Date editedDate;
 
     private TextView editText;
-    private FrameLayout datePickerLayout;
+    private TextView titleTextView;
+
     private Button clickedView;
 
 
@@ -52,7 +54,7 @@ public class IEADatePickerCell extends IEAViewHolder {
         super(itemView);
 
         this.clickedView = (Button) itemView.findViewById(R.id.clicked_view);
-        this.datePickerLayout = (FrameLayout) itemView.findViewById(R.id.date_picker_layout);
+        this.titleTextView =(TextView) itemView.findViewById(R.id.titleTextView);
         this.editText = (TextView) itemView.findViewById(R.id.editText);
 
         this.clickedView.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +81,12 @@ public class IEADatePickerCell extends IEAViewHolder {
     @Override
     public void render(Object value) {
         self.model = (DatePickerCellModel) value;
+        if(self.model.editKey == IEAEditKey.event_starttime){
+            self.titleTextView.setText(R.string.Start_Time);
+        }else{
+            self.titleTextView.setText(R.string.End_Time);
+        }
+
         self.reloadTableRow(self.model.date);
     }
 
