@@ -86,7 +86,7 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
         // TODO djzhang(test)
 //        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
-        Restaurant.queryRestaurants().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+        Restaurant.queryNearRestaurants(geoPoint).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedRestaurants = task.getResult();

@@ -26,9 +26,9 @@ public class LocationObserver {
     public ParseGeoPoint getCurrentPFGeoPoint() {
 
         //TODO: djzhang(test)(Special GeoPoint)
-        return RestaurantListGenerator.getCurrentLocationAndCulculateDistance();
+//        return RestaurantListGenerator.getCurrentLocationAndCulculateDistance();
 
-//        return self.currentGeoPoint;
+        return self.currentGeoPoint;
     }
 
     public void updateLocation(Location location) {
