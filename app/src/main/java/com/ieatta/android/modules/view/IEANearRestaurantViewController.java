@@ -1,10 +1,12 @@
 package com.ieatta.android.modules.view;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitMasterViewController;
+import com.ieatta.android.modules.LocationObserveActivity;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
@@ -35,7 +37,7 @@ enum NearRestaurantSection {
     sectionRestaurants, //= 1
 }
 
-public class IEANearRestaurantViewController extends IEASplitMasterViewController {
+public class IEANearRestaurantViewController extends LocationObserveActivity {
     private IEANearRestaurantViewController self = this;
     private List<ParseModelAbstract> fetchedRestaurants;
 
