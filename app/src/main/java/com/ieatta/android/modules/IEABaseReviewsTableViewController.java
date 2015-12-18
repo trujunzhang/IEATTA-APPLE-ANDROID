@@ -52,6 +52,7 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
         }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                Object object = task.getResult();
                 return self.getPhotosForModelsTask(task);
             }
         });

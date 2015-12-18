@@ -63,6 +63,7 @@ public class AvatarView extends RoundedImageView {
     }
 
     public Task loadNewPhotoByModel(ParseModelAbstract model, int placeHolder) {
+        String point = ParseModelAbstract.getPoint(model);
         // Cache photo point.
         String photoPoint = IEACache.sharedInstance.photoPoint(model);
 
