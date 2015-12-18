@@ -37,7 +37,7 @@ public class IEADatePickerCell extends IEAViewHolder {
 
     private IEADatePickerCell self = this;
 
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yy, h:mm aa");
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yy, HH:mm aa");
     private boolean isDialog = false;
 
     private Date editedDate;
