@@ -15,6 +15,7 @@
         <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowTitleSize">@dimen/actionbar_height</item>
+        <item name="android:textColorHint">@color/blue_text_hint</item>
         <item name="android:listViewStyle">@style/Widget.ListView.NoScrollCache</item>
         <item name="android:listViewWhiteStyle">@style/Widget.ListView.White.NoScrollCache</item>
         <item name="android:spinnerStyle">@style/Widget.Spinner</item>
@@ -81,9 +82,6 @@
         <item name="passportUserNameTextAppearance">@style/SubtitleDarkText</item>
         <item name="passportUserNameTextColor">@color/black_yoni</item>
         <item name="passportStatsTextColor">@color/orange_text</item>
-        <item name="passportFriendCountDrawable">@drawable/passport_friends_icon</item>
-        <item name="passportReviewCountDrawable">@drawable/passport_reviews_icon</item>
-        <item name="passportPhotoCountDrawable">@drawable/passport_photos_icon</item>
     </style>
 
     <style name="IEATTAAppTheme.NoActionBar">

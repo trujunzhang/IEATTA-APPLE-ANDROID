@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.cells.edit;
 import android.view.View;
 import android.widget.EditText;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
