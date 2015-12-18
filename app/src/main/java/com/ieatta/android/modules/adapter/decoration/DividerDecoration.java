@@ -50,7 +50,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
             int tag = (int) child.getTag();
-//        Log.v("decoration","tag: "+tag);
+ //        Log.v("decoration","tag: "+tag);
             if(this.isIgnorDivider(tag)){
                 continue;
             }
@@ -76,7 +76,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
             int nextTag = (int) nextChild.getTag();
             if(nextTag == ViewHolderType.cell.ordinal()) {
                 if (((tag == ViewHolderType.cell.ordinal()) || (tag == ViewHolderType.special.ordinal()))) {
-                    return 120;
+                    return 32;
                 }
             }
         }
