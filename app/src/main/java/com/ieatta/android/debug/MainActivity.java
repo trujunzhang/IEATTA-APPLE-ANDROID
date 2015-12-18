@@ -1,12 +1,12 @@
 package com.ieatta.android.debug;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
@@ -16,15 +16,12 @@ import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
-import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
-import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 
 import java.util.LinkedList;
-import java.util.List;
 
-public class MainActivity extends IEAPhotoGalleryViewController {
-private MainActivity self = this;
+public class MainActivity extends IEAReviewsInDetailTableViewController {
+    private MainActivity self = this;
 
     private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, null);
 
@@ -37,14 +34,24 @@ private MainActivity self = this;
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(self);
 
+//        self.setupPhotoGallerySection();
+
+        self.showReviewSection();
+
+//        self.showContentView();
+    }
+
+    private void showReviewSection() {
+
+    }
+
+    private void setupPhotoGallerySection() {
         self.fetchedPhotos = new LinkedList<>();
         self.fetchedPhotos.add(new Photo());
 
         self.showPhotoGalleryCell();
 
 //        self.showPhotoGallery();
-
-//        self.showContentView();
     }
 
     private void showContentView() {
@@ -62,7 +69,7 @@ private MainActivity self = this;
         self.collectionView = (RecyclerView) self.findViewById(R.id.section_list);
         self.collectionView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        self.adapter = new IEAPhotoGalleryAdapter(self,self.fetchedPhotos);
+        self.adapter = new IEAPhotoGalleryAdapter(self, self.fetchedPhotos);
 
         self.collectionView.setAdapter(self.adapter);
 

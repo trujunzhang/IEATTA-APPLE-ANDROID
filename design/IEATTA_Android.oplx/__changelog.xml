@@ -21,4 +21,13 @@
       <change idref="t12" attribute="title" type="string" to="Fix Review section(no team image show)"/>
     </change>
   </task-change-set>
+  <task-change-set user="djzhang" date="2015-12-18T11:28:36.517Z" timestamp="2015-12-18T11:28:36.517Z">
+    <change idref="t10" attribute="title" type="string" from="Android Launcher icon" to="(*)Android Launcher icon"/>
+  </task-change-set>
+  <task-change-set user="djzhang" date="2015-12-18T11:29:12.615Z" timestamp="2015-12-18T11:29:12.615Z">
+    <change idref="t13" to="t9" to-position="3" resolved="yes">
+      <change idref="t13" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
+      <change idref="t13" attribute="title" type="string" to="Edit model cell style,(in the event)"/>
+    </change>
+  </task-change-set>
 </changelog>

@@ -81,10 +81,11 @@
     <child-task idref="t10"/>
     <child-task idref="t11"/>
     <child-task idref="t12"/>
+    <child-task idref="t13"/>
     <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>
   </task>
   <task id="t10">
-    <title>Android Launcher icon</title>
+    <title>(*)Android Launcher icon</title>
     <effort>28800</effort>
     <start-constraint-date>2015-12-18T00:00:00.000Z</start-constraint-date>
     <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>
@@ -97,6 +98,12 @@
   </task>
   <task id="t12">
     <title>Fix Review section(no team image show)</title>
+    <effort>28800</effort>
+    <start-constraint-date>2015-12-18T00:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t13">
+    <title>Edit model cell style,(in the event)</title>
     <effort>28800</effort>
     <start-constraint-date>2015-12-18T00:00:00.000Z</start-constraint-date>
     <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>

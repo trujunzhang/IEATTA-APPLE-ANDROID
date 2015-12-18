@@ -13,9 +13,9 @@
         <column name="Title" width="191"/>
         <column name="Effort" width="70"/>
         <expanded-items idrefs="t9 t1"/>
-        <selected-items-at-filter-time idrefs="t12 t11 t10 t3 t2 t9"/>
+        <selected-items-at-filter-time idrefs="t9 t10 t13 t2 t12 t3 t11"/>
       </outline>
-      <gantt-view x="-54" y="0" w="576" h="493">
+      <gantt-view x="0" y="0" w="576" h="493">
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>
@@ -62,13 +62,13 @@
     </task-view>
     <resource-view>
       <split-view-divider-position>306</split-view-divider-position>
-      <outline x="0" y="0" w="291" h="818">
+      <outline x="0" y="0" w="291" h="493">
         <column name="Notes" width="20"/>
         <column name="Type" width="49"/>
         <column name="Resource" width="135"/>
         <column name="#" width="75"/>
       </outline>
-      <timeline x="-354" y="0" w="1089" h="818">
+      <timeline x="0" y="0" w="548" h="493">
         <offtime-display>none</offtime-display>
         <show-project-end/>
         <task-bar-label task-type="group" position="left">
@@ -135,7 +135,7 @@ End:</group-table-style>
     </network-view>
   </window>
   <project>
-    <next-task-id>13</next-task-id>
+    <next-task-id>14</next-task-id>
     <next-resource-id>2</next-resource-id>
     <scenario id="ni4FnsJyC6o" name="Actual" filename="Actual.xml"/>
     <date-display dates="true" times="true" seconds="false"/>
