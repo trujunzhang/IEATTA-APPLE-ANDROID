@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.badoo.mobile.util.WeakHandler;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.ieatta.android.R;
@@ -43,6 +44,8 @@ public class ViewPagerFragment extends Fragment {
     private int asset = -1;
     private SubsamplingScaleImageView imageView;
 
+    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+
     public ViewPagerFragment() {
     }
 
@@ -59,7 +62,6 @@ public class ViewPagerFragment extends Fragment {
                 asset = savedInstanceState.getInt(BUNDLE_ASSET);
             }
         }
-
 
         if (asset != -1) {
             self.imageView = (SubsamplingScaleImageView) rootView.findViewById(R.id.imageView);
@@ -91,8 +93,13 @@ public class ViewPagerFragment extends Fragment {
 
         photo.downloadCacheImageFromServer().onSuccess(new Continuation<Bitmap, Object>() {
             @Override
-            public Object then(Task<Bitmap> task) throws Exception {
-                self.imageView.setImage(ImageSource.bitmap(task.getResult()));
+            public Object then(final Task<Bitmap> task) throws Exception {
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        self.imageView.setImage(ImageSource.bitmap(task.getResult()));
+                    }
+                }, 1);
                 return null;
             }
         });
