@@ -29,8 +29,12 @@ import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
+import com.ieatta.com.parse.utils.cache.CacheImageUtils;
 import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
+
+import bolts.Continuation;
+import bolts.Task;
 
 public class ViewPagerFragment extends Fragment {
     private ViewPagerFragment self = this;
@@ -72,13 +76,26 @@ public class ViewPagerFragment extends Fragment {
     ///   2.2 When pushed successfully, delete offline original image.
     ///   3.  When pulling from server, just download a thumbnail image from server.
     private void showImage(Photo photo) {
-        Bitmap image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
+        Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
         if (image != null) {
+            self.imageView.setImage(ImageSource.bitmap(image));
+            return;
+        }
+
+        image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
+         if (image != null) {
             self.imageView.setImage(ImageSource.bitmap(image));
         } else {
             self.imageView.setImage(ImageSource.bitmap(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)));
         }
 
+        photo.downloadCacheImageFromServer().onSuccess(new Continuation<Bitmap, Object>() {
+            @Override
+            public Object then(Task<Bitmap> task) throws Exception {
+                self.imageView.setImage(ImageSource.bitmap(task.getResult()));
+                return null;
+            }
+        });
 
 //        self.imageView.setImage(ImageSource.resource(this.asset));
     }

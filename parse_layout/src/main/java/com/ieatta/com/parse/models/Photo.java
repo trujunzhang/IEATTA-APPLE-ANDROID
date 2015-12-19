@@ -284,15 +284,15 @@ public class Photo extends ParseModelSync {
         return this.downloadThumbnailImageFromServer();
     }
 
-    public Task downloadThumbnailImageFromServer() {
+    public Task<Bitmap> downloadThumbnailImageFromServer() {
         return ThumbnailImageUtils.sharedInstance.downloadImageFromServer(this, this.thumbnailUrl);
     }
 
-    public Task downloadOriginalImageFromServer() {
+    public Task<Bitmap> downloadOriginalImageFromServer() {
         return OriginalImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
     }
 
-    public Task downloadCacheImageFromServer() {
+    public Task<Bitmap> downloadCacheImageFromServer() {
         return CacheImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
     }
 

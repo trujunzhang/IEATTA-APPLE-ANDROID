@@ -153,7 +153,7 @@ public abstract class AbstractImageUtils {
         return tcs.getTask();
     }
 
-    public Task downloadImageFromServer(final Photo model,String url) {
+    public Task<Bitmap> downloadImageFromServer(final Photo model,String url) {
 
         /// If the image already exist on the cache folder, we don't download it from the Parse.com.
         Bitmap bitmap = this.getTakenPhoto(model);
