@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ieatta.android.R;
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEABaseTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
@@ -38,26 +39,20 @@ enum ChoicePeopleSection {
 public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     private IEAChoicePeopleViewController self = this;
 
-    public interface IEAChoicePeopleViewProtocol {
-        public void didSelectPeople(Team people);
-    }
-
     @Override
     public boolean shouldShowHUD() {
         return true;
     }
 
     // MARK: Already ordered people
-    private List<Team> orderedPeople = null;// **** Important ****(init null)
+    private List<ParseModelAbstract/*Team*/> orderedPeople = null;// **** Important ****(init null)
     private List<ParseModelAbstract/*Team*/> fetchedPeople = new LinkedList<>();
-    private IEAChoicePeopleViewProtocol delegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO djzhang(test)
-        self.orderedPeople = new LinkedList<>();
+        self.orderedPeople = IntentCache.sharedInstance.orderedPeople;
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedPeople != nil, "Must setup orderedPeople's instance.")

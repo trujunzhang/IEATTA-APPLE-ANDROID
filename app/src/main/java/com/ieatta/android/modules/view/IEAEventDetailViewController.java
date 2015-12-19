@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
+import com.ieatta.android.apps.AppAlertView;
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
@@ -22,6 +24,7 @@ import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.PeopleInEvent;
 import com.ieatta.com.parse.models.Team;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -36,7 +39,7 @@ enum EventDetailSection {
     sectionReviews,       //= 2
 }
 
-public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewController implements IEAChoicePeopleViewController.IEAChoicePeopleViewProtocol {
+public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewController  {
     private IEAEventDetailViewController self = this;
 
 
@@ -53,7 +56,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     // Selected model from tableview.
     private Team selectedModel;
     // Fetched list by quering database.
-    private List<ParseModelAbstract/*Team*/> fetchedPeople;
+    private LinkedList<ParseModelAbstract/*Team*/> fetchedPeople;
     private List<ParseModelAbstract/*PeopleInEvent*/> fetchedPeopleInEvent;
     private boolean isTabBarHidden = false;
 
@@ -82,7 +85,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedPeople = task.getResult();
+                self.fetchedPeople = new LinkedList<ParseModelAbstract>(task.getResult());
 
                 //  Sort, by fetchedPeopleInEvent
                 return PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
@@ -127,6 +130,13 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        IntentCache.sharedInstance.orderedPeople = new LinkedList<>();
+    }
+
     /// Add rows for section "Ordered People".
     private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople) {
         setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event), EventDetailSection.sectionOrderedPeople.ordinal());
@@ -138,8 +148,23 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     }
 
     @Override
-    public void didSelectPeople(Team people) {
+    protected void didSelectPeople(NSNotification note) {
+        // 1. Add selected people to tableview.
+        ParseModelAbstract people = (ParseModelAbstract) note.anObject;
 
+        self.fetchedPeople.addFirst(people);
+        self.addOrderedPeopleSection(self.fetchedPeople);
+
+        // 2. Save selected people to database
+        new PeopleInEvent(ParseModelAbstract.getPoint(people),ParseModelAbstract.getPoint(self.event)).saveTeam().continueWith(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                if (task.isFaulted() == true) {
+//                    AppAlertView.showError(L10n.SelectPeopleFailure.string)
+                }
+                return null;
+            }
+        });
     }
 
     @Override
@@ -162,8 +187,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 
     @Override
     public void segueForChoicePeopleViewController(IEAChoicePeopleViewController destination, Intent sender) {
-//        destination.delegate = self
-//        destination.orderedPeople = self.fetchedPeople
+        IntentCache.sharedInstance.orderedPeople = self.fetchedPeople;
     }
 
     @Override

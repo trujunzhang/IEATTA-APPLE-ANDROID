@@ -4,6 +4,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 /**
  * Created by djzhang on 12/10/15.
@@ -16,6 +17,7 @@ public class IntentCache {
     public static final IntentCache sharedInstance = new IntentCache();
 
     private HashMap<String,ParseModelAbstract> intentModelCache = new LinkedHashMap<>();
+    public LinkedList<ParseModelAbstract> orderedPeople = new LinkedList<>();
 
     public void setIntentModel(ParseModelAbstract model){
         self.intentModelCache.put(model.intentUUID, model);

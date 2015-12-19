@@ -117,8 +117,8 @@ public class Team extends ParseModelSync {
         return new Team();
     }
 
-    private static boolean checkExist(ParseModelAbstract user, List<Team> inSource) {
-        for (Team model : inSource) {
+    private static boolean checkExist(ParseModelAbstract user, List<ParseModelAbstract> inSource) {
+        for (ParseModelAbstract model : inSource) {
             if (model.equals(user)) {
                 return true;
             }
@@ -127,7 +127,7 @@ public class Team extends ParseModelSync {
     }
 
     // MARK: Support methods.
-    public static Task<List<ParseModelAbstract>> filterFrom(Task<List<ParseModelAbstract>> previous, List<Team> source) {
+    public static Task<List<ParseModelAbstract>> filterFrom(Task<List<ParseModelAbstract>> previous, List<ParseModelAbstract> source) {
 
         List<ParseModelAbstract> result = previous.getResult();
 

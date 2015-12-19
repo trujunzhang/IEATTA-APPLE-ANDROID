@@ -60,12 +60,12 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
             case PANotificationUserInfoForReadReviews:
                 break;
             case PANotificationChoicePerson:
-                self.choicedPerson(note);
+                self.didSelectPeople(note);
                 break;
         }
     }
 
-    protected void choicedPerson(NSNotification note) {
+    protected void didSelectPeople(NSNotification note) {
 
     }
 
