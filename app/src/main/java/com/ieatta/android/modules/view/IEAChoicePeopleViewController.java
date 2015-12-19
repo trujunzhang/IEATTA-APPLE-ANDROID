@@ -113,12 +113,6 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
 
     }
 
-//    override func segueForEditPeopleViewController(destination:IEAEditPeopleViewController){
-//        // Add people
-//        destination.setEditModel(Team(), newModel: true)
-//    }
-
-
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
         Team team = (Team) model;
