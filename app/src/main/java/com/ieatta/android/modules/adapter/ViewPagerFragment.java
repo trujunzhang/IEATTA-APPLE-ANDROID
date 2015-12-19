@@ -56,11 +56,7 @@ public class ViewPagerFragment extends Fragment {
             }
         }
 
-        /// How to store a taken photo to decrease client storage.
-        ///   1.  When taken a photo, save it as original and thumbnail formats.
-        ///   2.1 When pushing to server, push original and thumbnail images to server.
-        ///   2.2 When pushed successfully, delete offline original image.
-        ///   3.  When pulling from server, just download a thumbnail image from server.
+
         if (asset != -1) {
             self.imageView = (SubsamplingScaleImageView) rootView.findViewById(R.id.imageView);
             Photo photo = (Photo) IntentCache.sharedInstance.photoGalleryItem.get(this.asset);
@@ -70,6 +66,11 @@ public class ViewPagerFragment extends Fragment {
         return rootView;
     }
 
+    /// How to store a taken photo to decrease client storage.
+    ///   1.  When taken a photo, save it as original and thumbnail formats.
+    ///   2.1 When pushing to server, push original and thumbnail images to server.
+    ///   2.2 When pushed successfully, delete offline original image.
+    ///   3.  When pulling from server, just download a thumbnail image from server.
     private void showImage(Photo photo) {
         Bitmap image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
         if (image != null) {
