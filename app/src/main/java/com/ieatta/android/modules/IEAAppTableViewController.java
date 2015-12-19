@@ -21,6 +21,8 @@ public class IEAAppTableViewController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(self.getContentView());
 
+
+
         EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 
         if(hasRecycleView() == true) {

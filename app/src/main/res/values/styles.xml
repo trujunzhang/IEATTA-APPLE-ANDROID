@@ -2293,7 +2293,7 @@
         <item name="android:overScrollMode">ifContentScrolls</item>
         <item name="android:overScrollHeader">@color/white</item>
         <item name="android:overScrollFooter">@color/white</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@drawable/tableview_item_background</item>
     </style>
 
     <style name="Widget.Spinner" parent="@style/Widget">
