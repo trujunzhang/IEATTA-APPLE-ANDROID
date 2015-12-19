@@ -33,6 +33,12 @@ public class IEAAppTableViewController extends AppCompatActivity {
         }
     }
 
+    protected void setRightBarButtonItem(int titleId, View.OnClickListener clickListener){
+        self.rightBarButtonItem.setVisibility(View.VISIBLE);
+        self.rightBarButtonItem.setText(titleId);
+        self.rightBarButtonItem.setOnClickListener(clickListener);
+    }
+
     /**
      * Default content view.
      * @return

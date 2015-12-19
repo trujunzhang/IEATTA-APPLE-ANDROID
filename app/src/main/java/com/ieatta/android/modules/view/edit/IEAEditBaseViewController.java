@@ -100,8 +100,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
 //        assert(self.editedModel != nil, "Must setup editedModel's instance.")
 
-        self.rightBarButtonItem.setText(self.rightButtonTitle());
-        self.rightBarButtonItem.setOnClickListener(new View.OnClickListener() {
+        self.setRightBarButtonItem(self.rightButtonTitle(), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 self.saveModelAction();
@@ -199,9 +198,9 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
             });
         } else {
             /// The model already exist, delete it first.
-            ((ParseModelQuery) model).unpinInBackgroundWithNewRecord().onSuccessTask(new Continuation<Void, Task>() {
+            ((ParseModelQuery) model).unpinInBackgroundWithNewRecord().onSuccessTask(new Continuation<Void, Task<Void>>() {
                 @Override
-                public Task then(Task<Void> task) throws Exception {
+                public Task<Void> then(Task<Void> task) throws Exception {
                     return self.saveNewModel(model);
                 }
             }).continueWith(new Continuation() {
@@ -216,7 +215,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         }
     }
 
-    private Task afterSaveNewModelTask(Task task) {
+    private Task<Void> afterSaveNewModelTask(Task task) {
         if (task.isFaulted() == true) {
 //                        AppAlertView.showError(L10n.SavedFailure.string)
         } else {
@@ -226,7 +225,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         return null;
     }
 
-    private Task saveNewModel(ParseModelAbstract newModel) {
+    private Task<Void> saveNewModel(ParseModelAbstract newModel) {
         return ((ParseModelQuery) newModel).pinInBackgroundWithNewRecord();
     }
 
