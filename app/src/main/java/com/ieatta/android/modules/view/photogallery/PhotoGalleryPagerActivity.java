@@ -38,12 +38,18 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
     }
 
     @Override
+    protected boolean hasRecycleView() {
+        return false;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager(), IMAGES);
         page = (ViewPager) findViewById(R.id.pager);
         page.setAdapter(pagerAdapter);
+        page.setCurrentItem(2);
     }
 
     @Override
