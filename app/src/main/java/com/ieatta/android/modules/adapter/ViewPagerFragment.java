@@ -24,7 +24,6 @@ import android.view.ViewGroup;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
-import com.davemorrissey.labs.subscaleview.sample.R.id;
 import com.ieatta.android.R;
 
 public class ViewPagerFragment extends Fragment {
@@ -50,7 +49,7 @@ public class ViewPagerFragment extends Fragment {
             }
         }
         if (asset != null) {
-            SubsamplingScaleImageView imageView = (SubsamplingScaleImageView)rootView.findViewById(id.imageView);
+            SubsamplingScaleImageView imageView = (SubsamplingScaleImageView)rootView.findViewById(R.id.imageView);
             imageView.setImage(ImageSource.asset(asset));
         }
 
