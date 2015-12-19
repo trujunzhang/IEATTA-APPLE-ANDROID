@@ -14,6 +14,8 @@ import com.ieatta.android.modules.common.edit.SectionChoicePeopleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.notification.NSNotification;
+import com.ieatta.android.notification.NSNotificationCenter;
+import com.ieatta.android.notification.NotifyType;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
 
@@ -116,7 +118,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
         Team team = (Team) model;
-
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreatedRestaurantNotification, team);
         self.navigationController.popViewControllerAnimated(true);
     }
 
