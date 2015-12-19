@@ -71,6 +71,13 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        IntentCache.sharedInstance.photoGalleryItem = new LinkedList<>();
+    }
+
     protected void configurePhotoGallery() {
         // Register Cells by class.
         self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
@@ -134,13 +141,12 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     public void presentPhotoGallery(int rowIndex) {
         self.photoAtIndex = rowIndex;
         self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier, self);
-//        let photoPagesController: EBPhotoPagesController = EBPhotoPagesController(dataSource: self, delegate: self,photoAtIndex: rowIndex)
-//        self.presentViewController(photoPagesController, animated: true, completion: nil)
     }
 
     @Override
     protected void segueForPhotoPagesController(PhotoGalleryPagerActivity destination, Intent sender) {
         sender.putExtra(IntentCache.sharedInstance.photoAtIndex, self.photoAtIndex);
+        IntentCache.sharedInstance.photoGalleryItem = self.fetchedPhotos;
     }
 
 

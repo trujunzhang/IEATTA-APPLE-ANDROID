@@ -20,7 +20,9 @@ public class IntentCache {
     public static final IntentCache sharedInstance = new IntentCache();
 
     private HashMap<String,ParseModelAbstract> intentModelCache = new LinkedHashMap<>();
+
     public LinkedList<ParseModelAbstract> orderedPeople = new LinkedList<>();
+    public LinkedList<ParseModelAbstract> photoGalleryItem = new LinkedList<>();
 
     public void setIntentModel(ParseModelAbstract model){
         self.intentModelCache.put(model.intentUUID, model);
