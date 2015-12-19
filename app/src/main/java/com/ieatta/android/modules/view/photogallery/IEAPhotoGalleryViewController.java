@@ -140,7 +140,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
     public void presentPhotoGallery(int rowIndex) {
         self.photoAtIndex = rowIndex;
-        self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier, self);
+        self.performSegueWithIdentifier(MainSegueIdentifier.photoPagesControllerSegueIdentifier, self);
     }
 
     @Override
