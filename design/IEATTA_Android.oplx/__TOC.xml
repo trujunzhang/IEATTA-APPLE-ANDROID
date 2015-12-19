@@ -12,8 +12,8 @@
         <column name="Notes" width="20"/>
         <column name="Title" width="191"/>
         <column name="Effort" width="70"/>
-        <expanded-items idrefs="t9 t1"/>
-        <selected-items-at-filter-time idrefs="t9 t10 t13 t2 t12 t3 t11"/>
+        <expanded-items idrefs="t1 t13 t14 t9"/>
+        <selected-items-at-filter-time idrefs="t9 t10 t13 t2 t16 t12 t15 t3 t11 t14"/>
       </outline>
       <gantt-view x="0" y="0" w="576" h="493">
         <view-mode>actual</view-mode>
@@ -135,7 +135,7 @@ End:</group-table-style>
     </network-view>
   </window>
   <project>
-    <next-task-id>14</next-task-id>
+    <next-task-id>17</next-task-id>
     <next-resource-id>2</next-resource-id>
     <scenario id="ni4FnsJyC6o" name="Actual" filename="Actual.xml"/>
     <date-display dates="true" times="true" seconds="false"/>

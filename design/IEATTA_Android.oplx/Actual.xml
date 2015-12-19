@@ -59,6 +59,7 @@
     <type>group</type>
     <child-task idref="t1"/>
     <child-task idref="t9"/>
+    <child-task idref="t14"/>
   </task>
   <task id="t1">
     <title>Modified from android to iOS</title>
@@ -104,9 +105,29 @@
   </task>
   <task id="t13">
     <title>Edit model cell style,(in the event)</title>
-    <effort>28800</effort>
+    <type>group</type>
     <start-constraint-date>2015-12-18T00:00:00.000Z</start-constraint-date>
     <start-no-earlier-than>2015-12-18T00:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t14">
+    <title>12-18</title>
+    <type>group</type>
+    <start-constraint-date>2015-12-18T16:00:00.000Z</start-constraint-date>
+    <child-task idref="t15"/>
+    <child-task idref="t16"/>
+    <start-no-earlier-than>2015-12-18T16:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t15">
+    <title>PhotoGalley and “Take a Photo” cell.</title>
+    <effort>28800</effort>
+    <start-constraint-date>2015-12-18T16:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2015-12-18T16:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t16">
+    <title>NavigationBar(back,save,update) icons.</title>
+    <effort>28800</effort>
+    <start-constraint-date>2015-12-18T16:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2015-12-18T16:00:00.000Z</start-no-earlier-than>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>
