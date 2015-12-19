@@ -2,6 +2,7 @@ package com.ieatta.android;
 
 import android.app.Application;
 import android.virtualbreak.com.debug.AppDebugManager;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.apps.AppConfigure;
 import com.ieatta.com.parse.ParseAPI;
@@ -17,9 +18,11 @@ public class IEAApplication extends Application{
     public void onCreate() {
         super.onCreate();
 
+        // **** Important ****
+        EnvironmentUtils.sharedInstance.registerGlobalContext(this);
+
         AppConfigure.setup(this);
         ParseAPI.setup(this);
-
 
         /// Clean Cache folder contains downloaded original images.
         CacheImageUtils.sharedInstance.clearCacheDisk();
