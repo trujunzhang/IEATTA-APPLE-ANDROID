@@ -25,12 +25,14 @@ import android.view.ViewGroup;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.ieatta.android.R;
+import com.ieatta.com.parse.ParseModelAbstract;
 
 public class ViewPagerFragment extends Fragment {
-
+    private ViewPagerFragment self = this;
     private static final String BUNDLE_ASSET = "asset";
 
-    private int asset;
+    private int asset = -1;
+    private SubsamplingScaleImageView imageView;
 
     public ViewPagerFragment() {
     }
@@ -43,8 +45,16 @@ public class ViewPagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.view_pager_page, container, false);
 
-        SubsamplingScaleImageView imageView = (SubsamplingScaleImageView) rootView.findViewById(R.id.imageView);
-        imageView.setImage(ImageSource.resource(this.asset));
+        if (savedInstanceState != null) {
+            if (asset == -1 && savedInstanceState.containsKey(BUNDLE_ASSET)) {
+                asset = savedInstanceState.getInt(BUNDLE_ASSET);
+            }
+        }
+        if (asset != -1) {
+            self.imageView = (SubsamplingScaleImageView) rootView.findViewById(R.id.imageView);
+            
+            self.imageView.setImage(ImageSource.resource(this.asset));
+        }
 
         return rootView;
     }
