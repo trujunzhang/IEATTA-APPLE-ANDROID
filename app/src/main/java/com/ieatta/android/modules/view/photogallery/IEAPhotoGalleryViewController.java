@@ -129,6 +129,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     public void presentPhotoGallery(int rowIndex) {
+
 //        let photoPagesController: EBPhotoPagesController = EBPhotoPagesController(dataSource: self, delegate: self,photoAtIndex: rowIndex)
 //        self.presentViewController(photoPagesController, animated: true, completion: nil)
     }
