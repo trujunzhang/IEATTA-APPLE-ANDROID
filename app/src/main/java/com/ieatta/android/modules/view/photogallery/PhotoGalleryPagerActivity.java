@@ -28,7 +28,7 @@ import com.ieatta.android.modules.adapter.PhotoGalleryPagerAdapter;
 
 public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 
-    private static final String[] IMAGES = { "ness.jpg", "squirrel.jpg" };
+    private static final int[] IMAGES = {R.drawable.rest01, R.drawable.review_stars_0_inline, R.drawable.logo_yelp};
 
     private ViewPager page;
 
@@ -41,8 +41,8 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager(),IMAGES);
-        page = (ViewPager)findViewById(R.id.pager);
+        PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager(), IMAGES);
+        page = (ViewPager) findViewById(R.id.pager);
         page.setAdapter(pagerAdapter);
     }
 

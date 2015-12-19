@@ -30,12 +30,12 @@ public class ViewPagerFragment extends Fragment {
 
     private static final String BUNDLE_ASSET = "asset";
 
-    private String asset;
+    private int asset;
 
     public ViewPagerFragment() {
     }
 
-    public void setAsset(String asset) {
+    public void setAsset(int asset) {
         this.asset = asset;
     }
 
@@ -43,15 +43,8 @@ public class ViewPagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.view_pager_page, container, false);
 
-        if (savedInstanceState != null) {
-            if (asset == null && savedInstanceState.containsKey(BUNDLE_ASSET)) {
-                asset = savedInstanceState.getString(BUNDLE_ASSET);
-            }
-        }
-        if (asset != null) {
             SubsamplingScaleImageView imageView = (SubsamplingScaleImageView)rootView.findViewById(R.id.imageView);
-            imageView.setImage(ImageSource.asset(asset));
-        }
+//                    imageView.setImage();
 
         return rootView;
     }
@@ -61,7 +54,7 @@ public class ViewPagerFragment extends Fragment {
         super.onSaveInstanceState(outState);
         View rootView = getView();
         if (rootView != null) {
-            outState.putString(BUNDLE_ASSET, asset);
+            outState.putInt(BUNDLE_ASSET, asset);
         }
     }
 
