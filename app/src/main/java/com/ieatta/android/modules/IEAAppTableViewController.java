@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
@@ -15,13 +16,14 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
 public class IEAAppTableViewController extends AppCompatActivity {
     private IEAAppTableViewController self = this;
     private RecyclerView recyclerView;
+    protected TextView rightBarButtonItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(self.getContentView());
 
-
+        self.rightBarButtonItem = (TextView)findViewById(R.id.rightBarButtonItem);
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 

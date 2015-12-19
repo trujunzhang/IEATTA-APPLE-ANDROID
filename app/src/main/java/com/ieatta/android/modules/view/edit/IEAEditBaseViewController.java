@@ -1,12 +1,17 @@
 package com.ieatta.android.modules.view.edit;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.ieatta.android.R;
+import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
+import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.models.Photo;
 
 import java.util.LinkedList;
@@ -78,12 +83,12 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         return self;
     }
 
-//    var rightButtonTitle: String{
-//        if(self.newModel == true){
-//            return L10n.Save.string
-//        }
-//        return L10n.Update.string
-//    }
+    private int rightButtonTitle() {
+        if(self.newModel == true){
+            return R.string.Save;
+        }
+        return R.string.Update;
+    }
 
 
     @Override
@@ -96,9 +101,15 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
 //        assert(self.editedModel != nil, "Must setup editedModel's instance.")
 
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightButtonTitle, style: .Plain, target: self, action: "saveModelAction")
+        self.rightBarButtonItem.setText(self.rightButtonTitle());
+        self.rightBarButtonItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//        .sharedInstance.resetObserver();
+            }
+        });
+
+        EditChangedObserver.sharedInstance.resetObserver();
 
         // TODO djzhang(test)
 //        self.prepareForEditTableView();
@@ -171,49 +182,60 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     }
 
     // MARK: NavigationBarItem Events
-    protected void saveModelAction() {
+    private void saveModelAction() {
         /// **** important ****
-//        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.rightBarButtonItem.setEnabled(false);
 
-//        let model = self.editManager!.convertToEditModel(from: self.rowModels, to: self.editedModel!)
-//
-//        if(self.newModel == true){
-//            self.saveNewModel(model).continueWithBlock({ (task) -> AnyObject? in
-//            return self.afterSaveNewModelTask(task)
-//            })
-//        }else{
-//            /// The model already exist, delete it first.
-//            (model as! ParseModelQuery).unpinInBackgroundWithNewRecord().continueWithBlock({ (task) -> AnyObject? in
-//            if let _ = task.error{
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        AppAlertView.showError(L10n.UpdateFailure.string)
-//                })
-//            }else{
-//                return self.saveNewModel(model).continueWithBlock({ (task) -> AnyObject? in
-//                return self.afterSaveNewModelTask(task)
-//                })
-//            }
-//            return BFTask(error: task.error!)
-//            })
-//        }
+        ParseModelAbstract model = self.editManager.convertToEditModel( self.rowModels,  self.editedModel);
+
+        if(self.newModel == true){
+            self.saveNewModel(model).onSuccessTask(new Continuation() {
+                @Override
+                public Object then(Task task) throws Exception {
+                    return self.afterSaveNewModelTask(task);
+                }
+            }).continueWith(new Continuation() {
+                @Override
+                public Object then(Task task) throws Exception {
+
+                    return null;
+                }
+            });
+        }else{
+            /// The model already exist, delete it first.
+            (model as! ParseModelQuery).unpinInBackgroundWithNewRecord().continueWithBlock({ (task) -> AnyObject? in
+            if let _ = task.error{
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        AppAlertView.showError(L10n.UpdateFailure.string)
+                })
+            }else{
+                return self.saveNewModel(model).continueWithBlock({ (task) -> AnyObject? in
+                return self.afterSaveNewModelTask(task)
+                })
+            }
+            return BFTask(error: task.error!)
+            })
+        }
     }
 
-//    func afterSaveNewModelTask(task:BFTask) -> BFTask?{
+    private Task afterSaveNewModelTask(Task task) {
+
 //        dispatch_async(dispatch_get_main_queue(), { () -> Void in
 //        if let _ = task.error{
-//            AppAlertView.showError(L10n.SavedFailure.string)
+////            AppAlertView.showError(L10n.SavedFailure.string)
 //        }else{
 //            self.postSaveModelSucess()
 //        }
 //        self.navigationController?.popViewControllerAnimated(true)
 //        })
-//
-//        return nil
-//    }
-//
-//    func saveNewModel(newModel:ParseModelAbstract) -> BFTask{
-//        return (newModel as! ParseModelQuery).pinInBackgroundWithNewRecord()
-//    }
+
+        return null;
+    }
+
+    private Task saveNewModel(ParseModelAbstract newModel) {
+        return ((ParseModelQuery)newModel).pinInBackgroundWithNewRecord();
+    }
+
 
 
 }
