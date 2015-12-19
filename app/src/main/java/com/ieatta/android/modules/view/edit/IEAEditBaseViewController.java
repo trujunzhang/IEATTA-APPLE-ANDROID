@@ -221,7 +221,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         } else {
             self.postSaveModelSucess();
         }
-        self.finish();
+        self.navigationController.popViewControllerAnimated(true);
         return null;
     }
 
