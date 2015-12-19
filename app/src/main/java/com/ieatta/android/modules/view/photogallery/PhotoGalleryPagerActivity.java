@@ -28,6 +28,8 @@ import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEAAppTableViewController;
 import com.ieatta.android.modules.adapter.PhotoGalleryPagerAdapter;
 
+import java.util.LinkedList;
+
 public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 
     private PhotoGalleryPagerActivity self = this;
@@ -62,6 +64,13 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
                 self.navigationController.popViewControllerAnimated(true);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        IntentCache.sharedInstance.photoGalleryItem = new LinkedList<>();
     }
 
     @Override
