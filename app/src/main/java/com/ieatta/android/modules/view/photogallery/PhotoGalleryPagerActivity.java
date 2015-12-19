@@ -21,6 +21,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
@@ -30,8 +31,6 @@ import com.ieatta.android.modules.adapter.PhotoGalleryPagerAdapter;
 public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 
     private PhotoGalleryPagerActivity self = this;
-
-
 
     private ViewPager page;
     private int photoAtIndex;
@@ -56,6 +55,13 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
         page = (ViewPager) findViewById(R.id.pager);
         page.setAdapter(pagerAdapter);
         page.setCurrentItem(self.photoAtIndex);
+
+        findViewById(R.id.doneButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                self.navigationController.popViewControllerAnimated(true);
+            }
+        });
     }
 
     @Override
