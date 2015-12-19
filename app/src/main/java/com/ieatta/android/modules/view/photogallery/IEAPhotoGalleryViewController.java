@@ -15,11 +15,13 @@ import android.view.View;
 import com.desmond.squarecamera.CameraActivity;
 import com.desmond.squarecamera.ImageUtility;
 import com.ieatta.android.cache.IEACache;
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.debug.MainActivity;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
@@ -53,6 +55,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
     private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, self);
     protected LinkedList<ParseModelAbstract/*fetchedPhotos*/> fetchedPhotos;
+    private int photoAtIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,9 +132,15 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     public void presentPhotoGallery(int rowIndex) {
-
+        self.photoAtIndex = rowIndex;
+        self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier, self);
 //        let photoPagesController: EBPhotoPagesController = EBPhotoPagesController(dataSource: self, delegate: self,photoAtIndex: rowIndex)
 //        self.presentViewController(photoPagesController, animated: true, completion: nil)
+    }
+
+    @Override
+    protected void segueForPhotoPagesController(PhotoGalleryPagerActivity destination, Intent sender) {
+        sender.putExtra(IntentCache.sharedInstance.photoAtIndex, self.photoAtIndex);
     }
 
 

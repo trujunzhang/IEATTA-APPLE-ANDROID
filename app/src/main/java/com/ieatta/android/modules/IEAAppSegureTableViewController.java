@@ -19,6 +19,7 @@ import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
+import com.ieatta.android.modules.view.photogallery.PhotoGalleryPagerActivity;
 import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 
@@ -86,8 +87,14 @@ public class IEAAppSegureTableViewController extends IEANotificationTableViewCon
             case postReviewSegueIdentifier:
                 self.segueForPostReviewViewController(null, sender);
                 break;
+            case photoPagesControllerSegueIdentifier:
+                self.segueForPhotoPagesController(null, sender);
 
         }
+    }
+
+    protected void segueForPhotoPagesController(PhotoGalleryPagerActivity destination, Intent sender) {
+
     }
 
     protected void segueForPostReviewViewController(IEAWriteReviewViewController destination, Intent sender) {

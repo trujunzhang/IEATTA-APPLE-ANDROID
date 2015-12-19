@@ -10,9 +10,12 @@ import java.util.LinkedList;
  * Created by djzhang on 12/10/15.
  */
 public class IntentCache {
+
     public static String intentUUID = "intentUUID";
     public static String newModel = "newModel";
     public static String selectedReview = "selectedReview";
+    public static String photoAtIndex = "photoAtIndex";
+
     private IntentCache self = this;
     public static final IntentCache sharedInstance = new IntentCache();
 

@@ -23,14 +23,18 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import com.ieatta.android.R;
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEAAppTableViewController;
 import com.ieatta.android.modules.adapter.PhotoGalleryPagerAdapter;
 
 public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 
+    private PhotoGalleryPagerActivity self = this;
+
     private static final int[] IMAGES = {R.drawable.rest01, R.drawable.review_stars_0_inline, R.drawable.logo_yelp};
 
     private ViewPager page;
+    private int photoAtIndex;
 
     @Override
     protected int getContentView() {
@@ -46,10 +50,12 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        self.photoAtIndex = self.getIntent().getExtras().getInt(IntentCache.photoAtIndex);
+
         PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager(), IMAGES);
         page = (ViewPager) findViewById(R.id.pager);
         page.setAdapter(pagerAdapter);
-        page.setCurrentItem(2);
+        page.setCurrentItem(self.photoAtIndex);
     }
 
     @Override
