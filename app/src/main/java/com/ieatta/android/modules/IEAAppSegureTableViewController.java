@@ -166,6 +166,6 @@ public class IEAAppSegureTableViewController extends IEANotificationTableViewCon
 
     protected void setTransferedModelForEdit(Intent sender, ParseModelAbstract model, boolean newModel) {
         self.setTransferedModel(sender, model);
-        sender.putExtra(IntentCache.newModel, true);
+        sender.putExtra(IntentCache.newModel, newModel);
     }
 }

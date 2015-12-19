@@ -15,6 +15,7 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
  */
 public class IEAAppTableViewController extends AppCompatActivity {
     private IEAAppTableViewController self = this;
+    protected IEAAppTableViewController navigationController = this;
     private RecyclerView recyclerView;
     protected TextView rightBarButtonItem;
 
@@ -23,31 +24,36 @@ public class IEAAppTableViewController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(self.getContentView());
 
-        self.rightBarButtonItem = (TextView)findViewById(R.id.rightBarButtonItem);
+        self.rightBarButtonItem = (TextView) findViewById(R.id.rightBarButtonItem);
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 
-        if(hasRecycleView() == true) {
+        if (hasRecycleView() == true) {
             this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
             this.recyclerView.setHasFixedSize(true);
         }
     }
 
-    protected void setRightBarButtonItem(int titleId, View.OnClickListener clickListener){
+    protected void setRightBarButtonItem(int titleId, View.OnClickListener clickListener) {
         self.rightBarButtonItem.setVisibility(View.VISIBLE);
         self.rightBarButtonItem.setText(titleId);
         self.rightBarButtonItem.setOnClickListener(clickListener);
     }
 
+    public void popViewControllerAnimated(boolean animated) {
+        self.finish();
+    }
+
     /**
      * Default content view.
+     *
      * @return
      */
-    protected int getContentView(){
+    protected int getContentView() {
         return R.layout.table_controller_view;
     }
 
-    protected boolean hasRecycleView(){
+    protected boolean hasRecycleView() {
         return true;
     }
 
@@ -76,7 +82,6 @@ public class IEAAppTableViewController extends AppCompatActivity {
     public void didReceiveMemoryWarning() {
         // Dispose of any resources that can be recreated.
     }
-
 
 
 }
