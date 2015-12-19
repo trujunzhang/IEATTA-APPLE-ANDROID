@@ -149,7 +149,6 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         IntentCache.sharedInstance.photoGalleryItem = self.fetchedPhotos;
     }
 
-
     protected int getPhotoGalleryCount() {
         return self.fetchedPhotos.size();
     }

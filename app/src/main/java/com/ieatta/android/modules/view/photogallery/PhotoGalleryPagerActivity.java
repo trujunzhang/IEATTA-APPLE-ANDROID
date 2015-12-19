@@ -31,7 +31,7 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 
     private PhotoGalleryPagerActivity self = this;
 
-    private static final int[] IMAGES = {R.drawable.rest01, R.drawable.review_stars_0_inline, R.drawable.logo_yelp};
+
 
     private ViewPager page;
     private int photoAtIndex;
@@ -52,7 +52,7 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 
         self.photoAtIndex = self.getIntent().getExtras().getInt(IntentCache.photoAtIndex);
 
-        PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager(), IMAGES);
+        PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager());
         page = (ViewPager) findViewById(R.id.pager);
         page.setAdapter(pagerAdapter);
         page.setCurrentItem(self.photoAtIndex);
