@@ -23,20 +23,23 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.IEAAppTableViewController;
+import com.ieatta.android.modules.adapter.PhotoGalleryPagerAdapter;
 
-public class PhotoGalleryPagerActivity extends FragmentActivity {
+public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 
     private static final String[] IMAGES = { "ness.jpg", "squirrel.jpg" };
 
     private ViewPager page;
 
     @Override
+    protected int getContentView() {
+        return R.layout.table_controller_photo_gallery_page;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.table_controller_photo_gallery_page);
-        getActionBar().setTitle("View pager gallery123");
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager(),IMAGES);
         page = (ViewPager)findViewById(R.id.pager);

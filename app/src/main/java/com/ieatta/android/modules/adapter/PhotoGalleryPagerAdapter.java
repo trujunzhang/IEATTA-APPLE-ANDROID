@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 /**
  * Created by djzhang on 12/19/15.
  */
-class PhotoGalleryPagerAdapter extends FragmentStatePagerAdapter {
+public class PhotoGalleryPagerAdapter extends FragmentStatePagerAdapter {
     private final String[] IMAGES;
 
     public PhotoGalleryPagerAdapter(FragmentManager fm, String[] images) {
