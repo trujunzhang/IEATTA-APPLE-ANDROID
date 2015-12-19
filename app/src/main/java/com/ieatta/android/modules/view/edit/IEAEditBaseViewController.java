@@ -84,12 +84,11 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     }
 
     private int rightButtonTitle() {
-        if(self.newModel == true){
+        if (self.newModel == true) {
             return R.string.Save;
         }
         return R.string.Update;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +104,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         self.rightBarButtonItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                self.saveModelAction();
             }
         });
 
@@ -186,56 +185,50 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         /// **** important ****
         self.rightBarButtonItem.setEnabled(false);
 
-        ParseModelAbstract model = self.editManager.convertToEditModel( self.rowModels,  self.editedModel);
+        final ParseModelAbstract model = self.editManager.convertToEditModel(self.rowModels, self.editedModel);
 
-        if(self.newModel == true){
-            self.saveNewModel(model).onSuccessTask(new Continuation() {
+        if (self.newModel == true) {
+            self.saveNewModel(model).continueWith(new Continuation() {
                 @Override
                 public Object then(Task task) throws Exception {
+                    if (task.isFaulted() == true) {
+//                        AppAlertView.showError(L10n.SaveFailure.string)
+                    }
                     return self.afterSaveNewModelTask(task);
+                }
+            });
+        } else {
+            /// The model already exist, delete it first.
+            ((ParseModelQuery) model).unpinInBackgroundWithNewRecord().onSuccessTask(new Continuation<Void, Task>() {
+                @Override
+                public Task then(Task<Void> task) throws Exception {
+                    return self.saveNewModel(model);
                 }
             }).continueWith(new Continuation() {
                 @Override
                 public Object then(Task task) throws Exception {
-
-                    return null;
+                    if (task.isFaulted() == true) {
+//                        AppAlertView.showError(L10n.UpdateFailure.string)
+                    }
+                    return self.afterSaveNewModelTask(task);
                 }
             });
-        }else{
-            /// The model already exist, delete it first.
-            (model as! ParseModelQuery).unpinInBackgroundWithNewRecord().continueWithBlock({ (task) -> AnyObject? in
-            if let _ = task.error{
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        AppAlertView.showError(L10n.UpdateFailure.string)
-                })
-            }else{
-                return self.saveNewModel(model).continueWithBlock({ (task) -> AnyObject? in
-                return self.afterSaveNewModelTask(task)
-                })
-            }
-            return BFTask(error: task.error!)
-            })
         }
     }
 
     private Task afterSaveNewModelTask(Task task) {
-
-//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//        if let _ = task.error{
-////            AppAlertView.showError(L10n.SavedFailure.string)
-//        }else{
-//            self.postSaveModelSucess()
-//        }
-//        self.navigationController?.popViewControllerAnimated(true)
-//        })
-
+        if (task.isFaulted() == true) {
+//                        AppAlertView.showError(L10n.SavedFailure.string)
+        } else {
+            self.postSaveModelSucess();
+        }
+        self.finish();
         return null;
     }
 
     private Task saveNewModel(ParseModelAbstract newModel) {
-        return ((ParseModelQuery)newModel).pinInBackgroundWithNewRecord();
+        return ((ParseModelQuery) newModel).pinInBackgroundWithNewRecord();
     }
-
 
 
 }
