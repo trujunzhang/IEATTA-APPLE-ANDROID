@@ -16,6 +16,7 @@ limitations under the License.
 
 package com.ieatta.android.modules.adapter;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,7 +26,11 @@ import android.view.ViewGroup;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.ieatta.android.R;
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.Photo;
+import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
+import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 
 public class ViewPagerFragment extends Fragment {
     private ViewPagerFragment self = this;
@@ -58,11 +63,23 @@ public class ViewPagerFragment extends Fragment {
         ///   3.  When pulling from server, just download a thumbnail image from server.
         if (asset != -1) {
             self.imageView = (SubsamplingScaleImageView) rootView.findViewById(R.id.imageView);
-
-            self.imageView.setImage(ImageSource.resource(this.asset));
+            Photo photo = (Photo) IntentCache.sharedInstance.photoGalleryItem.get(this.asset);
+            self.showImage(photo);
         }
 
         return rootView;
+    }
+
+    private void showImage(Photo photo) {
+        Bitmap image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
+        if (image != null) {
+            self.imageView.setImage(ImageSource.bitmap(image));
+        } else {
+            self.imageView.setImage(ImageSource.bitmap(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)));
+        }
+
+
+//        self.imageView.setImage(ImageSource.resource(this.asset));
     }
 
     @Override
