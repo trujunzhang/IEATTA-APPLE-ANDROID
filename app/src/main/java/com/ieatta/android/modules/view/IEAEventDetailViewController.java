@@ -130,7 +130,6 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         });
     }
 
-
     /// Add rows for section "Ordered People".
     private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople) {
         setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event), EventDetailSection.sectionOrderedPeople.ordinal());
