@@ -60,7 +60,7 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
         });
     }
 
-    protected void configureReviewsSection(List<ParseModelAbstract/*Team*/> fetchedReviewPeople) {//Team
+    protected void configureReviewsSection() {
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), self.getReviewsSectionIndex());
         self.setItemsForReviewsSection(self.fetchedReviewPeople);
     }

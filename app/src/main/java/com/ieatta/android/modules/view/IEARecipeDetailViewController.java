@@ -91,7 +91,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
                 self.setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
                 self.setSectionItems(CollectionUtils.createList(self.orderedRecipe.belongToModel), RecipeDetailSection.sectionOrderedPeople.ordinal());
 
-                self.configureReviewsSection(self.fetchedReviews);
+                self.configureReviewsSection();
                 self.configurePhotoGallerySection(fetchedPhotosTask);
 
                 return null;

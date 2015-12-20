@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
-import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
@@ -106,7 +105,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
 
                 self.configureEventSection(self.fetchedEvents);
-                self.configureReviewsSection(self.fetchedReviews);
+                self.configureReviewsSection();
                 self.configurePhotoGallerySection(fetchedPhotosTask);
 
                 return null;

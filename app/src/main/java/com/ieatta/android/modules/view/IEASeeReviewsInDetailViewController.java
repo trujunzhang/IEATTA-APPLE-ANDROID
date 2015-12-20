@@ -1,7 +1,6 @@
 package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
-import android.virtualbreak.com.debug.AppDebugManager;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
@@ -50,7 +49,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
-                self.configureReviewsSection(self.fetchedReviewPeople);
+                self.configureReviewsSection();
                 return null;
             }
         }).continueWith(new Continuation<Object, Object>() {

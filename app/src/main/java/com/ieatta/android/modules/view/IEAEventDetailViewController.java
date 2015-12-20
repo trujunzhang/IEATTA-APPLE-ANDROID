@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
-import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
@@ -116,7 +115,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 
                 self.addOrderedPeopleSection(self.fetchedPeople);
-                self.configureReviewsSection(self.fetchedReviews);
+                self.configureReviewsSection();
 
                 return null;
             }

@@ -5,7 +5,6 @@ import com.ieatta.android.modules.cells.IEAReviewUserCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAMoreReviewsFooterCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
 import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
@@ -72,7 +71,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
         self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
-                self.configureReviewsSection(self.fetchedReviews);
+                self.configureReviewsSection();
                 return null;
             }
         });
