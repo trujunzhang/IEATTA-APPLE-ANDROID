@@ -35,7 +35,7 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
 
     @Override
     public DBQuery<T> whereEqualTo(String key, Object value) {
-super.whereEqualTo(key,value);
+        super.whereEqualTo(key, value);
         return this;
     }
 
@@ -57,9 +57,9 @@ super.whereEqualTo(key,value);
 //    }
 
     public ParseQuery<T> whereWithinKilometers(String key, ParseGeoPoint point, double maxDistance) {
-        super.whereWithinKilometers(key,point,maxDistance);
+        super.whereWithinKilometers(key, point, maxDistance);
 //        return whereWithinRadians(key, point, maxDistance / ParseGeoPoint.EARTH_MEAN_RADIUS_KM);
-        return  this;
+        return this;
     }
 
     public ParseQuery<T> setLimit(int newLimit) {
@@ -84,7 +84,6 @@ super.whereEqualTo(key,value);
     public Task<Void> unpinInBackground(String name) {
         return Task.forResult(null);
     }
-
 
 
 }
