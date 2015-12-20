@@ -1,5 +1,6 @@
 package com.ieatta.com.parse;
 
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -233,7 +234,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         ParseObject object = makeObject();
         this.writeLocalObject(object);
 
-        return object.pinInBackground("Offline");
+        return DBObject.pinInBackground("Offline",object);
     }
 
     public Task<Void> pinInBackgroundWithNewRecord() {
@@ -300,7 +301,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter completionBlock: callback variable
      */
     public static Task<Void> unpinObjectInBackground(ParseObject object) {
-        return object.unpinInBackground("Offline");
+        return DBObject.unpinInBackground("Offline",object);
     }
 
 }

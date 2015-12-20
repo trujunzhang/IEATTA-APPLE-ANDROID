@@ -77,13 +77,5 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
 //        return Task.forResult(null);
     }
 
-    public Task<Void> pinInBackground(String name) {
-        return Task.forResult(null);
-    }
-
-    public Task<Void> unpinInBackground(String name) {
-        return Task.forResult(null);
-    }
-
 
 }
