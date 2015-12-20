@@ -82,7 +82,10 @@ public class DBModelConvert {
         object.setObjectCreatedDate(model.objectCreatedDate);
         object.setDisplayName(model.displayName);
 
-
+        object.setCost(model.cost);
+        object.setLikeCount(model.likeCount);
+        object.setEventRef(model.eventRef);
+        object.setOrderedPeopleRef(model.orderedPeopleRef);
     }
 
     public static void write(Restaurant model, Realm realm) {
@@ -92,6 +95,9 @@ public class DBModelConvert {
         object.setObjectCreatedDate(model.objectCreatedDate);
         object.setDisplayName(model.displayName);
 
+        object.setLatitude(model.location.getLatitude());
+        object.setLongitude(model.location.getLongitude());
+        object.setGoogleMapAddress(model.getGoogleMapAddress());
     }
 
     public static void write(Review model, Realm realm) {
@@ -99,6 +105,7 @@ public class DBModelConvert {
 
         object.setUUID(ParseModelAbstract.getPoint(model));
         object.setObjectCreatedDate(model.objectCreatedDate);
+
 
     }
 
