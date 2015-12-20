@@ -9,6 +9,8 @@ import bolts.Continuation;
 import bolts.Task;
 
 import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -97,7 +99,9 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     }
 
     protected DBQuery getDBQueryInstance() {
-        return new DBQuery(this.getParseTableName());
+        DBQuery<DBObject> query = DBQuery.getDBQuery(this.getParseTableName());
+//        return new DBQuery(this.getParseTableName());
+        return  query;
     }
 
     public DBQuery makeDBQuery() {
