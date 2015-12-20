@@ -30,6 +30,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
+import com.ieatta.com.parse.tools.Thumbnail;
 import com.ieatta.com.parse.utils.cache.CacheImageUtils;
 import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
@@ -88,7 +89,8 @@ public class ViewPagerFragment extends Fragment {
          if (image != null) {
             self.imageView.setImage(ImageSource.bitmap(image));
         } else {
-            self.imageView.setImage(ImageSource.bitmap(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)));
+             Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).scaleCanvas(560, 560).getBitmap();
+             self.imageView.setImage(ImageSource.bitmap(bitmap));
         }
 
         photo.downloadCacheImageFromServer().onSuccess(new Continuation<Bitmap, Object>() {
@@ -103,8 +105,6 @@ public class ViewPagerFragment extends Fragment {
                 return null;
             }
         });
-
-//        self.imageView.setImage(ImageSource.resource(this.asset));
     }
 
     @Override
