@@ -30,9 +30,8 @@ public class DBAccessUtils {
         realm.beginTransaction();
 
         //... add or update objects here ...
+        DBModelConvert.write(realm,model);
 
-        DBTeam team = realm.createObject(DBTeam.class); // Create a new object
-        DBModelConvert.write(team,model);
         realm.commitTransaction();
     }
 }
