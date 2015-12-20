@@ -28,31 +28,59 @@ public class DBModelConvert {
     public static void write(Event model, Realm realm) {
         DBEvent object = realm.createObject(DBEvent.class); // Create a new object
 
+        object.setUUID(ParseModelAbstract.getPoint(model));
+        object.setObjectCreatedDate(model.objectCreatedDate);
+        object.setDisplayName(model.displayName);
+
     }
 
     public static void write(NewRecord model, Realm realm) {
         DBNewRecord object = realm.createObject(DBNewRecord.class); // Create a new object
+
+        object.setUUID(ParseModelAbstract.getPoint(model));
+        object.setObjectCreatedDate(model.objectCreatedDate);
+
     }
 
     public static void write(PeopleInEvent model, Realm realm) {
         DBPeopleInEvent object = realm.createObject(DBPeopleInEvent.class); // Create a new object
+
+        object.setUUID(ParseModelAbstract.getPoint(model));
+        object.setObjectCreatedDate(model.objectCreatedDate);
+
     }
 
     public static void write(Photo model, Realm realm) {
         DBPhoto object = realm.createObject(DBPhoto.class); // Create a new object
+
+        object.setUUID(ParseModelAbstract.getPoint(model));
+        object.setObjectCreatedDate(model.objectCreatedDate);
+
     }
 
     public static void write(Recipe model, Realm realm) {
         DBRecipe object = realm.createObject(DBRecipe.class); // Create a new object
+
+        object.setUUID(ParseModelAbstract.getPoint(model));
+        object.setObjectCreatedDate(model.objectCreatedDate);
+        object.setDisplayName(model.displayName);
+
     }
 
     public static void write(Restaurant model, Realm realm) {
         DBRestaurant object = realm.createObject(DBRestaurant.class); // Create a new object
 
+        object.setUUID(ParseModelAbstract.getPoint(model));
+        object.setObjectCreatedDate(model.objectCreatedDate);
+        object.setDisplayName(model.displayName);
+
     }
 
     public static void write(Review model, Realm realm) {
         DBReview object = realm.createObject(DBReview.class); // Create a new object
+
+        object.setUUID(ParseModelAbstract.getPoint(model));
+        object.setObjectCreatedDate(model.objectCreatedDate);
 
     }
 
