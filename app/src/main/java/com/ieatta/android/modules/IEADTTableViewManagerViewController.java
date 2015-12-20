@@ -8,7 +8,7 @@ import com.ieatta.android.extensions.storage.MemoryStorage;
 import com.ieatta.android.extensions.storage.TableViewConfiguration;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.NSIndexPath;
-import com.ieatta.android.modules.adapter.decoration.DividerDecoration;
+import com.ieatta.android.modules.adapter.decoration.TableViewDividerDecoration;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
@@ -28,7 +28,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         TableViewConfiguration config =
                 new TableViewConfiguration.Builder(self.getBaseContext())
                         .setLayoutManager(new LinearLayoutManager(self, LinearLayoutManager.VERTICAL, false))
-                        .setItemDecoration(new DividerDecoration(self))
+                        .setItemDecoration(new TableViewDividerDecoration(self))
                         .setOnItemClickListener(self)
                         .setDebugInfo("Activity_Table_View")
                         .build();

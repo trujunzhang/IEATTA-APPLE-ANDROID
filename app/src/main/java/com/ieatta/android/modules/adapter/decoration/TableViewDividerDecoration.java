@@ -17,14 +17,14 @@ import com.ieatta.android.modules.adapter.enums.ViewHolderType;
  * that are expected from a vertical list implementation, such as
  * ListView.
  */
-public class DividerDecoration extends RecyclerView.ItemDecoration {
+public class TableViewDividerDecoration extends RecyclerView.ItemDecoration {
 
     private static final int[] ATTRS = {android.R.attr.listDivider};
 
     private Drawable mDivider;
     private int mInsets;
 
-    public DividerDecoration(Context context) {
+    public TableViewDividerDecoration(Context context) {
         TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
         a.recycle();
