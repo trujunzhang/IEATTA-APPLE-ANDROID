@@ -29,22 +29,25 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
 
     @Override
     public ParseQuery<T> fromLocalDatastore() {
+        super.fromLocalDatastore();
         return this;
     }
 
     @Override
     public DBQuery<T> whereEqualTo(String key, Object value) {
-
+super.whereEqualTo(key,value);
         return this;
     }
 
     @Override
     public DBQuery<T> orderByDescending(String key) {
+        super.orderByDescending(key);
         return this;
     }
 
     @Override
     public DBQuery<T> orderByAscending(String key) {
+        super.orderByAscending(key);
         return this;
     }
 
@@ -54,21 +57,24 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
 //    }
 
     public ParseQuery<T> whereWithinKilometers(String key, ParseGeoPoint point, double maxDistance) {
-
+        super.whereWithinKilometers(key,point,maxDistance);
 //        return whereWithinRadians(key, point, maxDistance / ParseGeoPoint.EARTH_MEAN_RADIUS_KM);
         return  this;
     }
 
     public ParseQuery<T> setLimit(int newLimit) {
+        super.setLimit(newLimit);
         return this;
     }
 
     public Task<Integer> countInBackground() {
-        return Task.forResult(null);
+        return super.countInBackground();
+//        return Task.forResult(null);
     }
 
     public Task<List<T>> findInBackground() {
-        return Task.forResult(null);
+        return super.findInBackground();
+//        return Task.forResult(null);
     }
 
     public Task<Void> pinInBackground(String name) {
