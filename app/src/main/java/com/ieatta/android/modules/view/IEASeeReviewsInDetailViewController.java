@@ -50,7 +50,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
-                self.configureReviewsSection(self.fetchedReviews);
+                self.configureReviewsSection(self.fetchedReviewPeople);
                 return null;
             }
         }).continueWith(new Continuation<Object, Object>() {

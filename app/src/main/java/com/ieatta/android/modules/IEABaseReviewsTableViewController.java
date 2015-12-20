@@ -32,7 +32,8 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
     // Selected model from tableview.
     protected Review selectedReview;
     // Fetched list by quering database.
-    protected List<ParseModelAbstract> fetchedReviews = new LinkedList<>();//Review
+    protected List<ParseModelAbstract /*Review*/> fetchedReviews = new LinkedList<>();//Review
+    protected List<ParseModelAbstract /*Team*/> fetchedReviewPeople = new LinkedList<>();//Review
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 Object object = task.getResult();
+                self.fetchedReviewPeople = task.getResult();
                 return self.getPhotosForModelsTask(task);
             }
         });
