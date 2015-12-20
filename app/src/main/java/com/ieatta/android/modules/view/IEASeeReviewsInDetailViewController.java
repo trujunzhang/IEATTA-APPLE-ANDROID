@@ -88,7 +88,8 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
 
     /// Add rows for section "Reviews".
     @Override
-    public void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople) {
+    public void setItemsForReviewsSection(List<ParseModelAbstract /*Team*/> fetchedReviewPeople) {
+        Object object = fetchedReviewPeople;
         List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
 
         List<SectionSeeReviewsCellModel> items = new LinkedList<>();
@@ -104,6 +105,6 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         SectionSeeReviewsCellModel cellModel = (SectionSeeReviewsCellModel) model;
 
         self.selectedReview = cellModel.writedReview;
-        self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier,  self);
+        self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
     }
 }
