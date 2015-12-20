@@ -89,7 +89,7 @@ public class ViewPagerFragment extends Fragment {
          if (image != null) {
 //            self.imageView.setImage(ImageSource.bitmap(image));
         } else {
-             Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).scale(560, 560).getBitmap();
+             Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).zoom(560, 560).getBitmap();
              self.imageView.setImage(ImageSource.bitmap(bitmap));
         }
 

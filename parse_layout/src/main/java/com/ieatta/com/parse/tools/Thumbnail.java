@@ -145,6 +145,17 @@ public class Thumbnail {
         return this;
     }
 
+    public Thumbnail zoom(int width, int height) {
+        Bitmap thumb = null;
+        thumb = Bitmap.createScaledBitmap(mBitmap, width, height, true);
+        if (thumb != null) {
+            recycle();
+            mBitmap = thumb;
+        }
+
+        return this;
+    }
+
     /**
      * 中央で切り取ってサムネイルを作成する
      *
