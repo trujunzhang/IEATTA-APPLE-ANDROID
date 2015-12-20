@@ -7,6 +7,7 @@
 
     <TextView
         android:id="@+id/reviewContentLabel"
+        android:textAppearance="@style/StandardText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
