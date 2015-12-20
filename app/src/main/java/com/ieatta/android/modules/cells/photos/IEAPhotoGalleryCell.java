@@ -47,6 +47,8 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
                         .build();
         self.manager = new DTTableViewManager(config);
         self.startManagingWithDelegate(self.manager);
+
+        self.manager.registerCellClass(IEAPhotosCell.getType(),0);
     }
 
     protected void startManagingWithDelegate(DTTableViewManager manager) {

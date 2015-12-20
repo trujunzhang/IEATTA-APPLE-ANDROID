@@ -43,7 +43,7 @@ public class PhotoGallery extends EditBaseCellModel {
     public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
         self.fetchedPhotos = fetchedPhotos;
 
-
+        self.manager.memoryStorage.setItems(fetchedPhotos,0);
     }
 
 //    var collectionView: UICollectionView?
