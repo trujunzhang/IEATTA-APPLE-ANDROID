@@ -81,15 +81,15 @@ public class ViewPagerFragment extends Fragment {
     private void showImage(final Photo photo) {
         Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
         if (image != null) {
-            self.imageView.setImage(ImageSource.bitmap(image));
+//            self.imageView.setImage(ImageSource.bitmap(image));
             return;
         }
 
         image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
          if (image != null) {
-            self.imageView.setImage(ImageSource.bitmap(image));
+//            self.imageView.setImage(ImageSource.bitmap(image));
         } else {
-             Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).scaleCanvas(560, 560).getBitmap();
+             Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).scale(560, 560).getBitmap();
              self.imageView.setImage(ImageSource.bitmap(bitmap));
         }
 
@@ -99,7 +99,7 @@ public class ViewPagerFragment extends Fragment {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        self.imageView.setImage(ImageSource.bitmap(CacheImageUtils.sharedInstance.getTakenPhoto(photo)));
+//                        self.imageView.setImage(ImageSource.bitmap(CacheImageUtils.sharedInstance.getTakenPhoto(photo)));
                     }
                 }, 1);
                 return null;
