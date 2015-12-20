@@ -45,7 +45,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         // Do any additional setup after loading the view.
 //        self.transfer(self.getTransferedModel());
         // TODO djzhang: test
-        self.transfer(ActivityModelDebug.getRestaurantForRestaurantDetail());
+        self.transfer(ActivityModelDebug.getReviewForModel());
 
         self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override

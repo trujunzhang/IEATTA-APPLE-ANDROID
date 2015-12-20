@@ -1,5 +1,6 @@
 package android.virtualbreak.com.manualdatabase;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Recipe;
@@ -51,5 +52,12 @@ public class ActivityModelDebug {
         Photo photo = new Photo();
         photo.objectUUID = "D1230C74-EB79-496A-A04A-FC3453CDAEF7";
         return photo;
+    }
+
+    public static ParseModelAbstract getReviewForModel() {
+        Restaurant model = new Restaurant();
+        model.objectUUID = "828DB1D6-67AB-467D-8D98-76C1938C5306";
+
+        return model;
     }
 }
