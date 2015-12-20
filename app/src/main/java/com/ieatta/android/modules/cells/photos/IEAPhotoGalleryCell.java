@@ -36,7 +36,7 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
         Context context = EnvironmentUtils.sharedInstance.getGlobalContext();
         TableViewConfiguration config =
                 new TableViewConfiguration.Builder(context)
-                        .setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false))
+                        .setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false))
                         .setOnItemClickListener(new RecyclerItemClickListener() {
                             @Override
                             public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
