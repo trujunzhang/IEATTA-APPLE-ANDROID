@@ -60,7 +60,7 @@ public class PushNewRecordToServerTask {
      */
     private static Task PushObjectToServerTask(final ParseObject newRecordObject) {
         // Convert newRecordObject to Model instance.
-        NewRecord newRecord = (NewRecord) new NewRecord().convertToLocalModel(newRecordObject);
+        final NewRecord newRecord = (NewRecord) new NewRecord().convertToLocalModel(newRecordObject);
 
 //        LogUtils.debug(" [ newRecord in push to server ]: " + newRecord.printDescription());
 
@@ -79,7 +79,7 @@ public class PushNewRecordToServerTask {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Unpin the offline NewRecord
-                return ParseModelQuery.unpinObjectInBackground(newRecordObject);
+                return ParseModelQuery.unpinObjectInBackground(newRecordObject,newRecord);
             }
         }).onSuccessTask(new Continuation<Void, Task<Boolean>>() {
             @Override

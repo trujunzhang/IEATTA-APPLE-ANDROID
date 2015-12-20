@@ -1,5 +1,7 @@
 package com.ieatta.com.parse.engine.realm;
 
+import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.ParseModelQuery;
 import com.parse.ParseObject;
 
 import bolts.Task;
@@ -13,11 +15,11 @@ public class DBObject extends Object {
     public DBObject() {
     }
 
-    public static Task<Void> pinInBackground(String name,ParseObject object) {
+    public static Task<Void> pinInBackground(String name, ParseObject object, ParseModelQuery parseModelQuery) {
         return object.pinInBackground(name);
     }
 
-    public static Task<Void> unpinInBackground(String name,ParseObject object) {
+    public static Task<Void> unpinInBackground(String name, ParseObject object, ParseModelAbstract model) {
         return object.unpinInBackground(name);
     }
 

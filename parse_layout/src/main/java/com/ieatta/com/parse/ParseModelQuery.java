@@ -234,8 +234,9 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         ParseObject object = makeObject();
         this.writeLocalObject(object);
 
-        return DBObject.pinInBackground("Offline",object);
+        return DBObject.pinInBackground("Offline",object, this);
     }
+
 
     public Task<Void> pinInBackgroundWithNewRecord() {
         return this.pinInBackgroundForModel().onSuccessTask(new Continuation<Void, Task<Void>>() {
@@ -267,7 +268,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
             public Task<Void> then(Task<ParseObject> task) throws Exception {
                 ParseObject object = task.getResult();
                 if (object != null) {
-                    return ParseModelQuery.unpinObjectInBackground(object);
+                    return ParseModelQuery.unpinObjectInBackground(object,self);
                 }
                 // **** Important ****
                 // Here, return value is 'null' means that not found object.
@@ -300,8 +301,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter object:          PFObject's instance
      * - parameter completionBlock: callback variable
      */
-    public static Task<Void> unpinObjectInBackground(ParseObject object) {
-        return DBObject.unpinInBackground("Offline",object);
+    public static Task<Void> unpinObjectInBackground(ParseObject object,ParseModelAbstract model) {
+        return DBObject.unpinInBackground("Offline",object,model);
     }
 
 }
