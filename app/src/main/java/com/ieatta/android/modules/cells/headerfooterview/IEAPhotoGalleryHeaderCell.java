@@ -22,7 +22,7 @@ public class IEAPhotoGalleryHeaderCell  extends IEAViewHolder {
     }
     @Override
     public ViewHolderType getViewHolderType() {
-        return ViewHolderType.header;
+        return ViewHolderType.None;
     }
 
     private IEAPhotoGalleryHeaderCell self = this;

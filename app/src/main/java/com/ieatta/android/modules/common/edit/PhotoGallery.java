@@ -40,7 +40,7 @@ public class PhotoGallery extends EditBaseCellModel {
         self.collectionView = collectionView;
         self.manager = manager;
 
-        self.manager.memoryStorage.setSectionHeaderModel(new AddPhotoModel(IEAEditKey.add_Photo), 0, IEAAddPhotoCell.getType());
+        self.manager.memoryStorage.setSectionFooterModel(new AddPhotoModel(IEAEditKey.add_Photo), 0, IEAAddPhotoCell.getType());
         self.manager.memoryStorage.setItems(self.viewController.getPhotoGalleryItems(), 0);
     }
 
