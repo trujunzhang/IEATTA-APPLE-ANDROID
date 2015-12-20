@@ -1,13 +1,19 @@
 package com.ieatta.android.modules.cells.photos;
 
+import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.DTTableViewManager;
+import com.ieatta.android.extensions.storage.TableViewConfiguration;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.NSIndexPath;
+import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
+import com.ieatta.android.modules.adapter.decoration.DividerDecoration;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 
 public class IEAPhotoGalleryCell extends IEAViewHolder {
@@ -17,14 +23,36 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
     }
 
     private IEAPhotoGalleryCell self = this;
+    private DTTableViewManager manager = null;
     private RecyclerView collectionView;
+
     private PhotoGallery model;
 
     public IEAPhotoGalleryCell(View itemView) {
         super(itemView);
 
         self.collectionView = (RecyclerView) itemView.findViewById(R.id.section_list);
-        self.collectionView.setLayoutManager(new LinearLayoutManager(EnvironmentUtils.sharedInstance.getGlobalContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        Context context = EnvironmentUtils.sharedInstance.getGlobalContext();
+        TableViewConfiguration config =
+                new TableViewConfiguration.Builder(context)
+                        .setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false))
+                        .setOnItemClickListener(new RecyclerItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
+                                self.model.viewController.didSelectItemAtIndexPathOnCollectionView(new NSIndexPath(0,position));
+                            }
+                        })
+                        .setDebugInfo("Activity_Table_View")
+                        .build();
+        self.manager = new DTTableViewManager(config);
+        self.startManagingWithDelegate(self.manager);
+    }
+
+    protected void startManagingWithDelegate(DTTableViewManager manager) {
+        self.collectionView.setAdapter(manager.getAdapter());
+        self.collectionView.setLayoutManager(manager.configuration.builder.manager);
+        self.collectionView.addItemDecoration(manager.configuration.builder.decoration);
     }
 
     @Override

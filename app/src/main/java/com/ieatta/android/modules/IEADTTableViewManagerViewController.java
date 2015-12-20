@@ -34,6 +34,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
                         .build();
         self.manager = new DTTableViewManager(config);
         self.startManagingWithDelegate(self.manager);
+
         self.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
     }
 

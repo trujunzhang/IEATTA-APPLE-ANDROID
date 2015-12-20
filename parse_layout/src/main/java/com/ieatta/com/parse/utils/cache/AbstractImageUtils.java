@@ -162,7 +162,7 @@ public abstract class AbstractImageUtils {
         }
         if(url == null || url.isEmpty() == true){
 //            return BFTask(error: NSError.getError(IEAErrorType.EmptyURL, description: "\(model.printDescription())"))
-            return Task.forError(new Exception(""));
+            return Task.forError(new NullPointerException(""));
         }
 
         return this.downloadImageWithURL(url).onSuccessTask(new Continuation<Bitmap, Task<Bitmap> >() {

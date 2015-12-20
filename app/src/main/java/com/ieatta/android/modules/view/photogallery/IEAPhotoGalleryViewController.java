@@ -18,6 +18,7 @@ import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.debug.MainActivity;
 import com.ieatta.android.modules.IEASplitDetailViewController;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
 import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
@@ -236,7 +237,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
     private void insertItemAtFirstOnCollection(Photo photo) {
         self.fetchedPhotos.addFirst(photo);
-        self.photoGallery.insertNewPhotoAtFirst( photo);
+        self.photoGallery.insertNewPhotoAtFirst(photo);
 
         self.refreshFooterViewAtPhotoGallery();
     }
@@ -248,5 +249,12 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         self.insertItemAtFirstOnCollection(newPhoto);
     }
 
+    public void didSelectItemAtIndexPathOnCollectionView(NSIndexPath indexPath) {
+        if(indexPath.row == self.getPhotoGalleryCount()){
+            self.takeAPhotoButtonTapped();
+        }else{
+            self.presentPhotoGallery(indexPath.row);
+        }
+    }
 
 }

@@ -18,7 +18,7 @@ public class PhotoGallery extends EditBaseCellModel {
     private RecyclerView collectionView;
     public IEAPhotoGalleryAdapter adapter;
 
-    private IEAPhotoGalleryViewController viewController;
+    public IEAPhotoGalleryViewController viewController;
     private List<ParseModelAbstract> fetchedPhotos;
 
     private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
