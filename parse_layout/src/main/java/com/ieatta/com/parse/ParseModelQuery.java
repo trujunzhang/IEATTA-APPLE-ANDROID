@@ -152,10 +152,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query.countInBackground();
     }
 
-    public Task<Integer> countObjects(DBQuery query) {
-        return query.countInBackground();
-    }
-
     /**
      * Because Task will return Exception,'no results found for query'(code is com.parse.ParseException.OBJECT_NOT_FOUND),
      * when no the first object found.
