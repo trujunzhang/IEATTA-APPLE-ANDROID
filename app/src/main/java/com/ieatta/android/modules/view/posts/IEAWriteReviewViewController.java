@@ -183,7 +183,7 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
     protected void didSelectPeople(NSNotification note) {
         this.people = (Team) note.anObject;
 
-        self.avatarView.loadNewPhotoByModel(people, R.drawable.blank_user_small);
+        self.avatarView.loadNewPhotoByModel(this.people, R.drawable.blank_user_small);
         this.nameLabel.setText(this.people.displayName);
     }
 }
