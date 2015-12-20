@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <changelog xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
   <version>2.1</version>
-  <task-change-set user="djzhang" date="2015-12-18T09:09:28.157Z" timestamp="2015-12-18T09:09:28.157Z">
-    <change idref="t9" to="t-1" to-position="1" resolved="yes">
-      <change idref="t9" attribute="isGroup" type="real" from="0" to="1"/>
-      <change idref="t9" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
-      <change idref="t9" attribute="taskType" type="real" from="0" to="2"/>
-      <change idref="t9" attribute="title" type="string" to="12-18"/>
-    </change>
-    <change idref="t10" to="t9" to-position="0" resolved="yes">
-      <change idref="t10" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
-      <change idref="t10" attribute="title" type="string" to="Android Launcher icon"/>
-    </change>
-    <change idref="t11" to="t9" to-position="1" resolved="yes">
-      <change idref="t11" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
-      <change idref="t11" attribute="title" type="string" to="Lean Realm for Android"/>
-    </change>
-    <change idref="t12" to="t9" to-position="2" resolved="yes">
-      <change idref="t12" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
-      <change idref="t12" attribute="title" type="string" to="Fix Review section(no team image show)"/>
-    </change>
-  </task-change-set>
   <task-change-set user="djzhang" date="2015-12-18T11:28:36.517Z" timestamp="2015-12-18T11:28:36.517Z">
     <change idref="t10" attribute="title" type="string" from="Android Launcher icon" to="(*)Android Launcher icon"/>
   </task-change-set>
@@ -59,5 +39,10 @@
       <change idref="t16" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T16:00:00.000Z"/>
       <change idref="t16" attribute="title" type="string" to="NavigationBar(back,save,update) icons."/>
     </change>
+  </task-change-set>
+  <task-change-set user="djzhang" date="2015-12-20T09:36:18.990Z" timestamp="2015-12-20T09:36:18.990Z">
+    <change idref="t12" attribute="title" type="string" from="Fix Review section(no team image show)" to="(*)Fix Review section(no team image show)" resolved="yes"/>
+    <change idref="t13" attribute="title" type="string" from="Edit model cell style,(in the event)" to="(*)Edit model cell style,(in the event)" resolved="yes"/>
+    <change idref="t15" attribute="title" type="string" from="PhotoGalley and “Take a Photo” cell." to="(*)PhotoGalley and “Take a Photo” cell." resolved="yes"/>
   </task-change-set>
 </changelog>
