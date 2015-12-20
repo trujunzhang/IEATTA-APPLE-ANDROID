@@ -13,6 +13,7 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
+import com.ieatta.android.modules.adapter.decoration.PhotoGalleryDividerDecoration;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 
@@ -50,7 +51,7 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
                         .setOnItemClickListener(new RecyclerItemClickListener() {
                             @Override
                             public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
-                                self.model.viewController.didSelectItemAtIndexPathOnCollectionView(new NSIndexPath(0,position));
+                                self.model.viewController.didSelectItemAtIndexPathOnCollectionView(new NSIndexPath(0, position));
                             }
                         })
                         .setDebugInfo("Activity_Table_View")

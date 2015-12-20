@@ -30,6 +30,6 @@ public class PhotoGalleryDividerDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         //We can supply forced insets for each item view here in the Rect
-        outRect.set(4, 8, 4, 8);
+        outRect.set(84, 48,44, 48);
     }
 }
