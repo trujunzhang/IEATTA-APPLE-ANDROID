@@ -16,7 +16,6 @@ import com.desmond.squarecamera.CameraActivity;
 import com.desmond.squarecamera.ImageUtility;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.cache.IntentCache;
-import com.ieatta.android.debug.MainActivity;
 import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
@@ -257,4 +256,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         }
     }
 
+    public LinkedList<ParseModelAbstract> getPhotoGalleryItems() {
+        return self.fetchedPhotos;
+    }
 }
