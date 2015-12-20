@@ -5,12 +5,14 @@ import com.parse.ParseQuery;
 /**
  * Created by djzhang on 12/20/15.
  */
-public class RMQuery extends ParseQuery{
-    public RMQuery(Class subclass) {
+public class DBQuery extends ParseQuery{
+    public DBQuery(Class subclass) {
         super(subclass);
     }
 
-    public RMQuery(String theClassName) {
+    public DBQuery(String theClassName) {
         super(theClassName);
     }
+
+
 }
