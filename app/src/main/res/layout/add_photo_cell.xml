@@ -4,7 +4,6 @@
     android:background="@drawable/button_add_media_cell"
     android:layout_width="@dimen/Gallery_Cell_Collection_Width"
     android:layout_height="@dimen/Gallery_Cell_Collection_Height"
-
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView

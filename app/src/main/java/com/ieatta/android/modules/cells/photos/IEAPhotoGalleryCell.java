@@ -14,12 +14,23 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.adapter.decoration.DividerDecoration;
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 
 public class IEAPhotoGalleryCell extends IEAViewHolder {
 
     public static CellType getType() {
         return new CellType(IEAPhotoGalleryCell.class, R.layout.photo_gallery_cell);
+    }
+
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
+    @Override
+    public ViewHolderType getViewHolderType() {
+        return ViewHolderType.None;
     }
 
     private IEAPhotoGalleryCell self = this;
