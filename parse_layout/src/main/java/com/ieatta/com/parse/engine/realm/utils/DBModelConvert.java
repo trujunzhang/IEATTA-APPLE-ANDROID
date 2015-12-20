@@ -106,7 +106,11 @@ public class DBModelConvert {
         object.setUUID(ParseModelAbstract.getPoint(model));
         object.setObjectCreatedDate(model.objectCreatedDate);
 
-
+        object.setContent(model.content);
+        object.setRate(model.rate);
+        object.setUserRef(model.userRef);
+        object.setReviewRef(model.reviewRef);
+        object.setReviewType(model.reviewType.ordinal());
     }
 
     public static void write(Team model, Realm realm) {
