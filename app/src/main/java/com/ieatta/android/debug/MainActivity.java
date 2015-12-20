@@ -85,8 +85,8 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
         // Register Cells by class.
         self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
 
-        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
-        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
+//        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
+//        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
 
         // 1. Set photo gallery section title(contains a 'take a photo' icon).
         self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());

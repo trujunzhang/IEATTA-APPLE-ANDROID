@@ -79,6 +79,10 @@ public class MemoryStorage {
     /// - Parameter model: model for section footer at index
     /// - Parameter sectionIndex: index of section for setting footer
     public void setSectionFooterModel(Object model, int forSectionIndex, CellType type) {
+        // Step1: Register cell type.
+        cellTypeUtils.registerType(type);
+
+        // Step2: Create/Add a Footer Section.
         SectionModel section = self.verifySection(forSectionIndex);
         section.setFooterModel(new FooterModel(model, type));
 
