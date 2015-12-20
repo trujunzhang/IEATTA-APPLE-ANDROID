@@ -34,9 +34,9 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(self);
 
-//        self.setupPhotoGallerySection();
+        self.setupPhotoGallerySection();
 
-        self.showReviewSection();
+//        self.showReviewSection();
 
 //        self.showContentView();
     }
