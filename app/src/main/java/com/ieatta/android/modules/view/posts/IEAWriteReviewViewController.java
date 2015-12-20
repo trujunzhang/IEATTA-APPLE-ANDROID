@@ -13,6 +13,8 @@ import com.ieatta.android.R;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.IEAAppSegureTableViewController;
+import com.ieatta.android.modules.common.MainSegueIdentifier;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -101,7 +103,7 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
         this.selectPeopleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                IntentUtils.sharedInstance.showSelectPeopleActivity(context, false);
+                self.performSegueWithIdentifier(MainSegueIdentifier.choicePeopleSegueIdentifier, self);
             }
         });
 
@@ -109,8 +111,7 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
     }
 
     private void setupPeopleInformation() {
-//        this.avatarView.loadPhoto(this.people, UIImage.DefaultPeopleCellIcon(), null);
-//        this.nameLabel.setText(this.people.displayName);
+
     }
 
     private void setRatingImageViewBackground(int tag) {
@@ -178,4 +179,11 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
         return ratingTitleImages[rate];
     }
 
+    @Override
+    protected void didSelectPeople(NSNotification note) {
+        this.people = (Team) note.anObject;
+
+        self.avatarView.loadNewPhotoByModel(people, R.drawable.blank_user_small);
+        this.nameLabel.setText(this.people.displayName);
+    }
 }

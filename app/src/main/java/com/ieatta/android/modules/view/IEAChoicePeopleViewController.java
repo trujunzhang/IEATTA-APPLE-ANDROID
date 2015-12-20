@@ -114,8 +114,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        Team team = (Team) model;
-        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreatedRestaurantNotification, team);
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PANotificationChoicePerson, model);
         self.navigationController.popViewControllerAnimated(true);
     }
 
