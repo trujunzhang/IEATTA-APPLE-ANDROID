@@ -46,8 +46,9 @@ public class DBModelConvert {
         object.setUUID(ParseModelAbstract.getPoint(model));
         object.setObjectCreatedDate(model.objectCreatedDate);
 
-
-
+        object.setModelType(model.modelType.ordinal());
+        object.setModelPoint(model.modelPoint);
+        object.setModelCreatedDate(model.modelCreatedDate);
     }
 
     public static void write(PeopleInEvent model, Realm realm) {
@@ -56,6 +57,8 @@ public class DBModelConvert {
         object.setUUID(ParseModelAbstract.getPoint(model));
         object.setObjectCreatedDate(model.objectCreatedDate);
 
+        object.setUserRef(model.userRef);
+        object.setEventRef(model.eventRef);
     }
 
     public static void write(Photo model, Realm realm) {
@@ -64,6 +67,12 @@ public class DBModelConvert {
         object.setUUID(ParseModelAbstract.getPoint(model));
         object.setObjectCreatedDate(model.objectCreatedDate);
 
+        object.setRestaurantRef(model.restaurantRef);
+        object.setUsedRef(model.usedRef);
+        object.setUsedType(model.usedType.ordinal());
+
+        object.setOriginalUrl(model.originalUrl);
+        object.setThumbnailUrl(model.thumbnailUrl);
     }
 
     public static void write(Recipe model, Realm realm) {
@@ -72,6 +81,7 @@ public class DBModelConvert {
         object.setUUID(ParseModelAbstract.getPoint(model));
         object.setObjectCreatedDate(model.objectCreatedDate);
         object.setDisplayName(model.displayName);
+
 
     }
 
