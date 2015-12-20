@@ -54,7 +54,6 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
     protected void startManagingWithDelegate(DTTableViewManager manager) {
         self.collectionView.setAdapter(manager.getAdapter());
         self.collectionView.setLayoutManager(manager.configuration.builder.manager);
-        self.collectionView.addItemDecoration(manager.configuration.builder.decoration);
     }
 
     @Override

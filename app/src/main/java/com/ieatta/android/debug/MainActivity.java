@@ -23,7 +23,7 @@ import java.util.LinkedList;
 public class MainActivity extends IEAReviewsInDetailTableViewController {
     private MainActivity self = this;
 
-    private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, null);
+    private PhotoGallery photoGallery = new PhotoGallery(IEAEditKey.photo_gallery, self);
 
     private RecyclerView collectionView;
     public IEAPhotoGalleryAdapter adapter;

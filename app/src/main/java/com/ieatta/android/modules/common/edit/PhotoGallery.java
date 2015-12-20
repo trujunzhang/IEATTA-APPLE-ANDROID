@@ -38,12 +38,14 @@ public class PhotoGallery extends EditBaseCellModel {
     public void setCollectionView(RecyclerView collectionView, DTTableViewManager manager){
         self.collectionView = collectionView;
         self.manager = manager;
+
+        self.manager.memoryStorage.setItems(self.viewController.getPhotoGalleryItems(), 0);
     }
 
     public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
-        self.fetchedPhotos = fetchedPhotos;
-
-        self.manager.memoryStorage.setItems(fetchedPhotos,0);
+        if(self.manager!= null) {
+            self.manager.memoryStorage.setItems(fetchedPhotos, 0);
+        }
     }
 
 //    var collectionView: UICollectionView?
