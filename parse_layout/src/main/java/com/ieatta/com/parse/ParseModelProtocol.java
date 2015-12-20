@@ -2,8 +2,7 @@ package com.ieatta.com.parse;
 
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBObject;
 
 import bolts.Task;
 
@@ -19,17 +18,17 @@ public interface ParseModelProtocol {
     public String getParseTableName();
 
     // MARK: Save/Pin object methonds.
-    public void writeCommonObject(ParseObject object);
+    public void writeCommonObject(DBObject object);
 
-    public void writeObject(ParseObject object);
+    public void writeObject(DBObject object);
 
-    public void writeLocalObject(ParseObject object);
+    public void writeLocalObject(DBObject object);
 
-    public void readCommonObject(ParseObject object);
+    public void readCommonObject(DBObject object);
 
-    public void readObject(ParseObject object);
+    public void readObject(DBObject object);
 
-    public void readObjectLocal(ParseObject object);
+    public void readObjectLocal(DBObject object);
 
     public ParseACL getACL();
 

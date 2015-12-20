@@ -6,9 +6,9 @@ import com.ieatta.com.parse.ParseModelSync;
 import bolts.Continuation;
 import bolts.Task;
 
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -70,8 +70,8 @@ public class Recipe extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    public ParseQuery createQuery(Team people, Event event) {
-        ParseQuery query = this.getParseQueryInstance();
+    public DBQuery createQuery(Team people, Event event) {
+        DBQuery query = this.getDBQueryInstance();
 
         query.whereEqualTo(kPAPFieldOrderedPeopleRefKey, ParseModelAbstract.getPoint(people));
         query.whereEqualTo(kPAPFieldEventRefKey, ParseModelAbstract.getPoint(event));
@@ -105,7 +105,7 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public void writeCommonObject(DBObject object) {
 //        assert(this.eventRef.isEmpty == false, "Must setup eventRef.")
 //        assert(this.orderedPeopleRef.isEmpty == false, "Must setup orderedPeopleRef.")
 
@@ -117,7 +117,7 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public void readCommonObject(DBObject object) {
         Object theName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theName != null) {
             this.displayName = (String) theName;
@@ -154,7 +154,7 @@ public class Recipe extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRecipes() {
-        return ParseModelQuery.queryFromDatabase(PQueryModelType.Recipe, new Recipe().makeParseQuery());
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Recipe, new Recipe().makeDBQuery());
     }
 
     @Override

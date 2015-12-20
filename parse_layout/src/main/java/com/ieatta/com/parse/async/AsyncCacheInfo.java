@@ -6,7 +6,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.models.NewRecord;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 
 import java.util.Date;
 
@@ -59,7 +59,7 @@ public class AsyncCacheInfo {
         this.printDescription("Store");
     }
 
-    public ParseQuery createQuery(int limit) {
+    public DBQuery createQuery(int limit) {
         return new NewRecord().createQueryForPullObjectsFromServer(this.lastRecordCreateAt, limit);
     }
 

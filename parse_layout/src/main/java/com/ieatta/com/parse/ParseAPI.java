@@ -2,8 +2,10 @@ package com.ieatta.com.parse;
 
 import android.content.Context;
 
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 /**
@@ -12,6 +14,9 @@ import com.parse.ParseUser;
 public class ParseAPI {
 
     public static void setup(Context context) {
+
+        ParseObject.registerSubclass(DBObject.class);
+
         // Enable Local Datastore.
         Parse.enableLocalDatastore(context);
 

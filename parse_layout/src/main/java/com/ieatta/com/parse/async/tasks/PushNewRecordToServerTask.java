@@ -6,8 +6,8 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.async.SerialTasksManager;
 import com.ieatta.com.parse.models.NewRecord;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBObject;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 
 import java.util.List;
 
@@ -19,18 +19,18 @@ import bolts.Task;
  */
 public class PushNewRecordToServerTask {
 
-    public static Task PushToServerSeriesTask(ParseQuery query) {
+    public static Task PushToServerSeriesTask(DBQuery query) {
 
-        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
+        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<DBObject>, Task<Void>>() {
             @Override
-            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
+            public Task<Void> then(Task<List<DBObject>> task) throws Exception {
                 return executeSerialTasks(task);
             }
         });
     }
 
     private static Task executeSerialTasks(Task previous) {
-        List<ParseObject> results = (List<ParseObject>) previous.getResult();
+        List<DBObject> results = (List<DBObject>) previous.getResult();
         LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
 
         SerialTasksManager manager = new SerialTasksManager(results);
@@ -58,7 +58,7 @@ public class PushNewRecordToServerTask {
      * <p/>
      * - parameter newRecordObject: A row data on the NewRecord table.
      */
-    private static Task PushObjectToServerTask(final ParseObject newRecordObject) {
+    private static Task PushObjectToServerTask(final DBObject newRecordObject) {
         // Convert newRecordObject to Model instance.
         NewRecord newRecord = (NewRecord) new NewRecord().convertToLocalModel(newRecordObject);
 

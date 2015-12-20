@@ -14,9 +14,9 @@ import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
 import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.parse.ParseFile;
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 
@@ -78,28 +78,28 @@ public class Photo extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    public ParseQuery createQueryForUsedRefWithType() {
-        ParseQuery query = this.makeParseQuery();
+    public DBQuery createQueryForUsedRefWithType() {
+        DBQuery query = this.makeDBQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         query.whereEqualTo(kPAPFieldUsedTypeKey, PhotoUsedType.getInt(this.usedType));
 
         return query;
     }
 
-    public ParseQuery createQueryForUsedRef() {
-        ParseQuery query = this.makeParseQuery();
+    public DBQuery createQueryForUsedRef() {
+        DBQuery query = this.makeDBQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         return query;
     }
 
-    public ParseQuery createQueryForRestaurantRef() {
-        ParseQuery query = this.makeParseQuery();
+    public DBQuery createQueryForRestaurantRef() {
+        DBQuery query = this.makeDBQuery();
         query.whereEqualTo(kPAPFieldLocalRestaurantKey, this.restaurantRef);
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;
     }
 
-    public static ParseQuery createQueryForRestaurantRef(Restaurant restaurant) {
+    public static DBQuery createQueryForRestaurantRef(Restaurant restaurant) {
         Photo photo = new Photo();
         photo.restaurantRef = ParseModelAbstract.getPoint(restaurant);
         return photo.createQueryForRestaurantRef();
@@ -120,8 +120,8 @@ public class Photo extends ParseModelSync {
         return new Photo();
     }
 
-    ParseQuery createQueryByRestaurantRef(String restaurantRef) {
-        ParseQuery query = this.makeParseQuery();
+    DBQuery createQueryByRestaurantRef(String restaurantRef) {
+        DBQuery query = this.makeDBQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, restaurantRef);
         return query;
     }
@@ -133,8 +133,8 @@ public class Photo extends ParseModelSync {
      * <p/>
      * - returns: query's instance
      */
-    private ParseQuery createQueryForBatchingPhoto(List<String> usedRefs) {
-        ParseQuery query = this.getParseQueryInstance();
+    private DBQuery createQueryForBatchingPhoto(List<String> usedRefs) {
+        DBQuery query = this.getDBQueryInstance();
 
         query.whereContainedIn(kPAPFieldUsedRefKey, usedRefs);
 
@@ -145,7 +145,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public void writeCommonObject(DBObject object) {
         object.put(kPAPFieldOSTypeKey, OS_TYPE);
         object.put(kPAPFieldLocalRestaurantKey, this.restaurantRef);
         object.put(kPAPFieldUsedRefKey, this.usedRef);
@@ -153,7 +153,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void writeObject(ParseObject object) {
+    public void writeObject(DBObject object) {
         super.writeObject(object);
 
         // Special: Used only for the online object.
@@ -162,7 +162,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void writeLocalObject(ParseObject object) {
+    public void writeLocalObject(DBObject object) {
         super.writeLocalObject(object);
 
         // Special: Used only for the offline object.
@@ -171,7 +171,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public void readCommonObject(DBObject object) {
         Object theRestaurantRef = this.getValueFromObject(object, kPAPFieldLocalRestaurantKey);
         if (theRestaurantRef != null) {
             this.restaurantRef = (String) theRestaurantRef;
@@ -189,7 +189,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void readObject(ParseObject object) {
+    public void readObject(DBObject object) {
         super.readObject(object);
 
         // Special: Used only for the online object.
@@ -205,7 +205,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void readObjectLocal(ParseObject object) {
+    public void readObjectLocal(DBObject object) {
         super.readObjectLocal(object);
 
         // Special: Used only for the offline object.
@@ -302,9 +302,9 @@ public class Photo extends ParseModelSync {
     }
 
     public Task getRelatedPhoto() {
-        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
+        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).onSuccessTask(new Continuation<DBObject, Task<ParseModelAbstract>>() {
             @Override
-            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
+            public Task<ParseModelAbstract> then(Task<DBObject> task) throws Exception {
                 return self.convertToLocalModelTask(task);
             }
         }).onSuccessTask(new Continuation<ParseModelAbstract, Task<Bitmap>>() {

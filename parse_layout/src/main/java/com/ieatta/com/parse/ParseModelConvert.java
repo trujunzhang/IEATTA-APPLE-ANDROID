@@ -10,7 +10,7 @@ import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 import com.lukazakrajsek.timeago.TimeAgo;
 import com.parse.ParseACL;
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -35,8 +35,8 @@ public abstract class ParseModelConvert extends ParseJsoner {
     }
 
 
-    public Task<ParseModelAbstract> convertToLocalModelTask(Task<ParseObject> firstObjectTask) {
-        ParseObject firstObject = firstObjectTask.getResult();
+    public Task<ParseModelAbstract> convertToLocalModelTask(Task<DBObject> firstObjectTask) {
+        DBObject firstObject = firstObjectTask.getResult();
         if (firstObject != null) {
             this.readObjectLocal(firstObject);
             return Task.forResult((ParseModelAbstract) self);
@@ -47,17 +47,17 @@ public abstract class ParseModelConvert extends ParseJsoner {
     }
 
     /**
-     * Convert fetched result's value as ParseObject array to Model array.
+     * Convert fetched result's value as DBObject array to Model array.
      * <p/>
      * - parameter value: result's value
      * - parameter offline: offline is true,online is false
      * <p/>
      * - returns: ParseModelAbstract's array
      */
-    public List<ParseModelAbstract> convertToParseModelArray(List<ParseObject> value, boolean offline) {
+    public List<ParseModelAbstract> convertToParseModelArray(List<DBObject> value, boolean offline) {
         LinkedList<ParseModelAbstract> array = new LinkedList<>();
 
-        for (ParseObject object : value) {
+        for (DBObject object : value) {
             ParseModelAbstract instance = this.getNewInstance();
             if (offline == true) {
                 instance.readObjectLocal(object);
@@ -70,10 +70,10 @@ public abstract class ParseModelConvert extends ParseJsoner {
         return array;
     }
 
-    public Task<List<ParseModelAbstract>> convertToParseModelsTask(Task<List<ParseObject>> previous, boolean offline) {
+    public Task<List<ParseModelAbstract>> convertToParseModelsTask(Task<List<DBObject>> previous, boolean offline) {
         List<ParseModelAbstract> array = new LinkedList<>();
 
-        for (ParseObject object : previous.getResult()) {
+        for (DBObject object : previous.getResult()) {
             ParseModelAbstract instance = this.getNewInstance();
             if (offline == true) {
                 instance.readObjectLocal(object);
@@ -88,17 +88,17 @@ public abstract class ParseModelConvert extends ParseJsoner {
 
     public ParseModelAbstract convertToLocalModel(Object object) {
         ParseModelAbstract instance = this.getNewInstance(); // Alloc a new instance.
-        instance.readObjectLocal((ParseObject) object);
+        instance.readObjectLocal((DBObject) object);
         return instance;
     }
 
     public static ParseModelAbstract convertToLocalModel(Object object, ParseModelAbstract instance) {
-        instance.readObjectLocal((ParseObject) object);
+        instance.readObjectLocal((DBObject) object);
         return instance;
     }
 
     public static ParseModelAbstract convertToOnlineModel(Object object, ParseModelAbstract instance) {
-        instance.readObject((ParseObject) object);
+        instance.readObject((DBObject) object);
         return instance;
     }
 
@@ -108,8 +108,8 @@ public abstract class ParseModelConvert extends ParseJsoner {
      * @param previous
      * @return
      */
-    public Task<Boolean> convertToOnlineModelTask(Task<ParseObject> previous) {
-        ParseObject firstObject = previous.getResult();
+    public Task<Boolean> convertToOnlineModelTask(Task<DBObject> previous) {
+        DBObject firstObject = previous.getResult();
 
         if (firstObject != null) {
             this.readObject(firstObject);

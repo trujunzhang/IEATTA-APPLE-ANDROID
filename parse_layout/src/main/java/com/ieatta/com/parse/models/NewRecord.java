@@ -3,9 +3,9 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelConvert;
 import com.ieatta.com.parse.ParseModelSync;
 
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.Date;
@@ -44,7 +44,7 @@ public class NewRecord extends ParseModelSync {
     }
 
 
-    public static ParseModelAbstract getRecordedInstance(ParseObject pulledNewRecordObject) {
+    public static ParseModelAbstract getRecordedInstance(DBObject pulledNewRecordObject) {
         NewRecord newRecord = (NewRecord) ParseModelConvert.convertToOnlineModel(pulledNewRecordObject, new NewRecord());
 
         return newRecord.getRecordedModel();
@@ -56,8 +56,8 @@ public class NewRecord extends ParseModelSync {
 
     // MARK: ParseModel
 
-    public ParseQuery createQueryForDeletedModel() {
-        ParseQuery query = this.makeParseQuery();
+    public DBQuery createQueryForDeletedModel() {
+        DBQuery query = this.makeDBQuery();
 
         query.whereEqualTo(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));
         query.whereEqualTo(kPAPFieldModelPointKey, this.modelPoint);
@@ -76,14 +76,14 @@ public class NewRecord extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public void writeCommonObject(DBObject object) {
         object.put(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));// ***Important***
         object.put(kPAPFieldModelPointKey, this.modelPoint);
         object.put(kPAPFieldModelCreatedDateKey, this.modelCreatedDate);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public void readCommonObject(DBObject object) {
         Object theModelType = this.getValueFromObject(object, kPAPFieldModelTypeKey);
         if (theModelType != null) {
             this.modelType = PQueryModelType.fromInteger(((int) theModelType));

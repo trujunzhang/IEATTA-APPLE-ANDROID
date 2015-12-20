@@ -1,6 +1,6 @@
 package com.ieatta.com.parse.async;
 
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,9 +12,9 @@ import bolts.Task;
  */
 public class SerialTasksManager {
     private SerialTasksManager self = this;
-    private List<ParseObject> array = new LinkedList<>();
+    private List<DBObject> array = new LinkedList<>();
 
-    public SerialTasksManager(List<ParseObject> array) {
+    public SerialTasksManager(List<DBObject> array) {
         this.array = array;
     }
 
@@ -48,8 +48,8 @@ public class SerialTasksManager {
 //        return BFTask(result: model)
 //    }
 
-    public ParseObject next() {
-        ParseObject model = self.array.get(self.taskStep);
+    public DBObject next() {
+        DBObject model = self.array.get(self.taskStep);
         self.taskStep += 1;
 
         return model;

@@ -7,9 +7,9 @@ import bolts.Continuation;
 import bolts.Task;
 import bolts.TaskCompletionSource;
 
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
@@ -77,8 +77,8 @@ public class Review extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    public ParseQuery createQueryForReviewRef() {
-        ParseQuery query = this.makeParseQuery();
+    public DBQuery createQueryForReviewRef() {
+        DBQuery query = this.makeDBQuery();
 
         query.whereEqualTo(kPAPFieldReviewRefKey, this.reviewRef);
         query.whereEqualTo(kPAPFieldReviewTypeKey, ReviewType.getInt(this.reviewType));
@@ -97,7 +97,7 @@ public class Review extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public void writeCommonObject(DBObject object) {
         object.put(kPAPFieldContentKey, this.content);
         object.put(kPAPFieldRateKey, this.rate);
         object.put(kPAPFieldUserRefKey, this.userRef);
@@ -106,7 +106,7 @@ public class Review extends ParseModelSync {
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public void readCommonObject(DBObject object) {
         Object theContent = this.getValueFromObject(object, kPAPFieldContentKey);
         if (theContent != null) {
             this.content = (String) theContent;
@@ -149,9 +149,9 @@ public class Review extends ParseModelSync {
 
     public Task<Integer> queryRatingInReviews() {
         // First of all, query all reviews.
-        return ParseModelQuery.findLocalObjectsInBackground(this.createQueryForReviewRef()).onSuccess(new Continuation<List<ParseObject>, Integer>() {
+        return ParseModelQuery.findLocalObjectsInBackground(this.createQueryForReviewRef()).onSuccess(new Continuation<List<DBObject>, Integer>() {
             @Override
-            public Integer then(Task<List<ParseObject>> task) throws Exception {
+            public Integer then(Task<List<DBObject>> task) throws Exception {
                 List<ParseModelAbstract> array = new Review().convertToParseModelArray(task.getResult(), true);
                 int rating = Review.getRatingInReview(array);
                 return rating;
@@ -160,7 +160,7 @@ public class Review extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryReviews(ParseModelAbstract model, int limit) {
-        ParseQuery query = new Review(model).createQueryForReviewRef();
+        DBQuery query = new Review(model).createQueryForReviewRef();
         //        print("\(model.printDescription())")
         //        print("\(Review(refModel: model).printDescription())")
         if (limit != Review.NO_Limit_FETCHED_REVIEWS_IN_DetailPage) {

@@ -1,7 +1,7 @@
 package com.ieatta.com.parse;
 
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBObject;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -30,9 +30,9 @@ public abstract class ParseModelSync extends ParseModelQuery {
     public Task<Void> pullFromServerAndPin() {
         // 1. Retrieve object from parse.com.
         return this.createQueryFromRecord().getFirstInBackground()
-                .onSuccessTask(new Continuation<ParseObject, Task<Boolean>>() {
+                .onSuccessTask(new Continuation<DBObject, Task<Boolean>>() {
                     @Override
-                    public Task<Boolean> then(Task<ParseObject> task) throws Exception {
+                    public Task<Boolean> then(Task<DBObject> task) throws Exception {
                         return convertToOnlineModelTask(task);
                     }
                 }).onSuccessTask(new Continuation<Boolean, Task<Void>>() {

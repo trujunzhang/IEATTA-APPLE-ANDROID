@@ -1,14 +1,14 @@
 package com.ieatta.com.parse;
 
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
-import com.parse.ParseQuery;
 
 import bolts.Continuation;
 import bolts.Task;
 
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -37,8 +37,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - returns: query's instance
      */
-    public ParseQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
-        ParseQuery query = this.getParseQueryInstance();
+    public DBQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
+        DBQuery query = this.getDBQueryInstance();
         query.setLimit(limit);
 
         // *** Important (used orderByAscending) ***
@@ -56,8 +56,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - returns: query's instance
      */
-    public ParseQuery createQueryForPushObjectsToServer(int limit) {
-        ParseQuery query = this.getParseQueryInstance();
+    public DBQuery createQueryForPushObjectsToServer(int limit) {
+        DBQuery query = this.getDBQueryInstance();
         query.setLimit(limit);
 
         // *** Important (used orderByAscending) ***
@@ -66,16 +66,16 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query;
     }
 
-    public ParseQuery createQueryByObjectUUID() {
-        ParseQuery query = this.makeParseQuery();
+    public DBQuery createQueryByObjectUUID() {
+        DBQuery query = this.makeDBQuery();
 
         query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
 
         return query;
     }
 
-    public ParseQuery createQueryForBatching(List<String> points) {
-        ParseQuery query = this.getParseQueryInstance();
+    public DBQuery createQueryForBatching(List<String> points) {
+        DBQuery query = this.getDBQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
 
         query.whereContainedIn(kPAPFieldObjectUUIDKey, points);
@@ -83,31 +83,31 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query;
     }
 
-    public ParseQuery createSearchDisplayNameQuery(String keyword) {
-        ParseQuery query = this.makeParseQuery();
+    public DBQuery createSearchDisplayNameQuery(String keyword) {
+        DBQuery query = this.makeDBQuery();
 
         query.whereMatches(kPAPFieldDisplayNameKey, keyword, "i");
 
         return query;
     }
 
-    static ParseQuery createQuery(PQueryModelType type, ParseModelAbstract model) {
+    static DBQuery createQuery(PQueryModelType type, ParseModelAbstract model) {
         ParseModelQuery instance = (ParseModelQuery) ParseModelAbstract.getInstanceFromType(type, ParseModelAbstract.getPoint(model));
         return instance.createQueryByObjectUUID();
     }
 
-    protected ParseQuery getParseQueryInstance() {
-        return new ParseQuery(this.getParseTableName());
+    protected DBQuery getDBQueryInstance() {
+        return new DBQuery(this.getParseTableName());
     }
 
-    public ParseQuery makeParseQuery() {
-        ParseQuery query = this.getParseQueryInstance();
+    public DBQuery makeDBQuery() {
+        DBQuery query = this.getDBQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;
     }
 
-    ParseQuery createQueryFromRecord() {
-        ParseQuery query = this.getParseQueryInstance();
+    DBQuery createQueryFromRecord() {
+        DBQuery query = this.getDBQueryInstance();
 
         // *** Import *** The newest row in the table.
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
@@ -116,10 +116,10 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query;
     }
 
-    public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final ParseQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<List<ParseModelAbstract>>>() {
+    public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final DBQuery query) {
+        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<DBObject>, Task<List<ParseModelAbstract>>>() {
             @Override
-            public Task<List<ParseModelAbstract>> then(Task<List<ParseObject>> task) throws Exception {
+            public Task<List<ParseModelAbstract>> then(Task<List<DBObject>> task) throws Exception {
                 ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(type);
                 return instance.convertToParseModelsTask(task, true);
             }
@@ -132,9 +132,9 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
     @Override
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
+        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<DBObject, Task<ParseModelAbstract>>() {
             @Override
-            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
+            public Task<ParseModelAbstract> then(Task<DBObject> task) throws Exception {
                 return convertToLocalModelTask(task);
             }
         });
@@ -145,14 +145,14 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - parameter query:           query's instance
      */
-    public Task<Integer> countLocalObjects(ParseQuery query) {
+    public Task<Integer> countLocalObjects(DBQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 
         return query.countInBackground();
     }
 
-    public Task<Integer> countObjects(ParseQuery query) {
+    public Task<Integer> countObjects(DBQuery query) {
         return query.countInBackground();
     }
 
@@ -163,8 +163,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * @param previous
      * @return
      */
-    private static Task<ParseObject> getFirstParseObjectTask(Task<List<ParseObject>> previous) {
-        LinkedList<ParseObject> objects = new LinkedList<>(previous.getResult());
+    private static Task<DBObject> getFirstDBObjectTask(Task<List<DBObject>> previous) {
+        LinkedList<DBObject> objects = new LinkedList<>(previous.getResult());
         if (objects.size() == 0) {
 
             // **** Important ****
@@ -182,23 +182,23 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * Get first PFObject from the offline database.
      * <p/>
-     * - parameter query: ParseQuery's instance
+     * - parameter query: DBQuery's instance
      * <p/>
      * - returns: the first object's array,like [PFObject's instance].
      */
-    public Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
+    public Task<DBObject> getFirstLocalObjectArrayInBackground(DBQuery query) {
         // **** Important ****
         // If not found Parse's findLocalObjectsInBackground
         return ParseModelQuery.findFirstLocalObjectInBackground(query)
-                .onSuccessTask(new Continuation<List<ParseObject>, Task<ParseObject>>() {
+                .onSuccessTask(new Continuation<List<DBObject>, Task<DBObject>>() {
                     @Override
-                    public Task<ParseObject> then(Task<List<ParseObject>> task) throws Exception {
-                        return ParseModelQuery.getFirstParseObjectTask(task);
+                    public Task<DBObject> then(Task<List<DBObject>> task) throws Exception {
+                        return ParseModelQuery.getFirstDBObjectTask(task);
                     }
                 });
     }
 
-    public static Task<List<ParseObject>> findLocalObjectsInBackground(ParseQuery query) {
+    public static Task<List<DBObject>> findLocalObjectsInBackground(DBQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 
@@ -212,7 +212,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * @param query
      * @return
      */
-    private static Task<List<ParseObject>> findFirstLocalObjectInBackground(ParseQuery query) {
+    private static Task<List<DBObject>> findFirstLocalObjectInBackground(DBQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
         // *** Just get the first object.
@@ -221,8 +221,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query.findInBackground();
     }
 
-    private ParseObject makeObject() {
-        ParseObject object = this.createObject();
+    private DBObject makeObject() {
+        DBObject object = this.createObject();
 
         ParseACL acl = this.getACL();
         object.setACL(acl);
@@ -234,7 +234,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     //        offline Store
     // =============================================================================
     public Task<Void> pinInBackgroundForModel() {
-        ParseObject object = makeObject();
+        DBObject object = makeObject();
         this.writeLocalObject(object);
 
         return object.pinInBackground("Offline");
@@ -253,7 +253,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     //        Online Store
     // =============================================================================
     Task<Void> saveInBackgroundTask() {
-        ParseObject object = makeObject();
+        DBObject object = makeObject();
         this.writeObject(object);
 
         return object.saveInBackground();
@@ -264,11 +264,11 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - parameter query:           query's instance
      */
-    public Task<Void> unpinInBackground(ParseQuery query) {
-        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
+    public Task<Void> unpinInBackground(DBQuery query) {
+        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<DBObject, Task<Void>>() {
             @Override
-            public Task<Void> then(Task<ParseObject> task) throws Exception {
-                ParseObject object = task.getResult();
+            public Task<Void> then(Task<DBObject> task) throws Exception {
+                DBObject object = task.getResult();
                 if (object != null) {
                     return ParseModelQuery.unpinObjectInBackground(object);
                 }
@@ -287,7 +287,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter deletedModel:    ParseModelAbstract's instance that want to delete
      */
     public Task<Void> unpinInBackgroundWithNewRecord() {
-        final ParseQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
+        final DBQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
 
         return this.unpinInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -303,7 +303,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter object:          PFObject's instance
      * - parameter completionBlock: callback variable
      */
-    public static Task<Void> unpinObjectInBackground(ParseObject object) {
+    public static Task<Void> unpinObjectInBackground(DBObject object) {
         return object.unpinInBackground("Offline");
     }
 

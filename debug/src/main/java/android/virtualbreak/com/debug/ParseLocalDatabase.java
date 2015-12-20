@@ -3,6 +3,7 @@ package android.virtualbreak.com.debug;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelConvert;
 import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.PeopleInEvent;
@@ -12,10 +13,6 @@ import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-
-import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -27,47 +24,47 @@ import bolts.Task;
  */
 public class ParseLocalDatabase {
 
-    public static void listLocalDatabase(){
+    public static void listLocalDatabase() {
 
         // =============================================================================
         //        Team
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeParseQuery(), PQueryModelType.Team);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
 
         // =============================================================================
         //        Restaurant
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Restaurant().makeParseQuery(), PQueryModelType.Restaurant);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Restaurant().makeDBQuery(), PQueryModelType.Restaurant);
 
         // =============================================================================
         //        Event
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Event().makeParseQuery(), PQueryModelType.Event);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Event().makeDBQuery(), PQueryModelType.Event);
 
         // =============================================================================
         //        OrderedPeople
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new PeopleInEvent().makeParseQuery(), PQueryModelType.PeopleInEvent);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new PeopleInEvent().makeDBQuery(), PQueryModelType.PeopleInEvent);
 
         // =============================================================================
         //        Recipes
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Recipe().makeParseQuery(), PQueryModelType.Recipe);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Recipe().makeDBQuery(), PQueryModelType.Recipe);
 
         // =============================================================================
         //        Photo
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Photo().makeParseQuery(), PQueryModelType.Photo);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Photo().makeDBQuery(), PQueryModelType.Photo);
 
         // =============================================================================
         //        Review
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Review().makeParseQuery(), PQueryModelType.Review);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Review().makeDBQuery(), PQueryModelType.Review);
 
         // =============================================================================
         //        Local New Record
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeParseQuery(), PQueryModelType.NewRecord);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeDBQuery(), PQueryModelType.NewRecord);
 
         // =============================================================================
         //        Cache image file names
@@ -76,24 +73,35 @@ public class ParseLocalDatabase {
     }
 
     // MARK: Retrieve offline database for test.
-    public static Task<Void> queryLocalDatastoreInBackground(ParseQuery query, final PQueryModelType classType ) {
-        return ParseModelQuery.queryFromDatabase(classType,query).onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
+    public static Task<Void> queryLocalDatastoreInBackground(DBQuery query, final PQueryModelType classType) {
+        return ParseModelQuery.queryFromDatabase(classType, query).onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
             @Override
             public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
-                ParseLocalDatabase.printList(classType,task.getResult());
+                ParseLocalDatabase.printList(classType, task.getResult());
+                return null;
+            }
+        }).continueWith(new Continuation<Void, Void>() {
+            @Override
+            public Void then(Task<Void> task) throws Exception {
+                if (task.isFaulted()) {
+                    Exception error = task.getError();
+                    String message = error.getMessage();
+                    int x = 0;
+                    Throwable cause = error.getCause();
+                }
                 return null;
             }
         });
     }
 
-    public static void printList(PQueryModelType type,List<ParseModelAbstract> array){
+    // com.parse.ParseObject cannot be cast to
+    public static void printList(PQueryModelType type, List<ParseModelAbstract> array) {
         LogConfigure.DDLogVerbose("");
         LogConfigure.DDLogVerbose("<<-------------------------------------------------------");
-        LogConfigure.DDLogVerbose("Count after query * "+ PQueryModelType.getString(type) +" * in background: "+array.size());
+        LogConfigure.DDLogVerbose("Count after query * " + PQueryModelType.getString(type) + " * in background: " + array.size());
         LogConfigure.DDLogVerbose("-------------------------------------------------------");
-        for(ParseModelAbstract model:array){
-            // Print instance's description
-//            LogConfigure.DDLogVerbose(model.printDescription());
+        for (ParseModelAbstract model : array) {
+            LogConfigure.DDLogVerbose(model.printDescription());
         }
         LogConfigure.DDLogVerbose("------------------------------------------------------->>");
         LogConfigure.DDLogVerbose("");
@@ -103,7 +111,7 @@ public class ParseLocalDatabase {
     // =============================================================================
     //        Cache image file names
     // =============================================================================
-     public static void listAllCacheImageNames(){
+    public static void listAllCacheImageNames() {
 //        let array:NSMutableArray = OriginalImageUtils.sharedInstance.listCacheImageNames();
         LogConfigure.DDLogVerbose("");
         LogConfigure.DDLogVerbose("<<-------------------------------------------------------");

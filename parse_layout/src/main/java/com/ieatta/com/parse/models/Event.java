@@ -6,9 +6,9 @@ import com.ieatta.com.parse.ParseModelSync;
 import bolts.Continuation;
 import bolts.Task;
 
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -78,8 +78,8 @@ public class Event extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    public ParseQuery createQueryByRestaurantRef(Restaurant restaurant) {
-        ParseQuery query = this.makeParseQuery();
+    public DBQuery createQueryByRestaurantRef(Restaurant restaurant) {
+        DBQuery query = this.makeDBQuery();
 
         query.whereEqualTo(kPAPFieldLocalRestaurantKey, ParseModelAbstract.getPoint(restaurant));
 
@@ -112,7 +112,7 @@ public class Event extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public void writeCommonObject(DBObject object) {
         Assertions.assertNotEmpty(this.restaurantRef, "Must setup restaurantRef.");
 
         object.put(kPAPFieldDisplayNameKey, this.displayName);
@@ -128,7 +128,7 @@ public class Event extends ParseModelSync {
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public void readCommonObject(DBObject object) {
         Object theRestaurantRef = this.getValueFromObject(object, kPAPFieldLocalRestaurantKey);
         if (theRestaurantRef != null) {
             this.restaurantRef = (String) theRestaurantRef;

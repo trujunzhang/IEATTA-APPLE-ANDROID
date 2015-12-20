@@ -6,7 +6,7 @@ import com.ieatta.com.parse.ParseModelSync;
 import bolts.Task;
 
 import com.parse.Parse;
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
@@ -88,14 +88,14 @@ public class Team extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public void writeCommonObject(DBObject object) {
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldEmailKey, this.email);
         object.put(kPAPFieldAddressKey, this.address);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public void readCommonObject(DBObject object) {
         Object theDisplayName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theDisplayName != null) {
             this.displayName = (String) theDisplayName;
@@ -147,7 +147,7 @@ public class Team extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryTeam() {
-        return ParseModelQuery.queryFromDatabase(PQueryModelType.Team, new Team().makeParseQuery());
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Team, new Team().makeDBQuery());
     }
 
     public static Task<List<ParseModelAbstract>> queryTeamByPoints(List<String> points) {
@@ -182,10 +182,10 @@ public class Team extends ParseModelSync {
     }
 
 
-    static List<Team> convertToTeamArray(List<ParseObject> objectArray) {
+    static List<Team> convertToTeamArray(List<DBObject> objectArray) {
         List<Team> array = new LinkedList<>();
 
-        for (ParseObject object : objectArray) {
+        for (DBObject object : objectArray) {
             array.add((Team) convertToModel(object, new Team()));
         }
 

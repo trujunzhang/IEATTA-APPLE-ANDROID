@@ -8,9 +8,9 @@ import bolts.Task;
 import bolts.TaskCompletionSource;
 
 import com.parse.ParseGeoPoint;
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseQuery;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -59,8 +59,8 @@ public class Restaurant extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    ParseQuery createNearlyRestaurantQuery(ParseGeoPoint nearPoint) {
-        ParseQuery query = this.getParseQueryInstance();
+    DBQuery createNearlyRestaurantQuery(ParseGeoPoint nearPoint) {
+        DBQuery query = this.getDBQueryInstance();
 
         // Restaurant list sorted by display name. From A..Z.
         query.orderByAscending(kPAPFieldDisplayNameKey);
@@ -96,14 +96,14 @@ public class Restaurant extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public void writeCommonObject(DBObject object) {
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldLocationKey, this.location);
         object.put(kPAPFieldAddressKey, this.googleMapAddress);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public void readCommonObject(DBObject object) {
         Object theDisplayName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theDisplayName != null) {
             this.displayName = (String) theDisplayName;
@@ -148,7 +148,7 @@ public class Restaurant extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRestaurants() {
-        return ParseModelQuery.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().makeParseQuery());
+        return ParseModelQuery.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().makeDBQuery());
     }
 
     public static Task<List<ParseModelAbstract>> queryNearRestaurants(ParseGeoPoint geoPoint) {
