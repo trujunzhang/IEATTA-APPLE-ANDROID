@@ -11,12 +11,12 @@ import io.realm.RealmObject;
  */
 public class DBNewRecord extends RealmObject {
 
-    public String UUID = "";
-    public Date objectCreatedDate = new Date();
+    private String UUID = "";
+    private Date objectCreatedDate = new Date();
 
-    public int modelType = PQueryModelType.unkown.ordinal();
-    public String modelPoint = "";
-    public Date modelCreatedDate;
+    private int modelType = PQueryModelType.unkown.ordinal();
+    private String modelPoint = "";
+    private Date modelCreatedDate;
 
     public String getUUID() {
         return UUID;

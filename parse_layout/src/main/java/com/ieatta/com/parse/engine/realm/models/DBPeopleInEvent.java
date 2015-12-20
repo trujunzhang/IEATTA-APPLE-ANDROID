@@ -10,11 +10,11 @@ import io.realm.RealmObject;
 public class DBPeopleInEvent extends RealmObject {
 
 
-    public String UUID = "";
-    public Date objectCreatedDate = new Date();
+    private String UUID = "";
+    private Date objectCreatedDate = new Date();
 
-    public String userRef = "";
-    public String eventRef = "";
+    private String userRef = "";
+    private String eventRef = "";
 
     public String getUUID() {
         return UUID;

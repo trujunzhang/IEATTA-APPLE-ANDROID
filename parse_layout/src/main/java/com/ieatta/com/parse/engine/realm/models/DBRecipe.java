@@ -9,15 +9,15 @@ import io.realm.RealmObject;
  */
 public class DBRecipe extends RealmObject {
 
-    public String UUID = "";
-    public Date objectCreatedDate = new Date();
-    public String displayName = "";
+    private String UUID = "";
+    private Date objectCreatedDate = new Date();
+    private String displayName = "";
 
-    public float cost = 0.0f;
-    public int likeCount = 0;
+    private float cost = 0.0f;
+    private int likeCount = 0;
 
-    public String eventRef = "";
-    public String orderedPeopleRef = "";
+    private String eventRef = "";
+    private String orderedPeopleRef = "";
 
     public String getUUID() {
         return UUID;

@@ -11,18 +11,18 @@ import io.realm.RealmObject;
  */
 public class DBEvent extends RealmObject {
 
-    public String UUID = "";
-    public Date objectCreatedDate = new Date();
-    public String displayName = "";
+    private String UUID = "";
+    private Date objectCreatedDate = new Date();
+    private String displayName = "";
 
-    public Date startDate = new Date();
-    public Date endDate;
-    public String whatToEat = "";
-    public String remarks = "";
-    public String waiter = "";
-    public String restaurantRef = "";
+    private Date startDate = new Date();
+    private Date endDate;
+    private String whatToEat = "";
+    private String remarks = "";
+    private String waiter = "";
+    private String restaurantRef = "";
 
-    public int flag = ParseModelFlag.Normal.ordinal();
+    private int flag = ParseModelFlag.Normal.ordinal();
 
     public String getUUID() {
         return UUID;

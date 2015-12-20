@@ -11,18 +11,18 @@ import io.realm.RealmObject;
  */
 public class DBPhoto extends RealmObject {
 
-    public String UUID = "";
-    public Date objectCreatedDate = new Date();
+    private String UUID = "";
+    private Date objectCreatedDate = new Date();
 
     // Required
-    public String restaurantRef = "";
+    private String restaurantRef = "";
 
-    public String usedRef = "";
-    public int usedType = PhotoUsedType.Photo_Used_Unknow.ordinal();
+    private String usedRef = "";
+    private int usedType = PhotoUsedType.Photo_Used_Unknow.ordinal();
 
     // MARK: Variable for pushing to server.
-    public String originalUrl = "";
-    public String thumbnailUrl = "";
+    private String originalUrl = "";
+    private String thumbnailUrl = "";
 
     public String getUUID() {
         return UUID;

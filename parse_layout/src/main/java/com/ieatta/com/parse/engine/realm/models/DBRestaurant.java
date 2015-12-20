@@ -9,9 +9,9 @@ import io.realm.RealmObject;
  */
 public class DBRestaurant extends RealmObject {
 
-    public String UUID = "";
-    public Date objectCreatedDate = new Date();
-    public String displayName = "";
+    private String UUID = "";
+    private Date objectCreatedDate = new Date();
+    private String displayName = "";
 
     private double latitude = 0.0;
     private double longitude = 0.0;

@@ -9,13 +9,13 @@ import io.realm.RealmObject;
  */
 public class DBTeam extends RealmObject {
 
-    public String UUID = "";
-    public Date objectCreatedDate = new Date();
-    public String displayName = "";
+    private String UUID = "";
+    private Date objectCreatedDate = new Date();
+    private String displayName = "";
 
 
-    public String email = "";
-    public String address = "";
+    private String email = "";
+    private String address = "";
 
     public String getUUID() {
         return UUID;

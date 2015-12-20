@@ -10,16 +10,16 @@ import io.realm.RealmObject;
  * Created by djzhang on 12/20/15.
  */
 public class DBReview extends RealmObject {
-    public String UUID = "";
-    public Date objectCreatedDate = new Date();
+    private String UUID = "";
+    private Date objectCreatedDate = new Date();
 
-    public String content = "";
+    private String content = "";
 
     /// Rate valuefrom 1 to 5
-    public int rate = 1;
-    public String userRef = "";// Point of Team
-    public String reviewRef = "";
-    public int reviewType = ReviewType.Review_Unknow.ordinal();
+    private int rate = 1;
+    private String userRef = "";// Point of Team
+    private String reviewRef = "";
+    private int reviewType = ReviewType.Review_Unknow.ordinal();
 
     public String getUUID() {
         return UUID;
