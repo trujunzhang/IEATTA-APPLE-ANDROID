@@ -77,7 +77,7 @@ public class ViewPagerFragment extends Fragment {
     ///   2.1 When pushing to server, push original and thumbnail images to server.
     ///   2.2 When pushed successfully, delete offline original image.
     ///   3.  When pulling from server, just download a thumbnail image from server.
-    private void showImage(Photo photo) {
+    private void showImage(final Photo photo) {
         Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
         if (image != null) {
             self.imageView.setImage(ImageSource.bitmap(image));
@@ -97,7 +97,7 @@ public class ViewPagerFragment extends Fragment {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        self.imageView.setImage(ImageSource.bitmap(task.getResult()));
+                        self.imageView.setImage(ImageSource.bitmap(CacheImageUtils.sharedInstance.getTakenPhoto(photo)));
                     }
                 }, 1);
                 return null;
