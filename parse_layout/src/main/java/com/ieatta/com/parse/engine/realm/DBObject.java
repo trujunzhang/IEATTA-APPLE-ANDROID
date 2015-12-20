@@ -6,7 +6,7 @@ import com.parse.ParseObject;
  * Created by djzhang on 12/20/15.
  */
 
-public class DBObject extends ParseObject{
+public class DBObject extends ParseObject {
 
     public DBObject() {
     }
@@ -14,8 +14,6 @@ public class DBObject extends ParseObject{
     public DBObject(String theClassName) {
         super(theClassName);
     }
-
-
 
 
 }

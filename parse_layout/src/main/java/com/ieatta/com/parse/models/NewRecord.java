@@ -1,12 +1,11 @@
 package com.ieatta.com.parse.models;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelConvert;
 import com.ieatta.com.parse.ParseModelSync;
-
-import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
-import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
+import com.parse.ParseObject;
 
 import java.util.Date;
 

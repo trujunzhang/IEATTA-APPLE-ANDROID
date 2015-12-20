@@ -1,13 +1,10 @@
 package com.ieatta.com.parse.async;
 
-import android.util.Log;
 import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.async.tasks.PullNewRecordFromServerTask;
 import com.ieatta.com.parse.async.tasks.PushNewRecordToServerTask;
 import com.ieatta.com.parse.models.NewRecord;
-
-import java.util.logging.Logger;
 
 import bolts.Continuation;
 import bolts.Task;

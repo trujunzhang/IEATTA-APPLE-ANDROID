@@ -2,7 +2,6 @@ package com.ieatta.com.parse;
 
 import android.yelp.com.commonlib.EnvironmentUtils;
 
-
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;

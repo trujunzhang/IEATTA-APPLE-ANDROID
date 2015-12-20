@@ -1,15 +1,11 @@
 package com.ieatta.com.parse.utils.cache;
 
-import android.graphics.Bitmap;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
-import com.ieatta.com.parse.models.Photo;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
-
-import bolts.Task;
 
 /**
  * Created by djzhang on 11/30/15.

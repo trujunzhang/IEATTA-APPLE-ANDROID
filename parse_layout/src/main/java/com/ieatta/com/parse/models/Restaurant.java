@@ -1,21 +1,19 @@
 package com.ieatta.com.parse.models;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
+import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
+import com.ieatta.com.parse.models.enums.PhotoUsedType;
+import com.ieatta.com.parse.models.enums.ReviewType;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+
+import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
-import bolts.TaskCompletionSource;
-
-import com.parse.ParseGeoPoint;
-import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.ieatta.com.parse.engine.realm.DBQuery;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
-
-import java.util.List;
 
 /**
  * Created by djzhang on 11/27/15.

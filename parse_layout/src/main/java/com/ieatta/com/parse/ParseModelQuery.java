@@ -4,17 +4,14 @@ import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
-
-import bolts.Continuation;
-import bolts.Task;
-
 import com.parse.ParseObject;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by djzhang on 11/27/15.
@@ -100,7 +97,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
     protected DBQuery getDBQueryInstance() {
         DBQuery<ParseObject> query = DBQuery.getDBQuery(this.getParseTableName());
-        return  query;
+        return query;
     }
 
     public DBQuery makeDBQuery() {

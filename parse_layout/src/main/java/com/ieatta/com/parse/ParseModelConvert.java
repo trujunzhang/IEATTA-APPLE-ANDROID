@@ -1,24 +1,11 @@
 package com.ieatta.com.parse;
 
-import android.yelp.com.commonlib.EnvironmentUtils;
-
-import com.ieatta.com.parse.models.NewRecord;
-import com.ieatta.com.parse.models.Team;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.ieatta.com.parse.models.enums.ParseModelFlag;
-import com.ieatta.com.parse.models.enums.PhotoUsedType;
-import com.ieatta.com.parse.models.enums.ReviewType;
-import com.lukazakrajsek.timeago.TimeAgo;
-import com.parse.ParseACL;
 import com.parse.ParseObject;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
 import bolts.Task;
-import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 12/6/15.

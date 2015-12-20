@@ -5,9 +5,9 @@ import android.yelp.com.commonlib.LogUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.async.SerialTasksManager;
+import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseObject;
-import com.ieatta.com.parse.engine.realm.DBQuery;
 
 import java.util.List;
 

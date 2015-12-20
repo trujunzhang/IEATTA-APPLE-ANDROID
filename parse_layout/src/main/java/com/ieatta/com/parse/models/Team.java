@@ -1,21 +1,16 @@
 package com.ieatta.com.parse.models;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-
-import bolts.Task;
-
-import com.parse.Parse;
-import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
+import com.parse.ParseObject;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import bolts.TaskCompletionSource;
+import bolts.Task;
 
 /**
  * Created by djzhang on 11/27/15.

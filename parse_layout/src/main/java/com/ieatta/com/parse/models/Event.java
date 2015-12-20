@@ -1,23 +1,21 @@
 package com.ieatta.com.parse.models;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-
-import bolts.Continuation;
-import bolts.Task;
-
-import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
-import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
-
 import com.parse.ParseObject;
 import com.twofortyfouram.assertion.Assertions;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 //import com.twofortyfouram.assertion;
 

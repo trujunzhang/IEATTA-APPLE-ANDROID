@@ -2,7 +2,6 @@ package com.ieatta.com.parse.utils.cache;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.view.View;
 
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -18,7 +17,6 @@ import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
-import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/30/15.

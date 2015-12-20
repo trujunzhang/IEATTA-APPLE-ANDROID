@@ -1,7 +1,6 @@
 package com.ieatta.com.parse;
 
 import com.parse.ParseObject;
-import com.ieatta.com.parse.engine.realm.DBQuery;
 
 import bolts.Continuation;
 import bolts.Task;

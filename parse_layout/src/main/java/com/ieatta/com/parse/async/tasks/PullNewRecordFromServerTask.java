@@ -1,24 +1,19 @@
 package com.ieatta.com.parse.async.tasks;
 
-import android.util.Log;
 import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.async.AsyncCacheInfo;
-import com.ieatta.com.parse.async.AsyncPullNotify;
 import com.ieatta.com.parse.async.SerialTasksManager;
-import com.ieatta.com.parse.models.NewRecord;
-import com.parse.Parse;
-import com.parse.ParseObject;
 import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.models.NewRecord;
+import com.parse.ParseObject;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
-import bolts.TaskCompletionSource;
 
 /**
  * Created by djzhang on 11/30/15.

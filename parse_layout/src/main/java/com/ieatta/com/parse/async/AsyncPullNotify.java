@@ -1,7 +1,6 @@
 package com.ieatta.com.parse.async;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
 
 /**
  * Created by djzhang on 11/30/15.

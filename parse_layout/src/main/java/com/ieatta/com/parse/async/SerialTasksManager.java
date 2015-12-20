@@ -5,8 +5,6 @@ import com.parse.ParseObject;
 import java.util.LinkedList;
 import java.util.List;
 
-import bolts.Task;
-
 /**
  * Created by djzhang on 12/16/15.
  */

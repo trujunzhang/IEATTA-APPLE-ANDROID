@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.yelp.com.commonlib.EnvironmentUtils;
 import android.yelp.com.commonlib.LogUtils;
 
-import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.models.NewRecord;
 
 import java.util.Date;
 

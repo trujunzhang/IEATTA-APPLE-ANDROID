@@ -1,21 +1,18 @@
 package com.ieatta.com.parse.models;
 
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-
-import bolts.Continuation;
-import bolts.Task;
-import bolts.TaskCompletionSource;
-
-import com.parse.ParseObject;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
-import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.ReviewType;
+import com.parse.ParseObject;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 /**
  * Created by djzhang on 11/27/15.
