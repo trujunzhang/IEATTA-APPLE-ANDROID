@@ -48,10 +48,10 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
         return this;
     }
 
-    @Override
-    public DBQuery<T> whereContainedIn(String key, Collection<? extends Object> values) {
-        return this;
-    }
+//    @Override
+//    public DBQuery<T> whereContainedIn(String key, Collection<? extends Object> values) {
+//        return this;
+//    }
 
     public ParseQuery<T> whereWithinKilometers(String key, ParseGeoPoint point, double maxDistance) {
 
