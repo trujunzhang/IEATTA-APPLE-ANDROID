@@ -11,7 +11,7 @@ import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 import com.lukazakrajsek.timeago.TimeAgo;
 import com.parse.ParseACL;
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -27,7 +27,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     private ParseModelAbstract self = this;
 
     static public ParseModelAbstract convertToModel(Object object, ParseModelAbstract instance) {
-        instance.readObjectLocal((DBObject) object);
+        instance.readObjectLocal((ParseObject) object);
 
         return instance;
     }
@@ -57,8 +57,8 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return PhotoUsedType.Photo_Used_Unknow;
     }
 
-    public DBObject createObject() {
-        return new DBObject(this.getParseTableName());
+    public ParseObject createObject() {
+        return new ParseObject(this.getParseTableName());
     }
 
     // MARK: Async methods.
@@ -123,7 +123,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         this.objectCreatedDate = new Date();
     }
 
-    public Object getValueFromObject(DBObject object, String key) {
+    public Object getValueFromObject(ParseObject object, String key) {
         return object.get(key);
     }
 
@@ -144,15 +144,15 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return new NewRecord(getModelType(), this.objectUUID, this.objectCreatedDate);
     }
 
-    // MARK: Support common methonds for writing DBObject.
-    public void writeAbstractCommon(DBObject object) {
+    // MARK: Support common methonds for writing ParseObject.
+    public void writeAbstractCommon(ParseObject object) {
         this.checkAndMakeObjectUUID(object);
 
         object.put(kPAPFieldObjectCreatedDateKey, this.objectCreatedDate);
         object.put(kPAPFieldFlagKey, ParseModelFlag.getInt(this.modelFlag));
     }
 
-    public void checkAndMakeObjectUUID(DBObject object) {
+    public void checkAndMakeObjectUUID(ParseObject object) {
         this.makeObjectUUID();
 
         object.put(kPAPFieldObjectUUIDKey, this.objectUUID);
@@ -160,9 +160,9 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public abstract Task<ParseModelAbstract> getFirstLocalModelArrayTask();
 
-    // MARK: Support common methonds for reading DBObject.
+    // MARK: Support common methonds for reading ParseObject.
 
-    public void readAbstractCommon(DBObject object) {
+    public void readAbstractCommon(ParseObject object) {
         Object theObjectUUID = this.getValueFromObject(object, kPAPFieldObjectUUIDKey);
         if (theObjectUUID != null) {
             this.objectUUID = (String) theObjectUUID;
@@ -178,26 +178,26 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         }
     }
 
-    public abstract void writeCommonObject(DBObject object);
+    public abstract void writeCommonObject(ParseObject object);
 
-    public void writeObject(DBObject object) {
+    public void writeObject(ParseObject object) {
         this.writeAbstractCommon(object);
         this.writeCommonObject(object);
     }
 
-    public void writeLocalObject(DBObject object) {
+    public void writeLocalObject(ParseObject object) {
         this.writeAbstractCommon(object);
         this.writeCommonObject(object);
     }
 
-    public abstract void readCommonObject(DBObject object);
+    public abstract void readCommonObject(ParseObject object);
 
-    public void readObject(DBObject object) {
+    public void readObject(ParseObject object) {
         this.readAbstractCommon(object);
         this.readCommonObject(object);
     }
 
-    public void readObjectLocal(DBObject object) {
+    public void readObjectLocal(ParseObject object) {
         this.readAbstractCommon(object);
         this.readCommonObject(object);
     }

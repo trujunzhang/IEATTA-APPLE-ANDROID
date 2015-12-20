@@ -7,7 +7,7 @@ import bolts.Continuation;
 import bolts.Task;
 import bolts.TaskCompletionSource;
 
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -70,13 +70,13 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(DBObject object) {
+    public void writeCommonObject(ParseObject object) {
         object.put(kPAPFieldUserKey, this.userRef);
         object.put(kPAPFieldEventKey, this.eventRef);
     }
 
     @Override
-    public void readCommonObject(DBObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theUserRef = this.getValueFromObject(object, kPAPFieldUserKey);
         if (theUserRef != null) {
             this.userRef = (String) theUserRef;

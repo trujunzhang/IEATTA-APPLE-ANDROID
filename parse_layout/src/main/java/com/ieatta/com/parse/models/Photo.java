@@ -14,7 +14,7 @@ import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
 import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.parse.ParseFile;
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -145,7 +145,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(DBObject object) {
+    public void writeCommonObject(ParseObject object) {
         object.put(kPAPFieldOSTypeKey, OS_TYPE);
         object.put(kPAPFieldLocalRestaurantKey, this.restaurantRef);
         object.put(kPAPFieldUsedRefKey, this.usedRef);
@@ -153,7 +153,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void writeObject(DBObject object) {
+    public void writeObject(ParseObject object) {
         super.writeObject(object);
 
         // Special: Used only for the online object.
@@ -162,7 +162,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void writeLocalObject(DBObject object) {
+    public void writeLocalObject(ParseObject object) {
         super.writeLocalObject(object);
 
         // Special: Used only for the offline object.
@@ -171,7 +171,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void readCommonObject(DBObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theRestaurantRef = this.getValueFromObject(object, kPAPFieldLocalRestaurantKey);
         if (theRestaurantRef != null) {
             this.restaurantRef = (String) theRestaurantRef;
@@ -189,7 +189,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void readObject(DBObject object) {
+    public void readObject(ParseObject object) {
         super.readObject(object);
 
         // Special: Used only for the online object.
@@ -205,7 +205,7 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public void readObjectLocal(DBObject object) {
+    public void readObjectLocal(ParseObject object) {
         super.readObjectLocal(object);
 
         // Special: Used only for the offline object.
@@ -302,9 +302,9 @@ public class Photo extends ParseModelSync {
     }
 
     public Task getRelatedPhoto() {
-        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).onSuccessTask(new Continuation<DBObject, Task<ParseModelAbstract>>() {
+        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
             @Override
-            public Task<ParseModelAbstract> then(Task<DBObject> task) throws Exception {
+            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
                 return self.convertToLocalModelTask(task);
             }
         }).onSuccessTask(new Continuation<ParseModelAbstract, Task<Bitmap>>() {

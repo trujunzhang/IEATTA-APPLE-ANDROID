@@ -9,7 +9,7 @@ import com.ieatta.com.parse.async.AsyncPullNotify;
 import com.ieatta.com.parse.async.SerialTasksManager;
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.Parse;
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 
 import java.util.Collection;
@@ -37,7 +37,7 @@ public class PullNewRecordFromServerTask {
     }
 
     private static Task executeSerialTasks(Task previous) {
-        List<DBObject> results = (List<DBObject>) previous.getResult();
+        List<ParseObject> results = (List<ParseObject>) previous.getResult();
         LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
 
         SerialTasksManager manager = new SerialTasksManager(results);
@@ -65,7 +65,7 @@ public class PullNewRecordFromServerTask {
      * <p/>
      * - parameter pulledNewRecordObject: A row data on the NewRecord table.
      */
-    private static Task PullObjectFromServerTask(DBObject pulledNewRecordObject) {
+    private static Task PullObjectFromServerTask(ParseObject pulledNewRecordObject) {
         final Date lastRecordCreateAt = pulledNewRecordObject.getCreatedAt();
 
         // 1. Create model instance from record's modelType.

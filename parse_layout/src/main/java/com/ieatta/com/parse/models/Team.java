@@ -6,7 +6,7 @@ import com.ieatta.com.parse.ParseModelSync;
 import bolts.Task;
 
 import com.parse.Parse;
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
@@ -88,14 +88,14 @@ public class Team extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(DBObject object) {
+    public void writeCommonObject(ParseObject object) {
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldEmailKey, this.email);
         object.put(kPAPFieldAddressKey, this.address);
     }
 
     @Override
-    public void readCommonObject(DBObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theDisplayName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theDisplayName != null) {
             this.displayName = (String) theDisplayName;
@@ -182,10 +182,10 @@ public class Team extends ParseModelSync {
     }
 
 
-    static List<Team> convertToTeamArray(List<DBObject> objectArray) {
+    static List<Team> convertToTeamArray(List<ParseObject> objectArray) {
         List<Team> array = new LinkedList<>();
 
-        for (DBObject object : objectArray) {
+        for (ParseObject object : objectArray) {
             array.add((Team) convertToModel(object, new Team()));
         }
 

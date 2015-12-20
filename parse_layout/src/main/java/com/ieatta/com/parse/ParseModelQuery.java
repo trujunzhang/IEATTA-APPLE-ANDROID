@@ -8,7 +8,7 @@ import com.parse.ParseACL;
 import bolts.Continuation;
 import bolts.Task;
 
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -99,7 +99,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     }
 
     protected DBQuery getDBQueryInstance() {
-        DBQuery<DBObject> query = DBQuery.getDBQuery(this.getParseTableName());
+        DBQuery<ParseObject> query = DBQuery.getDBQuery(this.getParseTableName());
 //        return new DBQuery(this.getParseTableName());
         return  query;
     }
@@ -121,9 +121,9 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     }
 
     public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final DBQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<DBObject>, Task<List<ParseModelAbstract>>>() {
+        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<List<ParseModelAbstract>>>() {
             @Override
-            public Task<List<ParseModelAbstract>> then(Task<List<DBObject>> task) throws Exception {
+            public Task<List<ParseModelAbstract>> then(Task<List<ParseObject>> task) throws Exception {
                 ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(type);
                 return instance.convertToParseModelsTask(task, true);
             }
@@ -136,9 +136,9 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
     @Override
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<DBObject, Task<ParseModelAbstract>>() {
+        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
             @Override
-            public Task<ParseModelAbstract> then(Task<DBObject> task) throws Exception {
+            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
                 return convertToLocalModelTask(task);
             }
         });
@@ -167,8 +167,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * @param previous
      * @return
      */
-    private static Task<DBObject> getFirstDBObjectTask(Task<List<DBObject>> previous) {
-        LinkedList<DBObject> objects = new LinkedList<>(previous.getResult());
+    private static Task<ParseObject> getFirstParseObjectTask(Task<List<ParseObject>> previous) {
+        LinkedList<ParseObject> objects = new LinkedList<>(previous.getResult());
         if (objects.size() == 0) {
 
             // **** Important ****
@@ -190,19 +190,19 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - returns: the first object's array,like [PFObject's instance].
      */
-    public Task<DBObject> getFirstLocalObjectArrayInBackground(DBQuery query) {
+    public Task<ParseObject> getFirstLocalObjectArrayInBackground(DBQuery query) {
         // **** Important ****
         // If not found Parse's findLocalObjectsInBackground
         return ParseModelQuery.findFirstLocalObjectInBackground(query)
-                .onSuccessTask(new Continuation<List<DBObject>, Task<DBObject>>() {
+                .onSuccessTask(new Continuation<List<ParseObject>, Task<ParseObject>>() {
                     @Override
-                    public Task<DBObject> then(Task<List<DBObject>> task) throws Exception {
-                        return ParseModelQuery.getFirstDBObjectTask(task);
+                    public Task<ParseObject> then(Task<List<ParseObject>> task) throws Exception {
+                        return ParseModelQuery.getFirstParseObjectTask(task);
                     }
                 });
     }
 
-    public static Task<List<DBObject>> findLocalObjectsInBackground(DBQuery query) {
+    public static Task<List<ParseObject>> findLocalObjectsInBackground(DBQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 
@@ -216,7 +216,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * @param query
      * @return
      */
-    private static Task<List<DBObject>> findFirstLocalObjectInBackground(DBQuery query) {
+    private static Task<List<ParseObject>> findFirstLocalObjectInBackground(DBQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
         // *** Just get the first object.
@@ -225,8 +225,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query.findInBackground();
     }
 
-    private DBObject makeObject() {
-        DBObject object = this.createObject();
+    private ParseObject makeObject() {
+        ParseObject object = this.createObject();
 
         ParseACL acl = this.getACL();
         object.setACL(acl);
@@ -238,7 +238,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     //        offline Store
     // =============================================================================
     public Task<Void> pinInBackgroundForModel() {
-        DBObject object = makeObject();
+        ParseObject object = makeObject();
         this.writeLocalObject(object);
 
         return object.pinInBackground("Offline");
@@ -257,7 +257,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     //        Online Store
     // =============================================================================
     Task<Void> saveInBackgroundTask() {
-        DBObject object = makeObject();
+        ParseObject object = makeObject();
         this.writeObject(object);
 
         return object.saveInBackground();
@@ -269,10 +269,10 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter query:           query's instance
      */
     public Task<Void> unpinInBackground(DBQuery query) {
-        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<DBObject, Task<Void>>() {
+        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
             @Override
-            public Task<Void> then(Task<DBObject> task) throws Exception {
-                DBObject object = task.getResult();
+            public Task<Void> then(Task<ParseObject> task) throws Exception {
+                ParseObject object = task.getResult();
                 if (object != null) {
                     return ParseModelQuery.unpinObjectInBackground(object);
                 }
@@ -307,7 +307,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter object:          PFObject's instance
      * - parameter completionBlock: callback variable
      */
-    public static Task<Void> unpinObjectInBackground(DBObject object) {
+    public static Task<Void> unpinObjectInBackground(ParseObject object) {
         return object.unpinInBackground("Offline");
     }
 

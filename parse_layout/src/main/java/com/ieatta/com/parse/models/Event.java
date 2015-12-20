@@ -6,13 +6,13 @@ import com.ieatta.com.parse.ParseModelSync;
 import bolts.Continuation;
 import bolts.Task;
 
-import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
+import com.parse.ParseObject;
 import com.twofortyfouram.assertion.Assertions;
 
 import java.util.Calendar;
@@ -112,7 +112,7 @@ public class Event extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(DBObject object) {
+    public void writeCommonObject(ParseObject object) {
         Assertions.assertNotEmpty(this.restaurantRef, "Must setup restaurantRef.");
 
         object.put(kPAPFieldDisplayNameKey, this.displayName);
@@ -128,7 +128,7 @@ public class Event extends ParseModelSync {
     }
 
     @Override
-    public void readCommonObject(DBObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theRestaurantRef = this.getValueFromObject(object, kPAPFieldLocalRestaurantKey);
         if (theRestaurantRef != null) {
             this.restaurantRef = (String) theRestaurantRef;

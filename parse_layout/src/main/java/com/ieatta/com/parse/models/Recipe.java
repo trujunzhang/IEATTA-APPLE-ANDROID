@@ -6,7 +6,7 @@ import com.ieatta.com.parse.ParseModelSync;
 import bolts.Continuation;
 import bolts.Task;
 
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -105,7 +105,7 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(DBObject object) {
+    public void writeCommonObject(ParseObject object) {
 //        assert(this.eventRef.isEmpty == false, "Must setup eventRef.")
 //        assert(this.orderedPeopleRef.isEmpty == false, "Must setup orderedPeopleRef.")
 
@@ -117,7 +117,7 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public void readCommonObject(DBObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theName != null) {
             this.displayName = (String) theName;

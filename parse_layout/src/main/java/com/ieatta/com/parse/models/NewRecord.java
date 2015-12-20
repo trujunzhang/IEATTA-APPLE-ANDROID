@@ -3,7 +3,7 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelConvert;
 import com.ieatta.com.parse.ParseModelSync;
 
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -44,7 +44,7 @@ public class NewRecord extends ParseModelSync {
     }
 
 
-    public static ParseModelAbstract getRecordedInstance(DBObject pulledNewRecordObject) {
+    public static ParseModelAbstract getRecordedInstance(ParseObject pulledNewRecordObject) {
         NewRecord newRecord = (NewRecord) ParseModelConvert.convertToOnlineModel(pulledNewRecordObject, new NewRecord());
 
         return newRecord.getRecordedModel();
@@ -76,14 +76,14 @@ public class NewRecord extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(DBObject object) {
+    public void writeCommonObject(ParseObject object) {
         object.put(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));// ***Important***
         object.put(kPAPFieldModelPointKey, this.modelPoint);
         object.put(kPAPFieldModelCreatedDateKey, this.modelCreatedDate);
     }
 
     @Override
-    public void readCommonObject(DBObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theModelType = this.getValueFromObject(object, kPAPFieldModelTypeKey);
         if (theModelType != null) {
             this.modelType = PQueryModelType.fromInteger(((int) theModelType));

@@ -8,7 +8,7 @@ import bolts.Task;
 import bolts.TaskCompletionSource;
 
 import com.parse.ParseGeoPoint;
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -96,14 +96,14 @@ public class Restaurant extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(DBObject object) {
+    public void writeCommonObject(ParseObject object) {
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldLocationKey, this.location);
         object.put(kPAPFieldAddressKey, this.googleMapAddress);
     }
 
     @Override
-    public void readCommonObject(DBObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theDisplayName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theDisplayName != null) {
             this.displayName = (String) theDisplayName;

@@ -7,7 +7,7 @@ import bolts.Continuation;
 import bolts.Task;
 import bolts.TaskCompletionSource;
 
-import com.ieatta.com.parse.engine.realm.DBObject;
+import com.parse.ParseObject;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.engine.realm.DBQuery;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -97,7 +97,7 @@ public class Review extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(DBObject object) {
+    public void writeCommonObject(ParseObject object) {
         object.put(kPAPFieldContentKey, this.content);
         object.put(kPAPFieldRateKey, this.rate);
         object.put(kPAPFieldUserRefKey, this.userRef);
@@ -106,7 +106,7 @@ public class Review extends ParseModelSync {
     }
 
     @Override
-    public void readCommonObject(DBObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theContent = this.getValueFromObject(object, kPAPFieldContentKey);
         if (theContent != null) {
             this.content = (String) theContent;
@@ -149,9 +149,9 @@ public class Review extends ParseModelSync {
 
     public Task<Integer> queryRatingInReviews() {
         // First of all, query all reviews.
-        return ParseModelQuery.findLocalObjectsInBackground(this.createQueryForReviewRef()).onSuccess(new Continuation<List<DBObject>, Integer>() {
+        return ParseModelQuery.findLocalObjectsInBackground(this.createQueryForReviewRef()).onSuccess(new Continuation<List<ParseObject>, Integer>() {
             @Override
-            public Integer then(Task<List<DBObject>> task) throws Exception {
+            public Integer then(Task<List<ParseObject>> task) throws Exception {
                 List<ParseModelAbstract> array = new Review().convertToParseModelArray(task.getResult(), true);
                 int rating = Review.getRatingInReview(array);
                 return rating;
