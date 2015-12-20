@@ -130,9 +130,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
+    protected void onResume() {
+        super.onResume();
         IntentCache.sharedInstance.orderedPeople = new LinkedList<>();
     }
 
