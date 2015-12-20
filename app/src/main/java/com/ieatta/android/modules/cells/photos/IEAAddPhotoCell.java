@@ -6,6 +6,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.ieatta.android.modules.common.edit.AddPhotoModel;
 
 public class IEAAddPhotoCell extends IEAViewHolder {
     public static CellType  getType() {
@@ -20,6 +21,7 @@ public class IEAAddPhotoCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
+        AddPhotoModel model = (AddPhotoModel) value;
 
     }
 }
