@@ -20,7 +20,6 @@ public class IEAAddPhotoCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        IEANearRestaurantMore more  = (IEANearRestaurantMore) value;
 
     }
 }

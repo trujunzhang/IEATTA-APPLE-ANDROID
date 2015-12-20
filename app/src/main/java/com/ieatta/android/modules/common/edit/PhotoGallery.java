@@ -6,6 +6,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
+import com.ieatta.android.modules.cells.photos.IEAAddPhotoCell;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -39,6 +40,7 @@ public class PhotoGallery extends EditBaseCellModel {
         self.collectionView = collectionView;
         self.manager = manager;
 
+        self.manager.memoryStorage.setSectionFooterModel(null,0, IEAAddPhotoCell.getType());
         self.manager.memoryStorage.setItems(self.viewController.getPhotoGalleryItems(), 0);
     }
 
