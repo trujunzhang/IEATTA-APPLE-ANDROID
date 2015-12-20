@@ -377,28 +377,28 @@ public class SubsamplingScaleImageView extends View {
         reset(true);
         if (state != null) { restoreState(state); }
 
-        if (previewSource != null) {
-            if (imageSource.getBitmap() != null) {
-                throw new IllegalArgumentException("Preview image cannot be used when a bitmap is provided for the main image");
-            }
-            if (imageSource.getSWidth() <= 0 || imageSource.getSHeight() <= 0) {
-                throw new IllegalArgumentException("Preview image cannot be used unless dimensions are provided for the main image");
-            }
-            this.sWidth = imageSource.getSWidth();
-            this.sHeight = imageSource.getSHeight();
-            this.pRegion = previewSource.getSRegion();
-            if (previewSource.getBitmap() != null) {
-                this.bitmapIsCached = previewSource.isCached();
-                onPreviewLoaded(previewSource.getBitmap());
-            } else {
-                Uri uri = previewSource.getUri();
-                if (uri == null && previewSource.getResource() != null) {
-                    uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getContext().getPackageName() + "/" + previewSource.getResource());
-                }
-                BitmapLoadTask task = new BitmapLoadTask(this, getContext(), bitmapDecoderFactory, uri, true);
-                execute(task);
-            }
-        }
+//        if (previewSource != null) {
+//            if (imageSource.getBitmap() != null) {
+//                throw new IllegalArgumentException("Preview image cannot be used when a bitmap is provided for the main image");
+//            }
+//            if (imageSource.getSWidth() <= 0 || imageSource.getSHeight() <= 0) {
+//                throw new IllegalArgumentException("Preview image cannot be used unless dimensions are provided for the main image");
+//            }
+//            this.sWidth = imageSource.getSWidth();
+//            this.sHeight = imageSource.getSHeight();
+//            this.pRegion = previewSource.getSRegion();
+//            if (previewSource.getBitmap() != null) {
+//                this.bitmapIsCached = previewSource.isCached();
+//                onPreviewLoaded(previewSource.getBitmap());
+//            } else {
+//                Uri uri = previewSource.getUri();
+//                if (uri == null && previewSource.getResource() != null) {
+//                    uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getContext().getPackageName() + "/" + previewSource.getResource());
+//                }
+//                BitmapLoadTask task = new BitmapLoadTask(this, getContext(), bitmapDecoderFactory, uri, true);
+//                execute(task);
+//            }
+//        }
 
         if (imageSource.getBitmap() != null && imageSource.getSRegion() != null) {
             onImageLoaded(Bitmap.createBitmap(imageSource.getBitmap(), imageSource.getSRegion().left, imageSource.getSRegion().top, imageSource.getSRegion().width(), imageSource.getSRegion().height()), ORIENTATION_0, false);

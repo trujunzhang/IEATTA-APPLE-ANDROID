@@ -71,12 +71,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
         self.queryPeopleOrderedList();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
-        IntentCache.sharedInstance.orderedPeople = new LinkedList<>();
-    }
 
     private void queryPeopleOrderedList() {
         Team.queryTeam().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {

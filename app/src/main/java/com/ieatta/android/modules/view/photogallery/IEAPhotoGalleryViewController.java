@@ -71,7 +71,12 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        IntentCache.sharedInstance.photoGalleryItem = new LinkedList<>();
+    }
 
     protected void configurePhotoGallery() {
         // Register Cells by class.

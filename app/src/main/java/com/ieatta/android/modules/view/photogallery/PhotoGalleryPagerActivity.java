@@ -66,12 +66,7 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
-        IntentCache.sharedInstance.photoGalleryItem = new LinkedList<>();
-    }
 
     @Override
     public void onBackPressed() {

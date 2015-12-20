@@ -130,6 +130,13 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        IntentCache.sharedInstance.orderedPeople = new LinkedList<>();
+    }
+
     /// Add rows for section "Ordered People".
     private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople) {
         setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event), EventDetailSection.sectionOrderedPeople.ordinal());
