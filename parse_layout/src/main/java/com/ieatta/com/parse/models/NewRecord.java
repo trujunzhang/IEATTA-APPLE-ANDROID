@@ -44,7 +44,7 @@ public class NewRecord extends ParseModelSync {
     }
 
 
-    public static ParseModelAbstract getRecordedInstance( ParseObject pulledNewRecordObject)  {
+    public static ParseModelAbstract getRecordedInstance(ParseObject pulledNewRecordObject) {
         NewRecord newRecord = (NewRecord) ParseModelConvert.convertToOnlineModel(pulledNewRecordObject, new NewRecord());
 
         return newRecord.getRecordedModel();

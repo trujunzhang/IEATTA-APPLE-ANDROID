@@ -38,7 +38,7 @@ public class BitmapUtils {
         return inSampleSize;
     }
 
-    private static int getRotation(String fileName){
+    private static int getRotation(String fileName) {
         try {
             File imageCaptureFile = new File(fileName);
             ExifInterface exif = new ExifInterface(imageCaptureFile.getAbsolutePath());
@@ -46,7 +46,7 @@ public class BitmapUtils {
             if (orientation == ExifInterface.ORIENTATION_ROTATE_90) return 90;
             if (orientation == ExifInterface.ORIENTATION_ROTATE_180) return 180;
             if (orientation == ExifInterface.ORIENTATION_ROTATE_270) return 270;
-        }catch(IOException e) {
+        } catch (IOException e) {
             Log.e(TAG, "Failed to read rotation from file: " + fileName, e);
         }
         return 0;
@@ -56,11 +56,11 @@ public class BitmapUtils {
         if (rotation == 0)
             return bmp;
 
-        try{
+        try {
             Matrix matrix = new Matrix();
             matrix.preRotate(rotation);
             return Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
-        }finally{
+        } finally {
             bmp.recycle();
         }
     }
@@ -83,8 +83,8 @@ public class BitmapUtils {
         try {
             thumb = BitmapFactory.decodeFile(fileName, options);
             return rotate(thumb, rotation);
-        }finally {
-            if (thumb!=null) {
+        } finally {
+            if (thumb != null) {
                 thumb.recycle();
             }
         }
@@ -92,11 +92,11 @@ public class BitmapUtils {
 
     public static void createThumb(String fileName, int reqWidth, int reqHeight, String thumbFile) {
         Bitmap thumb = null;
-        try{
+        try {
             thumb = decodeSampledBitmap(fileName, reqWidth, reqHeight);
             BitmapUtils.saveBitmap(thumb, thumbFile);
-        }finally {
-            if (thumb!=null) {
+        } finally {
+            if (thumb != null) {
                 thumb.recycle();
             }
         }

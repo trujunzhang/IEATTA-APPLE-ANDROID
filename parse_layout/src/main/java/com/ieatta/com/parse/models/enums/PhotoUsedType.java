@@ -10,7 +10,7 @@ public enum PhotoUsedType {
     Photo_Used_People,
     Photo_Used_Unknow;// Default
 
-    public static int getInt(PhotoUsedType type){
+    public static int getInt(PhotoUsedType type) {
         return type.ordinal();
     }
 

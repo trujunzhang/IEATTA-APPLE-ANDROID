@@ -8,7 +8,7 @@ public enum ParseModelFlag {
     Normal,
     deleted;
 
-    public static int getInt(ParseModelFlag type){
+    public static int getInt(ParseModelFlag type) {
         return type.ordinal();
     }
 

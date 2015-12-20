@@ -25,7 +25,7 @@ import java.util.List;
  * Created by djzhang on 11/27/15.
  */
 public class Event extends ParseModelSync {
-private Event self = this;
+    private Event self = this;
     // Class key
     private static final String kPAPClassKey = "Event";
 

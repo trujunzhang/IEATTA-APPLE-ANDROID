@@ -160,13 +160,12 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * Because Task will return Exception,'no results found for query'(code is com.parse.ParseException.OBJECT_NOT_FOUND),
      * when no the first object found.
      *
-     *
      * @param previous
      * @return
      */
     private static Task<ParseObject> getFirstParseObjectTask(Task<List<ParseObject>> previous) {
         LinkedList<ParseObject> objects = new LinkedList<>(previous.getResult());
-        if(objects.size() == 0){
+        if (objects.size() == 0) {
 
             // **** Important ****
             // Here, return value is 'null' means that not found object.
@@ -187,7 +186,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * <p/>
      * - returns: the first object's array,like [PFObject's instance].
      */
-    public  Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
+    public Task<ParseObject> getFirstLocalObjectArrayInBackground(ParseQuery query) {
         // **** Important ****
         // If not found Parse's findLocalObjectsInBackground
         return ParseModelQuery.findFirstLocalObjectInBackground(query)
@@ -304,7 +303,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter object:          PFObject's instance
      * - parameter completionBlock: callback variable
      */
-    public static  Task<Void> unpinObjectInBackground(ParseObject object) {
+    public static Task<Void> unpinObjectInBackground(ParseObject object) {
         return object.unpinInBackground("Offline");
     }
 

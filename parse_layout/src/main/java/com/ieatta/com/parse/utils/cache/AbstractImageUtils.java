@@ -32,15 +32,15 @@ import bolts.TaskCompletionSource;
 public abstract class AbstractImageUtils {
     private AbstractImageUtils self = this;
 
-    protected abstract UnlimitedDiskCache getImageCache() ;
+    protected abstract UnlimitedDiskCache getImageCache();
 
 
     /**
-     Query the disk cache's url path.
-
-     - parameter objectUUID: Photo's objectUUID
-
-     - returns: Image Cache's url
+     * Query the disk cache's url path.
+     * <p/>
+     * - parameter objectUUID: Photo's objectUUID
+     * <p/>
+     * - returns: Image Cache's url
      */
     public File getCacheImageUrl(String objectUUID) {
         return this.getImageCache().get(objectUUID);
@@ -52,7 +52,7 @@ public abstract class AbstractImageUtils {
 
     public boolean diskImageExistsWithKey(Photo model) {
         File file = this.getImageCache().get(ParseModelAbstract.getPoint(model));
-        if(file == null || file.exists() == false){
+        if (file == null || file.exists() == false) {
             return false;
         }
         return true;
@@ -63,15 +63,15 @@ public abstract class AbstractImageUtils {
     }
 
     /**
-     Query the disk cache synchronously after checking the memory cache.
-
-     - parameter objectUUID: photo's objectUUID
-
-     - returns: Image Cache
+     * Query the disk cache synchronously after checking the memory cache.
+     * <p/>
+     * - parameter objectUUID: photo's objectUUID
+     * <p/>
+     * - returns: Image Cache
      */
     public Bitmap getTakenPhoto(String objectUUID) {
         File imageFile = this.getTakenPhotoFile(objectUUID);
-        if(imageFile == null || imageFile.exists() == false){
+        if (imageFile == null || imageFile.exists() == false) {
             return null;
         }
 
@@ -79,33 +79,34 @@ public abstract class AbstractImageUtils {
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
         return BitmapFactory.decodeFile(imageFile.getAbsolutePath(), options);
     }
+
     /**
-     Query the disk cache synchronously after checking the memory cache.
-
-     - parameter model: Photo's instance
-
-     - returns: Image Cache
+     * Query the disk cache synchronously after checking the memory cache.
+     * <p/>
+     * - parameter model: Photo's instance
+     * <p/>
+     * - returns: Image Cache
      */
     public Bitmap getTakenPhoto(Photo model) {
-       return this.getTakenPhoto(ParseModelAbstract.getPoint(model));
+        return this.getTakenPhoto(ParseModelAbstract.getPoint(model));
     }
 
-    public List listCacheImageNames(){
+    public List listCacheImageNames() {
         return this.getImageCache().getCacheFileList();
     }
 
     /**
-     Save photo's image as a offline file.
-
-     - parameter image:           saved image
-     - parameter model:           photo's instance
-     - parameter completionBlock: callback variable
+     * Save photo's image as a offline file.
+     * <p/>
+     * - parameter image:           saved image
+     * - parameter model:           photo's instance
+     * - parameter completionBlock: callback variable
      */
-    public Task<Bitmap> saveTakenPhoto(Bitmap image,Photo model) {
+    public Task<Bitmap> saveTakenPhoto(Bitmap image, Photo model) {
 
         // ** Important ** Must store to Disk.
         try {
-            this.getImageCache().save(ParseModelAbstract.getPoint(model),image);
+            this.getImageCache().save(ParseModelAbstract.getPoint(model), image);
         } catch (IOException e) {
             return Task.forError(e);
         }
@@ -114,12 +115,12 @@ public abstract class AbstractImageUtils {
     }
 
     /**
-     Generate a specail type image, then save it as the offline image.
-
-     - parameter image: taken photo
-     - parameter model: photo's instance
-
-     - returns: task's instance
+     * Generate a specail type image, then save it as the offline image.
+     * <p/>
+     * - parameter image: taken photo
+     * - parameter model: photo's instance
+     * <p/>
+     * - returns: task's instance
      */
     public Task<Bitmap> generateTakenPhoto(Bitmap image, Photo model) {
         return Task.forResult(null);
@@ -136,7 +137,7 @@ public abstract class AbstractImageUtils {
 
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                tcs.setError(new Exception("Download image failed!",failReason.getCause()));
+                tcs.setError(new Exception("Download image failed!", failReason.getCause()));
             }
 
             @Override
@@ -153,21 +154,21 @@ public abstract class AbstractImageUtils {
         return tcs.getTask();
     }
 
-    public Task<Bitmap> downloadImageFromServer(final Photo model,String url) {
+    public Task<Bitmap> downloadImageFromServer(final Photo model, String url) {
 
         /// If the image already exist on the cache folder, we don't download it from the Parse.com.
         Bitmap bitmap = this.getTakenPhoto(model);
-        if(bitmap != null){
+        if (bitmap != null) {
             return Task.forResult(bitmap);
         }
-        if(url == null || url.isEmpty() == true){
+        if (url == null || url.isEmpty() == true) {
 //            return BFTask(error: NSError.getError(IEAErrorType.EmptyURL, description: "\(model.printDescription())"))
             return Task.forError(new NullPointerException(""));
         }
 
-        return this.downloadImageWithURL(url).onSuccessTask(new Continuation<Bitmap, Task<Bitmap> >() {
+        return this.downloadImageWithURL(url).onSuccessTask(new Continuation<Bitmap, Task<Bitmap>>() {
             @Override
-            public Task<Bitmap>  then(Task<Bitmap> task) throws Exception {
+            public Task<Bitmap> then(Task<Bitmap> task) throws Exception {
                 return self.saveTakenPhoto(task.getResult(), model);
             }
         });

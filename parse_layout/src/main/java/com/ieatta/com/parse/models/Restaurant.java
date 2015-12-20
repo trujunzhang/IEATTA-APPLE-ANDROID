@@ -21,8 +21,8 @@ import java.util.List;
  * Created by djzhang on 11/27/15.
  */
 public class Restaurant extends ParseModelSync {
-    private  Restaurant self = this;
-    public static String Default_FormattedAddress ="";
+    private Restaurant self = this;
+    public static String Default_FormattedAddress = "";
 
     public static final double PAWRestaurantMaximumSearchDistance = 1; // Value in kilometers
 

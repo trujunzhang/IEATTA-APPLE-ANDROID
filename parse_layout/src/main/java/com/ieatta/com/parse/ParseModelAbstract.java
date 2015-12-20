@@ -92,11 +92,11 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     public String displayName = "";
     public ParseModelFlag modelFlag = ParseModelFlag.Normal;
 
-    public String intentUUID  = this.getUUID();
+    public String intentUUID = this.getUUID();
 
     public Date objectCreatedDate = new Date();
 
-    public int sampleFileName ;// Image's offline Image Path.
+    public int sampleFileName;// Image's offline Image Path.
 
     public ParseModelAbstract(String objectUUID) {
         this.objectUUID = objectUUID;
@@ -228,13 +228,12 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     }
 
     /**
-     *
      * @param previous List<Restaurant>
      * @return
      */
     static public List<String> getModelPoints(Task<List<ParseModelAbstract>> previous) {
         Object object = previous;
-        List<ParseModelAbstract> fetchedModels =previous.getResult();
+        List<ParseModelAbstract> fetchedModels = previous.getResult();
 
         LinkedList<String> points = new LinkedList<>();
 
@@ -243,7 +242,6 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         }
         return points;
     }
-
 
 
     // MARK: Description

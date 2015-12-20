@@ -56,7 +56,7 @@ public class ActivityModelDebug {
 
     public static ParseModelAbstract getReviewForModel() {
         Restaurant model = new Restaurant();
-        model.objectUUID = "828DB1D6-67AB-467D-8D98-76C1938C5306";
+        model.objectUUID = "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04";
 
         return model;
     }

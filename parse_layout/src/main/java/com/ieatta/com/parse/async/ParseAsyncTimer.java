@@ -61,11 +61,11 @@ public class ParseAsyncTimer {
     };
 
 
-    private void everyTask(){
+    private void everyTask() {
         ParseAsyncHandler.sharedInstance.executeParseAsyncHandler();
     }
 
-    public void prepareTimer(){
+    public void prepareTimer() {
         //      ScheduledFuture<?> oneShotFuture = sch.schedule(oneShotTask, 5, TimeUnit.SECONDS);
         //      ScheduledFuture<?> delayFuture = sch.scheduleWithFixedDelay(delayTask, 5, 5, TimeUnit.SECONDS);
         ScheduledFuture<?> periodicFuture = sch.scheduleAtFixedRate(periodicTask, 5, 5, TimeUnit.SECONDS);

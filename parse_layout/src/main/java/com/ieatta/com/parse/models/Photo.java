@@ -302,9 +302,9 @@ public class Photo extends ParseModelSync {
     }
 
     public Task getRelatedPhoto() {
-        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract> >() {
+        return this.getFirstLocalObjectArrayInBackground(this.createQueryForUsedRef()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
             @Override
-            public Task<ParseModelAbstract>  then(Task<ParseObject> task) throws Exception {
+            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
                 return self.convertToLocalModelTask(task);
             }
         }).onSuccessTask(new Continuation<ParseModelAbstract, Task<Bitmap>>() {
@@ -318,7 +318,7 @@ public class Photo extends ParseModelSync {
     public Task<Bitmap> getThumbanilImage() {
         Bitmap image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(ParseModelAbstract.getPoint(this));
         if (image != null) {
-            return  Task.forResult(image);
+            return Task.forResult(image);
         }
 //            return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "When fetching Image for NewPhoto, and the photo's UUID is \(objectUUID)"))
         return Task.forError(new FileNotFoundException(""));

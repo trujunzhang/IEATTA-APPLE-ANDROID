@@ -14,19 +14,19 @@ import bolts.Task;
 /**
  * Created by djzhang on 11/30/15.
  */
-public class CacheImageUtils extends AbstractImageUtils{
+public class CacheImageUtils extends AbstractImageUtils {
 
-    public final static CacheImageUtils sharedInstance  = new  CacheImageUtils();
+    public final static CacheImageUtils sharedInstance = new CacheImageUtils();
 
     /**
-     This SDImageCache constructor's namespace is "Cache". Store images on the folder: "Cache/com.virtualbreak.IEATTA.cache"
-
-     - returns: SDImageCache's instance
+     * This SDImageCache constructor's namespace is "Cache". Store images on the folder: "Cache/com.virtualbreak.IEATTA.cache"
+     * <p/>
+     * - returns: SDImageCache's instance
      */
     @Override
     protected UnlimitedDiskCache getImageCache() {
         File cacheDir = StorageUtils.getCacheDirectory(EnvironmentUtils.sharedInstance.getGlobalContext(), "cache");
-        return new  UnlimitedDiskCache(cacheDir);
+        return new UnlimitedDiskCache(cacheDir);
     }
 
     public void clearCacheDisk() {

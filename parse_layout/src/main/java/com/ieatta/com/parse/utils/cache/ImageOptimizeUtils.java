@@ -15,15 +15,15 @@ import java.io.File;
 public class ImageOptimizeUtils {
 
     /**
-     Get a PFFile instance of the original image.
-
-     - parameter photo: photo's instance
-
-     - returns:  PFFile's instance of the original image
+     * Get a PFFile instance of the original image.
+     * <p/>
+     * - parameter photo: photo's instance
+     * <p/>
+     * - returns:  PFFile's instance of the original image
      */
     public static ParseFile getPFFileForOrginalImage(Photo photo) {
         File _originalImage = OriginalImageUtils.sharedInstance.getTakenPhotoFile(ParseModelAbstract.getPoint(photo));
-        if(_originalImage!=null){
+        if (_originalImage != null) {
             return new ParseFile(_originalImage);
         }
 
@@ -31,15 +31,15 @@ public class ImageOptimizeUtils {
     }
 
     /**
-     Get a PFFile instance of the thumbnail image.
-
-     - parameter photo: photo's instance
-
-     - returns:  PFFile's instance of the thumbnail image
+     * Get a PFFile instance of the thumbnail image.
+     * <p/>
+     * - parameter photo: photo's instance
+     * <p/>
+     * - returns:  PFFile's instance of the thumbnail image
      */
     public static ParseFile getPFFileForThumbnailImage(Photo photo) {
         File _thumbnailImage = ThumbnailImageUtils.sharedInstance.getTakenPhotoFile(ParseModelAbstract.getPoint(photo));
-        if(_thumbnailImage != null){
+        if (_thumbnailImage != null) {
             return new ParseFile(_thumbnailImage);
         }
 
@@ -50,7 +50,7 @@ public class ImageOptimizeUtils {
         Bitmap orignailImage = Thumbnail.create(anImage).centerCrop(560, 560).getBitmap();
 //        let orignailImage = anImage.resizedImageWithContentMode(.ScaleAspectFit, bounds: CGSizeMake(560.0, 560.0), interpolationQuality: .Medium)
 
-        return  orignailImage;
+        return orignailImage;
     }
 
     public static Bitmap generateThumbnailImage(Bitmap anImage) {

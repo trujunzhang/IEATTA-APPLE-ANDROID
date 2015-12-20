@@ -16,29 +16,29 @@ import bolts.Task;
 /**
  * Created by djzhang on 11/30/15.
  */
-public class OriginalImageUtils extends AbstractImageUtils{
+public class OriginalImageUtils extends AbstractImageUtils {
 
-public     final static OriginalImageUtils sharedInstance  = new  OriginalImageUtils();
+    public final static OriginalImageUtils sharedInstance = new OriginalImageUtils();
 
     /**
-     This SDImageCache constructor's namespace is "Original". Store images on the folder: "Original/com.virtualbreak.IEATTA.original"
-
-     - returns: SDImageCache's instance
+     * This SDImageCache constructor's namespace is "Original". Store images on the folder: "Original/com.virtualbreak.IEATTA.original"
+     * <p/>
+     * - returns: SDImageCache's instance
      */
     @Override
     protected UnlimitedDiskCache getImageCache() {
         File cacheDir = StorageUtils.getCacheDirectory(EnvironmentUtils.sharedInstance.getGlobalContext(), "original");
-        return new  UnlimitedDiskCache(cacheDir);
+        return new UnlimitedDiskCache(cacheDir);
     }
 
     /**
-     Remove offline original image.
-
-     - parameter photo: photo's instance
+     * Remove offline original image.
+     * <p/>
+     * - parameter photo: photo's instance
      */
     public Task<Boolean> removeOriginalImage(Photo photo) {
         boolean imageExist = this.diskImageExistsWithKey(photo);
-        if(imageExist == false){
+        if (imageExist == false) {
             //return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "\(photo.printDescription())"))
             return Task.forError(new FileNotFoundException(""));
         }
@@ -51,6 +51,6 @@ public     final static OriginalImageUtils sharedInstance  = new  OriginalImageU
     public Task<Bitmap> generateTakenPhoto(Bitmap image, Photo model) {
         Bitmap originalImage = ImageOptimizeUtils.generateOriginalImage(image);
 
-        return super.saveTakenPhoto(originalImage,  model);
+        return super.saveTakenPhoto(originalImage, model);
     }
 }
