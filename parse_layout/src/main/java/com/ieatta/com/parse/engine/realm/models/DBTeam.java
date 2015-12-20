@@ -1,5 +1,7 @@
 package com.ieatta.com.parse.engine.realm.models;
 
+import com.ieatta.com.parse.models.Team;
+
 import java.util.Date;
 
 import io.realm.RealmObject;
@@ -12,7 +14,6 @@ public class DBTeam extends RealmObject {
     private String UUID = "";
     private Date objectCreatedDate = new Date();
     private String displayName = "";
-
 
     private String email = "";
     private String address = "";
