@@ -4,7 +4,7 @@
     android:background="@drawable/button_add_media_cell"
     android:layout_width="@dimen/Gallery_Cell_Collection_Width"
     android:layout_height="@dimen/Gallery_Cell_Collection_Height"
-    style="@style/DarkButtonStyle"
+
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
@@ -15,5 +15,6 @@
         android:text="@string/add"
         android:includeFontPadding="false"
         android:drawableTop="@drawable/camera_big_gray"
-        android:drawablePadding="@dimen/baseGapSize" />
+        android:drawablePadding="@dimen/baseGapSize"
+        android:layout_centerInParent="true" />
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package android.virtualbreak.com.manualdatabase;
 
 import com.ieatta.com.parse.models.Event;
+import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Team;
@@ -44,5 +45,11 @@ public class ActivityModelDebug {
 
         recipe.belongToModel = ActivityModelDebug.getOrderedPeople();
         return recipe;
+    }
+
+    public static Photo getPhoto() {
+        Photo photo = new Photo();
+        photo.objectUUID = "D1230C74-EB79-496A-A04A-FC3453CDAEF7";
+        return photo;
     }
 }

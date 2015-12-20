@@ -3,6 +3,7 @@ package com.ieatta.android.debug;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
@@ -47,7 +48,7 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
 
     private void setupPhotoGallerySection() {
         self.fetchedPhotos = new LinkedList<>();
-        self.fetchedPhotos.add(new Photo());
+        self.fetchedPhotos.add(ActivityModelDebug.getPhoto());
 
         self.showPhotoGalleryCell();
 
@@ -89,8 +90,8 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
 //        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
 
         // 1. Set photo gallery section title(contains a 'take a photo' icon).
-//        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
-//        self.setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
+        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
+        self.setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
 
         // 2. Set empty items for the photo gallery collection cell.
         self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
