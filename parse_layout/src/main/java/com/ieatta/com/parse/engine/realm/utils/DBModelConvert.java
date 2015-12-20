@@ -32,6 +32,12 @@ public class DBModelConvert {
         object.setObjectCreatedDate(model.objectCreatedDate);
         object.setDisplayName(model.displayName);
 
+        object.setStartDate(model.startDate);
+        object.setEndDate(model.endDate);
+        object.setWhatToEat(model.whatToEat);
+        object.setRemarks(model.remarks);
+        object.setWaiter(model.waiter);
+        object.setRestaurantRef(model.restaurantRef);
     }
 
     public static void write(NewRecord model, Realm realm) {
@@ -39,6 +45,8 @@ public class DBModelConvert {
 
         object.setUUID(ParseModelAbstract.getPoint(model));
         object.setObjectCreatedDate(model.objectCreatedDate);
+
+
 
     }
 
