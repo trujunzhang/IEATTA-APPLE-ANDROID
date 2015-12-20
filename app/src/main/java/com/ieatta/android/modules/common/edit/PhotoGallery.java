@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.badoo.mobile.util.WeakHandler;
+import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
@@ -20,6 +21,7 @@ public class PhotoGallery extends EditBaseCellModel {
 
     public IEAPhotoGalleryViewController viewController;
     private List<ParseModelAbstract> fetchedPhotos;
+    private DTTableViewManager manager = null;
 
     private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
 
@@ -33,17 +35,15 @@ public class PhotoGallery extends EditBaseCellModel {
 //        self.delegate.
     }
 
-    public void setCollectionView(RecyclerView collectionView){
+    public void setCollectionView(RecyclerView collectionView, DTTableViewManager manager){
         self.collectionView = collectionView;
-        self.collectionView.setAdapter(self.adapter);
-
-        self.adapter.notifyDataSetChanged();
+        self.manager = manager;
     }
 
     public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
         self.fetchedPhotos = fetchedPhotos;
 
-        self.adapter = new IEAPhotoGalleryAdapter(EnvironmentUtils.sharedInstance.getGlobalContext(),self.fetchedPhotos);
+
     }
 
 //    var collectionView: UICollectionView?
