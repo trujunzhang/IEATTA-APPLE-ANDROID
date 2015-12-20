@@ -249,7 +249,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     // =============================================================================
     //        Online Store
     // =============================================================================
-    Task<Void> saveInBackgroundTask() {
+    public Task<Void> saveInBackgroundTask() {
         ParseObject object = makeObject();
         this.writeObject(object);
 
