@@ -35,7 +35,7 @@ public class Restaurant extends ParseModelSync {
     public ParseGeoPoint location;
 
     // Variables invoked by viewController
-    private String googleMapAddress = Default_FormattedAddress;
+    public String googleMapAddress = Default_FormattedAddress;
 
     // For testing.
     public Restaurant(String displayName, ParseGeoPoint location, String address, String city, int sampleFileName) {

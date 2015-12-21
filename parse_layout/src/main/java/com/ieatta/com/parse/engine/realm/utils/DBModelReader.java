@@ -9,6 +9,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.engine.realm.models.DBTeam;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.PeopleInEvent;
@@ -18,6 +19,26 @@ import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
+import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.engine.realm.models.DBEvent;
+import com.ieatta.com.parse.engine.realm.models.DBNewRecord;
+import com.ieatta.com.parse.engine.realm.models.DBPeopleInEvent;
+import com.ieatta.com.parse.engine.realm.models.DBPhoto;
+import com.ieatta.com.parse.engine.realm.models.DBRecipe;
+import com.ieatta.com.parse.engine.realm.models.DBRestaurant;
+import com.ieatta.com.parse.engine.realm.models.DBReview;
+import com.ieatta.com.parse.engine.realm.models.DBTeam;
+import com.ieatta.com.parse.models.Event;
+import com.ieatta.com.parse.models.NewRecord;
+import com.ieatta.com.parse.models.PeopleInEvent;
+import com.ieatta.com.parse.models.Photo;
+import com.ieatta.com.parse.models.Recipe;
+import com.ieatta.com.parse.models.Restaurant;
+import com.ieatta.com.parse.models.Review;
+import com.ieatta.com.parse.models.Team;
+import com.ieatta.com.parse.models.enums.PhotoUsedType;
+import com.ieatta.com.parse.models.enums.ReviewType;
+import com.parse.ParseGeoPoint;
 
 import java.util.List;
 
@@ -35,11 +56,130 @@ public class DBModelReader<T extends ParseModelAbstract> {
 
         for(Object object : results){
             int x = 0;
-
+            DBTeam team = (DBTeam) object;
+            
             ParseModelAbstract modelAbstract = new Photo();
         }
 
 
         return list;
     }
+
+
+
+    private ParseModelAbstract reader(DBEvent model, Realm realm) {
+        Event object = new Event();
+
+        object.objectUUID = model.getUUID();
+        object.objectCreatedDate = model.getObjectCreatedDate();
+        object.displayName = model.getDisplayName();
+        
+        object.startDate = model.getStartDate();
+        object.endDate = model.getEndDate();
+        object.whatToEat = model.getWhatToEat();
+        object.remarks = model.getRemarks();
+        object.waiter = model.getWaiter();
+        object.restaurantRef = model.getRestaurantRef();
+
+return object;
+    }
+
+    private ParseModelAbstract reader(DBNewRecord model, Realm realm) {
+        NewRecord object = new NewRecord();
+
+        object.objectUUID = model.getUUID();
+        object.objectCreatedDate = model.getObjectCreatedDate();
+
+        object.modelType = PQueryModelType.fromInteger(model.getModelType());
+        object.modelPoint = model.getModelPoint();
+        object.modelCreatedDate = model.getModelCreatedDate();
+
+        return object;
+    }
+
+    private ParseModelAbstract reader(DBPeopleInEvent model, Realm realm) {
+        PeopleInEvent object = new PeopleInEvent();
+
+        object.objectUUID = model.getUUID();
+        object.objectCreatedDate = model.getObjectCreatedDate();
+
+        object.userRef = model.getUserRef();
+        object.eventRef  = model.getEventRef();
+
+        return object;
+    }
+
+    private ParseModelAbstract reader(DBPhoto model, Realm realm) {
+        Photo object = new Photo();
+
+        object.objectUUID = model.getUUID();
+        object.objectCreatedDate = model.getObjectCreatedDate();
+
+
+        object.restaurantRef = model.getRestaurantRef();
+        object.usedRef  = model.getUsedRef();
+        object.usedType  = PhotoUsedType.fromInteger(model.getUsedType());
+
+        object.originalUrl  = model.getOriginalUrl();
+        object.thumbnailUrl = model.getThumbnailUrl();
+
+        return object;
+    }
+
+    private ParseModelAbstract reader(DBRecipe model, Realm realm) {
+        Recipe object = new Recipe();
+
+        object.objectUUID = model.getUUID();
+        object.objectCreatedDate = model.getObjectCreatedDate();
+        object.displayName = model.getDisplayName();
+
+        object.cost = model.getCost();
+        object.likeCount = model.getLikeCount();
+        object.eventRef = model.getEventRef();
+        object.orderedPeopleRef = model.getOrderedPeopleRef();
+
+        return object;
+    }
+
+    private ParseModelAbstract reader(DBRestaurant model, Realm realm) {
+        Restaurant object = new Restaurant();
+
+        object.objectUUID = model.getUUID();
+        object.objectCreatedDate = model.getObjectCreatedDate();
+        object.displayName = model.getDisplayName();
+
+        object.location = new ParseGeoPoint(model.getLatitude(),model.getLongitude());
+        object.googleMapAddress = model.getGoogleMapAddress();
+
+        return object;
+    }
+
+    private ParseModelAbstract reader(DBReview model, Realm realm) {
+        Review object = new Review();
+
+        object.objectUUID = model.getUUID();
+        object.objectCreatedDate = model.getObjectCreatedDate();
+
+        object.content = model.getContent();
+        object.rate = model.getRate();
+        object.userRef = model.getUserRef();
+        object.reviewRef = model.getReviewRef();
+        object.reviewType = ReviewType.fromInteger(model.getReviewType());
+
+        return object;
+    }
+
+    private ParseModelAbstract reader(DBTeam model, Realm realm) {
+        Team object = new Team();
+
+        object.objectUUID = model.getUUID();
+        object.objectCreatedDate = model.getObjectCreatedDate();
+        object.displayName = model.getDisplayName();
+
+        object.email = model.getEmail();
+        object.address = model.getAddress();
+
+        return object;
+    }
+    
 }
