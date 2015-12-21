@@ -1,5 +1,6 @@
 package com.ieatta.com.parse.engine.realm;
 
+import com.ieatta.com.parse.engine.realm.utils.RMBuilder;
 import com.ieatta.com.parse.engine.realm.utils.RMQueryUtils;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 
@@ -22,6 +23,8 @@ public class DBBuilder<T extends RealmObject> {
     private int limit = -1; // negative limits mean, do not send a limit
 
     public RealmQuery<T> where;
+
+    private RMBuilder<T> rmBuilder = new RMBuilder<>();
 
     public void fromLocalDatastore() {
         self.isFromLocalDatastore = true;
@@ -49,7 +52,7 @@ public class DBBuilder<T extends RealmObject> {
     }
 
     public RealmQuery<T> buildAll() {
-
+        self.where = self.rmBuilder.buildEqualTo(self.where,self.equalMap);
 
         return self.where;
     }
