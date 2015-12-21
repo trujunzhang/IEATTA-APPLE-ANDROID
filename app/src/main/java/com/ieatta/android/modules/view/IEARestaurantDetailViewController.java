@@ -79,14 +79,15 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
 
 
-        Event.queryEventsRelatedRestaurant(self.restaurant).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
-            @Override
-            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedEvents = task.getResult();
+        Event.queryEventsRelatedRestaurant(self.restaurant)
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+                    @Override
+                    public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        self.fetchedEvents = task.getResult();
 
-                return Photo.queryPhotosByRestaurant(self.restaurant);
-            }
-        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+                        return Photo.queryPhotosByRestaurant(self.restaurant);
+                    }
+                }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedPhotosTask = task;
@@ -148,51 +149,51 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        if(indexPath.section == RestaurantDetailSection.sectionEvents.ordinal()){
-            Event event =(Event) model;
+        if (indexPath.section == RestaurantDetailSection.sectionEvents.ordinal()) {
+            Event event = (Event) model;
             event.belongToModel = self.restaurant;
             self.selectedModel = event;
-            self.performSegueWithIdentifier(MainSegueIdentifier.detailEventSegueIdentifier,  self);
-        }else{
+            self.performSegueWithIdentifier(MainSegueIdentifier.detailEventSegueIdentifier, self);
+        } else {
             super.whenSelectedEvent(model, indexPath);
         }
     }
 
     @Override
-    protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination,Intent sender){
+    protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender) {
         // Edit Restaurant
-        self.setTransferedModelForEdit(sender,self.restaurant,true);
+        self.setTransferedModelForEdit(sender, self.restaurant, true);
     }
 
     @Override
-    protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender){
+    protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender) {
         /// Show detailed event
-        self.setTransferedModel(sender,self.selectedModel);
+        self.setTransferedModel(sender, self.selectedModel);
     }
 
     @Override
-    protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender){
+    protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
         // Add Event
-        self.setTransferedModelForEdit(sender,new Event(self.restaurant),true);
+        self.setTransferedModelForEdit(sender, new Event(self.restaurant), true);
     }
 
     // MARK: TableView header events
-    public void performSegueForEditingModel(){
+    public void performSegueForEditingModel() {
         self.performSegueWithIdentifier(MainSegueIdentifier.editRestaurantSegueIdentifier, self);
     }
 
-    public void performSegueForAddingEvent(){
+    public void performSegueForAddingEvent() {
         self.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier, self);
     }
 
     // MARK: NSNotificationCenter notification handlers
     @Override
-    protected void RestaurantWasCreated(NSNotification note){
-        setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader( self,  self.restaurant)),  RestaurantDetailSection.sectionHeader.ordinal());
+    protected void RestaurantWasCreated(NSNotification note) {
+        setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(self, self.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
     }
 
     @Override
-    protected void EventWasCreated(NSNotification note){
+    protected void EventWasCreated(NSNotification note) {
         // 3. load events related restaurant.
         Event.queryEventsRelatedRestaurant(self.restaurant).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
             @Override
