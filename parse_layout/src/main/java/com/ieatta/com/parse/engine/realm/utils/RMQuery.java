@@ -30,5 +30,8 @@ public class RMQuery<T extends ParseModelAbstract> {
         return Task.forResult(list);
     }
 
-
+    public Task<Integer> countInBackground() {
+        RealmResults results = builder.buildAll().findAll();
+        return Task.forResult(results.size());
+    }
 }

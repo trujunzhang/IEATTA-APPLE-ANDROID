@@ -4,6 +4,7 @@ import com.ieatta.com.parse.engine.realm.utils.RMBuilder;
 import com.ieatta.com.parse.engine.realm.utils.RMQueryUtils;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -22,6 +23,8 @@ public class DBBuilder<T extends RealmObject> {
     public PQueryModelType modelType;
     public boolean isFromLocalDatastore = false;
     private HashMap<String, Object> equalMap = new LinkedHashMap<>();
+    private HashMap<String, Object> greaterMap = new LinkedHashMap<>();
+    private HashMap<String, Object> containedMap = new LinkedHashMap<>();
     private List<String> orderedByDescendingList = new LinkedList<>();
     private List<String> orderedByAscendingList = new LinkedList<>();
     public int limit = -1; // negative limits mean, do not send a limit
@@ -35,13 +38,19 @@ public class DBBuilder<T extends RealmObject> {
     }
 
     public void whereEqualTo(String key, Object value) {
-        equalMap.put(key, value);
+        self.equalMap.put(key, value);
     }
 
+    public void whereGreaterThan(String key, Object value) {
+        self.greaterMap.put(key, value);
+    }
     public void orderByDescending(String key) {
         self.orderedByDescendingList.add(key);
     }
 
+    public void whereContainedIn(String key, List<String> list) {
+        self.containedMap.put(key,list);
+    }
     public void orderByAscending(String key) {
         self.orderedByAscendingList.add(key);
     }
@@ -64,5 +73,7 @@ public class DBBuilder<T extends RealmObject> {
     public RealmResults sort(RealmResults results) {
         return self.rmBuilder.orderBy(results, self.orderedByAscendingList, self.orderedByDescendingList);
     }
+
+
 
 }

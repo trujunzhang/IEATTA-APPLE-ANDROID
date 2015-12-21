@@ -46,6 +46,7 @@ public class LocalQuery<T extends ParseModelAbstract> {
     }
 
     public LocalQuery<T> whereGreaterThan(String key, Date date) {
+        this.builder.whereGreaterThan(key,date);
         return this;
     }
 
@@ -54,6 +55,7 @@ public class LocalQuery<T extends ParseModelAbstract> {
     }
 
     public LocalQuery<T> whereContainedIn(String key, List<String> list) {
+        this.builder.whereContainedIn(key,list);
         return this;
     }
 
@@ -69,8 +71,7 @@ public class LocalQuery<T extends ParseModelAbstract> {
     }
 
     public Task<Integer> countInBackground() {
-//        return super.countInBackground();
-        return Task.forResult(0);
+        return new RMQuery(this.builder).countInBackground();
     }
 
     public Task<List<T>> findInBackground() {
