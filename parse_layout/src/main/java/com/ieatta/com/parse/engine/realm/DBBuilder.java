@@ -24,7 +24,7 @@ public class DBBuilder<T extends RealmObject> {
     public boolean isFromLocalDatastore = false;
     private HashMap<String, Object> equalMap = new LinkedHashMap<>();
     private HashMap<String, Object> greaterMap = new LinkedHashMap<>();
-    private HashMap<String, Object> containedMap = new LinkedHashMap<>();
+    private HashMap<String, List<String>> containedMap = new LinkedHashMap<>();
     private List<String> orderedByDescendingList = new LinkedList<>();
     private List<String> orderedByAscendingList = new LinkedList<>();
     public int limit = -1; // negative limits mean, do not send a limit
@@ -66,7 +66,7 @@ public class DBBuilder<T extends RealmObject> {
 
     public RealmQuery<T> buildAll() {
         self.where = self.rmBuilder.buildEqualTo(self.where, self.equalMap);
-        self.where = self.rmBuilder.buildGreaterThan(self.where,self.greaterMap);
+        self.where = self.rmBuilder.buildGreaterThan(self.where, self.greaterMap);
         self.where = self.rmBuilder.buildContainedIn(self.where,self.containedMap);
 
         return self.where;

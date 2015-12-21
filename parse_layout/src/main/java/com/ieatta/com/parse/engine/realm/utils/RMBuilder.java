@@ -18,16 +18,16 @@ public class RMBuilder<E extends RealmObject> {
     // boolean, short, ìnt, long, float, double, String, Date
     public RealmQuery<E> buildEqualTo(RealmQuery<E> where, HashMap<String, Object> equalMap) {
 
-        for(String key : equalMap.keySet()){
+        for (String key : equalMap.keySet()) {
             Object value = equalMap.get(key);
 
-            if(value.getClass().equals(String.class)){
+            if (value.getClass().equals(String.class)) {
                 where = where.equalTo(key, (String) value);
-            }else if(value.getClass().equals(Integer.class)){
+            } else if (value.getClass().equals(Integer.class)) {
                 where = where.equalTo(key, (int) value);
-            }else if(value.getClass().equals(Date.class)){
+            } else if (value.getClass().equals(Date.class)) {
                 where = where.equalTo(key, (Date) value);
-            }else{
+            } else {
                 Class<?> aClass = value.getClass();
                 int x = 0;
             }
@@ -36,15 +36,15 @@ public class RMBuilder<E extends RealmObject> {
         return where;
     }
 
-    public RealmQuery<E> buildGreaterThan(RealmQuery<E> where, HashMap<String, Object> equalMap) {
-        for(String key : equalMap.keySet()){
-            Object value = equalMap.get(key);
+    public RealmQuery<E> buildGreaterThan(RealmQuery<E> where, HashMap<String, Object> greaterMap) {
+        for (String key : greaterMap.keySet()) {
+            Object value = greaterMap.get(key);
 
-            if(value.getClass().equals(Integer.class)){
+            if (value.getClass().equals(Integer.class)) {
                 where = where.greaterThan(key, (int) value);
-            }else if(value.getClass().equals(Date.class)){
+            } else if (value.getClass().equals(Date.class)) {
                 where = where.greaterThan(key, (Date) value);
-            }else{
+            } else {
                 Class<?> aClass = value.getClass();
                 int x = 0;
             }
@@ -52,17 +52,23 @@ public class RMBuilder<E extends RealmObject> {
         return where;
     }
 
-    public RealmQuery<E> buildContainedIn(RealmQuery<E> where, HashMap<String, Object> equalMap) {
-
-
+    public RealmQuery<E> buildContainedIn(RealmQuery<E> where, HashMap<String, List<String>> containedMap) {
+        for (String key : containedMap.keySet()) {
+            List<String> value = containedMap.get(key);
+            where.beginGroup();
+            for (String item : value) {
+                where.contains(key, item);
+            }
+            where.endGroup();
+        }
         return where;
     }
 
     public RealmResults orderBy(RealmResults results, List<String> orderedByAscendingList, List<String> orderedByDescendingList) {
-        for(String key : orderedByAscendingList){
-             results.sort(key, Sort.ASCENDING);
+        for (String key : orderedByAscendingList) {
+            results.sort(key, Sort.ASCENDING);
         }
-        for(String key : orderedByDescendingList){
+        for (String key : orderedByDescendingList) {
             results.sort(key, Sort.DESCENDING);
         }
         return results;
