@@ -7,6 +7,7 @@ import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -28,6 +29,13 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
     }
 
     public static Task<List<ParseObject>> findLocalObjectsInBackground(DBQuery query) {
+        // *** Important ***
+        query.fromLocalDatastore();
+
+        return query.findInBackground();
+    }
+
+    public static Task<List<ParseObject>> findLocalParseObjectsInBackground(ParseQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 

@@ -21,7 +21,8 @@ public class PushNewRecordToServerTask {
 
     public static Task PushToServerSeriesTask(DBQuery query) {
 
-        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
+        // TODO: djzhang(for iOS)
+        return ParseModelQuery.findLocalParseObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
             @Override
             public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
                 return executeSerialTasks(task);
