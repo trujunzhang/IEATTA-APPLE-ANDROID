@@ -43,10 +43,4 @@ public class RMBuilder<E extends RealmObject> {
         return results;
     }
 
-    public RealmResults getLimitedResults(RealmResults results, int limit){
-
-
-        return results;
-    }
-
 }

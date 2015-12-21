@@ -51,10 +51,15 @@ import io.realm.RealmResults;
  */
 public class DBModelReader<T extends ParseModelAbstract> {
 
-    public List<T> readRealmResults(RealmResults results, PQueryModelType modelType) {
+    public List<T> readRealmResults(RealmResults results, PQueryModelType modelType, int limit) {
         List<T> list = new LinkedList<>();
 
+        int step = 0;
         for (Object object : results) {
+            if(limit != -1 && step >= limit){
+                break;
+            }
+
             ParseModelAbstract model = null;
 
             switch (modelType) {

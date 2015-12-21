@@ -24,7 +24,7 @@ public class DBBuilder<T extends RealmObject> {
     private HashMap<String, Object> equalMap = new LinkedHashMap<>();
     private List<String> orderedByDescendingList = new LinkedList<>();
     private List<String> orderedByAscendingList = new LinkedList<>();
-    private int limit = -1; // negative limits mean, do not send a limit
+    public int limit = -1; // negative limits mean, do not send a limit
 
     public RealmQuery<T> where;
 
@@ -64,13 +64,5 @@ public class DBBuilder<T extends RealmObject> {
     public RealmResults sort(RealmResults results) {
         return self.rmBuilder.orderBy(results, self.orderedByAscendingList, self.orderedByDescendingList);
     }
-
-    public RealmResults getLimitResults(RealmResults results) {
-        if(self.limit == -1){
-            return results;
-        }
-        return self.rmBuilder.getLimitedResults(results,self.limit);
-    }
-
 
 }
