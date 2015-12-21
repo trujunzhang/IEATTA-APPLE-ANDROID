@@ -17,11 +17,11 @@ public class DBObject extends Object {
     }
 
     public static Task<Void> pinInBackground(String name, ParseObject object, ParseModelQuery model) {
-        DBAccessUtils.pinInBackground(model);
-        return object.pinInBackground(name);
+        return DBAccessUtils.pinInBackground(model);
     }
 
     public static Task<Void> unpinInBackground(String name, ParseObject object, ParseModelAbstract model) {
+        // TODO:djzhang(fixing)
         return object.unpinInBackground(name);
     }
 

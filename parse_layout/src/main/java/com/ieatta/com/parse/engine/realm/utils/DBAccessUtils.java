@@ -16,6 +16,7 @@ import com.ieatta.com.parse.models.enums.PQueryModelType;
 
 import java.util.List;
 
+import bolts.Task;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -23,10 +24,9 @@ import io.realm.RealmResults;
  * Created by djzhang on 12/20/15.
  */
 public class DBAccessUtils {
-
-
-    public static void pinInBackground(ParseModelQuery model) {
+    public static Task<Void> pinInBackground(ParseModelQuery model) {
         DBAccessUtils.save(model);
+        return Task.forResult(null);
     }
 
     private static void save(ParseModelAbstract model) {
