@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 public class DBBuild {
     private DBBuild self = this;
 
-    private boolean isFromLocalDatastore = false;
+    public boolean isFromLocalDatastore = false;
     private HashMap<String,Object> equalMap = new LinkedHashMap<>();
     private int limit = -1; // negative limits mean, do not send a limit
 

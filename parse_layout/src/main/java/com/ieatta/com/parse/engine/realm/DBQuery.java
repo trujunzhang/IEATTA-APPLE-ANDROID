@@ -80,6 +80,9 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
     }
 
     public Task<List<T>> findInBackground() {
+        if(this.build.isFromLocalDatastore == true){
+
+        }
         return super.findInBackground();
 //        return Task.forResult(null);
     }
