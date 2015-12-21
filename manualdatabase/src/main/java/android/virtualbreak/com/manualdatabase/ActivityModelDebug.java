@@ -15,7 +15,8 @@ public class ActivityModelDebug {
 
     public static Restaurant getRestaurantForRestaurantDetail() {
         Restaurant restaurant = new Restaurant();
-        restaurant.objectUUID = "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04";
+//        restaurant.objectUUID = "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04";
+        restaurant.objectUUID = "828DB1D6-67AB-467D-8D98-76C1938C5306";
         restaurant.displayName = "Francisco's Centro Vasco";
         restaurant.location = new ParseGeoPoint(32.4022,120.5503);
         return restaurant;

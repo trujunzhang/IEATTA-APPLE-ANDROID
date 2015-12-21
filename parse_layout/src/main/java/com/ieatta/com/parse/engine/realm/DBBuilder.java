@@ -56,8 +56,4 @@ public class DBBuilder<T extends RealmObject> {
 
         return self.where;
     }
-
-    public RealmResults<T> findAll() {
-        return self.where.findAll();
-    }
 }
