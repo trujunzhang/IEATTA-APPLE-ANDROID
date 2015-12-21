@@ -28,9 +28,37 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
         super();
     }
 
+    /**
+     * Get count of objects on the offline datastore.
+     * <p/>
+     * - parameter query:           query's instance
+     */
+    public Task<Integer> countLocalObjects(DBQuery query) {
+        // *** Important ***
+        query.fromLocalDatastore();
+
+        return query.countInBackground();
+    }
+
     public static Task<List<ParseObject>> findLocalObjectsInBackground(DBQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
+
+        return query.findInBackground();
+    }
+
+    /**
+     * if not found the first object,
+     * will return Exception: 'no results found for query'(code: com.parse.ParseException.OBJECT_NOT_FOUND)
+     *
+     * @param query
+     * @return
+     */
+    protected static Task<List<ParseObject>> findFirstLocalObjectInBackground(DBQuery query) {
+        // *** Important ***
+        query.fromLocalDatastore();
+        // *** Just get the first object.
+        query.setLimit(1);
 
         return query.findInBackground();
     }
