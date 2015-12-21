@@ -8,6 +8,7 @@ import com.ieatta.com.parse.async.SerialTasksManager;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ import bolts.Task;
  */
 public class PushNewRecordToServerTask {
 
-    public static Task PushToServerSeriesTask(LocalQuery query) {
+    public static Task PushToServerSeriesTask(ParseQuery query) {
 
         // TODO: djzhang(for iOS)
         return ParseModelQuery.findLocalParseObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {

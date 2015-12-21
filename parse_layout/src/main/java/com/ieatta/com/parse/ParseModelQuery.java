@@ -6,6 +6,7 @@ import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -56,8 +57,9 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * <p/>
      * - returns: query's instance
      */
-    public LocalQuery createQueryForPushObjectsToServer(int limit) {
-        LocalQuery query = this.getDBQueryInstance();
+    public ParseQuery createQueryForPushObjectsToServer(int limit) {
+//        ParseQuery query = this.getDBQueryInstance();
+        ParseQuery query = ParseQuery.getQuery(self.getParseTableName());
         query.setLimit(limit);
 
         // *** Important (used orderByAscending) ***
@@ -97,7 +99,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     }
 
     protected LocalQuery getDBQueryInstance() {
-        LocalQuery<ParseObject> query = LocalQuery.getDBQuery(this.getParseTableName(), self.getModelType());
+        LocalQuery query = LocalQuery.getDBQuery(this.getParseTableName(), self.getModelType());
         return query;
     }
 

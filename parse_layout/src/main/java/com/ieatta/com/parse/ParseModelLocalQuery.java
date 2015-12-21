@@ -63,7 +63,7 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
         return query.findInBackground();
     }
 
-    public static Task<List<ParseObject>> findLocalObjectsInBackground(LocalQuery query) {
+    public static Task<List<ParseModelAbstract>> findLocalObjectsInBackground(LocalQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 
@@ -71,14 +71,7 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
     }
 
     public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final LocalQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query)
-                .onSuccessTask(new Continuation<List<ParseObject>, Task<List<ParseModelAbstract>>>() {
-                    @Override
-                    public Task<List<ParseModelAbstract>> then(Task<List<ParseObject>> task) throws Exception {
-                        ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(type);
-                        return instance.convertToParseModelsTask(task, true);
-                    }
-                });
+        return ParseModelQuery.findLocalObjectsInBackground(query);
     }
 
 }
