@@ -30,14 +30,10 @@ public class RMQuery<T extends ParseModelAbstract> {
     public Task<List<T>> findInBackground() {
         RealmResults results = build.findAll();
 
-        List<T> list = this.readRealmResults(results, build.modelType);
+        List<T> list = new DBModelReader().readRealmResults(results, build.modelType);
 
         return Task.forResult(list);
     }
 
-    public List<T> readRealmResults(RealmResults results, PQueryModelType modelType) {
 
-
-        return null;
-    }
 }

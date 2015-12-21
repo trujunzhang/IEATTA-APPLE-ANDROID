@@ -8,6 +8,7 @@ import com.ieatta.com.parse.models.enums.PQueryModelType;
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
+
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.engine.realm.models.DBEvent;
 import com.ieatta.com.parse.engine.realm.models.DBNewRecord;
@@ -25,6 +26,7 @@ import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
+
 /**
  * Created by djzhang on 12/21/15.
  */
