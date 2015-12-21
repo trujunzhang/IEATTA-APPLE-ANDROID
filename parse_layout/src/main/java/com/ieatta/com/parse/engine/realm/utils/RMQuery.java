@@ -23,6 +23,8 @@ public class RMQuery<T extends ParseModelAbstract> {
 //        RealmResults results =  builder.where.equalTo("restaurantRef", "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04").findAll();
         RealmResults results = builder.buildAll().findAll();
 
+        results = builder.sort(results);
+
         List<T> list = new DBModelReader().readRealmResults(results, builder.modelType);
 
         return Task.forResult(list);

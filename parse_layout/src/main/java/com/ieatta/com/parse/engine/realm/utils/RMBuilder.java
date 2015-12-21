@@ -5,6 +5,8 @@ import java.util.List;
 
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
+import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Created by djzhang on 12/21/15.
@@ -31,13 +33,13 @@ public class RMBuilder<E extends RealmObject> {
         return where;
     }
 
-    public RealmQuery<E> orderBy(RealmQuery<E> where, List<String> orderedByAscendingList, List<String> orderedByDescendingList) {
+    public RealmResults orderBy(RealmResults results, List<String> orderedByAscendingList, List<String> orderedByDescendingList) {
         for(String key : orderedByAscendingList){
-
+             results.sort(key, Sort.ASCENDING);
         }
         for(String key : orderedByDescendingList){
-
+            results.sort(key, Sort.DESCENDING);
         }
-        return where;
+        return results;
     }
 }

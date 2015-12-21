@@ -39,11 +39,11 @@ public class DBBuilder<T extends RealmObject> {
     }
 
     public void orderByDescending(String key) {
-self.orderedByDescendingList.add(key);
+        self.orderedByDescendingList.add(key);
     }
 
     public void orderByAscending(String key) {
-self.orderedByAscendingList.add(key);
+        self.orderedByAscendingList.add(key);
     }
 
     public void setLimit(int newLimit) {
@@ -57,8 +57,11 @@ self.orderedByAscendingList.add(key);
 
     public RealmQuery<T> buildAll() {
         self.where = self.rmBuilder.buildEqualTo(self.where, self.equalMap);
-        self.where = self.rmBuilder.orderBy(self.where,self.orderedByAscendingList,self.orderedByDescendingList);
 
         return self.where;
+    }
+
+    public RealmResults sort(RealmResults results) {
+        return self.rmBuilder.orderBy(results, self.orderedByAscendingList, self.orderedByDescendingList);
     }
 }
