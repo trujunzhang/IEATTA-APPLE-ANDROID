@@ -42,28 +42,28 @@ public class DBAccessUtils {
         PQueryModelType modelType = model.getModelType();
         switch (modelType) {
             case Recipe:
-                DBModelConvert.write((Recipe) model, realm);
+                DBModelWriter.write((Recipe) model, realm);
                 break;
             case Photo:
-                DBModelConvert.write((Photo) model, realm);
+                DBModelWriter.write((Photo) model, realm);
                 break;
             case Team:
-                DBModelConvert.write((Team) model, realm);
+                DBModelWriter.write((Team) model, realm);
                 break;
             case Review:
-                DBModelConvert.write((Review) model, realm);
+                DBModelWriter.write((Review) model, realm);
                 break;
             case Event:
-                DBModelConvert.write((Event) model, realm);
+                DBModelWriter.write((Event) model, realm);
                 break;
             case Restaurant:
-                DBModelConvert.write((Restaurant) model, realm);
+                DBModelWriter.write((Restaurant) model, realm);
                 break;
             case NewRecord:
-                DBModelConvert.write((NewRecord) model, realm);
+                DBModelWriter.write((NewRecord) model, realm);
                 break;
             case PeopleInEvent:
-                DBModelConvert.write((PeopleInEvent) model, realm);
+                DBModelWriter.write((PeopleInEvent) model, realm);
                 break;
             default:
                 break;

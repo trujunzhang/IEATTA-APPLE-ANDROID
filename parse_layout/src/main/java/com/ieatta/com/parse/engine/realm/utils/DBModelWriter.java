@@ -23,7 +23,7 @@ import io.realm.Realm;
 /**
  * Created by djzhang on 12/20/15.
  */
-public class DBModelConvert {
+public class DBModelWriter {
 
     public static void write(Event model, Realm realm) {
         DBEvent object = realm.createObject(DBEvent.class); // Create a new object

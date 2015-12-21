@@ -3,7 +3,6 @@ package com.ieatta.com.parse.engine.realm;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.engine.realm.utils.DBAccessUtils;
-import com.ieatta.com.parse.engine.realm.utils.DBModelConvert;
 import com.parse.ParseObject;
 
 import bolts.Task;

@@ -28,16 +28,8 @@ public class RMQuery<T extends ParseModelAbstract> {
 
     public Task<List<T>> findInBackground() {
 
-        RealmQuery<DBTeam> where = build.where;
-
-        RealmResults<DBTeam> r = where
-                .greaterThan("age", 10)  //implicit AND
-                .beginGroup()
-                .equalTo("name", "Peter")
-                .or()
-                .contains("name", "Jo")
-                .endGroup()
-                .findAll();
+        RealmQuery where = build.where;
+        RealmResults results = where.findAll();
 
         return null;
     }
