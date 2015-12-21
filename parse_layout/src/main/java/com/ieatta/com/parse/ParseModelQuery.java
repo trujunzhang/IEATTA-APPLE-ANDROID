@@ -58,6 +58,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * - returns: query's instance
      */
     public ParseQuery createQueryForPushObjectsToServer(int limit) {
+        // TODO: djzhang(fixing)
 //        ParseQuery query = this.getDBQueryInstance();
         ParseQuery query = ParseQuery.getQuery(self.getParseTableName());
         query.setLimit(limit);
@@ -109,8 +110,10 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return query;
     }
 
-    LocalQuery createQueryFromRecord() {
-        LocalQuery query = this.getDBQueryInstance();
+    public ParseQuery createQueryFromRecord() {
+        // TODO:djzhang(fixing)
+//        ParseQuery query = this.getDBQueryInstance();
+        ParseQuery query = null;
 
         // *** Import *** The newest row in the table.
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
