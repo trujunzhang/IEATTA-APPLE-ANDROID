@@ -54,17 +54,18 @@ public class DBModelReader<T extends ParseModelAbstract> {
     public List<T> readRealmResults(RealmResults results, PQueryModelType modelType) {
         List<T> list = new LinkedList<>();
 
-        for(Object object : results){
-            int x = 0;
-            DBTeam team = (DBTeam) object;
-            
-            ParseModelAbstract modelAbstract = new Photo();
+        for (Object object : results) {
+            ParseModelAbstract model = null;
+
+
+
+
+            list.add((T) model);
         }
 
 
         return list;
     }
-
 
 
     private ParseModelAbstract reader(DBEvent model, Realm realm) {
@@ -73,7 +74,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         object.objectUUID = model.getUUID();
         object.objectCreatedDate = model.getObjectCreatedDate();
         object.displayName = model.getDisplayName();
-        
+
         object.startDate = model.getStartDate();
         object.endDate = model.getEndDate();
         object.whatToEat = model.getWhatToEat();
@@ -81,7 +82,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         object.waiter = model.getWaiter();
         object.restaurantRef = model.getRestaurantRef();
 
-return object;
+        return object;
     }
 
     private ParseModelAbstract reader(DBNewRecord model, Realm realm) {
@@ -104,7 +105,7 @@ return object;
         object.objectCreatedDate = model.getObjectCreatedDate();
 
         object.userRef = model.getUserRef();
-        object.eventRef  = model.getEventRef();
+        object.eventRef = model.getEventRef();
 
         return object;
     }
@@ -117,10 +118,10 @@ return object;
 
 
         object.restaurantRef = model.getRestaurantRef();
-        object.usedRef  = model.getUsedRef();
-        object.usedType  = PhotoUsedType.fromInteger(model.getUsedType());
+        object.usedRef = model.getUsedRef();
+        object.usedType = PhotoUsedType.fromInteger(model.getUsedType());
 
-        object.originalUrl  = model.getOriginalUrl();
+        object.originalUrl = model.getOriginalUrl();
         object.thumbnailUrl = model.getThumbnailUrl();
 
         return object;
@@ -148,7 +149,7 @@ return object;
         object.objectCreatedDate = model.getObjectCreatedDate();
         object.displayName = model.getDisplayName();
 
-        object.location = new ParseGeoPoint(model.getLatitude(),model.getLongitude());
+        object.location = new ParseGeoPoint(model.getLatitude(), model.getLongitude());
         object.googleMapAddress = model.getGoogleMapAddress();
 
         return object;
@@ -181,5 +182,5 @@ return object;
 
         return object;
     }
-    
+
 }
