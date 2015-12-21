@@ -1,5 +1,6 @@
 package com.ieatta.com.parse.engine.realm.utils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,11 +25,34 @@ public class RMBuilder<E extends RealmObject> {
                 where = where.equalTo(key, (String) value);
             }else if(value.getClass().equals(Integer.class)){
                 where = where.equalTo(key, (int) value);
+            }else if(value.getClass().equals(Date.class)){
+                where = where.equalTo(key, (Date) value);
             }else{
                 Class<?> aClass = value.getClass();
                 int x = 0;
             }
         }
+
+        return where;
+    }
+
+    public RealmQuery<E> buildGreaterThan(RealmQuery<E> where, HashMap<String, Object> equalMap) {
+        for(String key : equalMap.keySet()){
+            Object value = equalMap.get(key);
+
+            if(value.getClass().equals(Integer.class)){
+                where = where.greaterThan(key, (int) value);
+            }else if(value.getClass().equals(Date.class)){
+                where = where.greaterThan(key, (Date) value);
+            }else{
+                Class<?> aClass = value.getClass();
+                int x = 0;
+            }
+        }
+        return where;
+    }
+
+    public RealmQuery<E> buildContainedIn(RealmQuery<E> where, HashMap<String, Object> equalMap) {
 
         return where;
     }
