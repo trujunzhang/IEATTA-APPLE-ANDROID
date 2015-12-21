@@ -15,6 +15,8 @@ import bolts.Task;
  * Created by djzhang on 12/20/15.
  */
 public class DBQuery<T extends ParseObject> extends ParseQuery {
+    private DBBuild build = new DBBuild();
+
     public DBQuery(Class subclass) {
         super(subclass);
     }
@@ -30,6 +32,7 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
     @Override
     public ParseQuery<T> fromLocalDatastore() {
         super.fromLocalDatastore();
+        this.build.fromLocalDatastore();
         return this;
     }
 
