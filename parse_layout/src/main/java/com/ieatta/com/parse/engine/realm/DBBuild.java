@@ -34,7 +34,6 @@ public class DBBuild<T extends RealmObject> {
         equalMap.put(key, value);
     }
 
-
     public void orderByDescending(String key) {
 
     }
@@ -49,6 +48,6 @@ public class DBBuild<T extends RealmObject> {
 
     public void setModelType(PQueryModelType modelType) {
         self.modelType = modelType;
-        RealmQuery<T> where = new RMQueryUtils().getRealmQuery(modelType);
+        self.where = new RMQueryUtils().getRealmQuery(modelType);
     }
 }
