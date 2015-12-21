@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.utils.cache.CacheImageUtils;
@@ -75,28 +75,28 @@ public class Photo extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    public DBQuery createQueryForUsedRefWithType() {
-        DBQuery query = this.makeDBQuery();
+    public LocalQuery createQueryForUsedRefWithType() {
+        LocalQuery query = this.makeDBQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         query.whereEqualTo(kPAPFieldUsedTypeKey, PhotoUsedType.getInt(this.usedType));
 
         return query;
     }
 
-    public DBQuery createQueryForUsedRef() {
-        DBQuery query = this.makeDBQuery();
+    public LocalQuery createQueryForUsedRef() {
+        LocalQuery query = this.makeDBQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         return query;
     }
 
-    public DBQuery createQueryForRestaurantRef() {
-        DBQuery query = this.makeDBQuery();
+    public LocalQuery createQueryForRestaurantRef() {
+        LocalQuery query = this.makeDBQuery();
         query.whereEqualTo(kPAPFieldLocalRestaurantKey, this.restaurantRef);
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;
     }
 
-    public static DBQuery createQueryForRestaurantRef(Restaurant restaurant) {
+    public static LocalQuery createQueryForRestaurantRef(Restaurant restaurant) {
         Photo photo = new Photo();
         photo.restaurantRef = ParseModelAbstract.getPoint(restaurant);
         return photo.createQueryForRestaurantRef();
@@ -117,8 +117,8 @@ public class Photo extends ParseModelSync {
         return new Photo();
     }
 
-    DBQuery createQueryByRestaurantRef(String restaurantRef) {
-        DBQuery query = this.makeDBQuery();
+    LocalQuery createQueryByRestaurantRef(String restaurantRef) {
+        LocalQuery query = this.makeDBQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, restaurantRef);
         return query;
     }
@@ -130,8 +130,8 @@ public class Photo extends ParseModelSync {
      * <p/>
      * - returns: query's instance
      */
-    private DBQuery createQueryForBatchingPhoto(List<String> usedRefs) {
-        DBQuery query = this.getDBQueryInstance();
+    private LocalQuery createQueryForBatchingPhoto(List<String> usedRefs) {
+        LocalQuery query = this.getDBQueryInstance();
 
         query.whereContainedIn(kPAPFieldUsedRefKey, usedRefs);
 

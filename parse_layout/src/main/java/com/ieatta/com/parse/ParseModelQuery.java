@@ -1,7 +1,7 @@
 package com.ieatta.com.parse;
 
 import com.ieatta.com.parse.engine.realm.DBObject;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
@@ -37,8 +37,8 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * <p/>
      * - returns: query's instance
      */
-    public DBQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
-        DBQuery query = this.getDBQueryInstance();
+    public LocalQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
+        LocalQuery query = this.getDBQueryInstance();
         query.setLimit(limit);
 
         // *** Important (used orderByAscending) ***
@@ -56,8 +56,8 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * <p/>
      * - returns: query's instance
      */
-    public DBQuery createQueryForPushObjectsToServer(int limit) {
-        DBQuery query = this.getDBQueryInstance();
+    public LocalQuery createQueryForPushObjectsToServer(int limit) {
+        LocalQuery query = this.getDBQueryInstance();
         query.setLimit(limit);
 
         // *** Important (used orderByAscending) ***
@@ -66,16 +66,16 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return query;
     }
 
-    public DBQuery createQueryByObjectUUID() {
-        DBQuery query = this.makeDBQuery();
+    public LocalQuery createQueryByObjectUUID() {
+        LocalQuery query = this.makeDBQuery();
 
         query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
 
         return query;
     }
 
-    public DBQuery createQueryForBatching(List<String> points) {
-        DBQuery query = this.getDBQueryInstance();
+    public LocalQuery createQueryForBatching(List<String> points) {
+        LocalQuery query = this.getDBQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
 
         query.whereContainedIn(kPAPFieldObjectUUIDKey, points);
@@ -83,32 +83,32 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return query;
     }
 
-    public DBQuery createSearchDisplayNameQuery(String keyword) {
-        DBQuery query = this.makeDBQuery();
+    public LocalQuery createSearchDisplayNameQuery(String keyword) {
+        LocalQuery query = this.makeDBQuery();
 
         query.whereMatches(kPAPFieldDisplayNameKey, keyword, "i");
 
         return query;
     }
 
-    static DBQuery createQuery(PQueryModelType type, ParseModelAbstract model) {
+    static LocalQuery createQuery(PQueryModelType type, ParseModelAbstract model) {
         ParseModelQuery instance = (ParseModelQuery) ParseModelAbstract.getInstanceFromType(type, ParseModelAbstract.getPoint(model));
         return instance.createQueryByObjectUUID();
     }
 
-    protected DBQuery getDBQueryInstance() {
-        DBQuery<ParseObject> query = DBQuery.getDBQuery(this.getParseTableName(),self.getModelType());
+    protected LocalQuery getDBQueryInstance() {
+        LocalQuery<ParseObject> query = LocalQuery.getDBQuery(this.getParseTableName(), self.getModelType());
         return query;
     }
 
-    public DBQuery makeDBQuery() {
-        DBQuery query = this.getDBQueryInstance();
+    public LocalQuery makeDBQuery() {
+        LocalQuery query = this.getDBQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;
     }
 
-    DBQuery createQueryFromRecord() {
-        DBQuery query = this.getDBQueryInstance();
+    LocalQuery createQueryFromRecord() {
+        LocalQuery query = this.getDBQueryInstance();
 
         // *** Import *** The newest row in the table.
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
@@ -158,11 +158,11 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * <p/>
      * Get first PFObject from the offline database.
      * <p/>
-     * - parameter query: DBQuery's instance
+     * - parameter query: LocalQuery's instance
      * <p/>
      * - returns: the first object's array,like [PFObject's instance].
      */
-    public Task<ParseObject> getFirstLocalObjectArrayInBackground(DBQuery query) {
+    public Task<ParseObject> getFirstLocalObjectArrayInBackground(LocalQuery query) {
         // **** Important ****
         // If not found Parse's findLocalObjectsInBackground
         return ParseModelQuery.findFirstLocalObjectInBackground(query)
@@ -221,7 +221,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * <p/>
      * - parameter query:           query's instance
      */
-    public Task<Void> unpinInBackground(DBQuery query) {
+    public Task<Void> unpinInBackground(LocalQuery query) {
         return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
             @Override
             public Task<Void> then(Task<ParseObject> task) throws Exception {
@@ -244,7 +244,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * - parameter deletedModel:    ParseModelAbstract's instance that want to delete
      */
     public Task<Void> unpinInBackgroundWithNewRecord() {
-        final DBQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
+        final LocalQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
 
         return this.unpinInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override

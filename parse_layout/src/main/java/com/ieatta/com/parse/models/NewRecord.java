@@ -3,7 +3,7 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelConvert;
 import com.ieatta.com.parse.ParseModelSync;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseObject;
 
@@ -55,8 +55,8 @@ public class NewRecord extends ParseModelSync {
 
     // MARK: ParseModel
 
-    public DBQuery createQueryForDeletedModel() {
-        DBQuery query = this.makeDBQuery();
+    public LocalQuery createQueryForDeletedModel() {
+        LocalQuery query = this.makeDBQuery();
 
         query.whereEqualTo(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));
         query.whereEqualTo(kPAPFieldModelPointKey, this.modelPoint);

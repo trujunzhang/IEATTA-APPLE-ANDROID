@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.yelp.com.commonlib.EnvironmentUtils;
 import android.yelp.com.commonlib.LogUtils;
 
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
 
 import java.util.Date;
@@ -59,7 +59,7 @@ public class AsyncCacheInfo {
         this.printDescription("Store");
     }
 
-    public DBQuery createQuery(int limit) {
+    public LocalQuery createQuery(int limit) {
         return new NewRecord().createQueryForPullObjectsFromServer(this.lastRecordCreateAt, limit);
     }
 

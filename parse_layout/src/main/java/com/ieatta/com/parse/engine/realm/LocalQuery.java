@@ -13,20 +13,20 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/20/15.
  */
-public class DBQuery<T extends ParseObject> extends ParseQuery {
+public class LocalQuery<T extends ParseObject> extends ParseQuery {
     private DBBuilder builder = new DBBuilder();
 
-    public DBQuery(Class subclass) {
+    public LocalQuery(Class subclass) {
         super(subclass);
     }
 
-    public DBQuery(String theClassName, PQueryModelType modelType) {
+    public LocalQuery(String theClassName, PQueryModelType modelType) {
         super(theClassName);
         this.builder.setModelType(modelType);
     }
 
-    public static <T extends ParseObject> DBQuery<T> getDBQuery(String className, PQueryModelType modelType) {
-        return new DBQuery<>(className,modelType);
+    public static <T extends ParseObject> LocalQuery<T> getDBQuery(String className, PQueryModelType modelType) {
+        return new LocalQuery<>(className,modelType);
     }
 
     @Override
@@ -37,28 +37,28 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
     }
 
     @Override
-    public DBQuery<T> whereEqualTo(String key, Object value) {
+    public LocalQuery<T> whereEqualTo(String key, Object value) {
         super.whereEqualTo(key, value);
         this.builder.whereEqualTo(key, value);
         return this;
     }
 
     @Override
-    public DBQuery<T> orderByDescending(String key) {
+    public LocalQuery<T> orderByDescending(String key) {
         super.orderByDescending(key);
         this.builder.orderByDescending(key);
         return this;
     }
 
     @Override
-    public DBQuery<T> orderByAscending(String key) {
+    public LocalQuery<T> orderByAscending(String key) {
         super.orderByAscending(key);
         this.builder.orderByAscending(key);
         return this;
     }
 
 //    @Override
-//    public DBQuery<T> whereContainedIn(String key, Collection<? extends Object> values) {
+//    public LocalQuery<T> whereContainedIn(String key, Collection<? extends Object> values) {
 //        return this;
 //    }
 

@@ -3,7 +3,7 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -76,8 +76,8 @@ public class Event extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    public DBQuery createQueryByRestaurantRef(Restaurant restaurant) {
-        DBQuery query = this.makeDBQuery();
+    public LocalQuery createQueryByRestaurantRef(Restaurant restaurant) {
+        LocalQuery query = this.makeDBQuery();
 
         query.whereEqualTo(kPAPFieldLocalRestaurantKey, ParseModelAbstract.getPoint(restaurant));
 

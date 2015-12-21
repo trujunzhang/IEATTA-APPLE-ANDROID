@@ -3,7 +3,7 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -67,8 +67,8 @@ public class Recipe extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    public DBQuery createQuery(Team people, Event event) {
-        DBQuery query = this.getDBQueryInstance();
+    public LocalQuery createQuery(Team people, Event event) {
+        LocalQuery query = this.getDBQueryInstance();
 
         query.whereEqualTo(kPAPFieldOrderedPeopleRefKey, ParseModelAbstract.getPoint(people));
         query.whereEqualTo(kPAPFieldEventRefKey, ParseModelAbstract.getPoint(event));

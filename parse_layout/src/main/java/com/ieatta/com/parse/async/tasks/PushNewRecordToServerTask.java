@@ -5,7 +5,7 @@ import android.yelp.com.commonlib.LogUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.async.SerialTasksManager;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseObject;
 
@@ -19,7 +19,7 @@ import bolts.Task;
  */
 public class PushNewRecordToServerTask {
 
-    public static Task PushToServerSeriesTask(DBQuery query) {
+    public static Task PushToServerSeriesTask(LocalQuery query) {
 
         // TODO: djzhang(for iOS)
         return ParseModelQuery.findLocalParseObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {

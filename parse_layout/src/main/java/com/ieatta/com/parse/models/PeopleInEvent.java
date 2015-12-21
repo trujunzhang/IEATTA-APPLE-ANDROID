@@ -2,7 +2,7 @@ package com.ieatta.com.parse.models;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelSync;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseObject;
 
@@ -44,8 +44,8 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    DBQuery createQueryByEventRef(String eventRef) {
-        DBQuery query = this.getDBQueryInstance();
+    LocalQuery createQueryByEventRef(String eventRef) {
+        LocalQuery query = this.getDBQueryInstance();
 
         query.whereEqualTo(kPAPFieldEventKey, eventRef);
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);

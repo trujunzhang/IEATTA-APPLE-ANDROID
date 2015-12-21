@@ -3,7 +3,7 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 import com.parse.ParseObject;
@@ -74,8 +74,8 @@ public class Review extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    public DBQuery createQueryForReviewRef() {
-        DBQuery query = this.makeDBQuery();
+    public LocalQuery createQueryForReviewRef() {
+        LocalQuery query = this.makeDBQuery();
 
         query.whereEqualTo(kPAPFieldReviewRefKey, this.reviewRef);
         query.whereEqualTo(kPAPFieldReviewTypeKey, ReviewType.getInt(this.reviewType));
@@ -160,7 +160,7 @@ public class Review extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryReviews(ParseModelAbstract model, int limit) {
-        DBQuery query = new Review(model).createQueryForReviewRef();
+        LocalQuery query = new Review(model).createQueryForReviewRef();
         //        print("\(model.printDescription())")
         //        print("\(Review(refModel: model).printDescription())")
         if (limit != Review.NO_Limit_FETCHED_REVIEWS_IN_DetailPage) {

@@ -4,7 +4,7 @@ import android.test.InstrumentationTestCase;
 import android.virtualbreak.com.debug.ParseLocalDatabase;
 
 import com.ieatta.com.parse.ParseAPI;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -29,8 +29,8 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final CountDownLatch signal = new CountDownLatch(1);
 
         final Team whTeam = new Team("wh", "wh@gmail.com", "wh.st", 123);
-        final DBQuery whQuery = whTeam.createQueryByObjectUUID();
-        final DBQuery teamCountQurey = whTeam.makeDBQuery();
+        final LocalQuery whQuery = whTeam.createQueryByObjectUUID();
+        final LocalQuery teamCountQurey = whTeam.makeDBQuery();
 
         final Team countTeam = new Team();
 
@@ -102,8 +102,8 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final CountDownLatch signal = new CountDownLatch(1);
 
         final Team whTeam = new Team("empty", "empty@gmail.com", "empty.st", 123);
-        final DBQuery whQuery = whTeam.createQueryByObjectUUID();
-        final DBQuery teamCountQuery = whTeam.makeDBQuery();
+        final LocalQuery whQuery = whTeam.createQueryByObjectUUID();
+        final LocalQuery teamCountQuery = whTeam.makeDBQuery();
 
         final Team countTeam = new Team();
 
@@ -169,10 +169,10 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final Team whTeam = new Team("whWithNewRecord", "whWithNewRecord@gmail.com", "whWithNewRecord.st", 123);
 
         final Team countTeam = new Team();
-        final DBQuery countTeamQurey = countTeam.makeDBQuery();
+        final LocalQuery countTeamQurey = countTeam.makeDBQuery();
 
         final NewRecord countNewRecord = new NewRecord();
-        final DBQuery countNewRecordQuery = countNewRecord.makeDBQuery();
+        final LocalQuery countNewRecordQuery = countNewRecord.makeDBQuery();
 
         final int[] expectCount = {-1, 1, -1, 1};
 
@@ -268,9 +268,9 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final Team whTeam = new Team("whWithNewRecord", "whWithNewRecord@gmail.com", "whWithNewRecord.st", 123);
 
         final Team countTeam = new Team();
-        final DBQuery teamCountQurey = countTeam.makeDBQuery();
+        final LocalQuery teamCountQurey = countTeam.makeDBQuery();
         final NewRecord countNewRecord = new NewRecord();
-        final DBQuery newRecordCountQuery = countNewRecord.makeDBQuery();
+        final LocalQuery newRecordCountQuery = countNewRecord.makeDBQuery();
 
 
         final int[] expectCount = {-1, 1, -1, 1};

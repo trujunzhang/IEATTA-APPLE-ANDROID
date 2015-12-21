@@ -3,7 +3,7 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
@@ -57,8 +57,8 @@ public class Restaurant extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    DBQuery createNearlyRestaurantQuery(ParseGeoPoint nearPoint) {
-        DBQuery query = this.getDBQueryInstance();
+    LocalQuery createNearlyRestaurantQuery(ParseGeoPoint nearPoint) {
+        LocalQuery query = this.getDBQueryInstance();
 
         // Restaurant list sorted by display name. From A..Z.
         query.orderByAscending(kPAPFieldDisplayNameKey);

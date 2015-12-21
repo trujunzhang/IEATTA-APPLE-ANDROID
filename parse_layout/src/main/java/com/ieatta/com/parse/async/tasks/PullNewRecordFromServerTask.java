@@ -5,7 +5,7 @@ import android.yelp.com.commonlib.LogUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.async.AsyncCacheInfo;
 import com.ieatta.com.parse.async.SerialTasksManager;
-import com.ieatta.com.parse.engine.realm.DBQuery;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.parse.ParseObject;
 
@@ -21,7 +21,7 @@ import bolts.Task;
 public class PullNewRecordFromServerTask {
     private PullNewRecordFromServerTask self = this;
 
-    public static Task PullFromServerSeriesTask(DBQuery query) {
+    public static Task PullFromServerSeriesTask(LocalQuery query) {
 
         return query.findInBackground().onSuccessTask(new Continuation() {
             @Override

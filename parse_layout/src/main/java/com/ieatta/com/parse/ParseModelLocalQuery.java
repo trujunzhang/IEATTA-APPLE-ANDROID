@@ -1,16 +1,11 @@
 package com.ieatta.com.parse;
 
 
-import com.ieatta.com.parse.engine.realm.DBObject;
-import com.ieatta.com.parse.engine.realm.DBQuery;
-import com.ieatta.com.parse.models.NewRecord;
+import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseACL;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -45,18 +40,11 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
      * <p/>
      * - parameter query:           query's instance
      */
-    public Task<Integer> countLocalObjects(DBQuery query) {
+    public Task<Integer> countLocalObjects(LocalQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 
         return query.countInBackground();
-    }
-
-    public static Task<List<ParseObject>> findLocalObjectsInBackground(DBQuery query) {
-        // *** Important ***
-        query.fromLocalDatastore();
-
-        return query.findInBackground();
     }
 
     /**
@@ -66,7 +54,7 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
      * @param query
      * @return
      */
-    protected static Task<List<ParseObject>> findFirstLocalObjectInBackground(DBQuery query) {
+    protected static Task<List<ParseObject>> findFirstLocalObjectInBackground(LocalQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
         // *** Just get the first object.
@@ -75,7 +63,14 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
         return query.findInBackground();
     }
 
-    public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final DBQuery query) {
+    public static Task<List<ParseObject>> findLocalObjectsInBackground(LocalQuery query) {
+        // *** Important ***
+        query.fromLocalDatastore();
+
+        return query.findInBackground();
+    }
+
+    public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final LocalQuery query) {
         return ParseModelQuery.findLocalObjectsInBackground(query)
                 .onSuccessTask(new Continuation<List<ParseObject>, Task<List<ParseModelAbstract>>>() {
                     @Override
