@@ -118,13 +118,14 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     }
 
     public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final DBQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<List<ParseModelAbstract>>>() {
-            @Override
-            public Task<List<ParseModelAbstract>> then(Task<List<ParseObject>> task) throws Exception {
-                ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(type);
-                return instance.convertToParseModelsTask(task, true);
-            }
-        });
+        return ParseModelQuery.findLocalObjectsInBackground(query)
+                .onSuccessTask(new Continuation<List<ParseObject>, Task<List<ParseModelAbstract>>>() {
+                    @Override
+                    public Task<List<ParseModelAbstract>> then(Task<List<ParseObject>> task) throws Exception {
+                        ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(type);
+                        return instance.convertToParseModelsTask(task, true);
+                    }
+                });
     }
 
     protected Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
@@ -133,12 +134,13 @@ public abstract class ParseModelQuery extends ParseModelConvert {
 
     @Override
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
-            @Override
-            public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
-                return convertToLocalModelTask(task);
-            }
-        });
+        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID())
+                .onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
+                    @Override
+                    public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
+                        return convertToLocalModelTask(task);
+                    }
+                });
     }
 
     /**
@@ -234,7 +236,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         ParseObject object = makeObject();
         this.writeLocalObject(object);
 
-        return DBObject.pinInBackground("Offline",object, this);
+        return DBObject.pinInBackground("Offline", object, this);
     }
 
 
@@ -268,7 +270,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
             public Task<Void> then(Task<ParseObject> task) throws Exception {
                 ParseObject object = task.getResult();
                 if (object != null) {
-                    return ParseModelQuery.unpinObjectInBackground(object,self);
+                    return ParseModelQuery.unpinObjectInBackground(object, self);
                 }
                 // **** Important ****
                 // Here, return value is 'null' means that not found object.
@@ -301,8 +303,8 @@ public abstract class ParseModelQuery extends ParseModelConvert {
      * - parameter object:          PFObject's instance
      * - parameter completionBlock: callback variable
      */
-    public static Task<Void> unpinObjectInBackground(ParseObject object,ParseModelAbstract model) {
-        return DBObject.unpinInBackground("Offline",object,model);
+    public static Task<Void> unpinObjectInBackground(ParseObject object, ParseModelAbstract model) {
+        return DBObject.unpinInBackground("Offline", object, model);
     }
 
 }
