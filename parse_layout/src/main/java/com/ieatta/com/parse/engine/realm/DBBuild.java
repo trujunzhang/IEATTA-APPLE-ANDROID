@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by djzhang on 12/21/15.
@@ -49,5 +50,9 @@ public class DBBuild<T extends RealmObject> {
     public void setModelType(PQueryModelType modelType) {
         self.modelType = modelType;
         self.where = new RMQueryUtils().getRealmQuery(modelType);
+    }
+
+    public RealmResults<T> findAll() {
+        return self.where.findAll();
     }
 }

@@ -14,7 +14,10 @@ import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 
+import java.util.List;
+
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by djzhang on 12/20/15.
@@ -72,4 +75,8 @@ public class DBAccessUtils {
     }
 
 
+    public static List<ParseModelAbstract> readRealmResults(RealmResults results, PQueryModelType modelType) {
+
+        return null;
+    }
 }

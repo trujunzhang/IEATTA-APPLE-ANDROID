@@ -27,9 +27,9 @@ public class RMQuery<T extends ParseModelAbstract> {
     }
 
     public Task<List<T>> findInBackground() {
+        RealmResults results = build.findAll();
 
-        RealmQuery where = build.where;
-        RealmResults results = where.findAll();
+        DBAccessUtils.readRealmResults(results,build.modelType);
 
         return null;
     }
