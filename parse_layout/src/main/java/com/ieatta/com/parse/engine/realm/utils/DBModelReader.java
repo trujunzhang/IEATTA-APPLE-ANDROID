@@ -2,6 +2,7 @@ package com.ieatta.com.parse.engine.realm.utils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import android.yelp.com.commonlib.EnvironmentUtils;
@@ -21,6 +22,7 @@ import com.ieatta.com.parse.models.enums.PQueryModelType;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmObject;
 import io.realm.RealmResults;
 
 /**
@@ -29,8 +31,15 @@ import io.realm.RealmResults;
 public class DBModelReader<T extends ParseModelAbstract> {
 
     public List<T> readRealmResults(RealmResults results, PQueryModelType modelType) {
+        List<T> list = new LinkedList<>();
+
+        for(Object object : results){
+            int x = 0;
+
+            ParseModelAbstract modelAbstract = new Photo();
+        }
 
 
-        return null;
+        return list;
     }
 }
