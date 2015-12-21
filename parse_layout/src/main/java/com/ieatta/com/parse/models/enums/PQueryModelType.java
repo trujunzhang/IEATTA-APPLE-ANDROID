@@ -22,6 +22,8 @@ public enum PQueryModelType {
 
     unkown;// 10
 
+
+
     public static int getInt(PQueryModelType type) {
         return type.ordinal();
     }
