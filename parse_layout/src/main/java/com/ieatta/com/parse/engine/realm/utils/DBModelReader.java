@@ -59,6 +59,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
             if(limit != -1 && step >= limit){
                 break;
             }
+            step ++;
 
             ParseModelAbstract model = null;
 
