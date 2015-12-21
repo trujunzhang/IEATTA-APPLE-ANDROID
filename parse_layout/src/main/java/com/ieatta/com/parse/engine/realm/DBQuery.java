@@ -39,6 +39,7 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
     @Override
     public DBQuery<T> whereEqualTo(String key, Object value) {
         super.whereEqualTo(key, value);
+        this.build.whereEqualTo(key,value);
         return this;
     }
 
