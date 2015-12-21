@@ -71,8 +71,6 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
         self.queryPeopleOrderedList();
     }
 
-
-
     private void queryPeopleOrderedList() {
         Team.queryTeam().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
