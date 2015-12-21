@@ -6,6 +6,7 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.engine.realm.DBBuild;
 import com.ieatta.com.parse.engine.realm.models.DBTeam;
 import com.ieatta.com.parse.models.Team;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseObject;
 
 import java.util.List;
@@ -29,7 +30,13 @@ public class RMQuery<T extends ParseModelAbstract> {
     public Task<List<T>> findInBackground() {
         RealmResults results = build.findAll();
 
-        DBAccessUtils.readRealmResults(results,build.modelType);
+        List<T> list = this.readRealmResults(results, build.modelType);
+
+        return Task.forResult(list);
+    }
+
+    public List<T> readRealmResults(RealmResults results, PQueryModelType modelType) {
+
 
         return null;
     }
