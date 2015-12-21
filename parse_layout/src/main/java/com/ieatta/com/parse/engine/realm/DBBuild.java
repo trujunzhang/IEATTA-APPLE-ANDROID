@@ -11,6 +11,7 @@ public class DBBuild {
 
     private boolean isFromLocalDatastore = false;
     private HashMap<String,Object> equalMap = new LinkedHashMap<>();
+    private int limit = -1; // negative limits mean, do not send a limit
 
     public void fromLocalDatastore() {
         self.isFromLocalDatastore = true;
@@ -21,4 +22,15 @@ public class DBBuild {
     }
 
 
+    public void orderByDescending(String key) {
+
+    }
+
+    public void orderByAscending(String key) {
+
+    }
+
+    public void setLimit(int newLimit) {
+        self.limit = newLimit;
+    }
 }

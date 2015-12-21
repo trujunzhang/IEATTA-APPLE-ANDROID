@@ -39,19 +39,21 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
     @Override
     public DBQuery<T> whereEqualTo(String key, Object value) {
         super.whereEqualTo(key, value);
-        this.build.whereEqualTo(key,value);
+        this.build.whereEqualTo(key, value);
         return this;
     }
 
     @Override
     public DBQuery<T> orderByDescending(String key) {
         super.orderByDescending(key);
+        this.build.orderByDescending(key);
         return this;
     }
 
     @Override
     public DBQuery<T> orderByAscending(String key) {
         super.orderByAscending(key);
+        this.build.orderByAscending(key);
         return this;
     }
 
@@ -68,6 +70,7 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
 
     public ParseQuery<T> setLimit(int newLimit) {
         super.setLimit(newLimit);
+        this.build.setLimit(newLimit);
         return this;
     }
 
