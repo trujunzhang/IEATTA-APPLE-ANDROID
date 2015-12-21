@@ -58,8 +58,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * - returns: query's instance
      */
     public ParseQuery createQueryForPushObjectsToServer(int limit) {
-        // TODO: djzhang(fixing)
-//        ParseQuery query = this.getDBQueryInstance();
         ParseQuery query = ParseQuery.getQuery(self.getParseTableName());
         query.setLimit(limit);
 
