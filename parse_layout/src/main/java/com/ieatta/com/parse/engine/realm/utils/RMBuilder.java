@@ -54,6 +54,7 @@ public class RMBuilder<E extends RealmObject> {
 
     public RealmQuery<E> buildContainedIn(RealmQuery<E> where, HashMap<String, Object> equalMap) {
 
+
         return where;
     }
 
