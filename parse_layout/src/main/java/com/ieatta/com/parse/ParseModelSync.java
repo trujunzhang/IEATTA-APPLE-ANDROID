@@ -61,12 +61,13 @@ public abstract class ParseModelSync extends ParseModelQuery {
      */
     @Override
     public Task<Object> pushToServer() {
-        return this.getFirstLocalModelArrayTask().continueWith(new Continuation<ParseModelAbstract, Object>() {
-            @Override
-            public Object then(Task<ParseModelAbstract> task) throws Exception {
-                return saveInBackgroundTask(); //(on the parse.com)
-            }
-        });
+        return this.getFirstLocalModelArrayTask()
+                .continueWith(new Continuation<ParseModelAbstract, Object>() {
+                    @Override
+                    public Object then(Task<ParseModelAbstract> task) throws Exception {
+                        return saveInBackgroundTask(); //(on the parse.com)
+                    }
+                });
     }
 
 

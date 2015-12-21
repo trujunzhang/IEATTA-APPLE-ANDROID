@@ -32,8 +32,8 @@ import com.ieatta.com.parse.models.Team;
  */
 public class RMQueryUtils {
 
-    public <T extends RealmObject> RealmQuery<T> getRealmQuery(PQueryModelType modelType) {
-        Realm realm = Realm.getInstance(EnvironmentUtils.sharedInstance.getGlobalContext());
+    public <T extends RealmObject> RealmQuery<T> getRealmQuery(Realm realm, PQueryModelType modelType) {
+
         switch (modelType) {
             case Recipe:
                 return (RealmQuery<T>) realm.where(DBRecipe.class);

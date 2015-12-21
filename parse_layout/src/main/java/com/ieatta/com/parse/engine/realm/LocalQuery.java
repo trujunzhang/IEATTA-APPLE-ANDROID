@@ -46,7 +46,7 @@ public class LocalQuery<T extends ParseModelAbstract> {
     }
 
     public LocalQuery<T> whereGreaterThan(String key, Date date) {
-        this.builder.whereGreaterThan(key,date);
+        this.builder.whereGreaterThan(key, date);
         return this;
     }
 
@@ -78,5 +78,7 @@ public class LocalQuery<T extends ParseModelAbstract> {
         return new RMQuery(this.builder).findInBackground();
     }
 
-
+    public Task<Void> unpinInBackground() {
+        return new RMQuery(this.builder).unpinInBackground();
+    }
 }

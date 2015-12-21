@@ -73,10 +73,4 @@ public class DBAccessUtils {
         }
 
     }
-
-
-    public static List<ParseModelAbstract> readRealmResults(RealmResults results, PQueryModelType modelType) {
-
-        return null;
-    }
 }

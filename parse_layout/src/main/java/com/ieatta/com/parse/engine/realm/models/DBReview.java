@@ -5,11 +5,13 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 import java.util.Date;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by djzhang on 12/20/15.
  */
 public class DBReview extends RealmObject {
+    @PrimaryKey
     private String UUID = "";
     private Date objectCreatedDate = new Date();
 

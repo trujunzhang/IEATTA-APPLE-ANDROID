@@ -38,8 +38,8 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      * <p/>
      * - returns: query's instance
      */
-    public LocalQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
-        LocalQuery query = this.getDBQueryInstance();
+    public ParseQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
+        ParseQuery query = ParseQuery.getQuery(self.getParseTableName());
         query.setLimit(limit);
 
         // *** Important (used orderByAscending) ***
@@ -111,9 +111,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     }
 
     public ParseQuery createQueryFromRecord() {
-        // TODO:djzhang(fixing)
-//        ParseQuery query = this.getDBQueryInstance();
-        ParseQuery query = null;
+        ParseQuery query = ParseQuery.getQuery(this.getParseTableName());
 
         // *** Import *** The newest row in the table.
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
@@ -125,62 +123,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     protected Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
         return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
     }
-
-    @Override
-    public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID())
-                .onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
-                    @Override
-                    public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
-                        return convertToLocalModelTask(task);
-                    }
-                });
-    }
-
-    /**
-     * Because Task will return Exception,'no results found for query'(code is com.parse.ParseException.OBJECT_NOT_FOUND),
-     * when no the first object found.
-     *
-     * @param previous
-     * @return
-     */
-    private static Task<ParseObject> getFirstParseObjectTask(Task<List<ParseObject>> previous) {
-        LinkedList<ParseObject> objects = new LinkedList<>(previous.getResult());
-        if (objects.size() == 0) {
-
-            // **** Important ****
-            // Here, return value is 'null' means that not found object.
-            // For example, if all newrecord objects already pushed to server.
-            // No NewRecord rows on the local table. So not found NewRecord here.
-            return Task.forResult(null);
-        }
-
-        return Task.forResult(objects.getFirst());
-    }
-
-    /**
-     * **** Important ****
-     * <p/>
-     * Get first PFObject from the offline database.
-     * <p/>
-     * - parameter query: LocalQuery's instance
-     * <p/>
-     * - returns: the first object's array,like [PFObject's instance].
-     */
-    public Task<ParseObject> getFirstLocalObjectArrayInBackground(LocalQuery query) {
-        // **** Important ****
-        // If not found Parse's findLocalObjectsInBackground
-        return ParseModelQuery.findFirstLocalObjectInBackground(query)
-                .onSuccessTask(new Continuation<List<ParseObject>, Task<ParseObject>>() {
-                    @Override
-                    public Task<ParseObject> then(Task<List<ParseObject>> task) throws Exception {
-                        return ParseModelQuery.getFirstParseObjectTask(task);
-                    }
-                });
-    }
-
-
-
 
     private ParseObject makeObject() {
         ParseObject object = this.createObject();
@@ -221,27 +163,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return object.saveInBackground();
     }
 
-    /**
-     * Unpin the first offline object by query instance.
-     * <p/>
-     * - parameter query:           query's instance
-     */
-    public Task<Void> unpinInBackground(LocalQuery query) {
-        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<ParseObject> task) throws Exception {
-                ParseObject object = task.getResult();
-                if (object != null) {
-                    return ParseModelQuery.unpinObjectInBackground(object, self);
-                }
-                // **** Important ****
-                // Here, return value is 'null' means that not found object.
-                // For example, if all newrecord objects already pushed to server.
-                // No NewRecord rows on the local table. So not found NewRecord here.
-                return Task.forResult(null);
-            }
-        });
-    }
 
     /**
      * Unpin the first offline object itself with NewRecord by query instance.
@@ -267,6 +188,19 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
      */
     public static Task<Void> unpinObjectInBackground(ParseObject object, ParseModelAbstract model) {
         return DBObject.unpinInBackground("Offline", object, model);
+    }
+
+    @Override
+    public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
+        return self.getFirstLocalObjectArrayInBackground(self.createQueryByObjectUUID());
+
+//        return self.getFirstLocalObjectArrayInBackground(this.createQueryByObjectUUID())
+//                .onSuccessTask(new Continuation<ParseObject, Task<ParseModelAbstract>>() {
+//                    @Override
+//                    public Task<ParseModelAbstract> then(Task<ParseObject> task) throws Exception {
+//                        return convertToLocalModelTask(task);
+//                    }
+//                });
     }
 
 }

@@ -133,16 +133,17 @@ public class Restaurant extends ParseModelSync {
             }
         }
 
-        return this.getFirstLocalModelArrayTask().onSuccessTask(new Continuation<ParseModelAbstract, Task<Boolean>>() {
-            @Override
-            public Task<Boolean> then(Task<ParseModelAbstract> task) throws Exception {
-                if (belongTo != null) {
-                    final Event event = (Event) belongTo;
-                    event.belongToModel = self;
-                }
-                return Task.forResult(true);
-            }
-        });
+        return this.getFirstLocalModelArrayTask()
+                .onSuccessTask(new Continuation<ParseModelAbstract, Task<Boolean>>() {
+                    @Override
+                    public Task<Boolean> then(Task<ParseModelAbstract> task) throws Exception {
+                        if (belongTo != null) {
+                            final Event event = (Event) belongTo;
+                            event.belongToModel = self;
+                        }
+                        return Task.forResult(true);
+                    }
+                });
     }
 
     public static Task<List<ParseModelAbstract>> queryRestaurants() {
