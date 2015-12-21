@@ -22,6 +22,9 @@ public class RMBuilder<E extends RealmObject> {
                 where.equalTo(key, (String) value);
             }else if(value.getClass().equals(Integer.class)){
                 where.equalTo(key, (int) value);
+            }else{
+                Class<?> aClass = value.getClass();
+                int x = 0;
             }
         }
 
