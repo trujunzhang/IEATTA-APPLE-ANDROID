@@ -63,8 +63,9 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        self.event = (Event) self.getTransferedModel();
-        self.event = ActivityModelDebug.getEventForEventDetail();
+        self.event = (Event) self.getTransferedModel();
+        // TODO: djzhang(test)
+//        self.event = ActivityModelDebug.getEventForEventDetail();
 
         // Do any additional setup after loading the view.
 //        assert(self.event != nil, "Must setup Event's instance.")

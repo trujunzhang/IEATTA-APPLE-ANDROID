@@ -42,7 +42,7 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO djzhang(test)
-        self.setEditModel(ActivityModelDebug.getEventForEventDetail());
+//        self.setEditModel(ActivityModelDebug.getEventForEventDetail());
 
         super.onCreate(savedInstanceState);
     }

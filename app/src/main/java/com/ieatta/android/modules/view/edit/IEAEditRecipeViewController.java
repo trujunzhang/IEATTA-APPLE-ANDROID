@@ -26,7 +26,7 @@ public class IEAEditRecipeViewController extends IEAEditBaseViewController {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO djzhang(test)
-        self.setEditModel(ActivityModelDebug.getOrderedRecipe());
+//        self.setEditModel(ActivityModelDebug.getOrderedRecipe());
 
         super.onCreate(savedInstanceState);
     }

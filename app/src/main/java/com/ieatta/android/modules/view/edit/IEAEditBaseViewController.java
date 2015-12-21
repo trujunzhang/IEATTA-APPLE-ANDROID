@@ -109,10 +109,6 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
         EditChangedObserver.sharedInstance.resetObserver();
 
-        // TODO djzhang(test)
-//        self.prepareForEditTableView();
-//        self.setItemsInSection(self.editManager.getRowsInSection(self.editedModel, self));
-
         self.getQueryPhotosTask().onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
             @Override
             public Object then(Task<List<ParseModelAbstract>> task) throws Exception {

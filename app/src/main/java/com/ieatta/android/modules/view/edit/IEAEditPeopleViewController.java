@@ -37,7 +37,7 @@ public class IEAEditPeopleViewController extends IEAEditBaseViewController {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO djzhang(test)
-        self.setEditModel(ActivityModelDebug.getOrderedPeople());
+//        self.setEditModel(ActivityModelDebug.getOrderedPeople());
 
         super.onCreate(savedInstanceState);
     }

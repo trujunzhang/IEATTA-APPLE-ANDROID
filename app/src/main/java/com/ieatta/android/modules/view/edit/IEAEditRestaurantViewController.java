@@ -27,7 +27,7 @@ public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO djzhang(test)
-        self.setEditModel(ActivityModelDebug.getRestaurantForRestaurantDetail());
+//        self.setEditModel(ActivityModelDebug.getRestaurantForRestaurantDetail());
 
         super.onCreate(savedInstanceState);
     }
