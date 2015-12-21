@@ -97,7 +97,7 @@ public abstract class ParseModelQuery extends ParseModelConvert {
     }
 
     protected DBQuery getDBQueryInstance() {
-        DBQuery<ParseObject> query = DBQuery.getDBQuery(this.getParseTableName());
+        DBQuery<ParseObject> query = DBQuery.getDBQuery(this.getParseTableName(),self.getModelType());
         return query;
     }
 

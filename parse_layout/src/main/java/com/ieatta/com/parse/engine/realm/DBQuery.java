@@ -1,5 +1,7 @@
 package com.ieatta.com.parse.engine.realm;
 
+import com.ieatta.com.parse.engine.realm.utils.RMQuery;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -21,12 +23,13 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
         super(subclass);
     }
 
-    public DBQuery(String theClassName) {
+    public DBQuery(String theClassName, PQueryModelType modelType) {
         super(theClassName);
+        this.build.setModelType(modelType);
     }
 
-    public static <T extends ParseObject> DBQuery<T> getDBQuery(String className) {
-        return new DBQuery<>(className);
+    public static <T extends ParseObject> DBQuery<T> getDBQuery(String className, PQueryModelType modelType) {
+        return new DBQuery<>(className,modelType);
     }
 
     @Override
@@ -81,7 +84,7 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
 
     public Task<List<T>> findInBackground() {
         if(this.build.isFromLocalDatastore == true){
-
+            return new RMQuery(this.build).findInBackground();
         }
         return super.findInBackground();
 //        return Task.forResult(null);

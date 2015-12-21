@@ -1,5 +1,7 @@
 package com.ieatta.com.parse.engine.realm;
 
+import com.ieatta.com.parse.models.enums.PQueryModelType;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -9,6 +11,7 @@ import java.util.LinkedHashMap;
 public class DBBuild {
     private DBBuild self = this;
 
+    public PQueryModelType modelType;
     public boolean isFromLocalDatastore = false;
     private HashMap<String,Object> equalMap = new LinkedHashMap<>();
     private int limit = -1; // negative limits mean, do not send a limit
@@ -32,5 +35,9 @@ public class DBBuild {
 
     public void setLimit(int newLimit) {
         self.limit = newLimit;
+    }
+
+    public void setModelType(PQueryModelType modelType) {
+        self.modelType = modelType;
     }
 }
