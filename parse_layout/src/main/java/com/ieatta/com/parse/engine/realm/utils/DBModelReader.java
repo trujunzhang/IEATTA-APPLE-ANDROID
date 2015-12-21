@@ -57,8 +57,34 @@ public class DBModelReader<T extends ParseModelAbstract> {
         for (Object object : results) {
             ParseModelAbstract model = null;
 
-
-
+            switch (modelType) {
+                case Recipe:
+                    model = this.reader((DBRecipe) object);
+                    break;
+                case Photo:
+                    model = this.reader((DBPhoto) object);
+                    break;
+                case Team:
+                    model = this.reader((DBTeam) object);
+                    break;
+                case Review:
+                    model = this.reader((DBReview) object);
+                    break;
+                case Event:
+                    model = this.reader((DBEvent) object);
+                    break;
+                case Restaurant:
+                    model = this.reader((DBRestaurant) object);
+                    break;
+                case NewRecord:
+                    model = this.reader((DBNewRecord) object);
+                    break;
+                case PeopleInEvent:
+                    model = this.reader((DBPeopleInEvent) object);
+                    break;
+                default:
+                    break;
+            }
 
             list.add((T) model);
         }
@@ -68,7 +94,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
     }
 
 
-    private ParseModelAbstract reader(DBEvent model, Realm realm) {
+    private ParseModelAbstract reader(DBEvent model) {
         Event object = new Event();
 
         object.objectUUID = model.getUUID();
@@ -85,7 +111,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         return object;
     }
 
-    private ParseModelAbstract reader(DBNewRecord model, Realm realm) {
+    private ParseModelAbstract reader(DBNewRecord model) {
         NewRecord object = new NewRecord();
 
         object.objectUUID = model.getUUID();
@@ -98,7 +124,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         return object;
     }
 
-    private ParseModelAbstract reader(DBPeopleInEvent model, Realm realm) {
+    private ParseModelAbstract reader(DBPeopleInEvent model) {
         PeopleInEvent object = new PeopleInEvent();
 
         object.objectUUID = model.getUUID();
@@ -110,7 +136,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         return object;
     }
 
-    private ParseModelAbstract reader(DBPhoto model, Realm realm) {
+    private ParseModelAbstract reader(DBPhoto model) {
         Photo object = new Photo();
 
         object.objectUUID = model.getUUID();
@@ -127,7 +153,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         return object;
     }
 
-    private ParseModelAbstract reader(DBRecipe model, Realm realm) {
+    private ParseModelAbstract reader(DBRecipe model) {
         Recipe object = new Recipe();
 
         object.objectUUID = model.getUUID();
@@ -142,7 +168,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         return object;
     }
 
-    private ParseModelAbstract reader(DBRestaurant model, Realm realm) {
+    private ParseModelAbstract reader(DBRestaurant model) {
         Restaurant object = new Restaurant();
 
         object.objectUUID = model.getUUID();
@@ -155,7 +181,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         return object;
     }
 
-    private ParseModelAbstract reader(DBReview model, Realm realm) {
+    private ParseModelAbstract reader(DBReview model) {
         Review object = new Review();
 
         object.objectUUID = model.getUUID();
@@ -170,7 +196,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         return object;
     }
 
-    private ParseModelAbstract reader(DBTeam model, Realm realm) {
+    private ParseModelAbstract reader(DBTeam model) {
         Team object = new Team();
 
         object.objectUUID = model.getUUID();
