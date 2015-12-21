@@ -6,6 +6,8 @@ import com.ieatta.com.parse.models.enums.PQueryModelType;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
@@ -20,6 +22,8 @@ public class DBBuilder<T extends RealmObject> {
     public PQueryModelType modelType;
     public boolean isFromLocalDatastore = false;
     private HashMap<String, Object> equalMap = new LinkedHashMap<>();
+    private List<String> orderedByDescendingList = new LinkedList<>();
+    private List<String> orderedByAscendingList = new LinkedList<>();
     private int limit = -1; // negative limits mean, do not send a limit
 
     public RealmQuery<T> where;
@@ -35,11 +39,11 @@ public class DBBuilder<T extends RealmObject> {
     }
 
     public void orderByDescending(String key) {
-
+self.orderedByDescendingList.add(key);
     }
 
     public void orderByAscending(String key) {
-
+self.orderedByAscendingList.add(key);
     }
 
     public void setLimit(int newLimit) {
@@ -52,7 +56,8 @@ public class DBBuilder<T extends RealmObject> {
     }
 
     public RealmQuery<T> buildAll() {
-        self.where = self.rmBuilder.buildEqualTo(self.where,self.equalMap);
+        self.where = self.rmBuilder.buildEqualTo(self.where, self.equalMap);
+        self.where = self.rmBuilder.orderBy(self.where,self.orderedByAscendingList,self.orderedByDescendingList);
 
         return self.where;
     }

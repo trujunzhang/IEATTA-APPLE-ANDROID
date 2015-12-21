@@ -1,6 +1,7 @@
 package com.ieatta.com.parse.engine.realm.utils;
 
 import java.util.HashMap;
+import java.util.List;
 
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
@@ -26,6 +27,11 @@ public class RMBuilder<E extends RealmObject> {
                 int x = 0;
             }
         }
+
+        return where;
+    }
+
+    public RealmQuery orderBy(RealmQuery where, List orderedByAscendingList, List orderedByDescendingList) {
 
         return where;
     }
