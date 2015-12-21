@@ -84,14 +84,10 @@ public class DBBuilder<T extends RealmObject> {
         return self.rmBuilder.orderBy(results, self.orderedByAscendingList, self.orderedByDescendingList);
     }
 
-
     public Task<Void> delete(RealmResults results) {
         // All changes to data must happen in a transaction
         realm.beginTransaction();
-
-        // remove single match
         results.removeLast();
-
         realm.commitTransaction();
 
         return Task.forResult(null);
