@@ -87,7 +87,6 @@ public class DBQuery<T extends ParseObject> extends ParseQuery {
             return new RMQuery(this.build).findInBackground();
         }
         return super.findInBackground();
-//        return Task.forResult(null);
     }
 
 
