@@ -31,8 +31,13 @@ public class RMBuilder<E extends RealmObject> {
         return where;
     }
 
-    public RealmQuery orderBy(RealmQuery where, List orderedByAscendingList, List orderedByDescendingList) {
+    public RealmQuery<E> orderBy(RealmQuery<E> where, List<String> orderedByAscendingList, List<String> orderedByDescendingList) {
+        for(String key : orderedByAscendingList){
 
+        }
+        for(String key : orderedByDescendingList){
+
+        }
         return where;
     }
 }
