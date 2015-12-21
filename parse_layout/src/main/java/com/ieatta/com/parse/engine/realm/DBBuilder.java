@@ -1,15 +1,11 @@
 package com.ieatta.com.parse.engine.realm;
 
-import android.yelp.com.commonlib.EnvironmentUtils;
-
-import com.ieatta.com.parse.engine.realm.models.DBTeam;
 import com.ieatta.com.parse.engine.realm.utils.RMQueryUtils;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import io.realm.Realm;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -17,8 +13,8 @@ import io.realm.RealmResults;
 /**
  * Created by djzhang on 12/21/15.
  */
-public class DBBuild<T extends RealmObject> {
-    private DBBuild self = this;
+public class DBBuilder<T extends RealmObject> {
+    private DBBuilder self = this;
 
     public PQueryModelType modelType;
     public boolean isFromLocalDatastore = false;
@@ -50,6 +46,12 @@ public class DBBuild<T extends RealmObject> {
     public void setModelType(PQueryModelType modelType) {
         self.modelType = modelType;
         self.where = new RMQueryUtils().getRealmQuery(modelType);
+    }
+
+    public RealmQuery<T> buildAll() {
+
+
+        return self.where;
     }
 
     public RealmResults<T> findAll() {

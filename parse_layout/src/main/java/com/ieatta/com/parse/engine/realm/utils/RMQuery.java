@@ -1,36 +1,28 @@
 package com.ieatta.com.parse.engine.realm.utils;
 
-import android.yelp.com.commonlib.EnvironmentUtils;
-
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.engine.realm.DBBuild;
-import com.ieatta.com.parse.engine.realm.models.DBTeam;
-import com.ieatta.com.parse.models.Team;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseObject;
+import com.ieatta.com.parse.engine.realm.DBBuilder;
 
 import java.util.List;
-import java.util.WeakHashMap;
 
 import bolts.Task;
-import io.realm.Realm;
-import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
  * Created by djzhang on 12/21/15.
  */
 public class RMQuery<T extends ParseModelAbstract> {
-    private DBBuild build;
+    private DBBuilder builder;
 
-    public RMQuery(DBBuild build) {
-        this.build = build;
+    public RMQuery(DBBuilder builder) {
+        this.builder = builder;
     }
 
     public Task<List<T>> findInBackground() {
-        RealmResults results = build.findAll();
 
-        List<T> list = new DBModelReader().readRealmResults(results, build.modelType);
+        RealmResults results = builder.buildAll().findAll();
+
+        List<T> list = new DBModelReader().readRealmResults(results, builder.modelType);
 
         return Task.forResult(list);
     }
