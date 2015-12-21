@@ -64,4 +64,13 @@ public class DBBuilder<T extends RealmObject> {
     public RealmResults sort(RealmResults results) {
         return self.rmBuilder.orderBy(results, self.orderedByAscendingList, self.orderedByDescendingList);
     }
+
+    public RealmResults getLimitResults(RealmResults results) {
+        if(self.limit == -1){
+            return results;
+        }
+        return self.rmBuilder.getLimitedResults(results,self.limit);
+    }
+
+
 }

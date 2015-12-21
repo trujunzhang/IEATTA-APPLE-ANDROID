@@ -24,6 +24,7 @@ public class RMQuery<T extends ParseModelAbstract> {
         RealmResults results = builder.buildAll().findAll();
 
         results = builder.sort(results);
+        results = builder.getLimitResults(results);
 
         List<T> list = new DBModelReader().readRealmResults(results, builder.modelType);
 
