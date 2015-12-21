@@ -118,6 +118,9 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 self.hideHUD();
 
                 if (task.isFaulted() == true) {
+                    Exception error = task.getError();
+                    String message = error.getMessage();
+                    Throwable cause = error.getCause();
                 }
                 return null;
             }

@@ -20,8 +20,8 @@ public class RMQuery<T extends ParseModelAbstract> {
 
     public Task<List<T>> findInBackground() {
 
-        RealmResults results =  builder.where.equalTo("restaurantRef", "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04").findAll();
-//        RealmResults results = builder.buildAll().findAll();
+//        RealmResults results =  builder.where.equalTo("restaurantRef", "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04").findAll();
+        RealmResults results = builder.buildAll().findAll();
 
         List<T> list = new DBModelReader().readRealmResults(results, builder.modelType);
 

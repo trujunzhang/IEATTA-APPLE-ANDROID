@@ -17,7 +17,7 @@ import bolts.Task;
 /**
  * Created by djzhang on 11/27/15.
  */
-public abstract class ParseModelQuery extends ParseModelConvert {
+public abstract class ParseModelQuery extends ParseModelLocalQuery {
     private ParseModelQuery self = this;
 
     private static final String kPAPFieldModelOnlineCreatedAtKey = "createdAt";
@@ -117,17 +117,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
         return query;
     }
 
-    public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final DBQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query)
-                .onSuccessTask(new Continuation<List<ParseObject>, Task<List<ParseModelAbstract>>>() {
-                    @Override
-                    public Task<List<ParseModelAbstract>> then(Task<List<ParseObject>> task) throws Exception {
-                        ParseModelConvert instance = (ParseModelConvert) ParseModelAbstract.getInstanceFromType(type);
-                        return instance.convertToParseModelsTask(task, true);
-                    }
-                });
-    }
-
     protected Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
         return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
     }
@@ -197,12 +186,6 @@ public abstract class ParseModelQuery extends ParseModelConvert {
                 });
     }
 
-    public static Task<List<ParseObject>> findLocalObjectsInBackground(DBQuery query) {
-        // *** Important ***
-        query.fromLocalDatastore();
-
-        return query.findInBackground();
-    }
 
     /**
      * if not found the first object,
