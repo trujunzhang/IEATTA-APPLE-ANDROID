@@ -29,6 +29,18 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
     }
 
     /**
+     *  Query the local database and convert to ParseObject.
+     * @param query
+     * @return
+     */
+    public static Task<List<ParseObject>> findLocalParseObjectsInBackground(ParseQuery query) {
+        // *** Important ***
+        query.fromLocalDatastore();
+
+        return query.findInBackground();
+    }
+
+    /**
      * Get count of objects on the offline datastore.
      * <p/>
      * - parameter query:           query's instance
@@ -59,13 +71,6 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
         query.fromLocalDatastore();
         // *** Just get the first object.
         query.setLimit(1);
-
-        return query.findInBackground();
-    }
-
-    public static Task<List<ParseObject>> findLocalParseObjectsInBackground(ParseQuery query) {
-        // *** Important ***
-        query.fromLocalDatastore();
 
         return query.findInBackground();
     }
