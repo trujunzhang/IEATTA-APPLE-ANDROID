@@ -27,8 +27,8 @@ public class RMQuery<T extends ParseModelAbstract> {
     }
 
     public Task<List<T>> findInBackground() {
-        Realm realm = Realm.getInstance(EnvironmentUtils.sharedInstance.getGlobalContext());
-        RealmQuery<DBTeam> where = realm.where(DBTeam.class);
+
+        RealmQuery<DBTeam> where = build.where;
 
         RealmResults<DBTeam> r = where
                 .greaterThan("age", 10)  //implicit AND

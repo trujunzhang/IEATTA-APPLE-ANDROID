@@ -24,7 +24,7 @@ public class DBBuild<T extends RealmObject> {
     private HashMap<String, Object> equalMap = new LinkedHashMap<>();
     private int limit = -1; // negative limits mean, do not send a limit
 
-    private RealmQuery<T> where;
+    public RealmQuery<T> where;
 
     public void fromLocalDatastore() {
         self.isFromLocalDatastore = true;
