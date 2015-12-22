@@ -50,12 +50,12 @@ public class DBBuilder<T extends RealmObject> {
         self.greaterMap.put(key, value);
     }
 
-    public void orderByDescending(String key) {
-        self.orderedByDescendingList.add(key);
-    }
-
     public void whereContainedIn(String key, List<String> list) {
         self.containedMap.put(key, list);
+    }
+
+    public void orderByDescending(String key) {
+        self.orderedByDescendingList.add(key);
     }
 
     public void orderByAscending(String key) {
