@@ -24,7 +24,7 @@ import io.realm.RealmResults;
  * Created by djzhang on 12/20/15.
  */
 public class DBAccessUtils {
-    public static Task<Void> pinInBackground(ParseModelQuery model) {
+    public static Task<Void> pinInBackground(ParseModelAbstract model) {
         DBAccessUtils.save(model);
         return Task.forResult(null);
     }
