@@ -25,9 +25,7 @@ public class RMBuilder<E extends RealmObject> {
                 where = where.equalTo(key, (String) value);
             } else if (value.getClass().equals(Integer.class)) {
                 where = where.equalTo(key, (int) value);
-            } else if (value.getClass().equals(Date.class)) {
-                where = where.equalTo(key, (Date) value);
-            } else {
+            }else {
                 Class<?> aClass = value.getClass();
                 int x = 0;
             }
