@@ -50,7 +50,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return query;
     }
 
-    public LocalQuery createSearchDisplayNameQuery(String keyword) {
+    public LocalQuery createSearchDisplayNameForLocalQuery(String keyword) {
         LocalQuery query = this.makeLocalQuery();
 
         query.whereMatches(kPAPFieldDisplayNameKey, keyword, "i");

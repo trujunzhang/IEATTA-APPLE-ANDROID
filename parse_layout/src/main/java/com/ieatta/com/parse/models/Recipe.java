@@ -156,7 +156,7 @@ public class Recipe extends ParseModelSync {
 
     @Override
     public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
-        return Recipe.queryFromRealm(PQueryModelType.Recipe, new Recipe().createSearchDisplayNameQuery(keyword));
+        return Recipe.queryFromRealm(PQueryModelType.Recipe, new Recipe().createSearchDisplayNameForLocalQuery(keyword));
     }
 
     public static Task<List<ParseModelAbstract>> queryRecipes(Team people, Event event) {

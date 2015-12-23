@@ -156,7 +156,7 @@ public class Restaurant extends ParseModelSync {
 
     @Override
     public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
-        return Restaurant.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().createSearchDisplayNameQuery(keyword));
+        return Restaurant.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().createSearchDisplayNameForLocalQuery(keyword));
     }
 
     // MARK: Description

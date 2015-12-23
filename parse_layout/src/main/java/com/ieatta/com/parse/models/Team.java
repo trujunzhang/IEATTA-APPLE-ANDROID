@@ -138,7 +138,7 @@ public class Team extends ParseModelSync {
 
     @Override
     public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
-        return Team.queryFromRealm(PQueryModelType.Team, new Team().createSearchDisplayNameQuery(keyword));
+        return Team.queryFromRealm(PQueryModelType.Team, new Team().createSearchDisplayNameForLocalQuery(keyword));
     }
 
     public static Task<List<ParseModelAbstract>> queryTeam() {
