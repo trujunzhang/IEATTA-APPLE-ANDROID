@@ -51,12 +51,12 @@ public class LocalQuery<T extends ParseModelAbstract> {
     }
 
     public LocalQuery<T> whereMatches(String key, String keyword, String regExp) {
-        this.builder.whereMatchers(key,keyword);
+        this.builder.whereMatchers(key, keyword);
         return this;
     }
 
     public LocalQuery<T> whereContainedIn(String key, List<String> list) {
-        this.builder.whereContainedIn(key,list);
+        this.builder.whereContainedIn(key, list);
         return this;
     }
 
@@ -81,5 +81,9 @@ public class LocalQuery<T extends ParseModelAbstract> {
 
     public Task<Void> unpinInBackground() {
         return new RMQuery(this.builder).unpinInBackground();
+    }
+
+    public Task<Void> updateLocalInBackground() {
+        return new RMQuery(this.builder).updateLocalInBackground();
     }
 }

@@ -42,13 +42,8 @@ public abstract class ParseModelSync extends ParseModelQuery {
                 }).onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
-                        // 1. Check wheather exist.
-                        return unpinInBackground(self.createQueryByObjectUUID());
-                    }
-                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return pinInBackgroundForModel();
+                        // 1. Check wheather exist, and update it.
+                        return updateLocalInBackgroundForModel();
                     }
                 });
     }

@@ -38,9 +38,14 @@ public class RMQuery<T extends RealmObject> {
 
     public Task<Void> unpinInBackground() {
         RealmResults results = builder.buildAll().findAll();
-        if(results.size() >= 1){
+        if (results.size() >= 1) {
             return builder.delete(results);
         }
+        return Task.forResult(null);
+    }
+
+    public Task<Void> updateLocalInBackground() {
+
         return Task.forResult(null);
     }
 }
