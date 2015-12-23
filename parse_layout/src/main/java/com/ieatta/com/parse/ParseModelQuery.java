@@ -193,7 +193,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return self.getFirstLocalObjectArrayInBackground(self.createQueryByObjectUUID());
     }
 
-    public Task<Void> updateLocalInBackgroundForModel(){
+    public Task<Void> updateLocalInBackground(){
         return self.unpinInBackground(self.createQueryByObjectUUID())
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override

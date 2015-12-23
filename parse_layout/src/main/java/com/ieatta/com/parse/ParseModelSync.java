@@ -43,7 +43,7 @@ public abstract class ParseModelSync extends ParseModelQuery {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
                         // 1. Check wheather exist, and update it.
-                        return updateLocalInBackgroundForModel();
+                        return updateLocalInBackground();
                     }
                 });
     }
