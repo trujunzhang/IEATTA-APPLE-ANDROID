@@ -147,16 +147,16 @@ public class Restaurant extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRestaurants() {
-        return ParseModelQuery.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().makeDBQuery());
+        return ParseModelQuery.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().makeDBQuery());
     }
 
     public static Task<List<ParseModelAbstract>> queryNearRestaurants(ParseGeoPoint geoPoint) {
-        return ParseModelQuery.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
+        return ParseModelQuery.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
     }
 
     @Override
     public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
-        return Restaurant.queryFromDatabase(PQueryModelType.Restaurant, new Restaurant().createSearchDisplayNameQuery(keyword));
+        return Restaurant.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().createSearchDisplayNameQuery(keyword));
     }
 
     // MARK: Description

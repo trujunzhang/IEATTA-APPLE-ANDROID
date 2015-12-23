@@ -73,7 +73,7 @@ public class ParseLocalDatabase {
 
     // MARK: Retrieve offline database for test.
     public static Task<Void> queryLocalDatastoreInBackground(LocalQuery query, final PQueryModelType classType) {
-        return ParseModelQuery.queryFromDatabase(classType, query).onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
+        return ParseModelQuery.queryFromRealm(classType, query).onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
             @Override
             public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
                 ParseLocalDatabase.printList(classType, task.getResult());

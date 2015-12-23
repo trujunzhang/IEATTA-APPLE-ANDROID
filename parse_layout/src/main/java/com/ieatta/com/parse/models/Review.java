@@ -164,7 +164,7 @@ public class Review extends ParseModelSync {
         if (limit != Review.NO_Limit_FETCHED_REVIEWS_IN_DetailPage) {
             query.setLimit(limit);
         }
-        return ParseModelQuery.queryFromDatabase(PQueryModelType.Review, query);
+        return ParseModelQuery.queryFromRealm(PQueryModelType.Review, query);
     }
 
 

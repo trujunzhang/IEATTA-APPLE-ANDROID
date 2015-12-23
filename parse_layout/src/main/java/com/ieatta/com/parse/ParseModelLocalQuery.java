@@ -61,7 +61,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
         return query.findInBackground();
     }
 
-    public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final LocalQuery query) {
+    public static Task<List<ParseModelAbstract>> queryFromRealm(final PQueryModelType type, final LocalQuery query) {
         return ParseModelQuery.findInBackgroundFromRealm(query);
     }
 

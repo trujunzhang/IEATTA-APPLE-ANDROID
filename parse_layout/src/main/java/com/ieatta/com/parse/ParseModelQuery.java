@@ -85,7 +85,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     }
 
     public Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
-        return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
+        return ParseModelQuery.queryFromRealm(type, this.createQueryForBatching(points));
     }
 
     private ParseObject makeObject() {

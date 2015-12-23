@@ -87,7 +87,7 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryOrderedPeople(String eventRef) {
-        return Event.queryFromDatabase(PQueryModelType.PeopleInEvent, new PeopleInEvent().createQueryByEventRef(eventRef));
+        return Event.queryFromRealm(PQueryModelType.PeopleInEvent, new PeopleInEvent().createQueryByEventRef(eventRef));
     }
 
     public static Team getPeople(PeopleInEvent peopleInEvent, List<ParseModelAbstract/*Team*/> fetchedPeople) {

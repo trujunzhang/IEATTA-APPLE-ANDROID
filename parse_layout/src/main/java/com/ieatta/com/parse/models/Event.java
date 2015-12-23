@@ -180,11 +180,11 @@ public class Event extends ParseModelSync {
     }
 
     public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
-        return Event.queryFromDatabase(PQueryModelType.Event, new Event().createSearchDisplayNameQuery(keyword));
+        return Event.queryFromRealm(PQueryModelType.Event, new Event().createSearchDisplayNameQuery(keyword));
     }
 
     public static Task<List<ParseModelAbstract>> queryEventsRelatedRestaurant(Restaurant restaurant) {
-        return ParseModelQuery.queryFromDatabase(PQueryModelType.Event, new Event().createQueryByRestaurantRef(restaurant));
+        return ParseModelQuery.queryFromRealm(PQueryModelType.Event, new Event().createQueryByRestaurantRef(restaurant));
     }
 
     // MARK: Description
