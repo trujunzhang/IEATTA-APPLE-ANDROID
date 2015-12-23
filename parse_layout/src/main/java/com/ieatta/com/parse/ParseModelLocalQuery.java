@@ -139,22 +139,8 @@ public abstract class ParseModelLocalQuery extends ParseModelConvert{
      * - parameter query:           query's instance
      */
     public Task<Void> unpinInBackground(LocalQuery query) {
-        return query.unpinInBackground();
 
-//        return this.getFirstLocalObjectArrayInBackground(query).onSuccessTask(new Continuation<ParseObject, Task<Void>>() {
-//            @Override
-//            public Task<Void> then(Task<ParseObject> task) throws Exception {
-//                ParseObject object = task.getResult();
-//                if (object != null) {
-//                    return ParseModelQuery.unpinObjectInBackground(object, self);
-//                }
-//                // **** Important ****
-//                // Here, return value is 'null' means that not found object.
-//                // For example, if all newrecord objects already pushed to server.
-//                // No NewRecord rows on the local table. So not found NewRecord here.
-//                return Task.forResult(null);
-//            }
-//        });
+        return query.unpinInBackground();
     }
 
 }
