@@ -1,7 +1,6 @@
 package com.ieatta.android.modules.view.posts;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -140,7 +139,7 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
     private void postAction() {
 
         Review savedReview = new Review(self.people, self.reviewForModel, self.reviewTextView.getText().toString(), self.ratingValue);
-        savedReview.pinInBackgroundWithNewRecord().onSuccess(new Continuation<Void, Object>() {
+        savedReview.saveInBackgroundWithNewRecord().onSuccess(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
                 self.postSaveModelSucess();

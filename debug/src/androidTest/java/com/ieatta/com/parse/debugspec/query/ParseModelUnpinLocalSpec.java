@@ -40,7 +40,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             public Task<Void> then(Task<Integer> task) throws Exception {
                 expectCount[0] = task.getResult();
                 // Step02: Save it.
-                return whTeam.pinInBackgroundForModel();
+                return whTeam.saveInBackground();
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -187,7 +187,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             public Task<Void> then(Task<Integer> task) throws Exception {
                 expectCount[2] = task.getResult();
                 // Step02: Save it.
-                return whTeam.pinInBackgroundWithNewRecord();
+                return whTeam.saveInBackgroundWithNewRecord();
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -287,7 +287,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
                 /**
                  * Step02: Save it.(without NewRecord)
                  */
-                return whTeam.pinInBackgroundForModel();
+                return whTeam.saveInBackground();
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override

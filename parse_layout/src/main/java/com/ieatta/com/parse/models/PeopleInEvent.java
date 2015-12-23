@@ -121,7 +121,7 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     public Task<Void> saveTeam() {
-        return this.pinInBackgroundWithNewRecord();
+        return this.saveInBackgroundWithNewRecord();
     }
 
     // MARK: Description

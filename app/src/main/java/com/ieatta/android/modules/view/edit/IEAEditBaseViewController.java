@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ieatta.android.R;
-import com.ieatta.android.apps.AppAlertView;
-import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
@@ -222,7 +220,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     }
 
     private Task<Void> saveNewModel(ParseModelAbstract newModel) {
-        return ((ParseModelQuery) newModel).pinInBackgroundWithNewRecord();
+        return ((ParseModelQuery) newModel).saveInBackgroundWithNewRecord();
     }
 
 

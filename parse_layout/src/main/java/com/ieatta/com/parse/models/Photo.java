@@ -246,7 +246,7 @@ public class Photo extends ParseModelSync {
         }).onSuccessTask(new Continuation<Bitmap, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Bitmap> task) throws Exception {
-                return newPhoto.pinInBackgroundWithNewRecord();
+                return newPhoto.saveInBackgroundWithNewRecord();
             }
         });
     }

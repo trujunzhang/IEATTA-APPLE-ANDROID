@@ -9,7 +9,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -134,7 +133,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     // =============================================================================
     //        offline Store
     // =============================================================================
-    public Task<Void> pinInBackgroundForModel() {
+    public Task<Void> saveInBackground() {
         ParseObject object = makeObject();
         this.writeLocalObject(object);
 
@@ -142,11 +141,11 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     }
 
 
-    public Task<Void> pinInBackgroundWithNewRecord() {
-        return this.pinInBackgroundForModel().onSuccessTask(new Continuation<Void, Task<Void>>() {
+    public Task<Void> saveInBackgroundWithNewRecord() {
+        return this.saveInBackground().onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
-                return getNewRecord().pinInBackgroundForModel();
+                return getNewRecord().saveInBackground();
             }
         });
     }
@@ -196,10 +195,10 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     public Task<Void> updateLocalInBackground(){
         return self.unpinInBackground(self.createQueryByObjectUUID())
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                return self.pinInBackgroundForModel();
-            }
-        });
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return self.saveInBackground();
+                    }
+                });
     }
 }
