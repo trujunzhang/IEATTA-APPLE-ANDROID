@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yelp="http://schemas.android.com/apk/res-auto">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -10,11 +11,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <TextView
                 android:id="@+id/leftBarButtonItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical" />
+                android:layout_marginLeft="8.0dip"
+                android:text="@string/Back"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:drawableLeft="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+                android:layout_gravity="left|center_vertical"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView"

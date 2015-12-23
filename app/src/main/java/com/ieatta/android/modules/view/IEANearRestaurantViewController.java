@@ -139,4 +139,9 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     protected void LocationDidChange(NSNotification note){
         queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
     }
+
+    @Override
+    protected boolean shouldLeftBarButtonItem() {
+        return false;
+    }
 }

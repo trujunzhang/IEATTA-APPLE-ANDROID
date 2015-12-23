@@ -34,6 +34,10 @@ public class IEAAppTableViewController extends AppCompatActivity {
         }
     }
 
+    protected boolean shouldLeftBarButtonItem(){
+        return true;
+    }
+
     protected void setRightBarButtonItem(int titleId, View.OnClickListener clickListener) {
         self.rightBarButtonItem.setVisibility(View.VISIBLE);
         self.rightBarButtonItem.setText(titleId);
