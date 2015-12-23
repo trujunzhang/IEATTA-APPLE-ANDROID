@@ -76,7 +76,7 @@ public class Photo extends ParseModelSync {
 
     // MARK: ParseModel
     public LocalQuery createQueryForUsedRefWithType() {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         query.whereEqualTo(kPAPFieldUsedTypeKey, PhotoUsedType.getInt(this.usedType));
 
@@ -84,13 +84,13 @@ public class Photo extends ParseModelSync {
     }
 
     public LocalQuery createQueryForUsedRef() {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, this.usedRef);
         return query;
     }
 
     public LocalQuery createQueryForRestaurantRef() {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
         query.whereEqualTo(kPAPFieldLocalRestaurantKey, this.restaurantRef);
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;
@@ -118,7 +118,7 @@ public class Photo extends ParseModelSync {
     }
 
     LocalQuery createQueryByRestaurantRef(String restaurantRef) {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
         query.whereEqualTo(kPAPFieldUsedRefKey, restaurantRef);
         return query;
     }
@@ -131,7 +131,7 @@ public class Photo extends ParseModelSync {
      * - returns: query's instance
      */
     private LocalQuery createQueryForBatchingPhoto(List<String> usedRefs) {
-        LocalQuery query = this.getDBQueryInstance();
+        LocalQuery query = this.getLocalQueryInstance();
 
         query.whereContainedIn(kPAPFieldUsedRefKey, usedRefs);
 

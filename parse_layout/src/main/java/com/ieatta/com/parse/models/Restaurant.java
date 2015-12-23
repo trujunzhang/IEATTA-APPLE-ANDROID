@@ -58,7 +58,7 @@ public class Restaurant extends ParseModelSync {
 
     // MARK: ParseModel
     LocalQuery createNearlyRestaurantQuery(ParseGeoPoint nearPoint) {
-        LocalQuery query = this.getDBQueryInstance();
+        LocalQuery query = this.getLocalQueryInstance();
 
         // Restaurant list sorted by display name. From A..Z.
         query.orderByAscending(kPAPFieldDisplayNameKey);
@@ -147,7 +147,7 @@ public class Restaurant extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRestaurants() {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().makeDBQuery());
+        return ParseModelQuery.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().makeLocalQuery());
     }
 
     public static Task<List<ParseModelAbstract>> queryNearRestaurants(ParseGeoPoint geoPoint) {

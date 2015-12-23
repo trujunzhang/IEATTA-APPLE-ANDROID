@@ -28,42 +28,42 @@ public class ParseLocalDatabase {
         // =============================================================================
         //        Team
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
 
         // =============================================================================
         //        Restaurant
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Restaurant().makeDBQuery(), PQueryModelType.Restaurant);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Restaurant().makeLocalQuery(), PQueryModelType.Restaurant);
 
         // =============================================================================
         //        Event
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Event().makeDBQuery(), PQueryModelType.Event);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Event().makeLocalQuery(), PQueryModelType.Event);
 
         // =============================================================================
         //        OrderedPeople
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new PeopleInEvent().makeDBQuery(), PQueryModelType.PeopleInEvent);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new PeopleInEvent().makeLocalQuery(), PQueryModelType.PeopleInEvent);
 
         // =============================================================================
         //        Recipes
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Recipe().makeDBQuery(), PQueryModelType.Recipe);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Recipe().makeLocalQuery(), PQueryModelType.Recipe);
 
         // =============================================================================
         //        Photo
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Photo().makeDBQuery(), PQueryModelType.Photo);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Photo().makeLocalQuery(), PQueryModelType.Photo);
 
         // =============================================================================
         //        Review
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Review().makeDBQuery(), PQueryModelType.Review);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new Review().makeLocalQuery(), PQueryModelType.Review);
 
         // =============================================================================
         //        Local New Record
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeDBQuery(), PQueryModelType.NewRecord);
+        ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
 
         // =============================================================================
         //        Cache image file names

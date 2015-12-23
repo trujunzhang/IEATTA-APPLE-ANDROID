@@ -75,7 +75,7 @@ public class Review extends ParseModelSync {
 
     // MARK: ParseModel
     public LocalQuery createQueryForReviewRef() {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
 
         query.whereEqualTo(kPAPFieldReviewRefKey, this.reviewRef);
         query.whereEqualTo(kPAPFieldReviewTypeKey, ReviewType.getInt(this.reviewType));

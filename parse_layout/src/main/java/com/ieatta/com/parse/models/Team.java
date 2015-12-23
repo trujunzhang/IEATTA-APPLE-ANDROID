@@ -142,7 +142,7 @@ public class Team extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryTeam() {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Team, new Team().makeDBQuery());
+        return ParseModelQuery.queryFromRealm(PQueryModelType.Team, new Team().makeLocalQuery());
     }
 
     public static Task<List<ParseModelAbstract>> queryTeamByPoints(List<String> points) {

@@ -68,7 +68,7 @@ public class Recipe extends ParseModelSync {
 
     // MARK: ParseModel
     public LocalQuery createQuery(Team people, Event event) {
-        LocalQuery query = this.getDBQueryInstance();
+        LocalQuery query = this.getLocalQueryInstance();
 
         query.whereEqualTo(kPAPFieldOrderedPeopleRefKey, ParseModelAbstract.getPoint(people));
         query.whereEqualTo(kPAPFieldEventRefKey, ParseModelAbstract.getPoint(event));
@@ -151,7 +151,7 @@ public class Recipe extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRecipes() {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Recipe, new Recipe().makeDBQuery());
+        return ParseModelQuery.queryFromRealm(PQueryModelType.Recipe, new Recipe().makeLocalQuery());
     }
 
     @Override

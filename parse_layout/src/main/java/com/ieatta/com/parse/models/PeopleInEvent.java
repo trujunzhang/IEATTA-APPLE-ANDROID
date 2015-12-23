@@ -45,7 +45,7 @@ public class PeopleInEvent extends ParseModelSync {
 
     // MARK: ParseModel
     LocalQuery createQueryByEventRef(String eventRef) {
-        LocalQuery query = this.getDBQueryInstance();
+        LocalQuery query = this.getLocalQueryInstance();
 
         query.whereEqualTo(kPAPFieldEventKey, eventRef);
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);

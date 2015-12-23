@@ -34,7 +34,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
 
 
     public LocalQuery createQueryByObjectUUID() {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
 
         query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
 
@@ -42,7 +42,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     }
 
     public LocalQuery createQueryForBatching(List<String> points) {
-        LocalQuery query = this.getDBQueryInstance();
+        LocalQuery query = this.getLocalQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
 
         query.whereContainedIn(kPAPFieldObjectUUIDKey, points);
@@ -51,7 +51,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     }
 
     public LocalQuery createSearchDisplayNameQuery(String keyword) {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
 
         query.whereMatches(kPAPFieldDisplayNameKey, keyword, "i");
 
@@ -63,13 +63,13 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return instance.createQueryByObjectUUID();
     }
 
-    protected LocalQuery getDBQueryInstance() {
+    protected LocalQuery getLocalQueryInstance() {
         LocalQuery query = LocalQuery.getDBQuery(this.getParseTableName(), self.getModelType());
         return query;
     }
 
-    public LocalQuery makeDBQuery() {
-        LocalQuery query = this.getDBQueryInstance();
+    public LocalQuery makeLocalQuery() {
+        LocalQuery query = this.getLocalQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
         return query;
     }

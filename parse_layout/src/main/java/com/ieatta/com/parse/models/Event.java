@@ -77,7 +77,7 @@ public class Event extends ParseModelSync {
 
     // MARK: ParseModel
     public LocalQuery createQueryByRestaurantRef(Restaurant restaurant) {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
 
         query.whereEqualTo(kPAPFieldLocalRestaurantKey, ParseModelAbstract.getPoint(restaurant));
 

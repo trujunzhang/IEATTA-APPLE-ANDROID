@@ -56,7 +56,7 @@ public class NewRecord extends ParseModelSync {
     // MARK: ParseModel
 
     public LocalQuery createQueryForDeletedModel() {
-        LocalQuery query = this.makeDBQuery();
+        LocalQuery query = this.makeLocalQuery();
 
         query.whereEqualTo(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));
         query.whereEqualTo(kPAPFieldModelPointKey, this.modelPoint);

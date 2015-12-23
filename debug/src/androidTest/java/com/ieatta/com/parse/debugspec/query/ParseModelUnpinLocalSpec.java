@@ -30,7 +30,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
 
         final Team whTeam = new Team("wh", "wh@gmail.com", "wh.st", 123);
         final LocalQuery whQuery = whTeam.createQueryByObjectUUID();
-        final LocalQuery teamCountQurey = whTeam.makeDBQuery();
+        final LocalQuery teamCountQurey = whTeam.makeLocalQuery();
 
         final Team countTeam = new Team();
 
@@ -46,7 +46,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step03: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -62,7 +62,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step05: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
             @Override
@@ -103,7 +103,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
 
         final Team whTeam = new Team("empty", "empty@gmail.com", "empty.st", 123);
         final LocalQuery whQuery = whTeam.createQueryByObjectUUID();
-        final LocalQuery teamCountQuery = whTeam.makeDBQuery();
+        final LocalQuery teamCountQuery = whTeam.makeLocalQuery();
 
         final Team countTeam = new Team();
 
@@ -113,7 +113,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             public Task<Void> then(Task<Integer> task) throws Exception {
                 expectCount[0] = task.getResult();
                 // Step02: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -129,7 +129,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step05: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
             @Override
@@ -169,10 +169,10 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final Team whTeam = new Team("whWithNewRecord", "whWithNewRecord@gmail.com", "whWithNewRecord.st", 123);
 
         final Team countTeam = new Team();
-        final LocalQuery countTeamQurey = countTeam.makeDBQuery();
+        final LocalQuery countTeamQurey = countTeam.makeLocalQuery();
 
         final NewRecord countNewRecord = new NewRecord();
-        final LocalQuery countNewRecordQuery = countNewRecord.makeDBQuery();
+        final LocalQuery countNewRecordQuery = countNewRecord.makeLocalQuery();
 
         final int[] expectCount = {-1, 1, -1, 1};
 
@@ -193,13 +193,13 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step03: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step03: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeDBQuery(), PQueryModelType.NewRecord);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -215,13 +215,13 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step05: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step05: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeDBQuery(), PQueryModelType.NewRecord);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
             }
         }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
             @Override
@@ -268,9 +268,9 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final Team whTeam = new Team("whWithNewRecord", "whWithNewRecord@gmail.com", "whWithNewRecord.st", 123);
 
         final Team countTeam = new Team();
-        final LocalQuery teamCountQurey = countTeam.makeDBQuery();
+        final LocalQuery teamCountQurey = countTeam.makeLocalQuery();
         final NewRecord countNewRecord = new NewRecord();
-        final LocalQuery newRecordCountQuery = countNewRecord.makeDBQuery();
+        final LocalQuery newRecordCountQuery = countNewRecord.makeLocalQuery();
 
 
         final int[] expectCount = {-1, 1, -1, 1};
@@ -293,13 +293,13 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step03: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step03: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeDBQuery(), PQueryModelType.NewRecord);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -315,13 +315,13 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step05: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeDBQuery(), PQueryModelType.Team);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 // Step03: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeDBQuery(), PQueryModelType.NewRecord);
+                return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
             }
         }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
             @Override
