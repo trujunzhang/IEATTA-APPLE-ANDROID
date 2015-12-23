@@ -68,12 +68,11 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 self.keyword = s.toString();
-                self.queryRatedModels();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                self.queryRatedModels();
             }
         });
 

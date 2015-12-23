@@ -38,6 +38,8 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
     private List<ParseModelAbstract/*Restaurant*/> fetchedTeam;
     private Team selectedModel;
 
+    private String keyword = "";
+
     protected int getContentView() {
         return R.layout.table_controller_serch_view;
     }
@@ -58,12 +60,12 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                self.queryTeams(s.toString());
+                self.keyword = s.toString();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                self.queryTeams(self.keyword);
             }
         });
 

@@ -38,6 +38,8 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
     private List<ParseModelAbstract/*Restaurant*/> fetchedRestaurants;
     private Restaurant selectedModel;
 
+    private String keyword = "";
+
     protected int getContentView() {
         return R.layout.table_controller_serch_view;
     }
@@ -58,12 +60,12 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                self.queryNearRestaurant(s.toString());
+               self.keyword = s.toString();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                self.queryNearRestaurant(self.keyword);
             }
         });
 
