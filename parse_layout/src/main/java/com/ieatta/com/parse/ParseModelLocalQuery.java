@@ -27,18 +27,6 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
     }
 
     /**
-     *  Query the local database and convert to ParseObject.
-     * @param query
-     * @return
-     */
-    public static Task<List<ParseObject>> findLocalParseObjectsInBackground(ParseQuery query) {
-        // *** Important ***
-        query.fromLocalDatastore();
-
-        return query.findInBackground();
-    }
-
-    /**
      * Get count of objects on the offline datastore.
      * <p/>
      * - parameter query:           query's instance
@@ -141,6 +129,21 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
     public Task<Void> deleteInBackground(LocalQuery query) {
 
         return query.deleteInBackground();
+    }
+
+    /**
+     * Query the offline table. and sort from oldest to newest.
+     * <p/>
+     * - returns: query's instance
+     */
+    public LocalQuery createQueryForPushObjectsToServer(int limit) {
+        LocalQuery query =new  LocalQuery( self.getParseTableName(), self.getModelType());
+        query.setLimit(limit);
+
+        // *** Important (used orderByAscending) ***
+        query.orderByAscending(kPAPFieldObjectCreatedDateKey);
+
+        return query;
     }
 
 }

@@ -20,15 +20,17 @@ import bolts.Task;
  */
 public class PushNewRecordToServerTask {
 
-    public static Task PushToServerSeriesTask(ParseQuery query) {
+    public static Task PushToServerSeriesTask(LocalQuery query) {
 
-        // TODO: djzhang(for iOS)
-        return ParseModelQuery.findLocalParseObjectsInBackground(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
-                return executeSerialTasks(task);
-            }
-        });
+        // TODO: djzhang(fixing)
+//        return ParseModelQuery.findInBackgroundFromRealm(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
+//                return executeSerialTasks(task);
+//            }
+//        });
+
+        return Task.forResult(null);
     }
 
     private static Task executeSerialTasks(Task previous) {

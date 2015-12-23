@@ -31,20 +31,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
 
 
 
-    /**
-     * Query the offline table. and sort from oldest to newest.
-     * <p/>
-     * - returns: query's instance
-     */
-    public ParseQuery createQueryForPushObjectsToServer(int limit) {
-        ParseQuery query = ParseQuery.getQuery(self.getParseTableName());
-        query.setLimit(limit);
 
-        // *** Important (used orderByAscending) ***
-        query.orderByAscending(kPAPFieldObjectCreatedDateKey);
-
-        return query;
-    }
 
     public LocalQuery createQueryByObjectUUID() {
         LocalQuery query = this.makeDBQuery();
