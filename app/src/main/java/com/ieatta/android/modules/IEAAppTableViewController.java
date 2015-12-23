@@ -17,6 +17,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
     private IEAAppTableViewController self = this;
     protected IEAAppTableViewController navigationController = this;
     private RecyclerView recyclerView;
+    protected TextView leftBarButtonItem;
     protected TextView rightBarButtonItem;
 
     @Override
@@ -24,18 +25,32 @@ public class IEAAppTableViewController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(self.getContentView());
 
+        self.leftBarButtonItem = (TextView) findViewById(R.id.leftBarButtonItem);
         self.rightBarButtonItem = (TextView) findViewById(R.id.rightBarButtonItem);
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 
-        if (hasRecycleView() == true) {
+        if (self.hasRecycleView() == true) {
             this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
             this.recyclerView.setHasFixedSize(true);
+        }
+        if(self.shouldLeftBarButtonItem() == true){
+            self.setLeftBarButtonItem(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    self.navigationController.popViewControllerAnimated(true);
+                }
+            });
         }
     }
 
     protected boolean shouldLeftBarButtonItem(){
         return true;
+    }
+
+    protected void setLeftBarButtonItem( View.OnClickListener clickListener) {
+        self.leftBarButtonItem.setVisibility(View.VISIBLE);
+        self.leftBarButtonItem.setOnClickListener(clickListener);
     }
 
     protected void setRightBarButtonItem(int titleId, View.OnClickListener clickListener) {
