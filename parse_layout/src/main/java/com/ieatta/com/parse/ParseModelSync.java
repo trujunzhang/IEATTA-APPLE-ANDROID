@@ -48,9 +48,6 @@ public abstract class ParseModelSync extends ParseModelQuery {
                 }).onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
-//                if ("67499179-6AA8-4C5A-B59E-F5B2D0B57302".equals(ParseModelAbstract.getPoint(self))) {
-//                    return Task.forError(new NullPointerException("djzhang's pinAfterPullFromServer"));
-//                }
                         return pinInBackgroundForModel();
                     }
                 });
