@@ -15,7 +15,7 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/21/15.
  */
-public abstract class ParseModelLocalQuery extends ParseModelConvert{
+public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
     private ParseModelLocalQuery self = this;
 
     public ParseModelLocalQuery(String objectUUID) {

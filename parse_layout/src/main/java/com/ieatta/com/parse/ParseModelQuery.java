@@ -20,7 +20,7 @@ import bolts.Task;
 public abstract class ParseModelQuery extends ParseModelLocalQuery {
     private ParseModelQuery self = this;
 
-    private static final String kPAPFieldModelOnlineCreatedAtKey = "createdAt";
+
 
     public ParseModelQuery(String objectUUID) {
         super(objectUUID);
@@ -30,26 +30,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         super();
     }
 
-    /**
-     * Query the server table from the last fetched date. and sort from oldest to newest.
-     * <p/>
-     * - parameter lastAsyncDate: the last fetched date
-     * <p/>
-     * - returns: query's instance
-     */
-    public ParseQuery createQueryForPullObjectsFromServer(Date lastAsyncDate, int limit) {
-        ParseQuery query = ParseQuery.getQuery(self.getParseTableName());
-        query.setLimit(limit);
 
-        // *** Important (used orderByAscending) ***
-        query.orderByAscending(kPAPFieldModelOnlineCreatedAtKey);
-
-        if (lastAsyncDate != null) {
-            query.whereGreaterThan(kPAPFieldModelOnlineCreatedAtKey, lastAsyncDate);
-        }
-
-        return query;
-    }
 
     /**
      * Query the offline table. and sort from oldest to newest.
