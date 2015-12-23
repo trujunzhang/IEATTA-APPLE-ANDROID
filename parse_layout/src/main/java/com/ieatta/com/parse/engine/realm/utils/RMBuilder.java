@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import io.realm.Case;
 import io.realm.RealmObject;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -50,6 +51,17 @@ public class RMBuilder<E extends RealmObject> {
         return where;
     }
 
+    public RealmQuery<E> buildMatcheredIn(RealmQuery<E> where, HashMap<String, String> matchersMap) {
+
+        for (String key : matchersMap.keySet()) {
+            String keyword = matchersMap.get(key);
+            where = where.contains(key, keyword, Case.INSENSITIVE);
+        }
+
+        return where;
+    }
+
+
     public RealmQuery<E> buildContainedIn(RealmQuery<E> where, HashMap<String, List<String>> containedMap) {
         for (String key : containedMap.keySet()) {
             List<String> value = containedMap.get(key);
@@ -69,5 +81,6 @@ public class RMBuilder<E extends RealmObject> {
         }
         return results;
     }
+
 
 }

@@ -28,6 +28,7 @@ public class DBBuilder<T extends RealmObject> {
     public boolean isFromLocalDatastore = false;
     private HashMap<String, Object> equalMap = new LinkedHashMap<>();
     private HashMap<String, Object> greaterMap = new LinkedHashMap<>();
+    private HashMap<String, String> matchersMap = new LinkedHashMap<>();
     private HashMap<String, List<String>> containedMap = new LinkedHashMap<>();
     private List<String> orderedByDescendingList = new LinkedList<>();
     private List<String> orderedByAscendingList = new LinkedList<>();
@@ -54,6 +55,10 @@ public class DBBuilder<T extends RealmObject> {
         self.containedMap.put(key, list);
     }
 
+    public void whereMatchers(String key, String keyword) {
+        self.matchersMap.put(key, keyword);
+    }
+
     public void orderByDescending(String key) {
         self.orderedByDescendingList.add(key);
     }
@@ -75,6 +80,7 @@ public class DBBuilder<T extends RealmObject> {
     public RealmQuery<T> buildAll() {
         self.where = self.rmBuilder.buildEqualTo(self.where, self.equalMap);
         self.where = self.rmBuilder.buildGreaterThan(self.where, self.greaterMap);
+        self.where = self.rmBuilder.buildMatcheredIn(self.where, self.matchersMap);
 //        self.where = self.rmBuilder.buildContainedIn(self.where,self.containedMap);
 
         return self.where;
@@ -92,4 +98,5 @@ public class DBBuilder<T extends RealmObject> {
 
         return Task.forResult(null);
     }
+
 }

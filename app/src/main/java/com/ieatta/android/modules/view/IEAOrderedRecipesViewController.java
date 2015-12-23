@@ -113,7 +113,6 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
         self.performSegueWithIdentifier(MainSegueIdentifier.detailRecipeSegueIdentifier, self);
     }
 
-
     @Override
     public void segueForRecipeDetailViewController(IEARecipeDetailViewController destination, Intent sender) {
         /// Show detailed recipe

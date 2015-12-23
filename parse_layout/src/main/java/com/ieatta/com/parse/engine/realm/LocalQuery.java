@@ -51,6 +51,7 @@ public class LocalQuery<T extends ParseModelAbstract> {
     }
 
     public LocalQuery<T> whereMatches(String key, String keyword, String regExp) {
+        this.builder.whereMatchers(key,keyword);
         return this;
     }
 
