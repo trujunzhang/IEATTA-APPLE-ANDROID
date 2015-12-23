@@ -118,7 +118,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return query;
     }
 
-    protected Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
+    public Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
         return ParseModelQuery.queryFromDatabase(type, this.createQueryForBatching(points));
     }
 

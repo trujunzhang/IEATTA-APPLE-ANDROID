@@ -53,11 +53,9 @@ public class RMBuilder<E extends RealmObject> {
     public RealmQuery<E> buildContainedIn(RealmQuery<E> where, HashMap<String, List<String>> containedMap) {
         for (String key : containedMap.keySet()) {
             List<String> value = containedMap.get(key);
-            where.beginGroup();
             for (String item : value) {
                 where.contains(key, item);
             }
-            where.endGroup();
         }
         return where;
     }

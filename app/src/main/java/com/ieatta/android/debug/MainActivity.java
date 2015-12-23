@@ -17,9 +17,16 @@ import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
+import com.ieatta.com.parse.models.Restaurant;
+import com.ieatta.com.parse.models.enums.PQueryModelType;
 
 import java.util.LinkedList;
+import java.util.List;
+
+import bolts.Continuation;
+import bolts.Task;
 
 public class MainActivity extends IEAReviewsInDetailTableViewController {
     private MainActivity self = this;
@@ -35,7 +42,21 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(self);
 
-        self.setupPhotoGallerySection();
+        List<String> list = new LinkedList<>();
+        list.add("6825D75B-E4D5-4386-AA62-3D022B7A50B5");
+        list.add("1CE562A4-A978-4B75-9B7B-2F3CF9F42A04");
+        new Restaurant().queryParseModels(PQueryModelType.Restaurant,list).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+            @Override
+            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+                List<ParseModelAbstract> result = task.getResult();
+
+                int count = result.size();
+
+                return null;
+            }
+        });
+
+//        self.setupPhotoGallerySection();
 
 //        self.showReviewSection();
 
