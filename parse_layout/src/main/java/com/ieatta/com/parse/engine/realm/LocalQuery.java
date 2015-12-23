@@ -4,7 +4,6 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.engine.realm.utils.RMQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseGeoPoint;
-import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.List;
@@ -79,8 +78,8 @@ public class LocalQuery<T extends ParseModelAbstract> {
         return new RMQuery(this.builder).findInBackground();
     }
 
-    public Task<Void> unpinInBackground() {
-        return new RMQuery(this.builder).unpinInBackground();
+    public Task<Void> deleteInBackground() {
+        return new RMQuery(this.builder).deleteInBackground();
     }
 
     public Task<Void> updateLocalInBackground() {

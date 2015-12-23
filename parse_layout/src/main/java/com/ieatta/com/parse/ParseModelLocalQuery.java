@@ -138,9 +138,9 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
      * <p/>
      * - parameter query:           query's instance
      */
-    public Task<Void> unpinInBackground(LocalQuery query) {
+    public Task<Void> deleteInBackground(LocalQuery query) {
 
-        return query.unpinInBackground();
+        return query.deleteInBackground();
     }
 
 }

@@ -56,7 +56,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
                  * Test function here
                  */
                 // Step04: Delete it.
-                return whTeam.unpinInBackground(whQuery);
+                return whTeam.deleteInBackground(whQuery);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
@@ -123,7 +123,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
                  * Test function here
                  */
                 // Step04: Delete it.
-                return whTeam.unpinInBackground(whQuery);
+                return whTeam.deleteInBackground(whQuery);
             }
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override

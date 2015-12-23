@@ -8,7 +8,6 @@ import com.parse.ParseACL;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.util.Date;
 import java.util.List;
 
 import bolts.Continuation;
@@ -150,10 +149,10 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     public Task<Void> unpinInBackgroundWithNewRecord() {
         final LocalQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
 
-        return this.unpinInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
+        return this.deleteInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
-                return unpinInBackground(newRecordQuery);
+                return deleteInBackground(newRecordQuery);
             }
         });
     }
@@ -174,7 +173,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     }
 
     public Task<Void> updateLocalInBackground(){
-        return self.unpinInBackground(self.createQueryByObjectUUID())
+        return self.deleteInBackground(self.createQueryByObjectUUID())
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
