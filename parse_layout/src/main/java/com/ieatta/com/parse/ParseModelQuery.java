@@ -154,7 +154,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return DBObject.unpinInBackground("Offline", object, model);
     }
 
-    @Override
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
         return self.getFirstLocalObjectArrayInBackground(self.createQueryByObjectUUID());
     }
