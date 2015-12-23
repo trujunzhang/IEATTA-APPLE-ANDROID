@@ -146,15 +146,15 @@ public class Review extends ParseModelSync {
 
     public Task<Integer> queryRatingInReviews() {
         // First of all, query all reviews.
-        return ParseModelQuery.findLocalObjectsInBackground(this.createQueryForReviewRef())
+        return ParseModelQuery.findInBackgroundFromRealm(this.createQueryForReviewRef())
                 .onSuccess(new Continuation<List<ParseModelAbstract>, Integer>() {
-            @Override
-            public Integer then(Task<List<ParseModelAbstract>> task) throws Exception {
-                List<ParseModelAbstract> array = task.getResult();
-                int rating = Review.getRatingInReview(array);
-                return rating;
-            }
-        });
+                    @Override
+                    public Integer then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        List<ParseModelAbstract> array = task.getResult();
+                        int rating = Review.getRatingInReview(array);
+                        return rating;
+                    }
+                });
     }
 
     public static Task<List<ParseModelAbstract>> queryReviews(ParseModelAbstract model, int limit) {

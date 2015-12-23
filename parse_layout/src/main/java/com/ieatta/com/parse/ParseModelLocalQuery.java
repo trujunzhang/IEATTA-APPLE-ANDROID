@@ -66,7 +66,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
         return query.findInBackground();
     }
 
-    public static Task<List<ParseModelAbstract>> findLocalObjectsInBackground(LocalQuery query) {
+    public static Task<List<ParseModelAbstract>> findInBackgroundFromRealm(LocalQuery query) {
         // *** Important ***
         query.fromLocalDatastore();
 
@@ -74,7 +74,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
     }
 
     public static Task<List<ParseModelAbstract>> queryFromDatabase(final PQueryModelType type, final LocalQuery query) {
-        return ParseModelQuery.findLocalObjectsInBackground(query);
+        return ParseModelQuery.findInBackgroundFromRealm(query);
     }
 
     /**
@@ -88,7 +88,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
      */
     public Task<ParseModelAbstract> getFirstLocalObjectArrayInBackground(LocalQuery query) {
         // **** Important ****
-        // If not found Parse's findLocalObjectsInBackground
+        // If not found Parse's findInBackgroundFromRealm
         return ParseModelQuery.findFirstLocalObjectInBackground(query)
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<ParseModelAbstract>>() {
                     @Override
@@ -100,7 +100,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
 
 //    public Task<ParseModelAbstract> getFirstLocalObjectArrayInBackground(LocalQuery query) {
 //        // **** Important ****
-//        // If not found Parse's findLocalObjectsInBackground
+//        // If not found Parse's findInBackgroundFromRealm
 //        return ParseModelQuery.findFirstLocalObjectInBackground(query)
 //                .onSuccessTask(new Continuation<List<ParseObject>, Task<ParseObject>>() {
 //                    @Override
