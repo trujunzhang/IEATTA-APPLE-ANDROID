@@ -81,7 +81,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
     private void queryTeams(String keyword) {
         self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
-        if (keyword.isEmpty() == true) {
+        if (keyword== null ||keyword.isEmpty() == true) {
             return;
         }
         new Team().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {

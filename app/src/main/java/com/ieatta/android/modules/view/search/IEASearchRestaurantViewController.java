@@ -81,7 +81,7 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
 
     private void queryNearRestaurant(String keyword) {
         self.setSectionItems(new LinkedList<ParseModelAbstract>(), SearchRestaurantSection.sectionRestaurants.ordinal());
-        if (keyword.isEmpty() == true) {
+        if (keyword== null ||keyword.isEmpty() == true) {
             return;
         }
         new Restaurant().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
