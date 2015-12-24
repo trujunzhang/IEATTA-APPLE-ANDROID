@@ -68,27 +68,27 @@ public class AvatarView extends RoundedImageView {
 
     public void loadNewPhotoByModel(ParseModelAbstract model, final int placeHolder) {
         // Cache photo point.
-        String photoPoint = IEACache.sharedInstance.photoPoint(model);
+//        String photoPoint = IEACache.sharedInstance.photoPoint(model);
 
-        if (photoPoint == null || photoPoint.isEmpty() == true) {
-            self.configureAvatar(placeHolder);
+//        if (photoPoint == null || photoPoint.isEmpty() == true) {
+        self.configureAvatar(placeHolder);
 
-            new Photo().queryPhotosByModel(model)
-                    .onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
-                        @Override
-                        public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
-                            Object object  = task;
-                            List<ParseModelAbstract> taskResult = task.getResult();
-                            ParseModelAbstract first = taskResult.get(0);
-                            if (first != null) {
-                                 self.loadNewPhotoByPhoto((Photo) first, placeHolder);
-                            }
-                            return null;
+        new Photo().queryPhotosByModel(model)
+                .onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
+                    @Override
+                    public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        Object object = task;
+                        List<ParseModelAbstract> taskResult = task.getResult();
+                        ParseModelAbstract first = taskResult.get(0);
+                        if (first != null) {
+                            self.loadNewPhotoByPhoto((Photo) first, placeHolder);
                         }
-                    });
-        } else {
-            loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
-        }
+                        return null;
+                    }
+                });
+//        } else {
+//            loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
+//        }
     }
 
     public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {
