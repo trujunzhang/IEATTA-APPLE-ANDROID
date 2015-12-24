@@ -9,6 +9,9 @@ import com.ieatta.android.cache.IEACache;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import bolts.Continuation;
 import bolts.Task;
 
@@ -20,7 +23,8 @@ public class AvatarView extends RoundedImageView {
 
     private Context context;
 
-    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+    private WeakHandler mHandler = new WeakHandler();
+    ; // We still need at least one hard reference to WeakHandler
 
     public AvatarView(Context context) {
         super(context);
@@ -62,15 +66,28 @@ public class AvatarView extends RoundedImageView {
         self.setImageResource(imageRefId);
     }
 
-    public Task loadNewPhotoByModel(ParseModelAbstract model, int placeHolder) {
-        String point = ParseModelAbstract.getPoint(model);
+    public Task loadNewPhotoByModel(ParseModelAbstract model, final int placeHolder) {
         // Cache photo point.
         String photoPoint = IEACache.sharedInstance.photoPoint(model);
 
         if (photoPoint == null || photoPoint.isEmpty() == true) {
-            self.configureAvatar(placeHolder);
+
+            new Photo().queryPhotosByModel(model)
+                    .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task>() {
+                        @Override
+                        public Task then(Task<List<ParseModelAbstract>> task) throws Exception {
+                            LinkedList<ParseModelAbstract> result = new LinkedList<ParseModelAbstract>(task.getResult());
+                            ParseModelAbstract first = result.getFirst();
+                            if (first != null) {
+                                return self.loadNewPhotoByPhoto((Photo) first, placeHolder);
+                            }
+
+                            self.configureAvatar(placeHolder);
+                            return Task.forResult(true);
+                        }
+                    });
         } else {
-            self.loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
+            return loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
         }
 
         return Task.forResult(true);
