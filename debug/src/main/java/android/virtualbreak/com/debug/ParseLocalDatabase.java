@@ -68,9 +68,9 @@ public class ParseLocalDatabase {
         // =============================================================================
         ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
 
-        // =============================================================================
-        //        Cache image file names
-        // =============================================================================
+//        // =============================================================================
+//        //        Cache image file names
+//        // =============================================================================
 //        ParseLocalDatabase.listAllCacheImageNames();
     }
 
