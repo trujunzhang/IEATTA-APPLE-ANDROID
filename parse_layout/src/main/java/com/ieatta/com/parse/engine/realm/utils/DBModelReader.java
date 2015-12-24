@@ -2,6 +2,7 @@ package com.ieatta.com.parse.engine.realm.utils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ import io.realm.RealmResults;
  */
 public class DBModelReader<T extends ParseModelAbstract> {
 
-    public List<T> readRealmResults(RealmResults results, PQueryModelType modelType, int limit) {
+    public List<T> readRealmResults(RealmResults results, PQueryModelType modelType, int limit,HashMap<String, List<String>> containedMap) {
         List<T> list = new LinkedList<>();
 
         int step = 0;
@@ -62,12 +63,15 @@ public class DBModelReader<T extends ParseModelAbstract> {
             step ++;
 
             ParseModelAbstract model = this.reader(realmObject,modelType);
-
             list.add((T) model);
         }
 
         return list;
     }
+    private  void builderContainedIn(List<T> list,ParseModelAbstract model){
+
+    }
+
 
     public ParseModelAbstract reader(Object realmObject, PQueryModelType modelType){
         ParseModelAbstract model = null;

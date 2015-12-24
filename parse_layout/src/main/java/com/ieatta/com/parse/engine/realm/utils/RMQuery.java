@@ -3,6 +3,8 @@ package com.ieatta.com.parse.engine.realm.utils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.engine.realm.DBBuilder;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Task;
@@ -26,8 +28,14 @@ public class RMQuery<T extends RealmObject> {
 
         results = builder.sort(results);
 
-        List<ParseModelAbstract> list = new DBModelReader().readRealmResults(results, builder.modelType, builder.limit);
+        HashMap<String, List<String>> containedMap = builder.containedMap;
 
+        List<ParseModelAbstract> list = new LinkedList<>();
+        if(containedMap.isEmpty() == true){
+            list = new DBModelReader().readRealmResults(results, builder.modelType, builder.limit,builder.containedMap);
+        }else {
+            String key = new LinkedList<String>(containedMap.keySet()).getFirst();
+        }
         return Task.forResult(list);
     }
 

@@ -29,7 +29,7 @@ public class DBBuilder<T extends RealmObject> {
     private HashMap<String, Object> equalMap = new LinkedHashMap<>();
     private HashMap<String, Object> greaterMap = new LinkedHashMap<>();
     private HashMap<String, String> matchersMap = new LinkedHashMap<>();
-    private HashMap<String, List<String>> containedMap = new LinkedHashMap<>();
+    public HashMap<String, List<String>> containedMap = new LinkedHashMap<>();
     private List<String> orderedByDescendingList = new LinkedList<>();
     private List<String> orderedByAscendingList = new LinkedList<>();
     public int limit = -1; // negative limits mean, do not send a limit
