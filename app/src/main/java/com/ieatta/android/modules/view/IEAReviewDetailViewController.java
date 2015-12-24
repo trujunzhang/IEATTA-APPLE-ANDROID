@@ -34,9 +34,9 @@ enum ReviewDetailSection {
     sectionReviewForModel,//= 0
 }
 
-class ReviewSectionInfo{
+class ReviewSectionInfo {
     public ParseModelAbstract model;
-    public ReviewType  type= ReviewType.Review_Unknow;
+    public ReviewType type = ReviewType.Review_Unknow;
 
     public ReviewSectionInfo(ParseModelAbstract model, ReviewType type) {
         this.model = model;
@@ -68,15 +68,15 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
 
         setSectionItems(CollectionUtils.createList(new ReviewDetailForModelCell(self.reviewForModel, self.review)), ReviewDetailSection.sectionReviewForModel.ordinal());
 
-        self.reivewSectionInfos.add(new  ReviewSectionInfo( self.review, ReviewType.Review_Unknow));
+        self.reivewSectionInfos.add(new ReviewSectionInfo(self.review, ReviewType.Review_Unknow));
+
         self.reviewForModel.queryBelongToTask(self.reviewForModel)
-                .onSuccess(new Continuation<Boolean, Object>() {
+                .onSuccess(new Continuation<ParseModelAbstract, Object>() {
                     @Override
-                    public Object then(Task<Boolean> task) throws Exception {
-
-//                        ParseModelAbstract backModel = task.getResult();
-                        self.showReviewForModelCells(self.reviewForModel);
-
+                    public Object then(Task<ParseModelAbstract> task) throws Exception {
+                        ParseModelAbstract backModel = task.getResult();
+//                self.generateReviewSectionInfos(backModel);
+//                self.setSectionsForReview();
                         return null;
                     }
                 }).continueWith(new Continuation<Object, Object>() {
