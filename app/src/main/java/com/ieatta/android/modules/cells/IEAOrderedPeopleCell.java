@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
@@ -26,6 +27,8 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
     private TextView nameLabel;
     private TextView addressLabel;
 
+    private WeakHandler mHandler = new WeakHandler(); // We still need at least one hard reference to WeakHandler
+
     public IEAOrderedPeopleCell(View itemView) {
         super(itemView);
         self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
@@ -41,18 +44,19 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
         self.avatarView.loadNewPhotoByModel(model.model, R.drawable.blank_user_small);
 
         // TODO: djzhang: fixing
-        Recipe.queryOrderedRecipesCount(model.model, model.event).onSuccess(new Continuation<Integer, Object>() {
-            @Override
-            public Object then(Task<Integer> task) throws Exception {
+        Recipe.queryOrderedRecipesCount(model.model, model.event)
+                .onSuccess(new Continuation<Integer, Object>() {
+                    @Override
+                    public Object then(Task<Integer> task) throws Exception {
 
-                int recipesCount = task.getResult();
-                model.model.recipesCount = recipesCount;
-                String info = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Recipes_Ordered_Count);
-                info = info + ": " + recipesCount;
-                self.setRecipeInformation(info);
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
+                        int recipesCount = task.getResult();
+                        model.model.recipesCount = recipesCount;
+                        String info = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Recipes_Ordered_Count);
+                        info = info + ": " + recipesCount;
+                        self.setRecipeInformation(info);
+                        return null;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
@@ -64,7 +68,13 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
         });
     }
 
-    private void setRecipeInformation(String info){
-        self.addressLabel.setText(info);
+    private void setRecipeInformation(final String info) {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                self.addressLabel.setText(info);
+            }
+        }, 1);
+
     }
 }

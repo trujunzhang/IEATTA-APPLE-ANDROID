@@ -23,8 +23,7 @@ public class AvatarView extends RoundedImageView {
 
     private Context context;
 
-    private WeakHandler mHandler = new WeakHandler();
-    ; // We still need at least one hard reference to WeakHandler
+    private WeakHandler mHandler = new WeakHandler(); // We still need at least one hard reference to WeakHandler
 
     public AvatarView(Context context) {
         super(context);
