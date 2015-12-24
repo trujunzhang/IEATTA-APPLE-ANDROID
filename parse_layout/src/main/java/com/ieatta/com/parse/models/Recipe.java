@@ -164,22 +164,24 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public Task<Boolean> queryBelongToTask(ParseModelAbstract belongTo) {
-        final ParseModelAbstract[] event = {null};
-        return this.getFirstLocalModelArrayTask()
-                .onSuccessTask(new Continuation<ParseModelAbstract, Task<Boolean>>() {
-                    @Override
-                    public Task<Boolean> then(Task<ParseModelAbstract> task) throws Exception {
-                        event[0] = ParseModelAbstract.getInstanceFromType(PQueryModelType.Event, self.eventRef);
-                        return event[0].queryBelongToTask(self);
-                    }
-                }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
-                    @Override
-                    public Task<Boolean> then(Task<Boolean> task) throws Exception {
-                        final Event instance = (Event) event[0];
-                        self.belongToModel = new Team(instance);
+    public Task<ParseModelAbstract> queryBelongToTask(ParseModelAbstract belongTo) {
+        final Recipe[] backModel = {self};
 
-                        return Task.forResult(true);
+        return self.getFirstModelTaskFromRealm()
+                .onSuccessTask(new Continuation<ParseModelAbstract, Task<ParseModelAbstract>>() {
+                    @Override
+                    public Task<ParseModelAbstract> then(Task<ParseModelAbstract> task) throws Exception {
+                        Recipe newModel = (Recipe) task.getResult();
+                        backModel[0] = newModel;
+                        ParseModelAbstract event = ParseModelAbstract.getInstanceFromType(PQueryModelType.Event, backModel[0].eventRef);
+                        return event.queryBelongToTask(self);
+                    }
+                }).onSuccessTask(new Continuation<ParseModelAbstract, Task<ParseModelAbstract>>() {
+                    @Override
+                    public Task<ParseModelAbstract> then(Task<ParseModelAbstract> task) throws Exception {
+                        Event event = (Event) task.getResult();
+                        backModel[0].belongToModel = new Team(event);
+                        return Task.forResult((ParseModelAbstract) backModel[0]);
                     }
                 });
     }
