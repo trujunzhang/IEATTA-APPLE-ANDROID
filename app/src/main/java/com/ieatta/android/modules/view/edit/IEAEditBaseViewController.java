@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ieatta.android.R;
+import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
@@ -90,6 +91,9 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        self.setEditModel(self.getTransferedModel(),self.getIntent().getExtras().getBoolean(IntentCache.newModel));
+
         // **** Important ****
         self.editManager = self.getEditManager();
         self.rowModels = self.editManager.getRowsInSection(self.editedModel, self);
