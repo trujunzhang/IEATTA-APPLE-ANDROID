@@ -67,10 +67,6 @@ public class AvatarView extends RoundedImageView {
     }
 
     public void loadNewPhotoByModel(ParseModelAbstract model, final int placeHolder) {
-        // Cache photo point.
-//        String photoPoint = IEACache.sharedInstance.photoPoint(model);
-
-//        if (photoPoint == null || photoPoint.isEmpty() == true) {
         self.configureAvatar(placeHolder);
 
         new Photo().queryPhotosByModel(model)
@@ -86,9 +82,6 @@ public class AvatarView extends RoundedImageView {
                         return null;
                     }
                 });
-//        } else {
-//            loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
-//        }
     }
 
     public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {

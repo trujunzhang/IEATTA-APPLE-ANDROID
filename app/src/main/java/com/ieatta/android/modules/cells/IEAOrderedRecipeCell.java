@@ -20,14 +20,14 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
     private AvatarView avatarView;
 
     private TextView displayNameLabel;
-    private TextView subtitleLabel;
+    private TextView priceLabel;
     private ImageView ratingImageView;
 
     public IEAOrderedRecipeCell(View itemView) {
         super(itemView);
         self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
         self.displayNameLabel = (TextView) itemView.findViewById(R.id.titleTextView);
-        self.subtitleLabel = (TextView) itemView.findViewById(R.id.addressTextView);
+        self.priceLabel = (TextView) itemView.findViewById(R.id.priceTextView);
         self.ratingImageView = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
     }
 
@@ -35,9 +35,8 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
     public void render(Object value) {
         Recipe model  = (Recipe) value;
         self.displayNameLabel.setText(model.displayName);
-//        self.subtitleLabel.setText("");
+        self.priceLabel.setText(model.cost+"");
 //        self.ratingImageView.setImageLevel(model.);
-        // TODO: djzhang: fixing
         self.avatarView.loadNewPhotoByModel(model, R.drawable.placeholder_photo);
     }
 }

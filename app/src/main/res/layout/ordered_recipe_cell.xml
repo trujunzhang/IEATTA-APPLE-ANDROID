@@ -24,7 +24,7 @@
         android:textAppearance="@style/TitleText" />
 
     <TextView
-        android:id="@+id/addressTextView"
+        android:id="@+id/priceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
