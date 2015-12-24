@@ -71,18 +71,18 @@ public class AvatarView extends RoundedImageView {
         String photoPoint = IEACache.sharedInstance.photoPoint(model);
 
         if (photoPoint == null || photoPoint.isEmpty() == true) {
+            self.configureAvatar(placeHolder);
 
             new Photo().queryPhotosByModel(model)
                     .onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
                         @Override
                         public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
-                            LinkedList<ParseModelAbstract> result = new LinkedList<>(task.getResult());
-                            ParseModelAbstract first = result.getFirst();
+                            Object object  = task;
+                            List<ParseModelAbstract> taskResult = task.getResult();
+                            ParseModelAbstract first = taskResult.get(0);
                             if (first != null) {
                                  self.loadNewPhotoByPhoto((Photo) first, placeHolder);
                             }
-
-                            self.configureAvatar(placeHolder);
                             return null;
                         }
                     });
