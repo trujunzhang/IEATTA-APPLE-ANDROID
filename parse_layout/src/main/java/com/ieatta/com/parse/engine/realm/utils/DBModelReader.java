@@ -55,48 +55,52 @@ public class DBModelReader<T extends ParseModelAbstract> {
         List<T> list = new LinkedList<>();
 
         int step = 0;
-        for (Object object : results) {
+        for (Object realmObject : results) {
             if(limit != -1 && step >= limit){
                 break;
             }
             step ++;
 
-            ParseModelAbstract model = null;
-
-            switch (modelType) {
-                case Recipe:
-                    model = this.reader((DBRecipe) object);
-                    break;
-                case Photo:
-                    model = this.reader((DBPhoto) object);
-                    break;
-                case Team:
-                    model = this.reader((DBTeam) object);
-                    break;
-                case Review:
-                    model = this.reader((DBReview) object);
-                    break;
-                case Event:
-                    model = this.reader((DBEvent) object);
-                    break;
-                case Restaurant:
-                    model = this.reader((DBRestaurant) object);
-                    break;
-                case NewRecord:
-                    model = this.reader((DBNewRecord) object);
-                    break;
-                case PeopleInEvent:
-                    model = this.reader((DBPeopleInEvent) object);
-                    break;
-                default:
-                    break;
-            }
+            ParseModelAbstract model = this.reader(realmObject,modelType);
 
             list.add((T) model);
         }
 
-
         return list;
+    }
+
+    public ParseModelAbstract reader(Object realmObject, PQueryModelType modelType){
+        ParseModelAbstract model = null;
+
+        switch (modelType) {
+            case Recipe:
+                model = this.reader((DBRecipe) realmObject);
+                break;
+            case Photo:
+                model = this.reader((DBPhoto) realmObject);
+                break;
+            case Team:
+                model = this.reader((DBTeam) realmObject);
+                break;
+            case Review:
+                model = this.reader((DBReview) realmObject);
+                break;
+            case Event:
+                model = this.reader((DBEvent) realmObject);
+                break;
+            case Restaurant:
+                model = this.reader((DBRestaurant) realmObject);
+                break;
+            case NewRecord:
+                model = this.reader((DBNewRecord) realmObject);
+                break;
+            case PeopleInEvent:
+                model = this.reader((DBPeopleInEvent) realmObject);
+                break;
+            default:
+                break;
+        }
+        return model;
     }
 
 

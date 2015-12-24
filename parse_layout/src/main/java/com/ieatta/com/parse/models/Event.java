@@ -169,7 +169,24 @@ public class Event extends ParseModelSync {
     }
 
     @Override
-    public Task<Boolean> queryBelongToTask(ParseModelAbstract belongTo) {
+    public Task<ParseModelAbstract> queryBelongToTask(ParseModelAbstract belongTo) {
+
+        ParseModelAbstract backModel = self;
+
+
+        return self.getFirstModelTaskFromRealm()
+                .continueWithSuccessBlock({ (task) -> AnyObject? in
+                        let object = task.result
+        if let newModel = task.result{
+            backModel = newModel as! Event
+        }
+        let restaurant = ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant.rawValue, objectUUID: backModel.restaurantRef)
+        return restaurant.queryBelongToTask(self)
+        }).continueWithSuccessBlock({ (task) -> AnyObject? in
+
+                backModel.belongToModel = task.result as! Restaurant
+        return BFTask(result: backModel)
+        })
         return this.getFirstLocalModelArrayTask()
                 .onSuccessTask(new Continuation<ParseModelAbstract, Task<Boolean>>() {
                     @Override

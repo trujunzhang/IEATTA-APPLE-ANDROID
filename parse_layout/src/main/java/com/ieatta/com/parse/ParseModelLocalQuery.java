@@ -3,8 +3,6 @@ package com.ieatta.com.parse;
 
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +35,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
         return query;
     }
 
-    public LocalQuery createQueryByObjectUUID() {
+    public LocalQuery createLocalQueryByUUID() {
         LocalQuery query = this.makeLocalQuery();
 
         query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
@@ -167,7 +165,18 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
 
 
     public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-        return self.getFirstLocalObjectArrayInBackground(self.createQueryByObjectUUID());
+        return self.getFirstLocalObjectArrayInBackground(self.createLocalQueryByUUID());
+    }
+
+    public Task<ParseModelAbstract> getFirstModelTaskFromRealm()  {
+        LocalQuery query = self.createLocalQueryByUUID();
+        // *** Important ***
+        query.fromLocalDatastore();
+
+        // *** Just get the first object.
+        query.setLimit(1);
+
+        return query.findFirstInBackground();
     }
 
 }

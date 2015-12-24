@@ -85,4 +85,8 @@ public class LocalQuery<T extends ParseModelAbstract> {
     public Task<Void> updateLocalInBackground() {
         return new RMQuery(this.builder).updateLocalInBackground();
     }
+
+    public Task<ParseModelAbstract> findFirstInBackground() {
+        return new RMQuery(this.builder).findFirstInBackground();
+    }
 }

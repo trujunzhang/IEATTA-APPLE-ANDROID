@@ -29,7 +29,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final CountDownLatch signal = new CountDownLatch(1);
 
         final Team whTeam = new Team("wh", "wh@gmail.com", "wh.st", 123);
-        final LocalQuery whQuery = whTeam.createQueryByObjectUUID();
+        final LocalQuery whQuery = whTeam.createLocalQueryByUUID();
         final LocalQuery teamCountQurey = whTeam.makeLocalQuery();
 
         final Team countTeam = new Team();
@@ -102,7 +102,7 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
         final CountDownLatch signal = new CountDownLatch(1);
 
         final Team whTeam = new Team("empty", "empty@gmail.com", "empty.st", 123);
-        final LocalQuery whQuery = whTeam.createQueryByObjectUUID();
+        final LocalQuery whQuery = whTeam.createLocalQueryByUUID();
         final LocalQuery teamCountQuery = whTeam.makeLocalQuery();
 
         final Team countTeam = new Team();

@@ -48,4 +48,10 @@ public class RMQuery<T extends RealmObject> {
 
         return Task.forResult(null);
     }
+
+    public Task<ParseModelAbstract> findFirstInBackground() {
+        RealmObject realmObject = builder.buildAll().findFirst();
+        ParseModelAbstract model = new DBModelReader().reader(realmObject, builder.modelType);
+        return Task.forResult(model);
+    }
 }

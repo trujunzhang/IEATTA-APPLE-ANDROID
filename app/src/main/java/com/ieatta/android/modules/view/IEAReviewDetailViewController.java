@@ -20,6 +20,9 @@ import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import bolts.Continuation;
 import bolts.Task;
 
@@ -31,6 +34,16 @@ enum ReviewDetailSection {
     sectionReviewForModel,//= 0
 }
 
+class ReviewSectionInfo{
+    public ParseModelAbstract model;
+    public ReviewType  type= ReviewType.Review_Unknow;
+
+    public ReviewSectionInfo(ParseModelAbstract model, ReviewType type) {
+        this.model = model;
+        this.type = type;
+    }
+}
+
 public class IEAReviewDetailViewController extends IEABaseTableViewController {
     private IEAReviewDetailViewController self = this;
 
@@ -38,7 +51,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
     private ParseModelAbstract reviewForModel;
     private Review review;
     private int reviewIndex = 0;
-
+    private List<ReviewSectionInfo> reivewSectionInfos = new LinkedList<>();
 
     public void transferToReviewDetail(ParseModelAbstract reviewForModel, Review review) {
         self.reviewForModel = reviewForModel;
@@ -55,13 +68,18 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
 
         setSectionItems(CollectionUtils.createList(new ReviewDetailForModelCell(self.reviewForModel, self.review)), ReviewDetailSection.sectionReviewForModel.ordinal());
 
-        self.reviewForModel.queryBelongToTask(self.reviewForModel).onSuccess(new Continuation<Boolean, Object>() {
-            @Override
-            public Object then(Task<Boolean> task) throws Exception {
-                self.showReviewForModelCells(self.reviewForModel);
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
+        self.reivewSectionInfos.add(new  ReviewSectionInfo( self.review, ReviewType.Review_Unknow));
+        self.reviewForModel.queryBelongToTask(self.reviewForModel)
+                .onSuccess(new Continuation<Boolean, Object>() {
+                    @Override
+                    public Object then(Task<Boolean> task) throws Exception {
+
+//                        ParseModelAbstract backModel = task.getResult();
+                        self.showReviewForModelCells(self.reviewForModel);
+
+                        return null;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
 

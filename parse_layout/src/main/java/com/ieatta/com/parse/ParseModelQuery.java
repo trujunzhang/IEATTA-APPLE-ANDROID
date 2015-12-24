@@ -52,7 +52,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
 
     static LocalQuery createQuery(PQueryModelType type, ParseModelAbstract model) {
         ParseModelQuery instance = (ParseModelQuery) ParseModelAbstract.getInstanceFromType(type, ParseModelAbstract.getPoint(model));
-        return instance.createQueryByObjectUUID();
+        return instance.createLocalQueryByUUID();
     }
 
 
@@ -119,7 +119,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     public Task<Void> unpinInBackgroundWithNewRecord() {
         final LocalQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
 
-        return this.deleteInBackground(this.createQueryByObjectUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
+        return this.deleteInBackground(this.createLocalQueryByUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 return deleteInBackground(newRecordQuery);
@@ -139,7 +139,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
 
 
     public Task<Void> updateLocalInBackground(){
-        return self.deleteInBackground(self.createQueryByObjectUUID())
+        return self.deleteInBackground(self.createLocalQueryByUUID())
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
