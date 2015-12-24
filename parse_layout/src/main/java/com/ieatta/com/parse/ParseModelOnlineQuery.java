@@ -52,6 +52,13 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
         return query;
     }
 
+    ParseQuery createParseQueryByUUID() {
+        ParseQuery query = self.makeParseQuery();
+
+        query.whereEqualTo(kPAPFieldObjectUUIDKey, self.objectUUID);
+
+        return query;
+    }
 
     protected ParseQuery getParseQueryInstance() {
         return ParseQuery.getQuery(self.getParseTableName());
@@ -122,6 +129,31 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
         query.fromLocalDatastore();
 
         return query.findInBackground();
+    }
+
+    public Task getFirstModelTaskFromParse() {
+        ParseQuery query = self.createParseQueryByUUID();
+
+        // *** Important ***
+        query.fromLocalDatastore();
+
+        return query.findInBackground().onSuccessTask(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                LinkedList<ParseObject> list = new LinkedList<ParseObject>((Collection<? extends ParseObject>) task.getResult());
+                if (list.getFirst() != null) {
+                    ParseModelAbstract model = self.convertToLocalModel(list.getFirst());
+                    return Task.forResult(model);
+                }
+
+                // **** Important ****
+                // Here, return value is 'null' means that not found object.
+                // For example, if all newrecord objects already pushed to server.
+                // No NewRecord rows on the local table. So not found NewRecord here.
+                return Task.forResult(null);
+            }
+        });
+
     }
 
 

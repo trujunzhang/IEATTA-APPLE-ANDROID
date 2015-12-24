@@ -123,26 +123,27 @@ public class Restaurant extends ParseModelSync {
     }
 
     @Override
-    public Task<Boolean> queryBelongToTask(final ParseModelAbstract belongTo) {
-        final Restaurant self = this;
+    public Task<ParseModelAbstract> queryBelongToTask(final ParseModelAbstract belongTo) {
+        final Restaurant backModel = self;
+
         // belongTo is self, return this.
         if (belongTo != null) {
             if (belongTo.equals(self)) {
-                return Task.forResult(true);
+                return Task.forResult((ParseModelAbstract)backModel);
             }
         }
 
-        return this.getFirstLocalModelArrayTask()
-                .onSuccessTask(new Continuation<ParseModelAbstract, Task<Boolean>>() {
-                    @Override
-                    public Task<Boolean> then(Task<ParseModelAbstract> task) throws Exception {
-                        if (belongTo != null) {
-                            final Event event = (Event) belongTo;
-                            event.belongToModel = self;
-                        }
-                        return Task.forResult(true);
-                    }
-                });
+
+        return self.getFirstModelTaskFromParse()
+                .continueWithSuccessBlock({ (task) -> AnyObject? in
+                        let object = task.result
+        if let newModel = task.result{
+            backModel = newModel as! Restaurant
+        }
+        return BFTask(result: backModel)
+        })
+
+
     }
 
     public static Task<List<ParseModelAbstract>> queryRestaurants() {
