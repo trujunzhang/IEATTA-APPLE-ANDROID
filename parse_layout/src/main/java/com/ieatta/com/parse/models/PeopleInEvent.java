@@ -101,9 +101,7 @@ public class PeopleInEvent extends ParseModelSync {
         return null;
     }
 
-    public static Task<List<ParseModelAbstract>> sortOrderedPeople(Task<List<ParseModelAbstract>> previous, List<ParseModelAbstract/*PeopleInEvent*/> peopleInEvents) {
-        List<ParseModelAbstract> fetchedPeople = previous.getResult();
-
+    public static Task<List<ParseModelAbstract>> sortOrderedPeople(List<ParseModelAbstract> fetchedPeople, List<ParseModelAbstract/*PeopleInEvent*/> peopleInEvents) {
         List<ParseModelAbstract> sortedPeople = new LinkedList<>();
 
         for (ParseModelAbstract peopleInEvent : peopleInEvents) {
@@ -111,9 +109,8 @@ public class PeopleInEvent extends ParseModelSync {
             if (people != null) {
                 sortedPeople.add(people);
             } else {
-                // TODO djzhang(fixing)
 //                return BFTask(error: NSError.getError(IEAErrorType.SortArray, description: "\(peopleInEvent.printDescription())"))
-                return Task.forError(new Exception(""));
+                return Task.forError(new NullPointerException(""));
             }
         }
 

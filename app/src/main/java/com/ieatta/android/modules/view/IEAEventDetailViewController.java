@@ -76,20 +76,20 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 
         PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
-            @Override
-            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedPeopleInEvent = task.getResult();
+                    @Override
+                    public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        self.fetchedPeopleInEvent = task.getResult();
 
-                // 2. Get all people in the event.
-                return Team.queryTeamByPeopleInEvent(self.fetchedPeopleInEvent);
-            }
-        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+                        // 2. Get all people in the event.
+                        return Team.queryTeamByPeopleInEvent(self.fetchedPeopleInEvent);
+                    }
+                }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedPeople = new LinkedList<ParseModelAbstract>(task.getResult());
 
                 //  Sort, by fetchedPeopleInEvent
-                return PeopleInEvent.sortOrderedPeople(task, self.fetchedPeopleInEvent);
+                return PeopleInEvent.sortOrderedPeople(self.fetchedPeople, self.fetchedPeopleInEvent);
             }
         }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
