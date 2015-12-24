@@ -102,14 +102,18 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
                     @Override
                     public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+
                         self.fetchedList = task.getResult();
+
                         return self.getPhotosForModelsTask(task);
                     }
                 }).onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
+
                 List<RatedModelReviewCount> list = RatedModelReviewCount.convertToRatedModelReviewCounts(self.fetchedList);
                 self.setSectionItems(list, ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
+
                 return null;
             }
         }).continueWith(new Continuation<Object, Object>() {
