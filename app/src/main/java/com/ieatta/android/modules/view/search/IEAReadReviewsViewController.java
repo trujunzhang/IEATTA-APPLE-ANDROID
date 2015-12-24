@@ -58,7 +58,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
         self.searchTextView = (EditText) self.findViewById(R.id.searchTextView);
         self.search_clear_Button = (ImageView) self.findViewById(R.id.search_clear);
 
-        self.searchTextView.setHint(R.string.Search_Hint_Team);
+        self.searchTextView.setHint(R.string.Search);
         self.searchTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

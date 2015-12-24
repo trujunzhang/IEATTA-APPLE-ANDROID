@@ -160,5 +160,6 @@
     <string name="Search_Hint_Review">Review\'s name</string>
     <string name="Search_Hint_Recipe">Recipe\'s name</string>
     <string name="Search_Hint_Event">Event\'s name</string>
+    <string name="Search">Search</string>
 
 </resources>
