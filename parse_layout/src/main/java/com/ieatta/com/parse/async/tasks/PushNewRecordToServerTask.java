@@ -82,8 +82,10 @@ public class PushNewRecordToServerTask {
         }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
+                // TODO: djzhang:(fixing)
+                return Task.forResult(null);
                 // Unpin the offline NewRecord
-                return ParseModelQuery.unpinObjectInBackground(newRecordObject,newRecord);
+//                return ParseModelQuery.unpinObjectInBackground(newRecordObject,newRecord);
             }
         }).onSuccessTask(new Continuation<Void, Task<Boolean>>() {
             @Override

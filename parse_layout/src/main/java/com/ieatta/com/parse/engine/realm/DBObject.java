@@ -20,10 +20,4 @@ public class DBObject extends Object {
         return DBAccessUtils.pinInBackground(model);
     }
 
-    public static Task<Void> unpinInBackground(String name, ParseObject object, ParseModelAbstract model) {
-        // TODO:djzhang(fixing)
-        return object.unpinInBackground(name);
-    }
-
-
 }

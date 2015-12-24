@@ -127,17 +127,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         });
     }
 
-    /**
-     * Unpin the offline object by a given PFObject's instance.
-     * <p/>
-     * - parameter object:          PFObject's instance
-     * - parameter completionBlock: callback variable
-     */
-    public static Task<Void> unpinObjectInBackground(ParseObject object, ParseModelAbstract model) {
-        return DBObject.unpinInBackground("Offline", object, model);
-    }
-
-
     public Task<Void> updateLocalInBackground(){
         return self.deleteInBackground(self.createLocalQueryByUUID())
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
