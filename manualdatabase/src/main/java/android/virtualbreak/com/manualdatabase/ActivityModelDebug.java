@@ -24,8 +24,8 @@ public class ActivityModelDebug {
 
     public static Event getEventForEventDetail() {
         Event event = new Event();
-        event.objectUUID = "C9970CF0-6925-42C5-8C52-4E37A8A250A1";
-        event.displayName = "California Hot Sauce Expo";
+        event.objectUUID = "07B2D33C-F11D-404B-9D78-016D16BEE9FE";
+        event.displayName = "White Truffies";
 
         event.belongToModel = ActivityModelDebug.getRestaurantForRestaurantDetail();
         return event;

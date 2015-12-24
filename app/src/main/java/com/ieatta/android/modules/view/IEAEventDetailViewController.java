@@ -38,7 +38,7 @@ enum EventDetailSection {
     sectionReviews,       //= 2
 }
 
-public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewController  {
+public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewController {
     private IEAEventDetailViewController self = this;
 
 
@@ -63,9 +63,9 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.event = (Event) self.getTransferedModel();
+//        self.event = (Event) self.getTransferedModel();
         // TODO: djzhang(test)
-//        self.event = ActivityModelDebug.getEventForEventDetail();
+        self.event = ActivityModelDebug.getEventForEventDetail();
 
         // Do any additional setup after loading the view.
 //        assert(self.event != nil, "Must setup Event's instance.")
@@ -156,7 +156,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         self.addOrderedPeopleSection(self.fetchedPeople);
 
         // 2. Save selected people to database
-        new PeopleInEvent(ParseModelAbstract.getPoint(people),ParseModelAbstract.getPoint(self.event)).saveTeam().continueWith(new Continuation<Void, Object>() {
+        new PeopleInEvent(ParseModelAbstract.getPoint(people), ParseModelAbstract.getPoint(self.event)).saveTeam().continueWith(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted() == true) {
