@@ -46,6 +46,10 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
     protected boolean hasRecycleView() {
         return false;
     }
+    protected boolean shouldLeftBarButtonItem(){
+        return false;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +69,6 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
             }
         });
     }
-
-
 
     @Override
     public void onBackPressed() {
