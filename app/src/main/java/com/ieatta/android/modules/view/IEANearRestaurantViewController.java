@@ -132,12 +132,12 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     // MARK: NSNotificationCenter notification handlers
     @Override
     protected void RestaurantWasCreated(NSNotification note){
-        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
+//        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
     }
 
     @Override
     protected void LocationDidChange(NSNotification note){
-        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
+//        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
     }
 
     @Override
