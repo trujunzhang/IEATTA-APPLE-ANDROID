@@ -61,6 +61,13 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
         self.findAllViews();
 
         self.ratingImageView.setBackgroundResource(self.getRatingTitleImage(ratingValue));
+
+        self.setRightBarButtonItem(R.string.Post, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                self.postAction();
+            }
+        });
     }
 
     @Override
@@ -107,10 +114,6 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
         });
 
         reviewTextView = (EditText) this.findViewById(R.id.post_edittext);
-    }
-
-    private void setupPeopleInformation() {
-
     }
 
     private void setRatingImageViewBackground(int tag) {
