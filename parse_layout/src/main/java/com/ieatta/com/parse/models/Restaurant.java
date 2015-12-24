@@ -3,13 +3,12 @@ package com.ieatta.com.parse.models;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.ParseModelSync;
-import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
-
+import com.parse.ParseQuery;
 import java.util.List;
 
 import bolts.Continuation;
@@ -57,8 +56,8 @@ public class Restaurant extends ParseModelSync {
     }
 
     // MARK: ParseModel
-    LocalQuery createNearlyRestaurantQuery(ParseGeoPoint nearPoint) {
-        LocalQuery query = this.getLocalQueryInstance();
+    private ParseQuery createNearlyRestaurantQuery(ParseGeoPoint nearPoint) {
+        ParseQuery query = this.getParseQueryInstance();
 
         // Restaurant list sorted by display name. From A..Z.
         query.orderByAscending(kPAPFieldDisplayNameKey);
@@ -147,16 +146,16 @@ public class Restaurant extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRestaurants() {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().makeLocalQuery());
+        return ParseModelQuery.queryFromParse(PQueryModelType.Restaurant, new Restaurant().makeParseQuery());
     }
 
     public static Task<List<ParseModelAbstract>> queryNearRestaurants(ParseGeoPoint geoPoint) {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
+        return ParseModelQuery.queryFromParse(PQueryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
     }
 
     @Override
     public Task<List<ParseModelAbstract>> queryParseModels(String keyword) {
-        return Restaurant.queryFromRealm(PQueryModelType.Restaurant, new Restaurant().createSearchDisplayNameForLocalQuery(keyword));
+        return Restaurant.queryFromParse(PQueryModelType.Restaurant, new Restaurant().createSearchDisplayNameForParseQuery(keyword));
     }
 
     // MARK: Description

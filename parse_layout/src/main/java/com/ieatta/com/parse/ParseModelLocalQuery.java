@@ -26,6 +26,25 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
         super();
     }
 
+    protected LocalQuery getLocalQueryInstance() {
+        LocalQuery query = LocalQuery.getDBQuery(this.getParseTableName(), self.getModelType());
+        return query;
+    }
+
+    public LocalQuery makeLocalQuery() {
+        LocalQuery query = this.getLocalQueryInstance();
+        query.orderByDescending(kPAPFieldObjectCreatedDateKey);
+        return query;
+    }
+
+    public LocalQuery createQueryByObjectUUID() {
+        LocalQuery query = this.makeLocalQuery();
+
+        query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
+
+        return query;
+    }
+
     /**
      * Get count of objects on the offline datastore.
      * <p/>
@@ -144,6 +163,11 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
         query.orderByAscending(kPAPFieldObjectCreatedDateKey);
 
         return query;
+    }
+
+
+    public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
+        return self.getFirstLocalObjectArrayInBackground(self.createQueryByObjectUUID());
     }
 
 }

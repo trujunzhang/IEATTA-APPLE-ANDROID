@@ -33,14 +33,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
 
 
 
-    public LocalQuery createQueryByObjectUUID() {
-        LocalQuery query = this.makeLocalQuery();
-
-        query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
-
-        return query;
-    }
-
     public LocalQuery createQueryForBatching(List<String> points) {
         LocalQuery query = this.getLocalQueryInstance();
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
@@ -63,16 +55,7 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return instance.createQueryByObjectUUID();
     }
 
-    protected LocalQuery getLocalQueryInstance() {
-        LocalQuery query = LocalQuery.getDBQuery(this.getParseTableName(), self.getModelType());
-        return query;
-    }
 
-    public LocalQuery makeLocalQuery() {
-        LocalQuery query = this.getLocalQueryInstance();
-        query.orderByDescending(kPAPFieldObjectCreatedDateKey);
-        return query;
-    }
 
     public ParseQuery createQueryFromRecord() {
         ParseQuery query = ParseQuery.getQuery(this.getParseTableName());
@@ -154,9 +137,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return DBObject.unpinInBackground("Offline", object, model);
     }
 
-    public Task<ParseModelAbstract> getFirstLocalModelArrayTask() {
-        return self.getFirstLocalObjectArrayInBackground(self.createQueryByObjectUUID());
-    }
 
     public Task<Void> updateLocalInBackground(){
         return self.deleteInBackground(self.createQueryByObjectUUID())
