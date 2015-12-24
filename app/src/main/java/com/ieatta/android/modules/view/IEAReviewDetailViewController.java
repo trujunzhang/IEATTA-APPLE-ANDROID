@@ -158,43 +158,4 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
         }
     }
 
-//    private void showReviewForModelCells(ParseModelAbstract model) {
-//        ReviewType reviewType = (model.getReviewType());
-//
-//        switch (reviewType) {
-//            case Review_Restaurant:
-//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), 1);
-//
-//                self.setRegisterCellClass(IEANearRestaurantsCell.getType(), 1);
-//                self.setSectionItems(CollectionUtils.createList(model), 1);
-//
-//                self.showReviewForModelCells(self.review);
-//                break;
-//            case Review_Recipe:
-//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), 3);
-//
-//                self.setRegisterCellClass(IEAOrderedRecipeCell.getType(), 3);
-//                self.setSectionItems(CollectionUtils.createList(model), 3);
-//
-//                self.showReviewForModelCells((((Recipe) model).belongToModel).belongToModel);
-//                break;
-//            case Review_Event:
-//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), 2);
-//
-//                self.setRegisterCellClass(IEARestaurantEventsCell.getType(), 2);
-//                self.setSectionItems(CollectionUtils.createList(model), 2);
-//
-//                self.showReviewForModelCells(((Event) model).belongToModel);
-//                break;
-//            default:
-//                // Add Review Content cell.
-//                self.setRegisterCellClass(IEAReviewDetailCell.getType(), rowCount);
-//                // 2. Add section title cell.
-//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), rowCount);
-//                /// 3. Set section items.
-//                self.setSectionItems(CollectionUtils.createList(model), rowCount);
-//                break;
-//        }
-//
-//    }
 }
