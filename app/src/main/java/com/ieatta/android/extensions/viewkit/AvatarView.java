@@ -66,31 +66,29 @@ public class AvatarView extends RoundedImageView {
         self.setImageResource(imageRefId);
     }
 
-    public Task loadNewPhotoByModel(ParseModelAbstract model, final int placeHolder) {
+    public void loadNewPhotoByModel(ParseModelAbstract model, final int placeHolder) {
         // Cache photo point.
         String photoPoint = IEACache.sharedInstance.photoPoint(model);
 
         if (photoPoint == null || photoPoint.isEmpty() == true) {
 
             new Photo().queryPhotosByModel(model)
-                    .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task>() {
+                    .onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
                         @Override
-                        public Task then(Task<List<ParseModelAbstract>> task) throws Exception {
-                            LinkedList<ParseModelAbstract> result = new LinkedList<ParseModelAbstract>(task.getResult());
+                        public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
+                            LinkedList<ParseModelAbstract> result = new LinkedList<>(task.getResult());
                             ParseModelAbstract first = result.getFirst();
                             if (first != null) {
-                                return self.loadNewPhotoByPhoto((Photo) first, placeHolder);
+                                 self.loadNewPhotoByPhoto((Photo) first, placeHolder);
                             }
 
                             self.configureAvatar(placeHolder);
-                            return Task.forResult(true);
+                            return null;
                         }
                     });
         } else {
-            return loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
+            loadNewPhotoByPhoto(Photo.getInstanceFromPhotoPoint(photoPoint), placeHolder);
         }
-
-        return Task.forResult(true);
     }
 
     public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {
