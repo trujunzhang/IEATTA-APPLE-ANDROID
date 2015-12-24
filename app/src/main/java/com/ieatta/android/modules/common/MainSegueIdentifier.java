@@ -9,6 +9,7 @@ import com.ieatta.android.modules.view.IEAReviewDetailViewController;
 import com.ieatta.android.modules.view.IEASeeReviewsInDetailViewController;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
+import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 import com.ieatta.android.modules.view.photogallery.PhotoGalleryPagerActivity;
 import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
@@ -46,7 +47,7 @@ public enum MainSegueIdentifier {
     // Four new/edit model pages.(the following three, and restaurant)
     editEventSegueIdentifier("addEditEvent", IEAEditEventViewController.class),
     editPeopleSegueIdentifier("addEditPeople", IEAEditPeopleViewController.class),
-    editRecipeSegueIdentifier("addEditRecipe",IEARecipeDetailViewController.class),
+    editRecipeSegueIdentifier("addEditRecipe",IEAEditRecipeViewController.class),
     // Choice Person in the event page.
     choicePeopleSegueIdentifier("choicePeople", IEAChoicePeopleViewController.class),
 
