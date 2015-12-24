@@ -192,7 +192,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 
     @Override
     public void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
-        self.setTransferedModelForEdit(sender, self.event, true);
+        // Edit event
+        self.setTransferedModelForEdit(sender, self.event);
     }
 
     // MARK: Header cell events

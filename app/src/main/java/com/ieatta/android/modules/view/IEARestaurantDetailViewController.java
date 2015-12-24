@@ -165,7 +165,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     @Override
     protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender) {
         // Edit Restaurant
-        self.setTransferedModelForEdit(sender, self.restaurant, true);
+        self.setTransferedModelForEdit(sender, self.restaurant);
     }
 
     @Override
