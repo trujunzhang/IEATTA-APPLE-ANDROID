@@ -50,9 +50,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return ReviewType.Review_Unknow;
     }
 
-    public PhotoUsedType getPhotoUsedType()
-
-    {
+    public PhotoUsedType getPhotoUsedType() {
         return PhotoUsedType.Photo_Used_Unknow;
     }
 
