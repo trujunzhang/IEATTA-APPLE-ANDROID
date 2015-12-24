@@ -9,6 +9,7 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
 import java.util.List;
 
 import bolts.Continuation;
@@ -124,26 +125,23 @@ public class Restaurant extends ParseModelSync {
 
     @Override
     public Task<ParseModelAbstract> queryBelongToTask(final ParseModelAbstract belongTo) {
-        final Restaurant backModel = self;
+        final ParseModelAbstract[] backModel = {self};
 
         // belongTo is self, return this.
         if (belongTo != null) {
             if (belongTo.equals(self)) {
-                return Task.forResult((ParseModelAbstract)backModel);
+                return Task.forResult(backModel[0]);
             }
         }
 
-
-        return self.getFirstModelTaskFromParse()
-                .continueWithSuccessBlock({ (task) -> AnyObject? in
-                        let object = task.result
-        if let newModel = task.result{
-            backModel = newModel as! Restaurant
-        }
-        return BFTask(result: backModel)
-        })
-
-
+        return self.getFirstModelTaskFromParse().onSuccessTask(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                ParseModelAbstract newModel = (ParseModelAbstract) task.getResult();
+                backModel[0] = newModel;
+                return Task.forResult(backModel[0]);
+            }
+        });
     }
 
     public static Task<List<ParseModelAbstract>> queryRestaurants() {
