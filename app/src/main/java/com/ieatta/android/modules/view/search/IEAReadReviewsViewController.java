@@ -98,18 +98,18 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
         }
 
         ParseModelAbstract model = ReviewType.getParseModelInstance(self.reviewType);
-        model.queryParseModels(self.keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
-            @Override
-            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                Object object = task.getResult();
-                self.fetchedList = task.getResult();
-                return self.getPhotosForModelsTask(task);
-            }
-        }).onSuccess(new Continuation<Boolean, Object>() {
+        model.queryParseModels(self.keyword)
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+                    @Override
+                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        self.fetchedList = task.getResult();
+                        return self.getPhotosForModelsTask(task);
+                    }
+                }).onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
                 List<RatedModelReviewCount> list = RatedModelReviewCount.convertToRatedModelReviewCounts(self.fetchedList);
-                self.setSectionItems(list,  ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
+                self.setSectionItems(list, ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
                 return null;
             }
         }).continueWith(new Continuation<Object, Object>() {
@@ -143,7 +143,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.button31:
                 self.reviewType = ReviewType.Review_Restaurant.ordinal();
                 break;
