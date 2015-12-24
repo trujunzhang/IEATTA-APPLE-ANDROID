@@ -1,5 +1,6 @@
 package com.ieatta.android.modules.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
@@ -12,6 +13,7 @@ import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
+import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
@@ -59,6 +61,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
         super.onCreate(savedInstanceState);
 
         self.orderedRecipe = (Recipe) self.getTransferedModel();
+
         // TODO djzhang(test)
 //        self.orderedRecipe = ActivityModelDebug.getOrderedRecipe();
 
@@ -68,15 +71,16 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
 
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 
-        Photo.queryPhotosByModel(self.getPageModel()).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
-            @Override
-            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                fetchedPhotosTask = task;
+        Photo.queryPhotosByModel(self.getPageModel())
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+                    @Override
+                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        fetchedPhotosTask = task;
 
-                // Next, Load Reviews.
-                return self.getReviewsRelatedModelQueryTask();
-            }
-        }).onSuccess(new Continuation<Boolean, Object>() {
+                        // Next, Load Reviews.
+                        return self.getReviewsRelatedModelQueryTask();
+                    }
+                }).onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
 
@@ -124,6 +128,12 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
     // MARK: TableView header events
     public void performSegueForEditingModel() {
         self.performSegueWithIdentifier(MainSegueIdentifier.editRecipeSegueIdentifier, self);
+    }
+
+    @Override
+    protected void segueForEditRecipeViewController(IEAEditRecipeViewController destination, Intent sender) {
+        // Edit ordered recipe
+        self.setTransferedModelForEdit(sender,self.orderedRecipe);
     }
 
     // MARK: NSNotificationCenter notification handlers

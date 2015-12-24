@@ -65,8 +65,6 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
     }
 
     private void queryOrderedRecipesList() {
-
-
         Recipe.queryRecipes(self.orderedPeople, self.orderedPeople.belongToModel)
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
                     @Override
