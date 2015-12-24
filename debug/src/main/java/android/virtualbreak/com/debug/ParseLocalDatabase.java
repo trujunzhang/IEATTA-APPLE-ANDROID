@@ -1,6 +1,7 @@
 package android.virtualbreak.com.debug;
 
 import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.ParseModelOnlineQuery;
 import com.ieatta.com.parse.ParseModelQuery;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.Event;
@@ -12,6 +13,8 @@ import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
+import com.parse.ParseQuery;
+
 import java.util.List;
 
 import bolts.Continuation;
@@ -33,7 +36,7 @@ public class ParseLocalDatabase {
         // =============================================================================
         //        Restaurant
         // =============================================================================
-        ParseLocalDatabase.queryLocalDatastoreInBackground(new Restaurant().makeLocalQuery(), PQueryModelType.Restaurant);
+        ParseLocalDatabase.queryParseDatastoreInBackground(new Restaurant().makeParseQuery(), PQueryModelType.Restaurant);
 
         // =============================================================================
         //        Event
@@ -88,6 +91,16 @@ public class ParseLocalDatabase {
                     int x = 0;
                     Throwable cause = error.getCause();
                 }
+                return null;
+            }
+        });
+    }
+
+    public static  Task<Void>  queryParseDatastoreInBackground(ParseQuery parseQuery,  final PQueryModelType classType) {
+        return ParseModelOnlineQuery.queryFromParse(classType,parseQuery).onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
+            @Override
+            public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
+                ParseLocalDatabase.printList(classType,task.getResult());
                 return null;
             }
         });

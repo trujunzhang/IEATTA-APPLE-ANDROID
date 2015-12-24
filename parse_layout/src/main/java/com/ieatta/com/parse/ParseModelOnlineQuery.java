@@ -64,7 +64,7 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
         return ParseQuery.getQuery(self.getParseTableName());
     }
 
-    protected ParseQuery makeParseQuery() {
+    public ParseQuery makeParseQuery() {
         ParseQuery query = self.getParseQueryInstance();
 
         query.orderByDescending(kPAPFieldObjectCreatedDateKey);
@@ -114,12 +114,11 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
         return object.pinInBackground("Offline");
     }
 
-    public static Task queryFromParse(final PQueryModelType type, ParseQuery query) {
+    public static Task<List<ParseModelAbstract>> queryFromParse(final PQueryModelType type, ParseQuery query) {
         return ParseModelOnlineQuery.findInBackgroundFromParse(query).onSuccessTask(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
-                ((ParseModelConvert) ParseModelAbstract.getInstanceFromType(type)).convertToParseModelsTask(task, true);
-                return null;
+                return ((ParseModelConvert) ParseModelAbstract.getInstanceFromType(type)).convertToParseModelsTask(task, true);
             }
         });
     }
