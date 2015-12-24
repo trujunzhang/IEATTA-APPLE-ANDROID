@@ -43,7 +43,6 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
         self.addressLabel.setText(model.model.address);
         self.avatarView.loadNewPhotoByModel(model.model, R.drawable.blank_user_small);
 
-        // TODO: djzhang: fixing
         Recipe.queryOrderedRecipesCount(model.model, model.event)
                 .onSuccess(new Continuation<Integer, Object>() {
                     @Override

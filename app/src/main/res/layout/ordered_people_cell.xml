@@ -32,7 +32,6 @@
         android:layout_toRightOf="@+id/avatarView"
         android:layout_below="@+id/titleTextView"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:text="Medium Text"
         android:textAppearance="@style/SubtitleText" />
 
 </RelativeLayout>
