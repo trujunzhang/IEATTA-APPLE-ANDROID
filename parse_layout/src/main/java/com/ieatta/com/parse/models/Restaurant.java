@@ -168,5 +168,13 @@ public class Restaurant extends ParseModelSync {
                 '}';
     }
 
-
+    @Override
+    public Task<Void> updateLocalInBackground() {
+        return self.upInBackground().onSuccessTask(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                return self.pinInBackground();
+            }
+        });
+    }
 }
