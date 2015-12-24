@@ -93,7 +93,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
     private void queryRatedModels() {
 
         self.setSectionItems(new LinkedList<ParseModelAbstract>(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
-        if (keyword== null ||keyword.isEmpty() == true) {
+        if (keyword == null || keyword.isEmpty() == true) {
             return;
         }
 

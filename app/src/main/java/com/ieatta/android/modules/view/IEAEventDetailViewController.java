@@ -74,7 +74,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 
-        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event)).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 self.fetchedPeopleInEvent = task.getResult();
