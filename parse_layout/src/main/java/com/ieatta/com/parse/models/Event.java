@@ -171,27 +171,23 @@ public class Event extends ParseModelSync {
     @Override
     public Task<ParseModelAbstract> queryBelongToTask(ParseModelAbstract belongTo) {
 
-        ParseModelAbstract backModel = self;
-
+        final Event[] backModel = {self};
 
         return self.getFirstModelTaskFromRealm()
-                .continueWithSuccessBlock({ (task) -> AnyObject? in
-                        let object = task.result
-        if let newModel = task.result{
-            backModel = newModel as! Event
-        }
-        let restaurant = ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant.rawValue, objectUUID: backModel.restaurantRef)
-        return restaurant.queryBelongToTask(self)
-        }).continueWithSuccessBlock({ (task) -> AnyObject? in
-
-                backModel.belongToModel = task.result as! Restaurant
-        return BFTask(result: backModel)
-        })
-        return this.getFirstLocalModelArrayTask()
-                .onSuccessTask(new Continuation<ParseModelAbstract, Task<Boolean>>() {
+                .onSuccessTask(new Continuation<ParseModelAbstract, Task<ParseModelAbstract>>() {
                     @Override
-                    public Task<Boolean> then(Task<ParseModelAbstract> task) throws Exception {
-                        return ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant, self.restaurantRef).queryBelongToTask(self);
+                    public Task<ParseModelAbstract> then(Task<ParseModelAbstract> task) throws Exception {
+                        ParseModelAbstract object = task.getResult();
+                        backModel[0] = (Event) task.getResult();
+
+                        ParseModelAbstract restaurant = ParseModelAbstract.getInstanceFromType(PQueryModelType.Restaurant, backModel[0].restaurantRef);
+                        return restaurant.queryBelongToTask(self);
+                    }
+                }).onSuccessTask(new Continuation<ParseModelAbstract, Task<ParseModelAbstract>>() {
+                    @Override
+                    public Task<ParseModelAbstract> then(Task<ParseModelAbstract> task) throws Exception {
+                        backModel[0].belongToModel = (Restaurant) task.getResult();
+                        return Task.forResult((ParseModelAbstract) backModel[0]);
                     }
                 });
     }
