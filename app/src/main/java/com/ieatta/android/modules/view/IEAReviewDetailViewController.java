@@ -37,7 +37,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
     // Transferd Model from previous page.
     private ParseModelAbstract reviewForModel;
     private Review review;
-    private int step = 0;
+    private int reviewIndex = 0;
 
 
     public void transferToReviewDetail(ParseModelAbstract reviewForModel, Review review) {
@@ -72,7 +72,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
 
     private void showReviewForModelCells(ParseModelAbstract model) {
         ReviewType reviewType = (model.getReviewType());
-        self.step ++;
+        self.reviewIndex++;
 
         switch (reviewType) {
             case Review_Restaurant:
@@ -101,7 +101,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                 break;
             default:
                 // Add Review Content cell.
-                int rowCount = self.step;
+                int rowCount = self.reviewIndex;
                 self.setRegisterCellClass(IEAReviewDetailCell.getType(), rowCount);
                 // 2. Add section title cell.
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), rowCount);
