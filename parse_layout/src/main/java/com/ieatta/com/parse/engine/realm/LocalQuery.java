@@ -59,12 +59,6 @@ public class LocalQuery<T extends ParseModelAbstract> {
         return this;
     }
 
-    public LocalQuery<T> whereWithinKilometers(String key, ParseGeoPoint point, double maxDistance) {
-//        super.whereWithinKilometers(key, point, maxDistance);
-//        return whereWithinRadians(key, point, maxDistance / ParseGeoPoint.EARTH_MEAN_RADIUS_KM);
-        return this;
-    }
-
     public LocalQuery<T> setLimit(int newLimit) {
         this.builder.setLimit(newLimit);
         return this;
