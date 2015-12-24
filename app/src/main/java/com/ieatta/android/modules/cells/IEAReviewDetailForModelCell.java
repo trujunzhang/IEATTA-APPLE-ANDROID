@@ -17,6 +17,12 @@ public class IEAReviewDetailForModelCell extends IEAViewHolder {
 
     private IEAReviewDetailForModelCell self = this;
 
+    @Override
+    protected boolean shouldClickItem() {
+        return false;
+    }
+
+
     private TextView displayNameLabel;
     private RatingImageView ratingImageView;
     private TextView timeAgoLabel;
@@ -37,7 +43,7 @@ public class IEAReviewDetailForModelCell extends IEAViewHolder {
         self.ratingImageView.queryRatingInReviewsByModel(model.reviewForModel);
 
         String timeAgoTitle = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Date_of_visit);
-        String timeAgoText = timeAgoTitle +"" + model.timeAgoString;
+        String timeAgoText = timeAgoTitle +": " + model.timeAgoString;
         self.timeAgoLabel.setText(timeAgoText);
     }
 }
