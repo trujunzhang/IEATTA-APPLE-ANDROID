@@ -198,13 +198,14 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     @Override
     protected void EventWasCreated(NSNotification note) {
         // 3. load events related restaurant.
-        Event.queryEventsRelatedRestaurant(self.restaurant).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
-            @Override
-            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedEvents = task.getResult();
-                self.configureEventSection(self.fetchedEvents);
-                return null;
-            }
-        });
+        Event.queryEventsRelatedRestaurant(self.restaurant)
+                .onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+                    @Override
+                    public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        self.fetchedEvents = task.getResult();
+                        self.configureEventSection(self.fetchedEvents);
+                        return null;
+                    }
+                });
     }
 }
