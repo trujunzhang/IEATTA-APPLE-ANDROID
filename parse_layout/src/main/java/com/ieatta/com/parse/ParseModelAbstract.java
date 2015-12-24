@@ -44,9 +44,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return PQueryModelType.unkown;
     }
 
-    public ReviewType getReviewType()
-
-    {
+    public ReviewType getReviewType() {
         return ReviewType.Review_Unknow;
     }
 
