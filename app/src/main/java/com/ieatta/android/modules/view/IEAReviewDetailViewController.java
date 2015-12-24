@@ -17,7 +17,9 @@ import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Recipe;
+import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Review;
+import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.LinkedList;
@@ -50,7 +52,6 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
     // Transferd Model from previous page.
     private ParseModelAbstract reviewForModel;
     private Review review;
-    private int reviewIndex = 0;
     private List<ReviewSectionInfo> reivewSectionInfos = new LinkedList<>();
 
     public void transferToReviewDetail(ParseModelAbstract reviewForModel, Review review) {
@@ -75,8 +76,8 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                     @Override
                     public Object then(Task<ParseModelAbstract> task) throws Exception {
                         ParseModelAbstract backModel = task.getResult();
-//                self.generateReviewSectionInfos(backModel);
-//                self.setSectionsForReview();
+                        self.generateReviewSectionInfos(backModel);
+                        self.setSectionsForReview();
                         return null;
                     }
                 }).continueWith(new Continuation<Object, Object>() {
@@ -88,45 +89,112 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
         });
     }
 
-    private void showReviewForModelCells(ParseModelAbstract model) {
+    private void setSectionsForReview() {
+        int sectionIndex = 0;
+        int size = self.reivewSectionInfos.size();
+        for (int i = 0; i < size; i++) {
+            ReviewSectionInfo info = self.reivewSectionInfos.get(size - 1 - i);
+
+            ParseModelAbstract model = info.model;
+            sectionIndex += 1;
+
+            switch (info.type) {
+                case Review_Restaurant:
+                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), sectionIndex);
+
+                    self.setRegisterCellClass(IEANearRestaurantsCell.getType(), sectionIndex);
+                    self.setSectionItems(CollectionUtils.createList(model), sectionIndex);
+                    break;
+                case Review_Recipe:
+                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), sectionIndex);
+
+                    self.setRegisterCellClass(IEAOrderedRecipeCell.getType(), sectionIndex);
+                    self.setSectionItems(CollectionUtils.createList(model), sectionIndex);
+                    break;
+                case Review_Event:
+                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), sectionIndex);
+
+                    self.setRegisterCellClass(IEARestaurantEventsCell.getType(), sectionIndex);
+                    self.setSectionItems(CollectionUtils.createList(model), sectionIndex);
+                    break;
+                default:
+                    // Add Review Content cell.
+                    self.setRegisterCellClass(IEAReviewDetailCell.getType(), sectionIndex);
+                    // 2. Add section title cell.
+                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), sectionIndex);
+                    /// 3. Set section items.
+                    self.setSectionItems(CollectionUtils.createList(model), sectionIndex);
+                    break;
+            }
+
+        }
+    }
+
+    private void generateReviewSectionInfos(ParseModelAbstract model) {
         ReviewType reviewType = (model.getReviewType());
-        self.reviewIndex++;
 
         switch (reviewType) {
             case Review_Restaurant:
-                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), 1);
-
-                self.setRegisterCellClass(IEANearRestaurantsCell.getType(), 1);
-                self.setSectionItems(CollectionUtils.createList(model), 1);
-
-                self.showReviewForModelCells(self.review);
+                self.reivewSectionInfos.add(new ReviewSectionInfo(model, reviewType));
                 break;
             case Review_Recipe:
-                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), 3);
-
-                self.setRegisterCellClass(IEAOrderedRecipeCell.getType(), 3);
-                self.setSectionItems(CollectionUtils.createList(model), 3);
-
-                self.showReviewForModelCells((((Recipe) model).belongToModel).belongToModel);
+                self.reivewSectionInfos.add(new ReviewSectionInfo(model, reviewType));
+                Recipe recipe = (Recipe) model;
+                Team team = recipe.belongToModel;
+                Event event = team.belongToModel;
+                if (team != null && event != null) {
+                    self.generateReviewSectionInfos(event);
+                }
                 break;
             case Review_Event:
-                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), 2);
-
-                self.setRegisterCellClass(IEARestaurantEventsCell.getType(), 2);
-                self.setSectionItems(CollectionUtils.createList(model), 2);
-
-                self.showReviewForModelCells(((Event) model).belongToModel);
+                self.reivewSectionInfos.add(new ReviewSectionInfo(model, reviewType));
+                Restaurant restaurant = ((Event) model).belongToModel;
+                if (restaurant != null) {
+                    self.generateReviewSectionInfos(restaurant);
+                }
                 break;
             default:
-                // Add Review Content cell.
-                int rowCount = self.reviewIndex;
-                self.setRegisterCellClass(IEAReviewDetailCell.getType(), rowCount);
-                // 2. Add section title cell.
-                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), rowCount);
-                /// 3. Set section items.
-                self.setSectionItems(CollectionUtils.createList(model), rowCount);
                 break;
         }
-
     }
+
+//    private void showReviewForModelCells(ParseModelAbstract model) {
+//        ReviewType reviewType = (model.getReviewType());
+//
+//        switch (reviewType) {
+//            case Review_Restaurant:
+//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), 1);
+//
+//                self.setRegisterCellClass(IEANearRestaurantsCell.getType(), 1);
+//                self.setSectionItems(CollectionUtils.createList(model), 1);
+//
+//                self.showReviewForModelCells(self.review);
+//                break;
+//            case Review_Recipe:
+//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), 3);
+//
+//                self.setRegisterCellClass(IEAOrderedRecipeCell.getType(), 3);
+//                self.setSectionItems(CollectionUtils.createList(model), 3);
+//
+//                self.showReviewForModelCells((((Recipe) model).belongToModel).belongToModel);
+//                break;
+//            case Review_Event:
+//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Event_Information), 2);
+//
+//                self.setRegisterCellClass(IEARestaurantEventsCell.getType(), 2);
+//                self.setSectionItems(CollectionUtils.createList(model), 2);
+//
+//                self.showReviewForModelCells(((Event) model).belongToModel);
+//                break;
+//            default:
+//                // Add Review Content cell.
+//                self.setRegisterCellClass(IEAReviewDetailCell.getType(), rowCount);
+//                // 2. Add section title cell.
+//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), rowCount);
+//                /// 3. Set section items.
+//                self.setSectionItems(CollectionUtils.createList(model), rowCount);
+//                break;
+//        }
+//
+//    }
 }
