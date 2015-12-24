@@ -64,7 +64,7 @@
 
     <!--_Recipe_Detail                                                                -->
     <string name="Fetch_recipe_count_failure">Fetch recipe count failure!</string>
-    <string name="Recipes_Ordered_Count">Recipes Ordered Count</string>
+    <string name="Recipes_Ordered_Count">Recipes Ordered</string>
     <string name="Ordered_People">Ordered People</string>
 
     <!--_Edit_Event_screen                                                            -->

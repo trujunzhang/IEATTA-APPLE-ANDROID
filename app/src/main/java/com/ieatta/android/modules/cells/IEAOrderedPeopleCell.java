@@ -51,7 +51,7 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
                         int recipesCount = task.getResult();
                         model.model.recipesCount = recipesCount;
                         String info = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Recipes_Ordered_Count);
-                        info = info + ": " + recipesCount;
+                        info = recipesCount +" "+ info;
                         self.setRecipeInformation(info);
                         return null;
                     }
