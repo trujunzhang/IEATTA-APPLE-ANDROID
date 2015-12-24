@@ -28,14 +28,7 @@ public class RMQuery<T extends RealmObject> {
 
         results = builder.sort(results);
 
-        HashMap<String, List<String>> containedMap = builder.containedMap;
-
-        List<ParseModelAbstract> list = new LinkedList<>();
-        if(containedMap.isEmpty() == true){
-            list = new DBModelReader().readRealmResults(results, builder.modelType, builder.limit,builder.containedMap);
-        }else {
-            String key = new LinkedList<String>(containedMap.keySet()).getFirst();
-        }
+        List<ParseModelAbstract> list = new DBModelReader().readRealmResults(results, builder.modelType, builder.limit,builder.containedMap);
         return Task.forResult(list);
     }
 
