@@ -2,7 +2,6 @@ package com.ieatta.android.modules.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
@@ -69,8 +68,6 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
         super.onCreate(savedInstanceState);
 
         self.transfer((Restaurant) self.getTransferedModel());
-        // TODO djzhang(test)
-//        self.restaurant = ActivityModelDebug.getRestaurantForRestaurantDetail();
 
         // Do any additional setup after loading the view.
 //        assert(self.restaurant != nil, "Must setup selected restaurant.")

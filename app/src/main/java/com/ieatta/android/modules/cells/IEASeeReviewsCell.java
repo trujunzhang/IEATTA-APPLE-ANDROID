@@ -8,7 +8,6 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.edit.SectionSeeReviewsCellModel;
 
 public class IEASeeReviewsCell extends IEAViewHolder {

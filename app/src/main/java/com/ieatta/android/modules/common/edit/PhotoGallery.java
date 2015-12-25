@@ -1,7 +1,6 @@
 package com.ieatta.android.modules.common.edit;
 
 import android.support.v7.widget.RecyclerView;
-import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.extensions.storage.DTTableViewManager;

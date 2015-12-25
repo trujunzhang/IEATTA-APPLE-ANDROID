@@ -2,7 +2,6 @@ package com.ieatta.android.modules.cells.headerfooterview;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;

@@ -2,14 +2,10 @@ package com.ieatta.android.modules.cells.headerview;
 
 import android.view.View;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.cells.enums.IEAReadReviewsHeaderSegmentedType;
-import com.ieatta.android.modules.cells.model.IEAEventHeader;
-import com.ieatta.com.parse.models.enums.ReviewType;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
 

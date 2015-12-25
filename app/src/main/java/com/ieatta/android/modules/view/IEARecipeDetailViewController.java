@@ -2,7 +2,6 @@ package com.ieatta.android.modules.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
@@ -61,9 +60,6 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
         super.onCreate(savedInstanceState);
 
         self.orderedRecipe = (Recipe) self.getTransferedModel();
-
-        // TODO djzhang(test)
-//        self.orderedRecipe = ActivityModelDebug.getOrderedRecipe();
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedRecipe?.belongToModel != nil, "Must setup OrderedPeople's instance.")

@@ -4,7 +4,6 @@ import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by djzhang on 12/1/15.

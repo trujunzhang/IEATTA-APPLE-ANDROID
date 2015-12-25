@@ -1,7 +1,5 @@
 package com.ieatta.android.modules.cells.enums;
 
-import com.ieatta.com.parse.models.enums.ReviewType;
-
 /**
  * Created by djzhang on 12/2/15.
  */

@@ -2,7 +2,6 @@ package com.ieatta.android.modules.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;

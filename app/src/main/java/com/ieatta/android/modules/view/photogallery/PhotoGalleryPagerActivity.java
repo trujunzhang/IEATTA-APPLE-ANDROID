@@ -17,7 +17,6 @@ limitations under the License.
 package com.ieatta.android.modules.view.photogallery;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
@@ -27,8 +26,6 @@ import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEAAppTableViewController;
 import com.ieatta.android.modules.adapter.PhotoGalleryPagerAdapter;
-
-import java.util.LinkedList;
 
 public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 

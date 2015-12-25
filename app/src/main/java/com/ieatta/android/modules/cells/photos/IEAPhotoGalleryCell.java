@@ -13,7 +13,6 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
-import com.ieatta.android.modules.adapter.decoration.PhotoGalleryDividerDecoration;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 

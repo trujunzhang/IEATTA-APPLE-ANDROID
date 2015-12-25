@@ -5,11 +5,9 @@ import android.graphics.Bitmap;
 import android.util.AttributeSet;
 
 import com.badoo.mobile.util.WeakHandler;
-import com.ieatta.android.cache.IEACache;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;

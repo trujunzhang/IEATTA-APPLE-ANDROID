@@ -2,7 +2,6 @@ package com.ieatta.android.modules;
 
 import android.content.Intent;
 
-import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.extensions.UIDevice;
 import com.ieatta.android.extensions.UIUserInterfaceIdiom;
 import com.ieatta.android.modules.common.MainSegueIdentifier;

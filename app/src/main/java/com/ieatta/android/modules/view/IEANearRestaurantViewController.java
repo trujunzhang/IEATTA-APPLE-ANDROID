@@ -1,11 +1,9 @@
 package com.ieatta.android.modules.view;
 
-import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.ieatta.android.R;
-import com.ieatta.android.modules.IEASplitMasterViewController;
 import com.ieatta.android.modules.LocationObserveActivity;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
@@ -17,7 +15,6 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.android.notification.NSNotification;
-import com.ieatta.android.observers.LocationObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 import com.parse.ParseGeoPoint;

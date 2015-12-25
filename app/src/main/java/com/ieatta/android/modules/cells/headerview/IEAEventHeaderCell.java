@@ -1,7 +1,6 @@
 package com.ieatta.android.modules.cells.headerview;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.R;

@@ -6,9 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
-import com.ieatta.com.parse.ParseModelAbstract;
-
-import java.util.LinkedList;
 
 /**
  * Created by djzhang on 12/19/15.

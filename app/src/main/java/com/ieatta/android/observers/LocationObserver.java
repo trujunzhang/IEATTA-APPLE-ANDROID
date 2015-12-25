@@ -1,14 +1,11 @@
 package com.ieatta.android.observers;
 
 import android.location.Location;
-import android.virtualbreak.com.manualdatabase.models.RestaurantListGenerator;
 
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
-import com.parse.Parse;
 import com.parse.ParseGeoPoint;
 
-import java.util.Objects;
 import java.util.Stack;
 
 /**

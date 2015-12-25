@@ -1,6 +1,5 @@
 package com.ieatta.android.extensions.storage.models;
 
-import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 
 /**

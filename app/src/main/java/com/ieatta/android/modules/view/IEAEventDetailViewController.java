@@ -2,7 +2,6 @@ package com.ieatta.android.modules.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
@@ -63,9 +62,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        self.event = (Event) self.getTransferedModel();
-        // TODO: djzhang(test)
-        self.event = ActivityModelDebug.getEventForEventDetail();
+        self.event = (Event) self.getTransferedModel();
 
         // Do any additional setup after loading the view.
 //        assert(self.event != nil, "Must setup Event's instance.")

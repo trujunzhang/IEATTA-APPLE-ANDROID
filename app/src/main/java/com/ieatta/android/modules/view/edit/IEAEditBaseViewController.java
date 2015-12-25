@@ -10,8 +10,6 @@ import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelLocalQuery;
-
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.Photo;
 

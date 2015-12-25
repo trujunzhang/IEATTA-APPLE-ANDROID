@@ -4,7 +4,6 @@ import com.ieatta.android.R;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.LinkedList;
 import java.util.List;

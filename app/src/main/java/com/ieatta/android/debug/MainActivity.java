@@ -3,7 +3,6 @@ package com.ieatta.android.debug;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.virtualbreak.com.manualdatabase.ActivityModelDebug;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
@@ -18,7 +17,6 @@ import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 
@@ -69,7 +67,7 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
 
     private void setupPhotoGallerySection() {
         self.fetchedPhotos = new LinkedList<>();
-        self.fetchedPhotos.add(ActivityModelDebug.getPhoto());
+//        self.fetchedPhotos.add(ActivityModelDebug.getPhoto());
 
         self.showPhotoGalleryCell();
 
