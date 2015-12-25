@@ -23,12 +23,13 @@ public class PushNewRecordToServerTask {
 
     public static Task PushToServerSeriesTask(LocalQuery query) {
 
-        return ParseModelLocalQuery.findInBackgroundFromRealm(query).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task>() {
-            @Override
-            public Task then(Task<List<ParseModelAbstract>> task) throws Exception {
-                return executeSerialTasks(task);
-            }
-        });
+        return ParseModelLocalQuery.findInBackgroundFromRealm(query)
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        return executeSerialTasks(task);
+                    }
+                });
     }
 
     private static Task executeSerialTasks(Task<List<ParseModelAbstract>> previous) {
@@ -72,9 +73,9 @@ public class PushNewRecordToServerTask {
         // Step1: Get the first model by the emptyModel's uuid.
         //        And Save it's ParseObject to Parse.com.
         return emptyModel.pushToServer()
-                .onSuccessTask(new Continuation<Object, Task>() {
+                .onSuccessTask(new Continuation<Void, Task>() {
                     @Override
-                    public Task then(Task<Object> task) throws Exception {
+                    public Task then(Task<Void> task) throws Exception {
                         // Step2: Save the newRecord's ParseObject to Parse.com
                         return newRecord.saveParseObjectToServer();
                     }

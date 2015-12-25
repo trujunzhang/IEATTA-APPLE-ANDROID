@@ -40,7 +40,7 @@ public interface ParseModelProtocol {
      * <p/>
      * - returns: task's instance
      */
-    Task<Object> pushToServer();
+    Task<Void> pushToServer();
 
     Task beforePullFromServer();
 

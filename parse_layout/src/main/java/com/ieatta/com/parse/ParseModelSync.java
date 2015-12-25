@@ -63,7 +63,7 @@ public abstract class ParseModelSync extends ParseModelLocalQuery {
      * Pull the offline model to Parse.com
      */
     @Override
-    public Task<Object> pushToServer() {
+    public Task<Void> pushToServer() {
         // Step1: Get the first model by the emptyModel's uuid.
         return self.getFirstModelTask()
                 .onSuccessTask(new Continuation() {

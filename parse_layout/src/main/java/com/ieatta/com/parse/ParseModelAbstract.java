@@ -58,7 +58,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     // MARK: Async methods.
 
-    public abstract Task<Object> pushToServer();
+    public abstract Task<Void> pushToServer();
 
     public Task beforePullFromServer() {
         return Task.forResult(true);
