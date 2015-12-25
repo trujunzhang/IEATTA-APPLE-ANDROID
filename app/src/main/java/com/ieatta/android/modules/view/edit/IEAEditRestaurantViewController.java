@@ -50,7 +50,7 @@ public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
     }
 
     @Override
-    protected void postSaveModelSucess() {
+    protected void postSaveModelSuccess() {
         NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreatedRestaurantNotification, null);
 
 //        // If current device is iPad. we will toggle to the detail view to show it.

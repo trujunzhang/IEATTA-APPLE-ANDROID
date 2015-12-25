@@ -12,6 +12,7 @@ import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelLocalQuery;
 
+import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.Photo;
 
 import java.util.LinkedList;
@@ -174,8 +175,8 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         return self.rowModels.length;
     }
 
-    protected void postSaveModelSucess() {
-//        fatalError("postSaveModelSucess() has not been implemented")
+    protected void postSaveModelSuccess() {
+
     }
 
     // MARK: NavigationBarItem Events
@@ -185,43 +186,37 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
         final ParseModelAbstract model = self.editManager.convertToEditModel(self.rowModels, self.editedModel);
 
-        if (self.newModel == true) {
-            self.saveNewModel(model).continueWith(new Continuation() {
-                @Override
-                public Object then(Task task) throws Exception {
-                    if (task.isFaulted() == true) {
-//                        AppAlertView.showError(L10n.SaveFailure.string)
-                    }
-                    return self.afterSaveNewModelTask(task);
+        model.updateLocalInBackground().onSuccessTask(new Continuation<Void, Task<Void>>() {
+            @Override
+            public Task<Void> then(Task<Void> task) throws Exception {
+                // **** Important ****
+                // If the editing model is a new instance.
+                //  We need to save a NewRecord to record the model's information.
+                // Otherwise, we just need to update the editing model.
+                //  Because the NewRecord is already exist.
+                if(self.newModel == true){
+                    NewRecord newRecord = new  NewRecord(model.getModelType(), ParseModelAbstract.getPoint(model));
+                    return  newRecord.updateLocalInBackground();
                 }
-            });
-        } else {
-            /// The model already exist, delete it first.
-            ((ParseModelLocalQuery) model).unpinInBackgroundWithNewRecord().onSuccessTask(new Continuation<Void, Task<Void>>() {
-                @Override
-                public Task<Void> then(Task<Void> task) throws Exception {
-                    return self.saveNewModel(model);
-                }
-            }).continueWith(new Continuation() {
-                @Override
-                public Object then(Task task) throws Exception {
-                    if (task.isFaulted() == true) {
-//                        AppAlertView.showError(L10n.UpdateFailure.string)
-                    }
-                    return self.afterSaveNewModelTask(task);
-                }
-            });
-        }
-    }
 
-    private Task<Void> afterSaveNewModelTask(Task task) {
-        if (task.isFaulted() == true) {
-//                        AppAlertView.showError(L10n.SavedFailure.string)
-        } else {
-            self.postSaveModelSucess();
-        }
-        self.navigationController.popViewControllerAnimated(true);
-        return null;
+                return null;
+            }
+        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+            @Override
+            public Task<Void> then(Task<Void> task) throws Exception {
+                self.postSaveModelSuccess();
+                self.navigationController.popViewControllerAnimated(true);
+                return null;
+            }
+        }).continueWith(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                if (task.isFaulted()) {
+//                    AppAlertView.showError(L10n.UpdateFailure.string)
+                }
+                return null;
+            }
+        });
     }
 
     private Task<Void> saveNewModel(ParseModelAbstract newModel) {

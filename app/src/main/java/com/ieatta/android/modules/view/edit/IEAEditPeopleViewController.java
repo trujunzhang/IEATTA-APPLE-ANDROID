@@ -56,7 +56,7 @@ public class IEAEditPeopleViewController extends IEAEditBaseViewController {
 
 
     @Override
-    protected void postSaveModelSucess() {
+    protected void postSaveModelSuccess() {
         NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAPeopleCreatedNotification, null);
     }
 

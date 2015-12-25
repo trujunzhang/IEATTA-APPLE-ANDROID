@@ -73,7 +73,7 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
     }
 
     @Override
-    protected void postSaveModelSucess() {
+    protected void postSaveModelSuccess() {
         NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreateEventNotification, null);
     }
 
