@@ -64,13 +64,18 @@ public abstract class ParseModelSync extends ParseModelLocalQuery {
      */
     @Override
     public Task<Object> pushToServer() {
-        // TODO: djzhang:(fixing)
-        return self.getFirstModelTask().onSuccessTask(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                return self.saveParseObjectToServer(); //(on the parse.com)
-            }
-        });
+        // Step1: Get the first model by the emptyModel's uuid.
+        return self.getFirstModelTask()
+                .onSuccessTask(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        ParseModelAbstract backModel = (ParseModelAbstract) task.getResult();
+                        if (backModel != null) {
+                            return backModel.saveParseObjectToServer();//(on the parse.com)
+                        }
+                        return Task.forError(new NullPointerException("Not found the first Model!"));
+                    }
+                });
     }
 
 
