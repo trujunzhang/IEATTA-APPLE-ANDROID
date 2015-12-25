@@ -53,7 +53,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
         self.setRightBarButtonItem(R.string.add, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                self.addPeopleAction();
             }
         });
 
