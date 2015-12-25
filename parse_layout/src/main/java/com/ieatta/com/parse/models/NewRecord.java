@@ -19,11 +19,9 @@ public class NewRecord extends ParseModelSync {
     // Field keys
     private static final String kPAPFieldModelTypeKey = "modelType";
     private static final String kPAPFieldModelPointKey = "modelPoint";
-    private static final String kPAPFieldModelCreatedDateKey = "modelCreatedDate";
 
     public PQueryModelType modelType = PQueryModelType.unkown;
     public String modelPoint = "";
-    public Date modelCreatedDate;
 
     public NewRecord() {
         super();
@@ -34,14 +32,6 @@ public class NewRecord extends ParseModelSync {
         this.modelType = modelType;
         this.modelPoint = modelPoint;
     }
-
-    public NewRecord(PQueryModelType modelType, String modelPoint, Date modelCreatedDate) {
-        super();
-        this.modelType = modelType;
-        this.modelPoint = modelPoint;
-        this.modelCreatedDate = modelCreatedDate;
-    }
-
 
     public static ParseModelAbstract getRecordedInstance(ParseObject pulledNewRecordObject) {
         NewRecord newRecord = (NewRecord) ParseModelConvert.convertToOnlineModel(pulledNewRecordObject, new NewRecord());
@@ -78,7 +68,6 @@ public class NewRecord extends ParseModelSync {
     public void writeCommonObject(ParseObject object) {
         object.put(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));// ***Important***
         object.put(kPAPFieldModelPointKey, this.modelPoint);
-        object.put(kPAPFieldModelCreatedDateKey, this.modelCreatedDate);
     }
 
     @Override
@@ -91,11 +80,6 @@ public class NewRecord extends ParseModelSync {
         Object theModelPoint = this.getValueFromObject(object, kPAPFieldModelPointKey);
         if (theModelPoint != null) {
             this.modelPoint = (String) theModelPoint;
-        }
-
-        Object themMdelCreatedDate = this.getValueFromObject(object, kPAPFieldModelCreatedDateKey);
-        if (themMdelCreatedDate != null) {
-            this.modelCreatedDate = (Date) themMdelCreatedDate;
         }
     }
 
@@ -112,7 +96,6 @@ public class NewRecord extends ParseModelSync {
                 "objectUUID='" + objectUUID + '\'' +
                 ", modelType=" + modelType +
                 ", modelPoint='" + modelPoint + '\'' +
-                ", modelCreatedDate=" + modelCreatedDate +
                 '}';
     }
 

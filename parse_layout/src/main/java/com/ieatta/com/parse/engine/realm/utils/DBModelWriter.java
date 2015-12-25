@@ -48,7 +48,6 @@ public class DBModelWriter {
 
         object.setModelType(model.modelType.ordinal());
         object.setModelPoint(model.modelPoint);
-        object.setModelCreatedDate(model.modelCreatedDate);
     }
 
     public static void write(PeopleInEvent model, Realm realm) {

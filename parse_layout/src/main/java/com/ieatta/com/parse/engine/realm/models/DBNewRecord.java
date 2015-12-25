@@ -17,7 +17,6 @@ public class DBNewRecord extends RealmObject {
 
     private int modelType = PQueryModelType.unkown.ordinal();
     private String modelPoint = "";
-    private Date modelCreatedDate;
 
     public String getUUID() {
         return UUID;
@@ -49,13 +48,5 @@ public class DBNewRecord extends RealmObject {
 
     public void setModelPoint(String modelPoint) {
         this.modelPoint = modelPoint;
-    }
-
-    public Date getModelCreatedDate() {
-        return modelCreatedDate;
-    }
-
-    public void setModelCreatedDate(Date modelCreatedDate) {
-        this.modelCreatedDate = modelCreatedDate;
     }
 }

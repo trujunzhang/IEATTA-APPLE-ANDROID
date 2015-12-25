@@ -136,7 +136,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     // MARK: Common methonds.
     public NewRecord getNewRecord() {
-        return new NewRecord(getModelType(), this.objectUUID, this.objectCreatedDate);
+        return new NewRecord(getModelType(), this.objectUUID);
     }
 
     // MARK: Support common methonds for writing ParseObject.

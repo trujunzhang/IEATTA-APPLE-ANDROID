@@ -147,7 +147,6 @@ public class DBModelReader<T extends ParseModelAbstract> {
 
         object.modelType = PQueryModelType.fromInteger(model.getModelType());
         object.modelPoint = model.getModelPoint();
-        object.modelCreatedDate = model.getModelCreatedDate();
 
         return object;
     }
