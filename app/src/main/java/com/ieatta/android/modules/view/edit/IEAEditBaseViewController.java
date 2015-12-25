@@ -219,9 +219,4 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         });
     }
 
-    private Task<Void> saveNewModel(ParseModelAbstract newModel) {
-        return ((ParseModelLocalQuery) newModel).saveInBackgroundWithNewRecord();
-    }
-
-
 }
