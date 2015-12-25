@@ -46,14 +46,14 @@ public class PushNewRecordToServerTask {
     private static Task startPullFromServerSingleTask(final SerialTasksManager<ParseModelAbstract> manager) {
         return PushObjectToServerTask((NewRecord) manager.next())
                 .onSuccessTask(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                if (manager.hasNext() == false) {
-                    return Task.forResult(true);
-                }
-                return startPullFromServerSingleTask(manager);
-            }
-        });
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        if (manager.hasNext() == false) {
+                            return Task.forResult(true);
+                        }
+                        return startPullFromServerSingleTask(manager);
+                    }
+                });
     }
 
     /**
@@ -62,37 +62,37 @@ public class PushNewRecordToServerTask {
      * - parameter newRecordObject: A row data on the NewRecord table.
      */
     private static Task PushObjectToServerTask(final NewRecord newRecord) {
-//        LogUtils.debug(" [ newRecord in push to server ]: " + newRecord.printDescription());
+        LogUtils.debug(" [ newRecord in push to server ]: " + newRecord.printDescription());
 
         // 1. Get the recoreded emptyModel instance from NewRecord, by the modelType and the modelPoint.
         // (such as photo,restaurant,event etc)
         final ParseModelAbstract emptyModel = newRecord.getRecordedModel();
-//        LogUtils.debug(" [ emptyModel in push to server ]: " + emptyModel.printDescription());
+        LogUtils.debug(" [ emptyModel in push to server ]: " + emptyModel.printDescription());
 
+        // Step1: Get the first model by the emptyModel's uuid.
+        //        And Save it's ParseObject to Parse.com.
+        return emptyModel.pushToServer()
+                .onSuccessTask(new Continuation<Object, Task>() {
+                    @Override
+                    public Task then(Task<Object> task) throws Exception {
+                        // Step2: Save the newRecord's ParseObject to Parse.com
+                        return newRecord.saveParseObjectToServer();
+                    }
+                }).onSuccessTask(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        // Step3: Delete the newRrecord on the localdate.
+                        return newRecord.deleteInBackground();
+                    }
+                }).onSuccessTask(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        // For the specail photo here.
+                        // Finally, Post some events.
+                        return emptyModel.afterPushToServer();
+                    }
+                });
 
-
-        return emptyModel.pushToServer().onSuccessTask(new Continuation<Object, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Object> task) throws Exception {
-                // Save NewRecord to Parse.com
-                return newRecordObject.saveInBackground();
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                // TODO: djzhang:(fixing)
-                return Task.forResult(null);
-                // Unpin the offline NewRecord
-//                return ParsexModelQuery.unpinObjectInBackground(newRecordObject,newRecord);
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Boolean>>() {
-            @Override
-            public Task<Boolean> then(Task<Void> task) throws Exception {
-                // For the specail photo here.
-                return emptyModel.afterPushToServer();
-            }
-        });
     }
-
 
 }
