@@ -14,18 +14,16 @@ import com.ieatta.com.parse.models.Recipe;
 public class IEAEditRecipeManager extends IEAEditAbstractManager {
     @Override
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
-        Recipe _model = (Recipe) model;
+        Recipe recipe = (Recipe) model;
 
-//        var costString = "\(_model.cost)"
-//        if(costString == "0.0"){
-//            costString = ""
-//        }
-
-        String costString = "";
+        String costString = "" + recipe.cost;
+        if(recipe.cost == Recipe.DEFAULT_RECIPE_COST){
+            costString = "";
+        }
 
         EditBaseCellModel[] section1 = {
-                new EditCellModel(IEAEditKey.recipe_name, _model.displayName, R.string.Recipe_Name_info),
-                new EditCellModel(IEAEditKey.recipe_cost, costString, R.string.add_a_Recipe)
+                new EditCellModel(IEAEditKey.recipe_name, recipe.displayName, R.string.Recipe_Name_info),
+                new EditCellModel(IEAEditKey.recipe_cost, costString, R.string.recipe_cost)
         };
         Object[] sections = {section1};
 

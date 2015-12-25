@@ -30,7 +30,7 @@ public class Recipe extends ParseModelSync {
     private static final String kPAPFieldEventRefKey = "eventRef";
     private static final String kPAPFieldOrderedPeopleRefKey = "orderedPeopleRef";
 
-    private static final float DEFAULT_RECIPE_COST = 1.0f;
+    public static final float DEFAULT_RECIPE_COST = 0.0f;
 
     public float cost = DEFAULT_RECIPE_COST;
     public int likeCount = 0;

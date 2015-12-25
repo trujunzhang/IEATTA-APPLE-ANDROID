@@ -26,7 +26,7 @@
 
     <!--_Edit_Recipe                                                                  -->
     <!--<string name="recipe_name">Recipe's name</string>-->
-    <!--<string name="recipe_price">Recipe's price</string>-->
+    <string name="recipe_cost">Recipe\'s cost</string>
     <string name="price">Price</string>
 
     <!--_Edit_restaurant_screen                                                       -->
