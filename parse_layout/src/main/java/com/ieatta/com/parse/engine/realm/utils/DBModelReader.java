@@ -87,11 +87,6 @@ public class DBModelReader<T extends ParseModelAbstract> {
         return null;
     }
 
-    private  void builderContainedIn(List<T> list,ParseModelAbstract model){
-
-    }
-
-
     public ParseModelAbstract reader(Object realmObject, PQueryModelType modelType){
         ParseModelAbstract model = null;
 
