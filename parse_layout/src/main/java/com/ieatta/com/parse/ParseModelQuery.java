@@ -50,13 +50,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
         return query;
     }
 
-    static LocalQuery createQuery(PQueryModelType type, ParseModelAbstract model) {
-        ParseModelQuery instance = (ParseModelQuery) ParseModelAbstract.getInstanceFromType(type, ParseModelAbstract.getPoint(model));
-        return instance.createLocalQueryByUUID();
-    }
-
-
-
     public ParseQuery createQueryFromRecord() {
         ParseQuery query = ParseQuery.getQuery(this.getParseTableName());
 
@@ -89,7 +82,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
 
         return DBObject.pinInBackground("Offline", object, this);
     }
-
 
     public Task<Void> saveInBackgroundWithNewRecord() {
         return this.saveInBackground().onSuccessTask(new Continuation<Void, Task<Void>>() {
