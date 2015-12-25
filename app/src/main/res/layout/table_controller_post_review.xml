@@ -78,7 +78,7 @@
             android:layout_centerVertical="true"
             android:background="@color/white"
             android:text="Select"
-            android:textColor="@color/orange_announcement" />
+            android:textColor="@color/green_money" />
 
 
     </RelativeLayout>
