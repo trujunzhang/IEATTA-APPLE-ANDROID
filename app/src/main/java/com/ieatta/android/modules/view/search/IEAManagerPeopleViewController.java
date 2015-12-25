@@ -39,6 +39,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
     private List<ParseModelAbstract/*Restaurant*/> fetchedTeam;
     private Team selectedModel;
+    private boolean newModel = false;
 
     private String keyword = "";
 
@@ -125,19 +126,21 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
     }
 
     private void showSelectedModel(Team model) {
-        self.selectedModel = (Team) model;
+        self.selectedModel = model;
         self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
     }
 
     // MARK: Navigation item actions
     private void addPeopleAction() {
+        self.newModel = true;
+        self.selectedModel = new Team();
         self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
     }
 
     @Override
     protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
         /// Show detailed people
-        self.setTransferedModel(sender, self.selectedModel);
+        self.setTransferedModelForEdit(sender, self.selectedModel,self.newModel);
     }
 
     @Override
