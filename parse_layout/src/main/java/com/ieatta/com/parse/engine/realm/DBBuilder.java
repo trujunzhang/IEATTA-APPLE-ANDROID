@@ -81,7 +81,6 @@ public class DBBuilder<T extends RealmObject> {
         self.where = self.rmBuilder.buildEqualTo(self.where, self.equalMap);
         self.where = self.rmBuilder.buildGreaterThan(self.where, self.greaterMap);
         self.where = self.rmBuilder.buildMatcheredIn(self.where, self.matchersMap);
-//        self.where = self.rmBuilder.buildContainedIn(self.where,self.containedMap);
 
         return self.where;
     }
