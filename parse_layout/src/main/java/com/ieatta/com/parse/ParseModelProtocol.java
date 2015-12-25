@@ -11,29 +11,28 @@ import bolts.Task;
  */
 public interface ParseModelProtocol {
 
-//    public NewRecord getNewRecord();
+    //NewRecord getNewRecord();
 
-    public PQueryModelType getModelType();
+    PQueryModelType getModelType();
 
-    public String getParseTableName();
+    String getParseTableName();
 
     // MARK: Save/Pin object methonds.
-    public void writeCommonObject(ParseObject object);
+    void writeCommonObject(ParseObject object);
 
-    public void writeObject(ParseObject object);
+    void writeObject(ParseObject object);
 
-    public void writeLocalObject(ParseObject object);
+    void writeLocalObject(ParseObject object);
 
-    public void readCommonObject(ParseObject object);
+    void readCommonObject(ParseObject object);
 
-    public void readObject(ParseObject object);
+    void readObject(ParseObject object);
 
-    public void readObjectLocal(ParseObject object);
+    void readObjectLocal(ParseObject object);
 
-    public ParseACL getACL();
+    ParseACL getACL();
 
     // MARK: Async methods.
-
     /**
      * Step1: getFirstLocalObject
      * Step2: convertToLocalModel
@@ -41,20 +40,22 @@ public interface ParseModelProtocol {
      * <p/>
      * - returns: task's instance
      */
-    public Task<Object> pushToServer();
+    Task<Object> pushToServer();
 
-    public Task beforePullFromServer();
+    Task beforePullFromServer();
 
-    public Task<Boolean> afterPushToServer();
+    Task<Boolean> afterPushToServer();
 
-    public Task<Void> pullFromServerAndPin();
+    Task<Void> pullFromServerAndPin();
 
     /**
      * Get the offline models array.
      * <p/>
      * - returns: task's instance, task's result is [ParseModelAbstract]
      */
-//    public Task<ParseModelAbstract> getFirstLocalModelArrayTask();
+    //Task<ParseModelAbstract> getFirstLocalModelArrayTask();
 
-    public Task<ParseModelAbstract> queryBelongToTask(ParseModelAbstract belongTo);
+    Task<ParseModelAbstract> queryBelongToTask(ParseModelAbstract belongTo);
+
+    Task<Void> updateLocalInBackground();
 }

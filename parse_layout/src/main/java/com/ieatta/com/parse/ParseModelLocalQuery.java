@@ -85,6 +85,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
                 });
     }
 
+    @Override
     public Task<Void> updateLocalInBackground() {
         return self.deleteInBackground(self.createLocalQueryByUUID())
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
