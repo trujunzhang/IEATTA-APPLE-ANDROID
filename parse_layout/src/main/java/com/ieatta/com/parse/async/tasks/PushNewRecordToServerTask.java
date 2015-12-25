@@ -68,12 +68,12 @@ public class PushNewRecordToServerTask {
 
 //        LogUtils.debug(" [ newRecord in push to server ]: " + newRecord.printDescription());
 
-        // 1. Get the recoreded model instance from NewRecord, by the modelType and the modelPoint.
+        // 1. Get the recoreded emptyModel instance from NewRecord, by the modelType and the modelPoint.
         // (such as photo,restaurant,event etc)
-        final ParseModelAbstract model = newRecord.getRecordedModel();
-//        LogUtils.debug(" [ model in push to server ]: " + model.printDescription());
+        final ParseModelAbstract emptyModel = newRecord.getRecordedModel();
+//        LogUtils.debug(" [ emptyModel in push to server ]: " + emptyModel.printDescription());
 
-        return model.pushToServer().onSuccessTask(new Continuation<Object, Task<Void>>() {
+        return emptyModel.pushToServer().onSuccessTask(new Continuation<Object, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Object> task) throws Exception {
                 // Save NewRecord to Parse.com
@@ -91,7 +91,7 @@ public class PushNewRecordToServerTask {
             @Override
             public Task<Boolean> then(Task<Void> task) throws Exception {
                 // For the specail photo here.
-                return model.afterPushToServer();
+                return emptyModel.afterPushToServer();
             }
         });
     }
