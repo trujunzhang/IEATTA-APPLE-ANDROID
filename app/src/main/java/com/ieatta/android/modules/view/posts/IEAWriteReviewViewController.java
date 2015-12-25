@@ -1,7 +1,6 @@
 package com.ieatta.android.modules.view.posts;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -129,7 +128,7 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
         savedReview.saveInBackgroundWithNewRecord().onSuccess(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
-                self.postSaveModelSucess();
+                self.postSaveModelSuccess();
                 return null;
             }
         }).continueWith(new Continuation<Object, Object>() {
@@ -144,7 +143,7 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
 
     }
 
-    protected void postSaveModelSucess() {
+    protected void postSaveModelSuccess() {
         // 1. Clear up avarage rating cache.
         IEACache.sharedInstance.clearAvarageRatingCache();
 
