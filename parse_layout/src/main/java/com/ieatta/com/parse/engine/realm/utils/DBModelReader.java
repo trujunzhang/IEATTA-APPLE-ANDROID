@@ -42,6 +42,7 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 import com.parse.ParseGeoPoint;
 
 import java.util.List;
+import java.util.Set;
 
 import io.realm.Realm;
 import io.realm.RealmObject;
@@ -55,6 +56,8 @@ public class DBModelReader<T extends ParseModelAbstract> {
     public List<T> readRealmResults(RealmResults results, PQueryModelType modelType, int limit,HashMap<String, List<String>> containedMap) {
         List<T> list = new LinkedList<>();
 
+        List<String> containedList = this.getContainedList(containedMap);
+
         int step = 0;
         for (Object realmObject : results) {
             if(limit != -1 && step >= limit){
@@ -62,12 +65,28 @@ public class DBModelReader<T extends ParseModelAbstract> {
             }
             step ++;
 
+            if(containedList != null){
+                String uuid = new RMQueryUtils().getDBModelUUID(realmObject, modelType);
+                boolean isContained = new RMQueryUtils().isContained(uuid,containedList);
+                if(isContained == false){
+                    continue;
+                }
+            }
+
             ParseModelAbstract model = this.reader(realmObject,modelType);
             list.add((T) model);
         }
 
         return list;
     }
+
+    private List<String> getContainedList(HashMap<String, List<String>> containedMap) {
+        for(String key : containedMap.keySet()){
+            return containedMap.get(key);
+        }
+        return null;
+    }
+
     private  void builderContainedIn(List<T> list,ParseModelAbstract model){
 
     }

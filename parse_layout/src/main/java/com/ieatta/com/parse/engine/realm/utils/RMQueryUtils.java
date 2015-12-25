@@ -27,6 +27,8 @@ import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Review;
 import com.ieatta.com.parse.models.Team;
 
+import java.util.List;
+
 /**
  * Created by djzhang on 12/21/15.
  */
@@ -55,5 +57,48 @@ public class RMQueryUtils {
                 break;
         }
         return null;
+    }
+
+    public String getDBModelUUID(Object realmObject, PQueryModelType modelType){
+        String uuid = "";
+
+        switch (modelType) {
+            case Recipe:
+                uuid = ((DBRecipe) realmObject).getUUID();
+                break;
+            case Photo:
+                uuid = ((DBPhoto) realmObject).getUUID();
+                break;
+            case Team:
+                uuid = ((DBTeam) realmObject).getUUID();
+                break;
+            case Review:
+                uuid = ((DBReview) realmObject).getUUID();
+                break;
+            case Event:
+                uuid = ((DBEvent) realmObject).getUUID();
+                break;
+            case Restaurant:
+                uuid = ((DBRestaurant) realmObject).getUUID();
+                break;
+            case NewRecord:
+                uuid = ((DBNewRecord) realmObject).getUUID();
+                break;
+            case PeopleInEvent:
+                uuid = ((DBPeopleInEvent) realmObject).getUUID();
+                break;
+            default:
+                break;
+        }
+        return uuid;
+    }
+
+    public boolean isContained(String uuid, List<String> containedList) {
+        for(String value : containedList){
+            if(value.equals(uuid)){
+                return true;
+            }
+        }
+        return false;
     }
 }
