@@ -133,7 +133,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
     @Override
     protected void segueForEditRecipeViewController(IEAEditRecipeViewController destination, Intent sender) {
         // Edit ordered recipe
-        self.setTransferedModelForEdit(sender,self.orderedRecipe);
+        self.setTransferedModelForEdit(sender, self.orderedRecipe);
     }
 
     // MARK: NSNotificationCenter notification handlers
