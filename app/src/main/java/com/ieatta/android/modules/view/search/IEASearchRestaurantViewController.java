@@ -15,6 +15,7 @@ import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 
@@ -124,6 +125,12 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
         self.setTransferedModel(sender, self.selectedModel);
     }
 
+    // MARK: NSNotificationCenter notification handlers
+    @Override
+    protected void RestaurantWasCreated(NSNotification note) {
+        // **** Important(Just for Android) ****
+        self.queryNearRestaurant(self.keyword);
+    }
 
 
 }
