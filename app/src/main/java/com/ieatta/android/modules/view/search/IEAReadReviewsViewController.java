@@ -129,20 +129,13 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-
-        RatedModelReviewCount reviewCount = (RatedModelReviewCount) model;
-
-        self.showSelectedModel(reviewCount);
+        self.selectedModel = (RatedModelReviewCount) model;
+        self.prepareForSeeReviewSegueIdentifier(/*self.getManagerNavigationViewController()*/);
     }
 
     @Override
     public ParseModelAbstract getPageModel() {
         return selectedModel.convertToModelForReview();
-    }
-
-    private void showSelectedModel(RatedModelReviewCount model) {
-        self.selectedModel = model;
-        self.prepareForSeeReviewSegueIdentifier(/*self.getManagerNavigationViewController()*/);
     }
 
     @Override
