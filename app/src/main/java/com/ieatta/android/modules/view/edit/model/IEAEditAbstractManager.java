@@ -77,7 +77,7 @@ public abstract class IEAEditAbstractManager implements IEAEditBaseManager {
     }
 
     private void updateRow(EditWaiterCellModel row, ParseModelAbstract model) {
-//        ((Event)model).waiter = row.editValue;
+        ((Event)model).waiter = row.editValue;
     }
 
 //    private void updateRow(WriteReviewInEventCellModel row,ParseModelAbstract  model){
