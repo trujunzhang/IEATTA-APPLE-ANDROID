@@ -81,6 +81,7 @@ public class IEADatePickerCell extends IEAViewHolder {
     @Override
     public void render(Object value) {
         self.model = (DatePickerCellModel) value;
+
         if (self.model.editKey == IEAEditKey.event_starttime) {
             self.titleTextView.setText(R.string.Start_Time);
         } else {
@@ -105,6 +106,9 @@ public class IEADatePickerCell extends IEAViewHolder {
 
     private void reloadTableRow(Date date) {
         self.editedDate = date;
+        // Cache for EditModel.
+        self.model.date = date;
+
         this.editText.setText(dateFormatter.format(editedDate));
         isDialog = false;
     }

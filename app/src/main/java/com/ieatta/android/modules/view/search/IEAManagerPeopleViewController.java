@@ -14,6 +14,7 @@ import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
+import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
 
@@ -48,6 +49,13 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        self.setRightBarButtonItem(R.string.add, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         self.searchTextView = (EditText) self.findViewById(R.id.searchTextView);
         self.search_clear_Button = (ImageView) self.findViewById(R.id.search_clear);
@@ -121,11 +129,20 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
         self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
     }
 
+    // MARK: Navigation item actions
+    private void addPeopleAction() {
+        self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
+    }
+
     @Override
     protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
         /// Show detailed people
         self.setTransferedModel(sender, self.selectedModel);
     }
 
+    @Override
+    protected void PeopleWasCreated(NSNotification note) {
+        self.queryTeams(self.keyword);
+    }
 
 }
