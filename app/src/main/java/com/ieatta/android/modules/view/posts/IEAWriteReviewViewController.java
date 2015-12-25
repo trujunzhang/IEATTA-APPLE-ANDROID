@@ -123,12 +123,16 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
 
     // MARK: Navigation item actions
     private void postAction() {
+        /// **** important ****
+        self.rightBarButtonItem.setEnabled(false);
 
-        Review savedReview = new Review(self.people, self.reviewForModel, self.reviewTextView.getText().toString(), self.ratingValue);
-        savedReview.saveInBackgroundWithNewRecord().onSuccess(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                self.postSaveModelSuccess();
+        final Review savedReview = new Review(self.people, self.reviewForModel, self.reviewTextView.getText().toString(), self.ratingValue);
+
+        savedReview.saveInBackgroundWithNewRecord()
+                .onSuccess(new Continuation<Void, Object>() {
+                    @Override
+                    public Object then(Task<Void> task) throws Exception {
+                        self.postSaveModelSuccess();
                 return null;
             }
         }).continueWith(new Continuation<Object, Object>() {

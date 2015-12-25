@@ -67,8 +67,14 @@ public abstract class IEAEditAbstractManager implements IEAEditBaseManager {
                 ((Recipe) model).displayName = row.editValue;
                 break;
             case recipe_cost:
+                try {
+                    ((Recipe) model).cost =new Float(row.editValue);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+//                row.editValue
 //                if let n = NSNumberFormatter().numberFromString(row.editValue) {
-//                (model as! Recipe).cost = CGFloat(n)
+//                        (model as! Recipe).cost = CGFloat(n)
 //            }
                 break;
             default:
