@@ -124,4 +124,6 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
         self.setTransferedModel(sender, self.selectedModel);
     }
 
+
+
 }
