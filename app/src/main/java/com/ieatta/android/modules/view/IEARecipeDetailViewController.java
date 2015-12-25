@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
+import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAReviewUserCell;
 import com.ieatta.android.modules.cells.headerview.IEARecipeDetailHeaderCell;
 import com.ieatta.android.modules.cells.model.IEARecipeHeader;
@@ -136,5 +137,11 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
     @Override
     protected void RecipeWasCreated(NSNotification note) {
         setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
+    }
+
+    @Override
+    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+        // ***** Important *****
+        // This method used for the recipe detail view controller.
     }
 }
