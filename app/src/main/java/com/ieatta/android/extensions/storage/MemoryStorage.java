@@ -86,7 +86,7 @@ public class MemoryStorage {
         SectionModel section = self.verifySection(forSectionIndex);
         section.setFooterModel(new FooterModel(model, type));
 
-//        self.reloadTableView();
+        self.reloadTableView();
     }
 
     private SectionModel verifySection(int forSectionIndex) {

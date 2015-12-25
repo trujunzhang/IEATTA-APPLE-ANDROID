@@ -100,6 +100,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<Boolean> task) throws Exception {
+
                 // Next, Load Reviews.
                 return self.getReviewsRelatedModelQueryTask();
             }
