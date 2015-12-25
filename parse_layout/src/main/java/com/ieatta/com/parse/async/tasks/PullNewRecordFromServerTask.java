@@ -36,7 +36,7 @@ public class PullNewRecordFromServerTask {
         List<ParseObject> results = (List<ParseObject>) previous.getResult();
         LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
 
-        SerialTasksManager manager = new SerialTasksManager(results);
+        SerialTasksManager<ParseObject> manager = new SerialTasksManager<>(results);
         if (manager.hasNext() == false) {
             return Task.forResult(true);
         }
@@ -44,16 +44,17 @@ public class PullNewRecordFromServerTask {
         return startPullFromServerSingleTask(manager);
     }
 
-    private static Task startPullFromServerSingleTask(final SerialTasksManager manager) {
-        return PullObjectFromServerTask(manager.next()).onSuccessTask(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                if (manager.hasNext() == false) {
-                    return Task.forResult(true);
-                }
-                return startPullFromServerSingleTask(manager);
-            }
-        });
+    private static Task startPullFromServerSingleTask(final SerialTasksManager<ParseObject> manager) {
+        return PullObjectFromServerTask(manager.next())
+                .onSuccessTask(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        if (manager.hasNext() == false) {
+                            return Task.forResult(true);
+                        }
+                        return startPullFromServerSingleTask(manager);
+                    }
+                });
     }
 
     /**
@@ -69,18 +70,19 @@ public class PullNewRecordFromServerTask {
 //        LogUtils.debug(" [NewRecord from parse.com]: " + model.printDescription());
 
         // 2. Pull from server.
-        return model.pullFromServerAndPin().onSuccess(new Continuation<Void, Void>() {
-            @Override
-            public Void then(Task<Void> task) throws Exception {
+        return model.pullFromServerAndPin()
+                .onSuccess(new Continuation<Void, Void>() {
+                    @Override
+                    public Void then(Task<Void> task) throws Exception {
 
-                /// 1. Update last synched date.
-                new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).storeNewRecordDate(lastRecordCreateAt);
+                        /// 1. Update last synched date.
+                        new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).storeNewRecordDate(lastRecordCreateAt);
 
-                /// 2. When pull from server successfully, sometimes need to notify have new parse models.
-                //  AsyncPullNotify.notify(model);
-                return null;
-            }
-        });
+                        /// 2. When pull from server successfully, sometimes need to notify have new parse models.
+                        //  AsyncPullNotify.notify(model);
+                        return null;
+                    }
+                });
 
     }
 
