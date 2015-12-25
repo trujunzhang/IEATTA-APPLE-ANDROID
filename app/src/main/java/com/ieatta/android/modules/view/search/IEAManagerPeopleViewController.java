@@ -123,11 +123,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        self.showSelectedModel((Team) model);
-    }
-
-    private void showSelectedModel(Team model) {
-        self.selectedModel = model;
+        self.selectedModel = (Team) model;
         self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
     }
 

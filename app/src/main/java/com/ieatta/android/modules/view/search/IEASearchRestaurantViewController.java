@@ -111,10 +111,6 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        self.showSelectedModel((Restaurant) model);
-    }
-
-    private void showSelectedModel(Restaurant model) {
         self.selectedModel = (Restaurant) model;
         self.performSegueWithIdentifier(MainSegueIdentifier.detailRestaurantSegueIdentifier, self);
     }
