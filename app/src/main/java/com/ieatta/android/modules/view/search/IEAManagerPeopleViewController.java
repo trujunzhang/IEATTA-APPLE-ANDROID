@@ -90,20 +90,21 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
     }
 
     private void queryTeams(String keyword) {
-        self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
+//        self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
         if (keyword == null || keyword.isEmpty() == true) {
             return;
         }
-        new Team().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
-            @Override
-            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                Object object = task;
-                self.fetchedTeam = task.getResult();
+        new Team().queryParseModels(keyword)
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+                    @Override
+                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        Object object = task;
+                        self.fetchedTeam = task.getResult();
 
-                // Next, fetch related photos
-                return self.getPhotosForModelsTask(task);
-            }
-        }).onSuccess(new Continuation<Boolean, Object>() {
+                        // Next, fetch related photos
+                        return self.getPhotosForModelsTask(task);
+                    }
+                }).onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
                 self.setSectionItems(self.fetchedTeam, ManagerPeopleSection.sectionTeam.ordinal());
@@ -140,7 +141,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
     @Override
     protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
         /// Show detailed people
-        self.setTransferedModelForEdit(sender, self.selectedModel,self.newModel);
+        self.setTransferedModelForEdit(sender, self.selectedModel, self.newModel);
     }
 
     @Override
