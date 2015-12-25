@@ -46,15 +46,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
         return query;
     }
 
-    public ParseQuery createQueryFromRecord() {
-        ParseQuery query = ParseQuery.getQuery(this.getParseTableName());
 
-        // *** Import *** The newest row in the table.
-        query.orderByDescending(kPAPFieldObjectCreatedDateKey);
-        query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
-
-        return query;
-    }
 
     public Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
         return ParseModelLocalQuery.queryFromRealm(type, this.createQueryForBatching(points));

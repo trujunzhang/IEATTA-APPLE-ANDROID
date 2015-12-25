@@ -1,6 +1,7 @@
 package com.ieatta.com.parse;
 
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -17,6 +18,16 @@ public abstract class ParseModelSync extends ParseModelLocalQuery {
 
     public ParseModelSync() {
         super();
+    }
+
+    public ParseQuery createQueryFromRecord() {
+        ParseQuery query = ParseQuery.getQuery(this.getParseTableName());
+
+        // *** Import *** The newest row in the table.
+        query.orderByDescending(kPAPFieldObjectCreatedDateKey);
+        query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
+
+        return query;
     }
 
     /**
