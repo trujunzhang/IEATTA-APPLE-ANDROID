@@ -103,6 +103,10 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+        // **** Important ****
+        if(indexPath.section == OrderedRecipesSection.sectionOrderedPeople.ordinal()){
+            return;
+        }
         Recipe recipe = (Recipe) model;
 
         recipe.belongToModel = self.orderedPeople;
