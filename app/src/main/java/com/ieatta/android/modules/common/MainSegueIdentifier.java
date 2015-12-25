@@ -24,11 +24,11 @@ import com.ieatta.android.modules.view.search.IEASearchRestaurantViewController;
 
 public enum MainSegueIdentifier {
 
-    Unspecified("",null),
+    Unspecified("", null),
 
     // Four menus in the near restaurant page.
     editRestaurantSegueIdentifier("addEditRestaurant", IEAEditRestaurantViewController.class),
-    
+
     searchRestaurantSegueIdentifier("searchRestaurant", IEASearchRestaurantViewController.class),
     managerPeopleSegueIdentifier("managerPeople", IEAManagerPeopleViewController.class),
     readReviewsSegueIdentifier("addEditRestaurant", IEAReadReviewsViewController.class),
@@ -42,20 +42,19 @@ public enum MainSegueIdentifier {
     detailSeeReviewSegueIdentifier("seeReviewsInDetail", IEASeeReviewsInDetailViewController.class),
 
     // Show detail review from review list.
-    detailReviewSegueIdentifier("detailReview",IEAReviewDetailViewController.class),
+    detailReviewSegueIdentifier("detailReview", IEAReviewDetailViewController.class),
 
     // Four new/edit model pages.(the following three, and restaurant)
     editEventSegueIdentifier("addEditEvent", IEAEditEventViewController.class),
     editPeopleSegueIdentifier("addEditPeople", IEAEditPeopleViewController.class),
-    editRecipeSegueIdentifier("addEditRecipe",IEAEditRecipeViewController.class),
+    editRecipeSegueIdentifier("addEditRecipe", IEAEditRecipeViewController.class),
     // Choice Person in the event page.
     choicePeopleSegueIdentifier("choicePeople", IEAChoicePeopleViewController.class),
 
     // Show detail review from review list.
-    postReviewSegueIdentifier("postReview",IEAWriteReviewViewController.class),
+    postReviewSegueIdentifier("postReview", IEAWriteReviewViewController.class),
 
-    photoPagesControllerSegueIdentifier("photoPagesController",PhotoGalleryPagerActivity.class);
-
+    photoPagesControllerSegueIdentifier("photoPagesController", PhotoGalleryPagerActivity.class);
 
 
     private String name;
@@ -66,7 +65,7 @@ public enum MainSegueIdentifier {
         this.activity = activity;
     }
 
-    public Class<?> getActivity(){
+    public Class<?> getActivity() {
         return this.activity;
     }
 

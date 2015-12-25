@@ -24,7 +24,8 @@ public class MemoryStorage {
     public HashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
     public CellTypeUtils cellTypeUtils = new CellTypeUtils();
 
-    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+    private WeakHandler mHandler = new WeakHandler();
+    ; // We still need at least one hard reference to WeakHandler
 
     public MemoryStorage(IEATableViewControllerAdapter adapter) {
         self.adapter = adapter;
@@ -120,7 +121,7 @@ public class MemoryStorage {
 
         // Step2: Create/Modify a section.
         SectionModel section = self.verifySection(forSectionIndex);
-        section.specialRows.put(new Integer(forRowIndex),type);
+        section.specialRows.put(new Integer(forRowIndex), type);
     }
 
     public RowModel getRowModelFromPosition(int position) {
@@ -142,7 +143,7 @@ public class MemoryStorage {
         return type;
     }
 
-    public RowModel getItem(int position){
+    public RowModel getItem(int position) {
         return self.tableViewUtils.getItem(position);
     }
 

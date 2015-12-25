@@ -7,7 +7,7 @@ public class SectionPhotoGalleryFooterCellModel extends EditBaseCellModel {
     public IEAPhotoGalleryViewController viewController;
     public int photosCount = 0;
 
-    public SectionPhotoGalleryFooterCellModel(IEAEditKey editKey,int photosCount , IEAPhotoGalleryViewController viewController) {
+    public SectionPhotoGalleryFooterCellModel(IEAEditKey editKey, int photosCount, IEAPhotoGalleryViewController viewController) {
         super(editKey);
         this.photosCount = photosCount;
         this.viewController = viewController;

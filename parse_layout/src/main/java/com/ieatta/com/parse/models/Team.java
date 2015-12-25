@@ -1,7 +1,8 @@
 package com.ieatta.com.parse.models;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.ParseModelLocalQuery;
+
 import com.ieatta.com.parse.ParseModelSync;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
@@ -142,7 +143,7 @@ public class Team extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryTeam() {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Team, new Team().makeLocalQuery());
+        return ParseModelLocalQuery.queryFromRealm(PQueryModelType.Team, new Team().makeLocalQuery());
     }
 
     public static Task<List<ParseModelAbstract>> queryTeamByPoints(List<String> points) {

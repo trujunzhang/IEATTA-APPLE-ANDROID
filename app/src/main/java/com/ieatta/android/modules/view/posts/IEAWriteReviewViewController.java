@@ -74,8 +74,9 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
     protected int getContentView() {
         return R.layout.table_controller_post_review;
     }
+
     @Override
-    protected boolean hasRecycleView(){
+    protected boolean hasRecycleView() {
         return false;
     }
 

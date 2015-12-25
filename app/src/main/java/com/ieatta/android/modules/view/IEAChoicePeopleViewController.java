@@ -119,7 +119,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     @Override
     protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
         // Add people
-        self.setTransferedModelForEdit(sender,new Team(),true);
+        self.setTransferedModelForEdit(sender, new Team(), true);
     }
 
     // MARK: NSNotificationCenter notification handlers

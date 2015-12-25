@@ -1,8 +1,9 @@
 package android.virtualbreak.com.debug;
 
 import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.ParseModelLocalQuery;
 import com.ieatta.com.parse.ParseModelOnlineQuery;
-import com.ieatta.com.parse.ParseModelQuery;
+
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.NewRecord;
@@ -76,7 +77,8 @@ public class ParseLocalDatabase {
 
     // MARK: Retrieve offline database for test.
     public static Task<Void> queryLocalDatastoreInBackground(LocalQuery query, final PQueryModelType classType) {
-        return ParseModelQuery.queryFromRealm(classType, query).onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
+        return ParseModelLocalQuery.queryFromRealm(classType, query)
+                .onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
             @Override
             public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
                 ParseLocalDatabase.printList(classType, task.getResult());

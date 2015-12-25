@@ -1,7 +1,8 @@
 package com.ieatta.com.parse.models;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.ParseModelLocalQuery;
+
 import com.ieatta.com.parse.ParseModelSync;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -146,7 +147,7 @@ public class Review extends ParseModelSync {
 
     public Task<Integer> queryRatingInReviews() {
         // First of all, query all reviews.
-        return ParseModelQuery.findInBackgroundFromRealm(this.createQueryForReviewRef())
+        return ParseModelLocalQuery.findInBackgroundFromRealm(this.createQueryForReviewRef())
                 .onSuccess(new Continuation<List<ParseModelAbstract>, Integer>() {
                     @Override
                     public Integer then(Task<List<ParseModelAbstract>> task) throws Exception {
@@ -164,7 +165,7 @@ public class Review extends ParseModelSync {
         if (limit != Review.NO_Limit_FETCHED_REVIEWS_IN_DetailPage) {
             query.setLimit(limit);
         }
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Review, query);
+        return ParseModelLocalQuery.queryFromRealm(PQueryModelType.Review, query);
     }
 
 

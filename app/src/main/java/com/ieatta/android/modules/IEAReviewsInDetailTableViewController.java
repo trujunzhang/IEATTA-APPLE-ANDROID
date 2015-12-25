@@ -42,11 +42,11 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        if(indexPath.section >= self.getReviewsSectionIndex()){
+        if (indexPath.section >= self.getReviewsSectionIndex()) {
             Review review = (Review) model;
 
             self.selectedReview = review;
-            self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier,  self);
+            self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
         }
     }
 
@@ -67,7 +67,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
     // MARK: NSNotificationCenter notification handlers
     @Override
-    protected void ReviewWasCreated(NSNotification note){
+    protected void ReviewWasCreated(NSNotification note) {
         self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
@@ -79,13 +79,12 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
     // MARK: Show all posted reviews for Restaurant,Recipe and Event.
     public void performSegueForSeeReviews() {
-        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier,  self);
+        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier, self);
     }
 
     private int getMoreReviewSectionIndex() {
         return (self.getReviewsSectionIndex() + Review.MAX_FETCHED_REVIEWS_IN_DetailPage + 1);
     }
-
 
 
 }

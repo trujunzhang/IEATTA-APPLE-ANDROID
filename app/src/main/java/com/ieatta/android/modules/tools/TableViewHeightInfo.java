@@ -12,38 +12,38 @@ public class TableViewHeightInfo {
 
     private TableViewHeightInfo self = this;
 
-    public LinkedHashMap<Integer,Integer> heightForHeaderInSection =new LinkedHashMap<>();
-    public LinkedHashMap<Integer,Integer> heightForRowAtIndexPath =new LinkedHashMap<>();
+    public LinkedHashMap<Integer, Integer> heightForHeaderInSection = new LinkedHashMap<>();
+    public LinkedHashMap<Integer, Integer> heightForRowAtIndexPath = new LinkedHashMap<>();
 
 //
 //    var accessoryType:[Int:UITableViewCellAccessoryType] = [Int:UITableViewCellAccessoryType]()
 //    var selectionStyle:[Int:UITableViewCellSelectionStyle] = [Int:UITableViewCellSelectionStyle]()
 
-//    var reviewSectionIndex: Int = Int.min
+    //    var reviewSectionIndex: Int = Int.min
     public boolean hasReviewSection = true;
 
-    static TableViewHeightInfo getEmptyInfo()   {
+    static TableViewHeightInfo getEmptyInfo() {
 //        return TableViewHeightInfo(heightForHeaderInSection: [Int:CGFloat](),heightForRowAtIndexPath: [Int:CGFloat]())
-        return  null;
+        return null;
     }
 
-    public Integer getHeightForRowAtIndexPath(NSIndexPath indexPath)  {
+    public Integer getHeightForRowAtIndexPath(NSIndexPath indexPath) {
         //        print("getHeightForRowAtIndexPath: \(self.printDescription())")
 //        return heightForRowAtIndexPath[indexPath.section]
         return null;
     }
 
-    public Integer getHeightForHeaderInSection( int section) {
-        if(hasReviewSection == true){
+    public Integer getHeightForHeaderInSection(int section) {
+        if (hasReviewSection == true) {
 //            if(section > reviewSectionIndex){
 //                return DEFAULT_SECTION_HEADER_HEIGHT
 //            }
         }
 //        return heightForHeaderInSection[section]
-        return  null;
+        return null;
     }
 
-    public void setHeightForRowAtIndexPath(int section,int value){
+    public void setHeightForRowAtIndexPath(int section, int value) {
 //        heightForRowAtIndexPath[section] = value
     }
 

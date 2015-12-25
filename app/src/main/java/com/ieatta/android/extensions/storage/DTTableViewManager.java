@@ -18,14 +18,14 @@ public class DTTableViewManager {
     private DTTableViewManager self = this;
 
     public TableViewConfiguration configuration;
-    public  MemoryStorage memoryStorage ;
+    public MemoryStorage memoryStorage;
 
     public DTTableViewManager(TableViewConfiguration configuration) {
         self.configuration = configuration;
-        self.memoryStorage = new MemoryStorage(new IEATableViewControllerAdapter( configuration.builder.context,self,configuration.builder.itemClickListener));
+        self.memoryStorage = new MemoryStorage(new IEATableViewControllerAdapter(configuration.builder.context, self, configuration.builder.itemClickListener));
     }
 
-    public IEATableViewControllerAdapter getAdapter(){
+    public IEATableViewControllerAdapter getAdapter() {
         return self.memoryStorage.adapter;
     }
 
@@ -67,7 +67,8 @@ public class DTTableViewManager {
     public void registerCellClass(CellType type, int forSectionIndex) {
         self.memoryStorage.registerCellClass(type, forSectionIndex);
     }
+
     public void registerCellClassInSpecialRow(CellType type, int forSectionIndex, int forRowIndex) {
-        self.memoryStorage.registerCellClassInSpecialRow(type, forSectionIndex,forRowIndex);
+        self.memoryStorage.registerCellClassInSpecialRow(type, forSectionIndex, forRowIndex);
     }
 }

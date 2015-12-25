@@ -20,7 +20,6 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
     private ParseModelQuery self = this;
 
 
-
     public ParseModelQuery(String objectUUID) {
         super(objectUUID);
     }
@@ -31,101 +30,4 @@ public abstract class ParseModelQuery extends ParseModelLocalQuery {
 
 
 
-
-
-    public LocalQuery createQueryForBatching(List<String> points) {
-        LocalQuery query = this.getLocalQueryInstance();
-        query.orderByDescending(kPAPFieldObjectCreatedDateKey);
-
-        query.whereContainedIn(kPAPFieldObjectUUIDKey, points);
-
-        return query;
-    }
-
-    public LocalQuery createSearchDisplayNameForLocalQuery(String keyword) {
-        LocalQuery query = this.makeLocalQuery();
-
-        query.whereMatches(kPAPFieldDisplayNameKey, keyword, "i");
-
-        return query;
-    }
-
-    public ParseQuery createQueryFromRecord() {
-        ParseQuery query = ParseQuery.getQuery(this.getParseTableName());
-
-        // *** Import *** The newest row in the table.
-        query.orderByDescending(kPAPFieldObjectCreatedDateKey);
-        query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
-
-        return query;
-    }
-
-    public Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
-        return ParseModelQuery.queryFromRealm(type, this.createQueryForBatching(points));
-    }
-
-    private ParseObject makeObject() {
-        ParseObject object = this.createObject();
-
-        ParseACL acl = this.getACL();
-        object.setACL(acl);
-
-        return object;
-    }
-
-    // =============================================================================
-    //        offline Store
-    // =============================================================================
-    public Task<Void> saveInBackground() {
-        ParseObject object = makeObject();
-        this.writeLocalObject(object);
-
-        return DBObject.pinInBackground("Offline", object, this);
-    }
-
-    public Task<Void> saveInBackgroundWithNewRecord() {
-        return this.saveInBackground().onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                return getNewRecord().saveInBackground();
-            }
-        });
-    }
-
-    // =============================================================================
-    //        Online Store
-    // =============================================================================
-    public Task<Void> saveInBackgroundTask() {
-        ParseObject object = makeObject();
-        this.writeObject(object);
-
-        return object.saveInBackground();
-    }
-
-
-    /**
-     * Unpin the first offline object itself with NewRecord by query instance.
-     * <p/>
-     * - parameter deletedModel:    ParseModelAbstract's instance that want to delete
-     */
-    public Task<Void> unpinInBackgroundWithNewRecord() {
-        final LocalQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
-
-        return this.deleteInBackground(this.createLocalQueryByUUID()).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                return deleteInBackground(newRecordQuery);
-            }
-        });
-    }
-
-    public Task<Void> updateLocalInBackground(){
-        return self.deleteInBackground(self.createLocalQueryByUUID())
-                .onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return self.saveInBackground();
-                    }
-                });
-    }
 }

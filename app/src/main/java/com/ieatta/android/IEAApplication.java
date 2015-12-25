@@ -12,7 +12,7 @@ import com.ieatta.com.parse.utils.cache.CacheImageUtils;
 /**
  * Created by djzhang on 11/30/15.
  */
-public class IEAApplication extends Application{
+public class IEAApplication extends Application {
 
     @Override
     public void onCreate() {

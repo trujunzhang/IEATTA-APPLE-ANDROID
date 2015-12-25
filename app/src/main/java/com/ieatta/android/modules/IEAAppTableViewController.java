@@ -34,7 +34,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
             this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
             this.recyclerView.setHasFixedSize(true);
         }
-        if(self.shouldLeftBarButtonItem() == true){
+        if (self.shouldLeftBarButtonItem() == true) {
             self.setLeftBarButtonItem(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -44,11 +44,11 @@ public class IEAAppTableViewController extends AppCompatActivity {
         }
     }
 
-    protected boolean shouldLeftBarButtonItem(){
+    protected boolean shouldLeftBarButtonItem() {
         return true;
     }
 
-    protected void setLeftBarButtonItem( View.OnClickListener clickListener) {
+    protected void setLeftBarButtonItem(View.OnClickListener clickListener) {
         self.leftBarButtonItem.setVisibility(View.VISIBLE);
         self.leftBarButtonItem.setOnClickListener(clickListener);
     }

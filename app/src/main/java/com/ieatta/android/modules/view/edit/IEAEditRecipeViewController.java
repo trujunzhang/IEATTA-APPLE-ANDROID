@@ -46,7 +46,7 @@ public class IEAEditRecipeViewController extends IEAEditBaseViewController {
 
     @Override
     protected void postSaveModelSucess() {
-                NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PARecipeCreatedNotification, null);
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PARecipeCreatedNotification, null);
     }
 
 }

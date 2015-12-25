@@ -24,12 +24,12 @@ public class PhotoGalleryDividerDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        super.onDrawOver(c,parent,state);
+        super.onDrawOver(c, parent, state);
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         //We can supply forced insets for each item view here in the Rect
-        outRect.set(84, 48,44, 48);
+        outRect.set(84, 48, 44, 48);
     }
 }

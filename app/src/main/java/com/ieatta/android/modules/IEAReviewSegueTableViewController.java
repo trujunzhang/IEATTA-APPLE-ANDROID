@@ -22,19 +22,19 @@ public class IEAReviewSegueTableViewController extends IEAPhotoGalleryViewContro
     }
 
     @Override
-    protected void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination,Intent sender){
+    protected void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination, Intent sender) {
         // Read Reviews.
-        self.setTransferedModel(sender,self.getPageModel());
+        self.setTransferedModel(sender, self.getPageModel());
     }
 
     /**
-     This method supported for IEAReadReviewsViewController,
-     Because the IEAReadReviewsResultViewController created programmatically.
-
-     - parameter navigationViewController: UINavigationController's instance
+     * This method supported for IEAReadReviewsViewController,
+     * Because the IEAReadReviewsResultViewController created programmatically.
+     * <p/>
+     * - parameter navigationViewController: UINavigationController's instance
      */
-    protected void prepareForSeeReviewSegueIdentifier(/*UINavigationController navigationViewController*/){
-        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier,self);
+    protected void prepareForSeeReviewSegueIdentifier(/*UINavigationController navigationViewController*/) {
+        self.performSegueWithIdentifier(MainSegueIdentifier.detailSeeReviewSegueIdentifier, self);
     }
 
 }

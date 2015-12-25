@@ -1,7 +1,8 @@
 package com.ieatta.com.parse.models;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.ParseModelLocalQuery;
+
 import com.ieatta.com.parse.ParseModelSync;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -151,7 +152,7 @@ public class Recipe extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRecipes() {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Recipe, new Recipe().makeLocalQuery());
+        return ParseModelLocalQuery.queryFromRealm(PQueryModelType.Recipe, new Recipe().makeLocalQuery());
     }
 
     @Override
@@ -160,7 +161,7 @@ public class Recipe extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRecipes(Team people, Event event) {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Recipe, new Recipe().createQuery(people, event));
+        return ParseModelLocalQuery.queryFromRealm(PQueryModelType.Recipe, new Recipe().createQuery(people, event));
     }
 
     @Override

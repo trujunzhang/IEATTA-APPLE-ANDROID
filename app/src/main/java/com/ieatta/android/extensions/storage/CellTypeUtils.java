@@ -12,21 +12,21 @@ public class CellTypeUtils {
     public CellType getModelType(int viewType) {
         Class aClass = self.rowTypes.get(new Integer(viewType));
         int layResId = self.modelTypes.get(aClass).intValue();
-        return new CellType(aClass,layResId);
+        return new CellType(aClass, layResId);
     }
 
     private CellTypeUtils self = this;
     /**
      * HashMap:
-     *   key: cell's type, also is viewType.
-     *   value: cell's class.
+     * key: cell's type, also is viewType.
+     * value: cell's class.
      */
     private LinkedHashMap<Integer, Class> rowTypes = new LinkedHashMap<>();
 
-    private LinkedHashMap<Class,Integer> modelTypes = new LinkedHashMap<>();
+    private LinkedHashMap<Class, Integer> modelTypes = new LinkedHashMap<>();
 
     public void registerType(CellType type) {
-        modelTypes.put(type.cellClass,type.layoutResId);
+        modelTypes.put(type.cellClass, type.layoutResId);
 
         if (self.isExistRegisterType(type.cellClass) == false) {
             int size = self.rowTypes.size();
@@ -37,7 +37,7 @@ public class CellTypeUtils {
     public int getRowModelType(RowModel rowModel) {
         for (Integer index : self.rowTypes.keySet()) {
             Class classzz = self.rowTypes.get(index);
-            if(classzz == null){
+            if (classzz == null) {
                 int x = 0;
 //                assert("not found class type: "+classzz.getName()+",you need to register it.");
             }

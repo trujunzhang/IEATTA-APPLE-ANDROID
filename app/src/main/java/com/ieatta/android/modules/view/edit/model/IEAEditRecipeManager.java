@@ -17,7 +17,7 @@ public class IEAEditRecipeManager extends IEAEditAbstractManager {
         Recipe recipe = (Recipe) model;
 
         String costString = "" + recipe.cost;
-        if(recipe.cost == Recipe.DEFAULT_RECIPE_COST){
+        if (recipe.cost == Recipe.DEFAULT_RECIPE_COST) {
             costString = "";
         }
 

@@ -3,7 +3,8 @@ package com.ieatta.com.parse.models;
 import android.graphics.Bitmap;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.ParseModelLocalQuery;
+
 import com.ieatta.com.parse.ParseModelSync;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -218,15 +219,15 @@ public class Photo extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryPhotosByRestaurant(Restaurant restaurant) {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Photo, new Photo().createQueryForRestaurantRef(restaurant));
+        return ParseModelLocalQuery.queryFromRealm(PQueryModelType.Photo, new Photo().createQueryForRestaurantRef(restaurant));
     }
 
     public static Task<List<ParseModelAbstract>> queryPhotosByModel(ParseModelAbstract model) {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Photo, new Photo(model).createQueryForUsedRefWithType());
+        return ParseModelLocalQuery.queryFromRealm(PQueryModelType.Photo, new Photo(model).createQueryForUsedRefWithType());
     }
 
     public static Task<List<ParseModelAbstract>> queryPhotosFromUsedRefs(List<String> usedRefs) {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Photo, new Photo().createQueryForBatchingPhoto(usedRefs));
+        return ParseModelLocalQuery.queryFromRealm(PQueryModelType.Photo, new Photo().createQueryForBatchingPhoto(usedRefs));
     }
 
     /**

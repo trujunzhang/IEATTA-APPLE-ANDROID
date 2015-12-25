@@ -23,9 +23,10 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-enum ManagerPeopleSection  {
-         sectionTeam ;//= 0
-        }
+enum ManagerPeopleSection {
+    sectionTeam;//= 0
+}
+
 /**
  * Created by djzhang on 12/1/15.
  */
@@ -76,12 +77,12 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
             }
         });
 
-        self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(),ManagerPeopleSection.sectionTeam.ordinal());
+        self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ManagerPeopleSection.sectionTeam.ordinal());
     }
 
     private void queryTeams(String keyword) {
         self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
-        if (keyword== null ||keyword.isEmpty() == true) {
+        if (keyword == null || keyword.isEmpty() == true) {
             return;
         }
         new Team().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
@@ -112,7 +113,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        self.showSelectedModel((Team)model);
+        self.showSelectedModel((Team) model);
     }
 
     private void showSelectedModel(Team model) {

@@ -45,7 +45,8 @@ public class ViewPagerFragment extends Fragment {
     private int asset = -1;
     private SubsamplingScaleImageView imageView;
 
-    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+    private WeakHandler mHandler = new WeakHandler();
+    ; // We still need at least one hard reference to WeakHandler
 
     public ViewPagerFragment() {
     }
@@ -86,11 +87,11 @@ public class ViewPagerFragment extends Fragment {
         }
 
         image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
-         if (image != null) {
+        if (image != null) {
             self.imageView.setImage(ImageSource.bitmap(image));
         } else {
-             Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).zoom(560, 560).getBitmap();
-             self.imageView.setImage(ImageSource.bitmap(bitmap));
+            Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).zoom(560, 560).getBitmap();
+            self.imageView.setImage(ImageSource.bitmap(bitmap));
         }
 
         photo.downloadCacheImageFromServer().onSuccess(new Continuation<Bitmap, Object>() {

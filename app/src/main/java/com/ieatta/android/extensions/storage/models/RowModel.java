@@ -19,7 +19,7 @@ public class RowModel {
         self.cellType = headerModel.cellType;
     }
 
-    public RowModel(Object model, CellType type,NSIndexPath indexPath) {
+    public RowModel(Object model, CellType type, NSIndexPath indexPath) {
         this.model = model;
         this.cellType = type;
         this.indexPath = indexPath;

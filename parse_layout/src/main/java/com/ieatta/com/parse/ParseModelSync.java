@@ -8,7 +8,7 @@ import bolts.Task;
 /**
  * Created by djzhang on 11/27/15.
  */
-public abstract class ParseModelSync extends ParseModelQuery {
+public abstract class ParseModelSync extends ParseModelLocalQuery {
     private ParseModelSync self = this;
 
     public ParseModelSync(String objectUUID) {
@@ -53,13 +53,16 @@ public abstract class ParseModelSync extends ParseModelQuery {
      */
     @Override
     public Task<Object> pushToServer() {
-        return this.getFirstLocalModelArrayTask()
-                .continueWith(new Continuation<ParseModelAbstract, Object>() {
-                    @Override
-                    public Object then(Task<ParseModelAbstract> task) throws Exception {
-                        return saveInBackgroundTask(); //(on the parse.com)
-                    }
-                });
+        // TODO: djzhang:(fixing)
+//        return this.getFirstLocalModelArrayTask()
+//                .continueWith(new Continuation<ParseModelAbstract, Object>() {
+//                    @Override
+//                    public Object then(Task<ParseModelAbstract> task) throws Exception {
+//                        return saveInBackgroundTask(); //(on the parse.com)
+//                    }
+//                });
+
+        return  Task.forResult(null);
     }
 
 

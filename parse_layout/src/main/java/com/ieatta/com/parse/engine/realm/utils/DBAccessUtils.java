@@ -3,7 +3,7 @@ package com.ieatta.com.parse.engine.realm.utils;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.PeopleInEvent;

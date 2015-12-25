@@ -60,7 +60,7 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-               self.keyword = s.toString();
+                self.keyword = s.toString();
             }
 
             @Override
@@ -81,7 +81,7 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
 
     private void queryNearRestaurant(String keyword) {
         self.setSectionItems(new LinkedList<ParseModelAbstract>(), SearchRestaurantSection.sectionRestaurants.ordinal());
-        if (keyword== null ||keyword.isEmpty() == true) {
+        if (keyword == null || keyword.isEmpty() == true) {
             return;
         }
         new Restaurant().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {

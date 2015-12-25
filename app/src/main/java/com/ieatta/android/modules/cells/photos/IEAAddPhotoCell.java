@@ -9,7 +9,7 @@ import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.edit.AddPhotoModel;
 
 public class IEAAddPhotoCell extends IEAViewHolder {
-    public static CellType  getType() {
+    public static CellType getType() {
         return new CellType(IEAAddPhotoCell.class, R.layout.add_photo_cell);
     }
 

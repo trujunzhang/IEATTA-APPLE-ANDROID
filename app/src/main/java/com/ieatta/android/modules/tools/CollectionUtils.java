@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class CollectionUtils {
 
-    public static List createList(Object item){
+    public static List createList(Object item) {
         LinkedList list = new LinkedList();
         list.add(item);
         return list;
     }
 
-    public  static List createList(Object[] items){
+    public static List createList(Object[] items) {
         LinkedList list = new LinkedList(Arrays.asList(items));
         return list;
     }

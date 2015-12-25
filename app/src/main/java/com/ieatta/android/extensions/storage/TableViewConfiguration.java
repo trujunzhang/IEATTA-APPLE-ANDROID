@@ -10,6 +10,7 @@ import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
  */
 public class TableViewConfiguration {
     public Builder builder;
+
     public TableViewConfiguration(Builder builder) {
         this.builder = builder;
     }
@@ -23,10 +24,13 @@ public class TableViewConfiguration {
             this.context = context.getApplicationContext();
         }
 
-        /** Builds configured {@link TableViewConfiguration} object */
+        /**
+         * Builds configured {@link TableViewConfiguration} object
+         */
         public TableViewConfiguration build() {
             return new TableViewConfiguration(this);
         }
+
         public RecyclerView.LayoutManager manager;
         public RecyclerView.ItemDecoration decoration;
         public RecyclerItemClickListener itemClickListener;
@@ -41,12 +45,12 @@ public class TableViewConfiguration {
             return this;
         }
 
-        public Builder setOnItemClickListener(RecyclerItemClickListener itemClickListener){
+        public Builder setOnItemClickListener(RecyclerItemClickListener itemClickListener) {
             this.itemClickListener = itemClickListener;
             return this;
         }
 
-        public Builder setDebugInfo(String debugType){
+        public Builder setDebugInfo(String debugType) {
             this.debugType = debugType;
             return this;
         }

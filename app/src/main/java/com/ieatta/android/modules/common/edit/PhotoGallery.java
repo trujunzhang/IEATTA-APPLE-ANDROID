@@ -24,7 +24,8 @@ public class PhotoGallery extends EditBaseCellModel {
     private List<ParseModelAbstract> fetchedPhotos;
     private DTTableViewManager manager = null;
 
-    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+    private WeakHandler mHandler = new WeakHandler();
+    ; // We still need at least one hard reference to WeakHandler
 
 
     public PhotoGallery(IEAEditKey photo_gallery, IEAPhotoGalleryViewController viewController) {
@@ -36,7 +37,7 @@ public class PhotoGallery extends EditBaseCellModel {
 //        self.delegate.
     }
 
-    public void setCollectionView(RecyclerView collectionView, DTTableViewManager manager){
+    public void setCollectionView(RecyclerView collectionView, DTTableViewManager manager) {
         self.collectionView = collectionView;
         self.manager = manager;
 
@@ -45,7 +46,7 @@ public class PhotoGallery extends EditBaseCellModel {
     }
 
     public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
-        if(self.manager!= null) {
+        if (self.manager != null) {
             self.manager.memoryStorage.setItems(fetchedPhotos, 0);
         }
     }

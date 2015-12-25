@@ -26,7 +26,7 @@ public abstract class IEAViewHolder extends RecyclerView.ViewHolder implements M
         super(itemView);
 
         itemView.setTag(self.getViewHolderType().ordinal());
-        if(self.shouldClickItem() == true) {
+        if (self.shouldClickItem() == true) {
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }

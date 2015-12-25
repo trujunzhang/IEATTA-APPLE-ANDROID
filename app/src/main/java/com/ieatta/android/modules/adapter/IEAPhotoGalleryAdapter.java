@@ -16,7 +16,7 @@ import java.util.List;
  * Created by djzhang on 12/8/15.
  */
 public class IEAPhotoGalleryAdapter extends RecyclerView.Adapter<IEAPhotosCell> {
-private IEAPhotoGalleryAdapter self = this;
+    private IEAPhotoGalleryAdapter self = this;
 
     private List<ParseModelAbstract> fetchedPhotos;
     private Context context;

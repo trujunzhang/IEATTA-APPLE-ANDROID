@@ -30,7 +30,7 @@ public class IEAGoogleMapAddressCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Restaurant more  = (Restaurant) value;
+        Restaurant more = (Restaurant) value;
         self.formattedAddressLabel.setText(more.getGoogleMapAddress());
     }
 }

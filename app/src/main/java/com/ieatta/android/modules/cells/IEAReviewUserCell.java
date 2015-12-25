@@ -41,7 +41,7 @@ public class IEAReviewUserCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Team model  = (Team) value;
+        Team model = (Team) value;
         self.titleLabel.setText(model.displayName);
         self.timeAgoTextView.setText(model.writedReviewTimeAgo);
 

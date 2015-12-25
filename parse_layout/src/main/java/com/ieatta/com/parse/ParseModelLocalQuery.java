@@ -1,8 +1,13 @@
 package com.ieatta.com.parse;
 
 
+import com.ieatta.com.parse.engine.realm.DBObject;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
+import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
+import com.parse.ParseACL;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +27,80 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
 
     public ParseModelLocalQuery() {
         super();
+    }
+
+    public LocalQuery createQueryForBatching(List<String> points) {
+        LocalQuery query = this.getLocalQueryInstance();
+        query.orderByDescending(kPAPFieldObjectCreatedDateKey);
+
+        query.whereContainedIn(kPAPFieldObjectUUIDKey, points);
+
+        return query;
+    }
+
+    public LocalQuery createSearchDisplayNameForLocalQuery(String keyword) {
+        LocalQuery query = this.makeLocalQuery();
+
+        query.whereMatches(kPAPFieldDisplayNameKey, keyword, "i");
+
+        return query;
+    }
+
+    public ParseQuery createQueryFromRecord() {
+        ParseQuery query = ParseQuery.getQuery(this.getParseTableName());
+
+        // *** Import *** The newest row in the table.
+        query.orderByDescending(kPAPFieldObjectCreatedDateKey);
+        query.whereEqualTo(kPAPFieldObjectUUIDKey, this.objectUUID);
+
+        return query;
+    }
+
+    public Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
+        return ParseModelLocalQuery.queryFromRealm(type, this.createQueryForBatching(points));
+    }
+
+    // =============================================================================
+    //        offline Store
+    // =============================================================================
+    public Task<Void> saveInBackground() {
+        return DBObject.pinInBackground(this);
+    }
+
+    public Task<Void> saveInBackgroundWithNewRecord() {
+        return this.saveInBackground().onSuccessTask(new Continuation<Void, Task<Void>>() {
+            @Override
+            public Task<Void> then(Task<Void> task) throws Exception {
+                return getNewRecord().saveInBackground();
+            }
+        });
+    }
+
+    /**
+     * Unpin the first offline object itself with NewRecord by query instance.
+     * <p/>
+     * - parameter deletedModel:    ParseModelAbstract's instance that want to delete
+     */
+    public Task<Void> unpinInBackgroundWithNewRecord() {
+        final LocalQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
+
+        return this.deleteInBackground(this.createLocalQueryByUUID())
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return deleteInBackground(newRecordQuery);
+                    }
+                });
+    }
+
+    public Task<Void> updateLocalInBackground() {
+        return self.deleteInBackground(self.createLocalQueryByUUID())
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return self.saveInBackground();
+                    }
+                });
     }
 
     protected LocalQuery getLocalQueryInstance() {
@@ -79,7 +158,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
     }
 
     public static Task<List<ParseModelAbstract>> queryFromRealm(final PQueryModelType type, final LocalQuery query) {
-        return ParseModelQuery.findInBackgroundFromRealm(query);
+        return ParseModelLocalQuery.findInBackgroundFromRealm(query);
     }
 
     /**
@@ -94,7 +173,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
     public Task<ParseModelAbstract> getFirstLocalObjectArrayInBackground(LocalQuery query) {
         // **** Important ****
         // If not found Parse's findInBackgroundFromRealm
-        return ParseModelQuery.findFirstLocalObjectInBackground(query)
+        return ParseModelLocalQuery.findFirstLocalObjectInBackground(query)
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<ParseModelAbstract>>() {
                     @Override
                     public Task<ParseModelAbstract> then(Task<List<ParseModelAbstract>> task) throws Exception {
@@ -102,19 +181,6 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
                     }
                 });
     }
-
-//    public Task<ParseModelAbstract> getFirstLocalObjectArrayInBackground(LocalQuery query) {
-//        // **** Important ****
-//        // If not found Parse's findInBackgroundFromRealm
-//        return ParseModelQuery.findFirstLocalObjectInBackground(query)
-//                .onSuccessTask(new Continuation<List<ParseObject>, Task<ParseObject>>() {
-//                    @Override
-//                    public Task<ParseObject> then(Task<List<ParseObject>> task) throws Exception {
-//                        return ParseModelQuery.getFirstParseObjectTask(task);
-//                    }
-//                });
-//    }
-
 
     /**
      * Because Task will return Exception,'no results found for query'(code is com.parse.ParseException.OBJECT_NOT_FOUND),

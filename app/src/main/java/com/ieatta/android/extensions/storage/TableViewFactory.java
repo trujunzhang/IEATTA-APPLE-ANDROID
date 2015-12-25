@@ -9,7 +9,7 @@ import java.lang.reflect.Constructor;
  */
 public class TableViewFactory {
 
-    
+
     public static Constructor getConstructorForView(Constructor[] ctors) {
         Constructor ctor = null;
         for (int i = 0; i < ctors.length; i++) {
@@ -17,7 +17,7 @@ public class TableViewFactory {
             if (ctor.getGenericParameterTypes().length == 1) {
                 Class[] types = ctor.getParameterTypes();
                 boolean isView = verifyParaWithView(types);
-                if(isView == true){
+                if (isView == true) {
                     return ctor;
                 }
             }
@@ -28,7 +28,7 @@ public class TableViewFactory {
     public static boolean verifyParaWithView(Class[] types) {
         for (int i = 0; i < types.length; i++) {
             Class type = types[i];
-            if(type.equals(View.class)){
+            if (type.equals(View.class)) {
                 return true;
             }
         }

@@ -14,8 +14,8 @@ import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEAPhotoGalleryFooterCell  extends IEAViewHolder {
-    public static CellType  getType() {
+public class IEAPhotoGalleryFooterCell extends IEAViewHolder {
+    public static CellType getType() {
         return new CellType(IEAPhotoGalleryFooterCell.class, R.layout.businesspage_section_footer);
     }
 
@@ -23,6 +23,7 @@ public class IEAPhotoGalleryFooterCell  extends IEAViewHolder {
     protected boolean shouldClickItem() {
         return false;
     }
+
     @Override
     public ViewHolderType getViewHolderType() {
         return ViewHolderType.footer;
@@ -50,7 +51,7 @@ public class IEAPhotoGalleryFooterCell  extends IEAViewHolder {
         self.model = (SectionPhotoGalleryFooterCellModel) value;
 
         // update UI
-        String title = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.See_All_Photos) + " "+self.model.photosCount;
+        String title = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.See_All_Photos) + " " + self.model.photosCount;
         self.footerLargeButton.setText(title);
     }
 

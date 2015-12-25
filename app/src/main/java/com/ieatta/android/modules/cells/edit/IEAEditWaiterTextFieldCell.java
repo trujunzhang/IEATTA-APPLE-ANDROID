@@ -1,4 +1,5 @@
 package com.ieatta.android.modules.cells.edit;
+
 import android.view.View;
 import android.widget.EditText;
 
@@ -11,9 +12,9 @@ import com.ieatta.android.modules.common.edit.EditWaiterCellModel;
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
-    public static CellType  getType() {
-        return new CellType(IEAEditWaiterTextFieldCell.class,R.layout.edit_waiter_text_field_cell);
+public class IEAEditWaiterTextFieldCell extends IEAViewHolder {
+    public static CellType getType() {
+        return new CellType(IEAEditWaiterTextFieldCell.class, R.layout.edit_waiter_text_field_cell);
     }
 
     private IEAEditWaiterTextFieldCell self = this;
@@ -22,6 +23,7 @@ public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
     protected boolean shouldClickItem() {
         return false;
     }
+
     @Override
     public ViewHolderType getViewHolderType() {
         return ViewHolderType.None;
@@ -44,7 +46,7 @@ public class IEAEditWaiterTextFieldCell  extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        self.model  = (EditWaiterCellModel) value;
+        self.model = (EditWaiterCellModel) value;
         self.editText.setText(self.model.editValue);
         self.editText.setHint(self.model.editPlaceHolderResId);
     }

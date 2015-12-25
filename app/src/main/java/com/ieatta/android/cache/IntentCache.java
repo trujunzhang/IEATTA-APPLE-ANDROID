@@ -19,23 +19,23 @@ public class IntentCache {
     private IntentCache self = this;
     public static final IntentCache sharedInstance = new IntentCache();
 
-    private HashMap<String,ParseModelAbstract> intentModelCache = new LinkedHashMap<>();
+    private HashMap<String, ParseModelAbstract> intentModelCache = new LinkedHashMap<>();
 
     public LinkedList<ParseModelAbstract> orderedPeople = new LinkedList<>();
     public LinkedList<ParseModelAbstract> photoGalleryItem = new LinkedList<>();
 
-    public void setIntentModel(ParseModelAbstract model){
+    public void setIntentModel(ParseModelAbstract model) {
         self.intentModelCache.put(model.intentUUID, model);
     }
 
     public ParseModelAbstract getIntentModel(String intentUUID) {
-        if(self.intentModelCache.containsKey(intentUUID)) {
-            return  self.intentModelCache.get(intentUUID);
+        if (self.intentModelCache.containsKey(intentUUID)) {
+            return self.intentModelCache.get(intentUUID);
         }
         return null;
     }
 
-    public void clearIntentModelCache(){
+    public void clearIntentModelCache() {
         self.intentModelCache = new LinkedHashMap<>();
     }
 

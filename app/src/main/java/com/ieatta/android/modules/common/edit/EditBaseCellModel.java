@@ -6,7 +6,7 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
  * Created by djzhang on 12/1/15.
  */
 public class EditBaseCellModel {
-    public IEAEditKey editKey  = IEAEditKey.Unknow;
+    public IEAEditKey editKey = IEAEditKey.Unknow;
     public String editValue;
 
     public EditBaseCellModel(IEAEditKey editKey) {

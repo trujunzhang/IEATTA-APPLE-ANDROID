@@ -47,7 +47,7 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
         self.avatarView.loadNewPhotoByModel(model.model, R.drawable.blank_user_small);
 
         self.addFoodButton.setVisibility(View.GONE);
-        if(model.hideButton  == false){
+        if (model.hideButton == false) {
             self.addFoodButton.setVisibility(View.VISIBLE);
             self.addFoodButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -65,7 +65,7 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
                         int recipesCount = task.getResult();
                         model.model.recipesCount = recipesCount;
                         String info = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Recipes_Ordered_Count);
-                        info = recipesCount +" "+ info;
+                        info = recipesCount + " " + info;
                         self.setRecipeInformation(info);
                         return null;
                     }

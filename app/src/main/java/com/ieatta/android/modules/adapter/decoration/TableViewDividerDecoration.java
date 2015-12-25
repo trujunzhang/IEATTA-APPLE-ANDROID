@@ -50,8 +50,8 @@ public class TableViewDividerDecoration extends RecyclerView.ItemDecoration {
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
             int tag = (int) child.getTag();
- //        Log.v("decoration","tag: "+tag);
-            if(this.isIgnorDivider(tag)){
+            //        Log.v("decoration","tag: "+tag);
+            if (this.isIgnorDivider(tag)) {
                 continue;
             }
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
@@ -74,7 +74,7 @@ public class TableViewDividerDecoration extends RecyclerView.ItemDecoration {
         if (position < childCount - 1) {
             nextChild = parent.getChildAt(position + 1);
             int nextTag = (int) nextChild.getTag();
-            if(nextTag == ViewHolderType.cell.ordinal()) {
+            if (nextTag == ViewHolderType.cell.ordinal()) {
                 if (((tag == ViewHolderType.cell.ordinal()) || (tag == ViewHolderType.special.ordinal()))) {
                     return 32;
                 }

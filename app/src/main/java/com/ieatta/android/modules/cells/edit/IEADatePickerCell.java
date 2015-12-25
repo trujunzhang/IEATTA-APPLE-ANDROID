@@ -30,6 +30,7 @@ public class IEADatePickerCell extends IEAViewHolder {
     protected boolean shouldClickItem() {
         return false;
     }
+
     @Override
     public ViewHolderType getViewHolderType() {
         return ViewHolderType.None;
@@ -54,7 +55,7 @@ public class IEADatePickerCell extends IEAViewHolder {
         super(itemView);
 
         this.clickedView = (Button) itemView.findViewById(R.id.clicked_view);
-        this.titleTextView =(TextView) itemView.findViewById(R.id.titleTextView);
+        this.titleTextView = (TextView) itemView.findViewById(R.id.titleTextView);
         this.editText = (TextView) itemView.findViewById(R.id.editText);
 
         this.clickedView.setOnClickListener(new View.OnClickListener() {
@@ -81,9 +82,9 @@ public class IEADatePickerCell extends IEAViewHolder {
     @Override
     public void render(Object value) {
         self.model = (DatePickerCellModel) value;
-        if(self.model.editKey == IEAEditKey.event_starttime){
+        if (self.model.editKey == IEAEditKey.event_starttime) {
             self.titleTextView.setText(R.string.Start_Time);
-        }else{
+        } else {
             self.titleTextView.setText(R.string.End_Time);
         }
 

@@ -249,9 +249,9 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     public void didSelectItemAtIndexPathOnCollectionView(NSIndexPath indexPath) {
-        if(indexPath.row == self.getPhotoGalleryCount()){
+        if (indexPath.row == self.getPhotoGalleryCount()) {
             self.takeAPhotoButtonTapped();
-        }else{
+        } else {
             self.presentPhotoGallery(indexPath.row);
         }
     }

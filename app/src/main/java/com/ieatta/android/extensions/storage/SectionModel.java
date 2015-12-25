@@ -56,7 +56,7 @@ public class SectionModel {
         }
         if (row < self.items.size()) {
             CellType type = self.getRowType(row, self.cellType);
-            return new RowModel(self.items.get(row), type, new NSIndexPath(sectionIndex,row));
+            return new RowModel(self.items.get(row), type, new NSIndexPath(sectionIndex, row));
         } else if (footerModel != null) {
             return new RowModel(footerModel);
         }
@@ -67,8 +67,8 @@ public class SectionModel {
     private CellType getRowType(int row, CellType type) {
         // Step1: If have special row type.
         CellType specialRowType = self.specialRows.get(new Integer(row));
-        if(specialRowType!=null){
-            return  specialRowType;
+        if (specialRowType != null) {
+            return specialRowType;
         }
 
         return type;

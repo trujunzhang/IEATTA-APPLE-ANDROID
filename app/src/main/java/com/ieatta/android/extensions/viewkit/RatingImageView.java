@@ -17,8 +17,9 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/14/15.
  */
-public class RatingImageView extends ImageView{
+public class RatingImageView extends ImageView {
     private RatingImageView self = this;
+
     public RatingImageView(Context context) {
         super(context);
     }
@@ -31,7 +32,8 @@ public class RatingImageView extends ImageView{
         super(context, attrs, defStyleAttr);
     }
 
-    private WeakHandler mHandler  = new WeakHandler();; // We still need at least one hard reference to WeakHandler
+    private WeakHandler mHandler = new WeakHandler();
+    ; // We still need at least one hard reference to WeakHandler
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -40,15 +42,15 @@ public class RatingImageView extends ImageView{
     }
 
 
-    public void queryRatingInReviewsByModel( ParseModelAbstract model){
+    public void queryRatingInReviewsByModel(ParseModelAbstract model) {
         self.queryRatingInReviewsByReview(new Review(model));
     }
 
-    public void queryRatingInReviewsByReview(final Review review){
+    public void queryRatingInReviewsByReview(final Review review) {
         Integer integer = IEACache.sharedInstance.avarageRating(review);
-        if(integer != null){
+        if (integer != null) {
             self.setImageLevel(integer.intValue());
-        }else{
+        } else {
             review.queryRatingInReviews().onSuccess(new Continuation<Integer, Object>() {
                 @Override
                 public Object then(Task<Integer> task) throws Exception {

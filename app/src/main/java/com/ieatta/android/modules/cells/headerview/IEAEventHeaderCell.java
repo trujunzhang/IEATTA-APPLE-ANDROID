@@ -13,8 +13,8 @@ import com.ieatta.android.modules.cells.model.IEAEventHeader;
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEAEventHeaderCell  extends IEAViewHolder {
-    public static CellType  getType() {
+public class IEAEventHeaderCell extends IEAViewHolder {
+    public static CellType getType() {
         return new CellType(IEAEventHeaderCell.class, R.layout.event_header_cell);
     }
 
@@ -78,7 +78,7 @@ public class IEAEventHeaderCell  extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        self.model  = (IEAEventHeader) value;
+        self.model = (IEAEventHeader) value;
 
         self.restaurantNameLabel.setText(model.model.belongToModel.displayName);
         self.displayNameLabel.setText(model.model.displayName);

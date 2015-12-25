@@ -39,7 +39,7 @@ public class IEASeeReviewsCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        SectionSeeReviewsCellModel model  = (SectionSeeReviewsCellModel) value;
+        SectionSeeReviewsCellModel model = (SectionSeeReviewsCellModel) value;
 
         self.titleLabel.setText(model.user.displayName);
         self.timeAgoTextView.setText(model.timeAgoString);

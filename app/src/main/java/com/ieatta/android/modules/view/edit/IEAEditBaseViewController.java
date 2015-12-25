@@ -10,7 +10,8 @@ import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.android.observers.EditChangedObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.ParseModelLocalQuery;
+
 import com.ieatta.com.parse.models.Photo;
 
 import java.util.LinkedList;
@@ -92,7 +93,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        self.setEditModel(self.getTransferedModel(),self.getIntent().getExtras().getBoolean(IntentCache.newModel));
+        self.setEditModel(self.getTransferedModel(), self.getIntent().getExtras().getBoolean(IntentCache.newModel));
 
         // **** Important ****
         self.editManager = self.getEditManager();
@@ -196,7 +197,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
             });
         } else {
             /// The model already exist, delete it first.
-            ((ParseModelQuery) model).unpinInBackgroundWithNewRecord().onSuccessTask(new Continuation<Void, Task<Void>>() {
+            ((ParseModelLocalQuery) model).unpinInBackgroundWithNewRecord().onSuccessTask(new Continuation<Void, Task<Void>>() {
                 @Override
                 public Task<Void> then(Task<Void> task) throws Exception {
                     return self.saveNewModel(model);
@@ -224,7 +225,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     }
 
     private Task<Void> saveNewModel(ParseModelAbstract newModel) {
-        return ((ParseModelQuery) newModel).saveInBackgroundWithNewRecord();
+        return ((ParseModelLocalQuery) newModel).saveInBackgroundWithNewRecord();
     }
 
 

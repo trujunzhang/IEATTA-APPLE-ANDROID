@@ -172,7 +172,9 @@ public class LocationObserveActivity extends IEASplitMasterViewController {
                     Log.i(TAG, "定位结束");
                     break;
             }
-        };
+        }
+
+        ;
     };
 
     /**

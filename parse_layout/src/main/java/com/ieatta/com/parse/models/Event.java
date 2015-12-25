@@ -1,7 +1,8 @@
 package com.ieatta.com.parse.models;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.ParseModelLocalQuery;
+
 import com.ieatta.com.parse.ParseModelSync;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -197,7 +198,7 @@ public class Event extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryEventsRelatedRestaurant(Restaurant restaurant) {
-        return ParseModelQuery.queryFromRealm(PQueryModelType.Event, new Event().createQueryByRestaurantRef(restaurant));
+        return ParseModelLocalQuery.queryFromRealm(PQueryModelType.Event, new Event().createQueryByRestaurantRef(restaurant));
     }
 
     // MARK: Description

@@ -34,7 +34,7 @@ public class IEAEditEventManager extends IEAEditAbstractManager {
 
         };
 
-        Object[] sections = {section1,section2,section3};
+        Object[] sections = {section1, section2, section3};
 
         return sections;
     }

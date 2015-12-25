@@ -3,7 +3,7 @@ package com.ieatta.com.parse.async.tasks;
 import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+
 import com.ieatta.com.parse.async.SerialTasksManager;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
@@ -23,7 +23,7 @@ public class PushNewRecordToServerTask {
     public static Task PushToServerSeriesTask(LocalQuery query) {
 
         // TODO: djzhang(fixing)
-//        return ParseModelQuery.findInBackgroundFromRealm(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
+//        return ParseMoxdelQuery.findInBackgroundFromRealm(query).onSuccessTask(new Continuation<List<ParseObject>, Task<Void>>() {
 //            @Override
 //            public Task<Void> then(Task<List<ParseObject>> task) throws Exception {
 //                return executeSerialTasks(task);
@@ -85,7 +85,7 @@ public class PushNewRecordToServerTask {
                 // TODO: djzhang:(fixing)
                 return Task.forResult(null);
                 // Unpin the offline NewRecord
-//                return ParseModelQuery.unpinObjectInBackground(newRecordObject,newRecord);
+//                return ParsexModelQuery.unpinObjectInBackground(newRecordObject,newRecord);
             }
         }).onSuccessTask(new Continuation<Void, Task<Boolean>>() {
             @Override

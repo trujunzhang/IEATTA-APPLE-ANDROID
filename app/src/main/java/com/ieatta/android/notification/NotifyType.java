@@ -3,7 +3,7 @@ package com.ieatta.android.notification;
 /**
  * Created by djzhang on 12/15/15.
  */
-public enum  NotifyType {
+public enum NotifyType {
     // Notification names:
     PAModelCreatedRestaurantNotification("PAModelCreatedRestaurantNotification"),
     PAModelCreateEventNotification("PAModelCreateEventNotification"),

@@ -64,20 +64,20 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
     }
 
     @Override
-     protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender){
+    protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender) {
         // TODO djzhang(used for iPhone)
-        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
             /// Add restaurant
-            self.setTransferedModelForEdit(sender,new Restaurant(),true);
+            self.setTransferedModelForEdit(sender, new Restaurant(), true);
         }
     }
 
     @Override
-    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender){
+    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
         // TODO djzhang(used for iPhone)
-        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
             /// Show detailed restaurant
-            self.setTransferedModel(sender,self.selectedModel);
+            self.setTransferedModel(sender, self.selectedModel);
         }
     }
 

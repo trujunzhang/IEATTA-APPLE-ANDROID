@@ -12,14 +12,16 @@ import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEAPhotoGalleryHeaderCell  extends IEAViewHolder {
-    public static CellType  getType() {
+public class IEAPhotoGalleryHeaderCell extends IEAViewHolder {
+    public static CellType getType() {
         return new CellType(IEAPhotoGalleryHeaderCell.class, R.layout.photo_gallery_header_cell);
     }
+
     @Override
     protected boolean shouldClickItem() {
         return false;
     }
+
     @Override
     public ViewHolderType getViewHolderType() {
         return ViewHolderType.None;

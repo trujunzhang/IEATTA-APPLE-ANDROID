@@ -45,7 +45,7 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
         List<String> list = new LinkedList<>();
         list.add("6825D75B-E4D5-4386-AA62-3D022B7A50B5");
         list.add("1CE562A4-A978-4B75-9B7B-2F3CF9F42A04");
-        new Restaurant().queryParseModels(PQueryModelType.Restaurant,list).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+        new Restaurant().queryParseModels(PQueryModelType.Restaurant, list).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
             @Override
             public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
                 List<ParseModelAbstract> result = task.getResult();

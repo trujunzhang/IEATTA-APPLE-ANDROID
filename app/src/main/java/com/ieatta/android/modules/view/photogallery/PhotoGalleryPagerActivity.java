@@ -46,7 +46,8 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
     protected boolean hasRecycleView() {
         return false;
     }
-    protected boolean shouldLeftBarButtonItem(){
+
+    protected boolean shouldLeftBarButtonItem() {
         return false;
     }
 

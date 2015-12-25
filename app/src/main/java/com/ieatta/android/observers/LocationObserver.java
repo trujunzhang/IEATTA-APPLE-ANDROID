@@ -32,7 +32,7 @@ public class LocationObserver {
     }
 
     public void updateLocation(Location location) {
-        if(location == null){
+        if (location == null) {
             return;
         }
         ParseGeoPoint newPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());

@@ -13,7 +13,7 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
  * Created by djzhang on 12/2/15.
  */
 public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
-    public static CellType  getType() {
+    public static CellType getType() {
         return new CellType(IEAViewForHeaderInSectionCell.class, R.layout.view_for_header_in_section_cell);
     }
 
@@ -39,7 +39,7 @@ public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        SectionTitleCellModel more  = (SectionTitleCellModel) value;
+        SectionTitleCellModel more = (SectionTitleCellModel) value;
         self.titleLabel.setText(more.titleResId);
     }
 }

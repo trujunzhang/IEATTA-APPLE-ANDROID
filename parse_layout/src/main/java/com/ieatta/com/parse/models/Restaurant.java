@@ -1,7 +1,8 @@
 package com.ieatta.com.parse.models;
 
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.ParseModelQuery;
+import com.ieatta.com.parse.ParseModelLocalQuery;
+
 import com.ieatta.com.parse.ParseModelSync;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
@@ -145,11 +146,11 @@ public class Restaurant extends ParseModelSync {
     }
 
     public static Task<List<ParseModelAbstract>> queryRestaurants() {
-        return ParseModelQuery.queryFromParse(PQueryModelType.Restaurant, new Restaurant().makeParseQuery());
+        return ParseModelLocalQuery.queryFromParse(PQueryModelType.Restaurant, new Restaurant().makeParseQuery());
     }
 
     public static Task<List<ParseModelAbstract>> queryNearRestaurants(ParseGeoPoint geoPoint) {
-        return ParseModelQuery.queryFromParse(PQueryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
+        return ParseModelLocalQuery.queryFromParse(PQueryModelType.Restaurant, new Restaurant().createNearlyRestaurantQuery(geoPoint));
     }
 
     @Override

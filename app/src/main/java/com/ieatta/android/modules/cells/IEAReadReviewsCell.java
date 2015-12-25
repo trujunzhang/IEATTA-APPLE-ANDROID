@@ -34,13 +34,13 @@ public class IEAReadReviewsCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        RatedModelReviewCount model  = (RatedModelReviewCount) value;
+        RatedModelReviewCount model = (RatedModelReviewCount) value;
         self.titleLabel.setText(model.reviewTitle);
 
-        if(model.reviewType == ReviewType.Review_Event){
+        if (model.reviewType == ReviewType.Review_Event) {
             self.avatarView.configureAvatar(R.drawable.nav_events);
-        }else{
-            ParseModelAbstract reviewedModel = ParseModelAbstract.getInstanceFromType(model.modelType,model.reviewRef);
+        } else {
+            ParseModelAbstract reviewedModel = ParseModelAbstract.getInstanceFromType(model.modelType, model.reviewRef);
             self.avatarView.loadNewPhotoByModel(reviewedModel, model.getPlaceHolderImage());
         }
         self.ratingImageView.queryRatingInReviewsByReview(model);

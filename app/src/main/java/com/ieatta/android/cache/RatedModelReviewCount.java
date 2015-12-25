@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * Created by djzhang on 12/1/15.
  */
-public class RatedModelReviewCount extends Review{
-private RatedModelReviewCount self = this;
+public class RatedModelReviewCount extends Review {
+    private RatedModelReviewCount self = this;
 
     public String reviewTitle = "";
     public PQueryModelType modelType = PQueryModelType.unkown;
@@ -31,7 +31,7 @@ private RatedModelReviewCount self = this;
     }
 
     public ParseModelAbstract convertToModelForReview() {
-        ParseModelAbstract pageModel = ParseModelAbstract.getInstanceFromType(self.modelType,  self.reviewRef);
+        ParseModelAbstract pageModel = ParseModelAbstract.getInstanceFromType(self.modelType, self.reviewRef);
 
         pageModel.displayName = self.reviewTitle;
 
@@ -39,7 +39,7 @@ private RatedModelReviewCount self = this;
     }
 
     public int getPlaceHolderImage() {
-        switch(self.reviewType){
+        switch (self.reviewType) {
             case Review_Restaurant:
                 return R.drawable.blank_biz;
             case Review_Recipe:
@@ -51,11 +51,11 @@ private RatedModelReviewCount self = this;
         }
     }
 
-     public static List<RatedModelReviewCount> convertToRatedModelReviewCounts(List<ParseModelAbstract> source) {
+    public static List<RatedModelReviewCount> convertToRatedModelReviewCounts(List<ParseModelAbstract> source) {
         List<RatedModelReviewCount> list = new LinkedList<>();
-         for(ParseModelAbstract model : source){
-             list.add(new RatedModelReviewCount(model));
-         }
+        for (ParseModelAbstract model : source) {
+            list.add(new RatedModelReviewCount(model));
+        }
         return list;
     }
 }
