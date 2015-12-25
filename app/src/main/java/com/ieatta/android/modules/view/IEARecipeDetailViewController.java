@@ -138,10 +138,4 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
     protected void RecipeWasCreated(NSNotification note) {
         setSectionItems(CollectionUtils.createList(new IEARecipeHeader(self, self.orderedRecipe)), RecipeDetailSection.sectionHeader.ordinal());
     }
-
-    @Override
-    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        // ***** Important *****
-        // This method used for the recipe detail view controller.
-    }
 }
