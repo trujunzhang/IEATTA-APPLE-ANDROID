@@ -34,9 +34,9 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Recipe model  = (Recipe) value;
+        Recipe model = (Recipe) value;
         self.displayNameLabel.setText(model.displayName);
-        self.priceLabel.setText(model.cost+"");
+        self.priceLabel.setText("$ " + model.cost + "");
 
         self.ratingImageView.queryRatingInReviewsByModel(model);
 

@@ -33,7 +33,7 @@
         android:layout_below="@+id/titleTextView"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="Medium Text"
-        android:textAppearance="@style/SubtitleText" />
+        android:textAppearance="@style/SubtitleGrayText" />
 
     <com.ieatta.android.extensions.viewkit.RatingImageView
         android:id="@+id/business_review_star_rating"

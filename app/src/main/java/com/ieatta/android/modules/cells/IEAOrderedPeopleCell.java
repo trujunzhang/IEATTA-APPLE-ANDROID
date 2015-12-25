@@ -26,6 +26,7 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
 
     private TextView nameLabel;
     private TextView addressLabel;
+    private TextView addFoodButton;
 
     private WeakHandler mHandler = new WeakHandler(); // We still need at least one hard reference to WeakHandler
 
@@ -34,14 +35,27 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
         self.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
         self.nameLabel = (TextView) itemView.findViewById(R.id.titleTextView);
         self.addressLabel = (TextView) itemView.findViewById(R.id.addressTextView);
+        self.addFoodButton = (TextView) itemView.findViewById(R.id.addFoodButton);
     }
 
     @Override
     public void render(Object value) {
         final IEAOrderedPeople model = (IEAOrderedPeople) value;
+
         self.nameLabel.setText(model.model.displayName);
         self.addressLabel.setText(model.model.address);
         self.avatarView.loadNewPhotoByModel(model.model, R.drawable.blank_user_small);
+
+        self.addFoodButton.setVisibility(View.GONE);
+        if(model.hideButton  == false){
+            self.addFoodButton.setVisibility(View.VISIBLE);
+            self.addFoodButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    model.viewController.performSegueForAddingRecipe();
+                }
+            });
+        }
 
         Recipe.queryOrderedRecipesCount(model.model, model.event)
                 .onSuccess(new Continuation<Integer, Object>() {

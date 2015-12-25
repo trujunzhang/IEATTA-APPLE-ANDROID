@@ -35,4 +35,17 @@
         android:text="Medium Text"
         android:textAppearance="@style/SubtitleGrayText" />
 
+    <TextView
+        android:id="@+id/addFoodButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="false"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:singleLine="true"
+        android:text="@string/Add_Food_Button"
+        android:textColor="@color/green_money"
+        android:layout_centerVertical="true" />
+
 </RelativeLayout>
