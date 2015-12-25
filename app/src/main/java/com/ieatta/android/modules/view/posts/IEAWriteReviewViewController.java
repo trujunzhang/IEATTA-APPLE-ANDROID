@@ -133,14 +133,15 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
                     @Override
                     public Object then(Task<Void> task) throws Exception {
                         self.postSaveModelSuccess();
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
+                        return null;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
 //                    AppAlertView.showError(L10n.SavedFailure.string)
                 }
+                self.dismissViewControllerAnimated(true,  null);
                 return null;
             }
         });

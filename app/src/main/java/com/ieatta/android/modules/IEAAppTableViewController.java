@@ -63,6 +63,10 @@ public class IEAAppTableViewController extends AppCompatActivity {
         self.finish();
     }
 
+    public void dismissViewControllerAnimated(boolean flag, Object o) {
+        self.finish();
+    }
+
     /**
      * Default content view.
      *
