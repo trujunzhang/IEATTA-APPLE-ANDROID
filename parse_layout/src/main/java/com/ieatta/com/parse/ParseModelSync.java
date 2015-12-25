@@ -65,15 +65,12 @@ public abstract class ParseModelSync extends ParseModelLocalQuery {
     @Override
     public Task<Object> pushToServer() {
         // TODO: djzhang:(fixing)
-//        return this.getFirstLocalModelArrayTask()
-//                .continueWith(new Continuation<ParseModelAbstract, Object>() {
-//                    @Override
-//                    public Object then(Task<ParseModelAbstract> task) throws Exception {
-//                        return saveInBackgroundTask(); //(on the parse.com)
-//                    }
-//                });
-
-        return  Task.forResult(null);
+        return self.getFirstModelTask().onSuccessTask(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                return self.saveParseObjectToServer(); //(on the parse.com)
+            }
+        });
     }
 
 

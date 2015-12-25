@@ -47,6 +47,7 @@ public interface ParseModelProtocol {
     Task<Boolean> afterPushToServer();
 
     Task<Void> pullFromServerAndPin();
+    Task<Void> saveParseObjectToServer();
 
     /**
      * Get the offline models array.

@@ -155,5 +155,13 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
 
     }
 
+    @Override
+    public Task<Void> saveParseObjectToServer() {
+        ParseObject object = makeObject();
+        self.writeLocalObject(object);
+
+        return object.saveInBackground();
+    }
+
 
 }

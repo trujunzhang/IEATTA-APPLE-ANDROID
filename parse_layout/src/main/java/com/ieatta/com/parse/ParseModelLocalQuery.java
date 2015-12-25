@@ -18,7 +18,7 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/21/15.
  */
-public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
+public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery {
     private ParseModelLocalQuery self = this;
 
     public ParseModelLocalQuery(String objectUUID) {
@@ -47,7 +47,6 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
     }
 
 
-
     public Task<List<ParseModelAbstract>> queryParseModels(PQueryModelType type, List<String> points) {
         return ParseModelLocalQuery.queryFromRealm(type, this.createQueryForBatching(points));
     }
@@ -74,20 +73,21 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
      * - parameter deletedModel:    ParseModelAbstract's instance that want to delete
      */
     public Task<Void> unpinInBackgroundWithNewRecord() {
-        final LocalQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
-
-        return this.deleteInBackground(this.createLocalQueryByUUID())
-                .onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return deleteInBackground(newRecordQuery);
-                    }
-                });
+//        final LocalQuery newRecordQuery = new NewRecord(this.getModelType(), ParseModelAbstract.getPoint(this)).createQueryForDeletedModel();
+//
+//        return this.deleteInBackground()
+//                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+//                    @Override
+//                    public Task<Void> then(Task<Void> task) throws Exception {
+//                        return deleteInBackground(newRecordQuery);
+//                    }
+//                });
+        return Task.forResult(null);
     }
 
     @Override
     public Task<Void> updateLocalInBackground() {
-        return self.deleteInBackground(self.createLocalQueryByUUID())
+        return self.deleteInBackground()
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
@@ -202,8 +202,8 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
      * <p/>
      * - parameter query:           query's instance
      */
-    public Task<Void> deleteInBackground(LocalQuery query) {
-
+    public Task<Void> deleteInBackground() {
+        LocalQuery query = this.createLocalQueryByUUID();
         return query.deleteInBackground();
     }
 
@@ -213,7 +213,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
      * - returns: query's instance
      */
     public LocalQuery createQueryForPushObjectsToServer(int limit) {
-        LocalQuery query =new  LocalQuery( self.getParseTableName(), self.getModelType());
+        LocalQuery query = new LocalQuery(self.getParseTableName(), self.getModelType());
         query.setLimit(limit);
 
         // *** Important (used orderByAscending) ***
@@ -227,7 +227,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
         return self.getFirstLocalObjectArrayInBackground(self.createLocalQueryByUUID());
     }
 
-    public Task<ParseModelAbstract> getFirstModelTaskFromRealm()  {
+    public Task<ParseModelAbstract> getFirstModelTaskFromRealm() {
         LocalQuery query = self.createLocalQueryByUUID();
         // *** Important ***
         query.fromLocalDatastore();
@@ -236,6 +236,15 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery{
         query.setLimit(1);
 
         return query.findFirstInBackground();
+    }
+
+    /**
+     * This methond supported for the function,
+     * that get the local first model to push to service.
+     * And Resturant will override it.
+     */
+    protected Task getFirstModelTask() {
+        return self.getFirstModelTaskFromRealm();
     }
 
 }

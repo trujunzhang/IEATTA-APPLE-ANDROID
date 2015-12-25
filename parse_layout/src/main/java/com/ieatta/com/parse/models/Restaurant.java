@@ -178,4 +178,9 @@ public class Restaurant extends ParseModelSync {
             }
         });
     }
+
+    @Override
+    protected Task getFirstModelTask()  {
+        return getFirstModelTaskFromParse();
+    }
 }
