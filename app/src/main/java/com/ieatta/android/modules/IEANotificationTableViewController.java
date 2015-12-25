@@ -20,7 +20,8 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
         EventBus.getDefault().register(this);
     }
 
-    public void onEventBackgroundThread(NSNotification note) {
+
+    public void onEventMainThread(NSNotification note) {
         switch (note.type) {
             case PAModelCreatedRestaurantNotification:
                 self.RestaurantWasCreated(note);

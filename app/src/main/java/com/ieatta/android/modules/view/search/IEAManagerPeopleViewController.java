@@ -89,8 +89,12 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
         self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ManagerPeopleSection.sectionTeam.ordinal());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void queryTeams(String keyword) {
-//        self.setSectionItems(new LinkedList<ParseModelAbstract>(), ManagerPeopleSection.sectionTeam.ordinal());
         if (keyword == null || keyword.isEmpty() == true) {
             return;
         }
