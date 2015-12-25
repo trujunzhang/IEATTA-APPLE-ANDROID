@@ -73,9 +73,9 @@ public class PushNewRecordToServerTask {
         // Step1: Get the first model by the emptyModel's uuid.
         //        And Save it's ParseObject to Parse.com.
         return emptyModel.pushToServer()
-                .onSuccessTask(new Continuation<Void, Task>() {
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
-                    public Task then(Task<Void> task) throws Exception {
+                    public Task<Void> then(Task<Void> task) throws Exception {
                         // Step2: Save the newRecord's ParseObject to Parse.com
                         return newRecord.saveParseObjectToServer();
                     }
