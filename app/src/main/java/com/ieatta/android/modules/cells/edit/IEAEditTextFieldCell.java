@@ -1,5 +1,7 @@
 package com.ieatta.android.modules.cells.edit;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.yelp.com.commonlib.EnvironmentUtils;
@@ -37,6 +39,22 @@ public class IEAEditTextFieldCell extends IEAViewHolder {
         super(itemView);
 
         self.editText = (EditText) itemView.findViewById(R.id.editText);
+        self.editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                self.model.editValue = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override

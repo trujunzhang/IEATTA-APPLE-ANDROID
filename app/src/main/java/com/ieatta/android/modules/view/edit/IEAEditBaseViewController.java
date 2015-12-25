@@ -186,24 +186,26 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
         final ParseModelAbstract model = self.editManager.convertToEditModel(self.rowModels, self.editedModel);
 
-        model.updateLocalInBackground().onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                // **** Important ****
-                // If the editing model is a new instance.
-                //  We need to save a NewRecord to record the model's information.
-                // Otherwise, we just need to update the editing model.
-                //  Because the NewRecord is already exist.
-                if(self.newModel == true){
-                    NewRecord newRecord = new  NewRecord(model.getModelType(), ParseModelAbstract.getPoint(model));
-                    return  newRecord.updateLocalInBackground();
-                }
+        model.updateLocalInBackground()
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        // **** Important ****
+                        // If the editing model is a new instance.
+                        //  We need to save a NewRecord to record the model's information.
+                        // Otherwise, we just need to update the editing model.
+                        //  Because the NewRecord is already exist.
+                        if (self.newModel == true) {
+                            NewRecord newRecord = new NewRecord(model.getModelType(), ParseModelAbstract.getPoint(model));
+                            return newRecord.updateLocalInBackground();
+                        }
 
-                return null;
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+                        return null;
+                    }
+                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
+
                 self.postSaveModelSuccess();
                 self.navigationController.popViewControllerAnimated(true);
                 return null;
@@ -212,6 +214,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted()) {
+                    Exception error = task.getError();
 //                    AppAlertView.showError(L10n.UpdateFailure.string)
                 }
                 return null;
