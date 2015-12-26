@@ -16,14 +16,9 @@ public class IEAEditRecipeManager extends IEAEditAbstractManager {
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
         Recipe recipe = (Recipe) model;
 
-        String costString = "" + recipe.cost;
-        if (recipe.cost == Recipe.DEFAULT_RECIPE_COST) {
-            costString = "";
-        }
-
-        EditBaseCellModel[] section1 = {
+         EditBaseCellModel[] section1 = {
                 new EditCellModel(IEAEditKey.recipe_name, recipe.displayName, R.string.Recipe_Name_info),
-                new EditCellModel(IEAEditKey.recipe_cost, costString, R.string.recipe_cost)
+                new EditCellModel(IEAEditKey.recipe_cost, recipe.cost, R.string.recipe_cost)
         };
         Object[] sections = {section1};
 

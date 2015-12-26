@@ -31,9 +31,7 @@ public class Recipe extends ParseModelSync {
     private static final String kPAPFieldEventRefKey = "eventRef";
     private static final String kPAPFieldOrderedPeopleRefKey = "orderedPeopleRef";
 
-    public static final double DEFAULT_RECIPE_COST = 0.0f;
-
-    public double cost = DEFAULT_RECIPE_COST;
+    public String cost = "";
     public int likeCount = 0;
 
     public String eventRef = "";
@@ -54,13 +52,13 @@ public class Recipe extends ParseModelSync {
         this.eventRef = ParseModelAbstract.getPoint(belongToModel.belongToModel);
     }
 
-    public Recipe(String displayName, float cost) {
+    public Recipe(String displayName, String cost) {
         super();
         this.displayName = displayName;
         this.cost = cost;
     }
 
-    public Recipe(String displayName, float cost, int sampleFileName) {
+    public Recipe(String displayName, String cost, int sampleFileName) {
         super();
         this.displayName = displayName;
         this.cost = cost;
@@ -123,11 +121,7 @@ public class Recipe extends ParseModelSync {
 
         Object theCost = this.getValueFromObject(object, kPAPFieldCostKey);
         if (theCost != null) {
-            if (theCost.getClass().equals(Integer.class)) {
-                this.cost = (int) theCost;
-            } else {
-                this.cost = (float) theCost;
-            }
+            this.cost = (String) theCost;
         }
 
         Object theLikeCount = this.getValueFromObject(object, kPAPFieldLikeCountKey);

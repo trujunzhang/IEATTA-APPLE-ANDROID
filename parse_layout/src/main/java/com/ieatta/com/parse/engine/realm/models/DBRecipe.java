@@ -14,7 +14,7 @@ public class DBRecipe extends RealmObject {
     private Date objectCreatedDate = new Date();
     private String displayName = "";
 
-    private double cost = 0.0f;
+    private double cost = 0.0;
     private int likeCount = 0;
 
     private String eventRef = "";
