@@ -85,19 +85,19 @@ public class ViewPagerFragment extends Fragment {
                     @Override
                     public Task<Boolean> then(Task<Boolean> task) throws Exception {
                         Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
-                        return self.showImage(image);
+                        return self.showImage(image, false);
                     }
                 }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<Boolean> task) throws Exception {
                 Bitmap image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
-                return self.showImage(image);
+                return self.showImage(image, false);
             }
         }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<Boolean> task) throws Exception {
                 Bitmap image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
-                return self.showImage(image);
+                return self.showImage(image, true);
             }
         }).onSuccessTask(new Continuation<Boolean, Task<Bitmap>>() {
             @Override
@@ -108,12 +108,12 @@ public class ViewPagerFragment extends Fragment {
             @Override
             public Object then(final Task<Bitmap> task) throws Exception {
                 Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
-                return self.showImage(image);
+                return self.showImage(image, false);
             }
         });
     }
 
-    private Task<Boolean> showImage(Bitmap image) {
+    private Task<Boolean> showImage(Bitmap image, final boolean shouldNextTask) {
         if (image == null) {
             return Task.forResult(true);
         }
@@ -127,6 +127,9 @@ public class ViewPagerFragment extends Fragment {
                         self.imageView.setImage(ImageSource.bitmap(task.getResult()));
                     }
                 }, 1);
+                if(shouldNextTask == true){
+                    return Task.forResult(true);
+                }
                 return Task.forError(new Exception("Already found it"));
             }
         });
