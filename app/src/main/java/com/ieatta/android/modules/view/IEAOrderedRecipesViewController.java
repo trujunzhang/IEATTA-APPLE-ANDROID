@@ -134,12 +134,16 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
     // MARK: NSNotificationCenter notification handlers
     @Override
     protected void TakenPhotoWasChanged(NSNotification note) {
-        // 1. load photo related restaurant.
         self.queryOrderedRecipesList();
     }
 
     @Override
     protected void RecipeWasCreated(NSNotification note) {
+        self.queryOrderedRecipesList();
+    }
+
+    @Override
+    protected void ReviewWasCreated(NSNotification note) {
         self.queryOrderedRecipesList();
     }
 }
