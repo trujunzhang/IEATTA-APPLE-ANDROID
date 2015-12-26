@@ -273,6 +273,7 @@ public class Photo extends ParseModelSync {
         return "Photo{" +
                 "objectUUID='" + objectUUID + '\'' +
                 ", usedRef='" + usedRef + '\'' +
+                ", restaurantRef='" + restaurantRef + '\'' +
                 ", thumbnailUrl='" + thumbnailUrl + '\'' +
                 ", originalUrl='" + originalUrl + '\'' +
                 ", usedType=" + usedType +
