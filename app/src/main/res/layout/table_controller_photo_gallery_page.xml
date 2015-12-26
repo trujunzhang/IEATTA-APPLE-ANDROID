@@ -11,8 +11,8 @@
         android:layout_height="match_parent" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80.0dip"
+        android:layout_height="80.0dip"
         android:text="@string/done"
         android:textColor="@color/white_on_black"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
