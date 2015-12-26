@@ -98,6 +98,7 @@
         <activity android:name=".modules.view.photogallery.PhotoGalleryPagerActivity"></activity>
 
         <activity android:name="com.desmond.squarecamera.CameraActivity" />
+        <activity android:name="com.desmond.squarecamera.RuntimePermissionActivity" />
 
     </application>
 
