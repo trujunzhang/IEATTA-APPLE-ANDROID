@@ -82,7 +82,6 @@ public class DBModelWriter {
         object.setDisplayName(model.displayName);
 
         object.setPrice(model.price);
-        object.setLikeCount(model.likeCount);
         object.setEventRef(model.eventRef);
         object.setOrderedPeopleRef(model.orderedPeopleRef);
     }

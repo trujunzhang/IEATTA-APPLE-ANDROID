@@ -15,7 +15,6 @@ public class DBRecipe extends RealmObject {
     private String displayName = "";
 
     private String price = "";
-    private int likeCount = 0;
 
     private String eventRef = "";
     private String orderedPeopleRef = "";
@@ -50,14 +49,6 @@ public class DBRecipe extends RealmObject {
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public int getLikeCount() {
-        return likeCount;
-    }
-
-    public void setLikeCount(int likeCount) {
-        this.likeCount = likeCount;
     }
 
     public String getEventRef() {

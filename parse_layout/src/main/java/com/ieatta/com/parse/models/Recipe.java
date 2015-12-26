@@ -26,13 +26,11 @@ public class Recipe extends ParseModelSync {
 
     // Field keys
     private static final String kPAPFieldPriceKey = "price";
-    private static final String kPAPFieldLikeCountKey = "likeCount";
 
     private static final String kPAPFieldEventRefKey = "eventRef";
     private static final String kPAPFieldOrderedPeopleRefKey = "orderedPeopleRef";
 
     public String price = "";
-    public int likeCount = 0;
 
     public String eventRef = "";
     public String orderedPeopleRef = "";
@@ -107,7 +105,6 @@ public class Recipe extends ParseModelSync {
 
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldPriceKey, this.price);
-        object.put(kPAPFieldLikeCountKey, this.likeCount);
         object.put(kPAPFieldEventRefKey, this.eventRef);
         object.put(kPAPFieldOrderedPeopleRefKey, this.orderedPeopleRef);
     }
@@ -122,11 +119,6 @@ public class Recipe extends ParseModelSync {
         Object thePrice = this.getValueFromObject(object, kPAPFieldPriceKey);
         if (thePrice != null) {
             this.price = (String) thePrice;
-        }
-
-        Object theLikeCount = this.getValueFromObject(object, kPAPFieldLikeCountKey);
-        if (theLikeCount != null) {
-            this.likeCount = (int) theLikeCount;
         }
 
         Object theEventRef = this.getValueFromObject(object, kPAPFieldEventRefKey);
@@ -193,7 +185,6 @@ public class Recipe extends ParseModelSync {
         return "Recipe{" +
                 "objectUUID='" + objectUUID + '\'' +
                 ", price=" + price +
-                ", likeCount=" + likeCount +
                 ", eventRef='" + eventRef + '\'' +
                 ", orderedPeopleRef='" + orderedPeopleRef + '\'' +
                 '}';
