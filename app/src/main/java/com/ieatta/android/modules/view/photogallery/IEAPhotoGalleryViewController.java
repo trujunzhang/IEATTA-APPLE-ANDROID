@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.desmond.squarecamera.CameraActivity;
 import com.desmond.squarecamera.ImageUtility;
+import com.desmond.squarecamera.TakenPhotoUtils;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEASplitDetailViewController;
@@ -191,13 +192,8 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         if (resultCode != RESULT_OK) return;
 
         if (requestCode == REQUEST_CAMERA) {
-            Uri photoUri = data.getData();
-
-            String path = photoUri.getPath();
-
             // Get the bitmap in according to the width of the device
-            Bitmap bitmap = ImageUtility.decodeSampledBitmapFromPath(photoUri.getPath(), mSize.x, mSize.x);
-//            ((ImageView) findViewById(R.id.image)).setImageBitmap(bitmap);
+            Bitmap bitmap = TakenPhotoUtils.bitmap;
             self.updatePhotoGalleryAfterTakePhoto(bitmap);
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -229,6 +225,8 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
                     if (task.isFaulted()) {
 //                        AppAlertView.showError(L10n.SavePhotoFailure.string)
                     }
+
+                    TakenPhotoUtils.bitmap = null;
                 }
                 return null;
             }

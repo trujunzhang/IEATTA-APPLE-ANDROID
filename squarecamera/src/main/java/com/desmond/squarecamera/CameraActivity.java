@@ -31,7 +31,7 @@ public class CameraActivity extends AppCompatActivity {
 
     public void returnPhotoUri(Uri uri) {
         Intent data = new Intent();
-        data.setData(uri);
+//        data.setData(uri);
 
         if (getParent() == null) {
             setResult(RESULT_OK, data);

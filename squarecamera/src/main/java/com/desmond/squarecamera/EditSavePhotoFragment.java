@@ -126,9 +126,10 @@ public class EditSavePhotoFragment extends Fragment {
                 ImageView photoImageView = (ImageView) view.findViewById(R.id.photo);
 
                 Bitmap bitmap = ((BitmapDrawable) photoImageView.getDrawable()).getBitmap();
-                Uri photoUri = ImageUtility.savePicture(getActivity(), bitmap);
+                TakenPhotoUtils.bitmap = bitmap;
+//                Uri photoUri = ImageUtility.savePicture(getActivity(), bitmap);
 
-                ((CameraActivity) getActivity()).returnPhotoUri(photoUri);
+                ((CameraActivity) getActivity()).returnPhotoUri(null);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
