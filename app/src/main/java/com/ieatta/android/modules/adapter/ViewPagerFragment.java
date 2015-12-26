@@ -93,18 +93,19 @@ public class ViewPagerFragment extends Fragment {
             self.imageView.setImage(ImageSource.bitmap(bitmap));
         }
 
-        photo.downloadCacheImageFromServer().onSuccess(new Continuation<Bitmap, Object>() {
-            @Override
-            public Object then(final Task<Bitmap> task) throws Exception {
-                mHandler.postDelayed(new Runnable() {
+        photo.downloadCacheImageFromServer()
+                .onSuccess(new Continuation<Bitmap, Object>() {
                     @Override
-                    public void run() {
-                        self.imageView.setImage(ImageSource.bitmap(CacheImageUtils.sharedInstance.getTakenPhoto(photo)));
+                    public Object then(final Task<Bitmap> task) throws Exception {
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                self.imageView.setImage(ImageSource.bitmap(CacheImageUtils.sharedInstance.getTakenPhoto(photo)));
+                            }
+                        }, 1);
+                        return null;
                     }
-                }, 1);
-                return null;
-            }
-        });
+                });
     }
 
     @Override
