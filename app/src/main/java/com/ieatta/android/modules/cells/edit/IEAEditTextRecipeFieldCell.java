@@ -1,13 +1,8 @@
 package com.ieatta.android.modules.cells.edit;
 
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.text.Spanned;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.widget.EditText;
 
 import com.ieatta.android.R;
@@ -20,12 +15,12 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 /**
  * Created by djzhang on 12/2/15.
  */
-public class IEAEditTextFieldCell extends IEAViewHolder {
+public class IEAEditTextRecipeFieldCell extends IEAViewHolder {
     public static CellType getType() {
-        return new CellType(IEAEditTextFieldCell.class, R.layout.edit_text_field_cell);
+        return new CellType(IEAEditTextRecipeFieldCell.class, R.layout.edit_text_recipe_field_cell);
     }
 
-    private IEAEditTextFieldCell self = this;
+    private IEAEditTextRecipeFieldCell self = this;
 
     @Override
     protected boolean shouldClickItem() {
@@ -40,7 +35,7 @@ public class IEAEditTextFieldCell extends IEAViewHolder {
     private EditText editText;
     private EditCellModel model;
 
-    public IEAEditTextFieldCell(View itemView) {
+    public IEAEditTextRecipeFieldCell(View itemView) {
         super(itemView);
 
         self.editText = (EditText) itemView.findViewById(R.id.editText);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.edit.IEAEditTextFieldCell;
+import com.ieatta.android.modules.cells.edit.IEAEditTextRecipeFieldCell;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
@@ -33,6 +34,8 @@ public class IEAEditRecipeViewController extends IEAEditBaseViewController {
         // Add rows for sections.
         self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), EditRecipeSection.sectionInformation.ordinal());
         self.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditRecipeSection.sectionInformation.ordinal());
+        // **** Important (just for android)****
+        self.setRegisterCellClassInSpecialRow(IEAEditTextRecipeFieldCell.getType(), EditRecipeSection.sectionInformation.ordinal(), 1);
     }
 
     @Override
