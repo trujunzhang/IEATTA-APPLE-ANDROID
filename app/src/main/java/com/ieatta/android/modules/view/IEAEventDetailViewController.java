@@ -149,6 +149,9 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     protected void didSelectPeople(NSNotification note) {
         // 1. Add selected people to tableview.
         ParseModelAbstract people = (ParseModelAbstract) note.anObject;
+        if(self.verifyExist(people) == true){
+            return;
+        }
 
         self.fetchedPeople.addFirst(people);
         self.addOrderedPeopleSection(self.fetchedPeople);
@@ -164,6 +167,16 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                 return null;
             }
         });
+    }
+
+    private boolean verifyExist(ParseModelAbstract people){
+        for(ParseModelAbstract model : self.fetchedPeople){
+            if(model.equals(people)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
