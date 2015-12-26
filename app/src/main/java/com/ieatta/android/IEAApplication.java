@@ -6,6 +6,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.apps.AppConfigure;
 import com.ieatta.com.parse.ParseAPI;
+import com.ieatta.com.parse.async.ParseAsyncTimer;
 import com.ieatta.com.parse.utils.cache.CacheImageUtils;
 
 /**

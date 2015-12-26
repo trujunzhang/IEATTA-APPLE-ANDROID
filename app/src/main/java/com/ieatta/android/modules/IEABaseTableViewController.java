@@ -45,6 +45,8 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     }
 
     public Task<Boolean> getPhotosForModelsTask(final Task<List<ParseModelAbstract>> previous) {
+        // **** Important ****
+        // ignore these tasks.
         // First of all, query relate photos task.
 //        return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous))
 //                .onSuccess(new Continuation<List<ParseModelAbstract>, Boolean>() {
