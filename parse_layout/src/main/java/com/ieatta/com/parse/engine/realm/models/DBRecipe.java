@@ -14,7 +14,7 @@ public class DBRecipe extends RealmObject {
     private Date objectCreatedDate = new Date();
     private String displayName = "";
 
-    private String cost = "";
+    private String price = "";
     private int likeCount = 0;
 
     private String eventRef = "";
@@ -44,12 +44,12 @@ public class DBRecipe extends RealmObject {
         this.displayName = displayName;
     }
 
-    public String getCost() {
-        return cost;
+    public String getPrice() {
+        return price;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public int getLikeCount() {

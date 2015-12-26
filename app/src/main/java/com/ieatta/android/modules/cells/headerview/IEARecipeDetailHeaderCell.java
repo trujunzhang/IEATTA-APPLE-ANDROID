@@ -71,7 +71,7 @@ public class IEARecipeDetailHeaderCell extends IEAViewHolder {
         self.model = (IEARecipeHeader) value;
 
         self.displayNameLabel.setText(model.model.displayName);
-        self.priceNameLabel.setText("$ " + model.model.cost);
+        self.priceNameLabel.setText("$ " + model.model.price);
 
         self.ratingImageView.queryRatingInReviewsByModel(self.model.model);
     }

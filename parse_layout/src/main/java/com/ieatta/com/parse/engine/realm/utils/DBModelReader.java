@@ -187,7 +187,7 @@ public class DBModelReader<T extends ParseModelAbstract> {
         object.objectCreatedDate = model.getObjectCreatedDate();
         object.displayName = model.getDisplayName();
 
-        object.cost = model.getCost();
+        object.price = model.getPrice();
         object.likeCount = model.getLikeCount();
         object.eventRef = model.getEventRef();
         object.orderedPeopleRef = model.getOrderedPeopleRef();

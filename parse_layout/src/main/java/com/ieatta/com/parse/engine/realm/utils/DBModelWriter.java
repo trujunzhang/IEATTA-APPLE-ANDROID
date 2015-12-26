@@ -81,7 +81,7 @@ public class DBModelWriter {
         object.setObjectCreatedDate(model.objectCreatedDate);
         object.setDisplayName(model.displayName);
 
-        object.setCost(model.cost);
+        object.setPrice(model.price);
         object.setLikeCount(model.likeCount);
         object.setEventRef(model.eventRef);
         object.setOrderedPeopleRef(model.orderedPeopleRef);

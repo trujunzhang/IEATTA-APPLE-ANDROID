@@ -25,13 +25,13 @@ public class Recipe extends ParseModelSync {
     private static final String kPAPClassKey = "Recipe";
 
     // Field keys
-    private static final String kPAPFieldCostKey = "cost";
+    private static final String kPAPFieldPriceKey = "price";
     private static final String kPAPFieldLikeCountKey = "likeCount";
 
     private static final String kPAPFieldEventRefKey = "eventRef";
     private static final String kPAPFieldOrderedPeopleRefKey = "orderedPeopleRef";
 
-    public String cost = "";
+    public String price = "";
     public int likeCount = 0;
 
     public String eventRef = "";
@@ -52,16 +52,16 @@ public class Recipe extends ParseModelSync {
         this.eventRef = ParseModelAbstract.getPoint(belongToModel.belongToModel);
     }
 
-    public Recipe(String displayName, String cost) {
+    public Recipe(String displayName, String price) {
         super();
         this.displayName = displayName;
-        this.cost = cost;
+        this.price = price;
     }
 
-    public Recipe(String displayName, String cost, int sampleFileName) {
+    public Recipe(String displayName, String price, int sampleFileName) {
         super();
         this.displayName = displayName;
-        this.cost = cost;
+        this.price = price;
         this.sampleFileName = sampleFileName;
     }
 
@@ -106,7 +106,7 @@ public class Recipe extends ParseModelSync {
 //        assert(this.orderedPeopleRef.isEmpty == false, "Must setup orderedPeopleRef.")
 
         object.put(kPAPFieldDisplayNameKey, this.displayName);
-        object.put(kPAPFieldCostKey, this.cost);
+        object.put(kPAPFieldPriceKey, this.price);
         object.put(kPAPFieldLikeCountKey, this.likeCount);
         object.put(kPAPFieldEventRefKey, this.eventRef);
         object.put(kPAPFieldOrderedPeopleRefKey, this.orderedPeopleRef);
@@ -119,9 +119,9 @@ public class Recipe extends ParseModelSync {
             this.displayName = (String) theName;
         }
 
-        Object theCost = this.getValueFromObject(object, kPAPFieldCostKey);
-        if (theCost != null) {
-            this.cost = (String) theCost;
+        Object thePrice = this.getValueFromObject(object, kPAPFieldPriceKey);
+        if (thePrice != null) {
+            this.price = (String) thePrice;
         }
 
         Object theLikeCount = this.getValueFromObject(object, kPAPFieldLikeCountKey);
@@ -192,7 +192,7 @@ public class Recipe extends ParseModelSync {
     public String printDescription() {
         return "Recipe{" +
                 "objectUUID='" + objectUUID + '\'' +
-                ", cost=" + cost +
+                ", price=" + price +
                 ", likeCount=" + likeCount +
                 ", eventRef='" + eventRef + '\'' +
                 ", orderedPeopleRef='" + orderedPeopleRef + '\'' +

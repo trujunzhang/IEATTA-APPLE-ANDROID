@@ -104,9 +104,9 @@ public enum IEAEditKey {
         }
     },
 
-    recipe_cost {
+    recipe_price {
         public String toString() {
-            return "recipe_cost";
+            return "recipe_price";
         }
     },
     add_Photo {

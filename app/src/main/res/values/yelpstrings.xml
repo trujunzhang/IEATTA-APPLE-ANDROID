@@ -444,7 +444,6 @@ Add a Business."</string>
     <string name="cool_vote">Cool</string>
     <string name="copied_to_clipboard">\"%1$s\" copied to clipboard</string>
     <string name="copyright">Copyright © 2008–%1$d Yelp Inc.</string>
-    <string name="cost">Cost</string>
     <string name="country">Country</string>
     <string name="create_account_gender">Select Gender</string>
     <string name="create_account_policy">By tapping \"Sign Up\", you agree to the ^1 and ^2</string>

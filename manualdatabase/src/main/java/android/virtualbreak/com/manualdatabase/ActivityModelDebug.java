@@ -43,7 +43,7 @@ public class ActivityModelDebug {
         recipe.objectUUID ="641619A3-9215-4DAA-9027-A5BCB7C65943";
 //                "B46474CD-FA02-4D7E-AE0F-B9439F4C8E8F";
         recipe.displayName = "Amazing sticky rice!";
-        recipe.cost = 1.2f;
+        recipe.price = "1.2";
 
         recipe.belongToModel = ActivityModelDebug.getOrderedPeople();
         return recipe;
