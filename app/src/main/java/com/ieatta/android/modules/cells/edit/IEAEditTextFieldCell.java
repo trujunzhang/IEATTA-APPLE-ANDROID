@@ -1,8 +1,13 @@
 package com.ieatta.android.modules.cells.edit;
 
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.widget.EditText;
 
 import com.ieatta.android.R;
@@ -47,7 +52,7 @@ public class IEAEditTextFieldCell extends IEAViewHolder {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                self.textFieldDidChange();
+                self.model.editValue = s.toString();
             }
 
             @Override
@@ -62,42 +67,12 @@ public class IEAEditTextFieldCell extends IEAViewHolder {
         self.model = (EditCellModel) value;
         self.editText.setText(self.model.editValue);
         self.editText.setHint(self.model.editPlaceHolderResId);
-    }
 
-
-    // MARK: EditingChanged
-    private void textFieldDidChange(){
-        String newValue = self.editText.getText().toString();
-
-        if(self.model.editKey == IEAEditKey.recipe_price){
-            if(verifyRecipePrice(newValue) == true){
-                return;
-            }
+        if (self.model.editKey == IEAEditKey.recipe_price) {
+            self.editText.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            EditTextLocker decimalEditTextLocker = new EditTextLocker(self.editText);
+            decimalEditTextLocker.limitFractionDigitsinDecimal(2);
         }
-        self.model.editValue = newValue;
-    }
-
-    private boolean verifyRecipePrice(String newValue) {
-
-        int MAX_LENGTH  = 8;
-
-        if(newValue.length() > 0) {
-            try {
-                Float aFloat = new Float(newValue);
-            } catch (NumberFormatException e) {
-                String value = self.editText.getText().toString().substring(self.editText.getText().toString().length()-1);
-                self.editText.setText(value);
-                return true;
-            }
-        }
-
-        if(newValue.length() > MAX_LENGTH){
-            String value = self.editText.getText().toString().substring(MAX_LENGTH);
-            self.editText.setText(value);
-            return true;
-        }
-
-        return false;
     }
 
 
