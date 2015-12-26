@@ -78,34 +78,80 @@ public class ViewPagerFragment extends Fragment {
     ///   2.1 When pushing to server, push original and thumbnail images to server.
     ///   2.2 When pushed successfully, delete offline original image.
     ///   3.  When pulling from server, just download a thumbnail image from server.
+//    private void showImage(final Photo photo) {
+//        Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
+//        if (image != null) {
+//            self.imageView.setImage(ImageSource.bitmap(image));
+//            return;
+//        }
+//
+//        image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
+//        if (image != null) {
+//            self.imageView.setImage(ImageSource.bitmap(image));
+//        } else {
+//            Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).zoom(720, 720).getBitmap();
+//            self.imageView.setImage(ImageSource.bitmap(bitmap));
+//        }
+//
+//        photo.downloadCacheImageFromServer()
+//                .onSuccess(new Continuation<Bitmap, Object>() {
+//                    @Override
+//                    public Object then(final Task<Bitmap> task) throws Exception {
+//                        mHandler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                self.imageView.setImage(ImageSource.bitmap(CacheImageUtils.sharedInstance.getTakenPhoto(photo)));
+//                            }
+//                        }, 1);
+//                        return null;
+//                    }
+//                });
+//    }
+
     private void showImage(final Photo photo) {
         Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
         if (image != null) {
-            self.imageView.setImage(ImageSource.bitmap(image));
+            self.showImage(image);
             return;
         }
 
         image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
         if (image != null) {
-            self.imageView.setImage(ImageSource.bitmap(image));
+            self.showImage(image);
         } else {
-            Bitmap bitmap = Thumbnail.create(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo)).zoom(560, 560).getBitmap();
-            self.imageView.setImage(ImageSource.bitmap(bitmap));
+            self.showImage(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo));
         }
 
         photo.downloadCacheImageFromServer()
                 .onSuccess(new Continuation<Bitmap, Object>() {
                     @Override
                     public Object then(final Task<Bitmap> task) throws Exception {
-                        mHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                self.imageView.setImage(ImageSource.bitmap(CacheImageUtils.sharedInstance.getTakenPhoto(photo)));
-                            }
-                        }, 1);
+                        self.showImage(CacheImageUtils.sharedInstance.getTakenPhoto(photo));
                         return null;
                     }
                 });
+    }
+
+    private void showImage(Bitmap image) {
+        self.setImageView(image).onSuccess(new Continuation<Bitmap, Object>() {
+            @Override
+            public Object then(final Task<Bitmap> task) throws Exception {
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        self.imageView.setImage(ImageSource.bitmap(task.getResult()));
+                    }
+                }, 1);
+                return null;
+            }
+        });
+
+    }
+
+    private Task<Bitmap> setImageView(Bitmap image) {
+        Bitmap bitmap = Thumbnail.create(image).zoom(1024, 1024).getBitmap();
+
+        return Task.forResult(bitmap);
     }
 
     @Override
