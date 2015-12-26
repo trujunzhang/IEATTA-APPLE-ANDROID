@@ -79,43 +79,57 @@ public class ViewPagerFragment extends Fragment {
     ///   2.2 When pushed successfully, delete offline original image.
     ///   3.  When pulling from server, just download a thumbnail image from server.
     private void showImage(final Photo photo) {
-        Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
-        if (image != null) {
-            self.showImage(image);
-            return;
-        }
 
-        image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
-        if (image != null) {
-            self.showImage(image);
-        } else {
-            self.showImage(ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo));
-        }
-
-        photo.downloadCacheImageFromServer()
-                .onSuccess(new Continuation<Bitmap, Object>() {
+        Task.forResult(true)
+                .onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
                     @Override
-                    public Object then(final Task<Bitmap> task) throws Exception {
-                        self.showImage(CacheImageUtils.sharedInstance.getTakenPhoto(photo));
-                        return null;
+                    public Task<Boolean> then(Task<Boolean> task) throws Exception {
+                        Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
+                        return self.showImage(image);
                     }
-                });
-    }
-
-    private void showImage(Bitmap image) {
-        self.setImageView(image).onSuccess(new Continuation<Bitmap, Object>() {
+                }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(Task<Boolean> task) throws Exception {
+                Bitmap image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
+                return self.showImage(image);
+            }
+        }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(Task<Boolean> task) throws Exception {
+                Bitmap image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
+                return self.showImage(image);
+            }
+        }).onSuccessTask(new Continuation<Boolean, Task<Bitmap>>() {
+            @Override
+            public Task<Bitmap> then(Task<Boolean> task) throws Exception {
+                return photo.downloadCacheImageFromServer();
+            }
+        }).onSuccess(new Continuation<Bitmap, Object>() {
             @Override
             public Object then(final Task<Bitmap> task) throws Exception {
+                Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
+                return self.showImage(image);
+            }
+        });
+    }
+
+    private Task<Boolean> showImage(Bitmap image) {
+        if (image == null) {
+            return Task.forResult(true);
+        }
+
+        return self.setImageView(image).onSuccessTask(new Continuation<Bitmap, Task<Boolean>>() {
+            @Override
+            public Task<Boolean> then(final Task<Bitmap> task) throws Exception {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         self.imageView.setImage(ImageSource.bitmap(task.getResult()));
                     }
                 }, 1);
-                return null;
+                return Task.forError(new Exception("Already found it"));
             }
         });
-
     }
 
     private Task<Bitmap> setImageView(Bitmap image) {
