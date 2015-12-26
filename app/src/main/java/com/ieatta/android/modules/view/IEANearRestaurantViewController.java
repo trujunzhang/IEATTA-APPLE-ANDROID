@@ -83,16 +83,17 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
         // TODO djzhang(test)
 //        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
-        Restaurant.queryNearRestaurants(geoPoint).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
-            @Override
-            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedRestaurants = task.getResult();
-                self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
+        Restaurant.queryNearRestaurants(geoPoint)
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+                    @Override
+                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        self.fetchedRestaurants = task.getResult();
+                        self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
-                // Next, fetch related photos
-                return self.getPhotosForModelsTask(task);
-            }
-        }).onSuccess(new Continuation<Boolean, Void>() {
+                        // Next, fetch related photos
+                        return self.getPhotosForModelsTask(task);
+                    }
+                }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
 

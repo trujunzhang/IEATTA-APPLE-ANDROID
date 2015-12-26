@@ -56,20 +56,21 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
         self.model = (SectionMoreReviewsFooterCellModel) value;
 
         // update UI
-        new Review(model.reviewForModel).queryReviewsCount().onSuccess(new Continuation<Integer, Object>() {
-            @Override
-            public Object then(Task<Integer> task) throws Exception {
-                final int count = task.getResult();
-                mHandler.postDelayed(new Runnable() {
+        new Review(model.reviewForModel).queryReviewsCount()
+                .onSuccess(new Continuation<Integer, Object>() {
                     @Override
-                    public void run() {
-                        self.configureButton(count);
-                    }
-                }, 1);
+                    public Object then(Task<Integer> task) throws Exception {
+                        final int count = task.getResult();
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                self.configureButton(count);
+                            }
+                        }, 1);
 
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
+                        return null;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted() == true) {

@@ -102,13 +102,14 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
     }
 
     protected void reloadPhotoGallery() {
-        self.queryPhotoGallery().onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
-            @Override
-            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.configurePhotoGallerySection(task);
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
+        self.queryPhotoGallery()
+                .onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+                    @Override
+                    public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        self.configurePhotoGallerySection(task);
+                        return null;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
@@ -209,18 +210,19 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
         final Photo newPhoto = Photo.getTakenPhotoInstance(self.getPageModel());
 
-        Photo.pinPhotoAndCacheImage(newPhoto, image).onSuccess(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                // 1. Update photoPoint cache.
-                IEACache.sharedInstance.setPhotoPoint(newPhoto);
+        Photo.pinPhotoAndCacheImage(newPhoto, image)
+                .onSuccess(new Continuation<Void, Object>() {
+                    @Override
+                    public Object then(Task<Void> task) throws Exception {
+                        // 1. Update photoPoint cache.
+                        IEACache.sharedInstance.setPhotoPoint(newPhoto);
 
-                // 2. Notify "TakenPhotoWasChanged".
-                NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelTakenPhotoNotification, newPhoto);
+                        // 2. Notify "TakenPhotoWasChanged".
+                        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelTakenPhotoNotification, newPhoto);
 
-                return null;
-            }
-        }).continueWith(new Continuation<Object, Object>() {
+                        return null;
+                    }
+                }).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {

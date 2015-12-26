@@ -154,7 +154,8 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         self.addOrderedPeopleSection(self.fetchedPeople);
 
         // 2. Save selected people to database
-        new PeopleInEvent(ParseModelAbstract.getPoint(people), ParseModelAbstract.getPoint(self.event)).saveTeam().continueWith(new Continuation<Void, Object>() {
+        new PeopleInEvent(ParseModelAbstract.getPoint(people), ParseModelAbstract.getPoint(self.event)).saveTeam().
+                continueWith(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted() == true) {

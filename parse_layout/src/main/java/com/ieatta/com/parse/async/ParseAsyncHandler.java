@@ -54,13 +54,14 @@ public class ParseAsyncHandler {
 
         // 1. Prepare tasks.
         this.didEndAsync = false;
-        this.PullObjectsFromServer().continueWith(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                self.endAsyncTasks(task.getError());
-                return null;
-            }
-        });
+        this.PullObjectsFromServer()
+                .continueWith(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        self.endAsyncTasks(task.getError());
+                        return null;
+                    }
+                });
     }
 
 

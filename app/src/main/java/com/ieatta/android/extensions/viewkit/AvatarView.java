@@ -82,29 +82,30 @@ public class AvatarView extends RoundedImageView {
     }
 
     public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {
-        return photo.getThumbanilImage().onSuccess(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                Object object = task;
-                final Bitmap bitmap = (Bitmap) task.getResult();
-                mHandler.postDelayed(new Runnable() {
+        return photo.getThumbanilImage()
+                .onSuccess(new Continuation() {
                     @Override
-                    public void run() {
-                        self.setImageBitmap(bitmap);
-                    }
-                }, 1);
+                    public Object then(Task task) throws Exception {
+                        Object object = task;
+                        final Bitmap bitmap = (Bitmap) task.getResult();
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                self.setImageBitmap(bitmap);
+                            }
+                        }, 1);
 
-                return null;
-            }
-        }).continueWith(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                if (task.isFaulted()) {
-                    self.configureAvatar(placeHolder);
-                    return null;
-                }
-                return null;
-            }
-        });
+                        return null;
+                    }
+                }).continueWith(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        if (task.isFaulted()) {
+                            self.configureAvatar(placeHolder);
+                            return null;
+                        }
+                        return null;
+                    }
+                });
     }
 }
