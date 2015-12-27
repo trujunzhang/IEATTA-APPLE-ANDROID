@@ -62,4 +62,5 @@ dependencies {
 
     compile project(':android-segmented-control')
     compile project(':subsampling-scale-image-view')
+    compile project(':MaterialEditText')
 }

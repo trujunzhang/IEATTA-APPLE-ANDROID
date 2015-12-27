@@ -4,15 +4,22 @@
     android:layout_width="fill_parent"
     android:layout_height="@dimen/Edit_Cell">
 
-    <EditText
+    <!--<EditText-->
+        <!--android:id="@+id/editText"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:layout_toLeftOf="@+id/activity_config_yelp_host_clear"-->
+        <!--android:layout_toRightOf="@+id/activity_config_host_label"-->
+        <!--android:hint="@string/Search_Hint_Event"-->
+        <!--android:textCursorDrawable="@drawable/search_box_cursor_green"-->
+        <!--android:textAppearance="@style/LargeText"-->
+        <!--android:textColor="@color/black_yoni" />-->
+
+
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/editText"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_toLeftOf="@+id/activity_config_yelp_host_clear"
-        android:layout_toRightOf="@+id/activity_config_host_label"
-        android:hint="@string/Search_Hint_Event"
-        android:textCursorDrawable="@drawable/search_box_cursor_green"
-        android:textAppearance="@style/LargeText"
-        android:textColor="@color/black_yoni" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Basic"/>
 
 </FrameLayout>

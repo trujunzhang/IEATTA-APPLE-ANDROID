@@ -9,5 +9,5 @@ include ':squarecamera'
 
 include ':android-segmented-control'
 
-
 include ':subsampling-scale-image-view'
+include ':MaterialEditText'
