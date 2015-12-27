@@ -45,9 +45,22 @@
                 android:id="@+id/toggle_camera_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:layout_margin="15.0dip"
                 android:contentDescription="@string/switch_cameras"
                 android:src="@drawable/camera_flip" />
+
+            <ImageView
+                android:id="@+id/flash_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="left"
+                android:layout_margin="@dimen/largeGapSize"
+                android:contentDescription="@string/flash_settings"
+                android:src="@drawable/camera_flash_icon" />
 
         </RelativeLayout>
     </FrameLayout>
