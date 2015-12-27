@@ -69,6 +69,7 @@ public class EditSavePhotoFragment extends Fragment {
         imageParameters.mIsPortrait =
                 getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
+        boolean mIsPortrait = this.getResources().getBoolean(R.bool.is_landscape);
 //        final View topView = view.findViewById(R.id.topView);
 //        if (imageParameters.mIsPortrait) {
 //            topView.getLayoutParams().height = imageParameters.mCoverHeight;
@@ -76,7 +77,7 @@ public class EditSavePhotoFragment extends Fragment {
 //            topView.getLayoutParams().width = imageParameters.mCoverWidth;
 //        }
 
-        rotatePicture(0, data, photoImageView);
+        rotatePicture(rotation, data, photoImageView);
 
         view.findViewById(R.id.save_photo).setOnClickListener(new View.OnClickListener() {
             @Override
