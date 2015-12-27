@@ -12,7 +12,7 @@
 
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/camera_tools_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,33 +42,40 @@
             android:minWidth="100.0dip"
             android:src="@drawable/selector_take_photo" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/flash"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="80.0dp"
+            android:layout_height="80.0dp"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
 
             <ImageView
                 android:id="@+id/flash_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/squarecamera__toggle_flash" />
+                android:src="@drawable/squarecamera__toggle_flash"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="false"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp" />
 
             <TextView
                 android:id="@+id/auto_flash_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="16dp"
                 android:layout_gravity="center_vertical"
                 android:text="Auto"
                 android:textColor="@android:color/white"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="false"
+                android:layout_alignLeft="@+id/flash_icon" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
