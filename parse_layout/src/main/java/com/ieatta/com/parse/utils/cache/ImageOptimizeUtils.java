@@ -47,14 +47,14 @@ public class ImageOptimizeUtils {
     }
 
     public static Bitmap generateOriginalImage(Bitmap anImage) {
-        Bitmap orignailImage = Thumbnail.create(anImage).centerCrop(560, 560).getBitmap();
+        Bitmap orignailImage = Thumbnail.create(anImage).zoom(560, 560).getBitmap();
 //        let orignailImage = anImage.resizedImageWithContentMode(.ScaleAspectFit, bounds: CGSizeMake(560.0, 560.0), interpolationQuality: .Medium)
 
         return orignailImage;
     }
 
     public static Bitmap generateThumbnailImage(Bitmap anImage) {
-        Bitmap thumbnailImage = Thumbnail.create(anImage).centerCrop(86, 86).getBitmap();
+        Bitmap thumbnailImage = Thumbnail.create(anImage).zoom(86, 86).getBitmap();
 //        let  = anImage.thumbnailImage(86, transparentBorder: 0, cornerRadius: 0, interpolationQuality: .Default)
 
         return thumbnailImage;
