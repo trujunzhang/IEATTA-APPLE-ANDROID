@@ -6,11 +6,6 @@
     android:background="#000000"
     tools:context="com.desmond.squarecamera.CameraFragment">
 
-    <!--<com.desmond.squarecamera.SquareCameraPreview-->
-    <!--android:id="@+id/camera_preview_view"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"/>-->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
