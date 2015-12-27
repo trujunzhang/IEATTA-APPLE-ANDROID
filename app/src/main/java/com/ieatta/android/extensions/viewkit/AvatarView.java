@@ -70,7 +70,6 @@ public class AvatarView extends RoundedImageView {
                 .onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
                     @Override
                     public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
-                        Object object = task;
                         List<ParseModelAbstract> taskResult = task.getResult();
                         ParseModelAbstract first = taskResult.get(0);
                         if (first != null) {
@@ -82,6 +81,8 @@ public class AvatarView extends RoundedImageView {
     }
 
     public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {
+        self.configureAvatar(placeHolder);
+
         return photo.getThumbanilImage()
                 .onSuccess(new Continuation() {
                     @Override
@@ -95,15 +96,6 @@ public class AvatarView extends RoundedImageView {
                             }
                         }, 1);
 
-                        return null;
-                    }
-                }).continueWith(new Continuation() {
-                    @Override
-                    public Object then(Task task) throws Exception {
-                        if (task.isFaulted()) {
-                            self.configureAvatar(placeHolder);
-                            return null;
-                        }
                         return null;
                     }
                 });
