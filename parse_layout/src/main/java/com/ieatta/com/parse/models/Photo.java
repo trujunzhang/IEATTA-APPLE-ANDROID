@@ -240,17 +240,18 @@ public class Photo extends ParseModelSync {
      */
     public static Task<Void> pinPhotoAndCacheImage(final Photo newPhoto, final Bitmap image) {
 
-        return OriginalImageUtils.sharedInstance.generateTakenPhoto(image, newPhoto).onSuccessTask(new Continuation<Bitmap, Task<Bitmap>>() {
-            @Override
-            public Task<Bitmap> then(Task<Bitmap> task) throws Exception {
-                return ThumbnailImageUtils.sharedInstance.generateTakenPhoto(image, newPhoto);
-            }
-        }).onSuccessTask(new Continuation<Bitmap, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Bitmap> task) throws Exception {
-                return newPhoto.saveInBackgroundWithNewRecord();
-            }
-        });
+        return OriginalImageUtils.sharedInstance.generateTakenPhoto(image, newPhoto)
+                .onSuccessTask(new Continuation<Bitmap, Task<Bitmap>>() {
+                    @Override
+                    public Task<Bitmap> then(Task<Bitmap> task) throws Exception {
+                        return ThumbnailImageUtils.sharedInstance.generateTakenPhoto(image, newPhoto);
+                    }
+                }).onSuccessTask(new Continuation<Bitmap, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Bitmap> task) throws Exception {
+                        return newPhoto.saveInBackgroundWithNewRecord();
+                    }
+                });
     }
 
     public static Photo getTakenPhotoInstance(ParseModelAbstract model) {
