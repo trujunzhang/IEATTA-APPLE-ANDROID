@@ -40,25 +40,29 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(self);
 
-        List<String> list = new LinkedList<>();
-        list.add("6825D75B-E4D5-4386-AA62-3D022B7A50B5");
-        list.add("1CE562A4-A978-4B75-9B7B-2F3CF9F42A04");
-        new Restaurant().queryParseModels(PQueryModelType.Restaurant, list).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
-            @Override
-            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
-                List<ParseModelAbstract> result = task.getResult();
-
-                int count = result.size();
-
-                return null;
-            }
-        });
+        self.queryBatchForRestaurants();
 
 //        self.setupPhotoGallerySection();
 
 //        self.showReviewSection();
 
-//        self.showContentView();
+        self.showContentView();
+    }
+
+    private void queryBatchForRestaurants() {
+        //        List<String> list = new LinkedList<>();
+//        list.add("6825D75B-E4D5-4386-AA62-3D022B7A50B5");
+//        list.add("1CE562A4-A978-4B75-9B7B-2F3CF9F42A04");
+//        new Restaurant().queryParseModels(PQueryModelType.Restaurant, list).onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+//            @Override
+//            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                List<ParseModelAbstract> result = task.getResult();
+//
+//                int count = result.size();
+//
+//                return null;
+//            }
+//        });
     }
 
     private void showReviewSection() {
@@ -75,8 +79,9 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
     }
 
     private void showContentView() {
-        self.setContentView(R.layout.read_reviews_header);
+//        self.setContentView(R.layout.read_reviews_header);
 //        self.configureReviewsSection(self.fetchedReviews);
+        self.setContentView(R.layout.activity_preview_photo);
     }
 
     protected int getReviewsSectionIndex() {
