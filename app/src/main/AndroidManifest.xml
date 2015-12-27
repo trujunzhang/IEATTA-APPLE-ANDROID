@@ -95,7 +95,7 @@
             android:name=".modules.view.posts.IEAWriteReviewViewController"
             android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".modules.view.photogallery.PhotoGalleryPagerActivity"></activity>
+        <activity android:name=".modules.view.photogallery.PhotoGalleryPagerActivity" android:screenOrientation="portrait"/>
 
         <activity android:name="com.desmond.squarecamera.CameraActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.desmond.squarecamera.RuntimePermissionActivity" />
