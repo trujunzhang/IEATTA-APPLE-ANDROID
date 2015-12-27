@@ -30,26 +30,25 @@
         </com.doctoror.aspectratiolayout.AspectRatioLayout>
     </RelativeLayout>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/save_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:background="@android:color/transparent"
+        android:background="@drawable/camera_shot"
         android:padding="10dp"
-        android:src="@drawable/squarecamera__save_photo_drawable" />
+        android:src="@drawable/camera_check_mark" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="16dp"
-        android:background="@android:color/transparent"
         android:onClick="onCancel"
         android:padding="10dp"
-        android:src="@drawable/squarecamera__cancel_drawable" />
+        android:src="@drawable/camera_close" />
 
 </RelativeLayout>
