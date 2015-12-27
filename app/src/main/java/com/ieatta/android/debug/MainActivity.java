@@ -81,7 +81,8 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
     private void showContentView() {
 //        self.setContentView(R.layout.read_reviews_header);
 //        self.configureReviewsSection(self.fetchedReviews);
-        self.setContentView(R.layout.activity_preview_photo);
+//        self.setContentView(R.layout.activity_preview_photo);
+        self.setContentView(R.layout.activity_take_photo);
     }
 
     protected int getReviewsSectionIndex() {
