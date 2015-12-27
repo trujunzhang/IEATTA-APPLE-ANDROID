@@ -71,13 +71,6 @@ public class EditTextLocker {
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-//			try {
-//				new Float(editText.getText().toString());
-//			} catch (NumberFormatException e) {
-//				startStopEditing(true);
-//				return;
-//			}
-
 			if (!editText.getText().toString().equalsIgnoreCase("")) {
 
 				String editTextString = editText.getText().toString().trim();
