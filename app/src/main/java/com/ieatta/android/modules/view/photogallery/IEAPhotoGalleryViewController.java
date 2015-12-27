@@ -50,7 +50,6 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 
     private static final int REQUEST_CAMERA = 0;
     private static final int REQUEST_CAMERA_PERMISSION = 1;
-    private Point mSize;
 
     protected Task fetchedPhotosTask = Task.forResult(new LinkedList<>());
 
@@ -65,10 +64,6 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
         if (self.havePhotoGallery() == true) {
 //            NSNotificationCenter.defaultCenter().addObserver(self, selector: "TakenPhotoWasChanged:", name: PAModelTakenPhotoNotification, object: nil)
             self.configurePhotoGallery();
-
-            Display display = getWindowManager().getDefaultDisplay();
-            mSize = new Point();
-            display.getSize(mSize);
         }
     }
 
