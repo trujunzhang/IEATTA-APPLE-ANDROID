@@ -82,18 +82,19 @@
         android:layout_width="80.0dp"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="false"
-        android:background="@android:color/holo_red_dark"
+        android:background="@android:color/transparent"
         android:padding="10dp"
         android:layout_alignParentRight="true">
 
         <ImageView
             android:id="@+id/change_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="80.0dip"
             android:layout_alignParentLeft="false"
             android:layout_centerVertical="true"
-            android:layout_margin="15.0dip"
+            android:layout_marginBottom="15.0dip"
             android:layout_weight="1"
+            android:scaleType="center"
             android:contentDescription="@string/switch_cameras"
             android:src="@drawable/camera_flip"
             android:layout_alignParentBottom="true" />
