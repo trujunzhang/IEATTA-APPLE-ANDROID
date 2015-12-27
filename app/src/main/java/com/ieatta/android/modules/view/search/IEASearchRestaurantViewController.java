@@ -128,5 +128,11 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
         self.queryNearRestaurant(self.keyword);
     }
 
+    @Override
+    protected void TakenPhotoWasChanged(NSNotification note) {
+        // **** Important(Just for Android) ****
+        self.queryNearRestaurant(self.keyword);
+    }
+
 
 }
