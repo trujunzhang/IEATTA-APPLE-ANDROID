@@ -1,16 +1,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:demo="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
     tools:context="com.desmond.squarecamera.EditSavePhotoFragment">
 
     <!--<com.desmond.squarecamera.SquareImageView-->
-        <!--android:id="@+id/photo"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scaleType="centerCrop"/>-->
+    <!--android:id="@+id/photo"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:scaleType="centerCrop"/>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,26 +36,32 @@
         </com.doctoror.aspectratiolayout.AspectRatioLayout>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75.0dip"
+        android:layout_alignParentBottom="true">
 
-    <ImageView
-        android:id="@+id/save_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/camera_check_mark"
-        android:background="@drawable/camera_shot"
-        android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:id="@+id/save_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
 
-    <ImageView
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:src="@drawable/camera_close"
-        android:onClick="onCancel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="16dp" />
+            android:background="@drawable/camera_shot"
+            android:padding="10dp"
+            android:src="@drawable/camera_check_mark" />
 
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="16dp"
+            android:onClick="onCancel"
+            android:padding="16dp"
+            android:src="@drawable/camera_close" />
+
+    </RelativeLayout>
 </RelativeLayout>
