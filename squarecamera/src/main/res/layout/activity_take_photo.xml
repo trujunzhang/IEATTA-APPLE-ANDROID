@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:demo="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context="com.desmond.squarecamera.CameraFragment">
 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#000000">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="75.0dip"
+        android:foregroundGravity="top">
 
         <com.doctoror.aspectratiolayout.AspectRatioLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             demo:aspect="1"
-            demo:aspectType="vertical">
+            demo:aspectType="vertical"
+            android:layout_centerVertical="true">
 
             <ImageView
                 android:id="@+id/camera_preview_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="top|center"
-                android:src="@drawable/rest01"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/rest01" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -65,49 +70,48 @@
             </FrameLayout>
 
         </com.doctoror.aspectratiolayout.AspectRatioLayout>
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/control_panel"
-            android:layout_width="fill_parent"
+    <RelativeLayout
+        android:id="@+id/control_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="60.0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="15.0dip"
+        android:minHeight="50.0dip"
+        android:padding="5.0dip">
+
+        <ImageView
+            android:id="@+id/capture_image_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="15.0dip"
-            android:minHeight="50.0dip"
-            android:padding="5.0dip">
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/take_photo"
+            android:minWidth="100.0dip"
+            android:src="@drawable/selector_take_photo" />
 
-            <ImageView
-                android:id="@+id/capture_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:contentDescription="@string/take_photo"
-                android:minWidth="100.0dip"
-                android:src="@drawable/selector_take_photo" />
+        <ImageView
+            android:id="@+id/change_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="15.0dip"
+            android:contentDescription="@string/switch_cameras"
+            android:src="@drawable/camera_flip" />
 
-            <ImageView
-                android:id="@+id/change_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="15.0dip"
-                android:contentDescription="@string/switch_cameras"
-                android:src="@drawable/camera_flip" />
+        <ImageView
+            android:id="@+id/flash_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="left"
+            android:layout_margin="@dimen/largeGapSize"
+            android:contentDescription="@string/flash_settings"
+            android:src="@drawable/camera_flash_icon" />
 
-            <ImageView
-                android:id="@+id/flash_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="left"
-                android:layout_margin="@dimen/largeGapSize"
-                android:contentDescription="@string/flash_settings"
-                android:src="@drawable/camera_flash_icon" />
+    </RelativeLayout>
 
-        </RelativeLayout>
-
-    </FrameLayout>
-
-
-</merge>
+</RelativeLayout>
