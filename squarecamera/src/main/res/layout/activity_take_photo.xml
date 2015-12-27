@@ -16,11 +16,13 @@
             demo:aspect="1"
             demo:aspectType="vertical">
 
-            <com.desmond.squarecamera.SquareCameraPreview
+            <ImageView
                 android:id="@+id/camera_preview_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="top|center"/>
+                android:layout_gravity="top|center"
+                android:src="@drawable/rest01"
+                android:scaleType="fitXY"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
