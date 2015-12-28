@@ -18,17 +18,11 @@ public interface ParseModelProtocol {
     String getParseTableName();
 
     // MARK: Save/Pin object methods.
-//    void writeCommonObject(ParseObject object);
-
     Task<Void> writeObject(ParseObject object);
-
     Task<Void> writeLocalObject(ParseObject object);
 
-//    void readCommonObject(ParseObject object);
-
-    Task<Void> readObject(ParseObject object);
-
-    Task<Void> readObjectLocal(ParseObject object);
+    void readObject(ParseObject object);
+    void readObjectLocal(ParseObject object);
 
     ParseACL getACL();
 

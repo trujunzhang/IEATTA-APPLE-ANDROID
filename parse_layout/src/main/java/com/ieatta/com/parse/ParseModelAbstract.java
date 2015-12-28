@@ -199,26 +199,16 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
                 });
     }
 
-    public abstract Task<Void> readCommonObject(ParseObject object);
+    public abstract void readCommonObject(ParseObject object);
 
-    public Task<Void> readObject(final ParseObject object) {
-        return this.readAbstractCommon(object)
-                .onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return self.readCommonObject(object);
-                    }
-                });
+    public void readObject(ParseObject object) {
+        this.readAbstractCommon(object);
+        this.readCommonObject(object);
     }
 
-    public Task<Void> readObjectLocal(final ParseObject object) {
-        return this.readAbstractCommon(object)
-                .onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return self.readCommonObject(object);
-                    }
-                });
+    public void readObjectLocal(ParseObject object) {
+        this.readAbstractCommon(object);
+        this.readCommonObject(object);
     }
 
     public ParseACL getACL() {
