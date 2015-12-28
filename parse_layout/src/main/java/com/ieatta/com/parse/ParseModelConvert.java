@@ -21,42 +21,6 @@ public abstract class ParseModelConvert extends ParseJsoner {
         super();
     }
 
-
-    public Task<ParseModelAbstract> convertToLocalModelTask(Task<ParseObject> firstObjectTask) {
-        ParseObject firstObject = firstObjectTask.getResult();
-        if (firstObject != null) {
-            this.readObjectLocal(firstObject);
-            return Task.forResult((ParseModelAbstract) self);
-        }
-
-//        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
-        return Task.forError(new NullPointerException("not found the first object"));
-    }
-
-    /**
-     * Convert fetched result's value as ParseObject array to Model array.
-     * <p/>
-     * - parameter value: result's value
-     * - parameter offline: offline is true,online is false
-     * <p/>
-     * - returns: ParseModelAbstract's array
-     */
-    public List<ParseModelAbstract> convertToParseModelArray(List<ParseObject> value, boolean offline) {
-        LinkedList<ParseModelAbstract> array = new LinkedList<>();
-
-        for (ParseObject object : value) {
-            ParseModelAbstract instance = this.getNewInstance();
-            if (offline == true) {
-                instance.readObjectLocal(object);
-            } else {
-                instance.readObject(object);
-            }
-            array.add(instance);
-        }
-
-        return array;
-    }
-
     public Task<List<ParseModelAbstract>> convertToParseModelsTask(Task<List<ParseObject>> previous, boolean offline) {
         List<ParseModelAbstract> array = new LinkedList<>();
 
@@ -75,11 +39,6 @@ public abstract class ParseModelConvert extends ParseJsoner {
 
     public ParseModelAbstract convertToLocalModel(Object object) {
         ParseModelAbstract instance = this.getNewInstance(); // Alloc a new instance.
-        instance.readObjectLocal((ParseObject) object);
-        return instance;
-    }
-
-    public static ParseModelAbstract convertToLocalModel(Object object, ParseModelAbstract instance) {
         instance.readObjectLocal((ParseObject) object);
         return instance;
     }
@@ -106,16 +65,5 @@ public abstract class ParseModelConvert extends ParseJsoner {
 //        return BFTask(error: NSError.getError(IEAErrorType.FirstObject, description: "\(this.printDescription())"))
         return Task.forError(new Exception(""));
     }
-
-
-//    //
-//    static public ParseModelAbstract convertToFirstLocalModel(Object result, ParseModelAbstract instance) {
-////        List<Object> array =  result;
-////        if (array.size() == 1) {
-////            return instance.convertToLocalModel(array.get(0));
-////        }
-//
-//        return null;
-//    }
 
 }
