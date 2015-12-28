@@ -156,8 +156,11 @@ public class Photo extends ParseModelSync {
         super.writeObject(object);
 
         // Special: Used only for the online object.
-        object.put(kPAPFieldOriginalImageKey, ImageOptimizeUtils.getPFFileForOrginalImage(this));
-        object.put(kPAPFieldThumbnailImageKey, ImageOptimizeUtils.getPFFileForThumbnailImage(this));
+        ParseFile orginalImageFile = ImageOptimizeUtils.getPFFileForOrginalImage(this);
+        ParseFile thumbnailImageFile = ImageOptimizeUtils.getPFFileForThumbnailImage(this);
+
+        object.put(kPAPFieldOriginalImageKey, orginalImageFile);
+        object.put(kPAPFieldThumbnailImageKey, thumbnailImageFile);
     }
 
     @Override

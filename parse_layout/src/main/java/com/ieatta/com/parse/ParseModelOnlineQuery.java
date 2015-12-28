@@ -94,17 +94,18 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
         // *** Important ***
         query.fromLocalDatastore();
 
-        return query.findInBackground().onSuccessTask(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                Object result = task.getResult();
-                LinkedList<ParseObject> objects = new LinkedList<ParseObject>((Collection<? extends ParseObject>) result);
-                if (objects.isEmpty() == false) {
-                    return objects.getFirst().unpinInBackground("Offline");
-                }
-                return Task.forResult(null);
-            }
-        });
+        return query.findInBackground()
+                .onSuccessTask(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        Object result = task.getResult();
+                        LinkedList<ParseObject> objects = new LinkedList<ParseObject>((Collection<? extends ParseObject>) result);
+                        if (objects.isEmpty() == false) {
+                            return objects.getFirst().unpinInBackground("Offline");
+                        }
+                        return Task.forResult(null);
+                    }
+                });
     }
 
     protected Task pinInBackground() {
@@ -115,12 +116,13 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
     }
 
     public static Task<List<ParseModelAbstract>> queryFromParse(final PQueryModelType type, ParseQuery query) {
-        return ParseModelOnlineQuery.findInBackgroundFromParse(query).onSuccessTask(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                return ((ParseModelConvert) ParseModelAbstract.getInstanceFromType(type)).convertToParseModelsTask(task, true);
-            }
-        });
+        return ParseModelOnlineQuery.findInBackgroundFromParse(query)
+                .onSuccessTask(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        return ((ParseModelConvert) ParseModelAbstract.getInstanceFromType(type)).convertToParseModelsTask(task, true);
+                    }
+                });
     }
 
     public static Task findInBackgroundFromParse(ParseQuery query) /*ParseModelAbstract*/ {
@@ -136,22 +138,23 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
         // *** Important ***
         query.fromLocalDatastore();
 
-        return query.findInBackground().onSuccessTask(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                LinkedList<ParseObject> list = new LinkedList<ParseObject>((Collection<? extends ParseObject>) task.getResult());
-                if (list.getFirst() != null) {
-                    ParseModelAbstract model = self.convertToLocalModel(list.getFirst());
-                    return Task.forResult(model);
-                }
+        return query.findInBackground()
+                .onSuccessTask(new Continuation() {
+                    @Override
+                    public Object then(Task task) throws Exception {
+                        LinkedList<ParseObject> list = new LinkedList<ParseObject>((Collection<? extends ParseObject>) task.getResult());
+                        if (list.getFirst() != null) {
+                            ParseModelAbstract model = self.convertToLocalModel(list.getFirst());
+                            return Task.forResult(model);
+                        }
 
-                // **** Important ****
-                // Here, return value is 'null' means that not found object.
-                // For example, if all newrecord objects already pushed to server.
-                // No NewRecord rows on the local table. So not found NewRecord here.
-                return Task.forResult(null);
-            }
-        });
+                        // **** Important ****
+                        // Here, return value is 'null' means that not found object.
+                        // For example, if all newrecord objects already pushed to server.
+                        // No NewRecord rows on the local table. So not found NewRecord here.
+                        return Task.forResult(null);
+                    }
+                });
 
     }
 

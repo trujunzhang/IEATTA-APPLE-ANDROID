@@ -139,7 +139,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
         return new NewRecord(getModelType(), this.objectUUID);
     }
 
-    // MARK: Support common methonds for writing ParseObject.
+    // MARK: Support common methods for writing ParseObject.
     public void writeAbstractCommon(ParseObject object) {
         this.checkAndMakeObjectUUID(object);
 
