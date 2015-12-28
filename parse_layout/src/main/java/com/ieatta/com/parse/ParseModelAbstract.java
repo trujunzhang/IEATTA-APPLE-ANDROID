@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
+import bolts.Continuation;
 import bolts.Task;
 
 /**
@@ -178,31 +179,46 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public abstract Task<Void> writeCommonObject(ParseObject object);
 
-    public Task<Void> writeObject(ParseObject object) {
-        this.writeAbstractCommon(object);
-        this.writeCommonObject(object);
-
-        return Task.forResult(null);
+    public Task<Void> writeObject(final ParseObject object) {
+        return this.writeAbstractCommon(object)
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return self.writeCommonObject(object);
+                    }
+                });
     }
 
-    public Task<Void> writeLocalObject(ParseObject object) {
-        this.writeAbstractCommon(object);
-        this.writeCommonObject(object);
-        return Task.forResult(null);
+    public Task<Void> writeLocalObject(final ParseObject object) {
+        return this.writeAbstractCommon(object)
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return self.writeCommonObject(object);
+                    }
+                });
     }
 
     public abstract Task<Void> readCommonObject(ParseObject object);
 
-    public Task<Void> readObject(ParseObject object) {
-        this.readAbstractCommon(object);
-        this.readCommonObject(object);
-        return Task.forResult(null);
+    public Task<Void> readObject(final ParseObject object) {
+        return this.readAbstractCommon(object)
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return self.readCommonObject(object);
+                    }
+                });
     }
 
-    public Task<Void> readObjectLocal(ParseObject object) {
-        this.readAbstractCommon(object);
-        this.readCommonObject(object);
-        return Task.forResult(null);
+    public Task<Void> readObjectLocal(final ParseObject object) {
+        return this.readAbstractCommon(object)
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return self.readCommonObject(object);
+                    }
+                });
     }
 
     public ParseACL getACL() {
