@@ -155,14 +155,17 @@ public class Photo extends ParseModelSync {
 
     @Override
     public Task<Void> writeObject(final ParseObject object) {
-        super.writeObject(object);
-
         // Special: Used only for the online object.
         final ParseFile orginalImageFile = ImageOptimizeUtils.getPFFileForOrginalImage(this);
         final ParseFile thumbnailImageFile = ImageOptimizeUtils.getPFFileForThumbnailImage(this);
 
-        return orginalImageFile.saveInBackground()
+        return super.writeObject(object)
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return orginalImageFile.saveInBackground();
+                    }
+                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
                         return thumbnailImageFile.saveInBackground();
@@ -180,14 +183,18 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public Task<Void> writeLocalObject(ParseObject object) {
-        super.writeLocalObject(object);
+    public Task<Void> writeLocalObject(final ParseObject object) {
+        return super.writeLocalObject(object)
+                .onSuccess(new Continuation<Void, Void>() {
+                    @Override
+                    public Void then(Task<Void> task) throws Exception {
+                        // Special: Used only for the offline object.
+                        object.put(kPAPFieldOriginalUrlKey, self.originalUrl);
+                        object.put(kPAPFieldThumbnailUrlKey, self.thumbnailUrl);
 
-        // Special: Used only for the offline object.
-        object.put(kPAPFieldOriginalUrlKey, this.originalUrl);
-        object.put(kPAPFieldThumbnailUrlKey, this.thumbnailUrl);
-
-        return Task.forResult(null);
+                        return null;
+                    }
+                });
     }
 
     @Override
@@ -211,38 +218,48 @@ public class Photo extends ParseModelSync {
     }
 
     @Override
-    public Task<Void> readObject(ParseObject object) {
-        super.readObject(object);
+    public Task<Void> readObject(final ParseObject object) {
+        return super.readObject(object)
+                .onSuccess(new Continuation<Void, Void>() {
+                    @Override
+                    public Void then(Task<Void> task) throws Exception {
 
-        // Special: Used only for the online object.
-        Object _originalFile = this.getValueFromObject(object, kPAPFieldOriginalImageKey);
-        if (_originalFile != null) {
-            this.originalUrl = ((ParseFile) _originalFile).getUrl();
-        }
+                        // Special: Used only for the online object.
+                        Object _originalFile = self.getValueFromObject(object, kPAPFieldOriginalImageKey);
+                        if (_originalFile != null) {
+                            self.originalUrl = ((ParseFile) _originalFile).getUrl();
+                        }
 
-        Object _thumbnailFile = this.getValueFromObject(object, kPAPFieldThumbnailImageKey);
-        if (_thumbnailFile != null) {
-            this.thumbnailUrl = ((ParseFile) _thumbnailFile).getUrl();
-        }
+                        Object _thumbnailFile = self.getValueFromObject(object, kPAPFieldThumbnailImageKey);
+                        if (_thumbnailFile != null) {
+                            self.thumbnailUrl = ((ParseFile) _thumbnailFile).getUrl();
+                        }
 
-        return Task.forResult(null);
+                        return null;
+                    }
+                });
     }
 
     @Override
-    public Task<Void> readObjectLocal(ParseObject object) {
-        super.readObjectLocal(object);
+    public Task<Void> readObjectLocal(final ParseObject object) {
+        return super.readObjectLocal(object)
+                .onSuccess(new Continuation<Void, Void>() {
+                    @Override
+                    public Void then(Task<Void> task) throws Exception {
 
-        // Special: Used only for the offline object.
-        Object _originalUrl = this.getValueFromObject(object, kPAPFieldOriginalUrlKey);
-        if (_originalUrl != null) {
-            this.originalUrl = (String) _originalUrl;
-        }
-        Object _thumbnailUrl = this.getValueFromObject(object, kPAPFieldThumbnailUrlKey);
-        if (_thumbnailUrl != null) {
-            this.thumbnailUrl = (String) _thumbnailUrl;
-        }
+                        // Special: Used only for the offline object.
+                        Object _originalUrl = self.getValueFromObject(object, kPAPFieldOriginalUrlKey);
+                        if (_originalUrl != null) {
+                            self.originalUrl = (String) _originalUrl;
+                        }
+                        Object _thumbnailUrl = self.getValueFromObject(object, kPAPFieldThumbnailUrlKey);
+                        if (_thumbnailUrl != null) {
+                            self.thumbnailUrl = (String) _thumbnailUrl;
+                        }
 
-        return Task.forResult(null);
+                        return null;
+                    }
+                });
     }
 
     public static Task<List<ParseModelAbstract>> queryPhotosByRestaurant(Restaurant restaurant) {
