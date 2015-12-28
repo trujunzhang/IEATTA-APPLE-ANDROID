@@ -84,14 +84,16 @@ public class Team extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public Task<Void> writeCommonObject(ParseObject object) {
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldEmailKey, this.email);
         object.put(kPAPFieldAddressKey, this.address);
+
+        return Task.forResult(null);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public Task<Void> readCommonObject(ParseObject object) {
         Object theDisplayName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theDisplayName != null) {
             this.displayName = (String) theDisplayName;
@@ -106,6 +108,8 @@ public class Team extends ParseModelSync {
         if (theAddress != null) {
             this.address = (String) theAddress;
         }
+
+        return Task.forResult(null);
     }
 
     @Override

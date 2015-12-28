@@ -157,7 +157,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     // MARK: Support common methonds for reading ParseObject.
 
-    public void readAbstractCommon(ParseObject object) {
+    public Task<Void> readAbstractCommon(ParseObject object) {
         Object theObjectUUID = this.getValueFromObject(object, kPAPFieldObjectUUIDKey);
         if (theObjectUUID != null) {
             this.objectUUID = (String) theObjectUUID;
@@ -171,30 +171,35 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
             int type = (int) theModelFlag;
             this.modelFlag = ParseModelFlag.fromInteger(type);
         }
+        return Task.forResult(null);
     }
 
-    public abstract void writeCommonObject(ParseObject object);
+    public abstract Task<Void> writeCommonObject(ParseObject object);
 
-    public void writeObject(ParseObject object) {
+    public Task<Void> writeObject(ParseObject object) {
         this.writeAbstractCommon(object);
         this.writeCommonObject(object);
+        return Task.forResult(null);
     }
 
-    public void writeLocalObject(ParseObject object) {
+    public Task<Void> writeLocalObject(ParseObject object) {
         this.writeAbstractCommon(object);
         this.writeCommonObject(object);
+        return Task.forResult(null);
     }
 
-    public abstract void readCommonObject(ParseObject object);
+    public abstract Task<Void> readCommonObject(ParseObject object);
 
-    public void readObject(ParseObject object) {
+    public Task<Void> readObject(ParseObject object) {
         this.readAbstractCommon(object);
         this.readCommonObject(object);
+        return Task.forResult(null);
     }
 
-    public void readObjectLocal(ParseObject object) {
+    public Task<Void> readObjectLocal(ParseObject object) {
         this.readAbstractCommon(object);
         this.readCommonObject(object);
+        return Task.forResult(null);
     }
 
     public ParseACL getACL() {

@@ -95,16 +95,18 @@ public class Review extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public Task<Void> writeCommonObject(ParseObject object) {
         object.put(kPAPFieldContentKey, this.content);
         object.put(kPAPFieldRateKey, this.rate);
         object.put(kPAPFieldUserRefKey, this.userRef);
         object.put(kPAPFieldReviewRefKey, this.reviewRef);
         object.put(kPAPFieldReviewTypeKey, ReviewType.getInt(this.reviewType)); // *** Important ***
+
+        return Task.forResult(null);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public Task<Void> readCommonObject(ParseObject object) {
         Object theContent = this.getValueFromObject(object, kPAPFieldContentKey);
         if (theContent != null) {
             this.content = (String) theContent;
@@ -128,6 +130,8 @@ public class Review extends ParseModelSync {
         if (theReviewType != null) {
             this.reviewType = ReviewType.fromInteger(((int) theReviewType));
         }
+
+        return Task.forResult(null);
     }
 
     @Override

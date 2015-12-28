@@ -99,7 +99,7 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public Task<Void> writeCommonObject(ParseObject object) {
 //        assert(this.eventRef.isEmpty == false, "Must setup eventRef.")
 //        assert(this.orderedPeopleRef.isEmpty == false, "Must setup orderedPeopleRef.")
 
@@ -107,10 +107,12 @@ public class Recipe extends ParseModelSync {
         object.put(kPAPFieldPriceKey, this.price);
         object.put(kPAPFieldEventRefKey, this.eventRef);
         object.put(kPAPFieldOrderedPeopleRefKey, this.orderedPeopleRef);
+
+        return Task.forResult(null);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public Task<Void> readCommonObject(ParseObject object) {
         Object theName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theName != null) {
             this.displayName = (String) theName;
@@ -130,6 +132,8 @@ public class Recipe extends ParseModelSync {
         if (theOrderedPeopleRef != null) {
             this.orderedPeopleRef = (String) theOrderedPeopleRef;
         }
+
+        return Task.forResult(null);
     }
 
     @Override

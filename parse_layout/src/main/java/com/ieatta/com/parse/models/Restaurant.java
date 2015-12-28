@@ -95,14 +95,16 @@ public class Restaurant extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public Task<Void> writeCommonObject(ParseObject object) {
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldLocationKey, this.location);
         object.put(kPAPFieldAddressKey, this.googleMapAddress);
+
+        return Task.forResult(null);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public Task<Void> readCommonObject(ParseObject object) {
         Object theDisplayName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theDisplayName != null) {
             this.displayName = (String) theDisplayName;
@@ -117,6 +119,8 @@ public class Restaurant extends ParseModelSync {
         if (theAddress != null) {
             this.googleMapAddress = (String) theAddress;
         }
+
+        return Task.forResult(null);
     }
 
     @Override

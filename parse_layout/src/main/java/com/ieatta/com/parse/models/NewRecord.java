@@ -9,6 +9,8 @@ import com.parse.ParseObject;
 
 import java.util.Date;
 
+import bolts.Task;
+
 /**
  * Created by djzhang on 11/27/15.
  */
@@ -65,13 +67,15 @@ public class NewRecord extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public Task<Void> writeCommonObject(ParseObject object) {
         object.put(kPAPFieldModelTypeKey, PQueryModelType.getInt(this.modelType));// ***Important***
         object.put(kPAPFieldModelPointKey, this.modelPoint);
+
+        return Task.forResult(null);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public Task<Void> readCommonObject(ParseObject object) {
         Object theModelType = this.getValueFromObject(object, kPAPFieldModelTypeKey);
         if (theModelType != null) {
             this.modelType = PQueryModelType.fromInteger(((int) theModelType));
@@ -81,6 +85,8 @@ public class NewRecord extends ParseModelSync {
         if (theModelPoint != null) {
             this.modelPoint = (String) theModelPoint;
         }
+
+        return Task.forResult(null);
     }
 
 

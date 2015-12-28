@@ -64,13 +64,15 @@ public class PeopleInEvent extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public Task<Void> writeCommonObject(ParseObject object) {
         object.put(kPAPFieldUserKey, this.userRef);
         object.put(kPAPFieldEventKey, this.eventRef);
+
+        return Task.forResult(null);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public Task<Void> readCommonObject(ParseObject object) {
         Object theUserRef = this.getValueFromObject(object, kPAPFieldUserKey);
         if (theUserRef != null) {
             this.userRef = (String) theUserRef;
@@ -79,6 +81,8 @@ public class PeopleInEvent extends ParseModelSync {
         if (theEventRef != null) {
             this.eventRef = (String) theEventRef;
         }
+
+        return Task.forResult(null);
     }
 
     @Override

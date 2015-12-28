@@ -111,7 +111,7 @@ public class Event extends ParseModelSync {
     }
 
     @Override
-    public void writeCommonObject(ParseObject object) {
+    public Task<Void> writeCommonObject(ParseObject object) {
         Assertions.assertNotEmpty(this.restaurantRef, "Must setup restaurantRef.");
 
         object.put(kPAPFieldDisplayNameKey, this.displayName);
@@ -124,10 +124,12 @@ public class Event extends ParseModelSync {
         object.put(kPAPFieldRemarksKey, this.remarks);
 
         object.put(kPAPFieldLocalRestaurantKey, this.restaurantRef);
+
+        return Task.forResult(null);
     }
 
     @Override
-    public void readCommonObject(ParseObject object) {
+    public Task<Void> readCommonObject(ParseObject object) {
         Object theRestaurantRef = this.getValueFromObject(object, kPAPFieldLocalRestaurantKey);
         if (theRestaurantRef != null) {
             this.restaurantRef = (String) theRestaurantRef;
@@ -162,6 +164,8 @@ public class Event extends ParseModelSync {
         if (theRemarks != null) {
             this.remarks = (String) theRemarks;
         }
+
+        return Task.forResult(null);
     }
 
     @Override
