@@ -108,11 +108,16 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
                 });
     }
 
-    protected Task pinInBackground() {
-        ParseObject object = makeObject();
-        self.writeLocalObject(object);
+    protected Task<Void> pinInBackground() {
+        final ParseObject object = makeObject();
 
-        return object.pinInBackground("Offline");
+        return self.writeLocalObject(object)
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Void> task) throws Exception {
+                        return object.pinInBackground("Offline");
+                    }
+                });
     }
 
     public static Task<List<ParseModelAbstract>> queryFromParse(final PQueryModelType type, ParseQuery query) {
