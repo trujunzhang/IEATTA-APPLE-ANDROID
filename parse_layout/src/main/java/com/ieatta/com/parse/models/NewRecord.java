@@ -75,7 +75,7 @@ public class NewRecord extends ParseModelSync {
     }
 
     @Override
-    public Task<Void> readCommonObject(ParseObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theModelType = this.getValueFromObject(object, kPAPFieldModelTypeKey);
         if (theModelType != null) {
             this.modelType = PQueryModelType.fromInteger(((int) theModelType));
@@ -85,8 +85,6 @@ public class NewRecord extends ParseModelSync {
         if (theModelPoint != null) {
             this.modelPoint = (String) theModelPoint;
         }
-
-        return Task.forResult(null);
     }
 
 

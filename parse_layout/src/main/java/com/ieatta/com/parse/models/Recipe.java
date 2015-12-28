@@ -112,7 +112,7 @@ public class Recipe extends ParseModelSync {
     }
 
     @Override
-    public Task<Void> readCommonObject(ParseObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theName = this.getValueFromObject(object, kPAPFieldDisplayNameKey);
         if (theName != null) {
             this.displayName = (String) theName;
@@ -132,8 +132,6 @@ public class Recipe extends ParseModelSync {
         if (theOrderedPeopleRef != null) {
             this.orderedPeopleRef = (String) theOrderedPeopleRef;
         }
-
-        return Task.forResult(null);
     }
 
     @Override

@@ -129,7 +129,7 @@ public class Event extends ParseModelSync {
     }
 
     @Override
-    public Task<Void> readCommonObject(ParseObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theRestaurantRef = this.getValueFromObject(object, kPAPFieldLocalRestaurantKey);
         if (theRestaurantRef != null) {
             this.restaurantRef = (String) theRestaurantRef;
@@ -164,8 +164,6 @@ public class Event extends ParseModelSync {
         if (theRemarks != null) {
             this.remarks = (String) theRemarks;
         }
-
-        return Task.forResult(null);
     }
 
     @Override

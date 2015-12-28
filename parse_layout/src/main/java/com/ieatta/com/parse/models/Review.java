@@ -106,7 +106,7 @@ public class Review extends ParseModelSync {
     }
 
     @Override
-    public Task<Void> readCommonObject(ParseObject object) {
+    public void readCommonObject(ParseObject object) {
         Object theContent = this.getValueFromObject(object, kPAPFieldContentKey);
         if (theContent != null) {
             this.content = (String) theContent;
@@ -130,8 +130,6 @@ public class Review extends ParseModelSync {
         if (theReviewType != null) {
             this.reviewType = ReviewType.fromInteger(((int) theReviewType));
         }
-
-        return Task.forResult(null);
     }
 
     @Override
