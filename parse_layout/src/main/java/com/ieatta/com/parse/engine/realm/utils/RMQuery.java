@@ -46,7 +46,6 @@ public class RMQuery<T extends RealmObject> {
     }
 
     public Task<Void> updateLocalInBackground() {
-
         return Task.forResult(null);
     }
 
