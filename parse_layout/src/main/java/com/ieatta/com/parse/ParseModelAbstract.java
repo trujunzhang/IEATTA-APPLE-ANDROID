@@ -140,11 +140,13 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     }
 
     // MARK: Support common methods for writing ParseObject.
-    public void writeAbstractCommon(ParseObject object) {
+    public Task<Void> writeAbstractCommon(ParseObject object) {
         this.checkAndMakeObjectUUID(object);
 
         object.put(kPAPFieldObjectCreatedDateKey, this.objectCreatedDate);
         object.put(kPAPFieldFlagKey, ParseModelFlag.getInt(this.modelFlag));
+
+        return Task.forResult(null);
     }
 
     public void checkAndMakeObjectUUID(ParseObject object) {
@@ -179,6 +181,7 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     public Task<Void> writeObject(ParseObject object) {
         this.writeAbstractCommon(object);
         this.writeCommonObject(object);
+
         return Task.forResult(null);
     }
 
