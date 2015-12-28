@@ -17,7 +17,7 @@ public class DBObject extends Object {
     }
 
     public static Task<Void> pinInBackground(ParseModelAbstract model) {
-        return DBAccessUtils.pinInBackground(model);
+        return new DBAccessUtils().pinInBackground(model);
     }
 
 }

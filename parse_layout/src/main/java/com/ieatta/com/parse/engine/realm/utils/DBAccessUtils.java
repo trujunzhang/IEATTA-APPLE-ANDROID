@@ -24,24 +24,32 @@ import io.realm.RealmResults;
  * Created by djzhang on 12/20/15.
  */
 public class DBAccessUtils {
-    public static Task<Void> pinInBackground(ParseModelAbstract model) {
-        DBAccessUtils.save(model);
+    public Task<Void> pinInBackground(ParseModelAbstract model) {
+        this.save(model);
         return Task.forResult(null);
     }
 
-    private static void save(ParseModelAbstract model) {
+    private Task<Void> save(ParseModelAbstract model) {
         // Obtain a Realm instance
         Realm realm = Realm.getInstance(EnvironmentUtils.sharedInstance.getGlobalContext());
 
-        realm.beginTransaction();
+        try {
+            realm.beginTransaction();
 
-        //... add or update objects here ...
-        DBAccessUtils.write(realm, model);
+            // add or update objects here ...
+            this.write(realm, model);
 
-        realm.commitTransaction();
+            realm.commitTransaction();
+        } catch (Exception e) {
+            return Task.forError(e);
+        } finally {
+            realm.close();
+        }
+
+        return Task.forResult(null);
     }
 
-    private static void write(Realm realm, ParseModelAbstract model) {
+    private void write(Realm realm, ParseModelAbstract model) {
         PQueryModelType modelType = model.getModelType();
         switch (modelType) {
             case Recipe:

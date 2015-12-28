@@ -19,7 +19,7 @@ public class ParseAPI {
         // Add your initialization code here
 //        Parse.initialize(context,"VCaFXiKwdCYUkY9fOe1gK4lcmvexwXPjEt6r0txq","DcqY8cnikXrRaYwteQyCX4lkN3ksrhROBXuarXpB");
 
-        Parse.initialize(context, "bcwWGZyvIk12XUrwt8SlbDkjXLUbgCaPwcpx4OPm", "TEZrjIeD91vJmL0kNWLUZaqUTSEivAPJuvMXK2B5");
+        Parse.initialize(context, "vANr44QeHS3cbuKZto7KCyUQqHIgnRJkTYmOWNK1", "D26jBzOFW6VlUhJ5njv8VFzJlwHkZNtbU27aR6KJ");
 
         ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
