@@ -33,7 +33,7 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
     }
 
     public void testConstructor() throws Exception {
-        ParseJsoner.readJsonFile(PQueryModelType.Event);
+        ParseJsoner.parseJsonFileToArray(PQueryModelType.Event);
     }
 
 

@@ -3,11 +3,15 @@ package com.ieatta.com.parse;
 import android.content.res.AssetManager;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
+
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +44,16 @@ public abstract class ParseJsoner extends ParseModelAbstract {
             return Task.forError(new NullPointerException("not found json file for "+name));
         }
 
+        JsonElement rootElement = (((JsonObject) jsonElement).get("results"));
+        JsonArray results = rootElement.getAsJsonArray();
+        for(JsonElement element :results){
+            JsonObject item = element.getAsJsonObject();
+
+            ParseModelAbstract instance = ParseModelAbstract.getInstanceFromType(type);
+            instance.parseJson(item);
+        }
+
+        JsonObject object = results.get(0).getAsJsonObject();
 
         return Task.forResult(list);
     }

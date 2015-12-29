@@ -3,6 +3,7 @@ package com.ieatta.com.parse;
 import android.graphics.Bitmap;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.google.gson.JsonObject;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -13,9 +14,14 @@ import com.lukazakrajsek.timeago.TimeAgo;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.SimpleTimeZone;
 import java.util.UUID;
 
 import bolts.Continuation;
@@ -297,4 +303,18 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     }
 
 
+    public void parseJson(JsonObject json) {
+        self.objectUUID = json.get(kPAPFieldObjectUUIDKey).getAsString();
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        format.setTimeZone(new SimpleTimeZone(0, "GMT"));
+        try {
+            String objectCreateDateString = json.get(kPAPFieldObjectCreatedDateKey).getAsString();
+            self.objectCreatedDate  = format.parse(objectCreateDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        self.modelFlag = ParseModelFlag.fromInteger(json.get(kPAPFieldFlagKey).getAsInt());
+    }
 }
