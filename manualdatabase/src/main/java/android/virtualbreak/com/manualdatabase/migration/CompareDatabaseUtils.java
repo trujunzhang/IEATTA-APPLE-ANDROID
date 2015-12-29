@@ -59,15 +59,19 @@ public class CompareDatabaseUtils {
             if (newRecord.modelType != PQueryModelType.Photo) {
                 continue;
             }
-            if (containedInPhoto(model, fetchedPhoto)) {
+            if (containedInPhoto(newRecord, fetchedPhoto)) {
 
             }
         }
     }
 
-    private boolean containedInPhoto(ParseModelAbstract jsonModel, List<ParseModelAbstract> fetchedPhoto) {
+    private boolean containedInPhoto(NewRecord jsonModel, List<ParseModelAbstract> fetchedPhoto) {
         for (ParseModelAbstract model : fetchedPhoto) {
-            if (model.equals(jsonModel)) {
+            if (ParseModelAbstract.getPoint(model).equals(jsonModel.modelPoint)) {
+                if(jsonModel.modelPoint.contains("69418898")){
+                    int x = 0;
+                    PQueryModelType modelType = jsonModel.modelType;
+                }
                 return true;
             }
         }
