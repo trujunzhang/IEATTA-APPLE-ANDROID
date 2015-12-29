@@ -24,7 +24,7 @@ import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.MemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
@@ -72,9 +72,11 @@ public class DefaultConfigurationFactory {
 		return Executors.newCachedThreadPool(createThreadFactory(Thread.NORM_PRIORITY, "uil-pool-d-"));
 	}
 
-	/** Creates {@linkplain HashCodeFileNameGenerator default implementation} of FileNameGenerator */
+	/** Creates {@linkplain Md5FileNameGenerator default implementation} of FileNameGenerator */
 	public static FileNameGenerator createFileNameGenerator() {
-		return new HashCodeFileNameGenerator();
+		// **** Important ****
+		// Md5 Generator for IEATTA.
+		return new Md5FileNameGenerator();
 	}
 
 	/**
