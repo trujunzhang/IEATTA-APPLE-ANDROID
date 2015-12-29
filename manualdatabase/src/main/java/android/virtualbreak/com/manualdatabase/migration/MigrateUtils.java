@@ -17,16 +17,16 @@ import bolts.Task;
  */
 public class MigrateUtils {
 
-    private Task<Void> migrateAllTables(){
-        PQueryModelType[] types  = {
-            PQueryModelType.Recipe,
-                                        PQueryModelType.Photo,
-                                        PQueryModelType.Team,
-                                        PQueryModelType.Review,
-                                        PQueryModelType.Event,
-                                        PQueryModelType.Restaurant,
-                                    PQueryModelType.NewRecord,
-                                        PQueryModelType.PeopleInEvent,
+    private Task<Void> migrateAllTables() {
+        PQueryModelType[] types = {
+                PQueryModelType.NewRecord,
+//                PQueryModelType.Recipe,
+//                PQueryModelType.Photo,
+//                PQueryModelType.Team,
+//                PQueryModelType.Review,
+//                PQueryModelType.Event,
+//                PQueryModelType.Restaurant,
+//                PQueryModelType.PeopleInEvent,
         };
         List<PQueryModelType> list = new LinkedList<>(Arrays.asList(types));
 
@@ -52,18 +52,20 @@ public class MigrateUtils {
 
     }
 
-    private Task<Void> saveLocalDatabase(PQueryModelType type){
+    private Task<Void> saveLocalDatabase(PQueryModelType type) {
         return ParseJsoner.parseJsonFileToArray(type)
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<List<ParseModelAbstract>> results) throws Exception {
+                        List<ParseModelAbstract> list = results.getResult();
+
                         Task<Void> task = Task.forResult(null);
                         for (final ParseModelAbstract result : results.getResult()) {
                             // For each item, extend the task with a function to delete the item.
                             task = task.continueWithTask(new Continuation<Void, Task<Void>>() {
                                 public Task<Void> then(Task<Void> ignored) throws Exception {
                                     // Return a task that will be marked as completed when the delete is finished.
-                                    return ((ParseModelLocalQuery)result).saveInBackground();
+                                    return result.updateLocalInBackground();
                                 }
                             });
                         }
@@ -74,10 +76,10 @@ public class MigrateUtils {
     }
 
     /**
-     Example: MigrateUtils().executeMigrate()
+     * Example: MigrateUtils().executeMigrate()
      */
-    public  void executeMigrate(){
-        this.migrateAllTables().onSuccessTask(new Continuation<Void, Task<Void>>() {
+    public Task<Void> executeMigrate() {
+        return this.migrateAllTables().onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 return null;

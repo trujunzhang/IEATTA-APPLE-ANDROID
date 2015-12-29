@@ -54,7 +54,6 @@ dependencies {
     compile project(':parse_layout')
     compile project(':commonLib')
     compile project(':AndroidProgressHUD')
-    compile project(':manualdatabase')
     compile project(':android-weak-handler')
     compile project(':slideDateTimePicker')
     compile project(':Android-Universal-Image-Loader')
@@ -63,4 +62,6 @@ dependencies {
     compile project(':android-segmented-control')
     compile project(':subsampling-scale-image-view')
     compile project(':MaterialEditText')
+
+    compile project(':manualdatabase')
 }
