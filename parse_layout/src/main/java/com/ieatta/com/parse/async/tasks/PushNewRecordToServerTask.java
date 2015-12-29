@@ -34,7 +34,7 @@ public class PushNewRecordToServerTask {
 
     private static Task executeSerialTasks(Task<List<ParseModelAbstract>> previous) {
         List<ParseModelAbstract> results = previous.getResult();
-        LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
+        LogUtils.debug("{ count in Push objects to Server }: " + results.size());
 
         SerialTasksManager<ParseModelAbstract> manager = new SerialTasksManager<>(results);
         if (manager.hasNext() == false) {
