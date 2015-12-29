@@ -24,6 +24,8 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
     private ReadJsonFileSpec self = this;
     private Context context;
 
+    private List<ParseModelAbstract> fetchedPhotos = new LinkedList<>();
+
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -45,12 +47,10 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
 
 
     public void testMatchedPhotoFromNewRecord() {
-        final List<ParseModelAbstract>[] fetchedPhotos = new List[]{new LinkedList<>()};
-
         ParseJsoner.parseJsonFileToArray(PQueryModelType.Photo).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
             public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                fetchedPhotos[0] = (List<ParseModelAbstract>) task.getResult();
+                fetchedPhotos =  task.getResult();
                 return ParseJsoner.parseJsonFileToArray(PQueryModelType.NewRecord);
             }
         }).onSuccess(new Continuation() {
@@ -58,7 +58,7 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
             public Object then(Task task) throws Exception {
                 List<ParseModelAbstract> newRecords = (List<ParseModelAbstract>) task.getResult();
 
-                List<ParseModelAbstract> photos = fetchedPhotos[0]; // 683
+                List<ParseModelAbstract> photos = fetchedPhotos; // 683
                 List<NewRecord> newRecordForPhoto = getNewRecordForPhoto(newRecords); // 683-6
 
                 matchPhotoFromNewRecord(newRecordForPhoto, photos);
