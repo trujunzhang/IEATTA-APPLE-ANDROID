@@ -34,6 +34,11 @@ public abstract class ParseJsoner extends ParseModelAbstract {
     public static Task<List<ParseModelAbstract>> parseJsonFileToArray(PQueryModelType type){
         List<ParseModelAbstract> list = new LinkedList<>();
 
+        JsonElement jsonElement = ParseJsoner.readJsonFile(type);
+        if(jsonElement == null){
+            String name = ParseModelAbstract.getInstanceFromType(type).getParseTableName();
+            return Task.forError(new NullPointerException("not found json file for "+name));
+        }
 
 
         return Task.forResult(list);
@@ -61,6 +66,9 @@ public abstract class ParseJsoner extends ParseModelAbstract {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        if(buffer == null){
+            return null;
         }
 
         String bufferString = new String(buffer);
