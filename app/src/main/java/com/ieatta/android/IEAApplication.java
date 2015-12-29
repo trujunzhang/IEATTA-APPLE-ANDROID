@@ -39,7 +39,7 @@ public class IEAApplication extends Application {
 
         // Async database in background automately
         // TODO: djzhang(used)
-//        new ParseAsyncTimer().prepareTimer();
+        new ParseAsyncTimer().prepareTimer();
 
         /**
          Show all tables data on the offline database,when have some issues.
@@ -47,13 +47,13 @@ public class IEAApplication extends Application {
          */
 //        AppDebugManager.show();
 
-        new MigrateUtils().executeMigrate()
-                .onSuccess(new Continuation<Void, Object>() {
-                    @Override
-                    public Object then(Task<Void> task) throws Exception {
-                        return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
-                    }
-                });
+//        new MigrateUtils().executeMigrate()
+//                .onSuccess(new Continuation<Void, Object>() {
+//                    @Override
+//                    public Object then(Task<Void> task) throws Exception {
+//                        return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
+//                    }
+//                });
 
     }
 }

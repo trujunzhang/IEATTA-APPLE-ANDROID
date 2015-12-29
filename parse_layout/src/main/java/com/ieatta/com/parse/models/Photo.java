@@ -163,12 +163,12 @@ public class Photo extends ParseModelSync {
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
-                        return orginalImageFile.saveInBackground();
+                        return thumbnailImageFile.saveInBackground();
                     }
                 }).onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
-                        return thumbnailImageFile.saveInBackground();
+                        return orginalImageFile.saveInBackground();
                     }
                 }).onSuccess(new Continuation<Void, Void>() {
                     @Override
