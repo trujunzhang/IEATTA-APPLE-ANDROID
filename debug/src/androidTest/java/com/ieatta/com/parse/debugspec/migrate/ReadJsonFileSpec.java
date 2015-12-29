@@ -34,6 +34,8 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
 
     public void testConstructor() throws Exception {
         ParseJsoner.parseJsonFileToArray(PQueryModelType.NewRecord);
+
+
     }
 
 
