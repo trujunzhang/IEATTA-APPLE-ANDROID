@@ -25,6 +25,8 @@ dependencies {
 
     compile 'io.realm:realm-android:0.87.0'
 
+    compile 'com.google.code.gson:gson:2.5'
+
     compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
 
     compile project(':android-timeago')
