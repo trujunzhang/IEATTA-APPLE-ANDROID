@@ -3,6 +3,8 @@ package com.ieatta.com.parse;
 import android.content.res.AssetManager;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
@@ -10,12 +12,17 @@ import com.ieatta.com.parse.models.enums.PQueryModelType;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.LinkedList;
+import java.util.List;
+
+import bolts.Task;
 
 /**
  * Created by djzhang on 11/27/15.
  */
 public abstract class ParseJsoner extends ParseModelAbstract {
     private ParseJsoner self = this;
+
     public ParseJsoner(String objectUUID) {
         super(objectUUID);
     }
@@ -24,15 +31,23 @@ public abstract class ParseJsoner extends ParseModelAbstract {
         super();
     }
 
+    public static Task<List<ParseModelAbstract>> parseJsonFileToArray(PQueryModelType type){
+        List<ParseModelAbstract> list = new LinkedList<>();
 
-    public static void readJsonFile(PQueryModelType type){
+
+
+        return Task.forResult(list);
+    }
+
+    public static JsonElement readJsonFile(PQueryModelType type) {
         String name = ParseModelAbstract.getInstanceFromType(type).getParseTableName();
         AssetManager assets = EnvironmentUtils.sharedInstance.getGlobalContext().getAssets();
 
         byte[] buffer = null;
         InputStream is = null;
         try {
-            is = assets.open(name + ".json");
+            String jsonName = "export/" + name + ".json";
+            is = assets.open(jsonName);
             int size = is.available();
 
             buffer = new byte[size];
@@ -50,8 +65,10 @@ public abstract class ParseJsoner extends ParseModelAbstract {
 
         String bufferString = new String(buffer);
 
-//        EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getf
-//        JsonReader reader = new JsonReader(new StringReader(json));
+        JsonParser parser = new JsonParser();
+        JsonElement rootElement = parser.parse(bufferString);
+
+        return rootElement;
     }
 
 }
