@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.test.InstrumentationTestCase;
 import android.virtualbreak.com.manualdatabase.migration.MigrateUtils;
 import android.yelp.com.commonlib.EnvironmentUtils;
+import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseJsoner;
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -66,6 +67,8 @@ public class CompareDatabaseUtils {
                 return true;
             }
         }
+
+        LogUtils.debug(jsonModel.printDescription());
         return false;
     }
 
