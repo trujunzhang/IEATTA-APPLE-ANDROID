@@ -2,26 +2,15 @@ package com.ieatta.com.parse.debugspec.migrate;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.test.InstrumentationTestCase;
-import android.virtualbreak.com.debug.AppDebugManager;
-import android.virtualbreak.com.debug.ParseLocalDatabase;
-import android.virtualbreak.com.debug.R;
-import android.virtualbreak.com.manualdatabase.migration.MigrateUtils;
 import android.yelp.com.commonlib.EnvironmentUtils;
+import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseJsoner;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
-import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
-import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
-import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -55,7 +44,7 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
     }
 
 
-    public void testMatchedPhotoFromNewRecord(){
+    public void testMatchedPhotoFromNewRecord() {
         final List<ParseModelAbstract>[] fetchedPhotos = new List[]{new LinkedList<>()};
 
         ParseJsoner.parseJsonFileToArray(PQueryModelType.Photo).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
@@ -72,38 +61,46 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
                 List<ParseModelAbstract> photos = fetchedPhotos[0]; // 683
                 List<NewRecord> newRecordForPhoto = getNewRecordForPhoto(newRecords); // 683-6
 
-                matchPhotoFromNewRecord(photos,newRecords);
+                matchPhotoFromNewRecord(newRecordForPhoto, photos);
                 return null;
             }
         });
     }
 
-    private List<NewRecord> getNewRecordForPhoto(List<ParseModelAbstract> newRecords){
+    private List<NewRecord> getNewRecordForPhoto(List<ParseModelAbstract> newRecords) {
         List<NewRecord> list = new LinkedList<>();
-        for(ParseModelAbstract model : newRecords){
-            if(((NewRecord)model).modelType == PQueryModelType.Photo){
-                list.add((NewRecord)model);
+        for (ParseModelAbstract model : newRecords) {
+            if (((NewRecord) model).modelType == PQueryModelType.Photo) {
+                list.add((NewRecord) model);
             }
         }
 
         return list;
     }
 
-    private void matchPhotoFromNewRecord(List<ParseModelAbstract> fetchedPhoto,List<ParseModelAbstract> jsonModels){
-        for(ParseModelAbstract model : jsonModels){
-            if(containedInPhoto(model,fetchedPhoto)){
+    private void matchPhotoFromNewRecord(List<NewRecord> newRecordForPhoto, List<ParseModelAbstract> photos) {
+        LinkedList<ParseModelAbstract> matchedPhotos = new LinkedList<>();
+        for (ParseModelAbstract photo : photos) {
 
-            }
+            ParseModelAbstract item = containedInPhoto(photo, newRecordForPhoto,matchedPhotos);
+
         }
+
+        int size = matchedPhotos.size();
+
+        int length = photos.size();
     }
 
-    private boolean containedInPhoto(ParseModelAbstract jsonModel,List<ParseModelAbstract> fetchedPhoto){
-        for(ParseModelAbstract model :fetchedPhoto){
-            if(model.equals(jsonModel)){
-                return true;
+    private ParseModelAbstract containedInPhoto(ParseModelAbstract photo, List<NewRecord> newRecordForPhoto, LinkedList<ParseModelAbstract> matchedPhotos) {
+        for (NewRecord newRecord : newRecordForPhoto) {
+            if (ParseModelAbstract.getPoint(photo).equals(newRecord.modelPoint)) {
+                return null;
             }
         }
-        return false;
+
+        matchedPhotos.add(photo);
+//        LogUtils.debug(photo.printDescription());
+        return photo;
     }
 
 }
