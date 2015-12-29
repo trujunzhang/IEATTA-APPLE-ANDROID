@@ -51,9 +51,9 @@ public abstract class ParseJsoner extends ParseModelAbstract {
 
             ParseModelAbstract instance = ParseModelAbstract.getInstanceFromType(type);
             instance.parseJson(item);
-        }
 
-        JsonObject object = results.get(0).getAsJsonObject();
+            list.add(instance);
+        }
 
         return Task.forResult(list);
     }
