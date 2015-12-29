@@ -25,7 +25,7 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/29/15.
  */
-public class LocalImageSpec  extends InstrumentationTestCase{
+public class LocalImageSpec extends InstrumentationTestCase {
 
     @Override
     public void setUp() throws Exception {
@@ -33,39 +33,49 @@ public class LocalImageSpec  extends InstrumentationTestCase{
     }
 
     public void testImageNames() throws Exception {
-        LocalQuery query = new  Photo().makeLocalQuery();
+        LocalQuery query = new Photo().makeLocalQuery();
 
-        query.findInBackground().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<List<ParseModelAbstract>> results) throws Exception {
-                List<ParseModelAbstract> photos = results.getResult();
+        query.findInBackground()
+                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<List<ParseModelAbstract>> results) throws Exception {
+                        List<ParseModelAbstract> photos = results.getResult();
 
-                Task<Void> task = Task.forResult(null);
-                for (final ParseModelAbstract photo : photos) {
-                    // For each item, extend the task with a function to delete the item.
-                    task = task.continueWithTask(new Continuation<Void, Task<Void>>() {
-                        public Task<Void> then(Task<Void> ignored) throws Exception {
-                            // Return a task that will be marked as completed when the delete is finished.
-                            return verifyImageNameFromPhoto((Photo)photo);
+                        Task<Void> task = Task.forResult(null);
+                        for (final ParseModelAbstract photo : photos) {
+                            // For each item, extend the task with a function to delete the item.
+                            task = task.continueWithTask(new Continuation<Void, Task<Void>>() {
+                                public Task<Void> then(Task<Void> ignored) throws Exception {
+                                    // Return a task that will be marked as completed when the delete is finished.
+                                    return verifyImageNameFromPhoto((Photo) photo);
+                                }
+                            });
                         }
-                    });
-                }
 
-                return task;
+                        return task;
+                    }
+                }).continueWith(new Continuation() {
+            @Override
+            public Object then(Task task) throws Exception {
+                if (task.isFaulted()) {
+                    Exception error = task.getError();
+                    String message = error.getMessage();
+                }
+                return null;
             }
         });
     }
 
-    private Task<Void> verifyImageNameFromPhoto(final Photo photo){
+    private Task<Void> verifyImageNameFromPhoto(final Photo photo) {
         String uuid = ParseModelAbstract.getPoint(photo);
 
         Bitmap originalBitmap = OriginalImageUtils.sharedInstance.getTakenPhoto(uuid);
         Bitmap thumbnailBitmap = ThumbnailImageUtils.sharedInstance.getTakenPhoto(uuid);
 
-        if(originalBitmap!= null && thumbnailBitmap != null){
+        if (originalBitmap != null && thumbnailBitmap != null) {
             return Task.forResult(null);
         }
 
-        return Task.forError(new NullPointerException("not found bitmaps for "+photo.printDescription()));
+        return Task.forError(new NullPointerException("not found bitmaps for " + photo.printDescription()));
     }
 }
