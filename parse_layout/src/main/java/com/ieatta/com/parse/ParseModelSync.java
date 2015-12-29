@@ -1,5 +1,7 @@
 package com.ieatta.com.parse;
 
+import android.graphics.Bitmap;
+
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 

@@ -310,23 +310,34 @@ public class Photo extends ParseModelSync {
     }
 
 //    @Override
-//    public Task beforePullFromServer() {
+//    public Task<Void> beforePullFromServer() {
 //        // 1. First of all,to decrease client storage.
 //        //   So just save online thumbnail image as offline file.
-//        return this.downloadThumbnailImageFromServer();
+//        return this.downloadThumbnailImageFromServer()
+//                .onSuccessTask(new Continuation<Bitmap, Task<Void>>() {
+//                    @Override
+//                    public Task<Void> then(Task<Bitmap> task) throws Exception {
+//                        return Task.forResult(null);
+//                    }
+//                });
 //    }
 
     @Override
-    public Task beforePullFromServer() {
+    public Task<Void> beforePullFromServer() {
         // 1. First of all,to decrease client storage.
         //   So just save online thumbnail image as offline file.
-        return this.downloadThumbnailImageFromServer()
-                .onSuccessTask(new Continuation<Bitmap, Task>() {
-            @Override
-            public Task then(Task<Bitmap> task) throws Exception {
-                return self.downloadOriginalImageFromServer();
-            }
-        });
+        return self.downloadThumbnailImageFromServer()
+                .onSuccessTask(new Continuation<Bitmap, Task<Bitmap>>() {
+                    @Override
+                    public Task<Bitmap> then(Task<Bitmap> task) throws Exception {
+                        return self.downloadOriginalImageFromServer();
+                    }
+                }).onSuccessTask(new Continuation<Bitmap,Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<Bitmap> task) throws Exception {
+                        return Task.forResult(null);
+                    }
+                });
     }
 
     public Task<Bitmap> downloadThumbnailImageFromServer() {

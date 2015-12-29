@@ -1,5 +1,6 @@
 package com.ieatta.com.parse;
 
+import android.graphics.Bitmap;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.com.parse.models.NewRecord;
@@ -61,8 +62,8 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
 
     public abstract Task<Void> pushToServer();
 
-    public Task beforePullFromServer() {
-        return Task.forResult(true);
+    public Task<Void> beforePullFromServer() {
+        return Task.forResult(null);
     }
 
     public Task<Boolean> afterPushToServer() {

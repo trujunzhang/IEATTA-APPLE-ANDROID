@@ -1,5 +1,7 @@
 package com.ieatta.com.parse;
 
+import android.graphics.Bitmap;
+
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
@@ -36,7 +38,7 @@ public interface ParseModelProtocol {
      */
     Task<Void> pushToServer();
 
-    Task beforePullFromServer();
+    Task<Void> beforePullFromServer();
 
     Task<Boolean> afterPushToServer();
 
