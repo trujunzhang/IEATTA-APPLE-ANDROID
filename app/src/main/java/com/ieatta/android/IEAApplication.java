@@ -10,12 +10,14 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import com.ieatta.android.apps.AppConfigure;
 import com.ieatta.com.parse.ParseAPI;
 import com.ieatta.com.parse.async.ParseAsyncTimer;
+import com.ieatta.com.parse.engine.realm.models.DBNewRecord;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.utils.cache.CacheImageUtils;
 
 import bolts.Continuation;
 import bolts.Task;
+import io.realm.Realm;
 
 /**
  * Created by djzhang on 11/30/15.
@@ -54,7 +56,6 @@ public class IEAApplication extends Application {
 //                });
 
 
-        new CompareDatabaseUtils().testMatchedPhotoFromNewRecord();
-
+//        new CompareDatabaseUtils().testMatchedPhotoFromNewRecord();
     }
 }
