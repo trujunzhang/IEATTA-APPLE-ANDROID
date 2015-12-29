@@ -1,5 +1,6 @@
 package com.ieatta.com.parse.models;
 
+import com.google.gson.JsonObject;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelConvert;
 import com.ieatta.com.parse.ParseModelSync;
@@ -15,6 +16,7 @@ import bolts.Task;
  * Created by djzhang on 11/27/15.
  */
 public class NewRecord extends ParseModelSync {
+    private NewRecord self = this;
     // Class key
     private static final String kPAPClassKey = "NewRecord";
 
@@ -103,4 +105,9 @@ public class NewRecord extends ParseModelSync {
                 '}';
     }
 
+    @Override
+    public void parseJson(JsonObject json) {
+        self.modelType = PQueryModelType.fromInteger(json.get(kPAPFieldModelTypeKey).getAsInt());
+        self.modelPoint = json.get(kPAPFieldModelPointKey).getAsString();
+    }
 }
