@@ -19,7 +19,7 @@ public class MigrateUtils {
 
     private Task<Void> migrateAllTables() {
         PQueryModelType[] types = {
-                PQueryModelType.NewRecord,
+//                PQueryModelType.NewRecord,
 //                PQueryModelType.Recipe,
 //                PQueryModelType.Photo,
 //                PQueryModelType.Team,
