@@ -31,39 +31,43 @@ import bolts.Task;
  */
 public class CompareDatabaseUtils {
 
-    public void testMatchedPhotoFromNewRecord(){
+    public void testMatchedPhotoFromNewRecord() {
 //        ParseJsoner.parseJsonFileToArray()
 
-        LocalQuery localQuery = new  Photo().makeLocalQuery();
+        LocalQuery localQuery = new Photo().makeLocalQuery();
         final List<ParseModelAbstract>[] fetchedPhotos = new List[]{new LinkedList<>()};
         localQuery.findInBackground()
-                .onSuccessTask(new Continuation<Task<List<ParseModelAbstract>>,Task<List<ParseModelAbstract>>>() {
+                .onSuccessTask(new Continuation<Task<List<ParseModelAbstract>>, Task<List<ParseModelAbstract>>>() {
                     @Override
                     public Task<List<ParseModelAbstract>> then(Task task) throws Exception {
                         fetchedPhotos[0] = (List<ParseModelAbstract>) task.getResult();
-                        return ParseJsoner.parseJsonFileToArray(PQueryModelType.Photo);
+                        return ParseJsoner.parseJsonFileToArray(PQueryModelType.NewRecord);
                     }
                 }).onSuccess(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
-                List<ParseModelAbstract> jsonModels = (List<ParseModelAbstract>) task.getResult();
-                matchPhotoFromNewRecord(fetchedPhotos[0],jsonModels);
+                List<ParseModelAbstract> jsonNewRecord = (List<ParseModelAbstract>) task.getResult();
+                matchPhotoFromNewRecord(fetchedPhotos[0], jsonNewRecord);
                 return null;
             }
         });
     }
 
-    private void matchPhotoFromNewRecord(List<ParseModelAbstract> fetchedPhoto,List<ParseModelAbstract> jsonModels){
-        for(ParseModelAbstract model : jsonModels){
-            if(containedInPhoto(model,fetchedPhoto)){
+    private void matchPhotoFromNewRecord(List<ParseModelAbstract> fetchedPhoto, List<ParseModelAbstract> jsonNewRecord) {
+        for (ParseModelAbstract model : jsonNewRecord) {
+            NewRecord newRecord = (NewRecord) model;
+            if (newRecord.modelType != PQueryModelType.Photo) {
+                continue;
+            }
+            if (containedInPhoto(model, fetchedPhoto)) {
 
             }
         }
     }
 
-    private boolean containedInPhoto(ParseModelAbstract jsonModel,List<ParseModelAbstract> fetchedPhoto){
-        for(ParseModelAbstract model :fetchedPhoto){
-            if(model.equals(jsonModel)){
+    private boolean containedInPhoto(ParseModelAbstract jsonModel, List<ParseModelAbstract> fetchedPhoto) {
+        for (ParseModelAbstract model : fetchedPhoto) {
+            if (model.equals(jsonModel)) {
                 return true;
             }
         }

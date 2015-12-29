@@ -306,14 +306,14 @@ public abstract class ParseModelAbstract implements ParseModelProtocol {
     public void parseJson(JsonObject json) {
         self.objectUUID = json.get(kPAPFieldObjectUUIDKey).getAsString();
 
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-        format.setTimeZone(new SimpleTimeZone(0, "GMT"));
-        try {
-            String objectCreateDateString = json.get(kPAPFieldObjectCreatedDateKey).getAsString();
-            self.objectCreatedDate  = format.parse(objectCreateDateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+//        format.setTimeZone(new SimpleTimeZone(0, "GMT"));
+//        try {
+//            String objectCreateDateString = json.get(kPAPFieldObjectCreatedDateKey).getAsString();
+//            self.objectCreatedDate  = format.parse(objectCreateDateString);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         self.modelFlag = ParseModelFlag.fromInteger(json.get(kPAPFieldFlagKey).getAsInt());
     }
