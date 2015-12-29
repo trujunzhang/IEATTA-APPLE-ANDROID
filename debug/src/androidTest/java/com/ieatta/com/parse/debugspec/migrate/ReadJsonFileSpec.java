@@ -56,25 +56,37 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
 
 
     public void testMatchedPhotoFromNewRecord(){
-//        ParseJsoner.parseJsonFileToArray()
-
-        LocalQuery localQuery = new  Photo().makeLocalQuery();
         final List<ParseModelAbstract>[] fetchedPhotos = new List[]{new LinkedList<>()};
-        localQuery.findInBackground()
-                .onSuccessTask(new Continuation<Task<List<ParseModelAbstract>>,Task<List<ParseModelAbstract>>>() {
+
+        ParseJsoner.parseJsonFileToArray(PQueryModelType.Photo).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
             @Override
-            public Task<List<ParseModelAbstract>> then(Task task) throws Exception {
+            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
                 fetchedPhotos[0] = (List<ParseModelAbstract>) task.getResult();
-                return ParseJsoner.parseJsonFileToArray(PQueryModelType.Photo);
+                return ParseJsoner.parseJsonFileToArray(PQueryModelType.NewRecord);
             }
         }).onSuccess(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
-                List<ParseModelAbstract> jsonModels = (List<ParseModelAbstract>) task.getResult();
-                matchPhotoFromNewRecord(fetchedPhotos[0],jsonModels);
+                List<ParseModelAbstract> newRecords = (List<ParseModelAbstract>) task.getResult();
+
+                List<ParseModelAbstract> photos = fetchedPhotos[0]; // 683
+                List<NewRecord> newRecordForPhoto = getNewRecordForPhoto(newRecords); // 683-6
+
+                matchPhotoFromNewRecord(photos,newRecords);
                 return null;
             }
         });
+    }
+
+    private List<NewRecord> getNewRecordForPhoto(List<ParseModelAbstract> newRecords){
+        List<NewRecord> list = new LinkedList<>();
+        for(ParseModelAbstract model : newRecords){
+            if(((NewRecord)model).modelType == PQueryModelType.Photo){
+                list.add((NewRecord)model);
+            }
+        }
+
+        return list;
     }
 
     private void matchPhotoFromNewRecord(List<ParseModelAbstract> fetchedPhoto,List<ParseModelAbstract> jsonModels){
