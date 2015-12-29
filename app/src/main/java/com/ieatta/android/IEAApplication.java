@@ -2,6 +2,7 @@ package com.ieatta.android;
 
 import android.app.Application;
 import android.virtualbreak.com.debug.AppDebugManager;
+import android.virtualbreak.com.manualdatabase.migration.CompareDatabaseUtils;
 import android.virtualbreak.com.manualdatabase.migration.MigrateUtils;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
@@ -39,6 +40,7 @@ public class IEAApplication extends Application {
 //        AppDebugManager.show();
 
 //        new MigrateUtils().executeMigrate();
+        new CompareDatabaseUtils().testMatchedPhotoFromNewRecord();
 
     }
 }
