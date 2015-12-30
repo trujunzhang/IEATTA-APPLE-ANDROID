@@ -16,6 +16,8 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.apache.commons.io.FileExistsException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -170,6 +172,7 @@ public abstract class AbstractImageUtils {
             public void onResponse(Response response) throws IOException {
                 InputStream inputStream = response.body().byteStream();
                 tcs.setResult(inputStream);
+//                tcs.setError(new FileExistsException("wanghao's test"));
             }
         });
 
@@ -181,7 +184,7 @@ public abstract class AbstractImageUtils {
 
         /// If the image already exist on the cache folder, we don't download it from the Parse.com.
         File imageFile = this.getTakenPhotoFile(ParseModelAbstract.getPoint(model));
-        if (imageFile != null && imageFile.exists() == false) {
+        if (imageFile != null && imageFile.exists() == true) {
             return Task.forResult(null);
         }
         if (url == null || url.isEmpty() == true) {
@@ -200,7 +203,7 @@ public abstract class AbstractImageUtils {
                 if (task.isFaulted()) {
                     tcs.setError(task.getError());
                 } else {
-                    tcs.setResult(task.getResult());
+                    tcs.setResult(null);
                 }
                 return null;
             }
