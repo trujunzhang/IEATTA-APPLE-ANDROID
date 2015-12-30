@@ -54,7 +54,21 @@ public class ParseAsyncHandler {
 
         // 1. Prepare tasks.
         this.didEndAsync = false;
-        this.PullObjectsFromServer()
+//        this.PullObjectsFromServer()
+//                .continueWith(new Continuation() {
+//                    @Override
+//                    public Object then(Task task) throws Exception {
+//                        self.endAsyncTasks(task.getError());
+//                        return null;
+//                    }
+//                });
+
+        self.testPushToServer();
+    }
+
+    private void testPushToServer() {
+        // TODO djzhang: test
+        PushNewRecordToServerTask.PushToServerSeriesTask(new NewRecord().createQueryForPushObjectsToServer(PAGE_NUMBER_PUSH_NEW_RECORD))
                 .continueWith(new Continuation() {
                     @Override
                     public Object then(Task task) throws Exception {
