@@ -83,14 +83,18 @@ public class LocalImageSpec extends InstrumentationTestCase {
     private Task<Void> verifyImageNameFromPhoto(final Photo photo) {
         String uuid = ParseModelAbstract.getPoint(photo);
 
-        Bitmap originalBitmap = OriginalImageUtils.sharedInstance.getTakenPhoto(uuid);
-        Bitmap thumbnailBitmap = ThumbnailImageUtils.sharedInstance.getTakenPhoto(uuid);
+        File originalFile = OriginalImageUtils.sharedInstance.getTakenPhotoFile(uuid);
+        File thumbnailFile = ThumbnailImageUtils.sharedInstance.getTakenPhotoFile(uuid);
 
-        if (originalBitmap != null && thumbnailBitmap != null) {
-            return Task.forResult(null);
+        if (originalFile == null || originalFile.exists() == false) {
+            return Task.forError(new NullPointerException("not found bitmaps for " + photo.printDescription()));
         }
 
-        return Task.forError(new NullPointerException("not found bitmaps for " + photo.printDescription()));
+        if (thumbnailFile == null || thumbnailFile.exists() == false) {
+            return Task.forError(new NullPointerException("not found bitmaps for " + photo.printDescription()));
+        }
+
+        return Task.forResult(null);
     }
 
     public void texstMd5FileName() throws Exception {
