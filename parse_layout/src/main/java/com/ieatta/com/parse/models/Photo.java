@@ -164,7 +164,12 @@ public class Photo extends ParseModelSync {
 //        final ParseFile orginalImageFile = ImageOptimizeUtils.getPFFileForOrginalImage(this);
 //        final ParseFile thumbnailImageFile = ImageOptimizeUtils.getPFFileForThumbnailImage(this);
 
-        return ImageOptimizeUtils.getPFFileForOrginalImage(this).onSuccessTask(new Continuation<ParseFile, Task<Void>>() {
+        return super.writeObject(object).onSuccessTask(new Continuation<Void, Task<ParseFile>>() {
+            @Override
+            public Task<ParseFile> then(Task<Void> task) throws Exception {
+                return ImageOptimizeUtils.getPFFileForOrginalImage(self);
+            }
+        }).onSuccessTask(new Continuation<ParseFile, Task<Void>>() {
             @Override
             public Task<Void> then(Task<ParseFile> task) throws Exception {
                 self.thumbnailImageFile = task.getResult();
