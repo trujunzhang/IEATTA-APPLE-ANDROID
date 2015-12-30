@@ -19,6 +19,7 @@ import junit.framework.TestCase;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -36,6 +37,7 @@ public class LocalImageSpec extends InstrumentationTestCase {
 
     public void testImageNames() throws Exception {
         LocalQuery query = new Photo().makeLocalQuery();
+        final List<ParseModelAbstract> notFoundList = new LinkedList<>();
 
         query.findInBackground()
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Void>>() {
@@ -49,7 +51,17 @@ public class LocalImageSpec extends InstrumentationTestCase {
                             task = task.continueWithTask(new Continuation<Void, Task<Void>>() {
                                 public Task<Void> then(Task<Void> ignored) throws Exception {
                                     // Return a task that will be marked as completed when the delete is finished.
-                                    return verifyImageNameFromPhoto((Photo) photo);
+                                    return verifyImageNameFromPhoto((Photo) photo).continueWith(new Continuation<Void, Void>() {
+                                        @Override
+                                        public Void then(Task<Void> task) throws Exception {
+                                            if (task.isFaulted()) {
+                                                Exception error = task.getError();
+                                                String message = error.getMessage();
+                                                notFoundList.add(photo);
+                                            }
+                                            return null;
+                                        }
+                                    });
                                 }
                             });
                         }
