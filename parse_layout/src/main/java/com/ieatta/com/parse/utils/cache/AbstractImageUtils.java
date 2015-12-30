@@ -173,11 +173,10 @@ public abstract class AbstractImageUtils {
         /// If the image already exist on the cache folder, we don't download it from the Parse.com.
         File imageFile = this.getTakenPhotoFile(ParseModelAbstract.getPoint(model));
         if (imageFile != null && imageFile.exists() == false) {
-            tcs.setResult(null);
+            return Task.forResult(null);
         }
         if (url == null || url.isEmpty() == true) {
-//            return BFTask(error: NSError.getError(IEAErrorType.EmptyURL, description: "\(model.printDescription())"))
-            tcs.setError(new NullPointerException(model.printDescription()));
+            return Task.forError(new NullPointerException(model.printDescription()));
         }
 
         this.downloadImageWithURL(url)

@@ -358,11 +358,11 @@ public class Photo extends ParseModelSync {
 
         // 1. First of all,to decrease client storage.
         //   So just save online thumbnail image as offline file.
-        self.downloadThumbnailImageFromServer()
+        ThumbnailImageUtils.sharedInstance.downloadImageFromServer(this, this.thumbnailUrl)
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
-                        return self.downloadOriginalImageFromServer();
+                        return OriginalImageUtils.sharedInstance.downloadImageFromServer(self, self.originalUrl);
                     }
                 }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
