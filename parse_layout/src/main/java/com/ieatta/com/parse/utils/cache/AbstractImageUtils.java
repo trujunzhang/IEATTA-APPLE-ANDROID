@@ -10,6 +10,8 @@ import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -143,26 +145,33 @@ public abstract class AbstractImageUtils {
 
     OkHttpClient client = new OkHttpClient();
 
-    InputStream doGetRequest(String URL) throws IOException {
-        Request request = new Request.Builder()
-                .url(URL)
-                .build();
-
-        Response response = client.newCall(request).execute();
-        return response.body().byteStream();
-    }
+//    InputStream doGetRequest(String URL) throws IOException {
+//        Request request = new Request.Builder()
+//                .url(URL)
+//                .build();
+//
+//        Response response = client.newCall(request).execute();
+//        return response.body().byteStream();
+//    }
 
     public Task<InputStream> downloadImageWithURL(String URL) {
         final Task.TaskCompletionSource tcs = Task.create();
 
-        InputStream inputStream = null;
-        try {
-            inputStream = self.doGetRequest(URL);
-        } catch (IOException e) {
-            tcs.setError(e);
-        } finally {
-            tcs.setResult(inputStream);
-        }
+        Request request = new Request.Builder()
+                .url(URL).build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                tcs.setError(e);
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                InputStream inputStream = response.body().byteStream();
+                tcs.setResult(inputStream);
+            }
+        });
 
         return tcs.getTask();
     }
