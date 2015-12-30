@@ -24,17 +24,15 @@ public class RMQuery<T extends RealmObject> {
     public Task<List<ParseModelAbstract>> findInBackground() {
         List<ParseModelAbstract> list = null;
 
-        RealmResults results = null;
         try {
-            results = builder.buildAll().findAll();
+            RealmResults results = builder.buildAll().findAll();
             results = builder.sort(results);
+            list = new DBModelReader().readRealmResults(results, builder.modelType, builder.limit, builder.containedMap);
         } catch (Exception e) {
             return Task.forError(e);
         } finally {
             builder.closeDatabase();
         }
-
-        list = new DBModelReader().readRealmResults(results, builder.modelType, builder.limit, builder.containedMap);
 
         return Task.forResult(list);
     }

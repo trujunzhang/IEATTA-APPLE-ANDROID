@@ -34,7 +34,7 @@ public class LocalImageSpec extends InstrumentationTestCase {
         super.setUp();
     }
 
-    public void texxstImageNames() throws Exception {
+    public void testImageNames() throws Exception {
         LocalQuery query = new Photo().makeLocalQuery();
 
         query.findInBackground()
@@ -81,13 +81,13 @@ public class LocalImageSpec extends InstrumentationTestCase {
         return Task.forError(new NullPointerException("not found bitmaps for " + photo.printDescription()));
     }
 
-    public void testMd5FileName() throws Exception {
-        String uuid = "E7D63E85-26BE-4856-AD7E-EC8D99C046BC";
-        File takenPhotoFile = OriginalImageUtils.sharedInstance.getTakenPhotoFile(uuid);
-        byte[] bytes = FileUtils.toByteArray(takenPhotoFile.getAbsolutePath());
-
-        String generate = new Md5FileNameGenerator().generate(uuid);
-        int length = generate.length();
+    public void texstMd5FileName() throws Exception {
+//        String uuid = "E7D63E85-26BE-4856-AD7E-EC8D99C046BC";
+//        File takenPhotoFile = OriginalImageUtils.sharedInstance.getTakenPhotoFile(uuid);
+//        byte[] bytes = FileUtils.toByteArray(takenPhotoFile.getAbsolutePath());
+//
+//        String generate = new Md5FileNameGenerator().generate(uuid);
+//        int length = generate.length();
 
     }
 }
