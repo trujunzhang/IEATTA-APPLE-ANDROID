@@ -160,11 +160,10 @@ public class Photo extends ParseModelSync {
 
     @Override
     public Task<Void> writeObject(final ParseObject object) {
-        // Special: Used only for the online object.
-//        final ParseFile orginalImageFile = ImageOptimizeUtils.getPFFileForOrginalImage(this);
-//        final ParseFile thumbnailImageFile = ImageOptimizeUtils.getPFFileForThumbnailImage(this);
+        final Task.TaskCompletionSource tcs = Task.create();
 
-        return super.writeObject(object).onSuccessTask(new Continuation<Void, Task<ParseFile>>() {
+        // Special: Used only for the online object.
+         super.writeObject(object).onSuccessTask(new Continuation<Void, Task<ParseFile>>() {
             @Override
             public Task<ParseFile> then(Task<Void> task) throws Exception {
                 return ImageOptimizeUtils.getPFFileForThumbnailImage(self); // (Thumbnail)
@@ -195,29 +194,19 @@ public class Photo extends ParseModelSync {
 
                 return null;
             }
-        });
+        }).continueWith(new Continuation<Void, Object>() {
+             @Override
+             public Object then(Task<Void> task) throws Exception {
+                 if (task.isFaulted()) {
+                     tcs.setError(task.getError());
+                 } else {
+                     tcs.setResult(null);
+                 }
+                 return null;
+             }
+         });
 
-//        return super.writeObject(object)
-//                .onSuccessTask(new Continuation<Void, Task<Void>>() {
-//                    @Override
-//                    public Task<Void> then(Task<Void> task) throws Exception {
-//                        return thumbnailImageFile.saveInBackground();
-//                    }
-//                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-//                    @Override
-//                    public Task<Void> then(Task<Void> task) throws Exception {
-//                        return orginalImageFile.saveInBackground();
-//                    }
-//                }).onSuccess(new Continuation<Void, Void>() {
-//                    @Override
-//                    public Void then(Task<Void> task) throws Exception {
-//
-//                        object.put(kPAPFieldOriginalImageKey, orginalImageFile);
-//                        object.put(kPAPFieldThumbnailImageKey, thumbnailImageFile);
-//
-//                        return null;
-//                    }
-//                });
+        return tcs.getTask();
     }
 
     @Override

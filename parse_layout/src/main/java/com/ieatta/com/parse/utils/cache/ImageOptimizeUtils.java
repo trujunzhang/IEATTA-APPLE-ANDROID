@@ -27,7 +27,8 @@ public class ImageOptimizeUtils {
      * - returns:  PFFile's instance of the original image
      */
     public static Task<ParseFile> getPFFileForOrginalImage(Photo photo) {
-        File _originalImage = OriginalImageUtils.sharedInstance.getTakenPhotoFile(ParseModelAbstract.getPoint(photo));
+        String uuid = ParseModelAbstract.getPoint(photo);
+        File _originalImage = OriginalImageUtils.sharedInstance.getTakenPhotoFile(uuid);
 
         byte[] bytes = null;
         if (_originalImage != null) {
@@ -37,7 +38,7 @@ public class ImageOptimizeUtils {
             } catch (IOException e) {
                 return Task.forError(new FileNotFoundException(photo.printDescription()));
             }
-            return Task.forResult(new ParseFile(name,bytes));
+            return Task.forResult(new ParseFile("o-" + uuid, bytes));
         }
 
         return Task.forError(new FileNotFoundException(photo.printDescription()));
@@ -51,17 +52,17 @@ public class ImageOptimizeUtils {
      * - returns:  PFFile's instance of the thumbnail image
      */
     public static Task<ParseFile> getPFFileForThumbnailImage(Photo photo) {
-        File _thumbnailImage = ThumbnailImageUtils.sharedInstance.getTakenPhotoFile(ParseModelAbstract.getPoint(photo));
+        String uuid = ParseModelAbstract.getPoint(photo);
+        File _thumbnailImage = ThumbnailImageUtils.sharedInstance.getTakenPhotoFile(uuid);
 
         byte[] bytes = null;
         if (_thumbnailImage != null) {
-            String name = _thumbnailImage.getName();
             try {
                 bytes = FileUtils.toByteArray(_thumbnailImage.getAbsolutePath());
             } catch (IOException e) {
                 return Task.forError(new FileNotFoundException(photo.printDescription()));
             }
-            return Task.forResult(new ParseFile(name,bytes));
+            return Task.forResult(new ParseFile("t-" + uuid, bytes));
         }
 
         return Task.forError(new FileNotFoundException(photo.printDescription()));
