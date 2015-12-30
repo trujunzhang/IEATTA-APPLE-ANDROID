@@ -182,7 +182,7 @@ public class Restaurant extends ParseModelSync {
     }
 
     @Override
-    protected Task getFirstModelTask()  {
+    protected Task<ParseModelAbstract> getFirstModelTask()  {
         return getFirstModelTaskFromParse();
     }
 }

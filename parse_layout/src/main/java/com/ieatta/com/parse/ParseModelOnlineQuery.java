@@ -130,14 +130,14 @@ public abstract class ParseModelOnlineQuery extends ParseModelConvert {
                 });
     }
 
-    public static Task findInBackgroundFromParse(ParseQuery query) /*ParseModelAbstract*/ {
+    public static Task<List<ParseModelAbstract>> findInBackgroundFromParse(ParseQuery query) /*ParseModelAbstract*/ {
         // *** Important ***
         query.fromLocalDatastore();
 
         return query.findInBackground();
     }
 
-    public Task getFirstModelTaskFromParse() {
+    public Task<ParseModelAbstract> getFirstModelTaskFromParse() {
         ParseQuery query = self.createParseQueryByUUID();
 
         // *** Important ***

@@ -243,7 +243,7 @@ public abstract class ParseModelLocalQuery extends ParseModelOnlineQuery {
      * that get the local first model to push to service.
      * And Resturant will override it.
      */
-    protected Task getFirstModelTask() {
+    protected Task<ParseModelAbstract> getFirstModelTask() {
         return self.getFirstModelTaskFromRealm();
     }
 
