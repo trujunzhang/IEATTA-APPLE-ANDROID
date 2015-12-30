@@ -22,26 +22,50 @@ public class RMQuery<T extends RealmObject> {
     }
 
     public Task<List<ParseModelAbstract>> findInBackground() {
+        List<ParseModelAbstract> list = null;
 
-//        RealmResults results =  builder.where.equalTo("restaurantRef", "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04").findAll();
-        RealmResults results = builder.buildAll().findAll();
 
-        results = builder.sort(results);
+        RealmResults results = null;
+        try {
+            results = builder.buildAll().findAll();
+            results = builder.sort(results);
+        } catch (Exception e) {
+            return Task.forError(e);
+        } finally {
+            builder.closeDatabase();
+        }
 
-        List<ParseModelAbstract> list = new DBModelReader().readRealmResults(results, builder.modelType, builder.limit,builder.containedMap);
+        list = new DBModelReader().readRealmResults(results, builder.modelType, builder.limit, builder.containedMap);
+
         return Task.forResult(list);
     }
 
     public Task<Integer> countInBackground() {
-        RealmResults results = builder.buildAll().findAll();
-        return Task.forResult(results.size());
+        long count = 0;
+
+        try {
+            count = builder.buildAll().count();
+        } catch (Exception e) {
+            return Task.forError(e);
+        } finally {
+            builder.closeDatabase();
+        }
+
+        return Task.forResult(new Long(count).intValue());
     }
 
     public Task<Void> deleteInBackground() {
-        RealmResults results = builder.buildAll().findAll();
-        if (results.size() >= 1) {
-            return builder.delete(results);
+        try {
+            RealmResults results = builder.buildAll().findAll();
+            if (results.size() >= 1) {
+                builder.delete(results);
+            }
+        } catch (Exception e) {
+            return Task.forError(e);
+        } finally {
+            builder.closeDatabase();
         }
+
         return Task.forResult(null);
     }
 
@@ -50,8 +74,17 @@ public class RMQuery<T extends RealmObject> {
     }
 
     public Task<ParseModelAbstract> findFirstInBackground() {
-        RealmObject realmObject = builder.buildAll().findFirst();
-        ParseModelAbstract model = new DBModelReader().reader(realmObject, builder.modelType);
+        ParseModelAbstract model = null;
+
+        try {
+            RealmObject realmObject = builder.buildAll().findFirst();
+            model = new DBModelReader().reader(realmObject, builder.modelType);
+        } catch (Exception e) {
+            return Task.forError(e);
+        } finally {
+            builder.closeDatabase();
+        }
+
         return Task.forResult(model);
     }
 }

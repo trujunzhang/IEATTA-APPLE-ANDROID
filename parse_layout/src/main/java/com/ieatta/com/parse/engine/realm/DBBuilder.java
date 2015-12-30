@@ -89,20 +89,11 @@ public class DBBuilder<T extends RealmObject> {
         return self.rmBuilder.orderBy(results, self.orderedByAscendingList, self.orderedByDescendingList);
     }
 
-    public Task<Void> delete(RealmResults results) {
+    public void delete(RealmResults results) {
         // All changes to data must happen in a transaction
-
-        try {
-            realm.beginTransaction();
-            results.removeLast();
-            realm.commitTransaction();
-        } catch (Exception e) {
-            return Task.forError(e);
-        } finally {
-            realm.close();
-        }
-
-        return Task.forResult(null);
+        realm.beginTransaction();
+        results.removeLast();
+        realm.commitTransaction();
     }
 
     public void closeDatabase() {

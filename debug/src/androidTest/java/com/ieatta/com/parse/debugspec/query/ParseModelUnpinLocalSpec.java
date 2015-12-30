@@ -26,140 +26,140 @@ public class ParseModelUnpinLocalSpec extends InstrumentationTestCase {
     }
 
     public void txestUnpinInBackground() throws Exception {
-        final CountDownLatch signal = new CountDownLatch(1);
-
-        final Team whTeam = new Team("wh", "wh@gmail.com", "wh.st", 123);
-        final LocalQuery whQuery = whTeam.createLocalQueryByUUID();
-        final LocalQuery teamCountQurey = whTeam.makeLocalQuery();
-
-        final Team countTeam = new Team();
-
-        final int[] expectCount = {-1, 1};
-        countTeam.countLocalObjects(teamCountQurey).onSuccessTask(new Continuation<Integer, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Integer> task) throws Exception {
-                expectCount[0] = task.getResult();
-                // Step02: Save it.
-                return whTeam.saveInBackground();
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                // Step03: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                /**
-                 * **** Important ****
-                 * Test function here
-                 */
-                // Step04: Delete it.
-                return whTeam.deleteInBackground();
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                // Step05: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
-            @Override
-            public Task<Integer> then(Task<Void> task) throws Exception {
-                return countTeam.countLocalObjects(teamCountQurey);
-            }
-        }).onSuccess(new Continuation<Integer, Void>() {
-            @Override
-            public Void then(Task<Integer> task) throws Exception {
-                expectCount[1] = task.getResult();
-                return null;
-            }
-        }).continueWith(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                if (task.isFaulted()) {
-                    Exception error = task.getError();
-                    String message = error.getLocalizedMessage();
-                    String errorMessage = error.getMessage();
-
-                    fail(message);
-
-                    signal.countDown();
-                    return null;
-                }
-                assertEquals("Save/Delete ", expectCount[0], expectCount[1]);
-                signal.countDown();
-                return null;
-            }
-        });
-
-        signal.await(10000, TimeUnit.SECONDS);
+//        final CountDownLatch signal = new CountDownLatch(1);
+//
+//        final Team whTeam = new Team("wh", "wh@gmail.com", "wh.st", 123);
+//        final LocalQuery whQuery = whTeam.createLocalQueryByUUID();
+//        final LocalQuery teamCountQurey = whTeam.makeLocalQuery();
+//
+//        final Team countTeam = new Team();
+//
+//        final int[] expectCount = {-1, 1};
+//        countTeam.countLocalObjects(teamCountQurey).onSuccessTask(new Continuation<Integer, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<Integer> task) throws Exception {
+//                expectCount[0] = task.getResult();
+//                // Step02: Save it.
+//                return whTeam.saveInBackground();
+//            }
+//        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<Void> task) throws Exception {
+//                // Step03: List table.
+//                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
+//            }
+//        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<Void> task) throws Exception {
+//                /**
+//                 * **** Important ****
+//                 * Test function here
+//                 */
+//                // Step04: Delete it.
+//                return whTeam.deleteInBxxxackground();
+//            }
+//        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<Void> task) throws Exception {
+//                // Step05: List table.
+//                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
+//            }
+//        }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
+//            @Override
+//            public Task<Integer> then(Task<Void> task) throws Exception {
+//                return countTeam.countLocalObjects(teamCountQurey);
+//            }
+//        }).onSuccess(new Continuation<Integer, Void>() {
+//            @Override
+//            public Void then(Task<Integer> task) throws Exception {
+//                expectCount[1] = task.getResult();
+//                return null;
+//            }
+//        }).continueWith(new Continuation<Void, Object>() {
+//            @Override
+//            public Object then(Task<Void> task) throws Exception {
+//                if (task.isFaulted()) {
+//                    Exception error = task.getError();
+//                    String message = error.getLocalizedMessage();
+//                    String errorMessage = error.getMessage();
+//
+//                    fail(message);
+//
+//                    signal.countDown();
+//                    return null;
+//                }
+//                assertEquals("Save/Delete ", expectCount[0], expectCount[1]);
+//                signal.countDown();
+//                return null;
+//            }
+//        });
+//
+//        signal.await(10000, TimeUnit.SECONDS);
     }
 
 
     public void txestUnpinEmptyInBackground() throws Exception {
-        final CountDownLatch signal = new CountDownLatch(1);
-
-        final Team whTeam = new Team("empty", "empty@gmail.com", "empty.st", 123);
-        final LocalQuery whQuery = whTeam.createLocalQueryByUUID();
-        final LocalQuery teamCountQuery = whTeam.makeLocalQuery();
-
-        final Team countTeam = new Team();
-
-        final int[] expectCount = {-1, 1};
-        countTeam.countLocalObjects(teamCountQuery).onSuccessTask(new Continuation<Integer, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Integer> task) throws Exception {
-                expectCount[0] = task.getResult();
-                // Step02: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                /**
-                 * **** Important ****
-                 * Test function here
-                 */
-                // Step04: Delete it.
-                return whTeam.deleteInBackground();
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                // Step05: List table.
-                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
-            }
-        }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
-            @Override
-            public Task<Integer> then(Task<Void> task) throws Exception {
-                return countTeam.countLocalObjects(teamCountQuery);
-            }
-        }).onSuccess(new Continuation<Integer, Void>() {
-            @Override
-            public Void then(Task<Integer> task) throws Exception {
-                expectCount[1] = task.getResult();
-                return null;
-            }
-        }).continueWith(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                if (task.isFaulted()) {
-                    Exception error = task.getError();
-                    String message = error.getLocalizedMessage();
-                    String errorMessage = error.getMessage();
-                    fail(message);
-                    signal.countDown();
-                    return null;
-                }
-                assertEquals("Save/Delete ", expectCount[0], expectCount[1]);
-                signal.countDown();
-                return null;
-            }
-        });
-
-        signal.await(10000, TimeUnit.SECONDS);
+//        final CountDownLatch signal = new CountDownLatch(1);
+//
+//        final Team whTeam = new Team("empty", "empty@gmail.com", "empty.st", 123);
+//        final LocalQuery whQuery = whTeam.createLocalQueryByUUID();
+//        final LocalQuery teamCountQuery = whTeam.makeLocalQuery();
+//
+//        final Team countTeam = new Team();
+//
+//        final int[] expectCount = {-1, 1};
+//        countTeam.countLocalObjects(teamCountQuery).onSuccessTask(new Continuation<Integer, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<Integer> task) throws Exception {
+//                expectCount[0] = task.getResult();
+//                // Step02: List table.
+//                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
+//            }
+//        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<Void> task) throws Exception {
+//                /**
+//                 * **** Important ****
+//                 * Test function here
+//                 */
+//                // Step04: Delete it.
+//                return whTeam.deleteIxxxnBackground();
+//            }
+//        }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<Void> task) throws Exception {
+//                // Step05: List table.
+//                return ParseLocalDatabase.queryLocalDatastoreInBackground(new Team().makeLocalQuery(), PQueryModelType.Team);
+//            }
+//        }).onSuccessTask(new Continuation<Void, Task<Integer>>() {
+//            @Override
+//            public Task<Integer> then(Task<Void> task) throws Exception {
+//                return countTeam.countLocalObjects(teamCountQuery);
+//            }
+//        }).onSuccess(new Continuation<Integer, Void>() {
+//            @Override
+//            public Void then(Task<Integer> task) throws Exception {
+//                expectCount[1] = task.getResult();
+//                return null;
+//            }
+//        }).continueWith(new Continuation<Void, Object>() {
+//            @Override
+//            public Object then(Task<Void> task) throws Exception {
+//                if (task.isFaulted()) {
+//                    Exception error = task.getError();
+//                    String message = error.getLocalizedMessage();
+//                    String errorMessage = error.getMessage();
+//                    fail(message);
+//                    signal.countDown();
+//                    return null;
+//                }
+//                assertEquals("Save/Delete ", expectCount[0], expectCount[1]);
+//                signal.countDown();
+//                return null;
+//            }
+//        });
+//
+//        signal.await(10000, TimeUnit.SECONDS);
     }
 
 
