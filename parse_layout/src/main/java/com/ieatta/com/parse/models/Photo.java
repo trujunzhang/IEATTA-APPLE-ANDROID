@@ -1,6 +1,7 @@
 package com.ieatta.com.parse.models;
 
 import android.graphics.Bitmap;
+import android.yelp.com.commonlib.io.FileUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.ParseModelLocalQuery;
@@ -54,6 +55,10 @@ public class Photo extends ParseModelSync {
     // MARK: Variable for pushing to server.
     public String originalUrl = "";
     public String thumbnailUrl = "";
+
+    // Mark: The following variables just for Android.
+    private ParseFile orginalImageFile;
+    private ParseFile thumbnailImageFile;
 
     public Photo() {
         super();
@@ -156,30 +161,58 @@ public class Photo extends ParseModelSync {
     @Override
     public Task<Void> writeObject(final ParseObject object) {
         // Special: Used only for the online object.
-        final ParseFile orginalImageFile = ImageOptimizeUtils.getPFFileForOrginalImage(this);
-        final ParseFile thumbnailImageFile = ImageOptimizeUtils.getPFFileForThumbnailImage(this);
+//        final ParseFile orginalImageFile = ImageOptimizeUtils.getPFFileForOrginalImage(this);
+//        final ParseFile thumbnailImageFile = ImageOptimizeUtils.getPFFileForThumbnailImage(this);
 
-        return super.writeObject(object)
-                .onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return thumbnailImageFile.saveInBackground();
-                    }
-                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return orginalImageFile.saveInBackground();
-                    }
-                }).onSuccess(new Continuation<Void, Void>() {
-                    @Override
-                    public Void then(Task<Void> task) throws Exception {
+        return ImageOptimizeUtils.getPFFileForOrginalImage(this).onSuccessTask(new Continuation<ParseFile, Task<Void>>() {
+            @Override
+            public Task<Void> then(Task<ParseFile> task) throws Exception {
+                self.thumbnailImageFile = task.getResult();
+                return self.thumbnailImageFile.saveInBackground();
+            }
+        }).onSuccessTask(new Continuation<Void, Task<ParseFile>>() {
+            @Override
+            public Task<ParseFile> then(Task<Void> task) throws Exception {
+                return ImageOptimizeUtils.getPFFileForOrginalImage(self);
+            }
+        }).onSuccessTask(new Continuation<ParseFile, Task<Void>>() {
+            @Override
+            public Task<Void> then(Task<ParseFile> task) throws Exception {
+                self.orginalImageFile = task.getResult();
+                return self.orginalImageFile.saveInBackground();
+            }
+        }).onSuccess(new Continuation<Void, Void>() {
+            @Override
+            public Void then(Task<Void> task) throws Exception {
 
-                        object.put(kPAPFieldOriginalImageKey, orginalImageFile);
-                        object.put(kPAPFieldThumbnailImageKey, thumbnailImageFile);
+                object.put(kPAPFieldOriginalImageKey, orginalImageFile);
+                object.put(kPAPFieldThumbnailImageKey, thumbnailImageFile);
 
-                        return null;
-                    }
-                });
+                return null;
+            }
+        });
+
+//        return super.writeObject(object)
+//                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+//                    @Override
+//                    public Task<Void> then(Task<Void> task) throws Exception {
+//                        return thumbnailImageFile.saveInBackground();
+//                    }
+//                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+//                    @Override
+//                    public Task<Void> then(Task<Void> task) throws Exception {
+//                        return orginalImageFile.saveInBackground();
+//                    }
+//                }).onSuccess(new Continuation<Void, Void>() {
+//                    @Override
+//                    public Void then(Task<Void> task) throws Exception {
+//
+//                        object.put(kPAPFieldOriginalImageKey, orginalImageFile);
+//                        object.put(kPAPFieldThumbnailImageKey, thumbnailImageFile);
+//
+//                        return null;
+//                    }
+//                });
     }
 
     @Override
@@ -332,7 +365,7 @@ public class Photo extends ParseModelSync {
                     public Task<Bitmap> then(Task<Bitmap> task) throws Exception {
                         return self.downloadOriginalImageFromServer();
                     }
-                }).onSuccessTask(new Continuation<Bitmap,Task<Void>>() {
+                }).onSuccessTask(new Continuation<Bitmap, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Bitmap> task) throws Exception {
                         return Task.forResult(null);

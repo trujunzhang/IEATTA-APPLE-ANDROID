@@ -1,6 +1,7 @@
 package com.ieatta.com.parse.utils.cache;
 
 import android.graphics.Bitmap;
+import android.yelp.com.commonlib.io.FileUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Photo;
@@ -8,6 +9,10 @@ import com.ieatta.com.parse.tools.Thumbnail;
 import com.parse.ParseFile;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import bolts.Task;
 
 /**
  * Created by djzhang on 11/30/15.
@@ -21,13 +26,21 @@ public class ImageOptimizeUtils {
      * <p/>
      * - returns:  PFFile's instance of the original image
      */
-    public static ParseFile getPFFileForOrginalImage(Photo photo) {
+    public static Task<ParseFile> getPFFileForOrginalImage(Photo photo) {
         File _originalImage = OriginalImageUtils.sharedInstance.getTakenPhotoFile(ParseModelAbstract.getPoint(photo));
+
+        byte[] bytes = null;
         if (_originalImage != null) {
-            return new ParseFile(_originalImage);
+            String name = _originalImage.getName();
+            try {
+                bytes = FileUtils.toByteArray(_originalImage.getAbsolutePath());
+            } catch (IOException e) {
+                return Task.forError(new FileNotFoundException(photo.printDescription()));
+            }
+            return Task.forResult(new ParseFile(name,bytes));
         }
 
-        return null;
+        return Task.forError(new FileNotFoundException(photo.printDescription()));
     }
 
     /**
@@ -37,13 +50,21 @@ public class ImageOptimizeUtils {
      * <p/>
      * - returns:  PFFile's instance of the thumbnail image
      */
-    public static ParseFile getPFFileForThumbnailImage(Photo photo) {
+    public static Task<ParseFile> getPFFileForThumbnailImage(Photo photo) {
         File _thumbnailImage = ThumbnailImageUtils.sharedInstance.getTakenPhotoFile(ParseModelAbstract.getPoint(photo));
+
+        byte[] bytes = null;
         if (_thumbnailImage != null) {
-            return new ParseFile(_thumbnailImage);
+            String name = _thumbnailImage.getName();
+            try {
+                bytes = FileUtils.toByteArray(_thumbnailImage.getAbsolutePath());
+            } catch (IOException e) {
+                return Task.forError(new FileNotFoundException(photo.printDescription()));
+            }
+            return Task.forResult(new ParseFile(name,bytes));
         }
 
-        return null;
+        return Task.forError(new FileNotFoundException(photo.printDescription()));
     }
 
     public static Bitmap generateOriginalImage(Bitmap anImage) {

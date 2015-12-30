@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.test.InstrumentationTestCase;
 import android.util.AttributeSet;
 import android.view.View;
+import android.yelp.com.commonlib.io.FileUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
@@ -82,8 +83,10 @@ public class LocalImageSpec extends InstrumentationTestCase {
 
     public void testMd5FileName() throws Exception {
         String uuid = "E7D63E85-26BE-4856-AD7E-EC8D99C046BC";
-        String generate = new Md5FileNameGenerator().generate(uuid);
+        File takenPhotoFile = OriginalImageUtils.sharedInstance.getTakenPhotoFile(uuid);
+        byte[] bytes = FileUtils.toByteArray(takenPhotoFile.getAbsolutePath());
 
+        String generate = new Md5FileNameGenerator().generate(uuid);
         int length = generate.length();
 
     }
