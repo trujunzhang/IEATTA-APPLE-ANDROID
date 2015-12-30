@@ -11,6 +11,7 @@ import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.Photo;
 import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 
 import junit.framework.TestCase;
 
@@ -32,7 +33,7 @@ public class LocalImageSpec extends InstrumentationTestCase {
         super.setUp();
     }
 
-    public void testImageNames() throws Exception {
+    public void texxstImageNames() throws Exception {
         LocalQuery query = new Photo().makeLocalQuery();
 
         query.findInBackground()
@@ -77,5 +78,13 @@ public class LocalImageSpec extends InstrumentationTestCase {
         }
 
         return Task.forError(new NullPointerException("not found bitmaps for " + photo.printDescription()));
+    }
+
+    public void testMd5FileName() throws Exception {
+        String uuid = "E7D63E85-26BE-4856-AD7E-EC8D99C046BC";
+        String generate = new Md5FileNameGenerator().generate(uuid);
+
+        int length = generate.length();
+
     }
 }
