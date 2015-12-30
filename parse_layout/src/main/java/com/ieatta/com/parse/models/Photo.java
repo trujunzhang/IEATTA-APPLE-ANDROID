@@ -1,6 +1,7 @@
 package com.ieatta.com.parse.models;
 
 import android.graphics.Bitmap;
+import android.system.ErrnoException;
 import android.yelp.com.commonlib.io.FileUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
@@ -16,6 +17,8 @@ import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+
+import org.apache.commons.io.FileExistsException;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -381,7 +384,12 @@ public class Photo extends ParseModelSync {
 
     @Override
     public Task<Boolean> afterPushToServer() {
-        return OriginalImageUtils.sharedInstance.removeOriginalImage(this);
+        boolean isRemove = OriginalImageUtils.sharedInstance.removeOriginalImage(this);
+        if(isRemove == false){
+            return Task.forError(new FileExistsException(self.printDescription()));
+        }
+
+        return Task.forResult(true);
     }
 
     public Task<Bitmap> getThumbanilImage() {

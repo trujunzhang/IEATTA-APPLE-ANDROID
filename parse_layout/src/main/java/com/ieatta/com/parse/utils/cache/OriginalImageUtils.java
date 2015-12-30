@@ -36,14 +36,14 @@ public class OriginalImageUtils extends AbstractImageUtils {
      * <p/>
      * - parameter photo: photo's instance
      */
-    public Task<Boolean> removeOriginalImage(Photo photo) {
+    public boolean removeOriginalImage(Photo photo) {
         boolean imageExist = this.diskImageExistsWithKey(photo);
         if (imageExist == false) {
-            return Task.forError(new FileNotFoundException(photo.printDescription()));
+            return false;
         }
         boolean isRemove = this.getImageCache().remove(ParseModelAbstract.getPoint(photo));
 
-        return Task.forResult(isRemove);
+        return isRemove;
     }
 
     @Override
