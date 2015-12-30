@@ -171,8 +171,8 @@ public abstract class AbstractImageUtils {
             @Override
             public void onResponse(Response response) throws IOException {
                 InputStream inputStream = response.body().byteStream();
-                tcs.setResult(inputStream);
-//                tcs.setError(new FileExistsException("wanghao's test"));
+//                tcs.setResult(inputStream);
+                tcs.setError(new FileExistsException("wanghao's test"));
             }
         });
 

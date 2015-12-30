@@ -71,7 +71,7 @@ public class ParseAsyncHandler {
     private void testPullFromServer(){
         // TODO djzhang: test
         PullNewRecordFromServerTask.PullFromServerSeriesTask(new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).createQuery(PAGE_NUMBER_FETCH_NEW_RECORD))
-                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+                .continueWith(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
                         self.endAsyncTasks(task.getError());
