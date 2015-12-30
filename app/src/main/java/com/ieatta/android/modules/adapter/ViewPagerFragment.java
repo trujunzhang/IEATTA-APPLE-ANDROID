@@ -99,14 +99,14 @@ public class ViewPagerFragment extends Fragment {
                 Bitmap image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
                 return self.showImage(image, true);
             }
-        }).onSuccessTask(new Continuation<Boolean, Task<Bitmap>>() {
+        }).onSuccessTask(new Continuation<Boolean, Task<Void>>() {
             @Override
-            public Task<Bitmap> then(Task<Boolean> task) throws Exception {
+            public Task<Void> then(Task<Boolean> task) throws Exception {
                 return photo.downloadCacheImageFromServer();
             }
-        }).onSuccess(new Continuation<Bitmap, Object>() {
+        }).onSuccess(new Continuation<Void, Object>() {
             @Override
-            public Object then(final Task<Bitmap> task) throws Exception {
+            public Object then(final Task<Void> task) throws Exception {
                 Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
                 return self.showImage(image, false);
             }

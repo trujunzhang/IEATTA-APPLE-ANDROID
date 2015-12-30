@@ -347,9 +347,9 @@ public class Photo extends ParseModelSync {
 //        // 1. First of all,to decrease client storage.
 //        //   So just save online thumbnail image as offline file.
 //        return this.downloadThumbnailImageFromServer()
-//                .onSuccessTask(new Continuation<Bitmap, Task<Void>>() {
+//                .onSuccessTask(new Continuation<Void, Task<Void>>() {
 //                    @Override
-//                    public Task<Void> then(Task<Bitmap> task) throws Exception {
+//                    public Task<Void> then(Task<Void> task) throws Exception {
 //                        return Task.forResult(null);
 //                    }
 //                });
@@ -360,28 +360,28 @@ public class Photo extends ParseModelSync {
         // 1. First of all,to decrease client storage.
         //   So just save online thumbnail image as offline file.
         return self.downloadThumbnailImageFromServer()
-                .onSuccessTask(new Continuation<Bitmap, Task<Bitmap>>() {
+                .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
-                    public Task<Bitmap> then(Task<Bitmap> task) throws Exception {
+                    public Task<Void> then(Task<Void> task) throws Exception {
                         return self.downloadOriginalImageFromServer();
                     }
-                }).onSuccessTask(new Continuation<Bitmap, Task<Void>>() {
+                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
-                    public Task<Void> then(Task<Bitmap> task) throws Exception {
+                    public Task<Void> then(Task<Void> task) throws Exception {
                         return Task.forResult(null);
                     }
                 });
     }
 
-    public Task<Bitmap> downloadThumbnailImageFromServer() {
+    public Task<Void> downloadThumbnailImageFromServer() {
         return ThumbnailImageUtils.sharedInstance.downloadImageFromServer(this, this.thumbnailUrl);
     }
 
-    public Task<Bitmap> downloadOriginalImageFromServer() {
+    public Task<Void> downloadOriginalImageFromServer() {
         return OriginalImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
     }
 
-    public Task<Bitmap> downloadCacheImageFromServer() {
+    public Task<Void> downloadCacheImageFromServer() {
         return CacheImageUtils.sharedInstance.downloadImageFromServer(this, this.originalUrl);
     }
 

@@ -10,9 +10,14 @@ import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import bolts.Continuation;
@@ -112,6 +117,18 @@ public abstract class AbstractImageUtils {
         return Task.forResult(image);
     }
 
+    public Task<Void> saveTakenPhoto(InputStream inputStream, Photo model) {
+
+        // ** Important ** Must store to Disk.
+        try {
+            this.getImageCache().save(ParseModelAbstract.getPoint(model), inputStream, null);
+        } catch (IOException e) {
+            return Task.forError(e);
+        }
+
+        return Task.forResult(null);
+    }
+
     /**
      * Generate a specail type image, then save it as the offline image.
      * <p/>
@@ -124,52 +141,64 @@ public abstract class AbstractImageUtils {
         return Task.forResult(null);
     }
 
-    public Task<Bitmap> downloadImageWithURL(String URL) {
+    OkHttpClient client = new OkHttpClient();
+
+    InputStream doGetRequest(String URL) throws IOException {
+        Request request = new Request.Builder()
+                .url(URL)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        return response.body().byteStream();
+    }
+
+    public Task<InputStream> downloadImageWithURL(String URL) {
         final Task.TaskCompletionSource tcs = Task.create();
 
-        ImageLoader.getInstance().loadImage(URL, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                tcs.setError(new Exception("Download image failed!", failReason.getCause()));
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                tcs.setResult(loadedImage);
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-                tcs.setError(new Exception("Loading cancelled!"));
-            }
-        });
+        InputStream inputStream = null;
+        try {
+            inputStream = self.doGetRequest(URL);
+        } catch (IOException e) {
+            tcs.setError(e);
+        } finally {
+            tcs.setResult(inputStream);
+        }
 
         return tcs.getTask();
     }
 
-    public Task<Bitmap> downloadImageFromServer(final Photo model, String url) {
+    public Task<Void> downloadImageFromServer(final Photo model, String url) {
+        final Task.TaskCompletionSource tcs = Task.create();
 
         /// If the image already exist on the cache folder, we don't download it from the Parse.com.
-        Bitmap bitmap = this.getTakenPhoto(model);
-        if (bitmap != null) {
-            return Task.forResult(bitmap);
+        File imageFile = this.getTakenPhotoFile(ParseModelAbstract.getPoint(model));
+        if (imageFile != null && imageFile.exists() == false) {
+            tcs.setResult(null);
         }
         if (url == null || url.isEmpty() == true) {
 //            return BFTask(error: NSError.getError(IEAErrorType.EmptyURL, description: "\(model.printDescription())"))
-            return Task.forError(new NullPointerException(""));
+            tcs.setError(new NullPointerException(model.printDescription()));
         }
 
-        return this.downloadImageWithURL(url).onSuccessTask(new Continuation<Bitmap, Task<Bitmap>>() {
+        this.downloadImageWithURL(url)
+                .onSuccessTask(new Continuation<InputStream, Task<Void>>() {
+                    @Override
+                    public Task<Void> then(Task<InputStream> task) throws Exception {
+                        return self.saveTakenPhoto(task.getResult(), model);
+                    }
+                }).continueWith(new Continuation<Void, Object>() {
             @Override
-            public Task<Bitmap> then(Task<Bitmap> task) throws Exception {
-                return self.saveTakenPhoto(task.getResult(), model);
+            public Object then(Task<Void> task) throws Exception {
+                if (task.isFaulted()) {
+                    tcs.setError(task.getError());
+                } else {
+                    tcs.setResult(task.getResult());
+                }
+                return null;
             }
         });
+
+        return tcs.getTask();
     }
 
 
