@@ -190,8 +190,8 @@ public class Photo extends ParseModelSync {
             @Override
             public Void then(Task<Void> task) throws Exception {
 
-                object.put(kPAPFieldOriginalImageKey, orginalImageFile);
-                object.put(kPAPFieldThumbnailImageKey, thumbnailImageFile);
+                object.put(kPAPFieldOriginalImageKey, orginalImageFile);// (Original)
+                object.put(kPAPFieldThumbnailImageKey, thumbnailImageFile);// (Thumbnail)
 
                 return null;
             }
