@@ -166,7 +166,7 @@ public class Photo extends ParseModelSync {
         final Task.TaskCompletionSource tcs = Task.create();
 
         // Special: Used only for the online object.
-         super.writeObject(object).onSuccessTask(new Continuation<Void, Task<ParseFile>>() {
+        super.writeObject(object).onSuccessTask(new Continuation<Void, Task<ParseFile>>() {
             @Override
             public Task<ParseFile> then(Task<Void> task) throws Exception {
                 return ImageOptimizeUtils.getPFFileForThumbnailImage(self); // (Thumbnail)
@@ -198,16 +198,16 @@ public class Photo extends ParseModelSync {
                 return null;
             }
         }).continueWith(new Continuation<Void, Object>() {
-             @Override
-             public Object then(Task<Void> task) throws Exception {
-                 if (task.isFaulted()) {
-                     tcs.setError(task.getError());
-                 } else {
-                     tcs.setResult(null);
-                 }
-                 return null;
-             }
-         });
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                if (task.isFaulted()) {
+                    tcs.setError(task.getError());
+                } else {
+                    tcs.setResult(null);
+                }
+                return null;
+            }
+        });
 
         return tcs.getTask();
     }
@@ -354,20 +354,34 @@ public class Photo extends ParseModelSync {
 
     @Override
     public Task<Void> beforePullFromServer() {
+        final Task.TaskCompletionSource tcs = Task.create();
+
         // 1. First of all,to decrease client storage.
         //   So just save online thumbnail image as offline file.
-        return self.downloadThumbnailImageFromServer()
+        self.downloadThumbnailImageFromServer()
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
                         return self.downloadOriginalImageFromServer();
                     }
                 }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return Task.forResult(null);
-                    }
-                });
+            @Override
+            public Task<Void> then(Task<Void> task) throws Exception {
+                return Task.forResult(null);
+            }
+        }).continueWith(new Continuation<Void, Object>() {
+            @Override
+            public Object then(Task<Void> task) throws Exception {
+                if (task.isFaulted()) {
+                    tcs.setError(task.getError());
+                } else {
+                    tcs.setResult(null);
+                }
+                return null;
+            }
+        });
+
+        return tcs.getTask();
     }
 
     public Task<Void> downloadThumbnailImageFromServer() {
@@ -385,7 +399,7 @@ public class Photo extends ParseModelSync {
     @Override
     public Task<Boolean> afterPushToServer() {
         boolean isRemove = OriginalImageUtils.sharedInstance.removeOriginalImage(this);
-        if(isRemove == false){
+        if (isRemove == false) {
             return Task.forError(new FileExistsException(self.printDescription()));
         }
 
