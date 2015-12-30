@@ -167,24 +167,24 @@ public class Photo extends ParseModelSync {
         return super.writeObject(object).onSuccessTask(new Continuation<Void, Task<ParseFile>>() {
             @Override
             public Task<ParseFile> then(Task<Void> task) throws Exception {
-                return ImageOptimizeUtils.getPFFileForOrginalImage(self);
+                return ImageOptimizeUtils.getPFFileForThumbnailImage(self); // (Thumbnail)
             }
         }).onSuccessTask(new Continuation<ParseFile, Task<Void>>() {
             @Override
             public Task<Void> then(Task<ParseFile> task) throws Exception {
-                self.thumbnailImageFile = task.getResult();
-                return self.thumbnailImageFile.saveInBackground();
+                self.thumbnailImageFile = task.getResult();// (Thumbnail)
+                return self.thumbnailImageFile.saveInBackground();// (Thumbnail)
             }
         }).onSuccessTask(new Continuation<Void, Task<ParseFile>>() {
             @Override
             public Task<ParseFile> then(Task<Void> task) throws Exception {
-                return ImageOptimizeUtils.getPFFileForOrginalImage(self);
+                return ImageOptimizeUtils.getPFFileForOrginalImage(self); // (Original)
             }
         }).onSuccessTask(new Continuation<ParseFile, Task<Void>>() {
             @Override
             public Task<Void> then(Task<ParseFile> task) throws Exception {
-                self.orginalImageFile = task.getResult();
-                return self.orginalImageFile.saveInBackground();
+                self.orginalImageFile = task.getResult();// (Original)
+                return self.orginalImageFile.saveInBackground();// (Original)
             }
         }).onSuccess(new Continuation<Void, Void>() {
             @Override
