@@ -39,8 +39,7 @@ public class OriginalImageUtils extends AbstractImageUtils {
     public Task<Boolean> removeOriginalImage(Photo photo) {
         boolean imageExist = this.diskImageExistsWithKey(photo);
         if (imageExist == false) {
-            //return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "\(photo.printDescription())"))
-            return Task.forError(new FileNotFoundException(""));
+            return Task.forError(new FileNotFoundException(photo.printDescription()));
         }
         boolean isRemove = this.getImageCache().remove(ParseModelAbstract.getPoint(photo));
 
