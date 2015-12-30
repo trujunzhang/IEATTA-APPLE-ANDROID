@@ -22,7 +22,7 @@ import bolts.Task;
 public class PullNewRecordFromServerTask {
     private PullNewRecordFromServerTask self = this;
 
-    public static Task PullFromServerSeriesTask(ParseQuery query) {
+    public static Task<Void> PullFromServerSeriesTask(ParseQuery query) {
 
         return query.findInBackground().onSuccessTask(new Continuation() {
             @Override
@@ -32,19 +32,19 @@ public class PullNewRecordFromServerTask {
         });
     }
 
-    private static Task executeSerialTasks(Task previous) {
+    private static Task<Void> executeSerialTasks(Task previous) {
         List<ParseObject> results = (List<ParseObject>) previous.getResult();
         LogUtils.debug("{ count in Pull objects from Server }: " + results.size());
 
         SerialTasksManager<ParseObject> manager = new SerialTasksManager<>(results);
         if (manager.hasNext() == false) {
-            return Task.forResult(true);
+            return Task.forResult(null);
         }
 
         return startPullFromServerSingleTask(manager);
     }
 
-    private static Task startPullFromServerSingleTask(final SerialTasksManager<ParseObject> manager) {
+    private static Task<Void> startPullFromServerSingleTask(final SerialTasksManager<ParseObject> manager) {
         return PullObjectFromServerTask(manager.next())
                 .onSuccessTask(new Continuation() {
                     @Override
