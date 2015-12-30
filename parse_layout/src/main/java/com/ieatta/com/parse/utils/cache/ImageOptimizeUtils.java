@@ -30,15 +30,14 @@ public class ImageOptimizeUtils {
         String uuid = ParseModelAbstract.getPoint(photo);
         File _originalImage = OriginalImageUtils.sharedInstance.getTakenPhotoFile(uuid);
 
-        byte[] bytes = null;
         if (_originalImage != null) {
-            String name = _originalImage.getName();
+            byte[] bytes;
             try {
                 bytes = FileUtils.toByteArray(_originalImage.getAbsolutePath());
             } catch (IOException e) {
                 return Task.forError(new FileNotFoundException(photo.printDescription()));
             }
-            return Task.forResult(new ParseFile("o-" + uuid, bytes));
+            return Task.forResult(new ParseFile("O-" + uuid, bytes));
         }
 
         return Task.forError(new FileNotFoundException(photo.printDescription()));
@@ -55,14 +54,14 @@ public class ImageOptimizeUtils {
         String uuid = ParseModelAbstract.getPoint(photo);
         File _thumbnailImage = ThumbnailImageUtils.sharedInstance.getTakenPhotoFile(uuid);
 
-        byte[] bytes = null;
         if (_thumbnailImage != null) {
+            byte[] bytes;
             try {
                 bytes = FileUtils.toByteArray(_thumbnailImage.getAbsolutePath());
             } catch (IOException e) {
                 return Task.forError(new FileNotFoundException(photo.printDescription()));
             }
-            return Task.forResult(new ParseFile("t-" + uuid, bytes));
+            return Task.forResult(new ParseFile("T-" + uuid, bytes));
         }
 
         return Task.forError(new FileNotFoundException(photo.printDescription()));
