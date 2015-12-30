@@ -78,6 +78,12 @@ public class LocalImageSpec extends InstrumentationTestCase {
                 return null;
             }
         });
+
+        if(notFoundList.size() != 0){
+            int size = notFoundList.size();
+        }else{
+            int size = notFoundList.size();
+        }
     }
 
     private Task<Void> verifyImageNameFromPhoto(final Photo photo) {
