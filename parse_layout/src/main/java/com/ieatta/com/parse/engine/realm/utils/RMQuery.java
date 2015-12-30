@@ -15,15 +15,14 @@ import io.realm.RealmResults;
  * Created by djzhang on 12/21/15.
  */
 public class RMQuery<T extends RealmObject> {
-    private DBBuilder builder;
+    private DBBuilder<T> builder;
 
-    public RMQuery(DBBuilder builder) {
+    public RMQuery(DBBuilder<T> builder) {
         this.builder = builder;
     }
 
     public Task<List<ParseModelAbstract>> findInBackground() {
         List<ParseModelAbstract> list = null;
-
 
         RealmResults results = null;
         try {
