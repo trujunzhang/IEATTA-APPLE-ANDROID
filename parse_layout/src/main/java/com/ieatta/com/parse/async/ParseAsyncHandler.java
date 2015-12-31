@@ -34,7 +34,7 @@ public class ParseAsyncHandler {
 
     private void endAsyncTasks(Exception error) {
         if (error != null) {
-            LogUtils.debug("Error when async database:" + error.getLocalizedMessage());
+            LogUtils.debug("Error when async database: " + error.getLocalizedMessage());
         } else {
             LogUtils.debug("Async database task end sucessfully!");
         }
