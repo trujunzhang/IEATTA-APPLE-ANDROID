@@ -39,7 +39,7 @@ public class IEAApplication extends Application {
 
         // Async database in background automately
         // TODO: djzhang(used)
-        new ParseAsyncTimer().prepareTimer();
+//        new ParseAsyncTimer().prepareTimer();
 
         /**
          Show all tables data on the offline database,when have some issues.
