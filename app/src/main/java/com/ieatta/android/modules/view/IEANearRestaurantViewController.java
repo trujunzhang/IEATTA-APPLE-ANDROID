@@ -15,6 +15,7 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.android.notification.NSNotification;
+import com.ieatta.android.observers.LocationObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 import com.parse.ParseGeoPoint;
@@ -130,12 +131,12 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     // MARK: NSNotificationCenter notification handlers
     @Override
     protected void RestaurantWasCreated(NSNotification note) {
-//        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
+        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
     }
 
     @Override
     protected void LocationDidChange(NSNotification note) {
-//        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
+        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
     }
 
     @Override

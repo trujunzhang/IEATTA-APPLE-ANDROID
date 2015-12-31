@@ -5,16 +5,21 @@ import android.graphics.Bitmap;
 import android.test.InstrumentationTestCase;
 import android.util.AttributeSet;
 import android.view.View;
+import android.virtualbreak.com.debug.ParseLocalDatabase;
 import android.yelp.com.commonlib.io.FileUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
+import com.ieatta.com.parse.ParseModelLocalQuery;
+import com.ieatta.com.parse.ParseModelOnlineQuery;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.Photo;
+import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.utils.cache.OriginalImageUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.parse.ParseQuery;
 
 import junit.framework.TestCase;
 
@@ -30,34 +35,52 @@ import bolts.Task;
 /**
  * Created by djzhang on 12/31/15.
  */
-public class LocalQuerySpec extends InstrumentationTestCase{
+public class LocalQuerySpec extends InstrumentationTestCase {
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
     }
 
-    public void testQueryNewRecord() throws Exception {
-        LocalQuery localQuery = new  NewRecord().makeLocalQuery();
+    public void tesxxxtQueryNewRecord() throws Exception {
+        LocalQuery localQuery = new NewRecord().makeLocalQuery();
         localQuery.whereEqualTo("modelType", PQueryModelType.getInt(PQueryModelType.Team));
 
-        localQuery.findInBackground().onSuccessTask(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                Object result = task.getResult();
+        ParseModelLocalQuery.queryFromRealm(PQueryModelType.NewRecord, localQuery)
+                .continueWith(new Continuation<List<ParseModelAbstract>, Object>() {
+                    @Override
+                    public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        if (task.isFaulted()) {
+                            Exception error = task.getError();
+                            String message = error.getMessage();
+                        }
 
-                return null;
-            }
-        }).continueWith(new Continuation() {
-            @Override
-            public Object then(Task task) throws Exception {
-                if (task.isFaulted()) {
-                    Exception error = task.getError();
-                    String message = error.getMessage();
-                }
-                return null;
-            }
-        });
+                        List<ParseModelAbstract> result = task.getResult();
+
+                        return null;
+                    }
+                });
+
+    }
+
+    public void testQueryRestaurants() throws Exception {
+        ParseQuery query = new Restaurant().makeParseQuery();
+
+        ParseModelOnlineQuery.queryFromParse(PQueryModelType.Restaurant, query)
+                .continueWith(new Continuation<List<ParseModelAbstract>, Object>() {
+                    @Override
+                    public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+                        if (task.isFaulted()) {
+                            Exception error = task.getError();
+                            String message = error.getMessage();
+                        }
+
+                        List<ParseModelAbstract> result = task.getResult();
+
+                        return null;
+                    }
+                });
+
 
     }
 }

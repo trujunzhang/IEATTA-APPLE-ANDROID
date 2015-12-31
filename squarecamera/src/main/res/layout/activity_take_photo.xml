@@ -17,17 +17,16 @@
         <com.doctoror.aspectratiolayout.AspectRatioLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             demo:aspect="1"
-            demo:aspectType="vertical"
-            android:layout_centerVertical="true">
+            demo:aspectType="vertical">
 
             <ImageView
                 android:id="@+id/camera_preview_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="top|center"
-                android:scaleType="fitXY"
-                android:src="@drawable/rest01" />
+                android:scaleType="fitXY" />
 
             <FrameLayout
                 android:layout_width="match_parent"
