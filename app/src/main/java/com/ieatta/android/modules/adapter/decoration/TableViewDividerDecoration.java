@@ -49,7 +49,6 @@ public class TableViewDividerDecoration extends RecyclerView.ItemDecoration {
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
             int tag = (int) child.getTag();
-            //        Log.v("decoration","tag: "+tag);
             if (this.isIgnorDivider(tag)) {
                 continue;
             }
