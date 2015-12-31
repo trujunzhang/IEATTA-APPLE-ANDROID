@@ -77,7 +77,7 @@ public class EditSavePhotoFragment extends Fragment {
 //            topView.getLayoutParams().width = imageParameters.mCoverWidth;
 //        }
 
-        rotatePicture(0, data, photoImageView);
+        rotatePicture(rotation, data, photoImageView);
 
         view.findViewById(R.id.save_photo).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +94,7 @@ public class EditSavePhotoFragment extends Fragment {
             Bitmap oldBitmap = bitmap;
 
             Matrix matrix = new Matrix();
-            matrix.postRotate(rotation);
+            matrix.preRotate(rotation);
 
             bitmap = Bitmap.createBitmap(
                     oldBitmap, 0, 0, oldBitmap.getWidth(), oldBitmap.getHeight(), matrix, false

@@ -35,7 +35,7 @@ public class IEAApplication extends Application {
         ParseAPI.setup(this);
 
         /// Clean Cache folder contains downloaded original images.
-//        CacheImageUtils.sharedInstance.clearCacheDisk();
+        CacheImageUtils.sharedInstance.clearCacheDisk();
 
         // Async database in background automately
         // TODO: djzhang(used)
