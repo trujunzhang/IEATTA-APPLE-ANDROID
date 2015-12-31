@@ -63,9 +63,9 @@ public class ParseAsyncHandler {
 //                    }
 //                });
 
-        self.testPushToServer();
+//        self.testPushToServer();
 
-//        self.testPullFromServer();
+        self.testPullFromServer();
     }
 
     private void testPullFromServer(){
