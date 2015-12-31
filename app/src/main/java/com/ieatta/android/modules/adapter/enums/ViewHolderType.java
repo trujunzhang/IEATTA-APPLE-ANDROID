@@ -8,7 +8,7 @@ public enum ViewHolderType {
     special,
     header,
     cell,
-    footer;
-
+    footer,
+    section;
 
 }

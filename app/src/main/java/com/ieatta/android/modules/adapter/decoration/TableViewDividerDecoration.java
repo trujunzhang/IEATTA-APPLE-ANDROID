@@ -55,8 +55,10 @@ public class TableViewDividerDecoration extends RecyclerView.ItemDecoration {
             }
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
-            final int left = this.getLeft(parent, tag, i, childCount);
-
+            int left = 0;
+            if(tag != ViewHolderType.section.ordinal()){
+                left = this.getLeft(parent, tag, i, childCount);
+            }
             final int top = child.getBottom() + params.bottomMargin + mInsets;
             final int bottom = top + mDivider.getIntrinsicHeight();
             mDivider.setBounds(left, top, right, bottom);

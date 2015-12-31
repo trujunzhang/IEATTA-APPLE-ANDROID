@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.com.parse.models.Review;
 
 public class IEAReviewsCell extends IEAViewHolder {
@@ -15,6 +16,11 @@ public class IEAReviewsCell extends IEAViewHolder {
     }
 
     private IEAReviewsCell self = this;
+
+    @Override
+    public ViewHolderType getViewHolderType(){
+        return ViewHolderType.section;
+    }
 
     private ImageView business_review_star_rating;
     private TextView reviewContentLabel;

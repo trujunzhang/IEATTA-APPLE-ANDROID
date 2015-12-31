@@ -20,11 +20,6 @@ public class IEAReviewUserCell extends IEAViewHolder {
         return false;
     }
 
-    @Override
-    public ViewHolderType getViewHolderType() {
-        return ViewHolderType.None;
-    }
-
     private IEAReviewUserCell self = this;
 
     private AvatarView avatarView;
