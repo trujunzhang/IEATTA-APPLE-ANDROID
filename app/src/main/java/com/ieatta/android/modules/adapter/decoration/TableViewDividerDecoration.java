@@ -76,7 +76,7 @@ public class TableViewDividerDecoration extends RecyclerView.ItemDecoration {
             nextChild = parent.getChildAt(position + 1);
             int nextTag = (int) nextChild.getTag();
             if (nextTag == ViewHolderType.cell.ordinal()) {
-                if (((tag == ViewHolderType.cell.ordinal()) || (tag == ViewHolderType.special.ordinal()))) {
+                if (((tag == ViewHolderType.cell.ordinal()) || (tag == ViewHolderType.special.ordinal())|| (tag == ViewHolderType.section.ordinal()))) {
                     return 32;
                 }
             }
