@@ -341,15 +341,29 @@ public class Photo extends ParseModelSync {
 
 //    @Override
 //    public Task<Void> beforePullFromServer() {
+//        final Task.TaskCompletionSource tcs = Task.create();
+//
 //        // 1. First of all,to decrease client storage.
 //        //   So just save online thumbnail image as offline file.
-//        return this.downloadThumbnailImageFromServer()
+//         this.downloadThumbnailImageFromServer()
 //                .onSuccessTask(new Continuation<Void, Task<Void>>() {
 //                    @Override
 //                    public Task<Void> then(Task<Void> task) throws Exception {
 //                        return Task.forResult(null);
 //                    }
+//                }).continueWith(new Continuation<Void, Object>() {
+//                    @Override
+//                    public Object then(Task<Void> task) throws Exception {
+//                        if (task.isFaulted()) {
+//                            tcs.setError(task.getError());
+//                        } else {
+//                            tcs.setResult(null);
+//                        }
+//                        return null;
+//                    }
 //                });
+//
+//        return tcs.getTask();
 //    }
 
     @Override
@@ -364,12 +378,7 @@ public class Photo extends ParseModelSync {
                     public Task<Void> then(Task<Void> task) throws Exception {
                         return OriginalImageUtils.sharedInstance.downloadImageFromServer(self, self.originalUrl);
                     }
-                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-                return Task.forResult(null);
-            }
-        }).continueWith(new Continuation<Void, Object>() {
+                }).continueWith(new Continuation<Void, Object>() {
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted()) {
