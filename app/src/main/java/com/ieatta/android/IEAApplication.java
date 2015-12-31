@@ -46,14 +46,5 @@ public class IEAApplication extends Application {
 
          */
 //        AppDebugManager.show();
-
-//        new MigrateUtils().executeMigrate()
-//                .onSuccess(new Continuation<Void, Object>() {
-//                    @Override
-//                    public Object then(Task<Void> task) throws Exception {
-//                        return ParseLocalDatabase.queryLocalDatastoreInBackground(new NewRecord().makeLocalQuery(), PQueryModelType.NewRecord);
-//                    }
-//                });
-
     }
 }

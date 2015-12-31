@@ -339,59 +339,28 @@ public class Photo extends ParseModelSync {
                 '}';
     }
 
-//    @Override
-//    public Task<Void> beforePullFromServer() {
-//        final Task.TaskCompletionSource tcs = Task.create();
-//
-//        // 1. First of all,to decrease client storage.
-//        //   So just save online thumbnail image as offline file.
-//         this.downloadThumbnailImageFromServer()
-//                .onSuccessTask(new Continuation<Void, Task<Void>>() {
-//                    @Override
-//                    public Task<Void> then(Task<Void> task) throws Exception {
-//                        return Task.forResult(null);
-//                    }
-//                }).continueWith(new Continuation<Void, Object>() {
-//                    @Override
-//                    public Object then(Task<Void> task) throws Exception {
-//                        if (task.isFaulted()) {
-//                            tcs.setError(task.getError());
-//                        } else {
-//                            tcs.setResult(null);
-//                        }
-//                        return null;
-//                    }
-//                });
-//
-//        return tcs.getTask();
-//    }
-
     @Override
     public Task<Void> beforePullFromServer() {
         final Task.TaskCompletionSource tcs = Task.create();
 
         // 1. First of all,to decrease client storage.
         //   So just save online thumbnail image as offline file.
-        ThumbnailImageUtils.sharedInstance.downloadImageFromServer(this, this.thumbnailUrl)
-                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+        this.downloadThumbnailImageFromServer()
+                .continueWith(new Continuation<Void, Object>() {
                     @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return OriginalImageUtils.sharedInstance.downloadImageFromServer(self, self.originalUrl);
+                    public Object then(Task<Void> task) throws Exception {
+                        if (task.isFaulted()) {
+                            tcs.setError(task.getError());
+                        } else {
+                            tcs.setResult(null);
+                        }
+                        return null;
                     }
-                }).continueWith(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                if (task.isFaulted()) {
-                    tcs.setError(task.getError());
-                } else {
-                    tcs.setResult(null);
-                }
-                return null;
-            }
-        });
+                });
 
         return tcs.getTask();
     }
+
 
     public Task<Void> downloadThumbnailImageFromServer() {
         return ThumbnailImageUtils.sharedInstance.downloadImageFromServer(this, this.thumbnailUrl);
@@ -420,8 +389,7 @@ public class Photo extends ParseModelSync {
         if (image != null) {
             return Task.forResult(image);
         }
-//            return BFTask(error: NSError.getError(IEAErrorType.LocalImage, description: "When fetching Image for NewPhoto, and the photo's UUID is \(objectUUID)"))
-        return Task.forError(new FileNotFoundException(""));
+        return Task.forError(new FileNotFoundException(self.printDescription()));
     }
 
     public static Photo getInstanceFromPhotoPoint(String photoPoint) {

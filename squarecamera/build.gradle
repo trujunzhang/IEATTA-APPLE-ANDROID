@@ -45,7 +45,4 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
 
     compile 'com.github.doctoror.aspectratiolayout:library:1.0.1'
-
-    // TODO: djzhang: test
-    compile project(':debug')
 }
