@@ -12,8 +12,8 @@
         <column name="Notes" width="20"/>
         <column name="Title" width="191"/>
         <column name="Effort" width="70"/>
-        <expanded-items idrefs="t1 t16 t13 t14 t9 t23"/>
-        <selected-items-at-filter-time idrefs="t24 t13 t27 t16 t9 t11 t25 t14 t23 t12 t2 t26 t15 t10 t3"/>
+        <expanded-items idrefs="t1 t16 t13 t14 t23 t9"/>
+        <selected-items-at-filter-time idrefs="t24 t13 t27 t16 t11 t9 t25 t14 t23 t12 t2 t26 t15 t10 t3"/>
       </outline>
       <gantt-view x="0" y="18" w="1070" h="759">
         <view-mode>actual</view-mode>

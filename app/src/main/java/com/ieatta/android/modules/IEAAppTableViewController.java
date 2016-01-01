@@ -38,7 +38,9 @@ public class IEAAppTableViewController extends AppCompatActivity {
             self.setLeftBarButtonItem(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    self.navigationController.popViewControllerAnimated(true);
+                    if(self.navigationShouldPopOnBackButton() == true) {
+                        self.navigationController.popViewControllerAnimated(true);
+                    }
                 }
             });
         }

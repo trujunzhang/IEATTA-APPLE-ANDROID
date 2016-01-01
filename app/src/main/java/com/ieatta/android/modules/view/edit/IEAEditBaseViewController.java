@@ -1,8 +1,10 @@
 package com.ieatta.android.modules.view.edit;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.ieatta.android.R;
 import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IntentCache;
@@ -44,20 +46,29 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         if (self.newModel == false) {
             return true;
         }
-//        if(EditChangedObserver.sharedInstance.hasTakenPhoto == true){
-//            let refreshAlert = UIAlertController(title: L10n.Alert.string, message: L10n.AlertTakePhotoLost.string, preferredStyle: UIAlertControllerStyle.Alert)
-//
-//            refreshAlert.addAction(UIAlertAction(title: L10n.OK.string, style: .Default, handler: { (action: UIAlertAction!) in
-//                self.navigationController?.popViewControllerAnimated(true)
-//            }))
-//
-//            refreshAlert.addAction(UIAlertAction(title: L10n.Cancel.string, style: .Default, handler: { (action: UIAlertAction!) in
-//
-//            }))
-//
-//            presentViewController(refreshAlert, animated: true, completion: nil)
-//            return false;
-//        }
+        if (EditChangedObserver.sharedInstance.hasTakenPhoto == true) {
+
+            new AlertDialogWrapper.Builder(this)
+                    .setTitle(R.string.Alert)
+                    .setMessage(R.string.Alert_Take_Photo_Lost)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setNegativeButton(R.string.OK, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            self.navigationController.popViewControllerAnimated(true);
+                        }
+                    })
+                    .setPositiveButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
+
+            return false;
+        }
         return true;
     }
 
@@ -190,9 +201,9 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted()) {
-                    if(self.newModel){
+                    if (self.newModel) {
                         AppAlertView.showError(R.string.Saved_Failure);
-                    }else {
+                    } else {
                         AppAlertView.showError(R.string.Update_Failure);
                     }
                 }

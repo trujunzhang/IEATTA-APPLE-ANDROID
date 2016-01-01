@@ -50,4 +50,10 @@
     <change idref="t24" attribute="title" type="string" from="ios update to “Trujun zhang”, and not sync on the android." to="(*)ios update to “Trujun zhang”, and not sync on the android." resolved="yes"/>
     <change idref="t26" attribute="title" type="string" from="fix “saveModelAction” on the IEAEditBaseViewController when last newRecord already push to server." to="(*)fix “saveModelAction” on the IEAEditBaseViewController when last newRecord already push to server." resolved="yes"/>
   </task-change-set>
+  <task-change-set user="djzhang" date="2016-01-01T09:53:47.664Z" timestamp="2016-01-01T09:53:47.664Z">
+    <change idref="t27" attribute="title" type="string" from="do “navigationShouldPopOnBackButton” for android" to="(*) do “navigationShouldPopOnBackButton” for android" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="djzhang" date="2016-01-01T09:53:54.718Z" timestamp="2016-01-01T09:53:54.718Z">
+    <change idref="t16" attribute="title" type="string" from="NavigationBar(back,save,update) icons." to="(*) NavigationBar(back,save,update) icons." resolved="yes"/>
+  </task-change-set>
 </changelog>

@@ -106,9 +106,6 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
             @Override
             public Void then(Task<Boolean> task) throws Exception {
 
-                // Finally, hide hud.
-                self.hideHUD();
-
                 self.setRegisterCellClass(IEAEventHeaderCell.getType(), EventDetailSection.sectionHeader.ordinal());
                 self.setSectionItems(CollectionUtils.createList(new IEAEventHeader(self, self.event)), EventDetailSection.sectionHeader.ordinal());
 

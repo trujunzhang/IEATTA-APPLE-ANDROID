@@ -80,9 +80,6 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
             @Override
             public Object then(Task<Boolean> task) throws Exception {
 
-                // Finally, hide hud.
-                self.hideHUD();
-
                 self.setRegisterCellClass(IEARecipeDetailHeaderCell.getType(), RecipeDetailSection.sectionHeader.ordinal());
                 self.setRegisterCellClass(IEAReviewUserCell.getType(), RecipeDetailSection.sectionOrderedPeople.ordinal());
 

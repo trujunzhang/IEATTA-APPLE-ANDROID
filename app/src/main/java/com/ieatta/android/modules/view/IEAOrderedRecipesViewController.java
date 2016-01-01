@@ -76,8 +76,6 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
                 }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
-                // Finally, hide hud.
-                self.hideHUD();
 
                 self.setRegisterCellClass(IEAOrderedPeopleCell.getType(), OrderedRecipesSection.sectionOrderedPeople.ordinal());
                 self.setRegisterCellClassWhenSelected(IEAOrderedRecipeCell.getType(), OrderedRecipesSection.sectionRecipes.ordinal());

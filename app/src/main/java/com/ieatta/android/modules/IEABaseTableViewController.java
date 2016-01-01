@@ -25,19 +25,8 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (self.shouldShowHUD() == true) {
-            self.showHUD();
-        }
-
     }
 
-    public void showHUD() {
-//        mProgressHUD = ProgressHUD.show(IEABaseTableViewController.this, "Loading", true, true, null);
-    }
-
-    public void hideHUD() {
-//        mProgressHUD.dismiss();
-    }
 
     public ParseModelAbstract getPageModel() {
 //        fatalError("getPageModel() has not been implemented")

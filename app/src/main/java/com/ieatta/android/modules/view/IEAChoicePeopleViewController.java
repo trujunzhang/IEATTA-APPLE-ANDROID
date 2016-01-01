@@ -88,8 +88,6 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
         }).onSuccess(new Continuation<Boolean, Void>() {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
-                // Finally, hide hud.
-                self.hideHUD();
 
                 self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.getType());
                 self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal(), IEAChoicePeopleHeaderCell.getType());
