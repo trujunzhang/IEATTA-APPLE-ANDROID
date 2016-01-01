@@ -113,19 +113,19 @@ public class NewRecord extends ParseModelSync {
     }
 
     public static Task<Void> addNewRecordForModel(ParseModelAbstract model) {
-        final NewRecord newRecord = new  NewRecord( model.getModelType(),  ParseModelAbstract.getPoint(model));
+        final NewRecord newRecord = new NewRecord(model.getModelType(), ParseModelAbstract.getPoint(model));
         LocalQuery localQuery = newRecord.createQueryForDeletedModel();
 
         return localQuery.findFirstInBackground()
-               .onSuccessTask(new Continuation() {
-                   @Override
-                   public Task<Void> then(Task task) throws Exception {
-                       Object result = task.getResult();
-                       if(result == null){
-                           return newRecord.saveInBackground();
-                       }
-                       return Task.forResult(null);
-                   }
-               });
+                .onSuccessTask(new Continuation() {
+                    @Override
+                    public Task<Void> then(Task task) throws Exception {
+                        Object result = task.getResult();
+                        if (result == null) {
+                            return newRecord.saveInBackground();
+                        }
+                        return Task.forResult(null);
+                    }
+                });
     }
 }
