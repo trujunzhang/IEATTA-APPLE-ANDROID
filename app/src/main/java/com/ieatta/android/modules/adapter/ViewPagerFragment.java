@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
@@ -129,7 +130,8 @@ public class ViewPagerFragment extends Fragment {
     }
 
     private Task<Bitmap> convertImageView(Bitmap image) {
-        Bitmap bitmap = Thumbnail.create(image).zoom(1024, 1024).getBitmap();
+        int screenWidth = Thumbnail.getWidth(EnvironmentUtils.sharedInstance.getGlobalContext());
+        Bitmap bitmap = Thumbnail.create(image).zoom(screenWidth, screenWidth).getBitmap();
 
         return Task.forResult(bitmap);
     }
