@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
-import com.badoo.mobile.util.WeakHandler;
+
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
@@ -27,8 +27,6 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
     private TextView nameLabel;
     private TextView addressLabel;
     private TextView addFoodButton;
-
-    private WeakHandler mHandler = new WeakHandler(); // We still need at least one hard reference to WeakHandler
 
     public IEAOrderedPeopleCell(View itemView) {
         super(itemView);
@@ -66,28 +64,22 @@ public class IEAOrderedPeopleCell extends IEAViewHolder {
                         model.model.recipesCount = recipesCount;
                         String info = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Recipes_Ordered_Count);
                         info = recipesCount + " " + info;
-                        self.setRecipeInformation(info);
+                        self.addressLabel.setText(info);
+
                         return null;
                     }
-                }).continueWith(new Continuation<Object, Object>() {
+                }, Task.UI_THREAD_EXECUTOR).continueWith(new Continuation<Object, Object>() {
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
+
                     String info = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Fetch_recipe_count_failure);
-                    self.setRecipeInformation(info);
+                    self.addressLabel.setText(info);
+
                 }
                 return null;
             }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
-    private void setRecipeInformation(final String info) {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                self.addressLabel.setText(info);
-            }
-        }, 1);
-
-    }
 }

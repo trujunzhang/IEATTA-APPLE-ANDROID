@@ -97,16 +97,7 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
 
                 return null;
             }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                if (task.isFaulted()) {
-                    Object object = task;
-                    return null;
-                }
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
 

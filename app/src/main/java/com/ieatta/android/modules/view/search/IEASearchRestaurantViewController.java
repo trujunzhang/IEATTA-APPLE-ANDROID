@@ -88,7 +88,6 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
         new Restaurant().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                Object object = task;
                 self.fetchedRestaurants = task.getResult();
                 self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 
@@ -101,12 +100,7 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
                 self.setSectionItems(self.fetchedRestaurants, SearchRestaurantSection.sectionRestaurants.ordinal());
                 return null;
             }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     @Override

@@ -49,15 +49,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
                 self.configureReviewsSection();
                 return null;
             }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                if (task.isFaulted()) {
-
-                }
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     // MARK: Override IEAReviewsTableViewController methods

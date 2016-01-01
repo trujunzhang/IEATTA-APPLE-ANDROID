@@ -54,7 +54,6 @@ dependencies {
     compile project(':parse_layout')
     compile project(':commonLib')
     compile project(':AndroidProgressHUD')
-    compile project(':android-weak-handler')
     compile project(':slideDateTimePicker')
     compile project(':Android-Universal-Image-Loader')
     compile project(':squarecamera')

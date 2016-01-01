@@ -91,14 +91,7 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
 
                 return null;
             }
-        }).continueWith(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                if (task.isFaulted() == true) {
-                }
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     @Override

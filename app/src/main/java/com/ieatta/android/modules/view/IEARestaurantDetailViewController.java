@@ -108,20 +108,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 
                 return null;
             }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                // Finally, hide hud.
-                self.hideHUD();
-
-                if (task.isFaulted() == true) {
-                    Exception error = task.getError();
-                    String message = error.getMessage();
-                    Throwable cause = error.getCause();
-                }
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     // MARK: Override IEAReviewsTableViewController methods

@@ -102,7 +102,6 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
                     @Override
                     public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                        Object object = task;
                         self.fetchedTeam = task.getResult();
 
                         // Next, fetch related photos
@@ -114,15 +113,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
                 self.setSectionItems(self.fetchedTeam, ManagerPeopleSection.sectionTeam.ordinal());
                 return null;
             }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                if (task.isFaulted()) {
-
-                }
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     @Override

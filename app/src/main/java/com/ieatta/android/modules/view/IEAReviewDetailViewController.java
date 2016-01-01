@@ -80,13 +80,7 @@ public class IEAReviewDetailViewController extends IEABaseTableViewController {
                         self.setSectionsForReview();
                         return null;
                     }
-                }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-
-                return null;
-            }
-        });
+                }, Task.UI_THREAD_EXECUTOR);
     }
 
     private void setSectionsForReview() {

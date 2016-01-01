@@ -121,20 +121,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
                 return null;
             }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                // Finally, hide hud.
-                if (self.newModel == false) {
-                    self.hideHUD();
-                }
-                if (task.isFaulted()) {
-
-                }
-                return null;
-            }
-        });
-
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     protected Task<List<ParseModelAbstract>> getQueryPhotosTask() {

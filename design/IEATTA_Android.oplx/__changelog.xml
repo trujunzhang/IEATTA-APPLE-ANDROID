@@ -4,45 +4,46 @@
   <task-change-set user="djzhang" date="2015-12-18T11:28:36.517Z" timestamp="2015-12-18T11:28:36.517Z">
     <change idref="t10" attribute="title" type="string" from="Android Launcher icon" to="(*)Android Launcher icon"/>
   </task-change-set>
-  <task-change-set user="djzhang" date="2015-12-18T11:29:12.615Z" timestamp="2015-12-18T11:29:12.615Z">
-    <change idref="t13" to="t9" to-position="3" resolved="yes">
-      <change idref="t13" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T00:00:00.000Z"/>
-      <change idref="t13" attribute="title" type="string" to="Edit model cell style,(in the event)"/>
+  <task-change-set user="djzhang" date="2015-12-31T16:06:27.380Z" timestamp="2015-12-31T16:06:27.380Z">
+    <change idref="t23" to="t-1" to-position="3" resolved="yes">
+      <change idref="t23" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t23" attribute="noEarlierThanConstraintDate" type="date" to="2016-01-01T00:00:00.000Z"/>
+      <change idref="t23" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t23" attribute="title" type="string" to="01-01"/>
+    </change>
+    <change idref="t16" attribute="isGroup" type="real" from="0" to="1" resolved="yes"/>
+    <change idref="t16" attribute="multiResourceWorkType" type="real" from="0" resolved="yes"/>
+    <change idref="t16" attribute="isSplittableTask" type="real" from="1" resolved="yes"/>
+    <change idref="t16" attribute="taskType" type="real" from="0" to="2" resolved="yes"/>
+    <change idref="t16" attribute="resourceAssignmentType" type="real" from="0" resolved="yes"/>
+    <change idref="t16" attribute="staticCost" type="real" from="0" resolved="yes"/>
+    <change idref="t16" attribute="effort" type="real" from="28800" resolved="yes"/>
+    <change idref="t16" attribute="isSplitChunk" type="real" from="0" resolved="yes"/>
+    <change idref="t16" attribute="scheduleType" type="real" from="0" resolved="yes"/>
+    <change idref="t16" attribute="internalAssignments" type="string" from="" resolved="yes"/>
+    <change idref="t16" attribute="isSplitTask" type="real" from="0" resolved="yes"/>
+    <change idref="t16" attribute="internalEffortDone" type="real" from="0" resolved="yes"/>
+    <change idref="t24" to="t23" to-position="0" resolved="yes">
+      <change idref="t24" attribute="noEarlierThanConstraintDate" type="date" to="2016-01-01T00:00:00.000Z"/>
+      <change idref="t24" attribute="title" type="string" to="ios update to “Trujun zhang”, and not sync on the android."/>
     </change>
   </task-change-set>
-  <task-change-set user="djzhang" date="2015-12-19T07:31:06.929Z" timestamp="2015-12-19T07:31:06.929Z">
-    <change idref="t14" to="t-1" to-position="2" resolved="yes">
-      <change idref="t14" attribute="isGroup" type="real" from="0" to="1"/>
-      <change idref="t14" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T16:00:00.000Z"/>
-      <change idref="t14" attribute="taskType" type="real" from="0" to="2"/>
-      <change idref="t14" attribute="title" type="string" to="12-18"/>
-    </change>
-    <change idref="t13" attribute="isGroup" type="real" from="0" to="1" resolved="yes"/>
-    <change idref="t13" attribute="multiResourceWorkType" type="real" from="0" resolved="yes"/>
-    <change idref="t13" attribute="isSplittableTask" type="real" from="1" resolved="yes"/>
-    <change idref="t13" attribute="taskType" type="real" from="0" to="2" resolved="yes"/>
-    <change idref="t13" attribute="resourceAssignmentType" type="real" from="0" resolved="yes"/>
-    <change idref="t13" attribute="staticCost" type="real" from="0" resolved="yes"/>
-    <change idref="t13" attribute="effort" type="real" from="28800" resolved="yes"/>
-    <change idref="t13" attribute="isSplitChunk" type="real" from="0" resolved="yes"/>
-    <change idref="t13" attribute="scheduleType" type="real" from="0" resolved="yes"/>
-    <change idref="t13" attribute="internalAssignments" type="string" from="" resolved="yes"/>
-    <change idref="t13" attribute="isSplitTask" type="real" from="0" resolved="yes"/>
-    <change idref="t13" attribute="internalEffortDone" type="real" from="0" resolved="yes"/>
-    <change idref="t15" to="t14" to-position="0" resolved="yes">
-      <change idref="t15" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T16:00:00.000Z"/>
-      <change idref="t15" attribute="title" type="string" to="PhotoGalley and “Take a Photo” cell."/>
+  <task-change-set user="djzhang" date="2015-12-31T16:06:58.720Z" timestamp="2015-12-31T16:06:58.720Z">
+    <change idref="t25" to="t23" to-position="1" resolved="yes">
+      <change idref="t25" attribute="noEarlierThanConstraintDate" type="date" to="2016-01-01T00:00:00.000Z"/>
+      <change idref="t25" attribute="title" type="string" to="Add (1/100) on the PhotoGalleryPageViewController."/>
     </change>
   </task-change-set>
-  <task-change-set user="djzhang" date="2015-12-19T07:31:42.578Z" timestamp="2015-12-19T07:31:42.578Z">
-    <change idref="t16" to="t14" to-position="1" resolved="yes">
-      <change idref="t16" attribute="noEarlierThanConstraintDate" type="date" to="2015-12-18T16:00:00.000Z"/>
-      <change idref="t16" attribute="title" type="string" to="NavigationBar(back,save,update) icons."/>
+  <task-change-set user="djzhang" date="2015-12-31T16:11:29.393Z" timestamp="2015-12-31T16:11:29.393Z">
+    <change idref="t26" to="t23" to-position="2" resolved="yes">
+      <change idref="t26" attribute="noEarlierThanConstraintDate" type="date" to="2016-01-01T00:00:00.000Z"/>
+      <change idref="t26" attribute="title" type="string" to="fix “saveModelAction” on the IEAEditBaseViewController when last newRecord already push to server."/>
     </change>
   </task-change-set>
-  <task-change-set user="djzhang" date="2015-12-20T09:36:18.990Z" timestamp="2015-12-20T09:36:18.990Z">
-    <change idref="t12" attribute="title" type="string" from="Fix Review section(no team image show)" to="(*)Fix Review section(no team image show)" resolved="yes"/>
-    <change idref="t13" attribute="title" type="string" from="Edit model cell style,(in the event)" to="(*)Edit model cell style,(in the event)" resolved="yes"/>
-    <change idref="t15" attribute="title" type="string" from="PhotoGalley and “Take a Photo” cell." to="(*)PhotoGalley and “Take a Photo” cell." resolved="yes"/>
+  <task-change-set user="djzhang" date="2015-12-31T16:14:32.549Z" timestamp="2015-12-31T16:14:32.549Z">
+    <change idref="t27" to="t23" to-position="3" resolved="yes">
+      <change idref="t27" attribute="noEarlierThanConstraintDate" type="date" to="2016-01-01T00:00:00.000Z"/>
+      <change idref="t27" attribute="title" type="string" to="do “navigationShouldPopOnBackButton” for android"/>
+    </change>
   </task-change-set>
 </changelog>

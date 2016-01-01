@@ -24,9 +24,6 @@ public class MemoryStorage {
     public HashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
     public CellTypeUtils cellTypeUtils = new CellTypeUtils();
 
-    private WeakHandler mHandler = new WeakHandler();
-    ; // We still need at least one hard reference to WeakHandler
-
     public MemoryStorage(IEATableViewControllerAdapter adapter) {
         self.adapter = adapter;
     }
@@ -41,12 +38,7 @@ public class MemoryStorage {
     private void reloadTableView() {
         self.tableViewUtils.generateItems(self.sections);
 
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                self.adapter.notifyDataSetChanged();
-            }
-        }, 1);
+        self.adapter.notifyDataSetChanged();
     }
 
     /// Set items for specific section. This will reload UI after updating.

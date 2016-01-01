@@ -3,7 +3,6 @@ include ':app', ':parse_layout', ':manualdatabase', ':debug', ':android-timeago'
 include ':assertionLib'
 include ':AndroidProgressHUD'
 include ':Android-Universal-Image-Loader'
-include ':android-weak-handler'
 include ':slideDateTimePicker'
 include ':squarecamera'
 

@@ -113,15 +113,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 
                 return null;
             }
-        }).continueWith(new Continuation<Object, Object>() {
-            @Override
-            public Object then(Task<Object> task) throws Exception {
-                if (task.isFaulted()) {
-
-                }
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     @Override

@@ -119,14 +119,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 
                 return null;
             }
-        }).continueWith(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                if (task.isFaulted() == true) {
-                }
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     @Override

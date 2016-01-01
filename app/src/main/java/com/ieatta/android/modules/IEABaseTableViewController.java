@@ -32,11 +32,11 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     }
 
     public void showHUD() {
-        mProgressHUD = ProgressHUD.show(IEABaseTableViewController.this, "Loading", true, true, null);
+//        mProgressHUD = ProgressHUD.show(IEABaseTableViewController.this, "Loading", true, true, null);
     }
 
     public void hideHUD() {
-        mProgressHUD.dismiss();
+//        mProgressHUD.dismiss();
     }
 
     public ParseModelAbstract getPageModel() {

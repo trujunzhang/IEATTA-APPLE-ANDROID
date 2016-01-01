@@ -107,15 +107,7 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
 
                 return null;
             }
-        }).continueWith(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                if (task.isFaulted()) {
-
-                }
-                return null;
-            }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     @Override
