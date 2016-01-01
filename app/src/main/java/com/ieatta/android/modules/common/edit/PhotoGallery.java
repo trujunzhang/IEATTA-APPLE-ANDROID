@@ -2,7 +2,6 @@ package com.ieatta.android.modules.common.edit;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.cells.photos.IEAAddPhotoCell;
@@ -22,10 +21,6 @@ public class PhotoGallery extends EditBaseCellModel {
     public IEAPhotoGalleryViewController viewController;
     private List<ParseModelAbstract> fetchedPhotos;
     private DTTableViewManager manager = null;
-
-    private WeakHandler mHandler = new WeakHandler();
-    ; // We still need at least one hard reference to WeakHandler
-
 
     public PhotoGallery(IEAEditKey photo_gallery, IEAPhotoGalleryViewController viewController) {
         super(photo_gallery);

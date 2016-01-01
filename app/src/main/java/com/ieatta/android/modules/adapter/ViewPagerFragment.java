@@ -23,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.badoo.mobile.util.WeakHandler;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.ieatta.android.R;
@@ -43,9 +42,6 @@ public class ViewPagerFragment extends Fragment {
 
     private int asset = -1;
     private SubsamplingScaleImageView imageView;
-
-    private WeakHandler mHandler = new WeakHandler();
-    ; // We still need at least one hard reference to WeakHandler
 
     public ViewPagerFragment() {
     }
@@ -118,24 +114,21 @@ public class ViewPagerFragment extends Fragment {
             return Task.forResult(true);
         }
 
-        return self.setImageView(image).onSuccessTask(new Continuation<Bitmap, Task<Boolean>>() {
+        return self.convertImageView(image).onSuccessTask(new Continuation<Bitmap, Task<Boolean>>() {
             @Override
             public Task<Boolean> then(final Task<Bitmap> task) throws Exception {
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        self.imageView.setImage(ImageSource.bitmap(task.getResult()));
-                    }
-                }, 1);
+
+                self.imageView.setImage(ImageSource.bitmap(task.getResult()));
                 if (shouldNextTask == true) {
                     return Task.forResult(true);
                 }
+
                 return Task.forError(new Exception("Already found it"));
             }
-        });
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
-    private Task<Bitmap> setImageView(Bitmap image) {
+    private Task<Bitmap> convertImageView(Bitmap image) {
         Bitmap bitmap = Thumbnail.create(image).zoom(1024, 1024).getBitmap();
 
         return Task.forResult(bitmap);
