@@ -175,24 +175,14 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
                 .onSuccessTask(new Continuation<Void, Task<Void>>() {
                     @Override
                     public Task<Void> then(Task<Void> task) throws Exception {
-                        // **** Important ****
-                        // If the editing model is a new instance.
-                        //  We need to save a NewRecord to record the model's information.
-                        // Otherwise, we just need to update the editing model.
-                        //  Because the NewRecord is already exist.
-                        if (self.newModel == true) {
-                            NewRecord newRecord = new NewRecord(model.getModelType(), ParseModelAbstract.getPoint(model));
-                            return newRecord.updateLocalInBackground();
-                        }
-
-                        return null;
+                        return NewRecord.addNewRecordForModel(model);
                     }
                 }).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
 
                 self.postSaveModelSuccess();
-                self.navigationController.popViewControllerAnimated(true);
+
                 return null;
             }
         }).continueWith(new Continuation<Void, Object>() {
@@ -202,6 +192,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
                     Exception error = task.getError();
 //                    AppAlertView.showError(L10n.UpdateFailure.string)
                 }
+                self.navigationController.popViewControllerAnimated(true);
                 return null;
             }
         });

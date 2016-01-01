@@ -10,6 +10,7 @@ import com.parse.ParseObject;
 
 import java.util.Date;
 
+import bolts.Continuation;
 import bolts.Task;
 
 /**
@@ -109,5 +110,22 @@ public class NewRecord extends ParseModelSync {
     public void parseJson(JsonObject json) {
         self.modelType = PQueryModelType.fromInteger(json.get(kPAPFieldModelTypeKey).getAsInt());
         self.modelPoint = json.get(kPAPFieldModelPointKey).getAsString();
+    }
+
+    public static Task<Void> addNewRecordForModel(ParseModelAbstract model) {
+        final NewRecord newRecord = new  NewRecord( model.getModelType(),  ParseModelAbstract.getPoint(model));
+        LocalQuery localQuery = newRecord.createQueryForDeletedModel();
+
+        return localQuery.findFirstInBackground()
+               .onSuccessTask(new Continuation() {
+                   @Override
+                   public Task<Void> then(Task task) throws Exception {
+                       Object result = task.getResult();
+                       if(result == null){
+                           return newRecord.saveInBackground();
+                       }
+                       return Task.forResult(null);
+                   }
+               });
     }
 }
