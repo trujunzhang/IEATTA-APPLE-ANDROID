@@ -11,6 +11,8 @@ import android.view.View;
 
 import com.desmond.squarecamera.CameraActivity;
 import com.desmond.squarecamera.TakenPhotoUtils;
+import com.ieatta.android.R;
+import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEASplitDetailViewController;
@@ -214,7 +216,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
                     if (task.isFaulted()) {
-//                        AppAlertView.showError(L10n.SavePhotoFailure.string)
+                        AppAlertView.showError(R.string.Save_photo_Failure_);
                     }
 
                     TakenPhotoUtils.bitmap = null;

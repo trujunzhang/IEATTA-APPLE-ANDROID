@@ -28,6 +28,4 @@ dependencies {
     compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
 
     compile project(':parse_layout')
-
-    compile project(':manualdatabase')
 }

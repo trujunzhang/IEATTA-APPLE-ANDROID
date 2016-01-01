@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.IEAAppSegureTableViewController;
@@ -139,7 +140,7 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
             @Override
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
-//                    AppAlertView.showError(L10n.SavedFailure.string)
+                    AppAlertView.showError(R.string.Saved_Failure);
                 }
                 self.dismissViewControllerAnimated(true, null);
                 return null;

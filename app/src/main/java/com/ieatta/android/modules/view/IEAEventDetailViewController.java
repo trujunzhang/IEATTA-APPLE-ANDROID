@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ieatta.android.R;
+import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
@@ -155,7 +156,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
                     @Override
                     public Object then(Task<Void> task) throws Exception {
                         if (task.isFaulted() == true) {
-//                    AppAlertView.showError(L10n.SelectPeopleFailure.string)
+                            AppAlertView.showError(R.string.Select_people_failure);
                         }
                         return null;
                     }

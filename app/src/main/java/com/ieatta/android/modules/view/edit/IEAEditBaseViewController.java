@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ieatta.android.R;
+import com.ieatta.android.apps.AppAlertView;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
@@ -190,7 +191,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted()) {
                     Exception error = task.getError();
-//                    AppAlertView.showError(L10n.UpdateFailure.string)
+                    AppAlertView.showError(R.string.Update_Failure);
                 }
                 self.navigationController.popViewControllerAnimated(true);
                 return null;
