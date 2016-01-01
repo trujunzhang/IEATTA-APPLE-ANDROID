@@ -6,6 +6,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.apps.AppConfigure;
 import com.ieatta.com.parse.ParseAPI;
+import com.ieatta.com.parse.async.ParseAsyncTimer;
 import com.ieatta.com.parse.utils.cache.CacheImageUtils;
 
 /**
@@ -28,7 +29,7 @@ public class IEAApplication extends Application {
 
         // Async database in background automately
         // TODO: djzhang(used)
-//        new ParseAsyncTimer().prepareTimer();
+        new ParseAsyncTimer().prepareTimer();
 
         /**
          Show all tables data on the offline database,when have some issues.

@@ -77,7 +77,11 @@ public class RMQuery<T extends RealmObject> {
             RealmObject realmObject = builder.buildAll().findFirst();
             model = new DBModelReader().reader(realmObject, builder.modelType);
         } catch (Exception e) {
-            return Task.forError(e);
+            // **** Important ****
+            // Here, return value is 'null' means that not found object.
+            // For example, if all newrecord objects already pushed to server.
+            // No NewRecord rows on the local table. So not found NewRecord here.
+            return Task.forResult(null);
         } finally {
             builder.closeDatabase();
         }

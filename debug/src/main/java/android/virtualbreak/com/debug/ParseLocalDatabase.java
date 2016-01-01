@@ -115,7 +115,7 @@ public class ParseLocalDatabase {
         LogConfigure.DDLogVerbose("Count after query * " + PQueryModelType.getString(type) + " * in background: " + array.size());
         LogConfigure.DDLogVerbose("-------------------------------------------------------");
         for (ParseModelAbstract model : array) {
-//            LogConfigure.DDLogVerbose(model.printDescription());
+            LogConfigure.DDLogVerbose(model.printDescription());
         }
         LogConfigure.DDLogVerbose("------------------------------------------------------->>");
         LogConfigure.DDLogVerbose("");
