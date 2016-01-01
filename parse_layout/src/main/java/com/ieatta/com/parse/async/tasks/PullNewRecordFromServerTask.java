@@ -4,6 +4,7 @@ import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.async.AsyncCacheInfo;
+import com.ieatta.com.parse.async.AsyncPullNotify;
 import com.ieatta.com.parse.async.SerialTasksManager;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
@@ -79,7 +80,7 @@ public class PullNewRecordFromServerTask {
                         new AsyncCacheInfo(AsyncCacheInfo.TAG_NEW_RECORD_DATE).storeNewRecordDate(lastRecordCreateAt);
 
                         /// 2. When pull from server successfully, sometimes need to notify have new parse models.
-                        //  AsyncPullNotify.notify(model);
+                          AsyncPullNotify.notify(model);
                         return null;
                     }
                 });

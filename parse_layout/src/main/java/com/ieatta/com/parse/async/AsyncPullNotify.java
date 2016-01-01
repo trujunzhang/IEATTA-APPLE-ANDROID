@@ -1,5 +1,7 @@
 package com.ieatta.com.parse.async;
 
+import com.ieatta.android.notification.NSNotificationCenter;
+import com.ieatta.android.notification.NotifyType;
 import com.ieatta.com.parse.ParseModelAbstract;
 
 /**
@@ -10,7 +12,7 @@ public class AsyncPullNotify {
     public static void notify(ParseModelAbstract model) {
         switch (model.getModelType()) {
             case Restaurant:
-//                        NSNotificationCenter.defaultCenter().postNotificationName(.PAModelCreatedRestaurantNotification, null);
+                NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreatedRestaurantNotification, null);
                 break;
             case Review:
                 break;

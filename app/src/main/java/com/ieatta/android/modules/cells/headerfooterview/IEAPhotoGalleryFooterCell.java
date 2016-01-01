@@ -50,8 +50,13 @@ public class IEAPhotoGalleryFooterCell extends IEAViewHolder {
         self.model = (SectionPhotoGalleryFooterCellModel) value;
 
         // update UI
-        String title = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.See_All_Photos) + " " + self.model.photosCount;
+        int photosCount = self.model.photosCount;
+        String title = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.See_All_Photos) + " " + photosCount;
         self.footerLargeButton.setText(title);
+
+        if(photosCount == 0){
+            self.footerLargeButton.setEnabled(false);
+        }
     }
 
 }
