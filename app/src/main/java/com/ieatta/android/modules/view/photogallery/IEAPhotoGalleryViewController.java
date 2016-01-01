@@ -4,16 +4,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.view.Display;
 import android.view.View;
 
 import com.desmond.squarecamera.CameraActivity;
-import com.desmond.squarecamera.ImageUtility;
 import com.desmond.squarecamera.TakenPhotoUtils;
 import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.cache.IntentCache;

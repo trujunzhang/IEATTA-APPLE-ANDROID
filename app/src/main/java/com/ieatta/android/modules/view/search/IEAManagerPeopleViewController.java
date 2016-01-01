@@ -18,7 +18,6 @@ import com.ieatta.android.notification.NSNotification;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Team;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;

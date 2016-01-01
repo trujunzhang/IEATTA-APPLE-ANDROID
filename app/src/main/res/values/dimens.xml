@@ -48,7 +48,6 @@
     <dimen name="Read_Reviews">40dip</dimen>
 
 
-
     <!--the following is yelp's dimens-->
 
     <dimen name="abc_alert_dialog_button_bar_height">48.0dip</dimen>

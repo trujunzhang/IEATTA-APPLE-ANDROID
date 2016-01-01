@@ -18,7 +18,7 @@ public class IEAReviewsCell extends IEAViewHolder {
     private IEAReviewsCell self = this;
 
     @Override
-    public ViewHolderType getViewHolderType(){
+    public ViewHolderType getViewHolderType() {
         return ViewHolderType.section;
     }
 

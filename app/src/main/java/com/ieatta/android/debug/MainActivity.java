@@ -16,15 +16,8 @@ import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Restaurant;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
 
 import java.util.LinkedList;
-import java.util.List;
-
-import bolts.Continuation;
-import bolts.Task;
 
 public class MainActivity extends IEAReviewsInDetailTableViewController {
     private MainActivity self = this;

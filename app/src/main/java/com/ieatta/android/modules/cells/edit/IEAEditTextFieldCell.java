@@ -1,13 +1,8 @@
 package com.ieatta.android.modules.cells.edit;
 
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.text.Spanned;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.widget.EditText;
 
 import com.ieatta.android.R;

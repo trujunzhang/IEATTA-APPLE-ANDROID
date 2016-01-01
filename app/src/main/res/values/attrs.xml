@@ -4,7 +4,7 @@
     <attr name="height" format="dimension" />
     <attr name="isLightTheme" format="boolean" />
     <attr name="title" format="string" />
-        <attr name="emptyIcon" format="reference" />
+    <attr name="emptyIcon" format="reference" />
     <attr name="setIcon" format="reference" />
     <attr name="attachmentIcon" format="reference" />
     <attr name="emptyText" format="reference" />

@@ -42,7 +42,7 @@
             android:text="Date of Visit: 01/11/2015"
             android:textAlignment="center"
             android:textAppearance="@style/TitleText"
-            android:textSize="20.0sp"/>
+            android:textSize="20.0sp" />
 
     </LinearLayout>
 

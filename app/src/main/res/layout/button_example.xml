@@ -87,18 +87,18 @@
                 android:text="Button!" />
 
             <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="10.0dip"-->
-                <!--android:text="Button!"-->
-                <!--style="?submitButtonStyle" />-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="10.0dip"-->
+            <!--android:text="Button!"-->
+            <!--style="?submitButtonStyle" />-->
 
             <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="10.0dip"-->
-                <!--android:text="Button!"-->
-                <!--style="?cancelButtonStyle" />-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="10.0dip"-->
+            <!--android:text="Button!"-->
+            <!--style="?cancelButtonStyle" />-->
         </LinearLayout>
 
         <LinearLayout

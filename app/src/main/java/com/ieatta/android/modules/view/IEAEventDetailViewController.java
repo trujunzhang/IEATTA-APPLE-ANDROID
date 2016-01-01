@@ -142,7 +142,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     protected void didSelectPeople(NSNotification note) {
         // 1. Add selected people to tableview.
         ParseModelAbstract people = (ParseModelAbstract) note.anObject;
-        if(self.verifyExist(people) == true){
+        if (self.verifyExist(people) == true) {
             return;
         }
 
@@ -152,19 +152,19 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
         // 2. Save selected people to database
         new PeopleInEvent(ParseModelAbstract.getPoint(people), ParseModelAbstract.getPoint(self.event)).saveTeam().
                 continueWith(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                if (task.isFaulted() == true) {
+                    @Override
+                    public Object then(Task<Void> task) throws Exception {
+                        if (task.isFaulted() == true) {
 //                    AppAlertView.showError(L10n.SelectPeopleFailure.string)
-                }
-                return null;
-            }
-        });
+                        }
+                        return null;
+                    }
+                });
     }
 
-    private boolean verifyExist(ParseModelAbstract people){
-        for(ParseModelAbstract model : self.fetchedPeople){
-            if(model.equals(people)){
+    private boolean verifyExist(ParseModelAbstract people) {
+        for (ParseModelAbstract model : self.fetchedPeople) {
+            if (model.equals(people)) {
                 return true;
             }
         }

@@ -127,7 +127,7 @@ public class ViewPagerFragment extends Fragment {
                         self.imageView.setImage(ImageSource.bitmap(task.getResult()));
                     }
                 }, 1);
-                if(shouldNextTask == true){
+                if (shouldNextTask == true) {
                     return Task.forResult(true);
                 }
                 return Task.forError(new Exception("Already found it"));

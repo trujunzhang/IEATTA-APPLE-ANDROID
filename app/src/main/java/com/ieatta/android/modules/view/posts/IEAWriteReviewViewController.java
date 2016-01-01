@@ -141,7 +141,7 @@ public class IEAWriteReviewViewController extends IEAAppSegureTableViewControlle
                 if (task.isFaulted()) {
 //                    AppAlertView.showError(L10n.SavedFailure.string)
                 }
-                self.dismissViewControllerAnimated(true,  null);
+                self.dismissViewControllerAnimated(true, null);
                 return null;
             }
         });

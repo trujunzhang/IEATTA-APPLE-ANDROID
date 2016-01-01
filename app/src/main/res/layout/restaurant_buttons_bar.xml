@@ -37,7 +37,8 @@
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
-            android:background="@drawable/button_businesspage" >
+            android:background="@drawable/button_businesspage">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,7 +60,8 @@
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
-            android:background="@drawable/button_businesspage" >
+            android:background="@drawable/button_businesspage">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

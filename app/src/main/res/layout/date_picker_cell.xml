@@ -3,8 +3,7 @@
     style="@style/YelpHoloEditText.Light"
     android:id="@+id/date_picker_layout"
     android:layout_width="fill_parent"
-    android:layout_height="@dimen/Edit_Cell"
-    >
+    android:layout_height="@dimen/Edit_Cell">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:textColor="@color/gray_dark"/>
+            android:textColor="@color/gray_dark" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +30,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/gray_dark"/>
+            android:textColor="@color/gray_dark" />
     </RelativeLayout>
 
 

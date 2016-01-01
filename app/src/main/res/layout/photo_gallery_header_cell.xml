@@ -23,6 +23,6 @@
         android:src="@drawable/photo_icon"
         android:layout_centerVertical="true"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8.0dip"/>
+        android:layout_marginBottom="8.0dip" />
 
 </RelativeLayout>

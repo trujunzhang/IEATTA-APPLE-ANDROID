@@ -32,8 +32,8 @@
                 style="@style/ButtonFullBleed.WithArrow" />
 
             <!--<TextView-->
-                <!--android:text="@string/address_and_map_location"-->
-                <!--style="@style/Widget.TextView.ListSeparatorYelp.GrayBackground" />-->
+            <!--android:text="@string/address_and_map_location"-->
+            <!--style="@style/Widget.TextView.ListSeparatorYelp.GrayBackground" />-->
 
             <!--<include layout="@layout/business_map_address" />-->
 

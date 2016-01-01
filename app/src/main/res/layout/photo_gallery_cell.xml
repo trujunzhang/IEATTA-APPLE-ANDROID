@@ -1,8 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Widget.ListView.White.NoScrollCache"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/Gallery_Cell_Height"
-    >
+    android:layout_height="@dimen/Gallery_Cell_Height">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/section_list"

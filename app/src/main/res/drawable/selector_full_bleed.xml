@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector android:dither="false" android:constantSize="true"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:yelp="http://schemas.android.com/apk/res-auto">
+<selector android:dither="false" android:constantSize="true" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:yelp="http://schemas.android.com/apk/res-auto">
     <item android:state_enabled="true" android:state_pressed="true" yelp:state_top="true" yelp:state_bottom="true">
         <layer-list>
             <item>

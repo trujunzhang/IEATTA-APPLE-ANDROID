@@ -11,131 +11,131 @@ import android.widget.EditText;
 
 public class EditTextLocker {
 
-	private EditText editText;
+    private EditText editText;
 
-	private int charactersLimit;
+    private int charactersLimit;
 
-	private int fractionLimit;
+    private int fractionLimit;
 
-	public EditTextLocker(EditText editText) {
+    public EditTextLocker(EditText editText) {
 
-		this.editText = editText;
+        this.editText = editText;
 
-		editText.setOnKeyListener(editTextOnKeyListener);
-	}
+        editText.setOnKeyListener(editTextOnKeyListener);
+    }
 
-	private OnKeyListener editTextOnKeyListener = new OnKeyListener() {
+    private OnKeyListener editTextOnKeyListener = new OnKeyListener() {
 
-		@Override
-		public boolean onKey(View v, int keyCode, KeyEvent event) {
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-			if (keyCode == KeyEvent.KEYCODE_DEL) {
-				startStopEditing(false);
-			}
+            if (keyCode == KeyEvent.KEYCODE_DEL) {
+                startStopEditing(false);
+            }
 
-			return false;
-		}
-	};
+            return false;
+        }
+    };
 
-	private TextWatcher editTextWatcherForCharacterLimits = new TextWatcher() {
+    private TextWatcher editTextWatcherForCharacterLimits = new TextWatcher() {
 
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-			if (!editText.getText().toString().equalsIgnoreCase("")) {
+            if (!editText.getText().toString().equalsIgnoreCase("")) {
 
-				int editTextLength = editText.getText().toString().trim().length();
+                int editTextLength = editText.getText().toString().trim().length();
 
-				if (editTextLength >= charactersLimit) {
+                if (editTextLength >= charactersLimit) {
 
-					startStopEditing(true);
+                    startStopEditing(true);
 
-				}
+                }
 
-			}
-		}
+            }
+        }
 
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-		}
+        }
 
-		@Override
-		public void afterTextChanged(Editable s) {
+        @Override
+        public void afterTextChanged(Editable s) {
 
-		}
-	};
+        }
+    };
 
-	private TextWatcher editTextWatcherForFractionLimit = new TextWatcher() {
+    private TextWatcher editTextWatcherForFractionLimit = new TextWatcher() {
 
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-			if (!editText.getText().toString().equalsIgnoreCase("")) {
+            if (!editText.getText().toString().equalsIgnoreCase("")) {
 
-				String editTextString = editText.getText().toString().trim();
-				int decimalIndexOf = editTextString.indexOf(".");
+                String editTextString = editText.getText().toString().trim();
+                int decimalIndexOf = editTextString.indexOf(".");
 
-				if (decimalIndexOf >= 0) {
+                if (decimalIndexOf >= 0) {
 
-					if (editTextString.substring(decimalIndexOf).length() > fractionLimit) {
+                    if (editTextString.substring(decimalIndexOf).length() > fractionLimit) {
 
-						startStopEditing(true);
+                        startStopEditing(true);
 
-					}
-				}
+                    }
+                }
 
-			}
+            }
 
-		}
+        }
 
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-		}
+        }
 
-		@Override
-		public void afterTextChanged(Editable s) {
+        @Override
+        public void afterTextChanged(Editable s) {
 
-		}
-	};
+        }
+    };
 
-	public void limitCharacters(final int limit) {
+    public void limitCharacters(final int limit) {
 
-		this.charactersLimit = limit;
-		editText.addTextChangedListener(editTextWatcherForCharacterLimits);
-	}
+        this.charactersLimit = limit;
+        editText.addTextChangedListener(editTextWatcherForCharacterLimits);
+    }
 
-	public void limitFractionDigitsinDecimal(int fractionLimit) {
+    public void limitFractionDigitsinDecimal(int fractionLimit) {
 
-		this.fractionLimit = fractionLimit;
-		editText.addTextChangedListener(editTextWatcherForFractionLimit);
-	}
+        this.fractionLimit = fractionLimit;
+        editText.addTextChangedListener(editTextWatcherForFractionLimit);
+    }
 
-	public void unlockEditText() {
+    public void unlockEditText() {
 
-		startStopEditing(false);
-	}
+        startStopEditing(false);
+    }
 
-	public void startStopEditing(boolean isLock) {
+    public void startStopEditing(boolean isLock) {
 
-		if (isLock) {
+        if (isLock) {
 
-			editText.setFilters(new InputFilter[] { new InputFilter() {
-				@Override
-				public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-					return source.length() < 1 ? dest.subSequence(dstart, dend) : "";
-				}
-			} });
+            editText.setFilters(new InputFilter[]{new InputFilter() {
+                @Override
+                public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                    return source.length() < 1 ? dest.subSequence(dstart, dend) : "";
+                }
+            }});
 
-		} else {
+        } else {
 
-			editText.setFilters(new InputFilter[] { new InputFilter() {
-				@Override
-				public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-					return null;
-				}
-			} });
-		}
-	}
+            editText.setFilters(new InputFilter[]{new InputFilter() {
+                @Override
+                public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                    return null;
+                }
+            }});
+        }
+    }
 }

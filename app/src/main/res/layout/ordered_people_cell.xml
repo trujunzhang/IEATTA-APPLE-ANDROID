@@ -46,7 +46,6 @@
         android:text="@string/Add_Food_Button"
         android:textColor="@color/green_money"
         android:layout_centerVertical="true"
-        android:gravity="center"
-         />
+        android:gravity="center" />
 
 </RelativeLayout>

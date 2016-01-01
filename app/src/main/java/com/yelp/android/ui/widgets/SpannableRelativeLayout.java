@@ -2,27 +2,23 @@ package com.yelp.android.ui.widgets;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Checkable;
 import android.widget.RelativeLayout;
 
 public class SpannableRelativeLayout extends RelativeLayout
 
 {
-    
 
-    public SpannableRelativeLayout(Context paramContext)
-    {
+
+    public SpannableRelativeLayout(Context paramContext) {
         this(paramContext, null);
     }
 
-    public SpannableRelativeLayout(Context paramContext, AttributeSet paramAttributeSet)
-    {
+    public SpannableRelativeLayout(Context paramContext, AttributeSet paramAttributeSet) {
         super(paramContext, paramAttributeSet);
 
     }
 
-    public SpannableRelativeLayout(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
-    {
+    public SpannableRelativeLayout(Context paramContext, AttributeSet paramAttributeSet, int paramInt) {
         super(paramContext, paramAttributeSet, paramInt);
     }
 

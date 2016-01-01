@@ -16,7 +16,7 @@ public class IEAEditRecipeManager extends IEAEditAbstractManager {
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
         Recipe recipe = (Recipe) model;
 
-         EditBaseCellModel[] section1 = {
+        EditBaseCellModel[] section1 = {
                 new EditCellModel(IEAEditKey.recipe_name, recipe.displayName, R.string.Recipe_Name_info),
                 new EditCellModel(IEAEditKey.recipe_price, recipe.price, R.string.recipe_price)
         };

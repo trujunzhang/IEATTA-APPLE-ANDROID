@@ -24,7 +24,8 @@
         <item name="android:textColorLink">@color/link_color</item>
         <item name="android:windowAnimationStyle">@style/NoAnimations</item>
         <item name="android:textAppearanceButton">@android:style/TextAppearance.Widget.Button</item>
-        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp</item>
+        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp
+        </item>
         <item name="android:apiKey">@string/google_maps_api_key</item>
         <item name="android:fadeScrollbars">true</item>
         <item name="drawerArrowStyle">@style/Hamburger</item>
@@ -59,8 +60,12 @@
         <item name="whiteButtonStyle">@style/Widget.Button.White</item>
         <item name="grayListSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
         <item name="grayListSeparatorLayoutStyle">@style/ListFilterHeader</item>
-        <item name="minorListSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp.WhiteBackground</item>
-        <item name="minorTransparentListSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp.TransparentBackground</item>
+        <item name="minorListSeparatorTextViewStyle">
+            @style/Widget.TextView.ListSeparatorYelp.WhiteBackground
+        </item>
+        <item name="minorTransparentListSeparatorTextViewStyle">
+            @style/Widget.TextView.ListSeparatorYelp.TransparentBackground
+        </item>
         <item name="twoTierButtonStyle">@style/TwoTierButton</item>
         <item name="twoTierButtonTextStyle">@style/ButtonSmallText</item>
         <item name="listViewStyle">@style/ResultsList</item>
@@ -116,7 +121,8 @@
         <item name="android:textColorLink">@color/link_color</item>
         <item name="android:windowAnimationStyle">@style/NoAnimations</item>
         <item name="android:textAppearanceButton">@android:style/TextAppearance.Widget.Button</item>
-        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp</item>
+        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp
+        </item>
         <item name="android:apiKey">@string/google_maps_api_key</item>
         <item name="android:fadeScrollbars">true</item>
         <item name="drawerArrowStyle">@style/Hamburger</item>
@@ -153,8 +159,12 @@
         <item name="whiteButtonStyle">@style/Widget.Button.White</item>
         <item name="grayListSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
         <item name="grayListSeparatorLayoutStyle">@style/ListFilterHeader</item>
-        <item name="minorListSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp.WhiteBackground</item>
-        <item name="minorTransparentListSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp.TransparentBackground</item>
+        <item name="minorListSeparatorTextViewStyle">
+            @style/Widget.TextView.ListSeparatorYelp.WhiteBackground
+        </item>
+        <item name="minorTransparentListSeparatorTextViewStyle">
+            @style/Widget.TextView.ListSeparatorYelp.TransparentBackground
+        </item>
         <item name="twoTierButtonStyle">@style/TwoTierButton</item>
         <item name="twoTierButtonTextStyle">@style/ButtonSmallText</item>
         <item name="listViewStyle">@style/ResultsList</item>
@@ -593,7 +603,6 @@
     </style>
 
 
-
     <style name="ButtonSmallText">
         <item name="android:textSize">12.0sp</item>
         <item name="android:textStyle">bold</item>
@@ -818,7 +827,6 @@
         <item name="colorButtonNormal">@color/button_material_dark</item>
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_dark</item>
     </style>
-
 
 
     <style name="Base.ThemeOverlay.AppCompat.Light" parent="@style/Platform.ThemeOverlay.AppCompat.Light">
@@ -1837,7 +1845,6 @@
         <item name="passportUserPhotoSize">@dimen/small_photo_size</item>
         <item name="passportUserNameTextAppearance">@style/LargeDarkText</item>
     </style>
-
 
 
     <style name="Theme.Yelp.NoHotButtons" parent="@style/Theme.Yelp">

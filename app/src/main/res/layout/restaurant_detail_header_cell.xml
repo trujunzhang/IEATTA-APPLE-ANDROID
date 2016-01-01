@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:orientation="vertical"
-        >
-       <include layout="@layout/detail_header_edit_bar"/>
+        android:orientation="vertical">
+
+        <include layout="@layout/detail_header_edit_bar" />
 
         <!--Name Label-->
         <TextView
@@ -39,6 +39,6 @@
     </LinearLayout>
 
     <!--buttonsView-->
-    <include layout="@layout/restaurant_buttons_bar"/>
+    <include layout="@layout/restaurant_buttons_bar" />
 
 </LinearLayout>

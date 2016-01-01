@@ -2,35 +2,28 @@ package com.yelp.android.ui.widgets;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Checkable;
 import android.widget.TextView;
 
-public class SpannedTextView extends TextView
-{
+public class SpannedTextView extends TextView {
 
-    public SpannedTextView(Context paramContext)
-    {
+    public SpannedTextView(Context paramContext) {
         this(paramContext, null);
     }
 
-    public SpannedTextView(Context paramContext, AttributeSet paramAttributeSet)
-    {
+    public SpannedTextView(Context paramContext, AttributeSet paramAttributeSet) {
         this(paramContext, paramAttributeSet, 0);
     }
 
-    public SpannedTextView(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
-    {
+    public SpannedTextView(Context paramContext, AttributeSet paramAttributeSet, int paramInt) {
         super(paramContext, paramAttributeSet, paramInt);
         refreshDrawableState();
     }
 
-    public boolean performClick()
-    {
+    public boolean performClick() {
         return super.performClick();
     }
 
-    public void setClickable(boolean paramBoolean)
-    {
+    public void setClickable(boolean paramBoolean) {
         if (paramBoolean != isClickable())
             refreshDrawableState();
         super.setClickable(paramBoolean);

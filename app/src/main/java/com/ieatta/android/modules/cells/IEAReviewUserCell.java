@@ -7,7 +7,6 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.com.parse.models.Team;
 
 public class IEAReviewUserCell extends IEAViewHolder {

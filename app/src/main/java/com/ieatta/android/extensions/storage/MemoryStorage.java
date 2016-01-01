@@ -1,6 +1,5 @@
 package com.ieatta.android.extensions.storage;
 
-import com.badoo.mobile.util.WeakHandler;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.storage.models.FooterModel;
 import com.ieatta.android.extensions.storage.models.HeaderModel;
