@@ -45,7 +45,6 @@ public class LocationObserveActivity extends IEASplitMasterViewController {
             return;
         }
 
-
         // 为获取地理位置信息时设置查询条件
         String bestProvider = lm.getBestProvider(getCriteria(), true);
         // 获取位置信息

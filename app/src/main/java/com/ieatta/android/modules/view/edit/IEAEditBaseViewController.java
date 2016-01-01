@@ -190,8 +190,11 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
             @Override
             public Object then(Task<Void> task) throws Exception {
                 if (task.isFaulted()) {
-                    Exception error = task.getError();
-                    AppAlertView.showError(R.string.Update_Failure);
+                    if(self.newModel){
+                        AppAlertView.showError(R.string.Saved_Failure);
+                    }else {
+                        AppAlertView.showError(R.string.Update_Failure);
+                    }
                 }
                 self.navigationController.popViewControllerAnimated(true);
                 return null;
