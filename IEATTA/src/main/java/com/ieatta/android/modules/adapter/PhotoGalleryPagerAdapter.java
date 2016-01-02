@@ -12,7 +12,6 @@ import com.ieatta.android.cache.IntentCache;
  */
 public class PhotoGalleryPagerAdapter extends FragmentStatePagerAdapter {
     private PhotoGalleryPagerAdapter self = this;
-    private static final int[] IMAGES = {R.drawable.rest01, R.drawable.review_stars_0_inline, R.drawable.logo_yelp};
 
     public PhotoGalleryPagerAdapter(FragmentManager fm) {
         super(fm);

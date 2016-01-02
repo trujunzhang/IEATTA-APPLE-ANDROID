@@ -12,7 +12,6 @@
         <item name="android:textColorSecondary">@android:color/secondary_text_light</item>
         <item name="android:textColorPrimaryInverse">@android:color/primary_text_dark</item>
         <item name="android:textColorSecondaryInverse">@android:color/secondary_text_dark</item>
-        <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowTitleSize">@dimen/actionbar_height</item>
         <item name="android:textColorHint">@color/blue_text_hint</item>
@@ -39,9 +38,6 @@
         <item name="topGapSize">?largeGapSize</item>
         <item name="bottomGapSize">?largeGapSize</item>
         <item name="mapHeight">@dimen/map_height</item>
-        <item name="mapBorders">@drawable/map_edge</item>
-        <item name="mapCorners">@drawable/selector_rounded_cell</item>
-        <item name="quantityDropDownViewStyle">@style/Widget.TextView.DropDown</item>
         <item name="spanOfPhotosViewStyle">@style/SpanOfPhotosViewBusiness</item>
         <item name="spannedTextViewStyle">@style/Widget.Button.WhiteSilver</item>
         <item name="toolbarNavigationButtonStyle">@style/NavigationIcon</item>
@@ -50,14 +46,11 @@
         <item name="buttonStyle">@style/Widget.Button</item>
         <item name="titlebarBackground">?colorPrimary</item>
         <item name="contributionSearchBackground">?titlebarBackground</item>
-        <item name="searchButtonDrawable">@drawable/selector_button_search</item>
-        <item name="searchBoxCursorDrawable">@drawable/search_box_cursor</item>
-        <item name="tabsBackground">@drawable/selector_tabs</item>
         <item name="shouldDisplayToolbar">true</item>
         <item name="toolbarDisplayOptions">homeAsUp|showTitle</item>
         <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="image_priority">20</item>
-        <item name="whiteButtonStyle">@style/Widget.Button.White</item>
+        <!--<item name="whiteButtonStyle">@style/Widget.Button.White</item>-->
         <item name="grayListSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
         <item name="grayListSeparatorLayoutStyle">@style/ListFilterHeader</item>
         <item name="minorListSeparatorTextViewStyle">
@@ -76,17 +69,21 @@
         <item name="sublistMoreCellWithDisclosure">@style/Sublist.GrayLastOrOnly.Disclosure</item>
         <item name="sublistCellDivided">@style/Sublist.WhiteRoundedDivided</item>
         <item name="showHotButtons">true</item>
-        <item name="listCellSquareStyle">@style/Wide.ListCellSquare</item>
-        <item name="listCellRectStyle">@style/Wide.ListCell</item>
+        <!--<item name="listCellSquareStyle">@style/Wide.ListCellSquare</item>-->
+        <!--<item name="listCellRectStyle">@style/Wide.ListCell</item>-->
         <item name="flatCellStyle">@style/Wide.NonClickablePanel</item>
-        <item name="cellButtonStyle">@style/Wide.Panel.CellButton</item>
+        <!--<item name="cellButtonStyle">@style/Wide.Panel.CellButton</item>-->
         <item name="gutterCellStyle">@style/Gutter</item>
-        <item name="adBannerStyle">@style/AdBanner</item>
         <item name="searchListImageSize">@dimen/search_photo_size</item>
         <item name="passportUserPhotoSize">@dimen/medium_photo_size</item>
         <item name="passportUserNameTextAppearance">@style/SubtitleDarkText</item>
         <item name="passportUserNameTextColor">@color/black_yoni</item>
         <item name="passportStatsTextColor">@color/orange_text</item>
+    </style>
+
+    <style name="AdPillText" parent="@android:style/TextAppearance">
+        <item name="android:textSize">10.0sp</item>
+        <item name="android:textColor">@color/white_on_black</item>
     </style>
 
     <style name="IEATTAAppTheme.NoActionBar">
@@ -99,101 +96,6 @@
     <style name="IEATTAAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--the following is yelp's styles-->
-
-    <style name="BaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="contentOverlay">@drawable/ab_solid_shadow</item>
-    </style>
-
-    <style name="Theme.Yelp" parent="@style/BaseTheme">
-        <item name="android:textColorPrimary">@android:color/primary_text_light</item>
-        <item name="android:textColorSecondary">@android:color/secondary_text_light</item>
-        <item name="android:textColorPrimaryInverse">@android:color/primary_text_dark</item>
-        <item name="android:textColorSecondaryInverse">@android:color/secondary_text_dark</item>
-        <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
-        <item name="android:windowBackground">@android:color/white</item>
-        <item name="android:windowTitleSize">@dimen/actionbar_height</item>
-        <item name="android:listViewStyle">@style/Widget.ListView.NoScrollCache</item>
-        <item name="android:listViewWhiteStyle">@style/Widget.ListView.White.NoScrollCache</item>
-        <item name="android:spinnerStyle">@style/Widget.Spinner</item>
-        <item name="android:spinnerDropDownItemStyle">@style/Widget.SpinnerDropDownItem</item>
-        <item name="android:spinnerItemStyle">@style/Widget.SpinnerItem</item>
-        <item name="android:textColorLink">@color/link_color</item>
-        <item name="android:windowAnimationStyle">@style/NoAnimations</item>
-        <item name="android:textAppearanceButton">@android:style/TextAppearance.Widget.Button</item>
-        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.ListSeparatorYelp
-        </item>
-        <item name="android:apiKey">@string/google_maps_api_key</item>
-        <item name="android:fadeScrollbars">true</item>
-        <item name="drawerArrowStyle">@style/Hamburger</item>
-        <!--<item name="smallGapSize">5.0dip</item>-->
-        <!--<item name="baseGapSize">10.0dip</item>-->
-        <!--<item name="largeGapSize">15.0dip</item>-->
-        <!--<item name="imageGapSize">8.0dip</item>-->
-        <!--<item name="smallImageGapSize">5.0dip</item>-->
-        <!--<item name="leftGapSize">?baseGapSize</item>-->
-        <!--<item name="rightGapSize">?baseGapSize</item>-->
-        <!--<item name="topGapSize">?largeGapSize</item>-->
-        <!--<item name="bottomGapSize">?largeGapSize</item>-->
-        <item name="mapHeight">@dimen/map_height</item>
-        <item name="mapBorders">@drawable/map_edge</item>
-        <item name="mapCorners">@drawable/selector_rounded_cell</item>
-        <item name="quantityDropDownViewStyle">@style/Widget.TextView.DropDown</item>
-        <item name="spanOfPhotosViewStyle">@style/SpanOfPhotosViewBusiness</item>
-        <item name="spannedTextViewStyle">@style/Widget.Button.WhiteSilver</item>
-        <item name="toolbarNavigationButtonStyle">@style/NavigationIcon</item>
-        <item name="colorPrimary">@color/red_shirley_temple</item>
-        <item name="colorPrimaryDark">@color/red_midnight_bonfire</item>
-        <item name="colorControlActivated">@color/blue_sky</item>
-        <item name="autoCompleteTextViewStyle">@style/YelpAutoCompleteTextView</item>
-        <item name="buttonStyle">@style/Widget.Button</item>
-        <item name="titlebarBackground">?colorPrimary</item>
-        <item name="contributionSearchBackground">?titlebarBackground</item>
-        <item name="searchButtonDrawable">@drawable/selector_button_search</item>
-        <item name="searchBoxCursorDrawable">@drawable/search_box_cursor</item>
-        <item name="tabsBackground">@drawable/selector_tabs</item>
-        <item name="shouldDisplayToolbar">true</item>
-        <item name="toolbarDisplayOptions">homeAsUp|showTitle</item>
-        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="image_priority">20</item>
-        <item name="whiteButtonStyle">@style/Widget.Button.White</item>
-        <item name="grayListSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
-        <item name="grayListSeparatorLayoutStyle">@style/ListFilterHeader</item>
-        <item name="minorListSeparatorTextViewStyle">
-            @style/Widget.TextView.ListSeparatorYelp.WhiteBackground
-        </item>
-        <item name="minorTransparentListSeparatorTextViewStyle">
-            @style/Widget.TextView.ListSeparatorYelp.TransparentBackground
-        </item>
-        <item name="twoTierButtonStyle">@style/TwoTierButton</item>
-        <item name="twoTierButtonTextStyle">@style/ButtonSmallText</item>
-        <item name="listViewStyle">@style/ResultsList</item>
-        <item name="sublistCell">@style/Sublist.WhiteRoundedRect</item>
-        <item name="sublistGrayCell">@style/Sublist.GrayDividedRect</item>
-        <item name="sublistMoreCell">@style/Sublist.GrayLastOrOnly</item>
-        <item name="sublistCellWithDisclosure">@style/Sublist.WhiteRoundedRect.Disclosure</item>
-        <item name="sublistMoreCellWithDisclosure">@style/Sublist.GrayLastOrOnly.Disclosure</item>
-        <item name="sublistCellDivided">@style/Sublist.WhiteRoundedDivided</item>
-        <item name="showHotButtons">true</item>
-        <item name="listCellSquareStyle">@style/Wide.ListCellSquare</item>
-        <item name="listCellRectStyle">@style/Wide.ListCell</item>
-        <item name="flatCellStyle">@style/Wide.NonClickablePanel</item>
-        <item name="cellButtonStyle">@style/Wide.Panel.CellButton</item>
-        <item name="gutterCellStyle">@style/Gutter</item>
-        <item name="adBannerStyle">@style/AdBanner</item>
-        <item name="searchListImageSize">@dimen/search_photo_size</item>
-        <item name="passportUserPhotoSize">@dimen/medium_photo_size</item>
-        <item name="passportUserNameTextAppearance">@style/SubtitleDarkText</item>
-        <item name="passportUserNameTextColor">@color/black_yoni</item>
-        <item name="passportStatsTextColor">@color/orange_text</item>
-        <item name="passportFriendCountDrawable">@drawable/passport_friends_icon</item>
-        <item name="passportReviewCountDrawable">@drawable/passport_reviews_icon</item>
-        <item name="passportPhotoCountDrawable">@drawable/passport_photos_icon</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.DialogWhenLarge" parent="@style/Theme.AppCompat" />
-
-    <style name="Base.Theme.AppCompat.Light.DialogWhenLarge" parent="@style/Theme.AppCompat.Light" />
 
     <style name="Widget.ListView.NoScrollCache" parent="@android:style/Widget.ListView">
         <item name="android:scrollingCache">false</item>
@@ -649,151 +551,12 @@
         <item name="android:hint">@string/search_hint</item>
     </style>
 
-    <style name="SearchBox.SingleSearchBar.ClearFunctionality" parent="@style/SearchBox.SingleSearchBar">
-        <item name="android:background">@drawable/search_bar_shadow</item>
-        <item name="android:paddingRight">@dimen/search_right_drawable_padding</item>
-        <item name="android:focusable">true</item>
-        <item name="android:clickable">true</item>
-        <item name="android:layout_margin">@dimen/contextual_search_bar_margin</item>
-    </style>
-
-
     <style name="TitleText">
         <item name="android:textSize">16.0sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/BlackText</item>
     </style>
 
-    <style name="AdBanner">
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@drawable/banner_background</item>
-        <item name="android:padding">5.0dip</item>
-        <item name="android:focusable">true</item>
-        <item name="android:clickable">true</item>
-    </style>
-
-    <style name="AdBanner.API3" parent="@style/AdBanner">
-        <item name="android:gravity">left</item>
-    </style>
-
-    <style name="AdPill" parent="@android:style/Widget.TextView">
-        <item name="android:textAppearance">@style/AdPillText</item>
-        <item name="android:gravity">center</item>
-        <!--<item name="android:background">@drawable/ad_background</item>-->
-        <item name="android:paddingLeft">?attr/smallGapSize</item>
-        <item name="android:paddingTop">1.0dip</item>
-        <item name="android:paddingRight">?attr/smallGapSize</item>
-        <item name="android:paddingBottom">1.0dip</item>
-        <item name="android:text">@string/ad</item>
-        <item name="android:includeFontPadding">false</item>
-    </style>
-
-    <style name="AdPillText" parent="@android:style/TextAppearance">
-        <item name="android:textSize">10.0sp</item>
-        <item name="android:textColor">@color/white_on_black</item>
-    </style>
-
-    <style name="AlertDialog.AppCompat" parent="@style/Base.AlertDialog.AppCompat" />
-
-    <style name="AlertDialog.AppCompat.Light" parent="@style/Base.AlertDialog.AppCompat.Light" />
-
-    <style name="Animation.AppCompat.Dialog" parent="@style/Base.Animation.AppCompat.Dialog" />
-
-    <style name="Animation.AppCompat.DropDownUp" parent="@style/Base.Animation.AppCompat.DropDownUp" />
-
-    <style name="AppWidgetButton">
-        <item name="android:background">@drawable/button_appwidget_category</item>
-        <item name="android:layout_marginBottom">@dimen/appwidget_shadow_size_bottom</item>
-        <item name="android:scaleType">center</item>
-    </style>
-
-    <style name="Base.AlertDialog.AppCompat" parent="@android:style/Widget">
-        <item name="android:layout">@layout/abc_alert_dialog_material</item>
-        <item name="listLayout">@layout/abc_select_dialog_material</item>
-        <item name="multiChoiceItemLayout">@layout/select_dialog_multichoice_material</item>
-        <item name="singleChoiceItemLayout">@layout/select_dialog_singlechoice_material</item>
-        <item name="listItemLayout">@layout/select_dialog_item_material</item>
-    </style>
-
-    <style name="Base.AlertDialog.AppCompat.Light" parent="@style/Base.AlertDialog.AppCompat" />
-
-    <style name="Base.Animation.AppCompat.Dialog" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/abc_popup_enter</item>
-        <item name="android:windowExitAnimation">@anim/abc_popup_exit</item>
-    </style>
-
-    <style name="Base.Animation.AppCompat.DropDownUp" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/abc_grow_fade_in_from_bottom</item>
-        <item name="android:windowExitAnimation">@anim/abc_shrink_fade_out_from_bottom</item>
-    </style>
-
-    <style name="Base.DialogWindowTitle.AppCompat" parent="@android:style/Widget">
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:scrollHorizontally">true</item>
-    </style>
-
-    <style name="Base.DialogWindowTitleBackground.AppCompat" parent="@android:style/Widget">
-        <item name="android:background">@null</item>
-        <item name="android:paddingLeft">?attr/dialogPreferredPadding</item>
-        <item name="android:paddingTop">@dimen/abc_dialog_padding_top_material</item>
-        <item name="android:paddingRight">?attr/dialogPreferredPadding</item>
-    </style>
-
-    <style name="Base.TextAppearance.AppCompat.SearchResult" parent="">
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/android:textColorPrimary</item>
-        <item name="android:textColorHint">?attr/android:textColorHint</item>
-    </style>
-
-    <style name="Base.TextAppearance.AppCompat.Widget.DropDownItem" parent="@android:style/TextAppearance.Small">
-        <item name="android:textColor">?attr/android:textColorPrimaryDisableOnly</item>
-    </style>
-
-    <style name="Base.TextAppearance.Widget.AppCompat.ExpandedMenu.Item" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textColor">?attr/android:textColorPrimaryDisableOnly</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.CompactMenu" parent="">
-        <item name="android:listViewStyle">@style/Widget.AppCompat.ListView.Menu</item>
-        <item name="android:windowAnimationStyle">@style/Animation.AppCompat.DropDownUp</item>
-        <item name="android:itemTextAppearance">?attr/android:textAppearanceMedium</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.Dialog.Alert" parent="@style/Base.Theme.AppCompat.Dialog">
-        <item name="windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
-        <item name="windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.Dialog.FixedSize" parent="@style/Base.Theme.AppCompat.Dialog">
-        <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
-        <item name="windowFixedHeightMinor">@dimen/dialog_fixed_height_minor</item>
-        <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
-        <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.Dialog.MinWidth" parent="@style/Base.Theme.AppCompat.Dialog">
-        <item name="windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
-        <item name="windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
-    </style>
-
-
-    <style name="Base.Theme.AppCompat.Light.Dialog.Alert" parent="@style/Base.Theme.AppCompat.Light.Dialog">
-        <item name="windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
-        <item name="windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.Light.Dialog.FixedSize" parent="@style/Base.Theme.AppCompat.Light.Dialog">
-        <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
-        <item name="windowFixedHeightMinor">@dimen/dialog_fixed_height_minor</item>
-        <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
-        <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.Light.Dialog.MinWidth" parent="@style/Base.Theme.AppCompat.Light.Dialog">
-        <item name="windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
-        <item name="windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
-    </style>
 
     <style name="Base.ThemeOverlay.AppCompat" parent="" />
 
@@ -1179,13 +942,6 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="FeedItemBorder">
-        <item name="android:background">@drawable/gray_light_rounded_rect_border</item>
-        <item name="android:paddingTop">@dimen/default_base_gap_size</item>
-        <item name="android:paddingBottom">@dimen/default_base_gap_size</item>
-        <item name="android:layout_marginLeft">@dimen/default_base_gap_size</item>
-        <item name="android:layout_marginRight">@dimen/default_base_gap_size</item>
-    </style>
 
     <style name="FullBleedButton">
         <item name="android:textAppearance">@style/LargeBoldLightText</item>
@@ -1404,16 +1160,6 @@
         <item name="android:background">@color/white_dirty_snow</item>
     </style>
 
-    <style name="RoundedPopupStyle" parent="@android:style/Widget.PopupWindow">
-        <item name="android:background">@drawable/square_border</item>
-        <item name="android:popupBackground">@drawable/square_border</item>
-    </style>
-
-    <style name="Royalty" />
-
-    <style name="Royalty.King" parent="@style/Royalty" />
-
-    <style name="Royalty.Queen" parent="@style/Royalty" />
 
     <style name="SearchBox" parent="@android:style/Widget.TextView">
         <item name="android:textAppearance">@style/TextAppearanceSearchBox</item>
@@ -1752,145 +1498,75 @@
     </style>
 
 
-    <style name="Theme.Yelp.AddBusiness" parent="@style/Theme.Yelp.NoNavDrawer.NoUpButton">
-        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
-        <item name="navigationIcon">@drawable/white_close_icon</item>
-        <item name="toolbarDisplayOptions">homeAsUp|showTitle</item>
-        <item name="showNavDrawer">false</item>
-        <item name="cellButtonStyle">@style/Wide.Panel.CellButton.AddBusiness</item>
-    </style>
+    <!--<style name="Theme.Yelp.AddBusiness" parent="@style/Theme.Yelp.NoNavDrawer.NoUpButton">-->
+        <!--<item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>-->
+        <!--<item name="navigationIcon">@drawable/white_close_icon</item>-->
+        <!--<item name="toolbarDisplayOptions">homeAsUp|showTitle</item>-->
+        <!--<item name="showNavDrawer">false</item>-->
+        <!--<item name="cellButtonStyle">@style/Wide.Panel.CellButton.AddBusiness</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.AddBusiness.EditExistingAddress" parent="@style/Theme.Yelp.AddBusiness">
-        <item name="navigationIcon">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
-    </style>
+    <!--<style name="Theme.Yelp.AddBusiness.EditExistingAddress" parent="@style/Theme.Yelp.AddBusiness">-->
+        <!--<item name="navigationIcon">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.BusinessList" parent="@style/Theme.Yelp">
-        <item name="topGapSize">0.0dip</item>
-        <item name="bottomGapSize">@dimen/baseGapSize</item>
-    </style>
+    <!--<style name="Theme.Yelp.BusinessList.Deals" parent="@style/Theme.Yelp.BusinessList">-->
+        <!--<item name="showNavDrawer">false</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.BusinessList.Deals" parent="@style/Theme.Yelp.BusinessList">
-        <item name="showNavDrawer">false</item>
-    </style>
+    <!--<style name="Theme.Yelp.BusinessList.MediumPhotos" parent="@style/Theme.Yelp.BusinessList">-->
+        <!--<item name="listCellRectStyle">@style/Wide.ListCell</item>-->
+        <!--<item name="searchListImageSize">@dimen/medium_photo_size</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.BusinessList.MediumPhotos" parent="@style/Theme.Yelp.BusinessList">
-        <item name="listCellRectStyle">@style/Wide.ListCell</item>
-        <item name="searchListImageSize">@dimen/medium_photo_size</item>
-    </style>
+    <!--<style name="Theme.Yelp.BusinessList.Search" parent="@style/Theme.Yelp.BusinessList">-->
+        <!--<item name="actionButtonStyle">-->
+            <!--@style/Widget.AppCompat.ActionButton.TallActionButton.WideActionButton-->
+        <!--</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.BusinessList.Search" parent="@style/Theme.Yelp.BusinessList">
-        <item name="actionButtonStyle">
-            @style/Widget.AppCompat.ActionButton.TallActionButton.WideActionButton
-        </item>
-    </style>
+    <!--<style name="Theme.Yelp.BusinessPage.MoreInfo" parent="@style/Theme.Yelp.BusinessPage">-->
+        <!--<item name="topGapSize">4.0dip</item>-->
+        <!--<item name="bottomGapSize">4.0dip</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.BusinessPage" parent="@style/Theme.Yelp">
-        <item name="android:buttonStyle">@style/Widget.Button.BusinessPage</item>
-        <item name="overlayWithSeamStyle">@style/OverlayWithSeamBusinessPage</item>
-        <item name="twoTierButtonTextStyle">@style/BusinessPageHeaderButton</item>
-    </style>
+    <!--<style name="Theme.Yelp.BusinessPage.Reservations" parent="@style/Theme.Yelp.BusinessPage">-->
+        <!--<item name="showNavDrawer">false</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.BusinessPage.MoreInfo" parent="@style/Theme.Yelp.BusinessPage">
-        <item name="topGapSize">4.0dip</item>
-        <item name="bottomGapSize">4.0dip</item>
-    </style>
+    <!--<style name="Theme.Yelp.Dark.Minimal" parent="@style/Theme.Yelp.Dark">-->
+        <!--<item name="showNavDrawer">false</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.BusinessPage.Reservations" parent="@style/Theme.Yelp.BusinessPage">
-        <item name="showNavDrawer">false</item>
-    </style>
-
-    <style name="Theme.Yelp.ComposeMessage" parent="@style/Theme.Yelp">
-        <item name="showHotButtons">false</item>
-    </style>
-
-    <style name="Theme.Yelp.Dark" parent="@style/Theme.Yelp">
-        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemDark</item>
-        <item name="android:spinnerItemStyle">@style/SpinnerItemDark</item>
-        <item name="android:popupBackground">@color/black_licorice</item>
-        <item name="smallImageGapSize">4.0dip</item>
-        <item name="spinnerDropDownItemStyle">@style/SpinnerDropDownItemDark</item>
-        <item name="colorPrimaryDark">@color/black_yoni</item>
-        <item name="checkboxStyle">@style/Widget.CompoundButton.CheckBox.Transparent</item>
-        <item name="titlebarBackground">@color/black_gradient_end</item>
-    </style>
-
-    <style name="Theme.Yelp.Dark.Minimal" parent="@style/Theme.Yelp.Dark">
-        <item name="showNavDrawer">false</item>
-    </style>
-
-    <style name="Theme.Yelp.Dark.Minimal.BlackBackground" parent="@style/Theme.Yelp.Dark.Minimal">
-        <item name="android:windowBackground">@color/black</item>
-    </style>
+    <!--<style name="Theme.Yelp.Dark.Minimal.BlackBackground" parent="@style/Theme.Yelp.Dark.Minimal">-->
+        <!--<item name="android:windowBackground">@color/black</item>-->
+    <!--</style>-->
 
 
-    <style name="Theme.Yelp.FadeIn" parent="@style/Theme.Yelp.NoNavDrawer">
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-    </style>
-
-    <style name="Theme.Yelp.FullBleed" parent="@style/Theme.Yelp">
-        <item name="android:windowBackground">@color/white_dirty_snow</item>
-        <item name="android:spinnerStyle">@style/Widget.Spinner.FullBleed</item>
-        <item name="android:spinnerItemStyle">@style/Widget.SpinnerItem.FullBleed</item>
-        <item name="mapBorders">@drawable/selector_gray_rect_inactive</item>
-        <item name="mapCorners">@null</item>
-        <item name="minorListSeparatorTextViewStyle">
-            @style/Widget.TextView.ListSeparatorYelp.TransparentBackground
-        </item>
-        <item name="narrowTransparentListSeparatorTextViewStyle">
-            @style/Widget.TextView.ListSeparatorYelp.NarrowTransparentBackground
-        </item>
-        <item name="listViewStyle">@style/ResultsList.FullBleed</item>
-        <item name="sublistCell">@style/Sublist.FullBleed</item>
-        <item name="fullBleedButtonStyle">@style/FullBleedButton</item>
-        <item name="passportUserPhotoSize">@dimen/small_photo_size</item>
-        <item name="passportUserNameTextAppearance">@style/LargeDarkText</item>
-    </style>
+    <!--<style name="Theme.Yelp.FadeIn" parent="@style/Theme.Yelp.NoNavDrawer">-->
+        <!--<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>-->
+    <!--</style>-->
 
 
-    <style name="Theme.Yelp.NoHotButtons" parent="@style/Theme.Yelp">
-        <item name="showHotButtons">false</item>
-    </style>
+    <!--<style name="Theme.Yelp.Reviews" parent="@style/Theme.Yelp.NoNavDrawer">-->
+        <!--&lt;!&ndash;<item name="android:windowAnimationStyle">@style/ContributionTransitions</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="android:actionMenuTextColor">@color/black_yoni</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="android:actionBarDivider">@drawable/actionbar_divider_gray</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="actionBarDivider">@drawable/actionbar_divider_gray</item>&ndash;&gt;-->
+        <!--<item name="actionMenuTextColor">@color/black_yoni</item>-->
+        <!--&lt;!&ndash;<item name="titlebarBackgroundOverride">@drawable/titlebar_gradient_white</item>&ndash;&gt;-->
+        <!--<item name="toolbarDisplayOptions">homeAsUp|showCustom</item>-->
+        <!--&lt;!&ndash;<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar.GrayControls</item>&ndash;&gt;-->
+        <!--<item name="statusBarColorOverride">@color/gray_faint</item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.NoNavDrawer" parent="@style/Theme.Yelp.NoHotButtons">
-        <item name="showNavDrawer">false</item>
-    </style>
+    <!--<style name="Theme.Yelp.Startup" parent="@style/Theme.Yelp">-->
+        <!--<item name="toolbarDisplayOptions"></item>-->
+    <!--</style>-->
 
-    <style name="Theme.Yelp.NoNavDrawer.NoUpButton" parent="@style/Theme.Yelp.NoHotButtons">
-        <item name="toolbarDisplayOptions">showTitle</item>
-    </style>
-
-    <style name="Theme.Yelp.Profile" parent="@style/Theme.Yelp">
-        <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle.Wide</item>
-        <item name="minorListSeparatorTextViewStyle">
-            @style/Widget.TextView.ListSeparatorYelp.WhiteBackground
-        </item>
-    </style>
-
-    <style name="Theme.Yelp.ReviewList" parent="@style/Theme.Yelp">
-        <item name="android:listSeparatorTextViewStyle">
-            @style/Widget.TextView.ListSeparatorYelp.Narrow
-        </item>
-    </style>
-
-    <style name="Theme.Yelp.Reviews" parent="@style/Theme.Yelp.NoNavDrawer">
-        <!--<item name="android:windowAnimationStyle">@style/ContributionTransitions</item>-->
-        <!--<item name="android:actionMenuTextColor">@color/black_yoni</item>-->
-        <!--<item name="android:actionBarDivider">@drawable/actionbar_divider_gray</item>-->
-        <!--<item name="actionBarDivider">@drawable/actionbar_divider_gray</item>-->
-        <item name="actionMenuTextColor">@color/black_yoni</item>
-        <!--<item name="titlebarBackgroundOverride">@drawable/titlebar_gradient_white</item>-->
-        <item name="toolbarDisplayOptions">homeAsUp|showCustom</item>
-        <!--<item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar.GrayControls</item>-->
-        <item name="statusBarColorOverride">@color/gray_faint</item>
-    </style>
-
-    <style name="Theme.Yelp.Startup" parent="@style/Theme.Yelp">
-        <item name="toolbarDisplayOptions"></item>
-    </style>
-
-    <style name="Theme.Yelp.WithOldListSeparators" parent="@style/Theme.Yelp">
-        <item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>
-    </style>
+    <!--<style name="Theme.Yelp.WithOldListSeparators" parent="@style/Theme.Yelp">-->
+        <!--<item name="android:listSeparatorTextViewStyle">@style/Widget.TextView.SectionDivider</item>-->
+    <!--</style>-->
 
     <style name="ThemeOverlay.AppCompat.Light" parent="@style/Base.ThemeOverlay.AppCompat.Light" />
 
@@ -1930,16 +1606,6 @@
         <!--<item name="yelpLayout">@layout/panel_two_level_button</item>-->
     </style>
 
-    <style name="UpdatedReviewTagline">
-        <item name="android:textAppearance">@style/StandardLightText</item>
-        <item name="android:gravity">center</item>
-        <item name="android:paddingTop">?attr/smallGapSize</item>
-        <item name="android:text">@string/updated_review</item>
-        <item name="android:includeFontPadding">false</item>
-        <item name="android:drawableLeft">@drawable/review_update_icon</item>
-        <item name="android:drawablePadding">?attr/smallGapSize</item>
-    </style>
-
     <style name="UserBadge_Stat" parent="@android:style/TextAppearance">
         <item name="android:textSize">13.0dip</item>
         <item name="android:textColor">@color/orange_text</item>
@@ -1958,35 +1624,35 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="Wide.ListCell" parent="@style/Wide">
-        <item name="android:background">@drawable/selector_list_cell_white_gutter</item>
-        <item name="android:paddingLeft">?attr/leftGapSize</item>
-        <item name="android:paddingTop">?attr/topGapSize</item>
-        <item name="android:paddingRight">?attr/rightGapSize</item>
-        <item name="android:paddingBottom">?attr/bottomGapSize</item>
-    </style>
+    <!--<style name="Wide.ListCell" parent="@style/Wide">-->
+        <!--<item name="android:background">@drawable/selector_list_cell_white_gutter</item>-->
+        <!--<item name="android:paddingLeft">?attr/leftGapSize</item>-->
+        <!--<item name="android:paddingTop">?attr/topGapSize</item>-->
+        <!--<item name="android:paddingRight">?attr/rightGapSize</item>-->
+        <!--<item name="android:paddingBottom">?attr/bottomGapSize</item>-->
+    <!--</style>-->
 
-    <style name="Wide.ListCell.Thin" parent="@style/Wide.ListCell">
-        <item name="android:paddingTop">5.0dip</item>
-        <item name="android:paddingBottom">5.0dip</item>
-    </style>
+    <!--<style name="Wide.ListCell.Thin" parent="@style/Wide.ListCell">-->
+        <!--<item name="android:paddingTop">5.0dip</item>-->
+        <!--<item name="android:paddingBottom">5.0dip</item>-->
+    <!--</style>-->
 
-    <style name="Wide.ListCell.Thin.Outlined" parent="@style/Wide.ListCell.Thin">
-        <item name="android:background">@drawable/list_cell_outline_top_and_bottom</item>
-    </style>
+    <!--<style name="Wide.ListCell.Thin.Outlined" parent="@style/Wide.ListCell.Thin">-->
+        <!--<item name="android:background">@drawable/list_cell_outline_top_and_bottom</item>-->
+    <!--</style>-->
 
-    <style name="Wide.ListCell.Transparent" parent="@style/Wide.ListCell">
-        <item name="android:background">@null</item>
-    </style>
+    <!--<style name="Wide.ListCell.Transparent" parent="@style/Wide.ListCell">-->
+        <!--<item name="android:background">@null</item>-->
+    <!--</style>-->
 
-    <style name="Wide.ListCellSquare" parent="@style/Wide">
-        <item name="android:background">@drawable/selector_list_cell_white_gutter</item>
-        <item name="android:padding">@dimen/baseGapSize</item>
-    </style>
+    <!--<style name="Wide.ListCellSquare" parent="@style/Wide">-->
+        <!--<item name="android:background">@drawable/selector_list_cell_white_gutter</item>-->
+        <!--<item name="android:padding">@dimen/baseGapSize</item>-->
+    <!--</style>-->
 
-    <style name="Wide.ListCellSquare.PhotoViewer" parent="@style/Wide.ListCellSquare">
-        <item name="android:background">@null</item>
-    </style>
+    <!--<style name="Wide.ListCellSquare.PhotoViewer" parent="@style/Wide.ListCellSquare">-->
+        <!--<item name="android:background">@null</item>-->
+    <!--</style>-->
 
     <style name="Wide.NonClickablePanel" parent="@style/Wide">
         <item name="android:background">@drawable/gray_cell_with_bottom_and_right_border</item>
@@ -2004,25 +1670,25 @@
         <item name="android:minHeight">50.0dip</item>
     </style>
 
-    <style name="Wide.Panel.CellButton" parent="@style/Wide.Panel">
-        <item name="android:background">@drawable/gray_section_background</item>
-    </style>
+    <!--<style name="Wide.Panel.CellButton" parent="@style/Wide.Panel">-->
+        <!--<item name="android:background">@drawable/gray_section_background</item>-->
+    <!--</style>-->
 
-    <style name="Wide.Panel.CellButton.AddBusiness" parent="@style/Wide.Panel.CellButton">
-        <item name="android:textAppearance">@style/SubtitleText</item>
-        <item name="android:gravity">left|center</item>
-        <item name="android:paddingLeft">?attr/leftGapSize</item>
-        <item name="android:paddingTop">@dimen/baseGapSize</item>
-        <item name="android:paddingRight">?attr/rightGapSize</item>
-        <item name="android:paddingBottom">@dimen/baseGapSize</item>
-        <item name="android:minHeight">@dimen/clickable_size</item>
-        <item name="android:maxLines">3</item>
-        <item name="android:drawablePadding">@dimen/base_container_margin</item>
-    </style>
+    <!--<style name="Wide.Panel.CellButton.AddBusiness" parent="@style/Wide.Panel.CellButton">-->
+        <!--<item name="android:textAppearance">@style/SubtitleText</item>-->
+        <!--<item name="android:gravity">left|center</item>-->
+        <!--<item name="android:paddingLeft">?attr/leftGapSize</item>-->
+        <!--<item name="android:paddingTop">@dimen/baseGapSize</item>-->
+        <!--<item name="android:paddingRight">?attr/rightGapSize</item>-->
+        <!--<item name="android:paddingBottom">@dimen/baseGapSize</item>-->
+        <!--<item name="android:minHeight">@dimen/clickable_size</item>-->
+        <!--<item name="android:maxLines">3</item>-->
+        <!--<item name="android:drawablePadding">@dimen/base_container_margin</item>-->
+    <!--</style>-->
 
-    <style name="Wide.Selectable" parent="@style/Wide">
-        <item name="android:background">@drawable/selector_list_cell_white_gutter</item>
-    </style>
+    <!--<style name="Wide.Selectable" parent="@style/Wide">-->
+        <!--<item name="android:background">@drawable/selector_list_cell_white_gutter</item>-->
+    <!--</style>-->
 
     <style name="Widget">
         <item name="android:textAppearance">?attr/android:textAppearance</item>
@@ -2182,17 +1848,17 @@
         <item name="android:textColor">@null</item>
     </style>
 
-    <style name="Widget.Button.Flat.Coral" parent="@style/Widget.Button.Flat">
-        <item name="android:background">@drawable/button_flat_coral</item>
-    </style>
+    <!--<style name="Widget.Button.Flat.Coral" parent="@style/Widget.Button.Flat">-->
+        <!--<item name="android:background">@drawable/button_flat_coral</item>-->
+    <!--</style>-->
 
-    <style name="Widget.Button.Flat.Gray" parent="@style/Widget.Button.Flat">
-        <item name="android:background">@drawable/button_flat_gray</item>
-    </style>
+    <!--<style name="Widget.Button.Flat.Gray" parent="@style/Widget.Button.Flat">-->
+        <!--<item name="android:background">@drawable/button_flat_gray</item>-->
+    <!--</style>-->
 
-    <style name="Widget.Button.Flat.Green" parent="@style/Widget.Button.Flat">
-        <item name="android:background">@drawable/button_flat_green</item>
-    </style>
+    <!--<style name="Widget.Button.Flat.Green" parent="@style/Widget.Button.Flat">-->
+        <!--<item name="android:background">@drawable/button_flat_green</item>-->
+    <!--</style>-->
 
     <style name="Widget.Button.IconToggle" parent="@style/Widget.Button">
         <item name="android:textAppearance">@style/StandardDarkText</item>
@@ -2202,15 +1868,15 @@
         <item name="checkable">true</item>
     </style>
 
-    <style name="Widget.Button.IconToggle.Compliment" parent="@style/Widget.Button.IconToggle">
-        <item name="android:src">@drawable/compliment_button_icon</item>
-        <item name="android:text">@string/compliment</item>
-    </style>
+    <!--<style name="Widget.Button.IconToggle.Compliment" parent="@style/Widget.Button.IconToggle">-->
+        <!--<item name="android:src">@drawable/compliment_button_icon</item>-->
+        <!--<item name="android:text">@string/compliment</item>-->
+    <!--</style>-->
 
-    <style name="Widget.Button.IconToggle.Like" parent="@style/Widget.Button.IconToggle">
-        <item name="android:src">@drawable/like_button_icon</item>
-        <item name="android:text">@string/like</item>
-    </style>
+    <!--<style name="Widget.Button.IconToggle.Like" parent="@style/Widget.Button.IconToggle">-->
+        <!--<item name="android:src">@drawable/like_button_icon</item>-->
+        <!--<item name="android:text">@string/like</item>-->
+    <!--</style>-->
 
     <style name="Widget.Button.Submit" parent="@style/Widget.Button">
         <item name="android:textSize">16.0sp</item>
@@ -2219,42 +1885,42 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="Widget.Button.Submit.Accept" parent="@style/Widget.Button.Submit">
-        <item name="android:background">@drawable/btn_green</item>
-    </style>
+    <!--<style name="Widget.Button.Submit.Accept" parent="@style/Widget.Button.Submit">-->
+        <!--<item name="android:background">@drawable/btn_green</item>-->
+    <!--</style>-->
 
-    <style name="Widget.Button.Submit.Cancel" parent="@style/Widget.Button.Submit">
-        <item name="android:background">@drawable/button_red</item>
-        <item name="android:padding">@dimen/button_padding</item>
-        <item name="android:text">@string/cancel</item>
-    </style>
+    <!--<style name="Widget.Button.Submit.Cancel" parent="@style/Widget.Button.Submit">-->
+        <!--<item name="android:background">@drawable/button_red</item>-->
+        <!--<item name="android:padding">@dimen/button_padding</item>-->
+        <!--<item name="android:text">@string/cancel</item>-->
+    <!--</style>-->
 
-    <style name="Widget.Button.Toggle" parent="@style/Widget.Button">
-        <item name="android:disabledAlpha">?attr/android:disabledAlpha</item>
-        <item name="android:background">@drawable/btn_toggle_bg</item>
-        <item name="android:paddingTop">0.0dip</item>
-        <item name="android:paddingBottom">0.0dip</item>
-        <item name="android:textOn">YOU_SHOULD_USE_A_LOCALIZED_ASSET</item>
-        <item name="android:textOff">YOU_SHOULD_USE_A_LOCALIZED_ASSET</item>
-    </style>
+    <!--<style name="Widget.Button.Toggle" parent="@style/Widget.Button">-->
+        <!--<item name="android:disabledAlpha">?attr/android:disabledAlpha</item>-->
+        <!--<item name="android:background">@drawable/btn_toggle_bg</item>-->
+        <!--<item name="android:paddingTop">0.0dip</item>-->
+        <!--<item name="android:paddingBottom">0.0dip</item>-->
+        <!--<item name="android:textOn">YOU_SHOULD_USE_A_LOCALIZED_ASSET</item>-->
+        <!--<item name="android:textOff">YOU_SHOULD_USE_A_LOCALIZED_ASSET</item>-->
+    <!--</style>-->
 
-    <style name="Widget.Button.Toggle.NoText" parent="@style/Widget.Button.Toggle">
-        <item name="android:textOn"></item>
-        <item name="android:textOff"></item>
-    </style>
+    <!--<style name="Widget.Button.Toggle.NoText" parent="@style/Widget.Button.Toggle">-->
+        <!--<item name="android:textOn"></item>-->
+        <!--<item name="android:textOff"></item>-->
+    <!--</style>-->
 
-    <style name="Widget.Button.Toggle.Wide" parent="@style/Widget.Button.Toggle">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/btn_wide_toggle_text</item>
-        <item name="android:gravity">top|center</item>
-        <item name="android:background">@drawable/btn_wide_toggle_bg</item>
-        <item name="android:padding">0.0dip</item>
-        <item name="android:button">@null</item>
-    </style>
+    <!--<style name="Widget.Button.Toggle.Wide" parent="@style/Widget.Button.Toggle">-->
+        <!--<item name="android:textStyle">bold</item>-->
+        <!--<item name="android:textColor">@color/btn_wide_toggle_text</item>-->
+        <!--<item name="android:gravity">top|center</item>-->
+        <!--<item name="android:background">@drawable/btn_wide_toggle_bg</item>-->
+        <!--<item name="android:padding">0.0dip</item>-->
+        <!--<item name="android:button">@null</item>-->
+    <!--</style>-->
 
-    <style name="Widget.Button.White" parent="@style/Widget.Button.WhiteSilver">
-        <item name="android:background">@drawable/white_solid_button</item>
-    </style>
+    <!--<style name="Widget.Button.White" parent="@style/Widget.Button.WhiteSilver">-->
+        <!--<item name="android:background">@drawable/white_solid_button</item>-->
+    <!--</style>-->
 
     <style name="Widget.Button.WhiteSilver" parent="@style/Widget.Button">
         <item name="android:scaleType">center</item>
@@ -2268,14 +1934,14 @@
         <item name="android:shadowRadius">0.1</item>
     </style>
 
-    <style name="Widget.Button.YoniStyle.Green" parent="@style/Widget.Button.YoniStyle">
-        <item name="android:textColor">@color/small_green_button_text</item>
-        <item name="android:background">@drawable/button_background_accept</item>
-        <item name="android:paddingLeft">?attr/rightGapSize</item>
-        <item name="android:paddingRight">?attr/leftGapSize</item>
-        <item name="android:minWidth">@dimen/compliment_button_minimum_width</item>
-        <item name="android:shadowColor">@color/transparent_green_button_text_shadow_default</item>
-    </style>
+    <!--<style name="Widget.Button.YoniStyle.Green" parent="@style/Widget.Button.YoniStyle">-->
+        <!--<item name="android:textColor">@color/small_green_button_text</item>-->
+        <!--<item name="android:background">@drawable/button_background_accept</item>-->
+        <!--<item name="android:paddingLeft">?attr/rightGapSize</item>-->
+        <!--<item name="android:paddingRight">?attr/leftGapSize</item>-->
+        <!--<item name="android:minWidth">@dimen/compliment_button_minimum_width</item>-->
+        <!--<item name="android:shadowColor">@color/transparent_green_button_text_shadow_default</item>-->
+    <!--</style>-->
 
     <style name="Widget.CompoundButton" parent="@style/Widget">
         <item name="android:textAppearance">?attr/android:textAppearance</item>
@@ -2291,9 +1957,9 @@
         <item name="android:minHeight">30.0dip</item>
     </style>
 
-    <style name="Widget.CompoundButton.CheckBox.Transparent" parent="@style/Widget.CompoundButton.CheckBox">
-        <item name="android:button">@drawable/btn_check_transparent</item>
-    </style>
+    <!--<style name="Widget.CompoundButton.CheckBox.Transparent" parent="@style/Widget.CompoundButton.CheckBox">-->
+        <!--<item name="android:button">@drawable/btn_check_transparent</item>-->
+    <!--</style>-->
 
     <style name="Widget.ListView.White.NoScrollCache" parent="@android:style/Widget.ListView.White">
         <item name="android:scrollingCache">false</item>
@@ -2324,12 +1990,12 @@
         <item name="android:gravity">left</item>
     </style>
 
-    <style name="Widget.TextView.DropDown" parent="@android:style/Widget.TextView">
-        <item name="android:popupWindowStyle">@style/RoundedPopupStyle</item>
-        <item name="android:background">@android:drawable/editbox_background</item>
-        <item name="android:minHeight">@dimen/businesspage_cell_min_height</item>
-        <!--<item name="dropDownItemLayout">@layout/spinner_view</item>-->
-    </style>
+    <!--<style name="Widget.TextView.DropDown" parent="@android:style/Widget.TextView">-->
+        <!--<item name="android:popupWindowStyle">@style/RoundedPopupStyle</item>-->
+        <!--<item name="android:background">@android:drawable/editbox_background</item>-->
+        <!--<item name="android:minHeight">@dimen/businesspage_cell_min_height</item>-->
+        <!--&lt;!&ndash;<item name="dropDownItemLayout">@layout/spinner_view</item>&ndash;&gt;-->
+    <!--</style>-->
 
     <style name="Widget.TextView.ListSeparatorYelp" parent="@android:style/Widget.TextView">
         <item name="android:textAppearance">@style/SubtitleDarkText</item>
@@ -2347,9 +2013,9 @@
         <item name="android:background">@color/white_dirty_snow</item>
     </style>
 
-    <style name="Widget.TextView.ListSeparatorYelp.Narrow" parent="@style/Widget.TextView.ListSeparatorYelp">
-        <item name="android:background">@drawable/white_cell_with_gray_gutter_narrow</item>
-    </style>
+    <!--<style name="Widget.TextView.ListSeparatorYelp.Narrow" parent="@style/Widget.TextView.ListSeparatorYelp">-->
+        <!--<item name="android:background">@drawable/white_cell_with_gray_gutter_narrow</item>-->
+    <!--</style>-->
 
     <style name="Widget.TextView.ListSeparatorYelp.NarrowTransparentBackground" parent="@style/Widget.TextView.ListSeparatorYelp">
         <item name="android:background">@null</item>
