@@ -81,8 +81,6 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
 
     // MARK: Query near restaurant list.
     public void queryNearRestaurant(ParseGeoPoint geoPoint) {
-        // TODO djzhang(test)
-//        geoPoint = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
 
         Restaurant.queryNearRestaurants(geoPoint)
                 .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {

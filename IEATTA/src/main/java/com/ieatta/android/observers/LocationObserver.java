@@ -21,10 +21,6 @@ public class LocationObserver {
     private Stack<ParseGeoPoint> observerStack = new Stack<>();
 
     public ParseGeoPoint getCurrentPFGeoPoint() {
-
-        //TODO: djzhang(test)(Special GeoPoint)
-//        return RestaurantListGenerator.getCurrentLocationAndCulculateDistance();
-
         return self.currentGeoPoint;
     }
 
