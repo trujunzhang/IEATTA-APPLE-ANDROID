@@ -161,4 +161,14 @@
     <string name="Search_Hint_Event">Event\'s name</string>
     <string name="Search">Search</string>
 
+    <!--// Handling an empty UITableView. Print a friendly message.-->
+    <string name="Empty_for_Restaurant">No restaurants found</string>
+    <string name="Empty_for_Event">This Restaurant has no events</string>
+    <string name="Empty_for_Review">No reviews post</string>
+    <string name="Empty_for_Ordered_People">This Event has no ordered people</string>
+    <string name="Empty_for_Ordered_Recipe">This Person has no Recips ordered</string>
+    <string name="Empty_for_Friends">No friends recorded</string>
+
+    <string name="No_Photos">No Photos</string>
+
 </resources>
