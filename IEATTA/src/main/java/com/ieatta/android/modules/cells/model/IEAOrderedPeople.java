@@ -30,8 +30,8 @@ public class IEAOrderedPeople {
         this.viewController = viewController;
     }
 
-    public static List<Object> convertToOrderedPeople(List<ParseModelAbstract> fetchedOrderedPeople, Event event) {
-        List<Object> list = new LinkedList<>();
+    public static List convertToOrderedPeople(List<ParseModelAbstract> fetchedOrderedPeople, Event event) {
+        List list = new LinkedList<>();
         for (ParseModelAbstract model : fetchedOrderedPeople) {
             list.add(new IEAOrderedPeople((Team) model, event));
         }
