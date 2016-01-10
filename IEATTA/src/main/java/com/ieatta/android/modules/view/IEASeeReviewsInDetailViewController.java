@@ -55,7 +55,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
             @Override
             public Object then(Task<Boolean> task) throws Exception {
 
-                self.configureDetailSection(self.fetchedReviews,R.string.Empty_for_Review,null,SeeReviewsInDetailSection.sectionReviews.ordinal());
+                self.configureDetailSection(self.fetchedReviews, R.string.Empty_for_Review, null, SeeReviewsInDetailSection.sectionReviews.ordinal());
 
                 return null;
             }
@@ -76,6 +76,11 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
     @Override
     public int getReviewsSectionIndex() {
         return SeeReviewsInDetailSection.sectionReviews.ordinal();
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.table_controller_view_with_emptyinfo;
     }
 
     // MARK: Override IEABaseTableViewController methods
@@ -105,11 +110,11 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
     }
 
-    public void configureDetailSection(List items,int emptyInfoResId,CellType type, int forSectionIndex){
-        if(items.size() == 0){
+    public void configureDetailSection(List items, int emptyInfoResId, CellType type, int forSectionIndex) {
+        if (items.size() == 0) {
             self.infoLabel.setVisibility(View.VISIBLE);
             self.infoLabel.setText(emptyInfoResId);
-        }else{
+        } else {
             self.infoLabel.setVisibility(View.GONE);
 
             self.configureReviewsSection();
