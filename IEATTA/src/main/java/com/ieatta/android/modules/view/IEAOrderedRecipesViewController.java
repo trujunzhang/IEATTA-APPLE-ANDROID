@@ -85,7 +85,8 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
 
                 self.setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.orderedPeople, (self.orderedPeople.belongToModel), self), OrderedRecipesSection.sectionOrderedPeople.ordinal());
 
-                self.setSectionItems(fetchedOrderedRecipes, OrderedRecipesSection.sectionRecipes.ordinal());
+//                self.setSectionItems(fetchedOrderedRecipes, OrderedRecipesSection.sectionRecipes.ordinal());
+                self.configureDetailSection(self.fetchedOrderedRecipes,R.string.Empty_for_Ordered_Recipe,IEAOrderedRecipeCell.getType(), OrderedRecipesSection.sectionRecipes.ordinal());
 
                 return null;
             }
