@@ -102,7 +102,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                 self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.getType(), RestaurantDetailSection.sectionEvents.ordinal());
                 self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
 
-                self.configureEventSection(self.fetchedEvents);
+                self.configureDetailSection(self.fetchedEvents, R.string.Empty_for_Event, RestaurantDetailSection.sectionEvents.ordinal());
                 self.configureReviewsSection();
                 self.configurePhotoGallerySection(fetchedPhotosTask);
 
@@ -121,11 +121,6 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
     @Override
     public ParseModelAbstract getPageModel() {
         return self.restaurant;
-    }
-
-
-    private void configureEventSection(List<ParseModelAbstract> fetchedEvents) {
-        self.setSectionItems(fetchedEvents, RestaurantDetailSection.sectionEvents.ordinal());
     }
 
     // MARK: Override IEAPhotoGalleryViewController methods
@@ -187,7 +182,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
                     @Override
                     public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
                         self.fetchedEvents = task.getResult();
-                        self.configureEventSection(self.fetchedEvents);
+                        self.configureDetailSection(self.fetchedEvents, R.string.Empty_for_Event,  RestaurantDetailSection.sectionEvents.ordinal());
                         return null;
                     }
                 });
