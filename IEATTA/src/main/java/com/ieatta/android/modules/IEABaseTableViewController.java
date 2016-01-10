@@ -3,6 +3,8 @@ package com.ieatta.android.modules;
 import android.os.Bundle;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.models.CellType;
+import com.ieatta.android.modules.cells.IEAEmptyInfoCell;
 import com.ieatta.android.modules.cells.IEAGoogleMapAddressCell;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
@@ -55,12 +57,14 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     }
 
 
-    public void configureDetailSection(List items,int emptyInfoResId, int forSectionIndex){
+    public void configureDetailSection(List items,int emptyInfoResId,CellType type, int forSectionIndex){
         if(items.size() == 0){
+            self.setRegisterCellClass(IEAEmptyInfoCell.getType(), forSectionIndex);
+
             String emptyInfo = getResources().getString(emptyInfoResId);
             self.setSectionItems(CollectionUtils.createList(emptyInfo), forSectionIndex);
         }else{
-
+            self.setRegisterCellClass(type, forSectionIndex);
             self.setSectionItems(items, forSectionIndex);
         }
     }
