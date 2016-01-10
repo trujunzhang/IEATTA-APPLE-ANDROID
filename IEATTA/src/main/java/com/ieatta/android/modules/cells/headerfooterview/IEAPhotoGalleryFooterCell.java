@@ -56,6 +56,7 @@ public class IEAPhotoGalleryFooterCell extends IEAViewHolder {
 
         if(photosCount == 0){
             self.footerLargeButton.setEnabled(false);
+            self.footerLargeButton.setText(R.string.No_Photos);
         }
     }
 
