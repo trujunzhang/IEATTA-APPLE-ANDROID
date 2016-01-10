@@ -1,7 +1,11 @@
 package com.ieatta.android.modules.view;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
+import com.ieatta.android.R;
+import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.IEABaseReviewsTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEASeeReviewsCell;
@@ -28,6 +32,8 @@ enum SeeReviewsInDetailSection {
 public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableViewController {
     private IEASeeReviewsInDetailViewController self = this;
 
+    private TextView infoLabel;
+
     IEASeeReviewsInDetailViewController transfer(ParseModelAbstract reviewForModel) {
         self.reviewForModel = reviewForModel;
         return self;
@@ -43,10 +49,14 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         // Do any additional setup after loading the view.
         self.transfer(self.getTransferedModel());
 
+        self.infoLabel = (TextView) self.findViewById(R.id.emptyInfoTextView);
+
         self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
             @Override
             public Object then(Task<Boolean> task) throws Exception {
-                self.configureReviewsSection();
+
+                self.configureDetailSection(self.fetchedReviews,R.string.Empty_for_Review,null,SeeReviewsInDetailSection.sectionReviews.ordinal());
+
                 return null;
             }
         }, Task.UI_THREAD_EXECUTOR);
@@ -94,4 +104,16 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
         self.selectedReview = cellModel.writedReview;
         self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
     }
+
+    public void configureDetailSection(List items,int emptyInfoResId,CellType type, int forSectionIndex){
+        if(items.size() == 0){
+            self.infoLabel.setVisibility(View.VISIBLE);
+            self.infoLabel.setText(emptyInfoResId);
+        }else{
+            self.infoLabel.setVisibility(View.GONE);
+
+            self.configureReviewsSection();
+        }
+    }
+
 }
