@@ -55,4 +55,13 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     }
 
 
+    public void configureDetailSection(List items,String emptyInfo,int rowHeight, int forSectionIndex){
+        if(items.size() == 0){
+            self.setSectionItems(CollectionUtils.createList(emptyInfo), forSectionIndex);
+        }else{
+
+            self.setSectionItems(items, forSectionIndex);
+        }
+    }
+
 }

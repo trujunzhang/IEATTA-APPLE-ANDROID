@@ -13,6 +13,7 @@
     <dimen name="review_star_width">37.0dip</dimen>
     <dimen name="review_star_height">30.0dip</dimen>
 
+    <dimen name="Empty_info">42.0dip</dimen>
 
     <!--Photo gallery-->
     <dimen name="Gallery_Cell_Collection_Width">132.0dip</dimen>
