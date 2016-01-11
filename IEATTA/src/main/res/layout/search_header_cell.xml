@@ -22,7 +22,7 @@
             android:id="@+id/searchTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/activity_config_yelp_host_clear"
+            android:layout_toLeftOf="@+id/search_clear"
             android:layout_toRightOf="@+id/activity_config_host_label"
             android:hint="@string/Search_Hint_Event"
             android:textAppearance="@style/LargeText"
