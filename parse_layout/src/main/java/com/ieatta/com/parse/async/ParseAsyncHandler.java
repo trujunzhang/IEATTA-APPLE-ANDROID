@@ -14,8 +14,8 @@ import bolts.Task;
  */
 public class ParseAsyncHandler {
     private ParseAsyncHandler self = this;
-    private static final int PAGE_NUMBER_FETCH_NEW_RECORD = 20;
-    private static final int PAGE_NUMBER_PUSH_NEW_RECORD = 6;
+    private static final int PAGE_NUMBER_FETCH_NEW_RECORD = 12;
+    private static final int PAGE_NUMBER_PUSH_NEW_RECORD = 4;
 
     public static final ParseAsyncHandler sharedInstance = new ParseAsyncHandler();
 
