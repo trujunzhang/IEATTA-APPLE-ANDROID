@@ -20,9 +20,21 @@ android {
         versionName ANDROID_VERSION_NAME
     }
 
+    signingConfigs {
+        release {
+            storeFile file("ieatta-key.keystore")
+            storePassword "ieatta"
+            keyAlias "ieatta"
+            keyPassword "ieatta"
+        }
+    }
+
     buildTypes {
         debug {
             testCoverageEnabled Boolean.parseBoolean(IS_COVERAGE_ENABLED)
+        }
+        release {
+            signingConfig signingConfigs.release
         }
     }
 }
