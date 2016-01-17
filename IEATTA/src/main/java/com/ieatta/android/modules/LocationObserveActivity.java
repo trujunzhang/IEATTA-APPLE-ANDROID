@@ -38,7 +38,7 @@ public class LocationObserveActivity extends IEASplitMasterViewController {
 
         // 判断GPS是否正常启动
         if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Toast.makeText(this, "请开启GPS导航...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please tune on the GPS!", Toast.LENGTH_SHORT).show();
             // 返回开启GPS导航设置界面
             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             startActivityForResult(intent, 0);
