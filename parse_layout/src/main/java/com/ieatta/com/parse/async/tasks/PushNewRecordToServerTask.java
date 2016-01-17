@@ -63,12 +63,12 @@ public class PushNewRecordToServerTask {
      * - parameter newRecordObject: A row data on the NewRecord table.
      */
     private static Task<Void> PushObjectToServerTask(final NewRecord newRecord) {
-        LogUtils.debug(" [ newRecord in push to server ]: " + newRecord.printDescription());
+//        LogUtils.debug(" [ newRecord in push to server ]: " + newRecord.printDescription());
 
         // 1. Get the recoreded emptyModel instance from NewRecord, by the modelType and the modelPoint.
         // (such as photo,restaurant,event etc)
         final ParseModelAbstract emptyModel = newRecord.getRecordedModel();
-        LogUtils.debug(" [ emptyModel in push to server ]: " + emptyModel.printDescription());
+//        LogUtils.debug(" [ emptyModel in push to server ]: " + emptyModel.printDescription());
 
         final Task.TaskCompletionSource tcs = Task.create();
 
