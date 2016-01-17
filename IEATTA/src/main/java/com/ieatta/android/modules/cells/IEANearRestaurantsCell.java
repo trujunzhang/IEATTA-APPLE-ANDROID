@@ -32,6 +32,7 @@ public class IEANearRestaurantsCell extends IEAViewHolder {
     @Override
     public void render(Object value) {
         Restaurant model = (Restaurant) value;
+
         self.titleLabel.setText(model.displayName);
         self.subtitleLabel.setText(((Restaurant) value).getGoogleMapAddress());
 
