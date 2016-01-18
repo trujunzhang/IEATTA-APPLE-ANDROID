@@ -22,7 +22,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("ieatta-key.keystore")
+            storeFile file("IEATTA-key.jks")
             storePassword "ieatta"
             keyAlias "ieatta"
             keyPassword "ieatta"
