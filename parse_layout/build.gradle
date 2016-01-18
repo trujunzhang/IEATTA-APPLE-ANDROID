@@ -31,7 +31,7 @@ dependencies {
     compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
 
     compile project(':android-timeago')
-    compile project(':assertionLib')
+    //compile project(':assertionLib')
     compile project(':Android-Universal-Image-Loader')
     compile project(':commonLib')
 }

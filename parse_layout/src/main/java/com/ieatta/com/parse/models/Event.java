@@ -9,7 +9,6 @@ import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.models.enums.PhotoUsedType;
 import com.ieatta.com.parse.models.enums.ReviewType;
 import com.parse.ParseObject;
-import com.twofortyfouram.assertion.Assertions;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -112,8 +111,6 @@ public class Event extends ParseModelSync {
 
     @Override
     public Task<Void> writeCommonObject(ParseObject object) {
-        Assertions.assertNotEmpty(this.restaurantRef, "Must setup restaurantRef.");
-
         object.put(kPAPFieldDisplayNameKey, this.displayName);
         object.put(kPAPFieldStartDateKey, this.startDate);
         object.put(kPAPFieldEndDateKey, this.endDate);

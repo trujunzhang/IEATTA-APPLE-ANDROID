@@ -2,10 +2,7 @@ package com.ieatta.android.extensions.storage;
 
 import android.content.Context;
 import android.test.InstrumentationTestCase;
-import android.util.AttributeSet;
 import android.view.View;
-
-import junit.framework.TestCase;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
