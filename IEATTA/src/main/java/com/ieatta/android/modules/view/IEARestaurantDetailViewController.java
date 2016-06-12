@@ -16,10 +16,6 @@ import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 import com.ieatta.android.notification.NSNotification;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Event;
-import com.ieatta.com.parse.models.Photo;
-import com.ieatta.com.parse.models.Restaurant;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,18 +23,15 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-enum RestaurantDetailSection {
-    sectionHeader,//= 0
-    sectionGoogleMapAddress,//= 1
-    sectionEvents,//= 2
-    sectionPhotos,//= 3
-    sectionReviews,//= 4
-}
 
 public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableViewController {
+    enum RestaurantDetailSection {
+        sectionHeader,//= 0
+        sectionGoogleMapAddress,//= 1
+        sectionEvents,//= 2
+        sectionPhotos,//= 3
+        sectionReviews,//= 4
+    }
     private IEARestaurantDetailViewController self = this;
 
     IEARestaurantDetailViewController transfer(Restaurant selectedModel) {

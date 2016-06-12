@@ -14,13 +14,6 @@ import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Event;
-import com.ieatta.com.parse.models.Recipe;
-import com.ieatta.com.parse.models.Restaurant;
-import com.ieatta.com.parse.models.Review;
-import com.ieatta.com.parse.models.Team;
-import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,25 +21,21 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-
-enum ReviewDetailSection {
-    sectionReviewForModel,//= 0
-}
-
-class ReviewSectionInfo {
-    public ParseModelAbstract model;
-    public ReviewType type = ReviewType.Review_Unknow;
-
-    public ReviewSectionInfo(ParseModelAbstract model, ReviewType type) {
-        this.model = model;
-        this.type = type;
-    }
-}
-
 public class IEAReviewDetailViewController extends IEABaseTableViewController {
+    enum ReviewDetailSection {
+        sectionReviewForModel,//= 0
+    }
+
+    class ReviewSectionInfo {
+        public ParseModelAbstract model;
+        public ReviewType type = ReviewType.Review_Unknow;
+
+        public ReviewSectionInfo(ParseModelAbstract model, ReviewType type) {
+            this.model = model;
+            this.type = type;
+        }
+    }
+
     private IEAReviewDetailViewController self = this;
 
     // Transferd Model from previous page.

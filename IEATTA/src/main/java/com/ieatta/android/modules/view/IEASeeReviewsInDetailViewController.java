@@ -12,8 +12,6 @@ import com.ieatta.android.modules.cells.IEASeeReviewsCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionSeeReviewsCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Review;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,15 +19,12 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-
-enum SeeReviewsInDetailSection {
-    sectionReviews,// = 0;
-}
 
 public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableViewController {
+    enum SeeReviewsInDetailSection {
+        sectionReviews,// = 0;
+    }
+
     private IEASeeReviewsInDetailViewController self = this;
 
     private TextView infoLabel;

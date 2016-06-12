@@ -18,27 +18,21 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.notification.NSNotification;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Event;
-import com.ieatta.com.parse.models.PeopleInEvent;
-import com.ieatta.com.parse.models.Team;
-
 import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-enum EventDetailSection {
-    sectionHeader,        //= 0
-    sectionOrderedPeople, //= 1
-    sectionReviews,       //= 2
-}
 
 public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewController {
+
+    enum EventDetailSection {
+        sectionHeader,        //= 0
+        sectionOrderedPeople, //= 1
+        sectionReviews,       //= 2
+    }
+
     private IEAEventDetailViewController self = this;
 
 
@@ -130,7 +124,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
     private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople) {
         List items = IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event);
 
-        self.configureDetailSection(items,R.string.Empty_for_Ordered_People,IEAOrderedPeopleCell.getType(),EventDetailSection.sectionOrderedPeople.ordinal());
+        self.configureDetailSection(items, R.string.Empty_for_Ordered_People, IEAOrderedPeopleCell.getType(), EventDetailSection.sectionOrderedPeople.ordinal());
     }
 
     @Override

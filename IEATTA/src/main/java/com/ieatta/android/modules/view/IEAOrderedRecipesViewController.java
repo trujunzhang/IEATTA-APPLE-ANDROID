@@ -14,9 +14,6 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.notification.NSNotification;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Recipe;
-import com.ieatta.com.parse.models.Team;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,15 +21,13 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-enum OrderedRecipesSection {
-    sectionOrderedPeople, //= 0
-    sectionRecipes,       //= 1
-}
 
 public class IEAOrderedRecipesViewController extends IEASplitDetailViewController {
+    enum OrderedRecipesSection {
+        sectionOrderedPeople, //= 0
+        sectionRecipes,       //= 1
+    }
+
     private IEAOrderedRecipesViewController self = this;
 
     @Override
@@ -86,7 +81,7 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
                 self.setSectionItems(IEAOrderedPeople.convertToOrderedPeople(self.orderedPeople, (self.orderedPeople.belongToModel), self), OrderedRecipesSection.sectionOrderedPeople.ordinal());
 
 //                self.setSectionItems(fetchedOrderedRecipes, OrderedRecipesSection.sectionRecipes.ordinal());
-                self.configureDetailSection(self.fetchedOrderedRecipes,R.string.Empty_for_Ordered_Recipe,IEAOrderedRecipeCell.getType(), OrderedRecipesSection.sectionRecipes.ordinal());
+                self.configureDetailSection(self.fetchedOrderedRecipes, R.string.Empty_for_Ordered_Recipe, IEAOrderedRecipeCell.getType(), OrderedRecipesSection.sectionRecipes.ordinal());
 
                 return null;
             }

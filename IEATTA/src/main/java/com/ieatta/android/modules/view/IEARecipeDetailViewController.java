@@ -14,27 +14,22 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.notification.NSNotification;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Photo;
-import com.ieatta.com.parse.models.Recipe;
+
 
 import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-
-enum RecipeDetailSection {
-    sectionHeader,//= 0
-    sectionOrderedPeople,//= 1
-    sectionPhotos,//= 2
-    sectionReviews,//= 3
-}
 
 public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewController {
+    enum RecipeDetailSection {
+        sectionHeader,//= 0
+        sectionOrderedPeople,//= 1
+        sectionPhotos,//= 2
+        sectionReviews,//= 3
+    }
+
     private IEARecipeDetailViewController self = this;
 
     @Override

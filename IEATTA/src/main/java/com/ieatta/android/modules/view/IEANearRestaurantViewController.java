@@ -26,16 +26,12 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-
-enum NearRestaurantSection {
-    sectionMoreItems,//= 0
-    sectionRestaurants, //= 1
-}
-
 public class IEANearRestaurantViewController extends LocationObserveActivity {
+    enum NearRestaurantSection {
+        sectionMoreItems,//= 0
+        sectionRestaurants, //= 1
+    }
+
     private IEANearRestaurantViewController self = this;
     private List<ParseModelAbstract> fetchedRestaurants;
 

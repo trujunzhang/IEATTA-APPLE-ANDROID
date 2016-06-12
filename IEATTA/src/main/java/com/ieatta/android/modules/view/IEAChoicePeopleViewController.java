@@ -21,8 +21,6 @@ import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.notification.NSNotification;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Team;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -30,17 +28,11 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-
-/**
- * Created by djzhang on 12/1/15.
- */
-
-
-enum ChoicePeopleSection {
-    sectionPeople,  //= 0
-}
-
 public class IEAChoicePeopleViewController extends IEABaseTableViewController {
+
+    enum ChoicePeopleSection {
+        sectionPeople,  //= 0
+    }
     private IEAChoicePeopleViewController self = this;
 
     private TextView infoLabel;
