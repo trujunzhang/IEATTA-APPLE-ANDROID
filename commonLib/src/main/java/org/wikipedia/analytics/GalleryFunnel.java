@@ -2,7 +2,6 @@ package org.wikipedia.analytics;
 
 import android.support.annotation.NonNull;
 
-import org.ieatta.activity.PageTitle;
 import org.json.JSONObject;
 import org.wikipedia.Site;
 import com.ieatta.BaseApp;
@@ -36,35 +35,35 @@ public class GalleryFunnel extends TimedFunnel {
         return "gallerySessionToken";
     }
 
-    private void logGalleryAction(String action, PageTitle currentPageTitle, String currentMediaTitle) {
-        log(
-                "action", action,
-                "pageTitle", currentPageTitle.getDisplayText(),
-                "imageTitle", currentMediaTitle
-        );
+    private void logGalleryAction(String action,  String currentMediaTitle) {
+//        log(
+//                "action", action,
+//                "pageTitle", currentPageTitle.getDisplayText(),
+//                "imageTitle", currentMediaTitle
+//        );
     }
-
-    public void logGalleryOpen(PageTitle currentPageTitle, String currentMediaTitle) {
-        logGalleryAction("open", currentPageTitle, currentMediaTitle);
-    }
-
-    public void logGalleryClose(PageTitle currentPageTitle, String currentMediaTitle) {
-        logGalleryAction("close", currentPageTitle, currentMediaTitle);
-    }
-
-    public void logGallerySwipeLeft(PageTitle currentPageTitle, String currentMediaTitle) {
-        logGalleryAction("swipeLeft", currentPageTitle, currentMediaTitle);
-    }
-
-    public void logGallerySwipeRight(PageTitle currentPageTitle, String currentMediaTitle) {
-        logGalleryAction("swipeRight", currentPageTitle, currentMediaTitle);
-    }
-
-    public void logGalleryShare(PageTitle currentPageTitle, String currentMediaTitle) {
-        logGalleryAction("share", currentPageTitle, currentMediaTitle);
-    }
-
-    public void logGallerySave(PageTitle currentPageTitle, String currentMediaTitle) {
-        logGalleryAction("save", currentPageTitle, currentMediaTitle);
-    }
+//
+//    public void logGalleryOpen(PageTitle currentPageTitle, String currentMediaTitle) {
+//        logGalleryAction("open", currentPageTitle, currentMediaTitle);
+//    }
+//
+//    public void logGalleryClose(PageTitle currentPageTitle, String currentMediaTitle) {
+//        logGalleryAction("close", currentPageTitle, currentMediaTitle);
+//    }
+//
+//    public void logGallerySwipeLeft(PageTitle currentPageTitle, String currentMediaTitle) {
+//        logGalleryAction("swipeLeft", currentPageTitle, currentMediaTitle);
+//    }
+//
+//    public void logGallerySwipeRight(PageTitle currentPageTitle, String currentMediaTitle) {
+//        logGalleryAction("swipeRight", currentPageTitle, currentMediaTitle);
+//    }
+//
+//    public void logGalleryShare(PageTitle currentPageTitle, String currentMediaTitle) {
+//        logGalleryAction("share", currentPageTitle, currentMediaTitle);
+//    }
+//
+//    public void logGallerySave(PageTitle currentPageTitle, String currentMediaTitle) {
+//        logGalleryAction("save", currentPageTitle, currentMediaTitle);
+//    }
 }

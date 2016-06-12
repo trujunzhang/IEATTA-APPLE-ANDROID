@@ -1,10 +1,7 @@
 package org.wikipedia.analytics;
 
 import com.ieatta.BaseApp;
-import org.ieatta.activity.history.HistoryEntry;
-import org.wikipedia.analytics.Funnel;
 
-import java.io.File;
 
 public class PageFragmentFunnel extends Funnel {
 
@@ -39,7 +36,7 @@ public class PageFragmentFunnel extends Funnel {
         log("title", title, "snippet", snippet);
     }
 
-    public void logLoadPage(HistoryEntry entry, int stagedScrollY) {
-        log("Load page: ", stagedScrollY);
-    }
+//    public void logLoadPage(HistoryEntry entry, int stagedScrollY) {
+//        log("Load page: ", stagedScrollY);
+//    }
 }

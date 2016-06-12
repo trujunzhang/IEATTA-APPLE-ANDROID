@@ -2,7 +2,6 @@ package org.wikipedia.analytics;
 
 import android.support.annotation.NonNull;
 
-import org.ieatta.activity.PageTitle;
 import org.json.JSONObject;
 import com.ieatta.BaseApp;
 import org.wikipedia.analytics.Funnel;
@@ -23,7 +22,7 @@ public class ShareAFactFunnel extends Funnel {
     private final int pageId;
     private final long revisionId;
 
-    public ShareAFactFunnel(BaseApp app, PageTitle pageTitle, int pageId, long revisionId) {
+    public ShareAFactFunnel(BaseApp app,  int pageId, long revisionId) {
         super(app, SCHEMA_NAME, REV_ID /*pageTitle.getSite()*/);
 //        this.pageTitle = pageTitle.getDisplayText();
         this.pageId = pageId;

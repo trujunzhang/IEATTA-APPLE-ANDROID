@@ -9,9 +9,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.yelp.com.commonlib.R;
 
 import com.ieatta.BaseApp;
-import org.ieatta.R;
 import org.wikipedia.activity.CallbackFragment;
 import org.wikipedia.drawable.DrawableUtil;
 
@@ -44,7 +44,7 @@ public class CrashReportFragment extends CallbackFragment<CrashReportFragmentCal
 
     @ColorInt
     private int getContrastingThemeColor() {
-        return IEAApp.getInstance().getContrastingThemeColor();
+        return BaseApp.getInstance().getContrastingThemeColor();
     }
 
     private void setOnClickListener(View view, @IdRes int id, View.OnClickListener listener) {
