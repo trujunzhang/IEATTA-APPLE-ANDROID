@@ -1,4 +1,4 @@
-package org.ieatta.cells.model;
+package com.tableview.model;
 
 import java.util.LinkedList;
 import java.util.List;

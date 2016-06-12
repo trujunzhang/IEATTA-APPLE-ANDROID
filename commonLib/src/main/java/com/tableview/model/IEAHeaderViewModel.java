@@ -1,4 +1,4 @@
-package org.ieatta.cells.model;
+package com.tableview.model;
 
 import android.view.Display;
 import android.widget.LinearLayout;

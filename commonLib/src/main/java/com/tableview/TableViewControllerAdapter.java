@@ -9,11 +9,6 @@ import com.tableview.adapter.IEAViewHolder;
 import com.tableview.adapter.ItemClickListener;
 import com.tableview.storage.DTTableViewManager;
 import com.tableview.storage.models.RowModel;
-import com.tableview.utils.DrawableUtils;
-import com.tableview.utils.ViewUtils;
-
-import org.ieatta.R;
-import org.ieatta.analytics.TableViewControllerAdapterFunnel;
 
 public class TableViewControllerAdapter
         extends RecyclerView.Adapter<IEAViewHolder> {
@@ -55,7 +50,7 @@ public class TableViewControllerAdapter
     @Override
     public int getItemCount() {
         int count = this.mProvider.getItemCount();
-        new TableViewControllerAdapterFunnel().logItemCount(count);
+//        new TableViewControllerAdapterFunnel().logItemCount(count);
         return count;
     }
 

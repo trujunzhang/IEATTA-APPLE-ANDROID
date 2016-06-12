@@ -10,14 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import com.tableview.adapter.NSIndexPath;
 import com.tableview.adapter.RecyclerOnItemClickListener;
 import com.tableview.adapter.decoration.TableViewDividerDecoration;
+import com.tableview.model.EditBaseCellModel;
 import com.tableview.storage.DTTableViewManager;
 import com.tableview.storage.MemoryStorage;
 import com.tableview.storage.TableViewConfiguration;
 import com.tableview.storage.models.CellType;
 
-import org.ieatta.R;
-import org.ieatta.cells.header.IEAViewForHeaderInSectionCell;
-import org.ieatta.cells.model.EditBaseCellModel;
 
 import java.util.List;
 
@@ -44,7 +42,7 @@ public class RecycleViewManager {
 
         this.manager.setConfiguration(config, mAdapter);
 
-        this.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
+//        this.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
     }
 
     public void setOnItemClickListener(RecyclerOnItemClickListener listener) {
@@ -130,11 +128,11 @@ public class RecycleViewManager {
 
     public void appendAndRegisterSectionTitleCell(CellType type,EditBaseCellModel cell, int forSectionIndex) {
         this.setRegisterCellClass(type,forSectionIndex);
-        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
+//        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
-        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
+//        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex, CellType type) {

@@ -2,10 +2,10 @@ package com.lukazakrajsek.timeago;
 
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
-
-import org.ieatta.R;
+import android.yelp.com.commonlib.R;
 
 public class TimeAgo {
 
@@ -19,6 +19,7 @@ public class TimeAgo {
 		return timeAgo(date.getTime());
 	}
 
+	@SuppressLint("StringFormatInvalid")
 	public String timeAgo(long millis) {
 		long diff = new Date().getTime() - millis;
 

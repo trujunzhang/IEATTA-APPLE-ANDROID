@@ -1,4 +1,4 @@
-package org.ieatta.cells.model;
+package com.tableview.model;
 
 public class IEAFooterViewModel {
 

@@ -1,4 +1,4 @@
-package org.ieatta.cells.model;
+package com.tableview.model;
 
 import android.support.v4.app.FragmentManager;
 

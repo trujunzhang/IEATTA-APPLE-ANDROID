@@ -1,4 +1,4 @@
-package org.ieatta.cells.model;
+package com.tableview.model;
 
 import org.ieatta.database.models.DBReview;
 import org.ieatta.database.models.DBTeam;

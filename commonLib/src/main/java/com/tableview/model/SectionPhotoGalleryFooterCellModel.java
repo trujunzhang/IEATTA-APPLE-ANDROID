@@ -1,4 +1,4 @@
-package org.ieatta.cells.model;
+package com.tableview.model;
 
 import org.ieatta.database.provide.ReviewType;
 import org.ieatta.provide.IEAEditKey;
