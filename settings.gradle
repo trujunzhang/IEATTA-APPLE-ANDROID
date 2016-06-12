@@ -9,7 +9,6 @@ include ':android-timeago'
 include ':commonLib'
 
 include ':assertionLib'
-include ':AndroidProgressHUD'
 include ':Android-Universal-Image-Loader'
 include ':slideDateTimePicker'
 include ':squarecamera'

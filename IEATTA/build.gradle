@@ -48,7 +48,6 @@ dependencies {
     compile project(':debug')
     compile project(':parse_layout')
     compile project(':commonLib')
-    compile project(':AndroidProgressHUD')
     compile project(':slideDateTimePicker')
     compile project(':Android-Universal-Image-Loader')
     compile project(':squarecamera')

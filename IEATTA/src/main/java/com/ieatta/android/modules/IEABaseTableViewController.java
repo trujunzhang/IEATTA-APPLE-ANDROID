@@ -10,18 +10,13 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.com.parse.ParseModelAbstract;
-import com.walnutlabs.android.ProgressHUD;
 
 import java.util.List;
 
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEABaseTableViewController extends IEADTTableViewManagerViewController {
     private IEABaseTableViewController self = this;
-    ProgressHUD mProgressHUD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
