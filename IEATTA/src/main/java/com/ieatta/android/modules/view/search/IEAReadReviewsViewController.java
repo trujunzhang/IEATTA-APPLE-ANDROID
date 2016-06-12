@@ -38,7 +38,7 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 //    // Selected model from tableview.
 //    private RatedModelReviewCount selectedModel;
 //    private int reviewType = ReviewType.getInt(ReviewType.Review_Restaurant);
-//    private List<ParseModelAbstract> fetchedList = new LinkedList<>();
+//    private List  fetchedList = new LinkedList<>();
 //    private String keyword;
 //
 //    protected int getContentView() {
@@ -90,16 +90,16 @@ public class IEAReadReviewsViewController extends IEAReviewSegueTableViewControl
 //
 //    private void queryRatedModels() {
 //
-//        self.setSectionItems(new LinkedList<ParseModelAbstract>(), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
+//        self.setSectionItems(new LinkedList (), ReadReviewsSection.sectionRatedModelReviewCounts.ordinal());
 //        if (keyword == null || keyword.isEmpty() == true) {
 //            return;
 //        }
 //
 //        ParseModelAbstract model = ReviewType.getParseModelInstance(self.reviewType);
 //        model.queryParseModels(self.keyword)
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                .onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
-//                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<Boolean> then(Task<List > task) throws Exception {
 //
 //                        self.fetchedList = task.getResult();
 //

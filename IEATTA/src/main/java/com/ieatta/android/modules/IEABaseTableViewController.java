@@ -34,9 +34,9 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
         // ignore these tasks.
         // First of all, query relate photos task.
 //        return Photo.queryPhotosFromUsedRefs(ParseModelAbstract.getModelPoints(previous))
-//                .onSuccess(new Continuation<List<ParseModelAbstract>, Boolean>() {
+//                .onSuccess(new Continuation<List , Boolean>() {
 //                    @Override
-//                    public Boolean then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Boolean then(Task<List > task) throws Exception {
 //                        // Next, Cache all models' uuid as key and photo's uuid as value.
 //                        return IEACache.sharedInstance.setPhotoPointForModels(task);
 //                    }

@@ -86,15 +86,15 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 //     * <p/>
 //     * - parameter completionBlock: callback variable
 //     */
-//    protected Task<List<ParseModelAbstract>> queryPhotoGallery() {
+//    protected Task<List > queryPhotoGallery() {
 //        return Photo.queryPhotosByModel(self.getPageModel());
 //    }
 //
 //    protected void reloadPhotoGallery() {
 //        self.queryPhotoGallery()
-//                .onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+//                .onSuccess(new Continuation<List , Object>() {
 //                    @Override
-//                    public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Object then(Task<List > task) throws Exception {
 //                        self.configurePhotoGallerySection(task);
 //                        return null;
 //                    }
@@ -110,7 +110,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 //        });
 //    }
 //
-//    protected void configurePhotoGallerySection(Task<List<ParseModelAbstract>> task) {
+//    protected void configurePhotoGallerySection(Task<List > task) {
 //        self.fetchedPhotos = new LinkedList<>(task.getResult());
 //
 //        // 1. Set photo gallery section title(contains a 'take a photo' icon).
@@ -244,7 +244,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 //        }
 //    }
 //
-//    public LinkedList<ParseModelAbstract> getPhotoGalleryItems() {
+//    public LinkedList  getPhotoGalleryItems() {
 //        return self.fetchedPhotos;
 //    }
 }

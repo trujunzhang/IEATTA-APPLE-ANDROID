@@ -48,7 +48,7 @@ public class RatedModelReviewCount {
 //        }
 //    }
 //
-//    public static List<RatedModelReviewCount> convertToRatedModelReviewCounts(List<ParseModelAbstract> source) {
+//    public static List<RatedModelReviewCount> convertToRatedModelReviewCounts(List  source) {
 //        List<RatedModelReviewCount> list = new LinkedList<>();
 //        for (ParseModelAbstract model : source) {
 //            list.add(new RatedModelReviewCount(model));

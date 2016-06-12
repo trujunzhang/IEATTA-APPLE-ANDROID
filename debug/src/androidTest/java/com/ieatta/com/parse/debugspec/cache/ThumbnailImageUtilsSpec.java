@@ -7,7 +7,7 @@ import android.test.InstrumentationTestCase;
 import android.virtualbreak.com.debug.R;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
-import com.ieatta.com.parse.models.Photo;
+
 import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;

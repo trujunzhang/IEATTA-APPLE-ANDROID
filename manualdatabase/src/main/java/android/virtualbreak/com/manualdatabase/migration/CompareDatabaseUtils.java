@@ -9,10 +9,10 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseJsoner;
-import com.ieatta.com.parse.ParseModelAbstract;
+
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
-import com.ieatta.com.parse.models.Photo;
+
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.ieatta.com.parse.utils.cache.ImageOptimizeUtils;
 import com.ieatta.com.parse.utils.cache.ThumbnailImageUtils;
@@ -35,25 +35,25 @@ public class CompareDatabaseUtils {
 //        ParseJsoner.parseJsonFileToArray()
 
         LocalQuery localQuery = new Photo().makeLocalQuery();
-        final List<ParseModelAbstract>[] fetchedPhotos = new List[]{new LinkedList<>()};
+        final List [] fetchedPhotos = new List[]{new LinkedList<>()};
         localQuery.findInBackground()
-                .onSuccessTask(new Continuation<Task<List<ParseModelAbstract>>, Task<List<ParseModelAbstract>>>() {
+                .onSuccessTask(new Continuation<Task<List >, Task<List >>() {
                     @Override
-                    public Task<List<ParseModelAbstract>> then(Task task) throws Exception {
-                        fetchedPhotos[0] = (List<ParseModelAbstract>) task.getResult();
+                    public Task<List > then(Task task) throws Exception {
+                        fetchedPhotos[0] = (List ) task.getResult();
                         return ParseJsoner.parseJsonFileToArray(PQueryModelType.NewRecord);
                     }
                 }).onSuccess(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
-                List<ParseModelAbstract> jsonNewRecord = (List<ParseModelAbstract>) task.getResult();
+                List  jsonNewRecord = (List ) task.getResult();
                 matchPhotoFromNewRecord(fetchedPhotos[0], jsonNewRecord);
                 return null;
             }
         });
     }
 
-    private void matchPhotoFromNewRecord(List<ParseModelAbstract> fetchedPhoto, List<ParseModelAbstract> jsonNewRecord) {
+    private void matchPhotoFromNewRecord(List  fetchedPhoto, List  jsonNewRecord) {
         for (ParseModelAbstract model : jsonNewRecord) {
             NewRecord newRecord = (NewRecord) model;
             if (newRecord.modelType != PQueryModelType.Photo) {
@@ -65,7 +65,7 @@ public class CompareDatabaseUtils {
         }
     }
 
-    private boolean containedInPhoto(NewRecord jsonModel, List<ParseModelAbstract> fetchedPhoto) {
+    private boolean containedInPhoto(NewRecord jsonModel, List  fetchedPhoto) {
         for (ParseModelAbstract model : fetchedPhoto) {
             if (ParseModelAbstract.getPoint(model).equals(jsonModel.modelPoint)) {
                 if(jsonModel.modelPoint.contains("69418898")){

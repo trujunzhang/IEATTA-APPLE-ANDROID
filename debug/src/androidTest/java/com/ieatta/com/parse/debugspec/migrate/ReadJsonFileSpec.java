@@ -7,7 +7,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import android.yelp.com.commonlib.LogUtils;
 
 import com.ieatta.com.parse.ParseJsoner;
-import com.ieatta.com.parse.ParseModelAbstract;
+
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 
@@ -24,7 +24,7 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
     private ReadJsonFileSpec self = this;
     private Context context;
 
-    private List<ParseModelAbstract> fetchedPhotos = new LinkedList<>();
+    private List  fetchedPhotos = new LinkedList<>();
 
     @Override
     public void setUp() throws Exception {
@@ -47,18 +47,18 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
 
 
     public void testMatchedPhotoFromNewRecord() {
-        ParseJsoner.parseJsonFileToArray(PQueryModelType.Photo).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+        ParseJsoner.parseJsonFileToArray(PQueryModelType.Photo).onSuccessTask(new Continuation<List , Task<List >>() {
             @Override
-            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+            public Task<List > then(Task<List > task) throws Exception {
                 fetchedPhotos =  task.getResult();
                 return ParseJsoner.parseJsonFileToArray(PQueryModelType.NewRecord);
             }
         }).onSuccess(new Continuation() {
             @Override
             public Object then(Task task) throws Exception {
-                List<ParseModelAbstract> newRecords = (List<ParseModelAbstract>) task.getResult();
+                List  newRecords = (List ) task.getResult();
 
-                List<ParseModelAbstract> photos = fetchedPhotos; // 683
+                List  photos = fetchedPhotos; // 683
                 List<NewRecord> newRecordForPhoto = getNewRecordForPhoto(newRecords); // 683-6
 
                 matchPhotoFromNewRecord(newRecordForPhoto, photos);
@@ -67,7 +67,7 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
         });
     }
 
-    private List<NewRecord> getNewRecordForPhoto(List<ParseModelAbstract> newRecords) {
+    private List<NewRecord> getNewRecordForPhoto(List  newRecords) {
         List<NewRecord> list = new LinkedList<>();
         for (ParseModelAbstract model : newRecords) {
             if (((NewRecord) model).modelType == PQueryModelType.Photo) {
@@ -78,8 +78,8 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
         return list;
     }
 
-    private void matchPhotoFromNewRecord(List<NewRecord> newRecordForPhoto, List<ParseModelAbstract> photos) {
-        LinkedList<ParseModelAbstract> matchedPhotos = new LinkedList<>();
+    private void matchPhotoFromNewRecord(List<NewRecord> newRecordForPhoto, List  photos) {
+        LinkedList  matchedPhotos = new LinkedList<>();
         for (ParseModelAbstract photo : photos) {
 
             ParseModelAbstract item = containedInPhoto(photo, newRecordForPhoto,matchedPhotos);
@@ -91,7 +91,7 @@ public class ReadJsonFileSpec extends InstrumentationTestCase {
         int length = photos.size();
     }
 
-    private ParseModelAbstract containedInPhoto(ParseModelAbstract photo, List<NewRecord> newRecordForPhoto, LinkedList<ParseModelAbstract> matchedPhotos) {
+    private ParseModelAbstract containedInPhoto(ParseModelAbstract photo, List<NewRecord> newRecordForPhoto, LinkedList  matchedPhotos) {
         for (NewRecord newRecord : newRecordForPhoto) {
             if (ParseModelAbstract.getPoint(photo).equals(newRecord.modelPoint)) {
                 return null;

@@ -1,7 +1,7 @@
 package android.virtualbreak.com.manualdatabase.migration;
 
 import com.ieatta.com.parse.ParseJsoner;
-import com.ieatta.com.parse.ParseModelAbstract;
+
 import com.ieatta.com.parse.ParseModelLocalQuery;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 
@@ -54,10 +54,10 @@ public class MigrateUtils {
 
     private Task<Void> saveLocalDatabase(PQueryModelType type) {
         return ParseJsoner.parseJsonFileToArray(type)
-                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Void>>() {
+                .onSuccessTask(new Continuation<List , Task<Void>>() {
                     @Override
-                    public Task<Void> then(Task<List<ParseModelAbstract>> results) throws Exception {
-                        List<ParseModelAbstract> list = results.getResult();
+                    public Task<Void> then(Task<List > results) throws Exception {
+                        List  list = results.getResult();
 
                         Task<Void> task = Task.forResult(null);
                         for (final ParseModelAbstract result : results.getResult()) {

@@ -9,7 +9,7 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.extensions.viewkit.RatingImageView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.com.parse.ParseModelAbstract;
+
 import com.ieatta.com.parse.models.enums.ReviewType;
 
 public class IEAReadReviewsCell extends IEAViewHolder {

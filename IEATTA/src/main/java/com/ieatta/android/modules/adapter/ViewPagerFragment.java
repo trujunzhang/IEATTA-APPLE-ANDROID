@@ -28,7 +28,7 @@ import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
-import com.ieatta.com.parse.models.Photo;
+
 import com.ieatta.com.parse.tools.Thumbnail;
 import com.ieatta.com.parse.utils.cache.CacheImageUtils;
 import com.ieatta.com.parse.utils.cache.OriginalImageUtils;

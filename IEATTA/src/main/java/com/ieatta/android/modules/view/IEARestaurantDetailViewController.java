@@ -49,7 +49,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //    // Selected model from tableview.
 //    private ParseModelAbstract selectedModel;
 //    // Fetched list by quering database.
-//    private List<ParseModelAbstract> fetchedEvents = new LinkedList<>();
+//    private List  fetchedEvents = new LinkedList<>();
 //
 //    @Override
 //    public boolean havePhotoGallery() {
@@ -70,16 +70,16 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //
 //
 //        Event.queryEventsRelatedRestaurant(self.restaurant)
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+//                .onSuccessTask(new Continuation<List , Task<List >>() {
 //                    @Override
-//                    public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<List > then(Task<List > task) throws Exception {
 //                        self.fetchedEvents = task.getResult();
 //
 //                        return Photo.queryPhotosByRestaurant(self.restaurant);
 //                    }
-//                }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                }).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //            @Override
-//            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//            public Task<Boolean> then(Task<List > task) throws Exception {
 //                self.fetchedPhotosTask = task;
 //
 //                // Next, Load Reviews.
@@ -171,9 +171,9 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //    protected void EventWasCreated(NSNotification note) {
 //        // 3. load events related restaurant.
 //        Event.queryEventsRelatedRestaurant(self.restaurant)
-//                .onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
+//                .onSuccess(new Continuation<List , Object>() {
 //                    @Override
-//                    public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Object then(Task<List > task) throws Exception {
 //                        self.fetchedEvents = task.getResult();
 //                        self.configureDetailSection(self.fetchedEvents, R.string.Empty_for_Event,IEARestaurantEventsCell.getType(), RestaurantDetailSection.sectionEvents.ordinal());
 //                        return null;

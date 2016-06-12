@@ -4,17 +4,14 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
 
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Photo;
+
+
 
 import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class AvatarView extends RoundedImageView {
     private AvatarView self = this;
 
@@ -59,37 +56,37 @@ public class AvatarView extends RoundedImageView {
     public void configureAvatar(int imageRefId) {
         self.setImageResource(imageRefId);
     }
-
-    public void loadNewPhotoByModel(ParseModelAbstract model, final int placeHolder) {
-        self.configureAvatar(placeHolder);
-
-        new Photo().queryPhotosByModel(model)
-                .onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
-                    @Override
-                    public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
-                        List<ParseModelAbstract> taskResult = task.getResult();
-                        ParseModelAbstract first = taskResult.get(0);
-                        if (first != null) {
-                            self.loadNewPhotoByPhoto((Photo) first, placeHolder);
-                        }
-                        return null;
-                    }
-                });
-    }
-
-    public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {
-        self.configureAvatar(placeHolder);
-
-        return photo.getThumbanilImage()
-                .onSuccess(new Continuation() {
-                    @Override
-                    public Object then(Task task) throws Exception {
-
-                        final Bitmap bitmap = (Bitmap) task.getResult();
-                        self.setImageBitmap(bitmap);
-
-                        return null;
-                    }
-                }, Task.UI_THREAD_EXECUTOR);
-    }
+//
+//    public void loadNewPhotoByModel(ParseModelAbstract model, final int placeHolder) {
+//        self.configureAvatar(placeHolder);
+//
+//        new Photo().queryPhotosByModel(model)
+//                .onSuccess(new Continuation<List , Void>() {
+//                    @Override
+//                    public Void then(Task<List > task) throws Exception {
+//                        List  taskResult = task.getResult();
+//                        ParseModelAbstract first = taskResult.get(0);
+//                        if (first != null) {
+//                            self.loadNewPhotoByPhoto((Photo) first, placeHolder);
+//                        }
+//                        return null;
+//                    }
+//                });
+//    }
+//
+//    public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {
+//        self.configureAvatar(placeHolder);
+//
+//        return photo.getThumbanilImage()
+//                .onSuccess(new Continuation() {
+//                    @Override
+//                    public Object then(Task task) throws Exception {
+//
+//                        final Bitmap bitmap = (Bitmap) task.getResult();
+//                        self.setImageBitmap(bitmap);
+//
+//                        return null;
+//                    }
+//                }, Task.UI_THREAD_EXECUTOR);
+//    }
 }

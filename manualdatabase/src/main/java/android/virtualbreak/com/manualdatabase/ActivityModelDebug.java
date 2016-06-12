@@ -1,8 +1,8 @@
 package android.virtualbreak.com.manualdatabase;
 
-import com.ieatta.com.parse.ParseModelAbstract;
+
 import com.ieatta.com.parse.models.Event;
-import com.ieatta.com.parse.models.Photo;
+
 import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Restaurant;
 import com.ieatta.com.parse.models.Team;

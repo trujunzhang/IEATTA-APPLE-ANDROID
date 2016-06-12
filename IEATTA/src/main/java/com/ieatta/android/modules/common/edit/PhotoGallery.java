@@ -7,8 +7,8 @@ import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.cells.photos.IEAAddPhotoCell;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Photo;
+
+
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class PhotoGallery extends EditBaseCellModel {
     public IEAPhotoGalleryAdapter adapter;
 
     public IEAPhotoGalleryViewController viewController;
-    private List<ParseModelAbstract> fetchedPhotos;
+    private List  fetchedPhotos;
     private DTTableViewManager manager = null;
 
     public PhotoGallery(IEAEditKey photo_gallery, IEAPhotoGalleryViewController viewController) {
@@ -39,7 +39,7 @@ public class PhotoGallery extends EditBaseCellModel {
         self.manager.memoryStorage.setItems(self.viewController.getPhotoGalleryItems(), 0);
     }
 
-    public void refreshCollection(List<ParseModelAbstract> fetchedPhotos) {
+    public void refreshCollection(List  fetchedPhotos) {
         if (self.manager != null) {
             self.manager.memoryStorage.setItems(fetchedPhotos, 0);
         }

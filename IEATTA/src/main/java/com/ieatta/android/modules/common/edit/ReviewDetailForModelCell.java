@@ -1,7 +1,7 @@
 package com.ieatta.android.modules.common.edit;
 
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Review;
+
+
 
 import java.text.SimpleDateFormat;
 

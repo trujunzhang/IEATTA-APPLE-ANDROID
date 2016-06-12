@@ -1,6 +1,6 @@
 package android.virtualbreak.com.manualdatabase.models;
 
-import com.ieatta.com.parse.models.Review;
+
 import com.ieatta.com.parse.models.enums.ReviewType;
 
 import java.util.LinkedList;

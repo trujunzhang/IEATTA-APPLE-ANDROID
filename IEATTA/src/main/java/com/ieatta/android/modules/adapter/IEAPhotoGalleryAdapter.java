@@ -8,20 +8,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ieatta.android.modules.cells.photos.IEAPhotosCell;
-import com.ieatta.com.parse.ParseModelAbstract;
+
 
 import java.util.List;
 
-/**
- * Created by djzhang on 12/8/15.
- */
 public class IEAPhotoGalleryAdapter extends RecyclerView.Adapter<IEAPhotosCell> {
     private IEAPhotoGalleryAdapter self = this;
 
-    private List<ParseModelAbstract> fetchedPhotos;
+    private List  fetchedPhotos;
     private Context context;
 
-    public IEAPhotoGalleryAdapter(Context context, List<ParseModelAbstract> fetchedPhotos) {
+    public IEAPhotoGalleryAdapter(Context context, List  fetchedPhotos) {
         self.context = context;
         self.fetchedPhotos = fetchedPhotos;
     }

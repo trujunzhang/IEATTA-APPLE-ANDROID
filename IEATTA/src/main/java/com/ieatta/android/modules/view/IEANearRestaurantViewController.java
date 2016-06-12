@@ -77,9 +77,9 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     public void queryNearRestaurant(ParseGeoPoint geoPoint) {
 
 //        Restaurant.queryNearRestaurants(geoPoint)
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                .onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
-//                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<Boolean> then(Task<List > task) throws Exception {
 //                        self.fetchedRestaurants = task.getResult();
 //                        self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 //

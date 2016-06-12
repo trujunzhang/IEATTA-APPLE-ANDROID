@@ -1,6 +1,6 @@
 package com.ieatta.android.modules.tools;
 
-import com.ieatta.com.parse.ParseModelAbstract;
+
 import com.ieatta.com.parse.models.Restaurant;
 
 import java.util.Collections;
@@ -19,7 +19,7 @@ public class RestaurantSortUtils {
         }
     }
 
-    public static List<ParseModelAbstract> sort(List<ParseModelAbstract> modelProtocols) {
+    public static List  sort(List  modelProtocols) {
         Collections.sort(modelProtocols, new SortByName());
         return modelProtocols;
     }

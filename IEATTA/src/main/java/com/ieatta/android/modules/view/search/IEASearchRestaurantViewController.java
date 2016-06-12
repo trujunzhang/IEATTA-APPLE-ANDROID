@@ -78,13 +78,13 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
 //    }
 //
 //    private void queryNearRestaurant(String keyword) {
-//        self.setSectionItems(new LinkedList<ParseModelAbstract>(), SearchRestaurantSection.sectionRestaurants.ordinal());
+//        self.setSectionItems(new LinkedList (), SearchRestaurantSection.sectionRestaurants.ordinal());
 //        if (keyword == null || keyword.isEmpty() == true) {
 //            return;
 //        }
-//        new Restaurant().queryParseModels(keyword).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//        new Restaurant().queryParseModels(keyword).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //            @Override
-//            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//            public Task<Boolean> then(Task<List > task) throws Exception {
 //                self.fetchedRestaurants = task.getResult();
 //                self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
 //

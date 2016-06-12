@@ -98,9 +98,9 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
             return;
         }
 //        new DBTeam().queryParseModels(keyword)
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                .onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
-//                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<Boolean> then(Task<List > task) throws Exception {
 //                        self.fetchedTeam = task.getResult();
 //
 //                        // Next, fetch related photos

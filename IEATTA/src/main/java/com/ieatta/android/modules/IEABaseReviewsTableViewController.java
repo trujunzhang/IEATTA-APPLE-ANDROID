@@ -39,16 +39,16 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 
 //    protected Task<Boolean> getReviewsRelatedModelQueryTask() {
 //        return Review.queryReviews(self.getPageModel(), self.getQueriedReviewsLimit())
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+//                .onSuccessTask(new Continuation<List , Task<List >>() {
 //                    @Override
-//                    public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<List > then(Task<List > task) throws Exception {
 //                        Object object = task;
 //                        self.fetchedReviews = task.getResult();//Review
 //                        return Team.queryTeamByPoints(Review.getUserPoints(self.fetchedReviews));
 //                    }
-//                }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                }).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
-//                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<Boolean> then(Task<List > task) throws Exception {
 //                        Object object = task.getResult();
 //                        self.fetchedReviewPeople = task.getResult();
 //                        return self.getPhotosForModelsTask(task);
@@ -61,7 +61,7 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 //        self.setItemsForReviewsSection(self.fetchedReviewPeople);
 //    }
 //
-//    protected abstract void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople);//Team
+//    protected abstract void setItemsForReviewsSection(List  fetchedReviewPeople);//Team
 //
 //    protected abstract void registerReviewTableCells();
 //

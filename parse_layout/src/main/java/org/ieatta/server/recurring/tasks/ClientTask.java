@@ -8,16 +8,16 @@ public class ClientTask {
 //    public static Task<Void> PushToServerSeriesTask(LocalQuery query) {
 //
 //        return ParseModelLocalQuery.findInBackgroundFromRealm(query)
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Void>>() {
+//                .onSuccessTask(new Continuation<List , Task<Void>>() {
 //                    @Override
-//                    public Task<Void> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<Void> then(Task<List > task) throws Exception {
 //                        return executeSerialTasks(task);
 //                    }
 //                });
 //    }
 //
-//    private static Task<Void> executeSerialTasks(Task<List<ParseModelAbstract>> previous) {
-//        List<ParseModelAbstract> results = previous.getResult();
+//    private static Task<Void> executeSerialTasks(Task<List > previous) {
+//        List  results = previous.getResult();
 //        LogUtils.debug("{ count in Push objects to Server }: " + results.size());
 //
 //        SerialTasksManager<ParseModelAbstract> manager = new SerialTasksManager<>(results);

@@ -77,15 +77,15 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     }
 
     private void queryPeopleOrderedList() {
-//        Team.queryTeam().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+//        Team.queryTeam().onSuccessTask(new Continuation<List , Task<List >>() {
 //            @Override
-//            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//            public Task<List > then(Task<List > task) throws Exception {
 //                // Next, filter ordered people
 //                return Team.filterFrom(task, self.orderedPeople);
 //            }
-//        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//        }).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //            @Override
-//            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//            public Task<Boolean> then(Task<List > task) throws Exception {
 //                self.fetchedPeople = task.getResult();
 //                // Next, fetch related photos
 //                return self.getPhotosForModelsTask(task);

@@ -46,8 +46,8 @@ public class IEACache {
 //        return null;
 //    }
 //
-//    public boolean setPhotoPointForModels(Task<List<ParseModelAbstract>> previous) {
-//        List<ParseModelAbstract> fetchedPhotos = previous.getResult();
+//    public boolean setPhotoPointForModels(Task<List > previous) {
+//        List  fetchedPhotos = previous.getResult();
 //        for (Object photo : fetchedPhotos) {
 //            self.setPhotoPoint((Photo) photo);
 //        }

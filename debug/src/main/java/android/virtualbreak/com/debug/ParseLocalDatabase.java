@@ -1,6 +1,6 @@
 package android.virtualbreak.com.debug;
 
-import com.ieatta.com.parse.ParseModelAbstract;
+
 import com.ieatta.com.parse.ParseModelLocalQuery;
 import com.ieatta.com.parse.ParseModelOnlineQuery;
 
@@ -8,10 +8,10 @@ import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.PeopleInEvent;
-import com.ieatta.com.parse.models.Photo;
+
 import com.ieatta.com.parse.models.Recipe;
 import com.ieatta.com.parse.models.Restaurant;
-import com.ieatta.com.parse.models.Review;
+
 import com.ieatta.com.parse.models.Team;
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 import com.parse.ParseQuery;
@@ -78,9 +78,9 @@ public class ParseLocalDatabase {
     // MARK: Retrieve offline database for test.
     public static Task<Void> queryLocalDatastoreInBackground(LocalQuery query, final PQueryModelType classType) {
         return ParseModelLocalQuery.queryFromRealm(classType, query)
-                .onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
+                .onSuccess(new Continuation<List , Void>() {
             @Override
-            public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
+            public Void then(Task<List > task) throws Exception {
                 ParseLocalDatabase.printList(classType, task.getResult());
                 return null;
             }
@@ -99,9 +99,9 @@ public class ParseLocalDatabase {
     }
 
     public static  Task<Void>  queryParseDatastoreInBackground(ParseQuery parseQuery,  final PQueryModelType classType) {
-        return ParseModelOnlineQuery.queryFromParse(classType,parseQuery).onSuccess(new Continuation<List<ParseModelAbstract>, Void>() {
+        return ParseModelOnlineQuery.queryFromParse(classType,parseQuery).onSuccess(new Continuation<List , Void>() {
             @Override
-            public Void then(Task<List<ParseModelAbstract>> task) throws Exception {
+            public Void then(Task<List > task) throws Exception {
                 ParseLocalDatabase.printList(classType,task.getResult());
                 return null;
             }
@@ -109,7 +109,7 @@ public class ParseLocalDatabase {
     }
 
     // com.parse.ParseObject cannot be cast to
-    public static void printList(PQueryModelType type, List<ParseModelAbstract> array) {
+    public static void printList(PQueryModelType type, List  array) {
         LogConfigure.DDLogVerbose("");
         LogConfigure.DDLogVerbose("<<-------------------------------------------------------");
         LogConfigure.DDLogVerbose("Count after query * " + PQueryModelType.getString(type) + " * in background: " + array.size());

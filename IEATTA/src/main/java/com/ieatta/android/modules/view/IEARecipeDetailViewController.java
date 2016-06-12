@@ -63,9 +63,9 @@ public class IEARecipeDetailViewController extends IEAReviewsInDetailTableViewCo
 ////        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 //
 //        Photo.queryPhotosByModel(self.getPageModel())
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                .onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
-//                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<Boolean> then(Task<List > task) throws Exception {
 //                        fetchedPhotosTask = task;
 //
 //                        // Next, Load Reviews.

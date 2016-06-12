@@ -60,9 +60,9 @@ public class IEAOrderedRecipesViewController extends IEASplitDetailViewControlle
 //
 //    private void queryOrderedRecipesList() {
 //        Recipe.queryRecipes(self.orderedPeople, self.orderedPeople.belongToModel)
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                .onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
-//                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<Boolean> then(Task<List > task) throws Exception {
 //                        fetchedOrderedRecipes = task.getResult();
 //
 //                        // Next, fetch related photos

@@ -2,7 +2,7 @@ package com.ieatta.android.modules.cells.model;
 
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.IEAOrderedRecipesViewController;
-import com.ieatta.com.parse.ParseModelAbstract;
+
 import com.ieatta.com.parse.models.Event;
 import com.ieatta.com.parse.models.Team;
 
@@ -30,7 +30,7 @@ public class IEAOrderedPeople {
         this.viewController = viewController;
     }
 
-    public static List convertToOrderedPeople(List<ParseModelAbstract> fetchedOrderedPeople, Event event) {
+    public static List convertToOrderedPeople(List  fetchedOrderedPeople, Event event) {
         List list = new LinkedList<>();
         for (ParseModelAbstract model : fetchedOrderedPeople) {
             list.add(new IEAOrderedPeople((Team) model, event));

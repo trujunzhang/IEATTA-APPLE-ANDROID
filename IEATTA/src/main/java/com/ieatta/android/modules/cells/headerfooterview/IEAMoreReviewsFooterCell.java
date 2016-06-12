@@ -9,7 +9,7 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
-import com.ieatta.com.parse.models.Review;
+
 
 import bolts.Continuation;
 import bolts.Task;

@@ -67,25 +67,25 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 ////        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 //
 //        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
-//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+//                .onSuccessTask(new Continuation<List , Task<List >>() {
 //                    @Override
-//                    public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                    public Task<List > then(Task<List > task) throws Exception {
 //                        self.fetchedPeopleInEvent = task.getResult();
 //
 //                        // 2. Get all people in the event.
 //                        return Team.queryTeamByPeopleInEvent(self.fetchedPeopleInEvent);
 //                    }
-//                }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+//                }).onSuccessTask(new Continuation<List , Task<List >>() {
 //            @Override
-//            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-//                self.fetchedPeople = new LinkedList<ParseModelAbstract>(task.getResult());
+//            public Task<List > then(Task<List > task) throws Exception {
+//                self.fetchedPeople = new LinkedList (task.getResult());
 //
 //                //  Sort, by fetchedPeopleInEvent
 //                return PeopleInEvent.sortOrderedPeople(self.fetchedPeople, self.fetchedPeopleInEvent);
 //            }
-//        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//        }).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //            @Override
-//            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//            public Task<Boolean> then(Task<List > task) throws Exception {
 //                // Next, fetch related photos
 //                return self.getPhotosForModelsTask(task);
 //            }
@@ -121,7 +121,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //    }
 //
 //    /// Add rows for section "Ordered People".
-//    private void addOrderedPeopleSection(List<ParseModelAbstract> orderedPeople) {
+//    private void addOrderedPeopleSection(List  orderedPeople) {
 //        List items = IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event);
 //
 //        self.configureDetailSection(items, R.string.Empty_for_Ordered_People, IEAOrderedPeopleCell.getType(), EventDetailSection.sectionOrderedPeople.ordinal());
