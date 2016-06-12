@@ -14,7 +14,7 @@ public class DBUtil {
     }
 
     public static String getTimeAgoString(Date date) {
-        TimeAgo timeAgo = new TimeAgo(IEAApp.getInstance());
+        TimeAgo timeAgo = new TimeAgo(BaseApp.getInstance());
 
         return timeAgo.timeAgo(date);
     }

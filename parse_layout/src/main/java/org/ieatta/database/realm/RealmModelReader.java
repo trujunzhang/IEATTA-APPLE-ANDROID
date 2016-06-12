@@ -23,7 +23,7 @@ public class RealmModelReader<T extends RealmObject> {
     public Task<RealmResults<T>> fetchResults(DBBuilder builder, boolean needClose, List<Realm> realmList) {
         RealmResults<T> result = null;
 
-        Realm realm = Realm.getInstance(IEAApp.getInstance());
+        Realm realm = RealmInstance.getInstance();
         try {
             RealmQuery<T> query = realm.where(this.clazz);
 
@@ -50,7 +50,7 @@ public class RealmModelReader<T extends RealmObject> {
     public Task<T> getFirstObject(DBBuilder builder, boolean needClose, List<Realm> realmList) {
         T result = null;
 
-        Realm realm = Realm.getInstance(IEAApp.getInstance());
+        Realm realm = RealmInstance.getInstance();
         try {
             RealmQuery<T> query = realm.where(this.clazz);
 
@@ -73,9 +73,9 @@ public class RealmModelReader<T extends RealmObject> {
     }
 
     public Task<Long> getCountObjects(DBBuilder builder) {
-        Long result = new Long(0);
+        Long result = 0L;
 
-        Realm realm = Realm.getInstance(IEAApp.getInstance());
+        Realm realm = RealmInstance.getInstance();
         try {
             RealmQuery<T> query = realm.where(this.clazz);
 
