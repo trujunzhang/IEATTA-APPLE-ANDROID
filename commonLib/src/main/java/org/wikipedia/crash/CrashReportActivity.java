@@ -17,7 +17,7 @@ public class CrashReportActivity extends CompatSingleFragmentActivity<CrashRepor
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IEAApp.getInstance().checkCrashes(this);
+        BaseApp.getInstance().checkCrashes(this);
     }
 
     @Override

@@ -10,10 +10,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.yelp.com.commonlib.R;
 
 import com.ieatta.BaseApp;
-import org.ieatta.R;
-//import org.wikipedia.page.PageActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -72,7 +71,7 @@ public final class FeedbackUtil {
      * Ask user to try connecting again upon (hopefully) recoverable network failure.
      */
     public static void toastNetworkFail() {
-        Toast.makeText(IEAApp.getInstance(), R.string.error_network_error_try_again, Toast.LENGTH_LONG).show();
+        Toast.makeText(BaseApp.getInstance(), R.string.error_network_error_try_again, Toast.LENGTH_LONG).show();
     }
 
     /**

@@ -7,12 +7,11 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.util.Log;
+import android.yelp.com.commonlib.R;
 
 import com.ieatta.BaseApp;
-import org.ieatta.R;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -53,15 +52,6 @@ public final class UriUtil {
         }
     }
 
-    /**
-     * Resolves a potentially protocol relative URL to a 'full' URL
-     *
-     * @param url Url to check for (and fix) protocol relativeness
-     * @return A fully qualified, protocol specified URL
-     */
-    public static String resolveProtocolRelativeUrl(String url) {
-        return (url.startsWith("//") ? IEAApp.getInstance().getNetworkProtocol() + ":" + url : url);
-    }
 
     public static boolean isValidPageLink(Uri uri) {
         return ("wikipedia.org".equals(uri.getAuthority()) && !TextUtils.isEmpty(uri.getPath())

@@ -1,6 +1,7 @@
 package com.tableview.model;
 
-import org.ieatta.provide.MainSegueIdentifier;
+
+import com.ieatta.provide.MainSegueIdentifier;
 
 public class IEANearRestaurantMore {
     public int iconResId;

@@ -11,9 +11,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
+import android.yelp.com.commonlib.R;
 
 import org.ieatta.BuildConfig;
-import org.ieatta.R;
 import org.wikipedia.util.log.L;
 
 import java.io.ByteArrayOutputStream;

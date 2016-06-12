@@ -107,7 +107,7 @@ public final class L {
     }
 
     public static void logRemoteErrorIfProd(@NonNull Throwable t) {
-        if (IEAApp.getInstance().isProdRelease()) {
+        if (BaseApp.getInstance().isProdRelease()) {
             logRemoteError(t);
         } else {
             throw new RuntimeException(t);

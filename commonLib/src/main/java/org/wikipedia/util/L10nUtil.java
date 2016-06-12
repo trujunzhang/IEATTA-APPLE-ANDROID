@@ -106,13 +106,13 @@ public final class L10nUtil {
     }
 
     private static Configuration getCurrentConfiguration() {
-        return new Configuration(IEAApp.getInstance().getResources().getConfiguration());
+        return new Configuration(BaseApp.getInstance().getResources().getConfiguration());
     }
 
     private static SparseArray<String> getTargetStrings(@StringRes int[] strings, Configuration altConfig) {
         SparseArray<String> localizedStrings = new SparseArray<>();
-        Resources targetResources = new Resources(IEAApp.getInstance().getResources().getAssets(),
-                                                  IEAApp.getInstance().getResources().getDisplayMetrics(),
+        Resources targetResources = new Resources(BaseApp.getInstance().getResources().getAssets(),
+                                                  BaseApp.getInstance().getResources().getDisplayMetrics(),
                                                   altConfig);
         for (int stringRes : strings) {
             localizedStrings.put(stringRes, targetResources.getString(stringRes));
@@ -125,8 +125,8 @@ public final class L10nUtil {
      * @param defaultConfig The original system configuration
      */
     private static void resetConfiguration(Configuration defaultConfig) {
-        new Resources(IEAApp.getInstance().getResources().getAssets(),
-                      IEAApp.getInstance().getResources().getDisplayMetrics(),
+        new Resources(BaseApp.getInstance().getResources().getAssets(),
+                      BaseApp.getInstance().getResources().getDisplayMetrics(),
                       defaultConfig);
     }
 

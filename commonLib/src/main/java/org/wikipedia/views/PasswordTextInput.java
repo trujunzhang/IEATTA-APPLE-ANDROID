@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
-import org.ieatta.R;
-
 public class PasswordTextInput extends FrameLayout {
     private EditText editText;
     private View passwordShowButton;

@@ -10,8 +10,8 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.yelp.com.commonlib.R;
 
-import org.ieatta.R;
 import org.wikipedia.richtext.RichTextUtil;
 
 import java.util.Arrays;
@@ -56,13 +56,13 @@ public class CabSearchView extends SearchView {
     }
 
     private void initLayoutAttributes(AttributeSet attrs, int defStyleAttr) {
-        TypedArray attrsArray = getContext().obtainStyledAttributes(attrs,
-                R.styleable.CabSearchView, defStyleAttr, 0);
+//        TypedArray attrsArray = getContext().obtainStyledAttributes(attrs,
+//                R.styleable.CabSearchView, defStyleAttr, 0);
+//
+//        setCabEnabled(attrsArray.getBoolean(R.styleable.CabSearchView_cabEnabled,
+//                DEFAULT_CAB_ENABLED));
 
-        setCabEnabled(attrsArray.getBoolean(R.styleable.CabSearchView_cabEnabled,
-                DEFAULT_CAB_ENABLED));
-
-        attrsArray.recycle();
+//        attrsArray.recycle();
     }
 
     private class Callback implements ActionMode.Callback {

@@ -1,16 +1,18 @@
 package org.wikipedia.util;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Point;
+import android.os.Build;
 import android.support.annotation.DimenRes;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Window;
+import android.yelp.com.commonlib.R;
 
 import com.ieatta.BaseApp;
-import org.ieatta.R;
 
 public final class DimenUtil {
     public static float dpToPx(float dp) {
@@ -60,7 +62,7 @@ public final class DimenUtil {
 
     // TODO: use getResources().getDimensionPixelSize()?  Define leadImageWidth with px, not dp?
     public static int calculateLeadImageWidth() {
-        Resources res = IEAApp.getInstance().getResources();
+        Resources res = BaseApp.getInstance().getResources();
         return (int) (res.getDimension(R.dimen.leadImageWidth) / res.getDisplayMetrics().density);
     }
 
@@ -108,7 +110,7 @@ public final class DimenUtil {
     }
 
     private static Resources getResources() {
-        return IEAApp.getInstance().getResources();
+        return BaseApp.getInstance().getResources();
     }
 
 
@@ -145,6 +147,7 @@ public final class DimenUtil {
         return ApiUtil.hasKitKat();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static int getScreenHeight(Window window){
         Point size = new Point();
         window.getWindowManager().getDefaultDisplay().getRealSize(size);

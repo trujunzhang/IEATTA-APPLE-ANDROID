@@ -82,7 +82,7 @@ public final class ViewUtil {
 
     public static void loadImageUrlInto(@NonNull SimpleDraweeView drawee, @Nullable String url) {
         drawee.setController(Fresco.newDraweeControllerBuilder()
-                .setUri(IEAApp.getInstance().isImageDownloadEnabled()
+                .setUri(BaseApp.getInstance().isImageDownloadEnabled()
                         && !TextUtils.isEmpty(url)
                         ? Uri.parse(url) : null)
                 .setAutoPlayAnimations(true)
