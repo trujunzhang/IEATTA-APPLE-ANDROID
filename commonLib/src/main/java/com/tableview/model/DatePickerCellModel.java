@@ -2,7 +2,8 @@ package com.tableview.model;
 
 import android.support.v4.app.FragmentManager;
 
-import org.ieatta.provide.IEAEditKey;
+
+import com.ieatta.provide.IEAEditKey;
 
 import java.util.Date;
 

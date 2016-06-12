@@ -4,10 +4,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.yelp.com.commonlib.R;
 
 import com.tableview.adapter.enums.ViewHolderType;
 
-import org.ieatta.R;
 
 public abstract class IEAViewHolder extends RecyclerView.ViewHolder implements ModelTransfer, View.OnClickListener, View.OnLongClickListener {
     protected boolean shouldOnClickItem() {
@@ -35,7 +35,7 @@ public abstract class IEAViewHolder extends RecyclerView.ViewHolder implements M
         super(itemView);
 
         if(haveBackground() == true) {
-            this.mContainer = (ViewGroup) itemView.findViewById(R.id.container);
+//            this.mContainer = (ViewGroup) itemView.findViewById(R.id.container);
         }
         itemView.setTag(this.getViewHolderType().ordinal());
         if (this.shouldOnClickItem() == true) {

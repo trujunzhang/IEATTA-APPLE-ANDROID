@@ -1,7 +1,7 @@
 package com.tableview.model;
 
 import org.ieatta.database.provide.ReviewType;
-import org.ieatta.provide.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 
 public class SectionPhotoGalleryFooterCellModel extends EditBaseCellModel {
     public String reviewRef;

@@ -3,7 +3,7 @@ package com.tableview.model;
 import org.ieatta.database.models.DBReview;
 import org.ieatta.database.models.DBTeam;
 import org.ieatta.database.utils.DBUtil;
-import org.ieatta.provide.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 
 public class IEAReviewsCellModel extends EditBaseCellModel {
     public String reviewUUID;

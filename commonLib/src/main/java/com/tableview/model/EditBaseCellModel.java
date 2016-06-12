@@ -1,6 +1,6 @@
 package com.tableview.model;
 
-import org.ieatta.provide.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 
 public class EditBaseCellModel {
     public IEAEditKey editKey = IEAEditKey.Unknow;

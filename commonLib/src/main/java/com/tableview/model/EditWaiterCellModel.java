@@ -1,7 +1,7 @@
 package com.tableview.model;
 
 
-import org.ieatta.provide.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 
 public class EditWaiterCellModel extends EditCellModel {
     public EditWaiterCellModel(IEAEditKey editKey, String editValue, int editPlaceHolderResId) {
