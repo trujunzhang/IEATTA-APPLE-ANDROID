@@ -3,7 +3,7 @@ package org.ieatta.database.query;
 import org.ieatta.database.models.DBRecipe;
 import org.ieatta.database.realm.DBBuilder;
 import org.ieatta.database.realm.RealmModelReader;
-import org.ieatta.parse.AppConstant;
+import com.ieatta.provide.AppConstant;
 
 import bolts.Task;
 import io.realm.RealmResults;

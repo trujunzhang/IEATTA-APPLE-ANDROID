@@ -2,11 +2,13 @@ package org.ieatta.database.query;
 
 import android.location.Location;
 
+import com.ieatta.provide.AppConstant;
+
 import org.ieatta.database.models.DBPhoto;
 import org.ieatta.database.models.DBRestaurant;
 import org.ieatta.database.realm.DBBuilder;
 import org.ieatta.database.realm.RealmModelReader;
-import org.ieatta.parse.AppConstant;
+
 import org.ieatta.utils.GeoHashUtil;
 
 import java.util.LinkedList;

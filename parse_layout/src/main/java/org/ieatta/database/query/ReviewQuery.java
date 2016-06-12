@@ -7,7 +7,7 @@ import org.ieatta.database.models.DBTeam;
 import org.ieatta.database.provide.ReviewType;
 import org.ieatta.database.realm.DBBuilder;
 import org.ieatta.database.realm.RealmModelReader;
-import org.ieatta.parse.AppConstant;
+import com.ieatta.provide.AppConstant;
 import org.ieatta.utils.DBConvert;
 
 import java.util.LinkedList;

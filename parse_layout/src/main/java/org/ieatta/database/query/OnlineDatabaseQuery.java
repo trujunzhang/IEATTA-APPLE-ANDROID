@@ -6,7 +6,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import org.ieatta.database.provide.PQueryModelType;
-import org.ieatta.parse.AppConstant;
+import com.ieatta.provide.AppConstant;
 import org.ieatta.parse.ParseQueryUtil;
 import org.ieatta.server.cache.CacheImageUtil;
 

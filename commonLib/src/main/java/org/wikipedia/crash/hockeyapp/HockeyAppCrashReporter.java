@@ -88,7 +88,7 @@ public class HockeyAppCrashReporter extends BaseCrashReporter {
         }
 
         private void launchCrashReportActivity() {
-            Context context = IEAApp.getInstance();
+            Context context = BaseApp.getInstance();
             int flags = FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK;
             Intent intent = new Intent(context, CrashReportActivity.class).addFlags(flags);
             context.startActivity(intent);
