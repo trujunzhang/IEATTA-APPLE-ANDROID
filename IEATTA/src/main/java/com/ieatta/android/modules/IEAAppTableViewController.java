@@ -10,9 +10,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 
-/**
- * Created by djzhang on 12/1/15.
- */
+
 public class IEAAppTableViewController extends AppCompatActivity {
     private IEAAppTableViewController self = this;
     protected IEAAppTableViewController navigationController = this;

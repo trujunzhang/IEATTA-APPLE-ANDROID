@@ -40,9 +40,8 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:support-v4:23.0.1'
-    compile 'com.android.support:design:23.0.1'
+    compile group: 'com.android.support', name: 'appcompat-v7', version: "${SUPPORT_APPCOMPAT_ANDROID_VERSION}"
+    compile group: 'com.android.support', name: 'design', version: "${SUPPORT_DESIGN_ANDROID_VERSION}"
 
     compile 'com.github.doctoror.aspectratiolayout:library:1.0.1'
 }
