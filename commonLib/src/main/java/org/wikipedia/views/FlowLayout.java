@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.ieatta.BuildConfig;
+import android.yelp.com.commonlib.BuildConfig;
 import org.wikipedia.util.DimenUtil;
 
 import java.util.ArrayList;

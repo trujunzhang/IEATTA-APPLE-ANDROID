@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
-import org.ieatta.BuildConfig;
+import android.yelp.com.commonlib.BuildConfig;
 import org.wikipedia.settings.Prefs;
 
 public final class ReleaseUtil {
