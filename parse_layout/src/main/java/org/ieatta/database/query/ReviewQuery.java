@@ -1,13 +1,15 @@
 package org.ieatta.database.query;
 
 
-import org.ieatta.cells.model.IEAReviewsCellModel;
+
 import org.ieatta.database.models.DBReview;
 import org.ieatta.database.models.DBTeam;
 import org.ieatta.database.provide.ReviewType;
 import org.ieatta.database.realm.DBBuilder;
 import org.ieatta.database.realm.RealmModelReader;
 import com.ieatta.provide.AppConstant;
+import com.tableview.model.IEAReviewsCellModel;
+
 import org.ieatta.utils.DBConvert;
 
 import java.util.LinkedList;

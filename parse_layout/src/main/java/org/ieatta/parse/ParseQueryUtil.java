@@ -1,5 +1,6 @@
 package org.ieatta.parse;
 
+import com.ieatta.provide.AppConstant;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 

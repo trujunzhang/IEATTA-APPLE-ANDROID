@@ -20,7 +20,7 @@ public class OriginalImageUtil extends AbstractImageUtil {
      */
     @Override
     protected UnlimitedDiskCache getImageCache() {
-        File cacheDir = StorageUtils.getCacheDirectory(IEAApp.getInstance(), "original");
+        File cacheDir = StorageUtils.getCacheDirectory(BaseApp.getInstance(), "original");
         return new UnlimitedDiskCache(cacheDir);
     }
 

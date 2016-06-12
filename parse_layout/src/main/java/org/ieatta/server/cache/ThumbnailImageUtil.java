@@ -19,7 +19,7 @@ public class ThumbnailImageUtil extends AbstractImageUtil {
      */
     @Override
     public UnlimitedDiskCache getImageCache() {
-        File cacheDir = StorageUtils.getCacheDirectory(IEAApp.getInstance(), "thumbnail");
+        File cacheDir = StorageUtils.getCacheDirectory(BaseApp.getInstance(), "thumbnail");
         return new UnlimitedDiskCache(cacheDir);
     }
 

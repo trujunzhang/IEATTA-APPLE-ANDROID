@@ -1,6 +1,7 @@
 package org.ieatta.parse;
 
 import com.github.davidmoten.geo.GeoHash;
+import com.ieatta.provide.AppConstant;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
