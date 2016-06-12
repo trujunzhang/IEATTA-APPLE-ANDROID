@@ -1,19 +1,19 @@
-include ':IEATTA'
+//include ':IEATTA'
 
 include ':parse_layout'
 
 //include ':manualdatabase'
 
-include ':debug'
+//include ':debug'
 include ':android-timeago'
 include ':commonLib'
 
 include ':assertionLib'
 include ':Android-Universal-Image-Loader'
-include ':slideDateTimePicker'
-include ':squarecamera'
-
-include ':android-segmented-control'
-
-include ':subsampling-scale-image-view'
-include ':MaterialEditText'
+//include ':slideDateTimePicker'
+//include ':squarecamera'
+//
+//include ':android-segmented-control'
+//
+//include ':subsampling-scale-image-view'
+//include ':MaterialEditText'

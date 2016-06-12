@@ -29,6 +29,9 @@ dependencies {
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.squareup.okhttp:okhttp:2.7.0'
 
+    // *Geohash utitlies in java*
+    compile 'com.github.davidmoten:geo:0.7.4'
+
     compile group:'com.parse', name:'parse-android', version:"${PARSE_ANDROID_VERSION}"
 
     compile project(':android-timeago')
