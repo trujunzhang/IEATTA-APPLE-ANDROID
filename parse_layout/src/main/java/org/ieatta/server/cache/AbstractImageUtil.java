@@ -38,17 +38,17 @@ public abstract class AbstractImageUtil {
         return this.getImageCache().get(UUID);
     }
 
-    public File getCacheImageUrl( DBPhoto model) {
-        String uuid = model.getUUID();
-        String usedRef = model.getUsedRef();
-        String dateCreatedString = new SimpleDateFormat(data_format).format(model.getObjectCreatedDate());
-
-        return this.getImageCache().getFile(usedRef, uuid, dateCreatedString);
-    }
-
-    public Task<List<File>> getImagesListTask(String usedRef) {
-        return Task.forResult(getImageFiles(usedRef));
-    }
+//    public File getCacheImageUrl( DBPhoto model) {
+//        String uuid = model.getUUID();
+//        String usedRef = model.getUsedRef();
+//        String dateCreatedString = new SimpleDateFormat(data_format).format(model.getObjectCreatedDate());
+//
+//        return this.getImageCache().getFile(usedRef, uuid, dateCreatedString);
+//    }
+//
+//    public Task<List<File>> getImagesListTask(String usedRef) {
+//        return Task.forResult(getImageFiles(usedRef));
+//    }
 
     /**
      * Query the disk cache's url path.
@@ -58,7 +58,8 @@ public abstract class AbstractImageUtil {
      * - returns: Images List
      */
     public List<File> getImageFiles(String usedRef) {
-        return this.getImageCache().getList(usedRef);
+//        return this.getImageCache().getList(usedRef);
+        return null;
     }
 
     public File getImageFile(String usedRef) {
@@ -70,10 +71,10 @@ public abstract class AbstractImageUtil {
     }
 
     public Task<List<File>> getImagesListTask() {
-        List<File> list = this.getImageCache().getList();
-        if (list.size() == 0) {
-            return Task.forError(new FileNotFoundException("No images cached"));
-        }
+        List<File> list = null;//this.getImageCache().getList();
+//        if (list.size() == 0) {
+//            return Task.forError(new FileNotFoundException("No images cached"));
+//        }
         return Task.forResult(list);
     }
 
@@ -136,14 +137,14 @@ public abstract class AbstractImageUtil {
 
         // ** Important ** (Must store to Disk).
         boolean save = false;
-        try {
-            String uuid = model.getUUID();
-            String usedRef = model.getUsedRef();
-            String dateCreatedString = new SimpleDateFormat(data_format).format(model.getObjectCreatedDate());
-            save = this.getImageCache().save(usedRef, uuid, dateCreatedString, inputStream, null);
-        } catch (IOException e) {
-            return Task.forError(e);
-        }
+//        try {
+//            String uuid = model.getUUID();
+//            String usedRef = model.getUsedRef();
+//            String dateCreatedString = new SimpleDateFormat(data_format).format(model.getObjectCreatedDate());
+//            save = this.getImageCache().save(usedRef, uuid, dateCreatedString, inputStream, null);
+//        } catch (IOException e) {
+//            return Task.forError(e);
+//        }
         ///data/data/org.ieatta.alpha/thumbnail/828DB1D6-67AB-467D-8D98-76C1938C5306/201511230822_FD0CA37F-7ECF-443E-B69E-5FBBB8EEB771
 
         if (save == false) {

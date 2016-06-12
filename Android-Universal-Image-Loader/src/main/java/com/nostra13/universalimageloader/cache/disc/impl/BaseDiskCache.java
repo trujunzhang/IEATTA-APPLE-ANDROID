@@ -175,7 +175,7 @@ public abstract class BaseDiskCache implements DiskCache {
 	}
 
 	/** Returns file object (not null) for incoming image URI. File object can reference to non-existing file. */
-	protected File getFile(String imageUri) {
+	public File getFile(String imageUri) {
 		String fileName = fileNameGenerator.generate(imageUri);
 		File dir = cacheDir;
 		if (!cacheDir.exists() && !cacheDir.mkdirs()) {

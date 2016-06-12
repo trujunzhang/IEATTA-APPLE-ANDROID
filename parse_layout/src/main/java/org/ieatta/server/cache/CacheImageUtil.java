@@ -19,7 +19,7 @@ public class CacheImageUtil extends AbstractImageUtil {
      */
     @Override
     protected UnlimitedDiskCache getImageCache() {
-        File cacheDir = StorageUtils.getCacheDirectory(IEAApp.getInstance(), "cache");
+        File cacheDir = StorageUtils.getCacheDirectory(BaseApp.getInstance(), "cache");
         return new UnlimitedDiskCache(cacheDir);
     }
 

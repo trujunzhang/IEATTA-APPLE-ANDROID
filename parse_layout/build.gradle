@@ -24,8 +24,6 @@ dependencies {
     testCompile group:'junit', name:'junit', version:"${JUNIT_VERSION}"
     compile group:'com.android.support', name:'appcompat-v7', version:"${SUPPORT_APPCOMPAT_ANDROID_VERSION}"
 
-//    compile 'io.realm:realm-android:1.0.0'
-
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.squareup.okhttp:okhttp:2.7.0'
 
