@@ -1,8 +1,5 @@
 package com.ieatta.android.observers;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class EditChangedObserver {
     private EditChangedObserver self = this;
     public static EditChangedObserver sharedInstance = new EditChangedObserver();

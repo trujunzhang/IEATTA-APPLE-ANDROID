@@ -45,11 +45,11 @@ dependencies {
         transitive = true
     }
 
-    //    compile ('com.facebook.fresco:fresco:0.9.0') {
-//        exclude module: 'bolts-android'
-//    }
+    compile('com.facebook.fresco:fresco:0.9.0') {
+        exclude module: 'bolts-android'
+    }
 
-    compile project(':debug')
+//    compile project(':debug')
     compile project(':parse_layout')
     compile project(':commonLib')
     compile project(':slideDateTimePicker')

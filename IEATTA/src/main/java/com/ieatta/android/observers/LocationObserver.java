@@ -8,9 +8,6 @@ import com.parse.ParseGeoPoint;
 
 import java.util.Stack;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class LocationObserver {
     private LocationObserver self = this;
     public static final LocationObserver sharedInstance = new LocationObserver();
