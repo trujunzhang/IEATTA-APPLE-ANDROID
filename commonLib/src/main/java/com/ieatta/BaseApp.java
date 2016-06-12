@@ -1,11 +1,12 @@
 package com.ieatta;
 
 import android.app.Application;
+import android.support.annotation.ColorInt;
 
 import org.wikipedia.database.Database;
 import org.wikipedia.util.ReleaseUtil;
 
-public class BaseApp extends Application{
+public class BaseApp extends Application {
 
     private Database database;
 
@@ -45,7 +46,7 @@ public class BaseApp extends Application{
 
     /**
      * Returns the singleton instance of the IEAApp
-     *
+     * <p/>
      * This is ok, since android treats it as a singleton anyway.
      */
     public static BaseApp getInstance() {
@@ -65,6 +66,7 @@ public class BaseApp extends Application{
     /**
      * Get this app's unique install ID, which is a UUID that should be unique for each install
      * of the app. Useful for anonymous analytics.
+     *
      * @return Unique install ID for this app.
      */
     public String getAppInstallID() {
@@ -80,5 +82,11 @@ public class BaseApp extends Application{
 
     public Database getDatabase() {
         return database;
+    }
+
+    @ColorInt
+    public int getContrastingThemeColor() {
+//        return getCurrentTheme().getContrastingColor();
+        return -1;
     }
 }

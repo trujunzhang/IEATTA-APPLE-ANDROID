@@ -4,16 +4,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import org.ieatta.activity.search.RecentSearch;
-import org.ieatta.activity.history.HistoryEntry;
-
 public class Database extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "IEATTA.db";
     private static final int DATABASE_VERSION = 8;
 
     private final DatabaseTable[] databaseTables = {
-            HistoryEntry.DATABASE_TABLE,
+//            HistoryEntry.DATABASE_TABLE,
             RecentSearch.DATABASE_TABLE,
 //            EditSummary.DATABASE_TABLE
     };
