@@ -3,9 +3,7 @@ package android.yelp.com.commonlib;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by djzhang on 12/1/15.
- */
+
 public class EnvironmentUtils {
     public static final EnvironmentUtils sharedInstance = new EnvironmentUtils();
 

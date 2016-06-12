@@ -24,8 +24,6 @@ dependencies {
     compile group:'com.android.support', name:'appcompat-v7', version:"${SUPPORT_APPCOMPAT_ANDROID_VERSION}"
     compile group:'com.android.support', name:'design', version:"${SUPPORT_DESIGN_ANDROID_VERSION}"
 
-    compile group:'commons-io',name:'commons-io',version:'2.4'
-
     compile group: 'de.greenrobot', name: 'eventbus', version: "${EVENTBUS_ANDROID_VERSION}"
 
     compile ('com.facebook.fresco:fresco:0.9.0') {
