@@ -1,7 +1,9 @@
 package org.wikipedia.util;
 
+import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.support.annotation.StringRes;
 import android.text.format.DateUtils;
 import android.util.SparseArray;
@@ -52,6 +54,7 @@ public final class L10nUtil {
      * @param view View to set text direction of
      * @param lang Wiki code for the language based on which to set direction
      */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static void setConditionalTextDirection(View view, String lang) {
         if (ApiUtil.hasJellyBeanMr1()) {
             view.setTextDirection(isLangRTL(lang) ? View.TEXT_DIRECTION_RTL : View.TEXT_DIRECTION_LTR);
@@ -66,6 +69,7 @@ public final class L10nUtil {
      * @param view View to set layout direction of
      * @param lang Wiki code for the language based on which to set direction
      */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static void setConditionalLayoutDirection(View view, String lang) {
         if (ApiUtil.hasJellyBeanMr1()) {
             view.setLayoutDirection(isLangRTL(lang) ? View.LAYOUT_DIRECTION_RTL : View.LAYOUT_DIRECTION_LTR);
