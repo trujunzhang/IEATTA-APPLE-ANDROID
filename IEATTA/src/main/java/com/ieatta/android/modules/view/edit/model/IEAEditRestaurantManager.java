@@ -5,31 +5,36 @@ import com.ieatta.android.modules.common.edit.EditCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
 import com.ieatta.android.observers.LocationObserver;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Restaurant;
+
+import org.ieatta.database.models.DBRestaurant;
+
+import io.realm.Realm;
 
 public class IEAEditRestaurantManager extends IEAEditAbstractManager {
     @Override
-    public ParseModelAbstract convertToEditModel(Object[] rowModels, ParseModelAbstract model) {
-        Restaurant restaurant = (Restaurant) model;
-        if (restaurant.location != null) {
-            // Exist,Not update. **** Important ****
-//            assert(restaurant.location != nil, "Here already has location!")
-        } else {
-            restaurant.location = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
-        }
-        return super.convertToEditModel(rowModels, model);
+    public Realm convertToEditModel(Object[] rowModels, Realm model) {
+//        DBRestaurant restaurant = (DBRestaurant) model;
+//        if (restaurant.location != null) {
+//            // Exist,Not update. **** Important ****
+////            assert(restaurant.location != nil, "Here already has location!")
+//        } else {
+//            restaurant.location = LocationObserver.sharedInstance.getCurrentPFGeoPoint();
+//        }
+//        return super.convertToEditModel(rowModels, model);
+        return null;
     }
 
     @Override
-    public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {
-        Restaurant _model = (Restaurant) model;
+    public Object[] getRowsInSection(Realm model, IEAEditBaseViewController viewController) {
+//        DBRestaurant _model = (DBRestaurant) model;
+//
+//        EditCellModel[] section1 = {
+//                new EditCellModel(IEAEditKey.rest_name, _model.displayName, R.string.Restaurant_Name_info),
+//        };
+//        Object[] sections = {section1};
+//
+//        return sections;
 
-        EditCellModel[] section1 = {
-                new EditCellModel(IEAEditKey.rest_name, _model.displayName, R.string.Restaurant_Name_info),
-        };
-        Object[] sections = {section1};
-
-        return sections;
+        return null;
     }
 }

@@ -12,15 +12,13 @@ import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
 import com.ieatta.android.observers.EditChangedObserver;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.NewRecord;
-import com.ieatta.com.parse.models.Photo;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
+import io.realm.Realm;
 
 public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
     protected IEAEditBaseViewController self = this;
@@ -71,20 +69,20 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
 
     protected boolean newModel = false;
-    protected ParseModelAbstract editedModel;
+    protected Realm editedModel;
 
     protected Object[] rowModels = new Object[0];
     private IEAEditBaseManager editManager;
 
 
-    public IEAEditBaseViewController setEditModel(ParseModelAbstract editedModel) {
+    public IEAEditBaseViewController setEditModel(Realm editedModel) {
         self.editedModel = editedModel;
         self.newModel = false;
 
         return self;
     }
 
-    public IEAEditBaseViewController setEditModel(ParseModelAbstract editedModel, boolean newModel) {
+    public IEAEditBaseViewController setEditModel(Realm editedModel, boolean newModel) {
         self.editedModel = editedModel;
         self.newModel = newModel;
 
@@ -101,7 +99,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        self.setEditModel(self.getTransferedModel(), self.getIntent().getExtras().getBoolean(IntentCache.newModel));
+//        self.setEditModel(self.getTransferedModel(), self.getIntent().getExtras().getBoolean(IntentCache.newModel));
 
         // **** Important ****
         self.editManager = self.getEditManager();
@@ -120,26 +118,26 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
         EditChangedObserver.sharedInstance.resetObserver();
 
-        self.getQueryPhotosTask().onSuccess(new Continuation<List<ParseModelAbstract>, Object>() {
-            @Override
-            public Object then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.prepareForEditTableView();
-
-                self.setItemsInSection(self.rowModels);
-                self.configurePhotoGallerySection(task);
-
-                return null;
-            }
-        }, Task.UI_THREAD_EXECUTOR);
+//        self.getQueryPhotosTask().onSuccess(new Continuation<List<Realm>, Object>() {
+//            @Override
+//            public Object then(Task<List<Realm>> task) throws Exception {
+//                self.prepareForEditTableView();
+//
+//                self.setItemsInSection(self.rowModels);
+//                self.configurePhotoGallerySection(task);
+//
+//                return null;
+//            }
+//        }, Task.UI_THREAD_EXECUTOR);
     }
 
-    protected Task<List<ParseModelAbstract>> getQueryPhotosTask() {
-        if (self.newModel == true) {
-            List<ParseModelAbstract> empty = new LinkedList<>();
-            return Task.forResult(empty);
-        }
-        return Photo.queryPhotosByModel(self.getPageModel());
-    }
+//    protected Task<List<Realm>> getQueryPhotosTask() {
+//        if (self.newModel == true) {
+//            List<Realm> empty = new LinkedList<>();
+//            return Task.forResult(empty);
+//        }
+//        return Photo.queryPhotosByModel(self.getPageModel());
+//    }
 
     protected abstract void prepareForEditTableView();
 
@@ -147,7 +145,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
     // MARK: Override IEABaseTableViewController methods
     @Override
-    public ParseModelAbstract getPageModel() {
+    public Realm getPageModel() {
         return self.editedModel;
     }
 
@@ -164,10 +162,10 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
     // MARK: Override IEAPhotoGalleryViewController methods
 
-    @Override
-    protected int getPhotoGallerySectionIndex() {
-        return self.rowModels.length;
-    }
+//    @Override
+//    protected int getPhotoGallerySectionIndex() {
+//        return self.rowModels.length;
+//    }
 
     protected void postSaveModelSuccess() {
 
@@ -178,36 +176,36 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
         /// **** important ****
         self.rightBarButtonItem.setEnabled(false);
 
-        final ParseModelAbstract model = self.editManager.convertToEditModel(self.rowModels, self.editedModel);
+        final Realm model = self.editManager.convertToEditModel(self.rowModels, self.editedModel);
 
-        model.updateLocalInBackground()
-                .onSuccessTask(new Continuation<Void, Task<Void>>() {
-                    @Override
-                    public Task<Void> then(Task<Void> task) throws Exception {
-                        return NewRecord.addNewRecordForModel(model);
-                    }
-                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
-            @Override
-            public Task<Void> then(Task<Void> task) throws Exception {
-
-                self.postSaveModelSuccess();
-
-                return null;
-            }
-        }).continueWith(new Continuation<Void, Object>() {
-            @Override
-            public Object then(Task<Void> task) throws Exception {
-                if (task.isFaulted()) {
-                    if (self.newModel) {
-                        AppAlertView.showError(R.string.Saved_Failure);
-                    } else {
-                        AppAlertView.showError(R.string.Update_Failure);
-                    }
-                }
-                self.navigationController.popViewControllerAnimated(true);
-                return null;
-            }
-        });
+//        model.updateLocalInBackground()
+//                .onSuccessTask(new Continuation<Void, Task<Void>>() {
+//                    @Override
+//                    public Task<Void> then(Task<Void> task) throws Exception {
+//                        return NewRecord.addNewRecordForModel(model);
+//                    }
+//                }).onSuccessTask(new Continuation<Void, Task<Void>>() {
+//            @Override
+//            public Task<Void> then(Task<Void> task) throws Exception {
+//
+//                self.postSaveModelSuccess();
+//
+//                return null;
+//            }
+//        }).continueWith(new Continuation<Void, Object>() {
+//            @Override
+//            public Object then(Task<Void> task) throws Exception {
+//                if (task.isFaulted()) {
+//                    if (self.newModel) {
+//                        AppAlertView.showError(R.string.Saved_Failure);
+//                    } else {
+//                        AppAlertView.showError(R.string.Update_Failure);
+//                    }
+//                }
+//                self.navigationController.popViewControllerAnimated(true);
+//                return null;
+//            }
+//        });
     }
 
 }

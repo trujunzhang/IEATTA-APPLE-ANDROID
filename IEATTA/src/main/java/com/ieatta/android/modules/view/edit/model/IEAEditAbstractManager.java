@@ -4,81 +4,92 @@ import com.ieatta.android.modules.common.edit.DatePickerCellModel;
 import com.ieatta.android.modules.common.edit.EditCellModel;
 import com.ieatta.android.modules.common.edit.EditWaiterCellModel;
 
+import org.ieatta.database.models.DBEvent;
+import org.ieatta.database.models.DBNewRecord;
+import org.ieatta.database.models.DBPeopleInEvent;
+import org.ieatta.database.models.DBPhoto;
+import org.ieatta.database.models.DBRecipe;
+import org.ieatta.database.models.DBRestaurant;
+import org.ieatta.database.models.DBReview;
+import org.ieatta.database.models.DBTeam;
+
+import io.realm.Realm;
+
 public abstract class IEAEditAbstractManager implements IEAEditBaseManager {
     private IEAEditAbstractManager self = this;
 
     @Override
-    public ParseModelAbstract convertToEditModel(Object[] rowModels, ParseModelAbstract model) {
+    public Realm convertToEditModel(Object[] rowModels, Realm model) {
         for (Object array : rowModels) {
             Object[] sectionModels = (Object[]) array;
             self.convertSectionArrayToEditModel(sectionModels, model);
         }
         // ***** Important ***** Update created data.
-        model.updateCreatedDate();
+//        model.updateCreatedDate();
         return model;
     }
 
-    private ParseModelAbstract convertSectionArrayToEditModel(Object[] rowModels, ParseModelAbstract model) {
+    private Realm convertSectionArrayToEditModel(Object[] rowModels, Realm model) {
         for (Object row : rowModels) {
             if (row.getClass().equals(EditWaiterCellModel.class)) {
-                updateRow((EditWaiterCellModel) row, model);
+//                updateRow((DBEditWaiterCellModel) row, model);
 //            } else if (row.getClass().equals(WriteReviewInEventCellModel.class)) {
-//                updateRow((WriteReviewInEventCellModel) row, model);
+//                updateRow((DBWriteReviewInEventCellModel) row, model);
             } else if (row.getClass().equals(DatePickerCellModel.class)) {
-                updateRow((DatePickerCellModel) row, model);
+//                updateRow((DBDatePickerCellModel) row, model);
             } else if (row.getClass().equals(EditCellModel.class)) {
-                updateRow((EditCellModel) row, model);
+//                updateRow((DBEditCellModel) row, model);
             }
         }
         return model;
     }
 
-    private void updateRow(EditCellModel row, ParseModelAbstract model) {
+    private void updateRow(EditCellModel row, Realm model) {
         switch (row.editKey) {
             // ++++++++++++++++++++++ Restaurant ++++
             case rest_name:
-                ((Restaurant) model).displayName = row.editValue;
+//                ((DBRestaurant) model).displayName = row.editValue;
                 break;
             // ++++++++++++++++++++++ Event ++++
             case event_name:
-                ((Event) model).displayName = row.editValue;
+//                ((DBEvent) model).displayName = row.editValue;
                 break;
             // ++++++++++++++++++++++ Team ++++
             case person_name:
-                ((Team) model).displayName = row.editValue;
+//                ((DBTeam) model).displayName = row.editValue;
                 break;
             case person_address:
-                ((Team) model).address = row.editValue;
+//                ((DBTeam) model).address = row.editValue;
                 break;
             case person_email:
-                ((Team) model).email = row.editValue;
+//                ((DBTeam) model).email = row.editValue;
                 break;
             // ++++++++++++++++++++++ Recipe ++++
             case recipe_name:
-                ((Recipe) model).displayName = row.editValue;
+//                ((DBRecipe) model).displayName = row.editValue;
                 break;
             case recipe_price:
-                ((Recipe) model).price = row.editValue;
+//                ((DBRecipe) model).price = row.editValue;
                 break;
             default:
                 break;
         }
     }
 
-    private void updateRow(EditWaiterCellModel row, ParseModelAbstract model) {
-        ((Event) model).waiter = row.editValue;
+    private void updateRow(EditWaiterCellModel row, Realm model) {
+//        ((DBEvent) model).waiter = row.editValue;
     }
 
-//    private void updateRow(WriteReviewInEventCellModel row,ParseModelAbstract  model){
+//    private void updateRow(WriteReviewInEventCellModel row,Realm  model){
 //    }
 
-    private void updateRow(DatePickerCellModel row, ParseModelAbstract model) {
+    private void updateRow(DatePickerCellModel row, Realm model) {
         switch (row.editKey) {
             case event_starttime:
-                ((Event) model).startDate = row.date;
+//                ((DBEvent) model).startDate = row.date;
                 break;
             case event_endtime:
-                ((Event) model).endDate = row.date;
+//                ((DBEvent) model).endDate = row.date;
                 break;
             default:
                 break;

@@ -16,8 +16,6 @@ import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.android.notification.NSNotification;
 import com.ieatta.android.observers.LocationObserver;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Restaurant;
 import com.parse.ParseGeoPoint;
 
 import java.util.LinkedList;
@@ -33,7 +31,7 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     }
 
     private IEANearRestaurantViewController self = this;
-    private List<ParseModelAbstract> fetchedRestaurants;
+    private List fetchedRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,30 +76,30 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     // MARK: Query near restaurant list.
     public void queryNearRestaurant(ParseGeoPoint geoPoint) {
 
-        Restaurant.queryNearRestaurants(geoPoint)
-                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
-                    @Override
-                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                        self.fetchedRestaurants = task.getResult();
-                        self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
-
-                        // Next, fetch related photos
-                        return self.getPhotosForModelsTask(task);
-                    }
-                }).onSuccess(new Continuation<Boolean, Void>() {
-            @Override
-            public Void then(Task<Boolean> task) throws Exception {
-
-                if (self.fetchedRestaurants.size() != 0) {
-                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
-                }
-                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
-
-//                LocationObserver.sharedInstance.popLastLocation();
-
-                return null;
-            }
-        }, Task.UI_THREAD_EXECUTOR);
+//        Restaurant.queryNearRestaurants(geoPoint)
+//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                    @Override
+//                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                        self.fetchedRestaurants = task.getResult();
+//                        self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
+//
+//                        // Next, fetch related photos
+//                        return self.getPhotosForModelsTask(task);
+//                    }
+//                }).onSuccess(new Continuation<Boolean, Void>() {
+//            @Override
+//            public Void then(Task<Boolean> task) throws Exception {
+//
+//                if (self.fetchedRestaurants.size() != 0) {
+//                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
+//                }
+//                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
+//
+////                LocationObserver.sharedInstance.popLastLocation();
+//
+//                return null;
+//            }
+//        }, Task.UI_THREAD_EXECUTOR);
     }
 
     @Override
@@ -109,8 +107,8 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
         if (indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()) {
             self.whenSelectedCellTaped(((IEANearRestaurantMore) model).identifier);
         } else {
-            self.selectedModel = (Restaurant) model;
-            self.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
+//            self.selectedModel = (Restaurant) model;
+//            self.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
         }
     }
 

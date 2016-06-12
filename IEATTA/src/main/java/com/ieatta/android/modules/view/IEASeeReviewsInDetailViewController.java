@@ -24,96 +24,96 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
     enum SeeReviewsInDetailSection {
         sectionReviews,// = 0;
     }
-
-    private IEASeeReviewsInDetailViewController self = this;
-
-    private TextView infoLabel;
-
-    IEASeeReviewsInDetailViewController transfer(ParseModelAbstract reviewForModel) {
-        self.reviewForModel = reviewForModel;
-        return self;
-    }
-
-    // Transferd Model from previous page.
-    ParseModelAbstract reviewForModel;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Do any additional setup after loading the view.
-        self.transfer(self.getTransferedModel());
-
-        self.infoLabel = (TextView) self.findViewById(R.id.emptyInfoTextView);
-
-        self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
-            @Override
-            public Object then(Task<Boolean> task) throws Exception {
-
-                self.configureDetailSection(self.fetchedReviews, R.string.Empty_for_Review, null, SeeReviewsInDetailSection.sectionReviews.ordinal());
-
-                return null;
-            }
-        }, Task.UI_THREAD_EXECUTOR);
-    }
-
-    // MARK: Override IEAReviewsTableViewController methods
-    @Override
-    public void registerReviewTableCells() {
-        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType(), SeeReviewsInDetailSection.sectionReviews.ordinal());
-    }
-
-    @Override
-    public int getQueriedReviewsLimit() {
-        return Review.NO_Limit_FETCHED_REVIEWS_IN_DetailPage;
-    }
-
-    @Override
-    public int getReviewsSectionIndex() {
-        return SeeReviewsInDetailSection.sectionReviews.ordinal();
-    }
-
-    @Override
-    protected int getContentView() {
-        return R.layout.table_controller_view_with_emptyinfo;
-    }
-
-    // MARK: Override IEABaseTableViewController methods
-    @Override
-    public ParseModelAbstract getPageModel() {
-        return self.reviewForModel;
-    }
-
-    /// Add rows for section "Reviews".
-    @Override
-    public void setItemsForReviewsSection(List<ParseModelAbstract /*Team*/> fetchedReviewPeople) {
-        List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
-
-        List<SectionSeeReviewsCellModel> items = new LinkedList<>();
-        for (int i = 0; i < array.size() / 2; ++i) {
-            items.add(new SectionSeeReviewsCellModel(IEAEditKey.Section_Title, array.get(i * 2 + 0), array.get(i * 2 + 1)));
-        }
-
-        setSectionItems(items, SeeReviewsInDetailSection.sectionReviews.ordinal());
-    }
-
-    @Override
-    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        SectionSeeReviewsCellModel cellModel = (SectionSeeReviewsCellModel) model;
-
-        self.selectedReview = cellModel.writedReview;
-        self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
-    }
-
-    public void configureDetailSection(List items, int emptyInfoResId, CellType type, int forSectionIndex) {
-        if (items.size() == 0) {
-            self.infoLabel.setVisibility(View.VISIBLE);
-            self.infoLabel.setText(emptyInfoResId);
-        } else {
-            self.infoLabel.setVisibility(View.GONE);
-
-            self.configureReviewsSection();
-        }
-    }
+//
+//    private IEASeeReviewsInDetailViewController self = this;
+//
+//    private TextView infoLabel;
+//
+//    IEASeeReviewsInDetailViewController transfer(ParseModelAbstract reviewForModel) {
+//        self.reviewForModel = reviewForModel;
+//        return self;
+//    }
+//
+//    // Transferd Model from previous page.
+//    ParseModelAbstract reviewForModel;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        // Do any additional setup after loading the view.
+//        self.transfer(self.getTransferedModel());
+//
+//        self.infoLabel = (TextView) self.findViewById(R.id.emptyInfoTextView);
+//
+//        self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
+//            @Override
+//            public Object then(Task<Boolean> task) throws Exception {
+//
+//                self.configureDetailSection(self.fetchedReviews, R.string.Empty_for_Review, null, SeeReviewsInDetailSection.sectionReviews.ordinal());
+//
+//                return null;
+//            }
+//        }, Task.UI_THREAD_EXECUTOR);
+//    }
+//
+//    // MARK: Override IEAReviewsTableViewController methods
+//    @Override
+//    public void registerReviewTableCells() {
+//        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType(), SeeReviewsInDetailSection.sectionReviews.ordinal());
+//    }
+//
+//    @Override
+//    public int getQueriedReviewsLimit() {
+//        return Review.NO_Limit_FETCHED_REVIEWS_IN_DetailPage;
+//    }
+//
+//    @Override
+//    public int getReviewsSectionIndex() {
+//        return SeeReviewsInDetailSection.sectionReviews.ordinal();
+//    }
+//
+//    @Override
+//    protected int getContentView() {
+//        return R.layout.table_controller_view_with_emptyinfo;
+//    }
+//
+//    // MARK: Override IEABaseTableViewController methods
+//    @Override
+//    public ParseModelAbstract getPageModel() {
+//        return self.reviewForModel;
+//    }
+//
+//    /// Add rows for section "Reviews".
+//    @Override
+//    public void setItemsForReviewsSection(List<ParseModelAbstract /*Team*/> fetchedReviewPeople) {
+//        List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
+//
+//        List<SectionSeeReviewsCellModel> items = new LinkedList<>();
+//        for (int i = 0; i < array.size() / 2; ++i) {
+//            items.add(new SectionSeeReviewsCellModel(IEAEditKey.Section_Title, array.get(i * 2 + 0), array.get(i * 2 + 1)));
+//        }
+//
+//        setSectionItems(items, SeeReviewsInDetailSection.sectionReviews.ordinal());
+//    }
+//
+//    @Override
+//    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+//        SectionSeeReviewsCellModel cellModel = (SectionSeeReviewsCellModel) model;
+//
+//        self.selectedReview = cellModel.writedReview;
+//        self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
+//    }
+//
+//    public void configureDetailSection(List items, int emptyInfoResId, CellType type, int forSectionIndex) {
+//        if (items.size() == 0) {
+//            self.infoLabel.setVisibility(View.VISIBLE);
+//            self.infoLabel.setText(emptyInfoResId);
+//        } else {
+//            self.infoLabel.setVisibility(View.GONE);
+//
+//            self.configureReviewsSection();
+//        }
+//    }
 
 }

@@ -1,13 +1,14 @@
 package com.ieatta.android.modules.view.edit.model;
 
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
-import com.ieatta.com.parse.ParseModelAbstract;
+
+import io.realm.Realm;
 
 public interface IEAEditBaseManager {
 
-    public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController);
+    public Object[] getRowsInSection(Realm model, IEAEditBaseViewController viewController);
 
-    public ParseModelAbstract convertToEditModel(Object[] rowModels, ParseModelAbstract model);
+    public Realm convertToEditModel(Object[] rowModels, Realm model);
 }
 
 
