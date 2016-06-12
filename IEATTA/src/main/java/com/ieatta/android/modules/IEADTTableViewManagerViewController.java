@@ -14,9 +14,6 @@ import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
 import java.util.List;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController {
     private IEADTTableViewManagerViewController self = this;
     private DTTableViewManager manager = null;

@@ -29,9 +29,6 @@ enum SearchRestaurantSection {
     sectionRestaurants //;= 0
 }
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEASearchRestaurantViewController extends IEASplitDetailViewController {
     private IEASearchRestaurantViewController self = this;
     private EditText searchTextView;

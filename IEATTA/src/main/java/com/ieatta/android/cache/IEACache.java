@@ -1,18 +1,9 @@
 package com.ieatta.android.cache;
 
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Photo;
-import com.ieatta.com.parse.models.Review;
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
-import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEACache {
     private IEACache self = this;
     public static final IEACache sharedInstance = new IEACache();

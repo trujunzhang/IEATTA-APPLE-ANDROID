@@ -39,9 +39,6 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEAPhotoGalleryViewController extends IEASplitDetailViewController {
 
     private IEAPhotoGalleryViewController self = this;

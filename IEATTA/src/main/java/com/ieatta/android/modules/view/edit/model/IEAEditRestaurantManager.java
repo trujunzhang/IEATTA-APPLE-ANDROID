@@ -8,10 +8,6 @@ import com.ieatta.android.observers.LocationObserver;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Restaurant;
 
-/**
- * Created by djzhang on 12/4/15.
- */
-
 public class IEAEditRestaurantManager extends IEAEditAbstractManager {
     @Override
     public ParseModelAbstract convertToEditModel(Object[] rowModels, ParseModelAbstract model) {

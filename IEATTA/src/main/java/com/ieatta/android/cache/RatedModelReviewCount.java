@@ -1,16 +1,10 @@
 package com.ieatta.android.cache;
 
 import com.ieatta.android.R;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Review;
-import com.ieatta.com.parse.models.enums.PQueryModelType;
 
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class RatedModelReviewCount extends Review {
     private RatedModelReviewCount self = this;
 

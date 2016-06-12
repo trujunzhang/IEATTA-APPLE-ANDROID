@@ -12,10 +12,6 @@ import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
 import com.ieatta.com.parse.models.Team;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-
 enum EditPeopleSection {
     sectionInformation, // =  0
     sectionPhotos, // =  1

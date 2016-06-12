@@ -7,11 +7,7 @@ import com.ieatta.android.extensions.UIUserInterfaceIdiom;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
-import com.ieatta.com.parse.models.Restaurant;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEASplitMasterViewController extends IEABaseTableViewController {
     private IEASplitMasterViewController self = this;
 

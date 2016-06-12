@@ -11,11 +11,6 @@ import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
 import com.ieatta.com.parse.ParseModelAbstract;
 import com.ieatta.com.parse.models.Event;
 
-/**
- * Created by djzhang on 12/4/15.
- */
-
-
 public class IEAEditEventManager extends IEAEditAbstractManager {
     @Override
     public Object[] getRowsInSection(ParseModelAbstract model, IEAEditBaseViewController viewController) {

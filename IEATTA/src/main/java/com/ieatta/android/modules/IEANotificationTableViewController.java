@@ -6,9 +6,6 @@ import com.ieatta.android.notification.NSNotification;
 
 import de.greenrobot.event.EventBus;
 
-/**
- * Created by djzhang on 12/15/15.
- */
 public class IEANotificationTableViewController extends IEAAppTableViewController {
     private IEANotificationTableViewController self = this;
 

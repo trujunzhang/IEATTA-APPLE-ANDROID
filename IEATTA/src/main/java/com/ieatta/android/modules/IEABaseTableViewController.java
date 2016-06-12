@@ -9,7 +9,6 @@ import com.ieatta.android.modules.cells.IEAGoogleMapAddressCell;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
-import com.ieatta.com.parse.ParseModelAbstract;
 
 import java.util.List;
 

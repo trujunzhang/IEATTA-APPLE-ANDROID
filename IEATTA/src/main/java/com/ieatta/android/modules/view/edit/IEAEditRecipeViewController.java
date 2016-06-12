@@ -12,10 +12,6 @@ import com.ieatta.android.modules.view.edit.model.IEAEditRecipeManager;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-
 enum EditRecipeSection {
     sectionInformation,//= 0
     sectionPhotos,//= 1

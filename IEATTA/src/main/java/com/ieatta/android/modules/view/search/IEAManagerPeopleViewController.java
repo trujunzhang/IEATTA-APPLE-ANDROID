@@ -27,9 +27,6 @@ enum ManagerPeopleSection {
     sectionTeam;//= 0
 }
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEAManagerPeopleViewController extends IEASplitDetailViewController {
     private IEAManagerPeopleViewController self = this;
 

@@ -6,9 +6,6 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.ieatta.android.R;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class AppAlertView {
 
     public static void showSuccess(int  subTitle)  {

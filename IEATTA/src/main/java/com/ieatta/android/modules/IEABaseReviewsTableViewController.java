@@ -11,9 +11,7 @@ import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.view.IEAReviewDetailViewController;
 import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Review;
-import com.ieatta.com.parse.models.Team;
+
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,9 +19,6 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 /// IEABaseReviewsTableViewController <|-- IEAReviewsInDetailTableViewController
 /// IEABaseReviewsTableViewController <|-- IEASeeReviewsInDetailViewController
 public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTableViewController {

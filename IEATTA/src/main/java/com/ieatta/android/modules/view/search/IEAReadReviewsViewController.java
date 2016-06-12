@@ -28,9 +28,6 @@ enum ReadReviewsSection {
     sectionRatedModelReviewCounts //= 1
 }
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEAReadReviewsViewController extends IEAReviewSegueTableViewController implements RadioGroup.OnCheckedChangeListener {
     private IEAReadReviewsViewController self = this;
 

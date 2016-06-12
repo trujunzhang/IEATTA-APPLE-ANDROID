@@ -21,11 +21,7 @@ import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 import com.ieatta.android.modules.view.photogallery.PhotoGalleryPagerActivity;
 import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
-import com.ieatta.com.parse.ParseModelAbstract;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEAAppSegureTableViewController extends IEANotificationTableViewController implements RecyclerItemClickListener {
     private IEAAppSegureTableViewController self = this;
 

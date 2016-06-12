@@ -24,9 +24,6 @@ import com.ieatta.com.parse.models.enums.ReviewType;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class IEAWriteReviewViewController extends IEAAppSegureTableViewController {
     private IEAWriteReviewViewController self = this;
 

@@ -13,9 +13,6 @@ import com.ieatta.android.modules.view.edit.model.IEAEditEventManager;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 enum EditEventSection {
     sectionInformation,//= 0
     sectionPhotos,//= 1

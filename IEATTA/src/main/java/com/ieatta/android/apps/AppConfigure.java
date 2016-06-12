@@ -14,13 +14,10 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class AppConfigure {
 
     public static void setup(Context context) {
-        Restaurant.Default_FormattedAddress = context.getString(R.string.Still_converting_GPS_to_Address);
+//        Restaurant.Default_FormattedAddress = context.getString(R.string.Still_converting_GPS_to_Address);
 
         File cacheDir = StorageUtils.getCacheDirectory(context);
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)

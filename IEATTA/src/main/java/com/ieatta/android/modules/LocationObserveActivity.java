@@ -21,9 +21,6 @@ import com.ieatta.android.observers.LocationObserver;
 
 import java.util.Iterator;
 
-/**
- * Created by djzhang on 12/17/15.
- */
 public class LocationObserveActivity extends IEASplitMasterViewController {
     private LocationObserveActivity self = this;
     private LocationManager lm;
