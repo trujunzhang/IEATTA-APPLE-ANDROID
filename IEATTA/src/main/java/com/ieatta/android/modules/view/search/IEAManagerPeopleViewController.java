@@ -15,8 +15,8 @@ import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.notification.NSNotification;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Team;
+
+import org.ieatta.database.models.DBTeam;
 
 import java.util.List;
 
@@ -36,8 +36,8 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
     private EditText searchTextView;
     private ImageView search_clear_Button;
 
-    private List<ParseModelAbstract/*Restaurant*/> fetchedTeam;
-    private Team selectedModel;
+    private List fetchedTeam;
+    private DBTeam selectedModel;
     private boolean newModel = false;
 
     private String keyword = "";
@@ -97,41 +97,41 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
         if (keyword == null || keyword.isEmpty() == true) {
             return;
         }
-        new Team().queryParseModels(keyword)
-                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
-                    @Override
-                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                        self.fetchedTeam = task.getResult();
-
-                        // Next, fetch related photos
-                        return self.getPhotosForModelsTask(task);
-                    }
-                }).onSuccess(new Continuation<Boolean, Object>() {
-            @Override
-            public Object then(Task<Boolean> task) throws Exception {
-                self.setSectionItems(self.fetchedTeam, ManagerPeopleSection.sectionTeam.ordinal());
-                return null;
-            }
-        }, Task.UI_THREAD_EXECUTOR);
+//        new DBTeam().queryParseModels(keyword)
+//                .onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//                    @Override
+//                    public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                        self.fetchedTeam = task.getResult();
+//
+//                        // Next, fetch related photos
+//                        return self.getPhotosForModelsTask(task);
+//                    }
+//                }).onSuccess(new Continuation<Boolean, Object>() {
+//            @Override
+//            public Object then(Task<Boolean> task) throws Exception {
+//                self.setSectionItems(self.fetchedTeam, ManagerPeopleSection.sectionTeam.ordinal());
+//                return null;
+//            }
+//        }, Task.UI_THREAD_EXECUTOR);
     }
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        self.selectedModel = (Team) model;
+        self.selectedModel = (DBTeam) model;
         self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
     }
 
     // MARK: Navigation item actions
     private void addPeopleAction() {
         self.newModel = true;
-        self.selectedModel = new Team();
+        self.selectedModel = new DBTeam();
         self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
     }
 
     @Override
     protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
         /// Show detailed people
-        self.setTransferedModelForEdit(sender, self.selectedModel, self.newModel);
+//        self.setTransferedModelForEdit(sender, self.selectedModel, self.newModel);
     }
 
     @Override

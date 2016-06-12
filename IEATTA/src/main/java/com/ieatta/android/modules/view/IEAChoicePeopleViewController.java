@@ -43,14 +43,14 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     }
 
     // MARK: Already ordered people
-    private List<ParseModelAbstract/*Team*/> orderedPeople = null;// **** Important ****(init null)
-    private List<ParseModelAbstract/*Team*/> fetchedPeople = new LinkedList<>();
+    private List orderedPeople = null;// **** Important ****(init null)
+    private List fetchedPeople = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.orderedPeople = IntentCache.sharedInstance.orderedPeople;
+//        self.orderedPeople = IntentCache.sharedInstance.orderedPeople;
 
         // Do any additional setup after loading the view.
 //        assert(self.orderedPeople != nil, "Must setup orderedPeople's instance.")
@@ -77,34 +77,34 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     }
 
     private void queryPeopleOrderedList() {
-        Team.queryTeam().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
-            @Override
-            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                // Next, filter ordered people
-                return Team.filterFrom(task, self.orderedPeople);
-            }
-        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
-            @Override
-            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
-                self.fetchedPeople = task.getResult();
-                // Next, fetch related photos
-                return self.getPhotosForModelsTask(task);
-            }
-        }).onSuccess(new Continuation<Boolean, Void>() {
-            @Override
-            public Void then(Task<Boolean> task) throws Exception {
-
-                self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.getType());
-                self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal(), IEAChoicePeopleHeaderCell.getType());
-
-                self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
-                self.setSectionItems(self.fetchedPeople, ChoicePeopleSection.sectionPeople.ordinal());
-
-                self.configureDetailSection(self.fetchedPeople,R.string.Empty_for_Friends,IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
-
-                return null;
-            }
-        }, Task.UI_THREAD_EXECUTOR);
+//        Team.queryTeam().onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<List<ParseModelAbstract>>>() {
+//            @Override
+//            public Task<List<ParseModelAbstract>> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                // Next, filter ordered people
+//                return Team.filterFrom(task, self.orderedPeople);
+//            }
+//        }).onSuccessTask(new Continuation<List<ParseModelAbstract>, Task<Boolean>>() {
+//            @Override
+//            public Task<Boolean> then(Task<List<ParseModelAbstract>> task) throws Exception {
+//                self.fetchedPeople = task.getResult();
+//                // Next, fetch related photos
+//                return self.getPhotosForModelsTask(task);
+//            }
+//        }).onSuccess(new Continuation<Boolean, Void>() {
+//            @Override
+//            public Void then(Task<Boolean> task) throws Exception {
+//
+//                self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.getType());
+//                self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal(), IEAChoicePeopleHeaderCell.getType());
+//
+//                self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
+//                self.setSectionItems(self.fetchedPeople, ChoicePeopleSection.sectionPeople.ordinal());
+//
+//                self.configureDetailSection(self.fetchedPeople,R.string.Empty_for_Friends,IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
+//
+//                return null;
+//            }
+//        }, Task.UI_THREAD_EXECUTOR);
 
     }
 
@@ -117,7 +117,7 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     @Override
     protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
         // Add people
-        self.setTransferedModelForEdit(sender, new Team(), true);
+//        self.setTransferedModelForEdit(sender, new Team(), true);
     }
 
     // MARK: NSNotificationCenter notification handlers
