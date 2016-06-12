@@ -10,10 +10,10 @@ include ':commonLib'
 
 include ':assertionLib'
 include ':Android-Universal-Image-Loader'
-//include ':slideDateTimePicker'
-//include ':squarecamera'
-//
-//include ':android-segmented-control'
-//
-//include ':subsampling-scale-image-view'
-//include ':MaterialEditText'
+include ':slideDateTimePicker'
+include ':squarecamera'
+
+include ':android-segmented-control'
+
+include ':subsampling-scale-image-view'
+include ':MaterialEditText'
