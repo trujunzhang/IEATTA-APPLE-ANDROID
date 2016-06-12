@@ -25,11 +25,13 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-enum SearchRestaurantSection {
-    sectionRestaurants //;= 0
-}
-
 public class IEASearchRestaurantViewController extends IEASplitDetailViewController {
+
+
+    enum SearchRestaurantSection {
+        sectionRestaurants //;= 0
+    }
+
     private IEASearchRestaurantViewController self = this;
     private EditText searchTextView;
     private ImageView search_clear_Button;

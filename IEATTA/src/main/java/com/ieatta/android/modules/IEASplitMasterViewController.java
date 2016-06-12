@@ -12,12 +12,12 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
     private IEASplitMasterViewController self = this;
 
     // Selected model from tableview.
-    protected Restaurant selectedModel;
+//    protected Restaurant selectedModel;
 
     protected void whenSelectedCellTaped(MainSegueIdentifier type) {
         switch (UIDevice.currentDevice().userInterfaceIdiom) {
             case Pad:
-                IEASplitMasterViewController.whenSelectedCellTapedForiPad(type, self, self.selectedModel);
+//                IEASplitMasterViewController.whenSelectedCellTapedForiPad(type, self, self.selectedModel);
                 break;
             case Phone:
                 self.performSegueWithIdentifier(type, self);
@@ -28,7 +28,7 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
     }
 
 
-    static void whenSelectedCellTapedForiPad(MainSegueIdentifier type, IEAAppTableViewController rootViewController, Restaurant selectedModel) {
+    static void whenSelectedCellTapedForiPad(MainSegueIdentifier type, IEAAppTableViewController rootViewController, Object selectedModel) {
 //        var viewController = UIViewController()
 //        switch(type){
 //            // 4 more cell items.
@@ -61,19 +61,19 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
     @Override
     protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender) {
         // TODO djzhang(used for iPhone)
-        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
-            /// Add restaurant
-            self.setTransferedModelForEdit(sender, new Restaurant(), true);
-        }
+//        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
+//            /// Add restaurant
+//            self.setTransferedModelForEdit(sender, new Restaurant(), true);
+//        }
     }
 
     @Override
     protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
         // TODO djzhang(used for iPhone)
-        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
-            /// Show detailed restaurant
-            self.setTransferedModel(sender, self.selectedModel);
-        }
+//        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
+//            /// Show detailed restaurant
+//            self.setTransferedModel(sender, self.selectedModel);
+//        }
     }
 
 }

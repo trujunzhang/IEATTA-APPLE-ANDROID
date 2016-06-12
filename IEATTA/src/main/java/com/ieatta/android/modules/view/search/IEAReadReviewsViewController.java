@@ -23,12 +23,13 @@ import bolts.Continuation;
 import bolts.Task;
 import info.hoang8f.android.segmented.SegmentedGroup;
 
-enum ReadReviewsSection {
-    //         sectionHeader                 ,//= 0
-    sectionRatedModelReviewCounts //= 1
-}
 
 public class IEAReadReviewsViewController extends IEAReviewSegueTableViewController implements RadioGroup.OnCheckedChangeListener {
+    enum ReadReviewsSection {
+        //         sectionHeader                 ,//= 0
+        sectionRatedModelReviewCounts //= 1
+    }
+
     private IEAReadReviewsViewController self = this;
 
     // Selected model from tableview.

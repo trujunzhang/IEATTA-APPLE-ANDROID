@@ -47,41 +47,41 @@ public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
     protected boolean shouldLeftBarButtonItem() {
         return false;
     }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        self.photoAtIndex = self.getIntent().getExtras().getInt(IntentCache.photoAtIndex);
-
-        PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager());
-        page = (ViewPager) findViewById(R.id.pager);
-        page.setAdapter(pagerAdapter);
-        page.setCurrentItem(self.photoAtIndex);
-
-        findViewById(R.id.doneButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                self.navigationController.popViewControllerAnimated(true);
-            }
-        });
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (page.getCurrentItem() == 0) {
-            super.onBackPressed();
-        } else {
-            page.setCurrentItem(page.getCurrentItem() - 1);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return true;
-    }
+//
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        self.photoAtIndex = self.getIntent().getExtras().getInt(IntentCache.photoAtIndex);
+//
+//        PagerAdapter pagerAdapter = new PhotoGalleryPagerAdapter(getSupportFragmentManager());
+//        page = (ViewPager) findViewById(R.id.pager);
+//        page.setAdapter(pagerAdapter);
+//        page.setCurrentItem(self.photoAtIndex);
+//
+//        findViewById(R.id.doneButton).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                self.navigationController.popViewControllerAnimated(true);
+//            }
+//        });
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        if (page.getCurrentItem() == 0) {
+//            super.onBackPressed();
+//        } else {
+//            page.setCurrentItem(page.getCurrentItem() - 1);
+//        }
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        finish();
+//        return true;
+//    }
 
 
 }

@@ -23,11 +23,14 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-enum ManagerPeopleSection {
-    sectionTeam;//= 0
-}
 
 public class IEAManagerPeopleViewController extends IEASplitDetailViewController {
+
+    enum ManagerPeopleSection {
+        sectionTeam;//= 0
+    }
+
+
     private IEAManagerPeopleViewController self = this;
 
     private EditText searchTextView;

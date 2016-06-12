@@ -9,8 +9,7 @@ import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.notification.NSNotification;
-import com.ieatta.com.parse.ParseModelAbstract;
-import com.ieatta.com.parse.models.Review;
+
 
 import java.util.List;
 
@@ -26,10 +25,10 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
     protected void registerReviewTableCells() {
         int reviewSectionIndex = self.getReviewsSectionIndex();
-        for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
-            self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
-            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
-        }
+//        for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
+//            self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
+//            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
+//        }
 
         self.setRegisterFooterClass(IEAMoreReviewsFooterCell.getType());
     }
@@ -39,27 +38,27 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        if (indexPath.section >= self.getReviewsSectionIndex()) {
-            Review review = (Review) model;
-
-            self.selectedReview = review;
-            self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
-        }
+//        if (indexPath.section >= self.getReviewsSectionIndex()) {
+//            Review review = (Review) model;
+//
+//            self.selectedReview = review;
+//            self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
+//        }
     }
 
     @Override
-    public void setItemsForReviewsSection(List<ParseModelAbstract> fetchedReviewPeople) {
+    public void setItemsForReviewsSection(List fetchedReviewPeople) {
         int startIndex = self.getReviewsSectionIndex();
 
-        List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
-        int sectionCount = array.size() / 2;
-        for (int i = 0; i < sectionCount; i++) {
-            Object[] item = {array.get(i * 2 + 0), array.get(i * 2 + 1)};
-            setSectionItems(CollectionUtils.createList(item), startIndex + i);
-        }
+//        List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
+//        int sectionCount = array.size() / 2;
+//        for (int i = 0; i < sectionCount; i++) {
+//            Object[] item = {array.get(i * 2 + 0), array.get(i * 2 + 1)};
+//            setSectionItems(CollectionUtils.createList(item), startIndex + i);
+//        }
 
         // 2. refresh section tableview footer view.
-        setFooterModelInSection(new SectionMoreReviewsFooterCellModel(IEAEditKey.Section_Title, self.getPageModel(), self), self.getMoreReviewSectionIndex(), IEAMoreReviewsFooterCell.getType());
+//        setFooterModelInSection(new SectionMoreReviewsFooterCellModel(IEAEditKey.Section_Title, self.getPageModel(), self), self.getMoreReviewSectionIndex(), IEAMoreReviewsFooterCell.getType());
     }
 
     // MARK: NSNotificationCenter notification handlers
@@ -80,7 +79,8 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
     }
 
     private int getMoreReviewSectionIndex() {
-        return (self.getReviewsSectionIndex() + Review.MAX_FETCHED_REVIEWS_IN_DetailPage + 1);
+        return 0;
+//        return (self.getReviewsSectionIndex() + Review.MAX_FETCHED_REVIEWS_IN_DetailPage + 1);
     }
 
 
