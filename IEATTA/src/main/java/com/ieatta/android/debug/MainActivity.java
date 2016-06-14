@@ -63,7 +63,7 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
     }
 
     private void setupPhotoGallerySection() {
-        self.fetchedPhotos = new LinkedList<>();
+//        self.fetchedPhotos = new LinkedList<>();
 //        self.fetchedPhotos.add(ActivityModelDebug.getPhoto());
 
         self.showPhotoGalleryCell();

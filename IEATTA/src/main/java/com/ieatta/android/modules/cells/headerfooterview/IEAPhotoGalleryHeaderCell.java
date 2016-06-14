@@ -41,7 +41,7 @@ public class IEAPhotoGalleryHeaderCell extends IEAViewHolder {
         itemView.findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                self.model.viewController.takeAPhotoButtonTapped();
+//                self.model.viewController.takeAPhotoButtonTapped();
             }
         });
     }

@@ -1,6 +1,6 @@
 package org.ieatta.activity.gallery;
 
-import org.ieatta.activity.PageTitle;
+//import org.ieatta.activity.PageTitle;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

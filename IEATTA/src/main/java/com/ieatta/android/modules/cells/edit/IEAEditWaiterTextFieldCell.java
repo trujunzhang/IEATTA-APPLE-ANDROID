@@ -11,9 +11,6 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.EditWaiterCellModel;
 
-/**
- * Created by djzhang on 12/2/15.
- */
 public class IEAEditWaiterTextFieldCell extends IEAViewHolder {
     public static CellType getType() {
         return new CellType(IEAEditWaiterTextFieldCell.class, R.layout.edit_waiter_text_field_cell);
@@ -41,7 +38,7 @@ public class IEAEditWaiterTextFieldCell extends IEAViewHolder {
         itemView.findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                self.model.viewController.takeAPhotoButtonTapped();
+//                self.model.viewController.takeAPhotoButtonTapped();
             }
         });
         self.editText.addTextChangedListener(new TextWatcher() {
