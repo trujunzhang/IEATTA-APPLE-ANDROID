@@ -168,8 +168,6 @@ public class LocationObserveActivity extends IEASplitMasterViewController {
                     break;
             }
         }
-
-        ;
     };
 
     /**
