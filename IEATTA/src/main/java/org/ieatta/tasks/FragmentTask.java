@@ -30,10 +30,11 @@ import org.wikipedia.util.DimenUtil;
 import java.util.LinkedList;
 import java.util.List;
 
+import bolts.Continuation;
 import bolts.Task;
 import io.realm.Realm;
 
-public abstract class FragmentTask  implements RecyclerOnItemClickListener{
+public abstract class FragmentTask implements RecyclerOnItemClickListener {
     protected String mRestaurantUUID;
     protected String mEventUUID;
     protected String mTeamUUID;
@@ -54,10 +55,10 @@ public abstract class FragmentTask  implements RecyclerOnItemClickListener{
 
     }
 
+    public Task<Void> executeTask() {
+        return Task.forResult(null);
+    }
 
-
-//    public abstract Task<Void> executeTask();
-//
 //    public  Task<Void> executeUpdateTask(UpdateEntry entry){
 //        return Task.forResult(null);
 //    }
@@ -71,7 +72,9 @@ public abstract class FragmentTask  implements RecyclerOnItemClickListener{
 //        this.manager.setRegisterFooterView(IEAFooterView.getType());
     }
 
-//    public abstract void postUI();
+    public void postUI() {
+
+    }
 
     public void postPhotosGallery(int forSectionIndex) {
 //        this.manager.setRegisterCellClass(IEAGalleryThumbnailCell.getType(), forSectionIndex);
@@ -84,7 +87,7 @@ public abstract class FragmentTask  implements RecyclerOnItemClickListener{
 //        this.manager.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Reviews), forSectionIndex);
         this.manager.setSectionItems(this.reviewsCellModelList, forSectionIndex);
 
-        int otherCount =this.reviewQuery.reviewsCount <= 0? 0: (this.reviewQuery.reviewsCount - limit);
+        int otherCount = this.reviewQuery.reviewsCount <= 0 ? 0 : (this.reviewQuery.reviewsCount - limit);
         new RecycleCellFunnel().logOtherReviewsCount(otherCount);
 //        this.manager.setFooterModelInSection(new SectionMoreReviewsFooterCellModel(otherCount), forSectionIndex, IEAMoreReviewsFooterCell.getType());
     }
@@ -108,5 +111,27 @@ public abstract class FragmentTask  implements RecyclerOnItemClickListener{
 //
 //        }
 //    };
+
+
+    public void makeActivePage() {
+        this.prepareUI();
+
+        this.executeTask().onSuccessTask(new Continuation<Void, Task<Void>>() {
+            @Override
+            public Task<Void> then(Task<Void> task) throws Exception {
+                FragmentTask.this.postUI();
+                return null;
+            }
+        }, Task.UI_THREAD_EXECUTOR).continueWith(new Continuation<Void, Void>() {
+            @Override
+            public Void then(Task<Void> task) throws Exception {
+                if (task.getError() != null) {
+                    Exception error = task.getError();
+                }
+                return null;
+            }
+        }, Task.UI_THREAD_EXECUTOR);
+    }
+
 
 }
