@@ -5,7 +5,7 @@ include ':parse_layout'
 //include ':manualdatabase'
 
 //include ':debug'
-include ':android-timeago'
+//include ':android-timeago'
 include ':commonLib'
 
 include ':assertionLib'
@@ -16,4 +16,4 @@ include ':squarecamera'
 include ':android-segmented-control'
 
 include ':subsampling-scale-image-view'
-include ':MaterialEditText'
+//include ':MaterialEditText'
