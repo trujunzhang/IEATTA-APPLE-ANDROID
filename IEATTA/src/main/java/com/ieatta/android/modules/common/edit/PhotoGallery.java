@@ -27,16 +27,16 @@ public class PhotoGallery extends EditBaseCellModel {
         self.viewController = viewController;
     }
 
-    public void insertNewPhotoAtFirst(Photo photo) {
-//        self.delegate.
-    }
+//    public void insertNewPhotoAtFirst(Photo photo) {
+////        self.delegate.
+//    }
 
     public void setCollectionView(RecyclerView collectionView, DTTableViewManager manager) {
         self.collectionView = collectionView;
         self.manager = manager;
 
-        self.manager.memoryStorage.setSectionFooterModel(new AddPhotoModel(IEAEditKey.add_Photo), 0, IEAAddPhotoCell.getType());
-        self.manager.memoryStorage.setItems(self.viewController.getPhotoGalleryItems(), 0);
+//        self.manager.memoryStorage.setSectionFooterModel(new AddPhotoModel(IEAEditKey.add_Photo), 0, IEAAddPhotoCell.getType());
+//        self.manager.memoryStorage.setItems(self.viewController.getPhotoGalleryItems(), 0);
     }
 
     public void refreshCollection(List  fetchedPhotos) {

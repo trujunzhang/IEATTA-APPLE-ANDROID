@@ -40,12 +40,12 @@ public class IEASeeReviewsCell extends IEAViewHolder {
     public void render(Object value) {
         SectionSeeReviewsCellModel model = (SectionSeeReviewsCellModel) value;
 
-        self.titleLabel.setText(model.user.displayName);
-        self.timeAgoTextView.setText(model.timeAgoString);
-
-        self.avatarView.loadNewPhotoByModel(model.user, R.drawable.blank_user_small);
-
-        self.business_review_star_rating.setImageLevel(model.ratingValue);
-        self.reviewContentLabel.setText(model.reviewContent);
+//        self.titleLabel.setText(model.user.displayName);
+//        self.timeAgoTextView.setText(model.timeAgoString);
+//
+//        self.avatarView.loadNewPhotoByModel(model.user, R.drawable.blank_user_small);
+//
+//        self.business_review_star_rating.setImageLevel(model.ratingValue);
+//        self.reviewContentLabel.setText(model.reviewContent);
     }
 }

@@ -1,6 +1,6 @@
 package android.virtualbreak.com.manualdatabase.models;
 
-import com.ieatta.com.parse.models.Event;
+
 
 import java.util.Date;
 import java.util.LinkedList;

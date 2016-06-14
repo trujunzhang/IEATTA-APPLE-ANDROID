@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.com.parse.models.Event;
+
 
 public class IEARestaurantEventsCell extends IEAViewHolder {
     public static CellType getType() {
@@ -29,16 +29,16 @@ public class IEARestaurantEventsCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Event more = (Event) value;
-
-        self.infoLabel.setText(more.displayName);
-        if (more.waiter == null || more.waiter.equals("")) {
-            self.timeInfoLabel.setText(R.string.No_waiters_servered_for_you);
-        } else {
-            self.timeInfoLabel.setText(more.waiter);
-        }
-
-        self.timeAgoLabelLabel.setText(more.getTimeAgoString());
+//        Event more = (Event) value;
+//
+//        self.infoLabel.setText(more.displayName);
+//        if (more.waiter == null || more.waiter.equals("")) {
+//            self.timeInfoLabel.setText(R.string.No_waiters_servered_for_you);
+//        } else {
+//            self.timeInfoLabel.setText(more.waiter);
+//        }
+//
+//        self.timeAgoLabelLabel.setText(more.getTimeAgoString());
 
     }
 }

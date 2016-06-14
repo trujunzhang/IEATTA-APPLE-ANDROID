@@ -44,19 +44,19 @@ public class IEAPhotoGalleryCell extends IEAViewHolder {
         self.collectionView = (RecyclerView) itemView.findViewById(R.id.section_list);
 
         Context context = EnvironmentUtils.sharedInstance.getGlobalContext();
-        TableViewConfiguration config =
-                new TableViewConfiguration.Builder(context)
-                        .setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false))
-                        .setOnItemClickListener(new RecyclerItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
-                                self.model.viewController.didSelectItemAtIndexPathOnCollectionView(new NSIndexPath(0, position));
-                            }
-                        })
-                        .setDebugInfo("Activity_Table_View")
-                        .build();
-        self.manager = new DTTableViewManager(config);
-        self.startManagingWithDelegate(self.manager);
+//        TableViewConfiguration config =
+//                new TableViewConfiguration.Builder(context)
+//                        .setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false))
+//                        .setOnItemClickListener(new RecyclerItemClickListener() {
+//                            @Override
+//                            public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
+//                                self.model.viewController.didSelectItemAtIndexPathOnCollectionView(new NSIndexPath(0, position));
+//                            }
+//                        })
+//                        .setDebugInfo("Activity_Table_View")
+//                        .build();
+//        self.manager = new DTTableViewManager(config);
+//        self.startManagingWithDelegate(self.manager);
 
         self.manager.registerCellClass(IEAPhotosCell.getType(), 0);
     }

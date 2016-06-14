@@ -34,8 +34,8 @@ public class IEAReviewsCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Review model = (Review) value;
-        self.business_review_star_rating.setImageLevel(model.rate);
-        self.reviewContentLabel.setText(model.content);
+//        Review model = (Review) value;
+//        self.business_review_star_rating.setImageLevel(model.rate);
+//        self.reviewContentLabel.setText(model.content);
     }
 }

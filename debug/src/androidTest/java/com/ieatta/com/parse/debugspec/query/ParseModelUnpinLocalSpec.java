@@ -6,7 +6,7 @@ import android.virtualbreak.com.debug.ParseLocalDatabase;
 import com.ieatta.com.parse.ParseAPI;
 import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
-import com.ieatta.com.parse.models.Team;
+
 import com.ieatta.com.parse.models.enums.PQueryModelType;
 
 import java.util.concurrent.CountDownLatch;

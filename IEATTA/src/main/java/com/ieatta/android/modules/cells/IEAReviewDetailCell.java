@@ -25,7 +25,7 @@ public class IEAReviewDetailCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Review model = (Review) value;
-        self.reviewContentLabel.setText(model.content);
+//        Review model = (Review) value;
+//        self.reviewContentLabel.setText(model.content);
     }
 }

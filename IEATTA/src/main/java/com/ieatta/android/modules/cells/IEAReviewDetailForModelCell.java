@@ -37,13 +37,13 @@ public class IEAReviewDetailForModelCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        ReviewDetailForModelCell model = (ReviewDetailForModelCell) value;
-
-        self.displayNameLabel.setText(model.reviewForModel.displayName);
-        self.ratingImageView.queryRatingInReviewsByModel(model.reviewForModel);
-
-        String timeAgoTitle = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Date_of_visit);
-        String timeAgoText = timeAgoTitle + ": " + model.timeAgoString;
-        self.timeAgoLabel.setText(timeAgoText);
+//        ReviewDetailForModelCell model = (ReviewDetailForModelCell) value;
+//
+//        self.displayNameLabel.setText(model.reviewForModel.displayName);
+//        self.ratingImageView.queryRatingInReviewsByModel(model.reviewForModel);
+//
+//        String timeAgoTitle = EnvironmentUtils.sharedInstance.getGlobalContext().getResources().getString(R.string.Date_of_visit);
+//        String timeAgoText = timeAgoTitle + ": " + model.timeAgoString;
+//        self.timeAgoLabel.setText(timeAgoText);
     }
 }

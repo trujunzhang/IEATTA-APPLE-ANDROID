@@ -10,7 +10,7 @@ import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.extensions.viewkit.RatingImageView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 
-import com.ieatta.com.parse.models.enums.ReviewType;
+
 
 public class IEAReadReviewsCell extends IEAViewHolder {
 
@@ -33,15 +33,15 @@ public class IEAReadReviewsCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        RatedModelReviewCount model = (RatedModelReviewCount) value;
-        self.titleLabel.setText(model.reviewTitle);
-
-        if (model.reviewType == ReviewType.Review_Event) {
-            self.avatarView.configureAvatar(R.drawable.nav_events);
-        } else {
-            ParseModelAbstract reviewedModel = ParseModelAbstract.getInstanceFromType(model.modelType, model.reviewRef);
-            self.avatarView.loadNewPhotoByModel(reviewedModel, model.getPlaceHolderImage());
-        }
-        self.ratingImageView.queryRatingInReviewsByReview(model);
+//        RatedModelReviewCount model = (RatedModelReviewCount) value;
+//        self.titleLabel.setText(model.reviewTitle);
+//
+//        if (model.reviewType == ReviewType.Review_Event) {
+//            self.avatarView.configureAvatar(R.drawable.nav_events);
+//        } else {
+//            ParseModelAbstract reviewedModel = ParseModelAbstract.getInstanceFromType(model.modelType, model.reviewRef);
+//            self.avatarView.loadNewPhotoByModel(reviewedModel, model.getPlaceHolderImage());
+//        }
+//        self.ratingImageView.queryRatingInReviewsByReview(model);
     }
 }

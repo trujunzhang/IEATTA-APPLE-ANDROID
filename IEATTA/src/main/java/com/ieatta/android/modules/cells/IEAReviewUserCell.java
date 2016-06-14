@@ -7,7 +7,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.com.parse.models.Team;
+
 
 public class IEAReviewUserCell extends IEAViewHolder {
     public static CellType getType() {
@@ -35,10 +35,10 @@ public class IEAReviewUserCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Team model = (Team) value;
-        self.titleLabel.setText(model.displayName);
-        self.timeAgoTextView.setText(model.writedReviewTimeAgo);
-
-        self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_user_small);
+//        Team model = (Team) value;
+//        self.titleLabel.setText(model.displayName);
+//        self.timeAgoTextView.setText(model.writedReviewTimeAgo);
+//
+//        self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_user_small);
     }
 }

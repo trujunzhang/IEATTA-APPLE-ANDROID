@@ -6,12 +6,16 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 
 public class SectionMoreReviewsFooterCellModel extends EditBaseCellModel {
     public IEAReviewsInDetailTableViewController viewController;
-    public ParseModelAbstract reviewForModel;
 
-    public SectionMoreReviewsFooterCellModel(IEAEditKey editKey, ParseModelAbstract reviewForModel, IEAReviewsInDetailTableViewController viewController) {
+    public SectionMoreReviewsFooterCellModel(IEAEditKey editKey) {
         super(editKey);
-        this.reviewForModel = reviewForModel;
-        this.viewController = viewController;
     }
+//    public ParseModelAbstract reviewForModel;
+
+//    public SectionMoreReviewsFooterCellModel(IEAEditKey editKey, ParseModelAbstract reviewForModel, IEAReviewsInDetailTableViewController viewController) {
+//        super(editKey);
+//        this.reviewForModel = reviewForModel;
+//        this.viewController = viewController;
+//    }
 
 }

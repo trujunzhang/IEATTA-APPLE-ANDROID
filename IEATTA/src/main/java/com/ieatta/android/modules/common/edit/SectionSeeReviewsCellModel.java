@@ -2,7 +2,7 @@ package com.ieatta.android.modules.common.edit;
 
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 
-import com.ieatta.com.parse.models.Team;
+
 
 public class SectionSeeReviewsCellModel extends EditBaseCellModel {
     private SectionSeeReviewsCellModel self = this;

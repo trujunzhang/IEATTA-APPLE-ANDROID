@@ -8,7 +8,6 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.extensions.viewkit.RatingImageView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.com.parse.models.Recipe;
 
 public class IEAOrderedRecipeCell extends IEAViewHolder {
     public static CellType getType() {
@@ -33,12 +32,12 @@ public class IEAOrderedRecipeCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Recipe model = (Recipe) value;
-        self.displayNameLabel.setText(model.displayName);
-        self.priceLabel.setText("$ " + model.price + "");
-
-        self.ratingImageView.queryRatingInReviewsByModel(model);
-
-        self.avatarView.loadNewPhotoByModel(model, R.drawable.placeholder_photo);
+//        Recipe model = (Recipe) value;
+//        self.displayNameLabel.setText(model.displayName);
+//        self.priceLabel.setText("$ " + model.price + "");
+//
+//        self.ratingImageView.queryRatingInReviewsByModel(model);
+//
+//        self.avatarView.loadNewPhotoByModel(model, R.drawable.placeholder_photo);
     }
 }
