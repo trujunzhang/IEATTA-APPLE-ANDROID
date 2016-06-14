@@ -18,6 +18,8 @@ import com.ieatta.android.notification.NSNotification;
 import com.ieatta.android.observers.LocationObserver;
 import com.parse.ParseGeoPoint;
 
+import org.ieatta.tasks.NearRestaurantsTask;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
 
     private IEANearRestaurantViewController self = this;
     private List fetchedRestaurants;
+
+    private NearRestaurantsTask task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
