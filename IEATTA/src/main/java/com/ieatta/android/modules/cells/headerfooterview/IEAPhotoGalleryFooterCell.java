@@ -40,7 +40,7 @@ public class IEAPhotoGalleryFooterCell extends IEAViewHolder {
         self.footerLargeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                self.model.viewController.presentPhotoGallery(0);
+//                self.model.viewController.presentPhotoGallery(0);
             }
         });
     }

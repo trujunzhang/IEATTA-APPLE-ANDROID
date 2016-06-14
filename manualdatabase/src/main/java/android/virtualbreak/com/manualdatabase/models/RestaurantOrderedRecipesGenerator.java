@@ -3,7 +3,7 @@ package android.virtualbreak.com.manualdatabase.models;
 
 import android.virtualbreak.com.manualdatabase.R;
 
-import com.ieatta.com.parse.models.Recipe;
+
 
 import java.util.LinkedList;
 

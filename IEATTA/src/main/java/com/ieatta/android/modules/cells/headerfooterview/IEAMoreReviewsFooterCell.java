@@ -14,9 +14,6 @@ import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 import bolts.Continuation;
 import bolts.Task;
 
-/**
- * Created by djzhang on 12/2/15.
- */
 public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     public static CellType getType() {
         return new CellType(IEAMoreReviewsFooterCell.class, R.layout.businesspage_section_footer);
@@ -53,17 +50,17 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     public void render(Object value) {
         self.model = (SectionMoreReviewsFooterCellModel) value;
 
-        // update UI
-        new Review(model.reviewForModel).queryReviewsCount()
-                .onSuccess(new Continuation<Integer, Object>() {
-                    @Override
-                    public Object then(Task<Integer> task) throws Exception {
-                        final int count = task.getResult();
-                        self.configureButton(count);
-
-                        return null;
-                    }
-                }, Task.UI_THREAD_EXECUTOR);
+//        // update UI
+//        new Review(model.reviewForModel).queryReviewsCount()
+//                .onSuccess(new Continuation<Integer, Object>() {
+//                    @Override
+//                    public Object then(Task<Integer> task) throws Exception {
+//                        final int count = task.getResult();
+//                        self.configureButton(count);
+//
+//                        return null;
+//                    }
+//                }, Task.UI_THREAD_EXECUTOR);
     }
 
     private void configureButton(int reviewsCount) {

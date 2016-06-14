@@ -21,7 +21,7 @@ public class IEAReviewSegueTableViewController extends IEAPhotoGalleryViewContro
     @Override
     protected void segueForSeeReviewsInDetailViewController(IEASeeReviewsInDetailViewController destination, Intent sender) {
         // Read Reviews.
-        self.setTransferedModel(sender, self.getPageModel());
+//        self.setTransferedModel(sender, self.getPageModel());
     }
 
     /**

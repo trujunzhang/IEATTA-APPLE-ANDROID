@@ -24,7 +24,7 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 
 
     protected void registerReviewTableCells() {
-        int reviewSectionIndex = self.getReviewsSectionIndex();
+//        int reviewSectionIndex = self.getReviewsSectionIndex();
 //        for (int i = 0; i < Review.MAX_FETCHED_REVIEWS_IN_DetailPage; i++) {
 //            self.setRegisterCellClass(IEAReviewUserCell.getType(), reviewSectionIndex + i);
 //            self.setRegisterCellClassWhenSelected(IEAReviewsCell.getType(), reviewSectionIndex + i, 1);
@@ -46,9 +46,9 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
 //        }
     }
 
-    @Override
+//    @Override
     public void setItemsForReviewsSection(List fetchedReviewPeople) {
-        int startIndex = self.getReviewsSectionIndex();
+//        int startIndex = self.getReviewsSectionIndex();
 
 //        List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
 //        int sectionCount = array.size() / 2;
@@ -64,13 +64,13 @@ public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableVi
     // MARK: NSNotificationCenter notification handlers
     @Override
     protected void ReviewWasCreated(NSNotification note) {
-        self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
-            @Override
-            public Object then(Task<Boolean> task) throws Exception {
-                self.configureReviewsSection();
-                return null;
-            }
-        });
+//        self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
+//            @Override
+//            public Object then(Task<Boolean> task) throws Exception {
+//                self.configureReviewsSection();
+//                return null;
+//            }
+//        });
     }
 
     // MARK: Show all posted reviews for Restaurant,Recipe and Event.

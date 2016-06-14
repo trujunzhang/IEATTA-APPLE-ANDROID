@@ -2,7 +2,7 @@ package android.virtualbreak.com.manualdatabase.models;
 
 import android.virtualbreak.com.manualdatabase.R;
 
-import com.ieatta.com.parse.models.Restaurant;
+
 import com.parse.ParseGeoPoint;
 import java.util.LinkedList;
 

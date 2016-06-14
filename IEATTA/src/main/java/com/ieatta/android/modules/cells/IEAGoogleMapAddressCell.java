@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.com.parse.models.Restaurant;
+
 
 public class IEAGoogleMapAddressCell extends IEAViewHolder {
     public static CellType getType() {
@@ -30,7 +30,7 @@ public class IEAGoogleMapAddressCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Restaurant more = (Restaurant) value;
-        self.formattedAddressLabel.setText(more.getGoogleMapAddress());
+//        Restaurant more = (Restaurant) value;
+//        self.formattedAddressLabel.setText(more.getGoogleMapAddress());
     }
 }

@@ -7,8 +7,8 @@ import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 public class SectionSeeReviewsCellModel extends EditBaseCellModel {
     private SectionSeeReviewsCellModel self = this;
 
-    public Team user = null;
-    public Review writedReview = null;
+//    public Team user = null;
+//    public Review writedReview = null;
 
     public String timeAgoString = "";
     public int ratingValue = 0;
@@ -17,13 +17,13 @@ public class SectionSeeReviewsCellModel extends EditBaseCellModel {
     public SectionSeeReviewsCellModel(IEAEditKey editKey, Object user, Object review) {
         super(editKey);
 
-        self.user = (Team) user;
-
-        self.writedReview = (Review) review;
-
-        self.timeAgoString = writedReview.getTimeAgoString();
-        self.ratingValue = writedReview.rate;
-        self.reviewContent = writedReview.content;
+//        self.user = (Team) user;
+//
+//        self.writedReview = (Review) review;
+//
+//        self.timeAgoString = writedReview.getTimeAgoString();
+//        self.ratingValue = writedReview.rate;
+//        self.reviewContent = writedReview.content;
     }
 
 }

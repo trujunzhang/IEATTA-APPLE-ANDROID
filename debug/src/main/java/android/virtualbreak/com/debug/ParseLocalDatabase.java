@@ -9,8 +9,8 @@ import com.ieatta.com.parse.engine.realm.LocalQuery;
 import com.ieatta.com.parse.models.NewRecord;
 import com.ieatta.com.parse.models.PeopleInEvent;
 
-import com.ieatta.com.parse.models.Recipe;
-import com.ieatta.com.parse.models.Restaurant;
+
+
 
 
 import com.ieatta.com.parse.models.enums.PQueryModelType;

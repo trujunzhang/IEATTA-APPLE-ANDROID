@@ -7,7 +7,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
-import com.ieatta.com.parse.models.Restaurant;
+
 
 public class IEANearRestaurantsCell extends IEAViewHolder {
 
@@ -31,10 +31,10 @@ public class IEANearRestaurantsCell extends IEAViewHolder {
 
     @Override
     public void render(Object value) {
-        Restaurant model = (Restaurant) value;
-        self.titleLabel.setText(model.displayName);
-        self.subtitleLabel.setText(((Restaurant) value).getGoogleMapAddress());
-
-        self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_biz);
+//        Restaurant model = (Restaurant) value;
+//        self.titleLabel.setText(model.displayName);
+//        self.subtitleLabel.setText(((Restaurant) value).getGoogleMapAddress());
+//
+//        self.avatarView.loadNewPhotoByModel(model, R.drawable.blank_biz);
     }
 }

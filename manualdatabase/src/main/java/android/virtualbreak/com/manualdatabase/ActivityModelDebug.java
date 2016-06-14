@@ -3,8 +3,8 @@ package android.virtualbreak.com.manualdatabase;
 
 
 
-import com.ieatta.com.parse.models.Recipe;
-import com.ieatta.com.parse.models.Restaurant;
+
+
 
 import com.parse.ParseGeoPoint;
 

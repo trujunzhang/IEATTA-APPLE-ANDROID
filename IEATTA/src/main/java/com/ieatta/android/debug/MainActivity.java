@@ -84,38 +84,38 @@ public class MainActivity extends IEAReviewsInDetailTableViewController {
     }
 
     private void showPhotoGallery() {
-        self.setContentView(R.layout.photo_gallery_cell);
-
-        self.collectionView = (RecyclerView) self.findViewById(R.id.section_list);
-        self.collectionView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        self.adapter = new IEAPhotoGalleryAdapter(self, self.fetchedPhotos);
-
-        self.collectionView.setAdapter(self.adapter);
-
-        self.adapter.notifyDataSetChanged();
+//        self.setContentView(R.layout.photo_gallery_cell);
+//
+//        self.collectionView = (RecyclerView) self.findViewById(R.id.section_list);
+//        self.collectionView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//
+//        self.adapter = new IEAPhotoGalleryAdapter(self, self.fetchedPhotos);
+//
+//        self.collectionView.setAdapter(self.adapter);
+//
+//        self.adapter.notifyDataSetChanged();
     }
 
-    @Override
-    protected int getPhotoGallerySectionIndex() {
-        return 0;
-    }
+//    @Override
+//    protected int getPhotoGallerySectionIndex() {
+//        return 0;
+//    }
 
     private void showPhotoGalleryCell() {
-        // Register Cells by class.
-        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
-
-//        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
-//        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
-
-        // 1. Set photo gallery section title(contains a 'take a photo' icon).
-        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
-        self.setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
-
-        // 2. Set empty items for the photo gallery collection cell.
-        self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
-
-        self.photoGallery.refreshCollection(self.fetchedPhotos);
+//        // Register Cells by class.
+//        self.setRegisterCellClass(IEAPhotoGalleryCell.getType(), self.getPhotoGallerySectionIndex());
+//
+////        self.setRegisterHeaderClass(IEAPhotoGalleryHeaderCell.getType());
+////        self.setRegisterFooterClass(IEAPhotoGalleryFooterCell.getType());
+//
+//        // 1. Set photo gallery section title(contains a 'take a photo' icon).
+//        self.appendSectionTitleCell(new SectionPhotoGalleryHeaderCellModel(IEAEditKey.Section_Title, self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryHeaderCell.getType());
+//        self.setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(IEAEditKey.Section_Title, self.getPhotoGalleryCount(), self), self.getPhotoGallerySectionIndex(), IEAPhotoGalleryFooterCell.getType());
+//
+//        // 2. Set empty items for the photo gallery collection cell.
+//        self.setSectionItems(CollectionUtils.createList(self.photoGallery), self.getPhotoGallerySectionIndex());
+//
+//        self.photoGallery.refreshCollection(self.fetchedPhotos);
 
     }
 

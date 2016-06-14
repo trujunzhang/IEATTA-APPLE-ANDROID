@@ -7,9 +7,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
 
-/**
- * Created by djzhang on 12/19/15.
- */
 public class PhotoGalleryPagerAdapter extends FragmentStatePagerAdapter {
     private PhotoGalleryPagerAdapter self = this;
 
@@ -20,12 +17,13 @@ public class PhotoGalleryPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         ViewPagerFragment fragment = new ViewPagerFragment();
-        fragment.setAsset(position);
+//        fragment.setAsset(position);
         return fragment;
     }
 
     @Override
     public int getCount() {
-        return IntentCache.sharedInstance.photoGalleryItem.size();
+//        return IntentCache.sharedInstance.photoGalleryItem.size();
+        return 0;
     }
 }
