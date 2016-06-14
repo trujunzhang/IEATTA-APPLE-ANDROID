@@ -13,28 +13,30 @@ import com.ieatta.android.modules.view.edit.model.IEAEditEventManager;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
 
-enum EditEventSection {
-    sectionInformation,//= 0
-    sectionPhotos,//= 1
-    sectionDurationDate,//= 2
-}
-
-// enum showing Row index in the section.
-enum EditEventRows {
-    RowWaiter(1);
-
-    int row;
-
-    EditEventRows(int p) {
-        row = p;
-    }
-
-    int getRow() {
-        return row;
-    }
-}
 
 public class IEAEditEventViewController extends IEAEditBaseViewController {
+
+
+    enum EditEventSection {
+        sectionInformation,//= 0
+        sectionPhotos,//= 1
+        sectionDurationDate,//= 2
+    }
+
+    // enum showing Row index in the section.
+    enum EditEventRows {
+        RowWaiter(1);
+
+        int row;
+
+        EditEventRows(int p) {
+            row = p;
+        }
+
+        int getRow() {
+            return row;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,19 +59,19 @@ public class IEAEditEventViewController extends IEAEditBaseViewController {
     protected IEAEditBaseManager getEditManager() {
         return new IEAEditEventManager();
     }
-
-
-    // MARK: Override IEAPhotoGalleryViewController methods
-
-    @Override
-    protected int getPhotoGallerySectionIndex() {
-        return EditEventSection.sectionPhotos.ordinal();
-    }
-
-    @Override
-    protected void postSaveModelSuccess() {
-        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreateEventNotification, null);
-    }
+//
+//
+//    // MARK: Override IEAPhotoGalleryViewController methods
+//
+//    @Override
+//    protected int getPhotoGallerySectionIndex() {
+//        return EditEventSection.sectionPhotos.ordinal();
+//    }
+//
+//    @Override
+//    protected void postSaveModelSuccess() {
+//        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreateEventNotification, null);
+//    }
 
 
 }

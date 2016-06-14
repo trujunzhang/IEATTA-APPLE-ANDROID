@@ -12,13 +12,14 @@ import com.ieatta.android.modules.view.edit.model.IEAEditRecipeManager;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
 
-enum EditRecipeSection {
-    sectionInformation,//= 0
-    sectionPhotos,//= 1
-}
+
 
 public class IEAEditRecipeViewController extends IEAEditBaseViewController {
 
+    enum EditRecipeSection {
+        sectionInformation,//= 0
+        sectionPhotos,//= 1
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

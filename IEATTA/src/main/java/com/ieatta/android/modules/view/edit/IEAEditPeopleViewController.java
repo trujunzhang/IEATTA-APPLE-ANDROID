@@ -10,36 +10,36 @@ import com.ieatta.android.modules.view.edit.model.IEAEditBaseManager;
 import com.ieatta.android.modules.view.edit.model.IEAEditPeopleManager;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
-import com.ieatta.com.parse.models.Team;
 
-enum EditPeopleSection {
-    sectionInformation, // =  0
-    sectionPhotos, // =  1
-}
+
 
 public class IEAEditPeopleViewController extends IEAEditBaseViewController {
 
-    IEAEditPeopleViewController transfer(Team selectedModel) {
-        self.setEditModel(selectedModel, false);
-        return this;
-    }
-
-    IEAEditPeopleViewController transfer(Team selectedModel, boolean newModel) {
-        self.setEditModel(selectedModel, newModel);
-        return this;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-    }
+//    enum EditPeopleSection {
+//        sectionInformation, // =  0
+//        sectionPhotos, // =  1
+//    }
+//    IEAEditPeopleViewController transfer(Team selectedModel) {
+//        self.setEditModel(selectedModel, false);
+//        return this;
+//    }
+//
+//    IEAEditPeopleViewController transfer(Team selectedModel, boolean newModel) {
+//        self.setEditModel(selectedModel, newModel);
+//        return this;
+//    }
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//
+//        super.onCreate(savedInstanceState);
+//    }
 
     @Override
     protected void prepareForEditTableView() {
         // Add rows for sections.
-        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Information), EditPeopleSection.sectionInformation.ordinal());
-        self.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditPeopleSection.sectionInformation.ordinal());
+//        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Information), EditPeopleSection.sectionInformation.ordinal());
+//        self.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditPeopleSection.sectionInformation.ordinal());
     }
 
     @Override
@@ -48,10 +48,10 @@ public class IEAEditPeopleViewController extends IEAEditBaseViewController {
     }
 
 
-    @Override
-    protected void postSaveModelSuccess() {
-        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAPeopleCreatedNotification, null);
-    }
+//    @Override
+//    protected void postSaveModelSuccess() {
+//        NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAPeopleCreatedNotification, null);
+//    }
 
 
 }

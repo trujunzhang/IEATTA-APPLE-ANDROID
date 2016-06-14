@@ -11,13 +11,15 @@ import com.ieatta.android.modules.view.edit.model.IEAEditRestaurantManager;
 import com.ieatta.android.notification.NSNotificationCenter;
 import com.ieatta.android.notification.NotifyType;
 
-enum EditRestaurantSection {
-    sectionInformation,//= 0
-    sectionPhotos,//= 1
-    sectionGoogleMapAddress,//= 2
-}
+
 
 public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
+
+    enum EditRestaurantSection {
+        sectionInformation,//= 0
+        sectionPhotos,//= 1
+        sectionGoogleMapAddress,//= 2
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
