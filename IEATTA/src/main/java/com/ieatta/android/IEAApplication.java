@@ -2,11 +2,7 @@ package com.ieatta.android;
 
 import android.app.Application;
 import android.yelp.com.commonlib.EnvironmentUtils;
-
-import com.ieatta.android.apps.AppConfigure;
-
 import org.ieatta.parse.ParseAPI;
-
 
 public class IEAApplication extends Application {
 
@@ -17,7 +13,6 @@ public class IEAApplication extends Application {
         // **** Important ****
         EnvironmentUtils.sharedInstance.registerGlobalContext(this);
 
-        AppConfigure.setup(this);
         ParseAPI.setup(this);
 
         /// Clean Cache folder contains downloaded original images.
