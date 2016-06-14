@@ -17,11 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/IEATTAAppTheme.NoActionBar">
         <activity android:name=".debug.MainActivity">
-
         </activity>
         <activity android:name=".debug.EffectActivity">
-
-
         </activity>
         <activity
             android:name=".modules.view.IEANearRestaurantViewController"
