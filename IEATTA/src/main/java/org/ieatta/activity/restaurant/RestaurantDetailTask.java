@@ -1,4 +1,4 @@
-package org.ieatta.tasks;
+package org.ieatta.activity.restaurant;
 
 import android.app.Activity;
 import android.support.annotation.VisibleForTesting;
@@ -17,6 +17,7 @@ import org.ieatta.database.realm.DBBuilder;
 import org.ieatta.database.realm.RealmModelReader;
 import org.ieatta.database.utils.DBUtil;
 import org.ieatta.server.cache.ThumbnailImageUtil;
+import org.ieatta.tasks.FragmentTask;
 
 import java.io.File;
 import java.util.List;
@@ -29,6 +30,7 @@ public class RestaurantDetailTask extends FragmentTask {
     public RestaurantDetailTask(Activity activity, RecyclerView recyclerView) {
         super(activity, recyclerView);
     }
+
 //
 //    public DBRestaurant restaurant;
 //    public RealmResults<DBEvent> events;

@@ -1,4 +1,4 @@
-package org.ieatta.tasks;
+package org.ieatta.activity.nearby;
 
 
 import android.app.Activity;
@@ -22,6 +22,7 @@ import com.tableview.adapter.NSIndexPath;
 
 import org.ieatta.database.models.DBRestaurant;
 import org.ieatta.database.query.LocalDatabaseQuery;
+import org.ieatta.tasks.FragmentTask;
 
 import java.util.LinkedList;
 import java.util.List;

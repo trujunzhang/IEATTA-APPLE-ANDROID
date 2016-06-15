@@ -1,8 +1,21 @@
 package org.ieatta.activity.restaurant;
 
+import android.os.Bundle;
+
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 
+import org.ieatta.tasks.RestaurantDetailTask;
+
 public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableViewController {
+    private RestaurantDetailTask task;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        task = new RestaurantDetailTask(this, this.recyclerView);
+        task.makeActivePage();
+    }
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
