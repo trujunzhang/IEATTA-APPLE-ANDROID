@@ -15,7 +15,6 @@ import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 import java.util.List;
 
 public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController {
-    private IEADTTableViewManagerViewController self = this;
     private DTTableViewManager manager = null;
 
     @Override
@@ -23,16 +22,16 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         super.onCreate(savedInstanceState);
 
         TableViewConfiguration config =
-                new TableViewConfiguration.Builder(self.getBaseContext())
-                        .setLayoutManager(new LinearLayoutManager(self, LinearLayoutManager.VERTICAL, false))
-                        .setItemDecoration(new TableViewDividerDecoration(self))
-                        .setOnItemClickListener(self)
+                new TableViewConfiguration.Builder(this.getBaseContext())
+                        .setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false))
+                        .setItemDecoration(new TableViewDividerDecoration(this))
+                        .setOnItemClickListener(this)
                         .setDebugInfo("Activity_Table_View")
                         .build();
-        self.manager = new DTTableViewManager(config);
-        self.startManagingWithDelegate(self.manager);
+        this.manager = new DTTableViewManager(config);
+        this.startManagingWithDelegate(this.manager);
 
-        self.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
+        this.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
     }
 
     public void setRegisterHeaderClass(CellType type) {
@@ -73,7 +72,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
-        self.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
+        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex, CellType type) {

@@ -35,7 +35,6 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         this.configModelsInMoreSection();
 
         // TOOD djzhang(test)
@@ -44,11 +43,11 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
 
     /// Add rows for section "More".
     private void configModelsInMoreSection() {
-        this.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.getType(), NearRestaurantSection.sectionMoreItems.ordinal());
-
-        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
-
-        this.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
+//        this.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.getType(), NearRestaurantSection.sectionMoreItems.ordinal());
+//
+//        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
+//
+//        this.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
     }
 
     @NonNull
@@ -100,12 +99,12 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        if (indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()) {
-            this.whenSelectedCellTaped(((IEANearRestaurantMore) model).identifier);
-        } else {
-//            this.selectedModel = (Restaurant) model;
-//            this.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
-        }
+//        if (indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()) {
+//            this.whenSelectedCellTaped(((IEANearRestaurantMore) model).identifier);
+//        } else {
+////            this.selectedModel = (Restaurant) model;
+////            this.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
+//        }
     }
 
     // MARK: NSNotificationCenter notification handlers

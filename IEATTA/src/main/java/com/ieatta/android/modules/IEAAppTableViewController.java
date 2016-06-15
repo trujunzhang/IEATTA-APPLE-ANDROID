@@ -12,32 +12,31 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
 
 
 public class IEAAppTableViewController extends AppCompatActivity {
-    private IEAAppTableViewController self = this;
-    protected IEAAppTableViewController navigationController = this;
     private RecyclerView recyclerView;
+
     protected TextView leftBarButtonItem;
     protected TextView rightBarButtonItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(self.getContentView());
+        setContentView(this.getContentView());
 
-        self.leftBarButtonItem = (TextView) findViewById(R.id.leftBarButtonItem);
-        self.rightBarButtonItem = (TextView) findViewById(R.id.rightBarButtonItem);
+        this.leftBarButtonItem = (TextView) findViewById(R.id.leftBarButtonItem);
+        this.rightBarButtonItem = (TextView) findViewById(R.id.rightBarButtonItem);
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 
-        if (self.hasRecycleView() == true) {
+        if (this.hasRecycleView() == true) {
             this.recyclerView = (RecyclerView) findViewById(R.id.recyleView);
             this.recyclerView.setHasFixedSize(true);
         }
-        if (self.shouldLeftBarButtonItem() == true) {
-            self.setLeftBarButtonItem(new View.OnClickListener() {
+        if (this.shouldLeftBarButtonItem() == true) {
+            this.setLeftBarButtonItem(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(self.navigationShouldPopOnBackButton() == true) {
-                        self.navigationController.popViewControllerAnimated(true);
+                    if (IEAAppTableViewController.this.navigationShouldPopOnBackButton() == true) {
+                        IEAAppTableViewController.this.popViewControllerAnimated(true);
                     }
                 }
             });
@@ -49,22 +48,22 @@ public class IEAAppTableViewController extends AppCompatActivity {
     }
 
     protected void setLeftBarButtonItem(View.OnClickListener clickListener) {
-        self.leftBarButtonItem.setVisibility(View.VISIBLE);
-        self.leftBarButtonItem.setOnClickListener(clickListener);
+        this.leftBarButtonItem.setVisibility(View.VISIBLE);
+        this.leftBarButtonItem.setOnClickListener(clickListener);
     }
 
     protected void setRightBarButtonItem(int titleId, View.OnClickListener clickListener) {
-        self.rightBarButtonItem.setVisibility(View.VISIBLE);
-        self.rightBarButtonItem.setText(titleId);
-        self.rightBarButtonItem.setOnClickListener(clickListener);
+        this.rightBarButtonItem.setVisibility(View.VISIBLE);
+        this.rightBarButtonItem.setText(titleId);
+        this.rightBarButtonItem.setOnClickListener(clickListener);
     }
 
     public void popViewControllerAnimated(boolean animated) {
-        self.finish();
+        this.finish();
     }
 
     public void dismissViewControllerAnimated(boolean flag, Object o) {
-        self.finish();
+        this.finish();
     }
 
     /**
@@ -81,9 +80,9 @@ public class IEAAppTableViewController extends AppCompatActivity {
     }
 
     protected void startManagingWithDelegate(DTTableViewManager manager) {
-        self.recyclerView.setAdapter(manager.getAdapter());
-        self.recyclerView.setLayoutManager(manager.configuration.builder.manager);
-        self.recyclerView.addItemDecoration(manager.configuration.builder.decoration);
+        this.recyclerView.setAdapter(manager.getAdapter());
+        this.recyclerView.setLayoutManager(manager.configuration.builder.manager);
+        this.recyclerView.addItemDecoration(manager.configuration.builder.decoration);
     }
 
     public boolean navigationShouldPopOnBackButton() {

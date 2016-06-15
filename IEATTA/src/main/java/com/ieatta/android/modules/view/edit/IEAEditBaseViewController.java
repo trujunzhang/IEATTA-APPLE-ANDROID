@@ -21,7 +21,6 @@ import bolts.Task;
 import io.realm.Realm;
 
 public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewController {
-    protected IEAEditBaseViewController self = this;
 
     @Override
     public boolean havePhotoGallery() {
@@ -30,7 +29,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
     @Override
     public boolean shouldShowHUD() {
-        if (self.newModel == true) {
+        if (this.newModel == true) {
             return false;
         }
         return true;
@@ -38,7 +37,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
     @Override
     public boolean navigationShouldPopOnBackButton() {
-        if (self.newModel == false) {
+        if (this.newModel == false) {
             return true;
         }
         if (EditChangedObserver.sharedInstance.hasTakenPhoto == true) {
@@ -51,7 +50,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
-                            self.navigationController.popViewControllerAnimated(true);
+                            IEAEditBaseViewController.this.popViewControllerAnimated(true);
                         }
                     })
                     .setPositiveButton(R.string.Cancel, new DialogInterface.OnClickListener() {
@@ -76,21 +75,21 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
 
     public IEAEditBaseViewController setEditModel(Realm editedModel) {
-        self.editedModel = editedModel;
-        self.newModel = false;
+        this.editedModel = editedModel;
+        this.newModel = false;
 
-        return self;
+        return this;
     }
 
     public IEAEditBaseViewController setEditModel(Realm editedModel, boolean newModel) {
-        self.editedModel = editedModel;
-        self.newModel = newModel;
+        this.editedModel = editedModel;
+        this.newModel = newModel;
 
-        return self;
+        return this;
     }
 
     private int rightButtonTitle() {
-        if (self.newModel == true) {
+        if (this.newModel == true) {
             return R.string.Save;
         }
         return R.string.Update;
@@ -99,32 +98,32 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-//        self.setEditModel(self.getTransferedModel(), self.getIntent().getExtras().getBoolean(IntentCache.newModel));
+//        this.setEditModel(this.getTransferedModel(), this.getIntent().getExtras().getBoolean(IntentCache.newModel));
 
         // **** Important ****
-        self.editManager = self.getEditManager();
-        self.rowModels = self.editManager.getRowsInSection(self.editedModel, self);
+        this.editManager = this.getEditManager();
+        this.rowModels = this.editManager.getRowsInSection(this.editedModel, this);
 
         super.onCreate(savedInstanceState);
 
-//        assert(self.editedModel != nil, "Must setup editedModel's instance.")
+//        assert(this.editedModel != nil, "Must setup editedModel's instance.")
 
-        self.setRightBarButtonItem(self.rightButtonTitle(), new View.OnClickListener() {
+        this.setRightBarButtonItem(this.rightButtonTitle(), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                self.saveModelAction();
+                IEAEditBaseViewController.this.saveModelAction();
             }
         });
 
         EditChangedObserver.sharedInstance.resetObserver();
 
-//        self.getQueryPhotosTask().onSuccess(new Continuation<List<Realm>, Object>() {
+//        this.getQueryPhotosTask().onSuccess(new Continuation<List<Realm>, Object>() {
 //            @Override
 //            public Object then(Task<List<Realm>> task) throws Exception {
-//                self.prepareForEditTableView();
+//                this.prepareForEditTableView();
 //
-//                self.setItemsInSection(self.rowModels);
-//                self.configurePhotoGallerySection(task);
+//                this.setItemsInSection(this.rowModels);
+//                this.configurePhotoGallerySection(task);
 //
 //                return null;
 //            }
@@ -132,11 +131,11 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     }
 
 //    protected Task<List<Realm>> getQueryPhotosTask() {
-//        if (self.newModel == true) {
+//        if (this.newModel == true) {
 //            List<Realm> empty = new LinkedList<>();
 //            return Task.forResult(empty);
 //        }
-//        return Photo.queryPhotosByModel(self.getPageModel());
+//        return Photo.queryPhotosByModel(this.getPageModel());
 //    }
 
     protected abstract void prepareForEditTableView();
@@ -146,11 +145,11 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     // MARK: Override IEABaseTableViewController methods
     @Override
     public Realm getPageModel() {
-        return self.editedModel;
+        return this.editedModel;
     }
 
     private void setItemsInSection(Object[] rows) {
-        self.rowModels = rows;
+        this.rowModels = rows;
         for (int i = 0; i < rows.length; i++) {
             Object[] items = (Object[]) rows[i];
             if (items == null) {
@@ -164,7 +163,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 
 //    @Override
 //    protected int getPhotoGallerySectionIndex() {
-//        return self.rowModels.length;
+//        return this.rowModels.length;
 //    }
 
     protected void postSaveModelSuccess() {
@@ -174,9 +173,9 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     // MARK: NavigationBarItem Events
     private void saveModelAction() {
         /// **** important ****
-        self.rightBarButtonItem.setEnabled(false);
+        this.rightBarButtonItem.setEnabled(false);
 
-        final Realm model = self.editManager.convertToEditModel(self.rowModels, self.editedModel);
+        final Realm model = this.editManager.convertToEditModel(this.rowModels, this.editedModel);
 
 //        model.updateLocalInBackground()
 //                .onSuccessTask(new Continuation<Void, Task<Void>>() {
@@ -188,7 +187,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 //            @Override
 //            public Task<Void> then(Task<Void> task) throws Exception {
 //
-//                self.postSaveModelSuccess();
+//                this.postSaveModelSuccess();
 //
 //                return null;
 //            }
@@ -196,13 +195,13 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
 //            @Override
 //            public Object then(Task<Void> task) throws Exception {
 //                if (task.isFaulted()) {
-//                    if (self.newModel) {
+//                    if (this.newModel) {
 //                        AppAlertView.showError(R.string.Saved_Failure);
 //                    } else {
 //                        AppAlertView.showError(R.string.Update_Failure);
 //                    }
 //                }
-//                self.navigationController.popViewControllerAnimated(true);
+//                this.navigationController.popViewControllerAnimated(true);
 //                return null;
 //            }
 //        });
