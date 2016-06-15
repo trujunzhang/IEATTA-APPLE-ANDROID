@@ -26,7 +26,7 @@ import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class LocationObserveActivity extends IEAPageActivity {
+public abstract class LocationObserveActivity extends IEAPageActivity {
     private LocationManager lm;
 
     private static final String TAG = "LocationObserveActivity";
@@ -145,6 +145,7 @@ public class LocationObserveActivity extends IEAPageActivity {
      */
     protected void updateView(Location location) {
         LocationObserver.sharedInstance.updateLocation(location);
+        notifyLocationChanged(location);
 //        if (location != null) {
 //            editText.setText("设备位置信息\n\n经度：");
 //            editText.append(String.valueOf(location.getLongitude()));
@@ -155,6 +156,8 @@ public class LocationObserveActivity extends IEAPageActivity {
 //            editText.getEditableText().clear();
 //        }
     }
+
+    protected abstract void notifyLocationChanged(Location location);
 
     /**
      * 返回查询条件

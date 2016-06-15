@@ -1,5 +1,6 @@
 package com.ieatta.android.modules.nearby;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
@@ -27,9 +28,6 @@ public class IEANearRestaurantActivity extends LocationObserveActivity {
 
         task = new NearRestaurantsTask(this, this.recyclerView);
         task.makeActivePage();
-
-        // TOOD djzhang(test)
-//        this.queryNearRestaurant(null);
     }
 
     /// Add rows for section "More".
@@ -39,53 +37,6 @@ public class IEANearRestaurantActivity extends LocationObserveActivity {
 //        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
 //
 //        this.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
-    }
-
-    @NonNull
-    private List<IEANearRestaurantMore> getNearRestaurantMoresItems() {
-        // "Manager Restaurant"
-        IEANearRestaurantMore managerRestaurantItem = new IEANearRestaurantMore(R.drawable.restaurants_icon, R.string.Add_a_Restaurant, MainSegueIdentifier.editRestaurantSegueIdentifier);
-
-        // "Search Restaurant"
-        IEANearRestaurantMore searchRestaurant = new IEANearRestaurantMore(R.drawable.nav_search, R.string.Search_Restaurants, MainSegueIdentifier.searchRestaurantSegueIdentifier);
-
-        // "Manager People"
-        IEANearRestaurantMore managerPeople = new IEANearRestaurantMore(R.drawable.nav_add_friends, R.string.Manage_Friends, MainSegueIdentifier.managerPeopleSegueIdentifier);
-
-        // "Read Reviews"
-        IEANearRestaurantMore readReviews = new IEANearRestaurantMore(R.drawable.nav_passport_reviews, R.string.Read_Reviews, MainSegueIdentifier.readReviewsSegueIdentifier);
-
-        IEANearRestaurantMore[] mores = {managerRestaurantItem, searchRestaurant, managerPeople, readReviews};
-        return CollectionUtils.createList(mores);
-    }
-
-    // MARK: Query near restaurant list.
-    public void queryNearRestaurant(ParseGeoPoint geoPoint) {
-
-//        Restaurant.queryNearRestaurants(geoPoint)
-//                .onSuccessTask(new Continuation<List , Task<Boolean>>() {
-//                    @Override
-//                    public Task<Boolean> then(Task<List > task) throws Exception {
-//                        this.fetchedRestaurants = task.getResult();
-//                        this.fetchedRestaurants = RestaurantSortUtils.sort(this.fetchedRestaurants);
-//
-//                        // Next, fetch related photos
-//                        return this.getPhotosForModelsTask(task);
-//                    }
-//                }).onSuccess(new Continuation<Boolean, Void>() {
-//            @Override
-//            public Void then(Task<Boolean> task) throws Exception {
-//
-//                if (this.fetchedRestaurants.size() != 0) {
-//                    this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
-//                }
-//                this.setSectionItems(this.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
-//
-////                LocationObserver.sharedInstance.popLastLocation();
-//
-//                return null;
-//            }
-//        }, Task.UI_THREAD_EXECUTOR);
     }
 
 //    @Override
@@ -108,6 +59,11 @@ public class IEANearRestaurantActivity extends LocationObserveActivity {
 //    protected void LocationDidChange(NSNotification note) {
 //        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
 //    }
+
+    @Override
+    protected void notifyLocationChanged(Location location) {
+        task.executeUpdateTask();
+    }
 
     @Override
     protected boolean shouldLeftBarButtonItem() {
