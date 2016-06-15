@@ -12,7 +12,7 @@ import com.tableview.storage.models.CellType;
 
 public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
     public static CellType getType() {
-        return new CellType(IEAViewForHeaderInSectionCell.class, R.layout.view_for_header_in_section_cell);
+        return new CellType(IEAViewForHeaderInSectionCell.class, R.layout.header_view_in_section_cell);
     }
 
     @Override

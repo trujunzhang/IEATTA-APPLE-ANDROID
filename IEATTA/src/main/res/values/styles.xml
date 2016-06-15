@@ -2010,7 +2010,7 @@
         <item name="android:paddingLeft">10.0dip</item>
         <item name="android:paddingTop">24.0dip</item>
         <item name="android:paddingRight">10.0dip</item>
-        <item name="android:paddingBottom">6.0dip</item>
+        <item name="android:paddingBottom">10.0dip</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:drawablePadding">@dimen/std_compound_drawable_offset</item>
