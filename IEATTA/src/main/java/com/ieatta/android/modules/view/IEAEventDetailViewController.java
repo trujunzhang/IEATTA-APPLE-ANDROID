@@ -14,7 +14,7 @@ import com.ieatta.android.modules.cells.model.IEAEventHeader;
 import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.notification.NSNotification;

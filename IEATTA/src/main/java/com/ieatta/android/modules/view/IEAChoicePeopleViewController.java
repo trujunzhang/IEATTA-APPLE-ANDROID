@@ -15,7 +15,7 @@ import com.ieatta.android.modules.cells.IEAPeopleInfoCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAChoicePeopleHeaderCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionChoicePeopleCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditPeopleViewController;
 import com.ieatta.android.notification.NSNotification;

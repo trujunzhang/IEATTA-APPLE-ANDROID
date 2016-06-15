@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.cells.photos.IEAAddPhotoCell;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.view.photogallery.IEAPhotoGalleryViewController;
-
+import com.tableview.model.EditBaseCellModel;
 
 
 import java.util.List;

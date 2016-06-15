@@ -14,7 +14,7 @@ import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 
 import java.util.LinkedList;

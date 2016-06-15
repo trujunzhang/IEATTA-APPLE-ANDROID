@@ -10,7 +10,7 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.tableview.adapter.IEAViewHolder;
 import com.tableview.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.EditCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 
 /**
  * Created by djzhang on 12/2/15.

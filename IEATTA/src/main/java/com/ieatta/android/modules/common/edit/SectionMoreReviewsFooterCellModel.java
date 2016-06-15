@@ -1,7 +1,8 @@
 package com.ieatta.android.modules.common.edit;
 
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
+import com.tableview.model.EditBaseCellModel;
 
 
 public class SectionMoreReviewsFooterCellModel extends EditBaseCellModel {

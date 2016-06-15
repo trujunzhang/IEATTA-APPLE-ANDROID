@@ -1,9 +1,9 @@
 package com.ieatta.android.modules.view.edit.model;
 
 import com.ieatta.android.R;
-import com.ieatta.android.modules.common.edit.EditBaseCellModel;
+import com.tableview.model.EditBaseCellModel;
 import com.ieatta.android.modules.common.edit.EditCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.view.edit.IEAEditBaseViewController;
 
 import org.ieatta.database.models.DBTeam;

@@ -11,7 +11,7 @@ import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;

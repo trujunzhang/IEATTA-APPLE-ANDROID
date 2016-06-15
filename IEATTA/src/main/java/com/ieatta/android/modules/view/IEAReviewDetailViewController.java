@@ -12,7 +12,7 @@ import com.ieatta.android.modules.cells.IEAReviewDetailCell;
 import com.ieatta.android.modules.cells.IEAReviewDetailForModelCell;
 import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 
 import java.util.LinkedList;

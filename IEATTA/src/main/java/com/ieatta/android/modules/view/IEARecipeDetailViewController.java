@@ -10,7 +10,7 @@ import com.ieatta.android.modules.cells.headerview.IEARecipeDetailHeaderCell;
 import com.ieatta.android.modules.cells.model.IEARecipeHeader;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
 import com.ieatta.android.notification.NSNotification;

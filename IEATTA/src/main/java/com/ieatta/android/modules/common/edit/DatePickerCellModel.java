@@ -1,12 +1,10 @@
 package com.ieatta.android.modules.common.edit;
 
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
+import com.tableview.model.EditBaseCellModel;
 
 import java.util.Date;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class DatePickerCellModel extends EditBaseCellModel {
     public int dateTitleResId;
     public Date date = new Date();

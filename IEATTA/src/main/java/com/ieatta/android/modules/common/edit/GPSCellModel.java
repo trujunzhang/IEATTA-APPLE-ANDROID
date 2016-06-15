@@ -1,6 +1,7 @@
 package com.ieatta.android.modules.common.edit;
 
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
+import com.ieatta.provide.IEAEditKey;
+import com.tableview.model.EditBaseCellModel;
 
 /**
  * Created by djzhang on 12/1/15.

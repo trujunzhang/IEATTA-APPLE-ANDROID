@@ -10,7 +10,7 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.decoration.TableViewDividerDecoration;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
-import com.ieatta.android.modules.common.edit.EditBaseCellModel;
+import com.tableview.model.EditBaseCellModel;
 
 import java.util.List;
 
