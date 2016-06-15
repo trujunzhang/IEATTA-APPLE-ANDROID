@@ -22,7 +22,6 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
 
     }
 
-
     public Object getPageModel() {
 //        fatalError("getPageModel() has not been implemented")
         return null;
