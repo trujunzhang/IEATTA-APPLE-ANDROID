@@ -64,10 +64,14 @@ public abstract class AbstractImageUtil {
 
     public File getImageFile(String usedRef) {
         List<File> imageFiles = this.getImageFiles(usedRef);
-        if(imageFiles.size() == 0)
+        if (imageFiles.size() == 0)
             return null;
 
         return imageFiles.get(0);
+    }
+
+    public Task<List<File>> getImagesListTask(String restaurantUUID) {
+        return Task.forResult(null);
     }
 
     public Task<List<File>> getImagesListTask() {
@@ -183,5 +187,6 @@ public abstract class AbstractImageUtil {
     public Task<Bitmap> generateTakenPhoto(Bitmap image, DBPhoto model) {
         return Task.forResult(null);
     }
+
 
 }
