@@ -30,12 +30,12 @@ public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
     @Override
     protected void prepareForEditTableView() {
         // Add rows for sections.
-        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), EditRestaurantSection.sectionInformation.ordinal());
+        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Restaurant_Information), EditRestaurantSection.sectionInformation.ordinal());
 
-        self.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditRestaurantSection.sectionInformation.ordinal());
+        this.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditRestaurantSection.sectionInformation.ordinal());
 
-        if (self.newModel == false) {
-            self.showGoogleMapAddress(EditRestaurantSection.sectionGoogleMapAddress.ordinal());
+        if (this.newModel == false) {
+            this.showGoogleMapAddress(EditRestaurantSection.sectionGoogleMapAddress.ordinal());
         }
     }
 
@@ -49,8 +49,8 @@ public class IEAEditRestaurantViewController extends IEAEditBaseViewController {
         NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PAModelCreatedRestaurantNotification, null);
 
 //        // If current device is iPad. we will toggle to the detail view to show it.
-//        if(self.newModel == true){
-//            IEASplitMasterViewController.showRestaurantDetailViewController(self.editedModel!)
+//        if(this.newModel == true){
+//            IEASplitMasterViewController.showRestaurantDetailViewController(this.editedModel!)
 //        }
     }
 

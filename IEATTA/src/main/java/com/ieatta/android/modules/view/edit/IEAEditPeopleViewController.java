@@ -20,12 +20,12 @@ public class IEAEditPeopleViewController extends IEAEditBaseViewController {
 //        sectionPhotos, // =  1
 //    }
 //    IEAEditPeopleViewController transfer(Team selectedModel) {
-//        self.setEditModel(selectedModel, false);
+//        this.setEditModel(selectedModel, false);
 //        return this;
 //    }
 //
 //    IEAEditPeopleViewController transfer(Team selectedModel, boolean newModel) {
-//        self.setEditModel(selectedModel, newModel);
+//        this.setEditModel(selectedModel, newModel);
 //        return this;
 //    }
 //
@@ -38,8 +38,8 @@ public class IEAEditPeopleViewController extends IEAEditBaseViewController {
     @Override
     protected void prepareForEditTableView() {
         // Add rows for sections.
-//        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Information), EditPeopleSection.sectionInformation.ordinal());
-//        self.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditPeopleSection.sectionInformation.ordinal());
+//        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Information), EditPeopleSection.sectionInformation.ordinal());
+//        this.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditPeopleSection.sectionInformation.ordinal());
     }
 
     @Override
