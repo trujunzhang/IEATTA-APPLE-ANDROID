@@ -11,12 +11,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public class MemoryStorage {
-    private MemoryStorage self = this;
-
     public IEATableViewControllerAdapter adapter;
     private TableViewUtils tableViewUtils = new TableViewUtils();
 
@@ -24,7 +19,7 @@ public class MemoryStorage {
     public CellTypeUtils cellTypeUtils = new CellTypeUtils();
 
     public MemoryStorage(IEATableViewControllerAdapter adapter) {
-        self.adapter = adapter;
+        this.adapter = adapter;
     }
 
     /// Add items to section with `toSection` number.
@@ -35,20 +30,20 @@ public class MemoryStorage {
     }
 
     private void reloadTableView() {
-        self.tableViewUtils.generateItems(self.sections);
+        this.tableViewUtils.generateItems(this.sections);
 
-        self.adapter.notifyDataSetChanged();
+        this.adapter.notifyDataSetChanged();
     }
 
     /// Set items for specific section. This will reload UI after updating.
     /// - Parameter items: items to set for section
     /// - Parameter forSectionIndex: index of section to update
     public void setItems(List items, int forSectionIndex) {
-        SectionModel section = self.verifySection(forSectionIndex);
+        SectionModel section = this.verifySection(forSectionIndex);
         section.items = items;
-        self.sections.put(new Integer(forSectionIndex), section);
+        this.sections.put(new Integer(forSectionIndex), section);
 
-        self.reloadTableView();
+        this.reloadTableView();
     }
 
     /// Set section header model for MemoryStorage
@@ -60,10 +55,10 @@ public class MemoryStorage {
         cellTypeUtils.registerType(type);
 
         // Step2: Create/Add a Header Section.
-        SectionModel section = self.verifySection(forSectionIndex);
+        SectionModel section = this.verifySection(forSectionIndex);
         section.setHeaderModel(new HeaderModel(model, type));
 
-//        self.reloadTableView();
+//        this.reloadTableView();
     }
 
     /// Set section footer model for MemoryStorage
@@ -75,19 +70,19 @@ public class MemoryStorage {
         cellTypeUtils.registerType(type);
 
         // Step2: Create/Add a Footer Section.
-        SectionModel section = self.verifySection(forSectionIndex);
+        SectionModel section = this.verifySection(forSectionIndex);
         section.setFooterModel(new FooterModel(model, type));
 
-        self.reloadTableView();
+        this.reloadTableView();
     }
 
     private SectionModel verifySection(int forSectionIndex) {
-        SectionModel model = self.sections.get(new Integer(forSectionIndex));
+        SectionModel model = this.sections.get(new Integer(forSectionIndex));
         if (model != null) {
             return model;
         }
         model = new SectionModel(forSectionIndex);
-        self.sections.put(new Integer(forSectionIndex), model);
+        this.sections.put(new Integer(forSectionIndex), model);
         return model;
     }
 
@@ -102,7 +97,7 @@ public class MemoryStorage {
         cellTypeUtils.registerType(type);
 
         // Step2: Create/Modify a section.
-        SectionModel section = self.verifySection(forSectionIndex);
+        SectionModel section = this.verifySection(forSectionIndex);
         section.cellType = type;
     }
 
@@ -111,16 +106,16 @@ public class MemoryStorage {
         cellTypeUtils.registerType(type);
 
         // Step2: Create/Modify a section.
-        SectionModel section = self.verifySection(forSectionIndex);
+        SectionModel section = this.verifySection(forSectionIndex);
         section.specialRows.put(new Integer(forRowIndex), type);
     }
 
     public RowModel getRowModelFromPosition(int position) {
-        return self.tableViewUtils.getItem(position);
+        return this.tableViewUtils.getItem(position);
     }
 
     public Object getRowModel(int position) {
-        RowModel rowModel = self.getRowModelFromPosition(position);
+        RowModel rowModel = this.getRowModelFromPosition(position);
         return rowModel.model;
     }
 
@@ -129,13 +124,13 @@ public class MemoryStorage {
     }
 
     public int getItemViewType(int position) {
-        RowModel rowModel = self.getRowModelFromPosition(position);
+        RowModel rowModel = this.getRowModelFromPosition(position);
         int type = cellTypeUtils.getRowModelType(rowModel);
         return type;
     }
 
     public RowModel getItem(int position) {
-        return self.tableViewUtils.getItem(position);
+        return this.tableViewUtils.getItem(position);
     }
 
 

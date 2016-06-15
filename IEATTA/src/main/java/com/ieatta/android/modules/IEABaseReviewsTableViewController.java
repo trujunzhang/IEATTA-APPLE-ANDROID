@@ -22,7 +22,6 @@ import bolts.Task;
 /// IEABaseReviewsTableViewController <|-- IEAReviewsInDetailTableViewController
 /// IEABaseReviewsTableViewController <|-- IEASeeReviewsInDetailViewController
 public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTableViewController {
-    private IEABaseReviewsTableViewController self = this;
 
     // Selected model from tableview.
     protected Object selectedReview;
@@ -34,31 +33,31 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        self.registerReviewTableCells();
+//        this.registerReviewTableCells();
     }
 
 //    protected Task<Boolean> getReviewsRelatedModelQueryTask() {
-//        return Review.queryReviews(self.getPageModel(), self.getQueriedReviewsLimit())
+//        return Review.queryReviews(this.getPageModel(), this.getQueriedReviewsLimit())
 //                .onSuccessTask(new Continuation<List , Task<List >>() {
 //                    @Override
 //                    public Task<List > then(Task<List > task) throws Exception {
 //                        Object object = task;
-//                        self.fetchedReviews = task.getResult();//Review
-//                        return Team.queryTeamByPoints(Review.getUserPoints(self.fetchedReviews));
+//                        this.fetchedReviews = task.getResult();//Review
+//                        return Team.queryTeamByPoints(Review.getUserPoints(this.fetchedReviews));
 //                    }
 //                }).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
 //                    public Task<Boolean> then(Task<List > task) throws Exception {
 //                        Object object = task.getResult();
-//                        self.fetchedReviewPeople = task.getResult();
-//                        return self.getPhotosForModelsTask(task);
+//                        this.fetchedReviewPeople = task.getResult();
+//                        return this.getPhotosForModelsTask(task);
 //                    }
 //                });
 //    }
 //
 //    protected void configureReviewsSection() {
-//        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), self.getReviewsSectionIndex());
-//        self.setItemsForReviewsSection(self.fetchedReviewPeople);
+//        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Review_Highlights), this.getReviewsSectionIndex());
+//        this.setItemsForReviewsSection(this.fetchedReviewPeople);
 //    }
 //
 //    protected abstract void setItemsForReviewsSection(List  fetchedReviewPeople);//Team
@@ -74,23 +73,23 @@ public abstract class IEABaseReviewsTableViewController extends IEAReviewSegueTa
 //    }
 //
 //    protected Review getReview(NSIndexPath indexPath) {
-//        return (Review) self.fetchedReviews.get(indexPath.section - self.getReviewsSectionIndex());
+//        return (Review) this.fetchedReviews.get(indexPath.section - this.getReviewsSectionIndex());
 //    }
 //
 //    public void performSegueForWritingReview() {
-//        self.performSegueWithIdentifier(MainSegueIdentifier.postReviewSegueIdentifier, self);
+//        this.performSegueWithIdentifier(MainSegueIdentifier.postReviewSegueIdentifier, this);
 //    }
 //
 //    @Override
 //    protected void segueForPostReviewViewController(IEAWriteReviewViewController destination, Intent sender) {
-//        self.setTransferedModel(sender, self.getPageModel());
+//        this.setTransferedModel(sender, this.getPageModel());
 //    }
 //
 //    @Override
 //    protected void segueForReviewDetailViewController(IEAReviewDetailViewController destination, Intent sender) {
-//        self.setTransferedModel(sender, self.getPageModel());
-//        self.setTransferedModel(sender, self.selectedReview, IntentCache.selectedReview);
-////        destination.transferToReviewDetail(self.getPageModel(), review: self.selectedReview!)
+//        this.setTransferedModel(sender, this.getPageModel());
+//        this.setTransferedModel(sender, this.selectedReview, IntentCache.selectedReview);
+////        destination.transferToReviewDetail(this.getPageModel(), review: this.selectedReview!)
 //    }
 
 }

@@ -24,14 +24,12 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
     enum SeeReviewsInDetailSection {
         sectionReviews,// = 0;
     }
-//
-//    private IEASeeReviewsInDetailViewController self = this;
-//
+
 //    private TextView infoLabel;
 //
 //    IEASeeReviewsInDetailViewController transfer(ParseModelAbstract reviewForModel) {
-//        self.reviewForModel = reviewForModel;
-//        return self;
+//        this.reviewForModel = reviewForModel;
+//        return this;
 //    }
 //
 //    // Transferd Model from previous page.
@@ -42,15 +40,15 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
 //        super.onCreate(savedInstanceState);
 //
 //        // Do any additional setup after loading the view.
-//        self.transfer(self.getTransferedModel());
+//        this.transfer(this.getTransferedModel());
 //
-//        self.infoLabel = (TextView) self.findViewById(R.id.emptyInfoTextView);
+//        this.infoLabel = (TextView) this.findViewById(R.id.emptyInfoTextView);
 //
-//        self.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
+//        this.getReviewsRelatedModelQueryTask().onSuccess(new Continuation<Boolean, Object>() {
 //            @Override
 //            public Object then(Task<Boolean> task) throws Exception {
 //
-//                self.configureDetailSection(self.fetchedReviews, R.string.Empty_for_Review, null, SeeReviewsInDetailSection.sectionReviews.ordinal());
+//                this.configureDetailSection(this.fetchedReviews, R.string.Empty_for_Review, null, SeeReviewsInDetailSection.sectionReviews.ordinal());
 //
 //                return null;
 //            }
@@ -60,7 +58,7 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
 //    // MARK: Override IEAReviewsTableViewController methods
 //    @Override
 //    public void registerReviewTableCells() {
-//        self.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType(), SeeReviewsInDetailSection.sectionReviews.ordinal());
+//        this.setRegisterCellClassWhenSelected(IEASeeReviewsCell.getType(), SeeReviewsInDetailSection.sectionReviews.ordinal());
 //    }
 //
 //    @Override
@@ -81,13 +79,13 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
 //    // MARK: Override IEABaseTableViewController methods
 //    @Override
 //    public ParseModelAbstract getPageModel() {
-//        return self.reviewForModel;
+//        return this.reviewForModel;
 //    }
 //
 //    /// Add rows for section "Reviews".
 //    @Override
 //    public void setItemsForReviewsSection(List<ParseModelAbstract /*Team*/> fetchedReviewPeople) {
-//        List<Object> array = Review.getReviewItems(self.fetchedReviews, fetchedReviewPeople);
+//        List<Object> array = Review.getReviewItems(this.fetchedReviews, fetchedReviewPeople);
 //
 //        List<SectionSeeReviewsCellModel> items = new LinkedList<>();
 //        for (int i = 0; i < array.size() / 2; ++i) {
@@ -101,18 +99,18 @@ public class IEASeeReviewsInDetailViewController extends IEABaseReviewsTableView
 //    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
 //        SectionSeeReviewsCellModel cellModel = (SectionSeeReviewsCellModel) model;
 //
-//        self.selectedReview = cellModel.writedReview;
-//        self.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, self);
+//        this.selectedReview = cellModel.writedReview;
+//        this.performSegueWithIdentifier(MainSegueIdentifier.detailReviewSegueIdentifier, this);
 //    }
 //
 //    public void configureDetailSection(List items, int emptyInfoResId, CellType type, int forSectionIndex) {
 //        if (items.size() == 0) {
-//            self.infoLabel.setVisibility(View.VISIBLE);
-//            self.infoLabel.setText(emptyInfoResId);
+//            this.infoLabel.setVisibility(View.VISIBLE);
+//            this.infoLabel.setText(emptyInfoResId);
 //        } else {
-//            self.infoLabel.setVisibility(View.GONE);
+//            this.infoLabel.setVisibility(View.GONE);
 //
-//            self.configureReviewsSection();
+//            this.configureReviewsSection();
 //        }
 //    }
 

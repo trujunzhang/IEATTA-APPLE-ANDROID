@@ -13,8 +13,6 @@ import bolts.Continuation;
 import bolts.Task;
 
 public class AvatarView extends RoundedImageView {
-    private AvatarView self = this;
-
     private Context context;
 
     public AvatarView(Context context) {
@@ -41,24 +39,24 @@ public class AvatarView extends RoundedImageView {
 
     // MARK: Set circle effect.
     void setCircle(int placeHolder) {
-        self.configureAvatar(placeHolder);
+        this.configureAvatar(placeHolder);
     }
 
     // MARK: Set rect effect.
     void setCornerRadius(int value, int placeHolder) {
-//        self.cornerRadius(value)
-//        self.avatarImageView.cornerRadius(value)
+//        this.cornerRadius(value)
+//        this.avatarImageView.cornerRadius(value)
 
-        self.configureAvatar(placeHolder);
+        this.configureAvatar(placeHolder);
     }
 
     // MARK: Setup image.
     public void configureAvatar(int imageRefId) {
-        self.setImageResource(imageRefId);
+        this.setImageResource(imageRefId);
     }
 //
 //    public void loadNewPhotoByModel(ParseModelAbstract model, final int placeHolder) {
-//        self.configureAvatar(placeHolder);
+//        this.configureAvatar(placeHolder);
 //
 //        new Photo().queryPhotosByModel(model)
 //                .onSuccess(new Continuation<List , Void>() {
@@ -67,7 +65,7 @@ public class AvatarView extends RoundedImageView {
 //                        List  taskResult = task.getResult();
 //                        ParseModelAbstract first = taskResult.get(0);
 //                        if (first != null) {
-//                            self.loadNewPhotoByPhoto((Photo) first, placeHolder);
+//                            this.loadNewPhotoByPhoto((Photo) first, placeHolder);
 //                        }
 //                        return null;
 //                    }
@@ -75,7 +73,7 @@ public class AvatarView extends RoundedImageView {
 //    }
 //
 //    public Task loadNewPhotoByPhoto(Photo photo, final int placeHolder) {
-//        self.configureAvatar(placeHolder);
+//        this.configureAvatar(placeHolder);
 //
 //        return photo.getThumbanilImage()
 //                .onSuccess(new Continuation() {
@@ -83,7 +81,7 @@ public class AvatarView extends RoundedImageView {
 //                    public Object then(Task task) throws Exception {
 //
 //                        final Bitmap bitmap = (Bitmap) task.getResult();
-//                        self.setImageBitmap(bitmap);
+//                        this.setImageBitmap(bitmap);
 //
 //                        return null;
 //                    }

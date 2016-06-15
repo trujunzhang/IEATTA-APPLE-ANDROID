@@ -5,17 +5,13 @@ import com.ieatta.android.extensions.storage.models.RowModel;
 
 import java.util.LinkedHashMap;
 
-/**
- * Created by djzhang on 12/2/15.
- */
+
 public class CellTypeUtils {
     public CellType getModelType(int viewType) {
-        Class aClass = self.rowTypes.get(new Integer(viewType));
-        int layResId = self.modelTypes.get(aClass).intValue();
+        Class aClass = this.rowTypes.get(new Integer(viewType));
+        int layResId = this.modelTypes.get(aClass).intValue();
         return new CellType(aClass, layResId);
     }
-
-    private CellTypeUtils self = this;
     /**
      * HashMap:
      * key: cell's type, also is viewType.
@@ -28,15 +24,15 @@ public class CellTypeUtils {
     public void registerType(CellType type) {
         modelTypes.put(type.cellClass, type.layoutResId);
 
-        if (self.isExistRegisterType(type.cellClass) == false) {
-            int size = self.rowTypes.size();
-            self.rowTypes.put(new Integer(size), type.cellClass);
+        if (this.isExistRegisterType(type.cellClass) == false) {
+            int size = this.rowTypes.size();
+            this.rowTypes.put(new Integer(size), type.cellClass);
         }
     }
 
     public int getRowModelType(RowModel rowModel) {
-        for (Integer index : self.rowTypes.keySet()) {
-            Class classzz = self.rowTypes.get(index);
+        for (Integer index : this.rowTypes.keySet()) {
+            Class classzz = this.rowTypes.get(index);
             if (classzz == null) {
                 int x = 0;
 //                assert("not found class type: "+classzz.getName()+",you need to register it.");
@@ -49,8 +45,8 @@ public class CellTypeUtils {
     }
 
     private boolean isExistRegisterType(Class aClass) {
-        for (Integer index : self.rowTypes.keySet()) {
-            Class classzz = self.rowTypes.get(index);
+        for (Integer index : this.rowTypes.keySet()) {
+            Class classzz = this.rowTypes.get(index);
             if (aClass.equals(classzz)) {
                 return true;
             }

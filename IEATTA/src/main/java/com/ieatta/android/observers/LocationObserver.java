@@ -9,7 +9,6 @@ import com.parse.ParseGeoPoint;
 import java.util.Stack;
 
 public class LocationObserver {
-    private LocationObserver self = this;
     public static final LocationObserver sharedInstance = new LocationObserver();
 
     private ParseGeoPoint DefaultGeoPoint = new ParseGeoPoint(0.0, 0.0);
@@ -18,7 +17,7 @@ public class LocationObserver {
     private Stack<ParseGeoPoint> observerStack = new Stack<>();
 
     public ParseGeoPoint getCurrentPFGeoPoint() {
-        return self.currentGeoPoint;
+        return this.currentGeoPoint;
     }
 
     public void updateLocation(Location location) {
@@ -28,14 +27,14 @@ public class LocationObserver {
         ParseGeoPoint newPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
         double distance = (currentGeoPoint.distanceInKilometersTo(newPoint)) * 1000;
         if (distance > 10) {
-            self.checkLocationAndNotification(newPoint);
+            this.checkLocationAndNotification(newPoint);
         }
     }
 
     private void checkLocationAndNotification(ParseGeoPoint newPoint) {
-        boolean isEmpty = self.observerStack.empty();
+        boolean isEmpty = this.observerStack.empty();
 
-        self.observerStack.push(newPoint);
+        this.observerStack.push(newPoint);
 
         // If the last is empty, then notify.
         if (isEmpty == true) {
@@ -44,8 +43,8 @@ public class LocationObserver {
     }
 
     private void notifyCurrentLocationDidChange() {
-        ParseGeoPoint pop = self.observerStack.pop();
-        self.currentGeoPoint = pop;
+        ParseGeoPoint pop = this.observerStack.pop();
+        this.currentGeoPoint = pop;
         NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PACurrentLocationDidChangeNotification, null);
     }
 

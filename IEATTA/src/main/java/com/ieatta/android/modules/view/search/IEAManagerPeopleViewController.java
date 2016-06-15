@@ -30,9 +30,6 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
         sectionTeam;//= 0
     }
 
-
-    private IEAManagerPeopleViewController self = this;
-
     private EditText searchTextView;
     private ImageView search_clear_Button;
 
@@ -50,18 +47,18 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.setRightBarButtonItem(R.string.add, new View.OnClickListener() {
+        this.setRightBarButtonItem(R.string.add, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                self.addPeopleAction();
+                IEAManagerPeopleViewController.this.addPeopleAction();
             }
         });
 
-        self.searchTextView = (EditText) self.findViewById(R.id.searchTextView);
-        self.search_clear_Button = (ImageView) self.findViewById(R.id.search_clear);
+        this.searchTextView = (EditText) this.findViewById(R.id.searchTextView);
+        this.search_clear_Button = (ImageView) this.findViewById(R.id.search_clear);
 
-        self.searchTextView.setHint(R.string.Search_Hint_Team);
-        self.searchTextView.addTextChangedListener(new TextWatcher() {
+        this.searchTextView.setHint(R.string.Search_Hint_Team);
+        this.searchTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -69,23 +66,23 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                self.keyword = s.toString();
+                IEAManagerPeopleViewController.this.keyword = s.toString();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                self.queryTeams(self.keyword);
+                IEAManagerPeopleViewController.this.queryTeams(IEAManagerPeopleViewController.this.keyword);
             }
         });
 
-        self.search_clear_Button.setOnClickListener(new View.OnClickListener() {
+        this.search_clear_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                self.searchTextView.setText("");
+                IEAManagerPeopleViewController.this.searchTextView.setText("");
             }
         });
 
-        self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ManagerPeopleSection.sectionTeam.ordinal());
+        this.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ManagerPeopleSection.sectionTeam.ordinal());
     }
 
     @Override
@@ -101,15 +98,15 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 //                .onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
 //                    public Task<Boolean> then(Task<List > task) throws Exception {
-//                        self.fetchedTeam = task.getResult();
+//                        this.fetchedTeam = task.getResult();
 //
 //                        // Next, fetch related photos
-//                        return self.getPhotosForModelsTask(task);
+//                        return this.getPhotosForModelsTask(task);
 //                    }
 //                }).onSuccess(new Continuation<Boolean, Object>() {
 //            @Override
 //            public Object then(Task<Boolean> task) throws Exception {
-//                self.setSectionItems(self.fetchedTeam, ManagerPeopleSection.sectionTeam.ordinal());
+//                this.setSectionItems(this.fetchedTeam, ManagerPeopleSection.sectionTeam.ordinal());
 //                return null;
 //            }
 //        }, Task.UI_THREAD_EXECUTOR);
@@ -117,26 +114,26 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
 
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-        self.selectedModel = (DBTeam) model;
-        self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
+        this.selectedModel = (DBTeam) model;
+        this.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, this);
     }
 
     // MARK: Navigation item actions
     private void addPeopleAction() {
-        self.newModel = true;
-        self.selectedModel = new DBTeam();
-        self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
+        this.newModel = true;
+        this.selectedModel = new DBTeam();
+        this.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, this);
     }
 
     @Override
     protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
         /// Show detailed people
-//        self.setTransferedModelForEdit(sender, self.selectedModel, self.newModel);
+//        this.setTransferedModelForEdit(sender, this.selectedModel, this.newModel);
     }
 
     @Override
     protected void PeopleWasCreated(NSNotification note) {
-        self.queryTeams(self.keyword);
+        this.queryTeams(this.keyword);
     }
 
 }

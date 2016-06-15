@@ -33,7 +33,6 @@ import bolts.Continuation;
 import bolts.Task;
 
 public class ViewPagerFragment extends Fragment {
-//    private ViewPagerFragment self = this;
 //    private static final String BUNDLE_ASSET = "asset";
 //
 //    private int asset = -1;
@@ -57,9 +56,9 @@ public class ViewPagerFragment extends Fragment {
 //        }
 //
 //        if (asset != -1) {
-//            self.imageView = (SubsamplingScaleImageView) rootView.findViewById(R.id.imageView);
+//            this.imageView = (SubsamplingScaleImageView) rootView.findViewById(R.id.imageView);
 //            Photo photo = (Photo) IntentCache.sharedInstance.photoGalleryItem.get(this.asset);
-//            self.showImage(photo);
+//            this.showImage(photo);
 //        }
 //
 //        return rootView;
@@ -77,19 +76,19 @@ public class ViewPagerFragment extends Fragment {
 //                    @Override
 //                    public Task<Boolean> then(Task<Boolean> task) throws Exception {
 //                        Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
-//                        return self.showImage(image, false);
+//                        return this.showImage(image, false);
 //                    }
 //                }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
 //            @Override
 //            public Task<Boolean> then(Task<Boolean> task) throws Exception {
 //                Bitmap image = OriginalImageUtils.sharedInstance.getTakenPhoto(photo);
-//                return self.showImage(image, false);
+//                return this.showImage(image, false);
 //            }
 //        }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
 //            @Override
 //            public Task<Boolean> then(Task<Boolean> task) throws Exception {
 //                Bitmap image = ThumbnailImageUtils.sharedInstance.getTakenPhoto(photo);
-//                return self.showImage(image, true);
+//                return this.showImage(image, true);
 //            }
 //        }).onSuccessTask(new Continuation<Boolean, Task<Void>>() {
 //            @Override
@@ -100,7 +99,7 @@ public class ViewPagerFragment extends Fragment {
 //            @Override
 //            public Object then(final Task<Void> task) throws Exception {
 //                Bitmap image = CacheImageUtils.sharedInstance.getTakenPhoto(photo);
-//                return self.showImage(image, false);
+//                return this.showImage(image, false);
 //            }
 //        });
 //    }
@@ -110,11 +109,11 @@ public class ViewPagerFragment extends Fragment {
 //            return Task.forResult(true);
 //        }
 //
-//        return self.convertImageView(image).onSuccessTask(new Continuation<Bitmap, Task<Boolean>>() {
+//        return this.convertImageView(image).onSuccessTask(new Continuation<Bitmap, Task<Boolean>>() {
 //            @Override
 //            public Task<Boolean> then(final Task<Bitmap> task) throws Exception {
 //
-//                self.imageView.setImage(ImageSource.bitmap(task.getResult()));
+//                this.imageView.setImage(ImageSource.bitmap(task.getResult()));
 //                if (shouldNextTask == true) {
 //                    return Task.forResult(true);
 //                }

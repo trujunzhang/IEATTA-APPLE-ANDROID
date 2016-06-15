@@ -33,7 +33,6 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     enum ChoicePeopleSection {
         sectionPeople,  //= 0
     }
-    private IEAChoicePeopleViewController self = this;
 
     private TextView infoLabel;
 
@@ -50,25 +49,25 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        self.orderedPeople = IntentCache.sharedInstance.orderedPeople;
+//        this.orderedPeople = IntentCache.sharedInstance.orderedPeople;
 
         // Do any additional setup after loading the view.
-//        assert(self.orderedPeople != nil, "Must setup orderedPeople's instance.")
-//        assert(self.delegate != nil, "Must setup delegate's instance.")
+//        assert(this.orderedPeople != nil, "Must setup orderedPeople's instance.")
+//        assert(this.delegate != nil, "Must setup delegate's instance.")
 
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "PeopleWasCreated:", name: PAPeopleCreatedNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(this, selector: "PeopleWasCreated:", name: PAPeopleCreatedNotification, object: nil)
 
-//        self.navigationItem.rightBarButtonItem  = UIBarButtonItem(title: L10n.AddRightButton.string,  style: .Plain, target: self, action: "addPeopleAction:")
-        self.setRightBarButtonItem(R.string.Add_Right_Button, new View.OnClickListener() {
+//        this.navigationItem.rightBarButtonItem  = UIBarButtonItem(title: L10n.AddRightButton.string,  style: .Plain, target: this, action: "addPeopleAction:")
+        this.setRightBarButtonItem(R.string.Add_Right_Button, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                self.addPeopleAction();
+                IEAChoicePeopleViewController.this.addPeopleAction();
             }
         });
 
-        self.infoLabel = (TextView) self.findViewById(R.id.emptyInfoTextView);
+        this.infoLabel = (TextView) this.findViewById(R.id.emptyInfoTextView);
 
-        self.queryPeopleOrderedList();
+        this.queryPeopleOrderedList();
     }
 
     @Override
@@ -81,26 +80,26 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
 //            @Override
 //            public Task<List > then(Task<List > task) throws Exception {
 //                // Next, filter ordered people
-//                return Team.filterFrom(task, self.orderedPeople);
+//                return Team.filterFrom(task, this.orderedPeople);
 //            }
 //        }).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //            @Override
 //            public Task<Boolean> then(Task<List > task) throws Exception {
-//                self.fetchedPeople = task.getResult();
+//                this.fetchedPeople = task.getResult();
 //                // Next, fetch related photos
-//                return self.getPhotosForModelsTask(task);
+//                return this.getPhotosForModelsTask(task);
 //            }
 //        }).onSuccess(new Continuation<Boolean, Void>() {
 //            @Override
 //            public Void then(Task<Boolean> task) throws Exception {
 //
-//                self.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.getType());
-//                self.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, self), ChoicePeopleSection.sectionPeople.ordinal(), IEAChoicePeopleHeaderCell.getType());
+//                this.setRegisterHeaderClass(IEAChoicePeopleHeaderCell.getType());
+//                this.appendSectionTitleCell(new SectionChoicePeopleCellModel(IEAEditKey.Section_Title, this), ChoicePeopleSection.sectionPeople.ordinal(), IEAChoicePeopleHeaderCell.getType());
 //
-//                self.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
-//                self.setSectionItems(self.fetchedPeople, ChoicePeopleSection.sectionPeople.ordinal());
+//                this.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
+//                this.setSectionItems(this.fetchedPeople, ChoicePeopleSection.sectionPeople.ordinal());
 //
-//                self.configureDetailSection(self.fetchedPeople,R.string.Empty_for_Friends,IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
+//                this.configureDetailSection(this.fetchedPeople,R.string.Empty_for_Friends,IEAPeopleInfoCell.getType(), ChoicePeopleSection.sectionPeople.ordinal());
 //
 //                return null;
 //            }
@@ -111,36 +110,36 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
         NSNotificationCenter.defaultCenter().postNotificationName(NotifyType.PANotificationChoicePerson, model);
-        self.navigationController.popViewControllerAnimated(true);
+        this.popViewControllerAnimated(true);
     }
 
     @Override
     protected void segueForEditPeopleViewController(IEAEditPeopleViewController destination, Intent sender) {
         // Add people
-//        self.setTransferedModelForEdit(sender, new Team(), true);
+//        this.setTransferedModelForEdit(sender, new Team(), true);
     }
 
     // MARK: NSNotificationCenter notification handlers
     @Override
     protected void PeopleWasCreated(NSNotification note) {
-        self.queryPeopleOrderedList();
+        this.queryPeopleOrderedList();
     }
 
     // MARK: Navigation item actions
     private void addPeopleAction() {
-        self.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, self);
+        this.performSegueWithIdentifier(MainSegueIdentifier.editPeopleSegueIdentifier, this);
     }
 
     public void configureDetailSection(List items,int emptyInfoResId,CellType type, int forSectionIndex){
 
         if(items.size() == 0){
-            self.infoLabel.setVisibility(View.VISIBLE);
-            self.infoLabel.setText(emptyInfoResId);
+            this.infoLabel.setVisibility(View.VISIBLE);
+            this.infoLabel.setText(emptyInfoResId);
         }else{
-            self.infoLabel.setVisibility(View.GONE);
+            this.infoLabel.setVisibility(View.GONE);
 
-            self.setRegisterCellClass(type, forSectionIndex);
-            self.setSectionItems(items, forSectionIndex);
+            this.setRegisterCellClass(type, forSectionIndex);
+            this.setSectionItems(items, forSectionIndex);
         }
     }
 }

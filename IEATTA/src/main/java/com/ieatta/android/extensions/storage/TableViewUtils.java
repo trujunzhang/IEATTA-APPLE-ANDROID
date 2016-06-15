@@ -9,35 +9,31 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by djzhang on 12/2/15.
- */
-public class TableViewUtils {
-    private TableViewUtils self = this;
 
+public class TableViewUtils {
     private HashMap<Integer, Integer> sectionInfo;
     private int rowLength = 0;
 
     public HashMap<Integer, SectionModel> sections = new LinkedHashMap<>();
 
     public void generateItems(HashMap<Integer, SectionModel> sections) {
-        self.sections = sections;
+        this.sections = sections;
 
         Set<Integer> keySet = sections.keySet();
         List<Integer> indexs = new LinkedList<>(keySet);
         Collections.sort(indexs);
 
-        self.sectionInfo = new LinkedHashMap<>();
-        self.rowLength = 0;
+        this.sectionInfo = new LinkedHashMap<>();
+        this.rowLength = 0;
         for (Integer integer : indexs) {
-            Integer itemsCountInSection = self.getItemsCountInSection(integer);
+            Integer itemsCountInSection = this.getItemsCountInSection(integer);
             rowLength += itemsCountInSection;
             sectionInfo.put(integer, itemsCountInSection);
         }
     }
 
     private Integer getItemsCountInSection(Integer integer) {
-        SectionModel sectionModel = self.sections.get(integer);
+        SectionModel sectionModel = this.sections.get(integer);
         return sectionModel.numberOfItems();
     }
 
@@ -49,15 +45,15 @@ public class TableViewUtils {
     public RowModel getItem(int position) {
         int total = 0;
 
-        for (Integer key : self.sectionInfo.keySet()) {
-            Integer count = self.sectionInfo.get(key);
+        for (Integer key : this.sectionInfo.keySet()) {
+            Integer count = this.sectionInfo.get(key);
 
             int begin = total;
             int end = total + count;
 
             if ((position + 1) >= begin && (position + 1) <= end) {
                 int row = position - total;
-                return self.sections.get(key).getRowModel(row);
+                return this.sections.get(key).getRowModel(row);
             }
             total = end;
         }
@@ -67,8 +63,8 @@ public class TableViewUtils {
     public int getItemViewType(int position) {
         int total = 0;
 
-        for (Integer key : self.sectionInfo.keySet()) {
-            Integer count = self.sectionInfo.get(key);
+        for (Integer key : this.sectionInfo.keySet()) {
+            Integer count = this.sectionInfo.get(key);
 
             int begin = total;
             int end = total + count;
