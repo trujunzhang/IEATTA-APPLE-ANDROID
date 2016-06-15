@@ -9,9 +9,9 @@ import org.ieatta.database.provide.PhotoUsedType;
 import org.ieatta.database.query.LocalDatabaseQuery;
 import org.ieatta.database.realm.RealmModelReader;
 import org.ieatta.server.cache.ThumbnailImageUtil;
-import org.ieatta.tasks.DBConvert;
+//import org.ieatta.tasks.DBConvert;
 import org.ieatta.tasks.FragmentTask;
-import org.ieatta.tasks.RestaurantDetailTask;
+//import org.ieatta.tasks.RestaurantDetailTask;
 
 import java.io.File;
 import java.util.LinkedList;

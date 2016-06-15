@@ -8,7 +8,7 @@ import android.view.View;
 import org.ieatta.database.models.DBRecipe;
 
 import org.ieatta.server.cache.ThumbnailImageUtil;
-import org.ieatta.tasks.DBConvert;
+//import org.ieatta.tasks.DBConvert;
 import org.ieatta.tasks.FragmentTask;
 
 import java.io.File;

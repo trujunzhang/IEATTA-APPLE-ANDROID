@@ -26,7 +26,7 @@ import android.widget.TextView;
 import org.ieatta.database.models.DBPhoto;
 import org.ieatta.database.provide.PQueryModelType;
 import org.ieatta.database.query.LocalDatabaseQuery;
-import org.ieatta.tasks.DBConvert;
+//import org.ieatta.tasks.DBConvert;
 import org.wikipedia.Site;
 import org.wikipedia.ViewAnimations;
 import org.wikipedia.activity.ActivityUtil;
