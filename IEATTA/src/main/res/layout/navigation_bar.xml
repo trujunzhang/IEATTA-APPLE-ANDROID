@@ -3,8 +3,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="44.0dip"
-        android:theme="@style/IEATTAAppTheme.AppBarOverlay">
+        android:layout_height="44.0dip">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -14,14 +13,14 @@
                 android:id="@+id/leftBarButtonItem"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="8.0dip"
-                android:visibility="gone"
+                android:drawableLeft="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+                android:gravity="center_vertical"
                 android:text="@string/Back"
                 android:textColor="@color/white"
-                android:gravity="center_vertical"
-                android:drawableLeft="@drawable/abc_ic_ab_back_mtrl_am_alpha"
-                android:layout_gravity="left|center_vertical"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/textView"
@@ -30,8 +29,8 @@
                 android:layout_gravity="center_horizontal|top"
                 android:layout_marginTop="4dp"
                 android:text="@string/App_Title"
-                android:textSize="16.0dp"
                 android:textColor="#000000"
+                android:textSize="16.0dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -49,13 +48,13 @@
                 android:id="@+id/rightBarButtonItem"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:visibility="gone"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:gravity="center_vertical"
                 android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@color/transparent"
+                android:gravity="center_vertical"
                 android:text="Save"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
         </FrameLayout>
 
 
