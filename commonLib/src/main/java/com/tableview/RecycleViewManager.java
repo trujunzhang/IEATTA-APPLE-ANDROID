@@ -132,7 +132,7 @@ public class RecycleViewManager {
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
-//        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
+        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex, CellType type) {

@@ -8,9 +8,6 @@ import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 
-/**
- * Created by djzhang on 12/2/15.
- */
 public class IEAChoicePeopleHeaderCell extends IEAViewHolder {
     public static CellType getType() {
         return new CellType(IEAChoicePeopleHeaderCell.class, R.layout.choice_people_header_cell);

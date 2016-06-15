@@ -7,8 +7,13 @@ import android.support.annotation.VisibleForTesting;
 import android.view.View;
 
 import com.ieatta.android.IEAApplication;
+import com.ieatta.android.R;
+import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
+import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.tableview.adapter.NSIndexPath;
+import com.tableview.model.IEAHeaderViewModel;
 
 import org.ieatta.database.models.DBRestaurant;
 import org.ieatta.database.query.LocalDatabaseQuery;
@@ -57,7 +62,7 @@ public class NearRestaurantsTask extends FragmentTask {
         });
     }
 
-//    @Override
+    //    @Override
 //    public Task<Void> executeUpdateTask(UpdateEntry entry) {
 //
 //        return LocalDatabaseQuery.queryNearRestaurants(IEAApp.getInstance().lastLocation, this.realmList).onSuccess(new Continuation<RealmResults<DBRestaurant>, Void>() {
@@ -71,17 +76,18 @@ public class NearRestaurantsTask extends FragmentTask {
 //        }, Task.UI_THREAD_EXECUTOR);
 //    }
 //
-//    @Override
-//    public void prepareUI() {
-//        super.prepareUI();
-//
-//        this.manager.setHeaderItem(new IEAHeaderViewModel(this.model.getActionbarHeight()), IEAHeaderView.getType());
-//        this.manager.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.section_restaurants.ordinal());
-//    }
-//
-//    @Override
-//    public void postUI() {
+    @Override
+    public void prepareUI() {
+        super.prepareUI();
+
+        SectionTitleCellModel sectionTitleCellModel = new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants);
+        this.manager.appendSectionTitleCell(sectionTitleCellModel, NearRestaurantSection.section_restaurants.ordinal());
+    }
+
+    @Override
+    public void postUI() {
+        this.manager.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(), NearRestaurantSection.section_restaurants.ordinal());
 //        this.manager.setAndRegisterSectionItems(IEANearRestaurantsCell.getType(), this.restaurants, NearRestaurantSection.section_restaurants.ordinal());
-//    }
+    }
 
 }

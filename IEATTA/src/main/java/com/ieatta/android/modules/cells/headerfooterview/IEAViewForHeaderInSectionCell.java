@@ -9,9 +9,7 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 
-/**
- * Created by djzhang on 12/2/15.
- */
+
 public class IEAViewForHeaderInSectionCell extends IEAViewHolder {
     public static CellType getType() {
         return new CellType(IEAViewForHeaderInSectionCell.class, R.layout.view_for_header_in_section_cell);

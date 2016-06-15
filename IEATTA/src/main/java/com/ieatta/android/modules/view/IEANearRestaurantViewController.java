@@ -27,12 +27,6 @@ import bolts.Continuation;
 import bolts.Task;
 
 public class IEANearRestaurantViewController extends LocationObserveActivity {
-    enum NearRestaurantSection {
-        sectionMoreItems,//= 0
-        sectionRestaurants, //= 1
-    }
-
-    private IEANearRestaurantViewController self = this;
     private List fetchedRestaurants;
 
     private NearRestaurantsTask task;
@@ -41,22 +35,20 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Register Cells by class.
-        self.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(), NearRestaurantSection.sectionRestaurants.ordinal());
 
-        self.configModelsInMoreSection();
+        this.configModelsInMoreSection();
 
         // TOOD djzhang(test)
-//        self.queryNearRestaurant(null);
+//        this.queryNearRestaurant(null);
     }
 
     /// Add rows for section "More".
     private void configModelsInMoreSection() {
-        self.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.getType(), NearRestaurantSection.sectionMoreItems.ordinal());
+        this.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.getType(), NearRestaurantSection.sectionMoreItems.ordinal());
 
-        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
+        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
 
-        self.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
+        this.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.sectionMoreItems.ordinal());
     }
 
     @NonNull
@@ -84,20 +76,20 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
 //                .onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //                    @Override
 //                    public Task<Boolean> then(Task<List > task) throws Exception {
-//                        self.fetchedRestaurants = task.getResult();
-//                        self.fetchedRestaurants = RestaurantSortUtils.sort(self.fetchedRestaurants);
+//                        this.fetchedRestaurants = task.getResult();
+//                        this.fetchedRestaurants = RestaurantSortUtils.sort(this.fetchedRestaurants);
 //
 //                        // Next, fetch related photos
-//                        return self.getPhotosForModelsTask(task);
+//                        return this.getPhotosForModelsTask(task);
 //                    }
 //                }).onSuccess(new Continuation<Boolean, Void>() {
 //            @Override
 //            public Void then(Task<Boolean> task) throws Exception {
 //
-//                if (self.fetchedRestaurants.size() != 0) {
-//                    self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
+//                if (this.fetchedRestaurants.size() != 0) {
+//                    this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.sectionRestaurants.ordinal());
 //                }
-//                self.setSectionItems(self.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
+//                this.setSectionItems(this.fetchedRestaurants, NearRestaurantSection.sectionRestaurants.ordinal());
 //
 ////                LocationObserver.sharedInstance.popLastLocation();
 //
@@ -109,10 +101,10 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     @Override
     public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
         if (indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()) {
-            self.whenSelectedCellTaped(((IEANearRestaurantMore) model).identifier);
+            this.whenSelectedCellTaped(((IEANearRestaurantMore) model).identifier);
         } else {
-//            self.selectedModel = (Restaurant) model;
-//            self.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
+//            this.selectedModel = (Restaurant) model;
+//            this.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
         }
     }
 

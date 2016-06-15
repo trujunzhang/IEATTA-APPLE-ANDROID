@@ -10,9 +10,6 @@ import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
 
-/**
- * Created by djzhang on 12/2/15.
- */
 public class IEAPhotoGalleryFooterCell extends IEAViewHolder {
     public static CellType getType() {
         return new CellType(IEAPhotoGalleryFooterCell.class, R.layout.businesspage_section_footer);
