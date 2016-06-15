@@ -6,8 +6,22 @@
     <color name="colorStatus">#000000</color>
     <!--<color name="colorStatus">#86CBEA</color>-->
 
-    <!--the following is yelp's colors-->
+    <color name="nav_background_light">#f0f0f0</color>
+    <color name="nav_text_light">#303030</color>
+    <color name="list_item_text_primary_light">#333</color>
+    <color name="list_item_text_secondary_light">#777</color>
 
+    <color name="window_background">#ffffff</color>
+    <!-- TODO: replace this color when changing the toolbar color. -->
+    <color name="actionbar_background">@color/window_background</color>
+    <color name="actionbar_highlight">#808080</color>
+    <color name="search_text_hint">#808080</color>
+    <color name="lead_gradient_start">#b8000000</color>
+    <color name="main_toolbar_background">@color/actionbar_background</color>
+    <color name="status_bar_background">#1d1d1d</color>
+    <color name="grey_700">#616161</color>
+
+    <!--the following is yelp's colors-->
     <color name="BlackText">#ff222222</color>
     <color name="BlueText">#ff0077bc</color>
     <color name="CyanText">#ff0097ec</color>

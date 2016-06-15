@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
-import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
-
 
 public class IEAAppTableViewController extends AppCompatActivity {
     private RecyclerView recyclerView;
