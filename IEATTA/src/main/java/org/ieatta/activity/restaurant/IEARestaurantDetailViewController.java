@@ -4,72 +4,48 @@ import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 
 public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableViewController {
 
-    private IEARestaurantDetailViewController self = this;
-
-//    IEARestaurantDetailViewController transfer(Restaurant selectedModel) {
-//        self.restaurant = selectedModel;
-//        return self;
-//    }
-//
-//    @Override
-//    public boolean shouldShowHUD() {
-//        return true;
-//    }
-//
-//    // Transferd Model from previous page.
-//    private Restaurant restaurant;
-//    // Selected model from tableview.
-//    private ParseModelAbstract selectedModel;
-//    // Fetched list by quering database.
-//    private List  fetchedEvents = new LinkedList<>();
-//
-//    @Override
-//    public boolean havePhotoGallery() {
-//        return true;
-//    }
-//
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //
-//        self.transfer((Restaurant) self.getTransferedModel());
+//        this.transfer((Restaurant) this.getTransferedModel());
 //
 //        // Do any additional setup after loading the view.
-////        assert(self.restaurant != nil, "Must setup selected restaurant.")
+////        assert(this.restaurant != nil, "Must setup selected restaurant.")
 //
-////        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RestaurantWasCreated:", name: PAModelCreatedRestaurantNotification, object: nil)
-////        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
+////        NSNotificationCenter.defaultCenter().addObserver(this, selector: "RestaurantWasCreated:", name: PAModelCreatedRestaurantNotification, object: nil)
+////        NSNotificationCenter.defaultCenter().addObserver(this, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
 //
 //
-//        Event.queryEventsRelatedRestaurant(self.restaurant)
+//        Event.queryEventsRelatedRestaurant(this.restaurant)
 //                .onSuccessTask(new Continuation<List , Task<List >>() {
 //                    @Override
 //                    public Task<List > then(Task<List > task) throws Exception {
-//                        self.fetchedEvents = task.getResult();
+//                        this.fetchedEvents = task.getResult();
 //
-//                        return Photo.queryPhotosByRestaurant(self.restaurant);
+//                        return Photo.queryPhotosByRestaurant(this.restaurant);
 //                    }
 //                }).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //            @Override
 //            public Task<Boolean> then(Task<List > task) throws Exception {
-//                self.fetchedPhotosTask = task;
+//                this.fetchedPhotosTask = task;
 //
 //                // Next, Load Reviews.
-//                return self.getReviewsRelatedModelQueryTask();
+//                return this.getReviewsRelatedModelQueryTask();
 //            }
 //        }).onSuccess(new Continuation<Boolean, Object>() {
 //            @Override
 //            public Object then(Task<Boolean> task) throws Exception {
-//                self.setRegisterCellClass(IEARestaurantDetailHeaderCell.getType(), RestaurantDetailSection.sectionHeader.ordinal());
-//                self.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(self, self.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
+//                this.setRegisterCellClass(IEARestaurantDetailHeaderCell.getType(), RestaurantDetailSection.sectionHeader.ordinal());
+//                this.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(this, this.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
 //
-//                self.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
-//                self.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.getType(), RestaurantDetailSection.sectionEvents.ordinal());
-//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
+//                this.showGoogleMapAddress(RestaurantDetailSection.sectionGoogleMapAddress.ordinal());
+//                this.setRegisterCellClassWhenSelected(IEARestaurantEventsCell.getType(), RestaurantDetailSection.sectionEvents.ordinal());
+//                this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.sectionEvents.ordinal());
 //
-//                self.configureDetailSection(self.fetchedEvents, R.string.Empty_for_Event, IEARestaurantEventsCell.getType(),RestaurantDetailSection.sectionEvents.ordinal());
-//                self.configureReviewsSection();
-//                self.configurePhotoGallerySection(fetchedPhotosTask);
+//                this.configureDetailSection(this.fetchedEvents, R.string.Empty_for_Event, IEARestaurantEventsCell.getType(),RestaurantDetailSection.sectionEvents.ordinal());
+//                this.configureReviewsSection();
+//                this.configurePhotoGallerySection(fetchedPhotosTask);
 //
 //                return null;
 //            }
@@ -85,7 +61,7 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //    // MARK: Override IEABaseTableViewController methods
 //    @Override
 //    public ParseModelAbstract getPageModel() {
-//        return self.restaurant;
+//        return this.restaurant;
 //    }
 //
 //    // MARK: Override IEAPhotoGalleryViewController methods
@@ -98,9 +74,9 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
 //        if (indexPath.section == RestaurantDetailSection.sectionEvents.ordinal()) {
 //            Event event = (Event) model;
-//            event.belongToModel = self.restaurant;
-//            self.selectedModel = event;
-//            self.performSegueWithIdentifier(MainSegueIdentifier.detailEventSegueIdentifier, self);
+//            event.belongToModel = this.restaurant;
+//            this.selectedModel = event;
+//            this.performSegueWithIdentifier(MainSegueIdentifier.detailEventSegueIdentifier, this);
 //        } else {
 //            super.whenSelectedEvent(model, indexPath);
 //        }
@@ -109,45 +85,45 @@ public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableVi
 //    @Override
 //    protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender) {
 //        // Edit Restaurant
-//        self.setTransferedModelForEdit(sender, self.restaurant);
+//        this.setTransferedModelForEdit(sender, this.restaurant);
 //    }
 //
 //    @Override
 //    protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender) {
 //        /// Show detailed event
-//        self.setTransferedModel(sender, self.selectedModel);
+//        this.setTransferedModel(sender, this.selectedModel);
 //    }
 //
 //    @Override
 //    protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
 //        // Add Event
-//        self.setTransferedModelForEdit(sender, new Event(self.restaurant), true);
+//        this.setTransferedModelForEdit(sender, new Event(this.restaurant), true);
 //    }
 //
 //    // MARK: TableView header events
 //    public void performSegueForEditingModel() {
-//        self.performSegueWithIdentifier(MainSegueIdentifier.editRestaurantSegueIdentifier, self);
+//        this.performSegueWithIdentifier(MainSegueIdentifier.editRestaurantSegueIdentifier, this);
 //    }
 //
 //    public void performSegueForAddingEvent() {
-//        self.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier, self);
+//        this.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier, this);
 //    }
 //
 //    // MARK: NSNotificationCenter notification handlers
 //    @Override
 //    protected void RestaurantWasCreated(NSNotification note) {
-//        setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(self, self.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
+//        setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(this, this.restaurant)), RestaurantDetailSection.sectionHeader.ordinal());
 //    }
 //
 //    @Override
 //    protected void EventWasCreated(NSNotification note) {
 //        // 3. load events related restaurant.
-//        Event.queryEventsRelatedRestaurant(self.restaurant)
+//        Event.queryEventsRelatedRestaurant(this.restaurant)
 //                .onSuccess(new Continuation<List , Object>() {
 //                    @Override
 //                    public Object then(Task<List > task) throws Exception {
-//                        self.fetchedEvents = task.getResult();
-//                        self.configureDetailSection(self.fetchedEvents, R.string.Empty_for_Event,IEARestaurantEventsCell.getType(), RestaurantDetailSection.sectionEvents.ordinal());
+//                        this.fetchedEvents = task.getResult();
+//                        this.configureDetailSection(this.fetchedEvents, R.string.Empty_for_Event,IEARestaurantEventsCell.getType(), RestaurantDetailSection.sectionEvents.ordinal());
 //                        return null;
 //                    }
 //                });
