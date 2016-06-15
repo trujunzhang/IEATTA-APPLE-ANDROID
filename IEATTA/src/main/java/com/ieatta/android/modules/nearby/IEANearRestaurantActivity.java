@@ -54,11 +54,6 @@ public class IEANearRestaurantActivity extends LocationObserveActivity {
 //    protected void RestaurantWasCreated(NSNotification note) {
 //        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
 //    }
-//
-//    @Override
-//    protected void LocationDidChange(NSNotification note) {
-//        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
-//    }
 
     @Override
     protected void notifyLocationChanged(Location location) {
