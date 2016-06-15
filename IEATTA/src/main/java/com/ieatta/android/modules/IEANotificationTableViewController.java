@@ -7,7 +7,6 @@ import com.ieatta.android.notification.NSNotification;
 import de.greenrobot.event.EventBus;
 
 public class IEANotificationTableViewController extends IEAAppTableViewController {
-    private IEANotificationTableViewController self = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,33 +19,33 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
     public void onEventMainThread(NSNotification note) {
         switch (note.type) {
             case PAModelCreatedRestaurantNotification:
-                self.RestaurantWasCreated(note);
+                this.RestaurantWasCreated(note);
                 break;
             case PAModelCreateEventNotification:
-                self.EventWasCreated(note);
+                this.EventWasCreated(note);
                 break;
 
             /// For classes: (IEAOrderedRecipesViewController,IEAPhotoGalleryViewController)
             case PAModelTakenPhotoNotification:
-                self.TakenPhotoWasChanged(note);
+                this.TakenPhotoWasChanged(note);
                 break;
 
             case PAPeopleSelectedNotification:
                 break;
             case PAPeopleCreatedNotification:
-                self.PeopleWasCreated(note);
+                this.PeopleWasCreated(note);
                 break;
 
             case PARecipeCreatedNotification:
-                self.RecipeWasCreated(note);
+                this.RecipeWasCreated(note);
                 break;
 
             case PAReviewPostNotification:
-                self.ReviewWasCreated(note);
+                this.ReviewWasCreated(note);
                 break;
 
             case PACurrentLocationDidChangeNotification:
-                self.LocationDidChange(note);
+                this.LocationDidChange(note);
                 break;
             case PAFilterDistanceDidChangeNotification:
                 break;
@@ -57,7 +56,7 @@ public class IEANotificationTableViewController extends IEAAppTableViewControlle
             case PANotificationUserInfoForReadReviews:
                 break;
             case PANotificationChoicePerson:
-                self.didSelectPeople(note);
+                this.didSelectPeople(note);
                 break;
         }
     }

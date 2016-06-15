@@ -23,20 +23,18 @@ import com.ieatta.android.modules.view.photogallery.PhotoGalleryPagerActivity;
 import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
 
 public class IEAAppSegureTableViewController extends IEANotificationTableViewController implements RecyclerItemClickListener {
-    private IEAAppSegureTableViewController self = this;
-
     public void performSegueWithIdentifier(MainSegueIdentifier identifier, IEAAppTableViewController sender) {
         Intent intent = new Intent(EnvironmentUtils.sharedInstance.getGlobalContext(), identifier.getActivity());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        self.prepareForSegue(identifier, intent);
-        self.startActivity(intent);
+        this.prepareForSegue(identifier, intent);
+        this.startActivity(intent);
     }
 
     public void prepareForSegue(MainSegueIdentifier identifier, Intent sender) {
         switch (identifier) {
             // Four menus in the near restaurant page.
             case editRestaurantSegueIdentifier:
-                self.segueForEditRestaurantViewController(null, sender);
+                this.segueForEditRestaurantViewController(null, sender);
                 break;
             case searchRestaurantSegueIdentifier:
                 break;
@@ -46,45 +44,45 @@ public class IEAAppSegureTableViewController extends IEANotificationTableViewCon
                 break;
             // Four detail pages.
             case detailRestaurantSegueIdentifier:
-                self.segueForRestaurantDetailViewController(null, sender);
+                this.segueForRestaurantDetailViewController(null, sender);
                 break;
             case detailEventSegueIdentifier:
-                self.segueForEventDetailViewController(null, sender);
+                this.segueForEventDetailViewController(null, sender);
                 break;
             case detailOrderedRecipesSegueIdentifier:
-                self.segueForOrderedRecipesViewController(null, sender);
+                this.segueForOrderedRecipesViewController(null, sender);
                 break;
             case detailRecipeSegueIdentifier:
-                self.segueForRecipeDetailViewController(null, sender);
+                this.segueForRecipeDetailViewController(null, sender);
                 break;
 
             // Show all posted reviews for restaurant,recipe.
             case detailSeeReviewSegueIdentifier:
-                self.segueForSeeReviewsInDetailViewController(null, sender);
+                this.segueForSeeReviewsInDetailViewController(null, sender);
                 break;
             // Show detail review from review list.
             case detailReviewSegueIdentifier:
-                self.segueForReviewDetailViewController(null, sender);
+                this.segueForReviewDetailViewController(null, sender);
                 break;
             // Four new/edit model pages.(the following three, and restaurant)
             case editEventSegueIdentifier:
-                self.segueForEditEventViewController(null, sender);
+                this.segueForEditEventViewController(null, sender);
                 break;
             case editPeopleSegueIdentifier:
-                self.segueForEditPeopleViewController(null, sender);
+                this.segueForEditPeopleViewController(null, sender);
                 break;
             case editRecipeSegueIdentifier:
-                self.segueForEditRecipeViewController(null, sender);
+                this.segueForEditRecipeViewController(null, sender);
                 break;
             // Choice Person in the event page.
             case choicePeopleSegueIdentifier:
-                self.segueForChoicePeopleViewController(null, sender);
+                this.segueForChoicePeopleViewController(null, sender);
                 break;
             case postReviewSegueIdentifier:
-                self.segueForPostReviewViewController(null, sender);
+                this.segueForPostReviewViewController(null, sender);
                 break;
             case photoPagesControllerSegueIdentifier:
-                self.segueForPhotoPagesController(null, sender);
+                this.segueForPhotoPagesController(null, sender);
 
         }
     }
@@ -136,26 +134,26 @@ public class IEAAppSegureTableViewController extends IEANotificationTableViewCon
 
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
-        self.whenSelectedEvent(model, indexPath);
+        this.whenSelectedEvent(model, indexPath);
 //        if (isLongClick) {
-//            Toast.makeText(self, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
 //        } else {
-//            Toast.makeText(self, "#" + position + " - " + indexPath.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "#" + position + " - " + indexPath.toString(), Toast.LENGTH_SHORT).show();
 //        }
     }
 //
 //    protected ParseModelAbstract getTransferedModel() {
-//        return self.getTransferedModel(IntentCache.intentUUID);
+//        return this.getTransferedModel(IntentCache.intentUUID);
 //    }
 //
 //    protected ParseModelAbstract getTransferedModel(String name) {
-//        String intentUUID = self.getIntent().getExtras().getString(name);
+//        String intentUUID = this.getIntent().getExtras().getString(name);
 //        ParseModelAbstract transferedModel = IntentCache.sharedInstance.getIntentModel(intentUUID);
 //        return transferedModel;
 //    }
 //
 //    protected void setTransferedModel(Intent sender, ParseModelAbstract model) {
-//        self.setTransferedModel(sender, model, IntentCache.intentUUID);
+//        this.setTransferedModel(sender, model, IntentCache.intentUUID);
 //    }
 //
 //    protected void setTransferedModel(Intent sender, ParseModelAbstract model, String name) {
@@ -164,11 +162,11 @@ public class IEAAppSegureTableViewController extends IEANotificationTableViewCon
 //    }
 //
 //    protected void setTransferedModelForEdit(Intent sender, ParseModelAbstract model) {
-//        self.setTransferedModelForEdit(sender, model, false);
+//        this.setTransferedModelForEdit(sender, model, false);
 //    }
 //
 //    protected void setTransferedModelForEdit(Intent sender, ParseModelAbstract model, boolean newModel) {
-//        self.setTransferedModel(sender, model);
+//        this.setTransferedModel(sender, model);
 //        sender.putExtra(IntentCache.newModel, newModel);
 //    }
 }

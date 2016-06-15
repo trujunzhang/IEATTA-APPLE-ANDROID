@@ -15,7 +15,6 @@ import java.util.List;
 import bolts.Task;
 
 public class IEABaseTableViewController extends IEADTTableViewManagerViewController {
-    private IEABaseTableViewController self = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +44,21 @@ public class IEABaseTableViewController extends IEADTTableViewManagerViewControl
     }
 
     public void showGoogleMapAddress(int sectionIndex) {
-        self.setRegisterCellClass(IEAGoogleMapAddressCell.getType(), sectionIndex);
-        self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Current_Address), sectionIndex);
-//        self.setSectionItems(CollectionUtils.createList(self.getPageModel()), sectionIndex);
+        this.setRegisterCellClass(IEAGoogleMapAddressCell.getType(), sectionIndex);
+        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Current_Address), sectionIndex);
+//        this.setSectionItems(CollectionUtils.createList(this.getPageModel()), sectionIndex);
     }
 
 
     public void configureDetailSection(List items,int emptyInfoResId,CellType type, int forSectionIndex){
         if(items.size() == 0){
-            self.setRegisterCellClass(IEAEmptyInfoCell.getType(), forSectionIndex);
+            this.setRegisterCellClass(IEAEmptyInfoCell.getType(), forSectionIndex);
 
             String emptyInfo = getResources().getString(emptyInfoResId);
-            self.setSectionItems(CollectionUtils.createList(emptyInfo), forSectionIndex);
+            this.setSectionItems(CollectionUtils.createList(emptyInfo), forSectionIndex);
         }else{
-            self.setRegisterCellClass(type, forSectionIndex);
-            self.setSectionItems(items, forSectionIndex);
+            this.setRegisterCellClass(type, forSectionIndex);
+            this.setSectionItems(items, forSectionIndex);
         }
     }
 
