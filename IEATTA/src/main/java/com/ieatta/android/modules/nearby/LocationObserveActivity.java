@@ -22,8 +22,11 @@ import com.ieatta.android.observers.LocationObserver;
 
 import java.util.Iterator;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
+
+@RuntimePermissions
 public class LocationObserveActivity extends IEAPageActivity {
-    private LocationObserveActivity self = this;
     private LocationManager lm;
 
     private static final String TAG = "LocationObserveActivity";
@@ -32,7 +35,8 @@ public class LocationObserveActivity extends IEAPageActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        self.lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        this.lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         // 判断GPS是否正常启动
         if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -43,34 +47,7 @@ public class LocationObserveActivity extends IEAPageActivity {
             return;
         }
 
-        // 为获取地理位置信息时设置查询条件
-        String bestProvider = lm.getBestProvider(getCriteria(), true);
-        // 获取位置信息
-        // 如果不设置查询要求，getLastKnownLocation方法传人的参数为LocationManager.GPS_PROVIDER
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Location location = lm.getLastKnownLocation(bestProvider);
-        updateView(location);
-        // 监听状态
-        lm.addGpsStatusListener(listener);
-        // 绑定监听，有4个参数
-        // 参数1，设备：有GPS_PROVIDER和NETWORK_PROVIDER两种
-        // 参数2，位置信息更新周期，单位毫秒
-        // 参数3，位置变化最小距离：当位置距离变化超过此值时，将更新位置信息
-        // 参数4，监听
-        // 备注：参数2和3，如果参数3不为0，则以参数3为准；参数3为0，则通过时间来定时更新；两者为0，则随时刷新
-
-        // 1秒更新一次，或最小位移变化超过1米更新一次；
-        // 注意：此处更新准确度非常低，推荐在service里面启动一个Thread，在run中sleep(10000);然后执行handler.sendMessage(),更新位置
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
+        LocationObserveActivityPermissionsDispatcher.showUpdateLocationWithCheck(this);
     }
 
     // 位置监听
@@ -111,16 +88,6 @@ public class LocationObserveActivity extends IEAPageActivity {
          * GPS开启时触发
          */
         public void onProviderEnabled(String provider) {
-            if (ActivityCompat.checkSelfPermission(self, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(self, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
             Location location = lm.getLastKnownLocation(provider);
             updateView(location);
         }
@@ -209,6 +176,35 @@ public class LocationObserveActivity extends IEAPageActivity {
         // 设置对电源的需求
         criteria.setPowerRequirement(Criteria.POWER_LOW);
         return criteria;
+    }
+
+    @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+    void showUpdateLocation() {
+        // 为获取地理位置信息时设置查询条件
+        String bestProvider = lm.getBestProvider(getCriteria(), true);
+        // 获取位置信息
+        // 如果不设置查询要求，getLastKnownLocation方法传人的参数为LocationManager.GPS_PROVIDER
+        Location location = lm.getLastKnownLocation(bestProvider);
+        updateView(location);
+        // 监听状态
+        lm.addGpsStatusListener(listener);
+        // 绑定监听，有4个参数
+        // 参数1，设备：有GPS_PROVIDER和NETWORK_PROVIDER两种
+        // 参数2，位置信息更新周期，单位毫秒
+        // 参数3，位置变化最小距离：当位置距离变化超过此值时，将更新位置信息
+        // 参数4，监听
+        // 备注：参数2和3，如果参数3不为0，则以参数3为准；参数3为0，则通过时间来定时更新；两者为0，则随时刷新
+
+        // 1秒更新一次，或最小位移变化超过1米更新一次；
+        // 注意：此处更新准确度非常低，推荐在service里面启动一个Thread，在run中sleep(10000);然后执行handler.sendMessage(),更新位置
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // NOTE: delegate the permission handling to generated method
+        LocationObserveActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
 }
