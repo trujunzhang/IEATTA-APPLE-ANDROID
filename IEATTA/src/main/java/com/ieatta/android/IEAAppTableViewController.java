@@ -61,7 +61,7 @@ public class IEAAppTableViewController extends AppCompatActivity {
      * Default content view.
      */
     protected int getContentView() {
-        return R.layout.table_controller_view;
+        return R.layout.page_activity;
     }
 
     protected boolean hasRecycleView() {
