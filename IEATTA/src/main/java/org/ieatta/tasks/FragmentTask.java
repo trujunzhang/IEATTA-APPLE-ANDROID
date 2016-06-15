@@ -1,6 +1,7 @@
 package org.ieatta.tasks;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -36,6 +37,8 @@ import bolts.Task;
 import io.realm.Realm;
 
 public abstract class FragmentTask implements RecyclerOnItemClickListener {
+    protected static final String EXTRA_ID = "model_id";
+
     protected String mRestaurantUUID;
     protected String mEventUUID;
     protected String mTeamUUID;
@@ -127,6 +130,13 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
 
     private void reloadTableView() {
         manager.reloadTableView();
+    }
+
+    protected void nextPage(Intent intent) {
+        if (intent != null) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.startActivity(intent);
+        }
     }
 
     public void makeActivePage() {

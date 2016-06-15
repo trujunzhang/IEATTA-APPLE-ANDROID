@@ -2,11 +2,13 @@ package org.ieatta.tasks;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
+import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
 import com.tableview.storage.models.CellType;
 import com.ieatta.android.IEAApplication;
 import com.ieatta.android.R;
@@ -30,6 +32,12 @@ import bolts.Task;
 import io.realm.RealmResults;
 
 public class NearRestaurantsTask extends FragmentTask {
+
+    enum NearRestaurantSection {
+        section_more_items,//= 0
+        section_restaurants, //= 1
+    }
+
     public RealmResults<DBRestaurant> restaurants;
 
     public NearRestaurantsTask(Activity activity, RecyclerView recyclerView) {
@@ -38,18 +46,18 @@ public class NearRestaurantsTask extends FragmentTask {
 
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
-        if (model instanceof DBRestaurant) {
-            DBRestaurant item = (DBRestaurant) model;
+        Intent intent = null;
 
-//            ((PageActivity) NearRestaurantsTask.this.activity).loadPage(
-//                    new HistoryEntry(MainSegueIdentifier.detailRestaurantSegueIdentifier, item.getUUID()));
+        if (model instanceof IEANearRestaurantMore) {
+            intent = new Intent(activity, ((IEANearRestaurantMore) model).identifier.getActivity());
+        } else if (model instanceof DBRestaurant) {
+            intent = new Intent(activity, IEARestaurantDetailViewController.class);
+            intent.putExtra(EXTRA_ID, "");
         }
+
+        this.nextPage(intent);
     }
 
-    enum NearRestaurantSection {
-        section_more_items,//= 0
-        section_restaurants, //= 1
-    }
 
     public Task<Void> executeTask() {
         return LocalDatabaseQuery.queryNearRestaurants(IEAApplication.getInstance().lastLocation, realmList).onSuccess(new Continuation<RealmResults<DBRestaurant>, Void>() {

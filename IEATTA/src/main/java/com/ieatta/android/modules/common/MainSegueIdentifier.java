@@ -17,11 +17,6 @@ import com.ieatta.android.modules.view.search.IEAManagerPeopleViewController;
 import com.ieatta.android.modules.view.search.IEAReadReviewsViewController;
 import com.ieatta.android.modules.view.search.IEASearchRestaurantViewController;
 
-/**
- * Created by djzhang on 12/1/15.
- */
-
-
 public enum MainSegueIdentifier {
 
     Unspecified("", null),
