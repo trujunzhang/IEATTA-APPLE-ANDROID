@@ -61,8 +61,4 @@ public class IEANearRestaurantActivity extends LocationObserveActivity {
             task.executeUpdateTask();
     }
 
-    @Override
-    protected boolean shouldLeftBarButtonItem() {
-        return false;
-    }
 }
