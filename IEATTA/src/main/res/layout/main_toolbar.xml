@@ -17,21 +17,21 @@
             style="@style/RtlAwareTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="@string/App_Title"
             android:textColor="@color/list_item_text_primary_light"
-            android:textSize="@dimen/textSize"
-            android:layout_gravity="center_horizontal" />
+            android:textSize="@dimen/textSize" />
 
         <org.wikipedia.views.GoneIfEmptyTextView
             android:id="@+id/page_list_item_description"
             style="@style/RtlAwareTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="@string/App_Subtitle"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/list_item_text_secondary_light"
-            android:visibility="visible"
-            android:layout_gravity="center_horizontal" />
+            android:visibility="visible" />
 
     </LinearLayout>
 

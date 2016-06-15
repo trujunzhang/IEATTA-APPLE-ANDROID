@@ -45,7 +45,8 @@ public final class DimenUtil {
     }
 
     public static int getTranslucentStatusBarHeightPx(Context context) {
-        return DimenUtil.roundedDpToPx(getTranslucentStatusBarHeight(context));
+        float translucentStatusBarHeight = getTranslucentStatusBarHeight(context);
+        return DimenUtil.roundedDpToPx(translucentStatusBarHeight);
     }
 
     /**
