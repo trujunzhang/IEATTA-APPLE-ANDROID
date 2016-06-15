@@ -2,6 +2,7 @@ package org.ieatta.tasks;
 
 import android.app.Activity;
 import android.support.annotation.VisibleForTesting;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.tableview.adapter.NSIndexPath;
@@ -21,6 +22,9 @@ import bolts.Task;
 import io.realm.RealmResults;
 
 public class OrderedRecipesTask extends FragmentTask {
+    public OrderedRecipesTask(Activity activity, RecyclerView recyclerView) {
+        super(activity, recyclerView);
+    }
 //    private DBRestaurant restaurant;
 //    private DBEvent event;
 //    public DBTeam team;

@@ -5,20 +5,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.tableview.adapter.IEAViewHolder;
+import com.tableview.storage.models.CellType;
 
-public class IEANearRestaurantMoreCell extends IEAViewHolder {
+public class NearRestaurantMoreCell extends IEAViewHolder {
     public static CellType getType() {
-        return new CellType(IEANearRestaurantMoreCell.class, R.layout.near_restaurant_more_cell);
+        return new CellType(NearRestaurantMoreCell.class, R.layout.near_restaurant_more_cell);
     }
 
-    private IEANearRestaurantMoreCell self = this;
+    private NearRestaurantMoreCell self = this;
     private ImageView iconImageView;
     private TextView titleLabel;
 
-    public IEANearRestaurantMoreCell(View itemView) {
+    public NearRestaurantMoreCell(View itemView) {
         super(itemView);
 
         self.iconImageView = (ImageView) itemView.findViewById(R.id.avatarView);

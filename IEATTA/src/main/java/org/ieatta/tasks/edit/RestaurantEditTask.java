@@ -2,6 +2,7 @@ package org.ieatta.tasks.edit;
 
 import android.app.Activity;
 import android.support.annotation.VisibleForTesting;
+import android.support.v7.widget.RecyclerView;
 
 import org.ieatta.database.models.DBRestaurant;
 import org.ieatta.database.provide.PhotoUsedType;
@@ -20,6 +21,9 @@ import bolts.Continuation;
 import bolts.Task;
 
 public class RestaurantEditTask extends FragmentTask {
+    public RestaurantEditTask(Activity activity, RecyclerView recyclerView) {
+        super(activity, recyclerView);
+    }
 
 
 //    enum EditRestaurantSection {

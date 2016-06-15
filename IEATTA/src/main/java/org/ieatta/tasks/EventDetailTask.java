@@ -2,6 +2,7 @@ package org.ieatta.tasks;
 
 import android.app.Activity;
 import android.support.annotation.VisibleForTesting;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
@@ -27,6 +28,9 @@ import bolts.Task;
 import io.realm.RealmResults;
 
 public class EventDetailTask extends FragmentTask {
+    public EventDetailTask(Activity activity, RecyclerView recyclerView) {
+        super(activity, recyclerView);
+    }
 
 //    @Override
 //    public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {

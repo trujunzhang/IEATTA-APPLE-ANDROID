@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.models.RowModel;
 
+import com.tableview.adapter.IEAViewHolder;
+
 public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewHolder> {
     private Context context;
     private DTTableViewManager manager;
@@ -28,13 +30,13 @@ public class IEATableViewControllerAdapter extends RecyclerView.Adapter<IEAViewH
     public void onBindViewHolder(final IEAViewHolder holder, int position) {
         Object model = this.manager.memoryStorage.getRowModel(position);
         holder.render(model);
-        holder.setClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                RowModel item = IEATableViewControllerAdapter.this.manager.memoryStorage.getItem(position);
-                IEATableViewControllerAdapter.this.itemClickListener.onItemClick(view, item.indexPath, item.model, position, isLongClick);
-            }
-        });
+//        holder.setClickListener(new ItemClickListener() {
+//            @Override
+//            public void onClick(View view, int position, boolean isLongClick) {
+//                RowModel item = IEATableViewControllerAdapter.this.manager.memoryStorage.getItem(position);
+//                IEATableViewControllerAdapter.this.itemClickListener.onItemClick(view, item.indexPath, item.model, position, isLongClick);
+//            }
+//        });
     }
 
     @Override

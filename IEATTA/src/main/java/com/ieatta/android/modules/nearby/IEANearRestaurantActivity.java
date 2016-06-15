@@ -34,7 +34,7 @@ public class IEANearRestaurantActivity extends LocationObserveActivity {
 
     /// Add rows for section "More".
     private void configModelsInMoreSection() {
-//        this.setRegisterCellClassWhenSelected(IEANearRestaurantMoreCell.getType(), NearRestaurantSection.sectionMoreItems.ordinal());
+//        this.setRegisterCellClassWhenSelected(NearRestaurantMoreCell.getType(), NearRestaurantSection.sectionMoreItems.ordinal());
 //
 //        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.sectionMoreItems.ordinal());
 //

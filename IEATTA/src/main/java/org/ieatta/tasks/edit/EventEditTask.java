@@ -3,6 +3,7 @@ package org.ieatta.tasks.edit;
 import android.app.Activity;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import org.ieatta.activity.gallery.GalleryCollection;
@@ -19,6 +20,9 @@ import bolts.Task;
 import io.realm.RealmResults;
 
 public class EventEditTask extends FragmentTask {
+    public EventEditTask(Activity activity, RecyclerView recyclerView) {
+        super(activity, recyclerView);
+    }
 
 
 //    enum EditEventSection {

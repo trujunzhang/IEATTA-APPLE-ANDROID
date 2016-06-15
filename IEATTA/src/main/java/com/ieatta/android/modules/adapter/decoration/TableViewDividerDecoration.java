@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.ieatta.android.modules.adapter.enums.ViewHolderType;
+import com.tableview.adapter.enums.ViewHolderType;
 
 /**
  * ItemDecoration implementation that applies and inset margin

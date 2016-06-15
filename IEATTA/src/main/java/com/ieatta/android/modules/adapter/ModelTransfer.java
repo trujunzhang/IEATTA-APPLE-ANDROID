@@ -1,6 +1,6 @@
 package com.ieatta.android.modules.adapter;
 
-import com.ieatta.android.modules.adapter.enums.ViewHolderType;
+import com.tableview.adapter.enums.ViewHolderType;
 
 /**
  * Created by djzhang on 12/1/15.

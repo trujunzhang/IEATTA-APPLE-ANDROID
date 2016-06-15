@@ -32,16 +32,16 @@ public class IEAPhotoGalleryAdapter extends RecyclerView.Adapter<IEAPhotosCell> 
     @Override
     public void onBindViewHolder(IEAPhotosCell holder, int position) {
         holder.render(self.fetchedPhotos.get(position));
-        holder.setClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                if (isLongClick) {
-                    Toast.makeText(self.context, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(self.context, "#" + position + " - ", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        holder.setClickListener(new ItemClickListener() {
+//            @Override
+//            public void onClick(View view, int position, boolean isLongClick) {
+//                if (isLongClick) {
+//                    Toast.makeText(self.context, "#" + position + " - " + " (Long click)", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(self.context, "#" + position + " - ", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 
     @Override

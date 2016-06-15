@@ -10,16 +10,14 @@ import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.tableview.adapter.IEAViewHolder;
-import com.ieatta.android.modules.adapter.enums.ViewHolderType;
+import com.tableview.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.DatePickerCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by djzhang on 12/2/15.
- */
+
 public class IEADatePickerCell extends IEAViewHolder {
     public static CellType getType() {
         return new CellType(IEADatePickerCell.class, R.layout.date_picker_cell);
