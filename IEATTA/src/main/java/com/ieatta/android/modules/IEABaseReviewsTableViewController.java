@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.adapter.NSIndexPath;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.provide.IEAEditKey;
 import com.ieatta.android.modules.view.IEAReviewDetailViewController;
