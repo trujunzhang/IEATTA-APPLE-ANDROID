@@ -48,7 +48,7 @@ public class SyncHandler {
      * Start Point
      */
     public void startTask() {
-        if (this.didEndRecurringTask == false)
+        if (!this.didEndRecurringTask)
             return;
 
         // 1. Prepare tasks.
