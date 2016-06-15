@@ -10,7 +10,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.extensions.storage.TableViewConfiguration;
 import com.ieatta.android.extensions.storage.models.CellType;
-import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.tableview.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;

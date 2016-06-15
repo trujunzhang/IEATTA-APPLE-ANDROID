@@ -9,7 +9,7 @@ import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
 import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
-import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.tableview.adapter.IEAViewHolder;
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.DatePickerCellModel;
 import com.ieatta.android.modules.common.edit.enums.IEAEditKey;

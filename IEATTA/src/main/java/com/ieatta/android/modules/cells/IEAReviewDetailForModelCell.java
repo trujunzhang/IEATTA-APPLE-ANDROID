@@ -7,7 +7,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.RatingImageView;
-import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.tableview.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.ReviewDetailForModelCell;
 
 public class IEAReviewDetailForModelCell extends IEAViewHolder {

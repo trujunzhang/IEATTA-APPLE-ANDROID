@@ -50,7 +50,7 @@ public class RecycleViewManager {
     public void startManagingWithDelegate(RecyclerView recyclerView) {
         recyclerView.setAdapter(this.manager.getAdapter());
         recyclerView.setLayoutManager(this.manager.configuration.builder.manager);
-        if(this.manager.configuration.builder.decoration != null)
+        if (this.manager.configuration.builder.decoration != null)
             recyclerView.addItemDecoration(this.manager.configuration.builder.decoration);
     }
 
@@ -74,7 +74,7 @@ public class RecycleViewManager {
         getTableManager().setRegisterFooterView(type);
     }
 
-    public void setHeaderItem(Object item,CellType type) {
+    public void setHeaderItem(Object item, CellType type) {
         getMemoryStorage().setHeaderItem(item, type);
     }
 
@@ -82,7 +82,7 @@ public class RecycleViewManager {
         getMemoryStorage().updateHeaderItem(item);
     }
 
-    public void setFooterItem(Object item,CellType type) {
+    public void setFooterItem(Object item, CellType type) {
         getMemoryStorage().setFooterItem(item, type);
     }
 
@@ -106,8 +106,8 @@ public class RecycleViewManager {
         getMemoryStorage().updateItems(items, forSectionIndex);
     }
 
-    public void setAndRegisterSectionItems(CellType type,List items, int forSectionIndex) {
-        this.setRegisterCellClass(type,forSectionIndex);
+    public void setAndRegisterSectionItems(CellType type, List items, int forSectionIndex) {
+        this.setRegisterCellClass(type, forSectionIndex);
         getMemoryStorage().setItems(items, forSectionIndex);
     }
 
@@ -124,8 +124,8 @@ public class RecycleViewManager {
         getMemoryStorage().removeItemsAtIndexPaths(indexPaths);
     }
 
-    public void appendAndRegisterSectionTitleCell(CellType type,EditBaseCellModel cell, int forSectionIndex) {
-        this.setRegisterCellClass(type,forSectionIndex);
+    public void appendAndRegisterSectionTitleCell(CellType type, EditBaseCellModel cell, int forSectionIndex) {
+        this.setRegisterCellClass(type, forSectionIndex);
 //        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
@@ -145,11 +145,11 @@ public class RecycleViewManager {
         return manager;
     }
 
-    public void updateTableSections(){
+    public void updateTableSections() {
         this.getMemoryStorage().updateTableSections();
     }
 
-    public void reloadTableView(){
+    public void reloadTableView() {
         this.getMemoryStorage().reloadTableView();
     }
 }

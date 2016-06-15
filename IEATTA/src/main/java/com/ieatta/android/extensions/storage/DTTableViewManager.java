@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.modules.adapter.IEATableViewControllerAdapter;
-import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.tableview.adapter.IEAViewHolder;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

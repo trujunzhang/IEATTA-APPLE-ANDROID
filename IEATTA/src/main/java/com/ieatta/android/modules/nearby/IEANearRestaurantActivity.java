@@ -24,10 +24,9 @@ public class IEANearRestaurantActivity extends LocationObserveActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        task = new NearRestaurantsTask(this,this.recyclerView);
 
+        task = new NearRestaurantsTask(this, this.recyclerView);
         task.makeActivePage();
-//        this.configModelsInMoreSection();
 
         // TOOD djzhang(test)
 //        this.queryNearRestaurant(null);

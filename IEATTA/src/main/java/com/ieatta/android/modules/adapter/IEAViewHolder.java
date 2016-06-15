@@ -5,9 +5,6 @@ import android.view.View;
 
 import com.ieatta.android.modules.adapter.enums.ViewHolderType;
 
-/**
- * Created by djzhang on 12/1/15.
- */
 public abstract class IEAViewHolder extends RecyclerView.ViewHolder implements ModelTransfer, View.OnClickListener, View.OnLongClickListener {
     private IEAViewHolder self = this;
 

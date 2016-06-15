@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
-import com.ieatta.android.modules.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
+import com.tableview.adapter.IEAViewHolder;
 
 public class IEANearRestaurantMoreCell extends IEAViewHolder {
     public static CellType getType() {

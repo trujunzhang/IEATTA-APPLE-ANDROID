@@ -7,7 +7,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.extensions.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.ieatta.android.extensions.viewkit.RatingImageView;
-import com.ieatta.android.modules.adapter.IEAViewHolder;
+import com.tableview.adapter.IEAViewHolder;
 
 public class IEAOrderedRecipeCell extends IEAViewHolder {
     public static CellType getType() {
