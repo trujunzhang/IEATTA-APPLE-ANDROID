@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.ieatta.android.IEAApplication;
 import com.ieatta.android.R;
+import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
 import com.ieatta.android.modules.cells.NearRestaurantMoreCell;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
@@ -19,6 +20,7 @@ import com.tableview.adapter.NSIndexPath;
 import org.ieatta.database.models.DBRestaurant;
 import org.ieatta.database.query.LocalDatabaseQuery;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
@@ -77,10 +79,10 @@ public class NearRestaurantsTask extends FragmentTask {
 
         this.manager.setRegisterCellClassWhenSelected(NearRestaurantMoreCell.getType(), NearRestaurantSection.section_more_items.ordinal());
         this.manager.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.section_more_items.ordinal());
-//        this.manager.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.section_more_items.ordinal());
+        this.manager.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.section_more_items.ordinal());
 
         SectionTitleCellModel sectionTitleCellModel = new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants);
-//        this.manager.appendSectionTitleCell(sectionTitleCellModel, NearRestaurantSection.section_restaurants.ordinal());
+        this.manager.appendSectionTitleCell(sectionTitleCellModel, NearRestaurantSection.section_restaurants.ordinal());
     }
 
     @NonNull
