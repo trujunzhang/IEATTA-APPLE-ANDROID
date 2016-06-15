@@ -21,7 +21,7 @@ import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 import com.ieatta.android.modules.view.photogallery.PhotoGalleryPagerActivity;
 import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
 
-public class IEAPageActivity extends IEANotificationTableViewController implements RecyclerItemClickListener {
+public class IEAAppSegureTableViewController extends IEANotificationTableViewController implements RecyclerItemClickListener {
     public void performSegueWithIdentifier(MainSegueIdentifier identifier, com.ieatta.android.IEAPageActivity sender) {
         Intent intent = new Intent(EnvironmentUtils.sharedInstance.getGlobalContext(), identifier.getActivity());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

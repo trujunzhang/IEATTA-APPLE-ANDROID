@@ -20,8 +20,6 @@ import com.tableview.storage.models.CellType;
 import java.util.List;
 
 public class RecycleViewManager {
-
-
     private DTTableViewManager manager = new DTTableViewManager();
     private TableViewControllerAdapter mAdapter;
 

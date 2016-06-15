@@ -2,6 +2,7 @@ package org.ieatta.tasks;
 
 import android.app.Activity;
 import android.support.annotation.VisibleForTesting;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.R;
@@ -50,6 +51,13 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
     public List<IEAReviewsCellModel> reviewsCellModelList;
     protected static List<Realm> realmList = new LinkedList<>();
     protected ReviewQuery reviewQuery = new ReviewQuery();
+
+    public FragmentTask(Activity activity, RecyclerView recyclerView) {
+        this.activity = activity;
+        this.manager = new RecycleViewManager(activity.getApplicationContext());
+
+        this.setupRecycleView(recyclerView);
+    }
 
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
 
@@ -112,11 +120,15 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
 //        }
 //    };
 
+    public void setupRecycleView(RecyclerView recyclerView) {
+        manager.startManagingWithDelegate(recyclerView);
+        manager.setOnItemClickListener(this);
+    }
 
     public void makeActivePage() {
-        this.prepareUI();
+        prepareUI();
 
-        this.executeTask().onSuccessTask(new Continuation<Void, Task<Void>>() {
+        executeTask().onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 FragmentTask.this.postUI();
@@ -125,9 +137,6 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
         }, Task.UI_THREAD_EXECUTOR).continueWith(new Continuation<Void, Void>() {
             @Override
             public Void then(Task<Void> task) throws Exception {
-                if (task.getError() != null) {
-                    Exception error = task.getError();
-                }
                 return null;
             }
         }, Task.UI_THREAD_EXECUTOR);

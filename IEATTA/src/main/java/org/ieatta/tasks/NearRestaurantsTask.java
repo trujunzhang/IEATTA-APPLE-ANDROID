@@ -4,6 +4,7 @@ package org.ieatta.tasks;
 import android.app.Activity;
 import android.location.Location;
 import android.support.annotation.VisibleForTesting;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.IEAApplication;
@@ -23,13 +24,17 @@ import bolts.Task;
 import io.realm.RealmResults;
 
 public class NearRestaurantsTask extends FragmentTask {
-    //
+
 //    @Override
 //    public boolean isMainPage() {
 //        return true;
 //    }
 //
     public RealmResults<DBRestaurant> restaurants;
+
+    public NearRestaurantsTask(Activity activity, RecyclerView recyclerView) {
+        super(activity, recyclerView);
+    }
 
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {

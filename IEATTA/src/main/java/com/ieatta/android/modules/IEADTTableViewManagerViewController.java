@@ -14,7 +14,7 @@ import com.ieatta.android.modules.common.edit.EditBaseCellModel;
 
 import java.util.List;
 
-public class IEADTTableViewManagerViewController extends IEAPageActivity {
+public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewController {
     private DTTableViewManager manager = null;
 
     @Override

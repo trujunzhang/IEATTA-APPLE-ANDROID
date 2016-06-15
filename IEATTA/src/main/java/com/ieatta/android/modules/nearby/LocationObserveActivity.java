@@ -1,4 +1,4 @@
-package com.ieatta.android.modules;
+package com.ieatta.android.modules.nearby;
 
 import android.Manifest;
 import android.content.Context;
@@ -17,11 +17,12 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ieatta.android.IEAPageActivity;
 import com.ieatta.android.observers.LocationObserver;
 
 import java.util.Iterator;
 
-public class LocationObserveActivity extends IEASplitMasterViewController {
+public class LocationObserveActivity extends IEAPageActivity {
     private LocationObserveActivity self = this;
     private LocationManager lm;
 

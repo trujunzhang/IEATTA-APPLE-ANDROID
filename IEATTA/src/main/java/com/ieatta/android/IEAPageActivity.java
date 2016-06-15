@@ -9,7 +9,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 
 public class IEAPageActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
+    protected RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

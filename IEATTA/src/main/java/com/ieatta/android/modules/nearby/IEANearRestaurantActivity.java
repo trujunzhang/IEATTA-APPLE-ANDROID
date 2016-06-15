@@ -1,32 +1,22 @@
-package com.ieatta.android.modules.view;
+package com.ieatta.android.modules.nearby;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.ieatta.android.R;
-import com.ieatta.android.modules.LocationObserveActivity;
 import com.ieatta.android.modules.adapter.NSIndexPath;
-import com.ieatta.android.modules.cells.IEANearRestaurantMoreCell;
-import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
 import com.ieatta.android.modules.cells.model.IEANearRestaurantMore;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
-import com.ieatta.android.modules.common.edit.enums.IEAEditKey;
 import com.ieatta.android.modules.tools.CollectionUtils;
-import com.ieatta.android.modules.tools.RestaurantSortUtils;
 import com.ieatta.android.notification.NSNotification;
 import com.ieatta.android.observers.LocationObserver;
 import com.parse.ParseGeoPoint;
 
 import org.ieatta.tasks.NearRestaurantsTask;
 
-import java.util.LinkedList;
 import java.util.List;
 
-import bolts.Continuation;
-import bolts.Task;
-
-public class IEANearRestaurantViewController extends LocationObserveActivity {
+public class IEANearRestaurantActivity extends LocationObserveActivity {
     private List fetchedRestaurants;
 
     private NearRestaurantsTask task;
@@ -34,8 +24,10 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        task = new NearRestaurantsTask(this,this.recyclerView);
 
-        this.configModelsInMoreSection();
+        task.makeActivePage();
+//        this.configModelsInMoreSection();
 
         // TOOD djzhang(test)
 //        this.queryNearRestaurant(null);
@@ -97,26 +89,26 @@ public class IEANearRestaurantViewController extends LocationObserveActivity {
 //        }, Task.UI_THREAD_EXECUTOR);
     }
 
-    @Override
-    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
-//        if (indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()) {
-//            this.whenSelectedCellTaped(((IEANearRestaurantMore) model).identifier);
-//        } else {
-////            this.selectedModel = (Restaurant) model;
-////            this.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
-//        }
-    }
-
-    // MARK: NSNotificationCenter notification handlers
-    @Override
-    protected void RestaurantWasCreated(NSNotification note) {
-        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
-    }
-
-    @Override
-    protected void LocationDidChange(NSNotification note) {
-        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
-    }
+//    @Override
+//    public void whenSelectedEvent(Object model, NSIndexPath indexPath) {
+////        if (indexPath.section == NearRestaurantSection.sectionMoreItems.ordinal()) {
+////            this.whenSelectedCellTaped(((IEANearRestaurantMore) model).identifier);
+////        } else {
+//////            this.selectedModel = (Restaurant) model;
+//////            this.whenSelectedCellTaped(MainSegueIdentifier.detailRestaurantSegueIdentifier);
+////        }
+//    }
+//
+//    // MARK: NSNotificationCenter notification handlers
+//    @Override
+//    protected void RestaurantWasCreated(NSNotification note) {
+//        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
+//    }
+//
+//    @Override
+//    protected void LocationDidChange(NSNotification note) {
+//        queryNearRestaurant(LocationObserver.sharedInstance.getCurrentPFGeoPoint());
+//    }
 
     @Override
     protected boolean shouldLeftBarButtonItem() {

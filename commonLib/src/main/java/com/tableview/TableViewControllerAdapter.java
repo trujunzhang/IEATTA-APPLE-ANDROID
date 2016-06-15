@@ -10,8 +10,7 @@ import com.tableview.adapter.ItemClickListener;
 import com.tableview.storage.DTTableViewManager;
 import com.tableview.storage.models.RowModel;
 
-public class TableViewControllerAdapter
-        extends RecyclerView.Adapter<IEAViewHolder> {
+public class TableViewControllerAdapter extends RecyclerView.Adapter<IEAViewHolder> {
     private DTTableViewManager mProvider;
 
     public TableViewControllerAdapter(DTTableViewManager mProvider) {

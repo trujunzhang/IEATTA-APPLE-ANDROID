@@ -7,9 +7,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ieatta.android.extensions.viewkit.AvatarView;
-import com.ieatta.android.modules.IEAPageActivity;
+import com.ieatta.android.modules.IEAAppSegureTableViewController;
 
-public class IEAWriteReviewViewController extends IEAPageActivity {
+public class IEAWriteReviewViewController extends IEAAppSegureTableViewController {
     private IEAWriteReviewViewController self = this;
 
     private View rateButton1;
