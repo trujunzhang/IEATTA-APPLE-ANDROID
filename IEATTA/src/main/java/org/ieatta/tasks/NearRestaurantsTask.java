@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.tableview.storage.models.CellType;
 import com.ieatta.android.IEAApplication;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
@@ -89,13 +90,10 @@ public class NearRestaurantsTask extends FragmentTask {
     private List getNearRestaurantMoresItems() {
         // "Manager Restaurant"
         IEANearRestaurantMore managerRestaurantItem = new IEANearRestaurantMore(R.drawable.restaurants_icon, R.string.Add_a_Restaurant, MainSegueIdentifier.editRestaurantSegueIdentifier);
-
         // "Search Restaurant"
         IEANearRestaurantMore searchRestaurant = new IEANearRestaurantMore(R.drawable.nav_search, R.string.Search_Restaurants, MainSegueIdentifier.searchRestaurantSegueIdentifier);
-
         // "Manager People"
         IEANearRestaurantMore managerPeople = new IEANearRestaurantMore(R.drawable.nav_add_friends, R.string.Manage_Friends, MainSegueIdentifier.managerPeopleSegueIdentifier);
-
         // "Read Reviews"
         IEANearRestaurantMore readReviews = new IEANearRestaurantMore(R.drawable.nav_passport_reviews, R.string.Read_Reviews, MainSegueIdentifier.readReviewsSegueIdentifier);
 
@@ -105,8 +103,8 @@ public class NearRestaurantsTask extends FragmentTask {
 
     @Override
     public void postUI() {
-//        this.manager.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(), NearRestaurantSection.section_restaurants.ordinal());
-//        this.manager.setAndRegisterSectionItems(IEANearRestaurantsCell.getType(), this.restaurants, NearRestaurantSection.section_restaurants.ordinal());
+        this.manager.setRegisterCellClassWhenSelected(IEANearRestaurantsCell.getType(), NearRestaurantSection.section_restaurants.ordinal());
+        this.manager.setAndRegisterSectionItems(IEANearRestaurantsCell.getType(), this.restaurants, NearRestaurantSection.section_restaurants.ordinal());
     }
 
 }
