@@ -28,7 +28,7 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
     }
 
 
-    static void whenSelectedCellTapedForiPad(MainSegueIdentifier type, IEAAppTableViewController rootViewController, Object selectedModel) {
+//    static void whenSelectedCellTapedForiPad(MainSegueIdentifier type, IEAAppTableViewController rootViewController, Object selectedModel) {
 //        var viewController = UIViewController()
 //        switch(type){
 //            // 4 more cell items.
@@ -56,7 +56,7 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
 //        let detailViewController = IEASplitViewController.getDetailViewController(viewController)
 //        let splitViewController = rootViewController as! UISplitViewController
 //        splitViewController.viewControllers = [(splitViewController.viewControllers.first)!,detailViewController]
-    }
+//    }
 
     @Override
     protected void segueForEditRestaurantViewController(IEAEditRestaurantViewController destination, Intent sender) {

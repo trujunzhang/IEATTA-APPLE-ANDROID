@@ -1,4 +1,4 @@
-package com.ieatta.android.modules;
+package com.ieatta.android;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,16 +14,10 @@ import com.ieatta.android.extensions.storage.DTTableViewManager;
 public class IEAAppTableViewController extends AppCompatActivity {
     private RecyclerView recyclerView;
 
-    protected TextView leftBarButtonItem;
-    protected TextView rightBarButtonItem;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(this.getContentView());
-
-        this.leftBarButtonItem = (TextView) findViewById(R.id.leftBarButtonItem);
-        this.rightBarButtonItem = (TextView) findViewById(R.id.rightBarButtonItem);
 
         EnvironmentUtils.sharedInstance.registerCurrentActivity(this);
 
@@ -48,14 +42,14 @@ public class IEAAppTableViewController extends AppCompatActivity {
     }
 
     protected void setLeftBarButtonItem(View.OnClickListener clickListener) {
-        this.leftBarButtonItem.setVisibility(View.VISIBLE);
-        this.leftBarButtonItem.setOnClickListener(clickListener);
+//        this.leftBarButtonItem.setVisibility(View.VISIBLE);
+//        this.leftBarButtonItem.setOnClickListener(clickListener);
     }
 
     protected void setRightBarButtonItem(int titleId, View.OnClickListener clickListener) {
-        this.rightBarButtonItem.setVisibility(View.VISIBLE);
-        this.rightBarButtonItem.setText(titleId);
-        this.rightBarButtonItem.setOnClickListener(clickListener);
+//        this.rightBarButtonItem.setVisibility(View.VISIBLE);
+//        this.rightBarButtonItem.setText(titleId);
+//        this.rightBarButtonItem.setOnClickListener(clickListener);
     }
 
     public void popViewControllerAnimated(boolean animated) {
@@ -68,8 +62,6 @@ public class IEAAppTableViewController extends AppCompatActivity {
 
     /**
      * Default content view.
-     *
-     * @return
      */
     protected int getContentView() {
         return R.layout.table_controller_view;

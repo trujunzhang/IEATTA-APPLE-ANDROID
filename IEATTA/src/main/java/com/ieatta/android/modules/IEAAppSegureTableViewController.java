@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.ieatta.android.IEAAppTableViewController;
 import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;

@@ -173,7 +173,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
     // MARK: NavigationBarItem Events
     private void saveModelAction() {
         /// **** important ****
-        this.rightBarButtonItem.setEnabled(false);
+//        this.rightBarButtonItem.setEnabled(false);
 
         final Realm model = this.editManager.convertToEditModel(this.rowModels, this.editedModel);
 

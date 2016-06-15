@@ -2,6 +2,7 @@ package com.ieatta.android.modules;
 
 import android.os.Bundle;
 
+import com.ieatta.android.IEAAppTableViewController;
 import com.ieatta.android.notification.NSNotification;
 
 import de.greenrobot.event.EventBus;

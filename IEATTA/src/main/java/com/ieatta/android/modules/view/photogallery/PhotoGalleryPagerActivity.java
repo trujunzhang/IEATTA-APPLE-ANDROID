@@ -22,10 +22,9 @@ import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ieatta.android.IEAAppTableViewController;
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
-import com.ieatta.android.modules.IEAAppTableViewController;
-import com.ieatta.android.modules.adapter.PhotoGalleryPagerAdapter;
 
 public class PhotoGalleryPagerActivity extends IEAAppTableViewController {
 
