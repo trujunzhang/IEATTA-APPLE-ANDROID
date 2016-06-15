@@ -31,7 +31,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
         this.manager = new DTTableViewManager(config);
         this.startManagingWithDelegate(this.manager);
 
-        this.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
+//        this.setRegisterHeaderClass(IEAViewForHeaderInSectionCell.getType());
     }
 
     public void setRegisterHeaderClass(CellType type) {
@@ -72,7 +72,7 @@ public class IEADTTableViewManagerViewController extends IEAAppSegureTableViewCo
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
-        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
+//        this.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
     public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex, CellType type) {

@@ -7,6 +7,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 import com.ieatta.BaseApp;
 
 import org.ieatta.parse.ParseAPI;
+import org.ieatta.server.recurring.SyncRecurringTask;
 
 public class IEAApplication extends BaseApp {
     public Location lastLocation;
@@ -32,7 +33,7 @@ public class IEAApplication extends BaseApp {
 
         // Async database in background automately
         // TODO: djzhang(used)
-//        new ParseAsyncTimer().prepareTimer();
+        new SyncRecurringTask().prepareTimer();
 
         /**
          Show all tables data on the offline database,when have some issues.
