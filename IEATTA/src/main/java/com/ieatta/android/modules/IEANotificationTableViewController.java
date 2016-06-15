@@ -2,12 +2,12 @@ package com.ieatta.android.modules;
 
 import android.os.Bundle;
 
-import com.ieatta.android.IEAAppTableViewController;
+import com.ieatta.android.IEAPageActivity;
 import com.ieatta.android.notification.NSNotification;
 
 import de.greenrobot.event.EventBus;
 
-public class IEANotificationTableViewController extends IEAAppTableViewController {
+public class IEANotificationTableViewController extends IEAPageActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

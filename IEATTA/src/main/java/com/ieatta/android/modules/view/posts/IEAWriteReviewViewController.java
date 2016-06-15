@@ -1,27 +1,15 @@
 package com.ieatta.android.modules.view.posts;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ieatta.android.R;
-import com.ieatta.android.apps.AppAlertView;
-import com.ieatta.android.cache.IEACache;
 import com.ieatta.android.extensions.viewkit.AvatarView;
-import com.ieatta.android.modules.IEAAppSegureTableViewController;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.notification.NSNotification;
-import com.ieatta.android.notification.NSNotificationCenter;
-import com.ieatta.android.notification.NotifyType;
+import com.ieatta.android.modules.IEAPageActivity;
 
-
-import bolts.Continuation;
-import bolts.Task;
-
-public class IEAWriteReviewViewController extends IEAAppSegureTableViewController {
+public class IEAWriteReviewViewController extends IEAPageActivity {
     private IEAWriteReviewViewController self = this;
 
     private View rateButton1;

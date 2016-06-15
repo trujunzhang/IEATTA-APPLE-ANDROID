@@ -8,7 +8,7 @@ import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.extensions.storage.DTTableViewManager;
 
-public class IEAAppTableViewController extends AppCompatActivity {
+public class IEAPageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     @Override
@@ -26,8 +26,8 @@ public class IEAAppTableViewController extends AppCompatActivity {
             this.setLeftBarButtonItem(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (IEAAppTableViewController.this.navigationShouldPopOnBackButton() == true) {
-                        IEAAppTableViewController.this.popViewControllerAnimated(true);
+                    if (IEAPageActivity.this.navigationShouldPopOnBackButton() == true) {
+                        IEAPageActivity.this.popViewControllerAnimated(true);
                     }
                 }
             });

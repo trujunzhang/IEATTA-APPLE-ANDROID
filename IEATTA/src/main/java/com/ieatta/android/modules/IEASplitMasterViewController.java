@@ -28,7 +28,7 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
     }
 
 
-//    static void whenSelectedCellTapedForiPad(MainSegueIdentifier type, IEAAppTableViewController rootViewController, Object selectedModel) {
+//    static void whenSelectedCellTapedForiPad(MainSegueIdentifier type, IEAPageActivity rootViewController, Object selectedModel) {
 //        var viewController = UIViewController()
 //        switch(type){
 //            // 4 more cell items.

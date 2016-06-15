@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.view.View;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
-import com.ieatta.android.IEAAppTableViewController;
-import com.ieatta.android.cache.IntentCache;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
@@ -23,8 +21,8 @@ import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 import com.ieatta.android.modules.view.photogallery.PhotoGalleryPagerActivity;
 import com.ieatta.android.modules.view.posts.IEAWriteReviewViewController;
 
-public class IEAAppSegureTableViewController extends IEANotificationTableViewController implements RecyclerItemClickListener {
-    public void performSegueWithIdentifier(MainSegueIdentifier identifier, IEAAppTableViewController sender) {
+public class IEAPageActivity extends IEANotificationTableViewController implements RecyclerItemClickListener {
+    public void performSegueWithIdentifier(MainSegueIdentifier identifier, com.ieatta.android.IEAPageActivity sender) {
         Intent intent = new Intent(EnvironmentUtils.sharedInstance.getGlobalContext(), identifier.getActivity());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.prepareForSegue(identifier, intent);
