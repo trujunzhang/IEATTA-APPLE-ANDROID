@@ -1,27 +1,6 @@
 package com.ieatta.android.modules.view.search;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-
-import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
-import com.ieatta.android.modules.adapter.NSIndexPath;
-import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.tools.RestaurantSortUtils;
-import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
-import com.ieatta.android.notification.NSNotification;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import bolts.Continuation;
-import bolts.Task;
 
 public class IEASearchRestaurantViewController extends IEASplitDetailViewController {
 

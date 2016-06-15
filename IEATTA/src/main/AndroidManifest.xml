@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".modules.view.IEARestaurantDetailViewController"
+            android:name="org.ieatta.activity.restaurant.IEARestaurantDetailViewController"
             android:screenOrientation="portrait">
 
         </activity>

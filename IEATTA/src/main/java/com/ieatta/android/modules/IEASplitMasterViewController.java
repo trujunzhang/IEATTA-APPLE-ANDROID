@@ -3,9 +3,8 @@ package com.ieatta.android.modules;
 import android.content.Intent;
 
 import com.ieatta.android.extensions.UIDevice;
-import com.ieatta.android.extensions.UIUserInterfaceIdiom;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
+import org.ieatta.activity.restaurant.IEARestaurantDetailViewController;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 
 public class IEASplitMasterViewController extends IEABaseTableViewController {

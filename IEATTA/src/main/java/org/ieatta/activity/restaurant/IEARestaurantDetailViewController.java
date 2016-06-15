@@ -1,39 +1,11 @@
-package com.ieatta.android.modules.view;
+package org.ieatta.activity.restaurant;
 
-import android.content.Intent;
-import android.os.Bundle;
-
-import com.ieatta.android.R;
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
-import com.ieatta.android.modules.adapter.NSIndexPath;
-import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
-import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell;
-import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
-import com.ieatta.provide.IEAEditKey;
-import com.ieatta.android.modules.tools.CollectionUtils;
-import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
-import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
-import com.ieatta.android.notification.NSNotification;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import bolts.Continuation;
-import bolts.Task;
-
 
 public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableViewController {
-    enum RestaurantDetailSection {
-        sectionHeader,//= 0
-        sectionGoogleMapAddress,//= 1
-        sectionEvents,//= 2
-        sectionPhotos,//= 3
-        sectionReviews,//= 4
-    }
+
     private IEARestaurantDetailViewController self = this;
-//
+
 //    IEARestaurantDetailViewController transfer(Restaurant selectedModel) {
 //        self.restaurant = selectedModel;
 //        return self;

@@ -11,7 +11,7 @@ import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
 import com.ieatta.android.modules.view.IEAEventDetailViewController;
 import com.ieatta.android.modules.view.IEAOrderedRecipesViewController;
 import com.ieatta.android.modules.view.IEARecipeDetailViewController;
-import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
+import org.ieatta.activity.restaurant.IEARestaurantDetailViewController;
 import com.ieatta.android.modules.view.IEAReviewDetailViewController;
 import com.ieatta.android.modules.view.IEASeeReviewsInDetailViewController;
 import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
