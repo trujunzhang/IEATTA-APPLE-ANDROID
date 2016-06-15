@@ -62,7 +62,8 @@ public class IEANearRestaurantActivity extends LocationObserveActivity {
 
     @Override
     protected void notifyLocationChanged(Location location) {
-        task.executeUpdateTask();
+        if (task != null)
+            task.executeUpdateTask();
     }
 
     @Override

@@ -62,7 +62,6 @@ public class NearRestaurantsTask extends FragmentTask {
     }
 
     public Task<Void> executeUpdateTask() {
-
         return LocalDatabaseQuery.queryNearRestaurants(IEAApplication.getInstance().lastLocation, realmList).onSuccess(new Continuation<RealmResults<DBRestaurant>, Void>() {
             @Override
             public Void then(Task<RealmResults<DBRestaurant>> task) throws Exception {
