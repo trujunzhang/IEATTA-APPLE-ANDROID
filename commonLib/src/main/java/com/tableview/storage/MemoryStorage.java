@@ -49,7 +49,6 @@ public class MemoryStorage {
 
     public void reloadTableView() {
         this.updateTableSections();
-
         this.adapter.notifyDataSetChanged();
     }
 
@@ -159,8 +158,7 @@ public class MemoryStorage {
     }
 
     public Object getRowModel(int position) {
-        RowModel rowModel = this.getRowModelFromPosition(position);
-        return rowModel.model;
+        return this.getRowModelFromPosition(position).model;
     }
 
     public int getItemCount() {
@@ -184,8 +182,7 @@ public class MemoryStorage {
             section = forSectionIndex + 1;
 
         for (int i = 0; i < section; i++) {
-            SectionModel sectionModel = this.sections.get(keys.get(i));
-            position += sectionModel.numberOfItems();
+            position += this.sections.get(keys.get(i)).numberOfItems();
         }
         return position + row;
     }

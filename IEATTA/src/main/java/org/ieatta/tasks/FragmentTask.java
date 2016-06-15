@@ -125,6 +125,10 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
         manager.setOnItemClickListener(this);
     }
 
+    private void reloadTableView() {
+        manager.reloadTableView();
+    }
+
     public void makeActivePage() {
         prepareUI();
 
@@ -132,6 +136,7 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
                 FragmentTask.this.postUI();
+                FragmentTask.this.reloadTableView();
                 return null;
             }
         }, Task.UI_THREAD_EXECUTOR).continueWith(new Continuation<Void, Void>() {
