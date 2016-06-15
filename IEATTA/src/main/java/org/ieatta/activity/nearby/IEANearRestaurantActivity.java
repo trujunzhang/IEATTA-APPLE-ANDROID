@@ -1,4 +1,4 @@
-package com.ieatta.android.modules.nearby;
+package org.ieatta.activity.nearby;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -18,8 +18,6 @@ import org.ieatta.tasks.NearRestaurantsTask;
 import java.util.List;
 
 public class IEANearRestaurantActivity extends LocationObserveActivity {
-    private List fetchedRestaurants;
-
     private NearRestaurantsTask task;
 
     @Override

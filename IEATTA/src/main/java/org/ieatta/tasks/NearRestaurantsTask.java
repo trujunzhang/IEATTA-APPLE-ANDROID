@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.view.IEARestaurantDetailViewController;
-import com.tableview.storage.models.CellType;
 import com.ieatta.android.IEAApplication;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;

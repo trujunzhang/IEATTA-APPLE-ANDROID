@@ -1,4 +1,4 @@
-package com.ieatta.android.modules.nearby;
+package org.ieatta.activity.nearby;
 
 import android.Manifest;
 import android.content.Context;
