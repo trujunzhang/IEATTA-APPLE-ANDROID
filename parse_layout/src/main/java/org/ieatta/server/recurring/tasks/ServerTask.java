@@ -39,9 +39,8 @@ public final class ServerTask {
         new SyncHandlerFunnel().logFetchFromServer(results.size());
 
         final SerialTasksManager<ParseObject> manager = new SerialTasksManager<>(results);
-        if (manager.hasNext() == false) {
+        if (!manager.hasNext())
             return Task.forResult(null);
-        }
 
         return startSingleTask(manager);
     }
@@ -50,9 +49,8 @@ public final class ServerTask {
         return getObjectsFromServerTask(manager.next()).onSuccessTask(new Continuation<Void, Task<Void>>() {
             @Override
             public Task<Void> then(Task<Void> task) throws Exception {
-                if (manager.hasNext() == false)
+                if (!manager.hasNext())
                     return Task.forResult(null);
-
                 return startSingleTask(manager);
             }
         });
@@ -74,7 +72,7 @@ public final class ServerTask {
             public Task<RealmObject> then(Task<ParseObject> task) throws Exception {
                 ParseObject object = task.getResult();
                 if (object == null) {
-                    L.d("The getFirst request failed.");
+                    L.d("Get the First request failure.");
                 } else {
                     L.d("Retrieved the object.");
                     return new ParseObjectReader().read(object, PQueryModelType.getInstance(newRecord.getModelType()));
