@@ -26,9 +26,9 @@ import bolts.Continuation;
 import bolts.Task;
 import io.realm.RealmObject;
 
-public class ParseObjectReader {
+public final class ParseObjectReader {
 
-    public Task<RealmObject> read(ParseObject object, PQueryModelType type) {
+    public static Task<RealmObject> read(ParseObject object, PQueryModelType type) {
         switch (type) {
             case Recipe:
                 return reader(object, new DBRecipe());
@@ -42,8 +42,6 @@ public class ParseObjectReader {
                 return reader(object, new DBEvent());
             case Restaurant:
                 return reader(object, new DBRestaurant());
-            //case NewRecord:
-            //    return reader(object, new DBNewRecord());
             case PeopleInEvent:
                 return reader(object, new DBPeopleInEvent());
             default:
@@ -52,7 +50,7 @@ public class ParseObjectReader {
         return Task.forError(new NullPointerException("unknown model type."));
     }
 
-    public Task<RealmObject> reader(ParseObject object, DBEvent model) {
+    public static Task<RealmObject> reader(ParseObject object, DBEvent model) {
         String uuid = object.getString(AppConstant.kPAPFieldObjectUUIDKey);
         Date objectCreatedDate = object.getDate(AppConstant.kPAPFieldObjectCreatedDateKey);
         String displayName = object.getString(AppConstant.kPAPFieldDisplayNameKey);
@@ -92,7 +90,7 @@ public class ParseObjectReader {
         return model;
     }
 
-    public Task<RealmObject> reader(ParseObject object, DBPeopleInEvent model) {
+    public static Task<RealmObject> reader(ParseObject object, DBPeopleInEvent model) {
         String uuid = object.getString(AppConstant.kPAPFieldObjectUUIDKey);
         Date objectCreatedDate = object.getDate(AppConstant.kPAPFieldObjectCreatedDateKey);
         String userRef = object.getString(AppConstant.kPAPFieldUserKey);
@@ -107,7 +105,7 @@ public class ParseObjectReader {
         return Task.forResult((RealmObject) model);
     }
 
-    public Task<RealmObject> reader(ParseObject object, final DBPhoto model) {
+    public static Task<RealmObject> reader(ParseObject object, final DBPhoto model) {
         final String uuid = object.getString(AppConstant.kPAPFieldObjectUUIDKey);
         Date objectCreatedDate = object.getDate(AppConstant.kPAPFieldObjectCreatedDateKey);
 
@@ -134,7 +132,7 @@ public class ParseObjectReader {
             @Override
             public Task<Void> then(Task<InputStream> task) throws Exception {
                 new SyncHandlerFunnel().logDownloadThumbnail(thumbnailUrl);
-                return ThumbnailImageUtil.sharedInstance.saveTakenPhoto(task.getResult(),model);
+                return ThumbnailImageUtil.sharedInstance.saveTakenPhoto(task.getResult(), model);
             }
         }).onSuccessTask(new Continuation<Void, Task<RealmObject>>() {
             @Override
@@ -145,7 +143,7 @@ public class ParseObjectReader {
         });
     }
 
-    public Task<RealmObject> reader(ParseObject object, DBRecipe model) {
+    public static Task<RealmObject> reader(ParseObject object, DBRecipe model) {
         String uuid = object.getString(AppConstant.kPAPFieldObjectUUIDKey);
         Date objectCreatedDate = object.getDate(AppConstant.kPAPFieldObjectCreatedDateKey);
         String displayName = object.getString(AppConstant.kPAPFieldDisplayNameKey);
@@ -167,11 +165,12 @@ public class ParseObjectReader {
     /**
      * Read variables from the ParseObject to realm object.
      * Generate 'Geohash' for the restaurant to implement nearby search.
-     * @param object    : ParseObject's instance
-     * @param model     : new Instance of Realm Object
+     *
+     * @param object : ParseObject's instance
+     * @param model  : new Instance of Realm Object
      * @return
      */
-    public Task<RealmObject> reader(ParseObject object, DBRestaurant model) {
+    public static Task<RealmObject> reader(ParseObject object, DBRestaurant model) {
         String uuid = object.getString(AppConstant.kPAPFieldObjectUUIDKey);
         Date objectCreatedDate = object.getDate(AppConstant.kPAPFieldObjectCreatedDateKey);
         String displayName = object.getString(AppConstant.kPAPFieldDisplayNameKey);
@@ -185,14 +184,14 @@ public class ParseObjectReader {
         model.setLatitude(geoPoint.getLatitude());
         model.setLongitude(geoPoint.getLongitude());
 
-        String geoHash = GeoHash.encodeHash(geoPoint.getLatitude(),geoPoint.getLongitude());
+        String geoHash = GeoHash.encodeHash(geoPoint.getLatitude(), geoPoint.getLongitude());
         model.setGeoHash(geoHash);
 
         new ModelsFunnel().logRestaurant(model);
         return Task.forResult((RealmObject) model);
     }
 
-    public Task<RealmObject> reader(ParseObject object, DBReview model) {
+    public static Task<RealmObject> reader(ParseObject object, DBReview model) {
         String uuid = object.getString(AppConstant.kPAPFieldObjectUUIDKey);
         Date objectCreatedDate = object.getDate(AppConstant.kPAPFieldObjectCreatedDateKey);
         int rate = object.getInt(AppConstant.kPAPFieldRateKey);
@@ -213,7 +212,7 @@ public class ParseObjectReader {
         return Task.forResult((RealmObject) model);
     }
 
-    public Task<RealmObject> reader(ParseObject object, DBTeam model) {
+    public static Task<RealmObject> reader(ParseObject object, DBTeam model) {
         String uuid = object.getString(AppConstant.kPAPFieldObjectUUIDKey);
         Date objectCreatedDate = object.getDate(AppConstant.kPAPFieldObjectCreatedDateKey);
         String displayName = object.getString(AppConstant.kPAPFieldDisplayNameKey);

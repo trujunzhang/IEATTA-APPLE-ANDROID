@@ -75,7 +75,7 @@ public final class ServerTask {
                     L.d("Get the First request failure.");
                 } else {
                     L.d("Retrieved the object.");
-                    return new ParseObjectReader().read(object, PQueryModelType.getInstance(newRecord.getModelType()));
+                    return ParseObjectReader.read(object, PQueryModelType.getInstance(newRecord.getModelType()));
                 }
 
                 return Task.forError(new Resources.NotFoundException("The getFirst request failed."));
