@@ -141,14 +141,14 @@ public abstract class AbstractImageUtil {
 
         // ** Important ** (Must store to Disk).
         boolean save = false;
-//        try {
-//            String uuid = model.getUUID();
-//            String usedRef = model.getUsedRef();
-//            String dateCreatedString = new SimpleDateFormat(data_format).format(model.getObjectCreatedDate());
-//            save = this.getImageCache().save(usedRef, uuid, dateCreatedString, inputStream, null);
-//        } catch (IOException e) {
-//            return Task.forError(e);
-//        }
+        try {
+            String uuid = model.getUUID();
+            String usedRef = model.getUsedRef();
+            String dateCreatedString = new SimpleDateFormat(data_format).format(model.getObjectCreatedDate());
+            save = this.getImageCache().save(usedRef, uuid, dateCreatedString, inputStream, null);
+        } catch (IOException e) {
+            return Task.forError(e);
+        }
         ///data/data/org.ieatta.alpha/thumbnail/828DB1D6-67AB-467D-8D98-76C1938C5306/201511230822_FD0CA37F-7ECF-443E-B69E-5FBBB8EEB771
 
         if (save == false) {

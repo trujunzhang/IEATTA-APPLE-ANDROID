@@ -8,8 +8,8 @@ include ':parse_layout'
 //include ':android-timeago'
 include ':commonLib'
 
-include ':assertionLib'
-include ':Android-Universal-Image-Loader'
+//include ':assertionLib'
+//include ':Android-Universal-Image-Loader'
 include ':slideDateTimePicker'
 include ':squarecamera'
 

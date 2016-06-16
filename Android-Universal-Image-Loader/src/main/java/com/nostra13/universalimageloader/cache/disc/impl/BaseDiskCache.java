@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011-2014 Sergey Tarasevich
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,9 +16,10 @@
 package com.nostra13.universalimageloader.cache.disc.impl;
 
 import android.graphics.Bitmap;
+
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
-import com.nostra13.universalimageloader.core.DefaultConfigurationFactory;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.utils.IoUtils;
 
 import java.io.BufferedOutputStream;
@@ -40,11 +41,17 @@ import java.util.List;
  * @since 1.0.0
  */
 public abstract class BaseDiskCache implements DiskCache {
-	/** {@value */
+	/**
+	 * {@value
+	 */
 	public static final int DEFAULT_BUFFER_SIZE = 32 * 1024; // 32 Kb
-	/** {@value */
+	/**
+	 * {@value
+	 */
 	public static final Bitmap.CompressFormat DEFAULT_COMPRESS_FORMAT = Bitmap.CompressFormat.PNG;
-	/** {@value */
+	/**
+	 * {@value
+	 */
 	public static final int DEFAULT_COMPRESS_QUALITY = 100;
 
 	private static final String ERROR_ARG_NULL = " argument must be not null";
@@ -53,14 +60,16 @@ public abstract class BaseDiskCache implements DiskCache {
 	protected final File cacheDir;
 	protected final File reserveCacheDir;
 
-	protected final FileNameGenerator fileNameGenerator;
+	protected final Md5FileNameGenerator fileNameGenerator;
 
 	protected int bufferSize = DEFAULT_BUFFER_SIZE;
 
 	protected Bitmap.CompressFormat compressFormat = DEFAULT_COMPRESS_FORMAT;
 	protected int compressQuality = DEFAULT_COMPRESS_QUALITY;
 
-	/** @param cacheDir Directory for file caching */
+	/**
+	 * @param cacheDir Directory for file caching
+	 */
 	public BaseDiskCache(File cacheDir) {
 		this(cacheDir, null);
 	}
@@ -70,7 +79,7 @@ public abstract class BaseDiskCache implements DiskCache {
 	 * @param reserveCacheDir null-ok; Reserve directory for file caching. It's used when the primary directory isn't available.
 	 */
 	public BaseDiskCache(File cacheDir, File reserveCacheDir) {
-		this(cacheDir, reserveCacheDir, DefaultConfigurationFactory.createFileNameGenerator());
+		this(cacheDir, reserveCacheDir, new Md5FileNameGenerator());
 	}
 
 	/**
@@ -79,7 +88,7 @@ public abstract class BaseDiskCache implements DiskCache {
 	 * @param fileNameGenerator {@linkplain com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator
 	 *                          Name generator} for cached files
 	 */
-	public BaseDiskCache(File cacheDir, File reserveCacheDir, FileNameGenerator fileNameGenerator) {
+	public BaseDiskCache(File cacheDir, File reserveCacheDir, Md5FileNameGenerator fileNameGenerator) {
 		if (cacheDir == null) {
 			throw new IllegalArgumentException("cacheDir" + ERROR_ARG_NULL);
 		}
@@ -103,8 +112,59 @@ public abstract class BaseDiskCache implements DiskCache {
 	}
 
 	@Override
+	public List<File> getList(String imageDir) {
+		if(imageDir== null || imageDir.isEmpty() == true)
+			return new LinkedList<>();
+
+		File imageFolder = new File(cacheDir, imageDir);
+		if (imageFolder.exists() == true) {
+			final File[] files = imageFolder.listFiles();
+			if (files.length > 0) {
+				Arrays.sort(files, new FileComparator());
+				return new LinkedList<>(Arrays.asList(files));
+			}
+		}
+		return new LinkedList<>();
+	}
+
+	@Override
+	public List<File> getList() {
+		if (cacheDir.exists() == true) {
+			final File[] files = cacheDir.listFiles();
+			if (files.length > 0) {
+				Arrays.sort(files, new FileComparator());
+				return new LinkedList<>(Arrays.asList(files));
+			}
+		}
+		return new LinkedList<>();
+	}
+
+	@Override
 	public boolean save(String imageUri, InputStream imageStream, IoUtils.CopyListener listener) throws IOException {
 		File imageFile = getFile(imageUri);
+		File tmpFile = new File(imageFile.getAbsolutePath() + TEMP_IMAGE_POSTFIX);
+		boolean loaded = false;
+		try {
+			OutputStream os = new BufferedOutputStream(new FileOutputStream(tmpFile), bufferSize);
+			try {
+				loaded = IoUtils.copyStream(imageStream, os, listener, bufferSize);
+			} finally {
+				IoUtils.closeSilently(os);
+			}
+		} finally {
+			if (loaded && !tmpFile.renameTo(imageFile)) {
+				loaded = false;
+			}
+			if (!loaded) {
+				tmpFile.delete();
+			}
+		}
+		return loaded;
+	}
+
+	@Override
+	public boolean save(String imageDir, String imageUri, String dateCreatedString, InputStream imageStream, IoUtils.CopyListener listener) throws IOException {
+		File imageFile = getFile(imageDir, imageUri, dateCreatedString);
 		File tmpFile = new File(imageFile.getAbsolutePath() + TEMP_IMAGE_POSTFIX);
 		boolean loaded = false;
 		try {
@@ -161,7 +221,14 @@ public abstract class BaseDiskCache implements DiskCache {
 		File[] files = cacheDir.listFiles();
 		if (files != null) {
 			for (File f : files) {
-				f.delete();
+				if(f.isDirectory() ==true){
+					File[] listFiles = f.listFiles();
+					for(File sF: listFiles){
+						sF.delete();
+					}
+				}else {
+					f.delete();
+				}
 			}
 		}
 	}
@@ -174,8 +241,10 @@ public abstract class BaseDiskCache implements DiskCache {
 		return new LinkedList<File>();
 	}
 
-	/** Returns file object (not null) for incoming image URI. File object can reference to non-existing file. */
-	public File getFile(String imageUri) {
+	/**
+	 * Returns file object (not null) for incoming image URI. File object can reference to non-existing file.
+	 */
+	protected File getFile(String imageUri) {
 		String fileName = fileNameGenerator.generate(imageUri);
 		File dir = cacheDir;
 		if (!cacheDir.exists() && !cacheDir.mkdirs()) {
@@ -184,6 +253,25 @@ public abstract class BaseDiskCache implements DiskCache {
 			}
 		}
 		return new File(dir, fileName);
+	}
+
+	/**
+	 * @param imageDir          Special UUID type's folder
+	 * @param imageUri          Cached file's UUID
+	 * @param dateCreatedString Cached file's createdAt
+	 * @return
+	 */
+	public File getFile(String imageDir, String imageUri, String dateCreatedString) {
+		String fileName = String.format("%s_%s", dateCreatedString, imageUri);
+		File dir = cacheDir;
+		File imageFolder = new File(dir, imageDir);
+		if (!cacheDir.exists() && !cacheDir.mkdirs()) {
+			// Check "checkDir" exist.
+		}
+		if (!imageFolder.exists() && !imageFolder.mkdirs()) {
+			// Check "subFolder" exist.
+		}
+		return new File(imageFolder, fileName);
 	}
 
 	public void setBufferSize(int bufferSize) {

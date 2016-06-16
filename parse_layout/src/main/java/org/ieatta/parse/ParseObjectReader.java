@@ -137,7 +137,7 @@ public final class ParseObjectReader {
         }).onSuccessTask(new Continuation<Void, Task<RealmObject>>() {
             @Override
             public Task<RealmObject> then(Task<Void> task) throws Exception {
-//                 new SyncHandlerFunnel().logCacheThumbnail(ThumbnailImageUtil.sharedInstance.getTakenPhotoFile(uuid));
+                 new SyncHandlerFunnel().logCacheThumbnail(ThumbnailImageUtil.sharedInstance.getTakenPhotoFile(uuid));
                 return Task.forResult((RealmObject) model);
             }
         });
