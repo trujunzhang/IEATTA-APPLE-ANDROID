@@ -21,6 +21,8 @@
     <color name="status_bar_background">#1d1d1d</color>
     <color name="grey_700">#616161</color>
 
+    <color name="window_background_light">#fff</color>
+
     <!--the following is yelp's colors-->
     <color name="BlackText">#ff222222</color>
     <color name="BlueText">#ff0077bc</color>
