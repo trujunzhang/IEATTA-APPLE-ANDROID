@@ -2108,5 +2108,9 @@
         <item name="android:textAlignment">viewStart</item>
     </style>
 
+    <style name="cell_style">
+
+    </style>
+
 </resources>
 

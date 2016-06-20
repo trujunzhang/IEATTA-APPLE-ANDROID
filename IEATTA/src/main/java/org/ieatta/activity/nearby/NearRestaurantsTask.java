@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
+
 import org.ieatta.activity.restaurant.IEARestaurantDetailViewController;
+
 import com.ieatta.android.IEAApplication;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.IEANearRestaurantsCell;
