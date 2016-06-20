@@ -4,6 +4,7 @@ import android.app.Application;
 import android.location.Location;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.ieatta.BaseApp;
 
 import org.ieatta.parse.ParseAPI;
@@ -27,6 +28,8 @@ public class IEAApplication extends BaseApp {
         EnvironmentUtils.sharedInstance.registerGlobalContext(this);
 
         ParseAPI.setup(this);
+
+        Fresco.initialize(this);
 
         /// Clean Cache folder contains downloaded original images.
 //        CacheImageUtils.sharedInstance.clearCacheDisk();
