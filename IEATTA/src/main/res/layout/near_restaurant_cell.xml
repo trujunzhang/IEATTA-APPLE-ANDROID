@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.ieatta.views.AvatarView
+        <com.ieatta.android.extensions.viewkit.AvatarView
             android:id="@+id/page_list_item_image"
             android:layout_width="@dimen/defaultListItemSize"
             android:layout_height="@dimen/defaultListItemSize"
