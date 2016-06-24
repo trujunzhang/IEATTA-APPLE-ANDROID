@@ -29,6 +29,35 @@ android {
             testCoverageEnabled Boolean.parseBoolean(IS_COVERAGE_ENABLED)
         }
     }
+
+    // while we still have lint errors; remove once those are fixed
+    lintOptions {
+        disable 'MissingTranslation'
+        warning 'NewApi'
+        // until https://code.google.com/p/android/issues/detail?id=137195 is released
+        disable 'InvalidPackage' // required by Butter Knife
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        // required by Butter Knife
+
+        // For Espresso testing libraries. See http://stackoverflow.com/q/33800924/970346.
+        exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
+        exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
+
+        // IEATTA
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 
 dependencies {
