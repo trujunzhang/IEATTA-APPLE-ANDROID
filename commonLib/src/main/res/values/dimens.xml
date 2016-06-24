@@ -106,7 +106,7 @@
     <dimen name="Google_MapAddress">44dip</dimen>
     <dimen name="Edit_Cell">56dip</dimen>
     <!--Near Restaurant-->
-    <dimen name="NearRestaurant_More">44dip</dimen>
+    <dimen name="NearRestaurant_More">48dip</dimen>
     <dimen name="Left_Image_View_Width">50dp</dimen>
     <dimen name="Left_Image_View_Height">50dp</dimen>
     <dimen name="Event_Icon_Width">30dp</dimen>

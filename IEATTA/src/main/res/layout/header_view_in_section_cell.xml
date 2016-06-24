@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/headerTextView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:background="@color/white_dirty_snow"
+    android:fontFamily="serif"
+    android:paddingTop="16dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="@dimen/list_item_horizontal_padding"
+    android:paddingRight="@dimen/list_item_horizontal_padding"
+    android:text="Section"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textColor="@color/list_item_text_primary_light"
+    android:textSize="20sp">
 
-    <TextView
-        android:id="@+id/headerTextView"
-        style="@style/Widget.TextView.ListSeparatorYelp.GrayBackground"
-        android:text="@string/name" />
-</LinearLayout>
+</TextView>
