@@ -88,8 +88,8 @@ public class NearRestaurantsTask extends FragmentTask {
         super.prepareUI();
 
         //set section header title
-        this.manager.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.section_more_items.ordinal(), IEAViewForHeaderInSectionCell.getType());
-        this.manager.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.section_restaurants.ordinal(), IEAViewForHeaderInSectionCell.getType());
+        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.More), NearRestaurantSection.section_more_items.ordinal());
+        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Nearby_Restaurants), NearRestaurantSection.section_restaurants.ordinal());
 
         this.manager.setRegisterCellClassWhenSelected(NearRestaurantMoreCell.getType(), NearRestaurantSection.section_more_items.ordinal());
         this.manager.setSectionItems(new LinkedList(getNearRestaurantMoresItems()), NearRestaurantSection.section_more_items.ordinal());

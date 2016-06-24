@@ -12,6 +12,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Task;
@@ -38,17 +40,17 @@ public abstract class AbstractImageUtil {
         return this.getImageCache().get(UUID);
     }
 
-//    public File getCacheImageUrl( DBPhoto model) {
-//        String uuid = model.getUUID();
-//        String usedRef = model.getUsedRef();
-//        String dateCreatedString = new SimpleDateFormat(data_format).format(model.getObjectCreatedDate());
-//
-//        return this.getImageCache().getFile(usedRef, uuid, dateCreatedString);
-//    }
-//
-//    public Task<List<File>> getImagesListTask(String usedRef) {
-//        return Task.forResult(getImageFiles(usedRef));
-//    }
+    public File getCacheImageUrl(DBPhoto model) {
+        String uuid = model.getUUID();
+        String usedRef = model.getUsedRef();
+        String dateCreatedString = new SimpleDateFormat(data_format).format(model.getObjectCreatedDate());
+
+        return this.getImageCache().getFile(usedRef, uuid, dateCreatedString);
+    }
+
+    public Task<List<File>> getImagesListTask(String usedRef) {
+        return Task.forResult(getImageFiles(usedRef));
+    }
 
     /**
      * Query the disk cache's url path.
@@ -58,8 +60,7 @@ public abstract class AbstractImageUtil {
      * - returns: Images List
      */
     public List<File> getImageFiles(String usedRef) {
-//        return this.getImageCache().getList(usedRef);
-        return null;
+        return this.getImageCache().getList(usedRef);
     }
 
     public File getImageFile(String usedRef) {
@@ -70,15 +71,11 @@ public abstract class AbstractImageUtil {
         return imageFiles.get(0);
     }
 
-    public Task<List<File>> getImagesListTask(String restaurantUUID) {
-        return Task.forResult(null);
-    }
-
     public Task<List<File>> getImagesListTask() {
-        List<File> list = null;//this.getImageCache().getList();
-//        if (list.size() == 0) {
-//            return Task.forError(new FileNotFoundException("No images cached"));
-//        }
+        List<File> list = this.getImageCache().getList();
+        if (list.size() == 0) {
+            return Task.forError(new FileNotFoundException("No images cached"));
+        }
         return Task.forResult(list);
     }
 
@@ -88,7 +85,7 @@ public abstract class AbstractImageUtil {
 
     public boolean diskImageExistsWithKey(DBPhoto model) {
         File file = this.getImageCache().get(model.getUUID());
-        if (file == null || file.exists() == false) {
+        if (file == null || !file.exists()) {
             return false;
         }
         return true;
@@ -107,7 +104,7 @@ public abstract class AbstractImageUtil {
      */
     public Bitmap getTakenPhoto(String UUID) {
         File imageFile = this.getTakenPhotoFile(UUID);
-        if (imageFile == null || imageFile.exists() == false) {
+        if (imageFile == null || !imageFile.exists()) {
             return null;
         }
 
@@ -151,7 +148,7 @@ public abstract class AbstractImageUtil {
         }
         ///data/data/org.ieatta.alpha/thumbnail/828DB1D6-67AB-467D-8D98-76C1938C5306/201511230822_FD0CA37F-7ECF-443E-B69E-5FBBB8EEB771
 
-        if (save == false) {
+        if (!save) {
             return Task.forError(new FileNotFoundException("Cache thumbnail image failed"));
         }
 
@@ -169,7 +166,7 @@ public abstract class AbstractImageUtil {
         }
         ///data/data/org.ieatta.alpha/thumbnail/828DB1D6-67AB-467D-8D98-76C1938C5306/201511230822_FD0CA37F-7ECF-443E-B69E-5FBBB8EEB771
 
-        if (save == false) {
+        if (!save) {
             return Task.forError(new FileNotFoundException("Cache thumbnail image failed"));
         }
 
@@ -187,6 +184,5 @@ public abstract class AbstractImageUtil {
     public Task<Bitmap> generateTakenPhoto(Bitmap image, DBPhoto model) {
         return Task.forResult(null);
     }
-
 
 }

@@ -7,12 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.provide.IEAEditKey;
 import com.tableview.RecycleViewManager;
 import com.tableview.adapter.NSIndexPath;
 import com.tableview.adapter.RecyclerOnItemClickListener;
+import com.tableview.model.EditBaseCellModel;
 import com.tableview.model.IEAGalleryThumbnail;
 import com.tableview.model.IEAReviewsCellModel;
 import com.tableview.utils.CollectionUtil;
@@ -64,6 +66,10 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
 
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
 
+    }
+
+    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
+        this.manager.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
     }
 
     public Task<Void> executeTask() {
