@@ -1,6 +1,7 @@
 package org.ieatta.activity.restaurant;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -69,7 +70,8 @@ public class RestaurantDetailTask extends FragmentTask {
      * @return
      */
     public Task<Void> executeTask() {
-        final String _restaurantUUID = "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04";//this.entry.getHPara();
+        Bundle extras = this.activity.getIntent().getExtras();
+        final String _restaurantUUID = extras.getString(EXTRA_ID);
 
         return new RealmModelReader<DBRestaurant>(DBRestaurant.class).getFirstObject(LocalDatabaseQuery.get(_restaurantUUID), false, realmList).onSuccessTask(new Continuation<DBRestaurant, Task<RealmResults<DBPhoto>>>() {
             @Override
@@ -118,7 +120,7 @@ public class RestaurantDetailTask extends FragmentTask {
 
     @Override
     public void postUI() {
-        this.manager.setSectionItems(IEARestaurantDetailHeaderCell.getType(),CollectionUtils.createList(new IEARestaurantDetailHeader(this.restaurant)), RestaurantDetailSection.section_header.ordinal());
+        this.manager.setSectionItems(IEARestaurantDetailHeaderCell.getType(), CollectionUtils.createList(new IEARestaurantDetailHeader(this.restaurant)), RestaurantDetailSection.section_header.ordinal());
         this.manager.setSectionItems(IEARestaurantEventsCell.getType(), this.events, RestaurantDetailSection.section_events.ordinal());
 
         postPhotosGallery(RestaurantDetailSection.section_gallery_thumbnail.ordinal());
