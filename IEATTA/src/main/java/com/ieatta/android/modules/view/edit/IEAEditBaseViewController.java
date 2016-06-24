@@ -155,7 +155,7 @@ public abstract class IEAEditBaseViewController extends IEAPhotoGalleryViewContr
             if (items == null) {
                 continue;
             }
-            setSectionItems(CollectionUtils.createList(items), i);
+//            setSectionItems(CollectionUtils.createList(items), i);
         }
     }
 

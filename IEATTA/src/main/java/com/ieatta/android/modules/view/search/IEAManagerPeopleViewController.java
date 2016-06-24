@@ -82,7 +82,7 @@ public class IEAManagerPeopleViewController extends IEASplitDetailViewController
             }
         });
 
-        this.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ManagerPeopleSection.sectionTeam.ordinal());
+//        this.setRegisterCellClassWhenSelected(IEAPeopleInfoCell.getType(), ManagerPeopleSection.sectionTeam.ordinal());
     }
 
     @Override

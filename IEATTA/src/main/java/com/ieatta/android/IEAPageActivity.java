@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
-import com.ieatta.android.extensions.storage.DTTableViewManager;
-
 public class IEAPageActivity extends AppCompatActivity {
     protected RecyclerView recyclerView;
 
@@ -68,11 +66,11 @@ public class IEAPageActivity extends AppCompatActivity {
         return true;
     }
 
-    protected void startManagingWithDelegate(DTTableViewManager manager) {
-        this.recyclerView.setAdapter(manager.getAdapter());
-        this.recyclerView.setLayoutManager(manager.configuration.builder.manager);
-        this.recyclerView.addItemDecoration(manager.configuration.builder.decoration);
-    }
+//    protected void startManagingWithDelegate(DTTableViewManager manager) {
+//        this.recyclerView.setAdapter(manager.getAdapter());
+//        this.recyclerView.setLayoutManager(manager.configuration.builder.manager);
+//        this.recyclerView.addItemDecoration(manager.configuration.builder.decoration);
+//    }
 
     public boolean navigationShouldPopOnBackButton() {
         return true;

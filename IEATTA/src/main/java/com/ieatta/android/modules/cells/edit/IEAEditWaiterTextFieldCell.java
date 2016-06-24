@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.storage.models.CellType;
+import com.tableview.storage.models.CellType;
 import com.tableview.adapter.IEAViewHolder;
 import com.tableview.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.EditWaiterCellModel;

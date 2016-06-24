@@ -3,7 +3,7 @@ package com.ieatta.android.modules.cells.photos;
 import android.view.View;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.storage.models.CellType;
+import com.tableview.storage.models.CellType;
 import com.ieatta.android.extensions.viewkit.AvatarView;
 import com.tableview.adapter.IEAViewHolder;
 

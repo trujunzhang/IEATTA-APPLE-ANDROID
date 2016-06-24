@@ -3,7 +3,7 @@ package com.ieatta.android.modules.cells.photos;
 import android.view.View;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.storage.models.CellType;
+import com.tableview.storage.models.CellType;
 import com.tableview.adapter.IEAViewHolder;
 import com.ieatta.android.modules.common.edit.AddPhotoModel;
 

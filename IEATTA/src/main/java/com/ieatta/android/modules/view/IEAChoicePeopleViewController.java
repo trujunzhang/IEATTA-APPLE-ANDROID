@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.cache.IntentCache;
-import com.ieatta.android.extensions.storage.models.CellType;
+import com.tableview.storage.models.CellType;
 import com.ieatta.android.modules.IEABaseTableViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.IEAEmptyInfoCell;
@@ -138,8 +138,8 @@ public class IEAChoicePeopleViewController extends IEABaseTableViewController {
         }else{
             this.infoLabel.setVisibility(View.GONE);
 
-            this.setRegisterCellClass(type, forSectionIndex);
-            this.setSectionItems(items, forSectionIndex);
+//            this.setRegisterCellClass(type, forSectionIndex);
+//            this.setSectionItems(items, forSectionIndex);
         }
     }
 }

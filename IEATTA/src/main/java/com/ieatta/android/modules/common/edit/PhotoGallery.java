@@ -2,7 +2,7 @@ package com.ieatta.android.modules.common.edit;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.ieatta.android.extensions.storage.DTTableViewManager;
+//import com.ieatta.android.extensions.storage.DTTableViewManager;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.cells.photos.IEAAddPhotoCell;
 import com.ieatta.provide.IEAEditKey;
@@ -20,7 +20,7 @@ public class PhotoGallery extends EditBaseCellModel {
 
     public IEAPhotoGalleryViewController viewController;
     private List  fetchedPhotos;
-    private DTTableViewManager manager = null;
+//    private DTTableViewManager manager = null;
 
     public PhotoGallery(IEAEditKey photo_gallery, IEAPhotoGalleryViewController viewController) {
         super(photo_gallery);
@@ -31,19 +31,19 @@ public class PhotoGallery extends EditBaseCellModel {
 ////        self.delegate.
 //    }
 
-    public void setCollectionView(RecyclerView collectionView, DTTableViewManager manager) {
-        self.collectionView = collectionView;
-        self.manager = manager;
-
-//        self.manager.memoryStorage.setSectionFooterModel(new AddPhotoModel(IEAEditKey.add_Photo), 0, IEAAddPhotoCell.getType());
-//        self.manager.memoryStorage.setItems(self.viewController.getPhotoGalleryItems(), 0);
-    }
-
-    public void refreshCollection(List  fetchedPhotos) {
-        if (self.manager != null) {
-            self.manager.memoryStorage.setItems(fetchedPhotos, 0);
-        }
-    }
+//    public void setCollectionView(RecyclerView collectionView, DTTableViewManager manager) {
+//        self.collectionView = collectionView;
+//        self.manager = manager;
+//
+////        self.manager.memoryStorage.setSectionFooterModel(new AddPhotoModel(IEAEditKey.add_Photo), 0, IEAAddPhotoCell.getType());
+////        self.manager.memoryStorage.setItems(self.viewController.getPhotoGalleryItems(), 0);
+//    }
+//
+//    public void refreshCollection(List  fetchedPhotos) {
+//        if (self.manager != null) {
+//            self.manager.memoryStorage.setItems(fetchedPhotos, 0);
+//        }
+//    }
 
 //    var collectionView: UICollectionView?
 //    var delegate:protocol<UICollectionViewDelegate,UICollectionViewDataSource>?

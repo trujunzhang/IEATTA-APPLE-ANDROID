@@ -29,10 +29,10 @@ public class IEAEditRecipeViewController extends IEAEditBaseViewController {
     @Override
     protected void prepareForEditTableView() {
         // Add rows for sections.
-        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), EditRecipeSection.sectionInformation.ordinal());
-        this.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditRecipeSection.sectionInformation.ordinal());
+//        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Recipe_Information), EditRecipeSection.sectionInformation.ordinal());
+//        this.setRegisterCellClass(IEAEditTextFieldCell.getType(), EditRecipeSection.sectionInformation.ordinal());
         // **** Important (just for android)****
-        this.setRegisterCellClassInSpecialRow(IEAEditTextRecipeFieldCell.getType(), EditRecipeSection.sectionInformation.ordinal(), 1);
+//        this.setRegisterCellClassInSpecialRow(IEAEditTextRecipeFieldCell.getType(), EditRecipeSection.sectionInformation.ordinal(), 1);
     }
 
     @Override
