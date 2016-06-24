@@ -6,10 +6,10 @@ import android.widget.TextView;
 
 import com.ieatta.android.R;
 import com.ieatta.android.extensions.viewkit.AvatarView;
-import com.tableview.model.IEAReviewsCellModel;
 import com.tableview.storage.models.CellType;
 import com.tableview.adapter.IEAViewHolder;
-import com.tableview.adapter.enums.ViewHolderType;
+
+import org.ieatta.database.query.IEAReviewsCellModel;
 
 
 public class IEAReviewsCell extends IEAViewHolder {
@@ -41,15 +41,17 @@ public class IEAReviewsCell extends IEAViewHolder {
         this.reviewContentLabel = (TextView) itemView.findViewById(R.id.reviewContentLabel);
     }
 
-    @Override
-    public void render(Object value) {
-        IEAReviewsCellModel model = (IEAReviewsCellModel) value;
-
+    private void setReviewCell(IEAReviewsCellModel model) {
         this.avatarView.loadNewPhotoByModel(model.userUUID);
 
         this.titleLabel.setText(model.title);
         this.timeAgoTextView.setText(model.timeAgoString);
         this.business_review_star_rating.setImageLevel(model.ratingValue);
         this.reviewContentLabel.setText(model.reviewContent);
+    }
+
+    @Override
+    public void render(Object value) {
+        this.setReviewCell((IEAReviewsCellModel) value);
     }
 }

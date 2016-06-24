@@ -9,7 +9,6 @@ import org.ieatta.database.models.DBTeam;
 
 import com.ieatta.provide.AppConstant;
 import com.tableview.model.IEAOrderedPeople;
-import com.tableview.model.IEAReviewsCellModel;
 
 import org.ieatta.server.cache.ThumbnailImageUtil;
 import org.wikipedia.analytics.DBConvertFunnel;
@@ -17,8 +16,6 @@ import org.wikipedia.analytics.DBConvertFunnel;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-
-import io.realm.RealmResults;
 
 public class DBConvert {
 
@@ -43,13 +40,13 @@ public class DBConvert {
     }
 
 
-    public static List<IEAOrderedPeople> toOrderedPeopleList(RealmResults<DBTeam> teams, DBEvent event) {
-        List<IEAOrderedPeople> list = new LinkedList<>();
-        for (DBTeam team : teams) {
-            list.add(new IEAOrderedPeople(team.getUUID(), team.getDisplayName(), event.getUUID()));
-        }
-        return list;
-    }
+//    public static List<IEAOrderedPeople> toOrderedPeopleList(RealmResults<DBTeam> teams, DBEvent event) {
+//        List<IEAOrderedPeople> list = new LinkedList<>();
+//        for (DBTeam team : teams) {
+//            list.add(new IEAOrderedPeople(team.getUUID(), team.getDisplayName(), event.getUUID()));
+//        }
+//        return list;
+//    }
 
 
     public static List<String> getPeoplePoints(List<DBPeopleInEvent> peopleInEvent) {
