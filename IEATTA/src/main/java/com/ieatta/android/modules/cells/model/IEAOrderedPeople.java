@@ -7,14 +7,14 @@ package com.ieatta.android.modules.cells.model;
 //    public Team model;
 //    public Event event;
 //    public boolean hideButton = true;
-//    public IEAOrderedRecipesViewController viewController;
+//    public IEAOrderedRecipesActivity viewController;
 //
 //    public IEAOrderedPeople(Team model, Event event) {
 //        this.model = model;
 //        this.event = event;
 //    }
 //
-//    public IEAOrderedPeople(Team model, Event event, IEAOrderedRecipesViewController viewController) {
+//    public IEAOrderedPeople(Team model, Event event, IEAOrderedRecipesActivity viewController) {
 //        this(model, event);
 //        self.hideButton = false;
 //        this.viewController = viewController;
@@ -28,7 +28,7 @@ package com.ieatta.android.modules.cells.model;
 //        return list;
 //    }
 //
-//    public static List convertToOrderedPeople(Team orderedPeople, Event event, IEAOrderedRecipesViewController viewController) {
+//    public static List convertToOrderedPeople(Team orderedPeople, Event event, IEAOrderedRecipesActivity viewController) {
 //        IEAOrderedPeople people = new IEAOrderedPeople(orderedPeople, event, viewController);
 //        return CollectionUtils.createList(people);
 //    }

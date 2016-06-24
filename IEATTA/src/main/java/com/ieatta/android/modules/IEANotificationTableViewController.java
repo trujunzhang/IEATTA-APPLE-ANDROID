@@ -26,7 +26,7 @@ public class IEANotificationTableViewController extends IEAPageActivity {
                 this.EventWasCreated(note);
                 break;
 
-            /// For classes: (IEAOrderedRecipesViewController,IEAPhotoGalleryViewController)
+            /// For classes: (IEAOrderedRecipesActivity,IEAPhotoGalleryViewController)
             case PAModelTakenPhotoNotification:
                 this.TakenPhotoWasChanged(note);
                 break;

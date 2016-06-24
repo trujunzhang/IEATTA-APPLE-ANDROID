@@ -41,7 +41,7 @@
 
         </activity>
         <activity
-            android:name=".modules.view.IEAOrderedRecipesViewController"
+            android:name="org.ieatta.activity.recipe.IEAOrderedRecipesActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".modules.view.IEARecipeDetailViewController"

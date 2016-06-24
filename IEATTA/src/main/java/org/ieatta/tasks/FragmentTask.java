@@ -48,6 +48,7 @@ import io.realm.RealmResults;
 
 public abstract class FragmentTask implements RecyclerOnItemClickListener {
     protected static final String EXTRA_ID = "model_id";
+    protected static final String TEAM_ID = "team_id";
 
     protected String mRestaurantUUID;
     protected String mEventUUID;

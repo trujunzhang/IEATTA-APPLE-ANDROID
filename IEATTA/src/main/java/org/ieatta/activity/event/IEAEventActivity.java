@@ -161,7 +161,7 @@ public class IEAEventActivity extends IEAPageActivity {
 //    }
 //
 //    @Override
-//    public void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination, Intent sender) {
+//    public void segueForOrderedRecipesViewController(IEAOrderedRecipesActivity destination, Intent sender) {
 //        this.setTransferedModel(sender, this.selectedModel);
 //    }
 //

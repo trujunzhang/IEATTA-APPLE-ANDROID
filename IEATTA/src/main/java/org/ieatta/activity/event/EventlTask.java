@@ -1,6 +1,7 @@
 package org.ieatta.activity.event;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
@@ -48,12 +49,14 @@ public class EventlTask extends FragmentTask {
 
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
+        Intent intent = null;
         if (model instanceof IEAOrderedPeople) {
             IEAOrderedPeople item = (IEAOrderedPeople) model;
-
-//            ((PageActivity) activity).loadPage(
-//                    new HistoryEntry(MainSegueIdentifier.detailOrderedRecipesSegueIdentifier, item.getEventUUID(), item.getTeamUUID()));
+            intent = new Intent(activity, IEAEventActivity.class);
+            intent.putExtra(EXTRA_ID, item.getEventUUID());
+            intent.putExtra(TEAM_ID, item.getTeamUUID());
         }
+        this.nextPage(intent);
     }
 
     enum EventDetailSection {

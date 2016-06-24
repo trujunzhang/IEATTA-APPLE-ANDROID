@@ -1,15 +1,15 @@
-package com.ieatta.android.modules.view;
+package org.ieatta.activity.recipe;
 
-import com.ieatta.android.modules.IEASplitDetailViewController;
+import com.ieatta.android.IEAPageActivity;
 
 
-public class IEAOrderedRecipesViewController extends IEASplitDetailViewController {
+public class IEAOrderedRecipesActivity extends IEAPageActivity {
     enum OrderedRecipesSection {
         sectionOrderedPeople, //= 0
         sectionRecipes,       //= 1
     }
 
-    private IEAOrderedRecipesViewController self = this;
+    private IEAOrderedRecipesActivity self = this;
 
     @Override
     public boolean shouldShowHUD() {

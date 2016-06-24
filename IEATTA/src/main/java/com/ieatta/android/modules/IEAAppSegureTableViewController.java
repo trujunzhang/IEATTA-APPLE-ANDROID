@@ -11,7 +11,8 @@ import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
 
 import org.ieatta.activity.event.IEAEventActivity;
 
-import com.ieatta.android.modules.view.IEAOrderedRecipesViewController;
+import org.ieatta.activity.recipe.IEAOrderedRecipesActivity;
+
 import com.ieatta.android.modules.view.IEARecipeDetailViewController;
 
 import org.ieatta.activity.restaurant.IEARestaurantDetailActivity;
@@ -110,7 +111,7 @@ public class IEAAppSegureTableViewController extends IEANotificationTableViewCon
     protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
     }
 
-    protected void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination, Intent sender) {
+    protected void segueForOrderedRecipesViewController(IEAOrderedRecipesActivity destination, Intent sender) {
     }
 
     protected void segueForChoicePeopleViewController(IEAChoicePeopleViewController destination, Intent sender) {
