@@ -9,6 +9,7 @@ import android.view.View;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
+import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.provide.IEAEditKey;
 import com.tableview.RecycleViewManager;
@@ -26,6 +27,7 @@ import org.ieatta.activity.gallery.GalleryCollection;
 import org.ieatta.activity.gallery.GalleryItem;
 import org.ieatta.activity.gallery.GalleryThumbnailScrollView;
 
+import org.ieatta.activity.gallery.IEAGalleryThumbnailCell;
 import org.ieatta.database.models.DBPhoto;
 import org.ieatta.database.provide.ReviewType;
 import org.ieatta.database.query.LocalDatabaseQuery;
@@ -102,10 +104,10 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
     }
 
     public void postPhotosGallery(int forSectionIndex) {
-//        this.manager.setRegisterCellClass(IEAGalleryThumbnailCell.getType(), forSectionIndex);
-//        this.manager.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.PhotosGallery), forSectionIndex);
+        this.manager.setRegisterCellClass(IEAGalleryThumbnailCell.getType(), forSectionIndex);
+        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.PhotosGallery), forSectionIndex);
 //        this.manager.setSectionItems(CollectionUtil.createList(new IEAGalleryThumbnail(this.thumbnailGalleryCollection, this.galleryViewListener)), forSectionIndex);
-        // this.manager.setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(mRestaurantUUID, ReviewType.Review_Restaurant), forSectionIndex, IEAPhotoGalleryFooterCell.getType());
+//         this.manager.setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(mRestaurantUUID, ReviewType.Review_Restaurant), forSectionIndex, IEAPhotoGalleryFooterCell.getType());
     }
 
     public void postReviews(int forSectionIndex, String reviewRef, ReviewType type, int limit) {

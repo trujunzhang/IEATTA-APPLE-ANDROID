@@ -68,7 +68,7 @@ public class RestaurantDetailTask extends FragmentTask {
      * @return
      */
     public Task<Void> executeTask() {
-        final String _restaurantUUID = "";//this.entry.getHPara();
+        final String _restaurantUUID = "1CE562A4-A978-4B75-9B7B-2F3CF9F42A04";//this.entry.getHPara();
 
         return new RealmModelReader<DBRestaurant>(DBRestaurant.class).getFirstObject(LocalDatabaseQuery.get(_restaurantUUID), false, realmList).onSuccessTask(new Continuation<DBRestaurant, Task<RealmResults<DBPhoto>>>() {
             @Override
@@ -123,7 +123,7 @@ public class RestaurantDetailTask extends FragmentTask {
         this.manager.setSectionItems(this.events, RestaurantDetailSection.section_events.ordinal());
 
         postPhotosGallery(RestaurantDetailSection.section_gallery_thumbnail.ordinal());
-        postReviews(RestaurantDetailSection.section_reviews.ordinal(), mRestaurantUUID, ReviewType.Review_Restaurant, AppConstant.limit_reviews);
+//        postReviews(RestaurantDetailSection.section_reviews.ordinal(), mRestaurantUUID, ReviewType.Review_Restaurant, AppConstant.limit_reviews);
     }
 
 }
