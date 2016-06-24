@@ -1,6 +1,7 @@
 package org.ieatta.activity.restaurant;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.ieatta.provide.IEAEditKey;
 import com.tableview.adapter.NSIndexPath;
 
 import org.ieatta.activity.LeadImageCollection;
+import org.ieatta.activity.event.IEAEventActivity;
 import org.ieatta.database.models.DBEvent;
 import org.ieatta.database.models.DBPhoto;
 import org.ieatta.database.models.DBRestaurant;
@@ -49,12 +51,12 @@ public class RestaurantDetailTask extends FragmentTask {
 
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
+        Intent intent = null;
         if (model instanceof DBEvent) {
-            DBEvent item = (DBEvent) model;
-
-//            ((PageActivity) activity).loadPage(
-//                    new HistoryEntry(MainSegueIdentifier.detailEventSegueIdentifier, item.getUUID()));
+            intent = new Intent(activity, IEAEventActivity.class);
+            intent.putExtra(EXTRA_ID, ((DBEvent) model).getUUID());
         }
+        this.nextPage(intent);
     }
 
     enum RestaurantDetailSection {
