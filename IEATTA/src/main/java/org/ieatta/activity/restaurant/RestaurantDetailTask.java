@@ -46,8 +46,6 @@ public class RestaurantDetailTask extends FragmentTask {
 
     public DBRestaurant restaurant;
     public RealmResults<DBEvent> events;
-    private LeadImageCollection leadImageCollection; // for restaurants
-
 
     @Override
     public void onItemClick(View view, NSIndexPath indexPath, Object model, int position, boolean isLongClick) {
