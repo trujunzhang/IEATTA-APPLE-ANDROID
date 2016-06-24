@@ -78,7 +78,6 @@ public class IEAEventHeaderCell extends IEAViewHolder {
 
         this.restaurantNameLabel.setText(model.restaurantName);
         this.displayNameLabel.setText(model.eventName);
-
         this.ratingImageView.queryRatingInReviewsByModel(model.eventUUID, ReviewType.Review_Event);
     }
 
