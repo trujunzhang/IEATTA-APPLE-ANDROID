@@ -21,7 +21,6 @@ public class IEAEventHeaderCell extends IEAViewHolder {
         return false;
     }
 
-    private IEAEventHeaderCell self = this;
     private IEAEventHeader model;
 
     private TextView restaurantNameLabel;
@@ -36,49 +35,51 @@ public class IEAEventHeaderCell extends IEAViewHolder {
     public IEAEventHeaderCell(View itemView) {
         super(itemView);
 
-        self.restaurantNameLabel = (TextView) itemView.findViewById(R.id.restaurantNameTextView);
-        self.displayNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
-        self.ratingImageView = (RatingImageView) itemView.findViewById(R.id.business_review_star_rating);
+        this.restaurantNameLabel = (TextView) itemView.findViewById(R.id.restaurantNameTextView);
+        this.displayNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
+        this.ratingImageView = (RatingImageView) itemView.findViewById(R.id.business_review_star_rating);
 
-        self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
-        self.editButton.setText(R.string.Edit_Event);
-        self.editButton.setOnClickListener(new View.OnClickListener() {
+        this.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
+        this.editButton.setText(R.string.Edit_Event);
+        this.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                self.model.viewController.performSegueForEditingModel();
+//                this.model.viewController.performSegueForEditingModel();
             }
         });
-        self.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
-        self.firstButton.setText(R.string.Select_People);
-        self.firstButton.setOnClickListener(new View.OnClickListener() {
+        this.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
+        this.firstButton.setText(R.string.Select_People);
+        this.firstButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                self.model.viewController.addPeopleTaped();
+//                this.model.viewController.addPeopleTaped();
             }
         });
-        self.secondButton = (TextView) itemView.findViewById(R.id.secondTextView);
-        self.secondButton.setText(R.string.Write_Review);
-        self.secondButton.setOnClickListener(new View.OnClickListener() {
+        this.secondButton = (TextView) itemView.findViewById(R.id.secondTextView);
+        this.secondButton.setText(R.string.Write_Review);
+        this.secondButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                self.model.viewController.performSegueForWritingReview();
+//                this.model.viewController.performSegueForWritingReview();
             }
         });
-        self.thirdButton = (TextView) itemView.findViewById(R.id.thirdTextView);
-        self.thirdButton.setText(R.string.See_Reviews);
-        self.thirdButton.setOnClickListener(new View.OnClickListener() {
+        this.thirdButton = (TextView) itemView.findViewById(R.id.thirdTextView);
+        this.thirdButton.setText(R.string.See_Reviews);
+        this.thirdButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                self.model.viewController.performSegueForSeeReviews();
+//                this.model.viewController.performSegueForSeeReviews();
             }
         });
     }
 
     private void setEventHeader(IEAEventHeader header) {
-        self.restaurantNameLabel.setText(model.restaurantName);
-        self.displayNameLabel.setText(model.eventName);
+        this.model = header;
 
-        self.ratingImageView.queryRatingInReviewsByModel(model.eventUUID, ReviewType.Review_Event);
+        this.restaurantNameLabel.setText(model.restaurantName);
+        this.displayNameLabel.setText(model.eventName);
+
+        this.ratingImageView.queryRatingInReviewsByModel(model.eventUUID, ReviewType.Review_Event);
     }
 
     @Override
