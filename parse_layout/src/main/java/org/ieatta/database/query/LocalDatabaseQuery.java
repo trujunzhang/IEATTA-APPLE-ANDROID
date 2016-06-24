@@ -85,7 +85,7 @@ public class LocalDatabaseQuery {
         DBBuilder builder = new DBBuilder()
                 .whereEqualTo(AppConstant.kPAPFieldReviewRefKey, reviewRef)
                 .whereEqualTo(AppConstant.kPAPFieldReviewTypeKey, reviewType.ordinal());
-        return new RealmModelReader<DBReview>(DBReview.class).fetchRatingReview(builder, false, realmList);
+        return new RealmModelReader<DBReview>(DBReview.class).fetchRatingReview(builder);
     }
 
 

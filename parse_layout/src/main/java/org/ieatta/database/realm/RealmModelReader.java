@@ -47,7 +47,9 @@ public class RealmModelReader<T extends RealmObject> {
         return Task.forResult(result);
     }
 
-    public Task<Integer> fetchRatingReview(DBBuilder builder, boolean needClose, List<Realm> realmList) {
+    public Task<Integer> fetchRatingReview(DBBuilder builder) {
+        int rating = 0;
+
         RealmResults<T> result = null;
 
         Realm realm = RealmInstance.getInstance();
@@ -64,14 +66,9 @@ public class RealmModelReader<T extends RealmObject> {
         } catch (Exception e) {
             return Task.forError(e);
         } finally {
-            if (needClose) {
-                realm.close();
-            } else {
-                realmList.add(realm);
-            }
+            realm.close();
         }
 
-        int rating = 0;
 
         return Task.forResult(rating);
     }
