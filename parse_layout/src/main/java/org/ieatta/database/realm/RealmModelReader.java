@@ -61,8 +61,9 @@ public class RealmModelReader<T extends RealmObject> {
             // Execute the query:
             result = query.findAll();
 
-            if (result != null)
-                resultSorted(builder, result);
+            if (result != null) {
+
+            }
         } catch (Exception e) {
             return Task.forError(e);
         } finally {
@@ -79,8 +80,7 @@ public class RealmModelReader<T extends RealmObject> {
         Realm realm = RealmInstance.getInstance();
         try {
             RealmQuery<T> query = realm.where(this.clazz);
-
-            buildAll(builder, query);
+            buildEqualMap(builder, query);
 
             // Execute the query:
             result = query.findFirst();
