@@ -7,9 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
-
-import org.ieatta.activity.restaurant.IEARestaurantDetailViewController;
+import org.ieatta.activity.restaurant.IEARestaurantDetailActivity;
 
 import com.ieatta.android.IEAApplication;
 import com.ieatta.android.R;
@@ -53,7 +51,7 @@ public class NearRestaurantsTask extends FragmentTask {
         if (model instanceof IEANearRestaurantMore) {
             intent = new Intent(activity, ((IEANearRestaurantMore) model).identifier.getActivity());
         } else if (model instanceof DBRestaurant) {
-            intent = new Intent(activity, IEARestaurantDetailViewController.class);
+            intent = new Intent(activity, IEARestaurantDetailActivity.class);
             intent.putExtra(EXTRA_ID, "");
         }
 

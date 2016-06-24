@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 
-public class IEARestaurantDetailViewController extends IEAReviewsInDetailTableViewController {
+public class IEARestaurantDetailActivity extends IEAReviewsInDetailTableViewController {
     private RestaurantDetailTask task;
 
     @Override

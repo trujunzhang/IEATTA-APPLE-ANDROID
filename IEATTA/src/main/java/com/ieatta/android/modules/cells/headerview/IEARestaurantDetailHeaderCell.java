@@ -4,10 +4,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.storage.models.CellType;
+
 import com.ieatta.android.extensions.viewkit.RatingImageView;
 import com.tableview.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
+import com.tableview.storage.models.CellType;
 
 public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     public static CellType getType() {
@@ -34,17 +35,17 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     public IEARestaurantDetailHeaderCell(View itemView) {
         super(itemView);
 
-//        self.displayNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
-//        self.ratingImageView = (RatingImageView) itemView.findViewById(R.id.business_review_star_rating);
-//
-//        self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
-//        self.editButton.setText(R.string.Edit_Restaurant);
-//        self.editButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        self.displayNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
+        self.ratingImageView = (RatingImageView) itemView.findViewById(R.id.business_review_star_rating);
+
+        self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
+        self.editButton.setText(R.string.Edit_Restaurant);
+        self.editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                self.model.viewController.performSegueForEditingModel();
-//            }
-//        });
+            }
+        });
 //        self.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
 //        self.firstButton.setText(R.string.Add_Event);
 //        self.firstButton.setOnClickListener(new View.OnClickListener() {

@@ -86,7 +86,7 @@ public class IEASearchRestaurantViewController extends IEASplitDetailViewControl
 //    }
 //
 //    @Override
-//    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
+//    protected void segueForRestaurantDetailViewController(IEARestaurantDetailActivity destination, Intent sender) {
 //        /// Show detailed restaurant
 //        self.setTransferedModel(sender, self.selectedModel);
 //    }

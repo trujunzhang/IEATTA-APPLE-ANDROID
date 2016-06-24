@@ -82,7 +82,7 @@ public class IEAPhotoGalleryViewController extends IEASplitDetailViewController 
 //
 //    /**
 //     * *** Important ****
-//     * This method just @IEARestaurantDetailViewController override it.
+//     * This method just @IEARestaurantDetailActivity override it.
 //     * <p/>
 //     * - parameter completionBlock: callback variable
 //     */

@@ -16,7 +16,7 @@ import java.util.List;
 import bolts.Continuation;
 import bolts.Task;
 
-/// IEAReviewsInDetailTableViewController <|-- IEARestaurantDetailViewController
+/// IEAReviewsInDetailTableViewController <|-- IEARestaurantDetailActivity
 /// IEAReviewsInDetailTableViewController <|-- IEAEventDetailViewController
 /// IEAReviewsInDetailTableViewController <|-- IEARecipeDetailViewController
 public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableViewController {

@@ -1,12 +1,12 @@
 package com.ieatta.android.modules.cells.model;
 
 
+import org.ieatta.database.models.DBRestaurant;
+
 public class IEARestaurantDetailHeader {
-//    public IEARestaurantDetailViewController viewController;
-//    public Restaurant model;
-//
-//    public IEARestaurantDetailHeader(IEARestaurantDetailViewController viewController, Restaurant model) {
-//        this.viewController = viewController;
-//        this.model = model;
-//    }
+    public DBRestaurant model;
+
+    public IEARestaurantDetailHeader(DBRestaurant model) {
+        this.model = model;
+    }
 }

@@ -4,7 +4,7 @@ import android.content.Intent;
 
 import com.ieatta.android.extensions.UIDevice;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
-import org.ieatta.activity.restaurant.IEARestaurantDetailViewController;
+import org.ieatta.activity.restaurant.IEARestaurantDetailActivity;
 import com.ieatta.android.modules.view.edit.IEAEditRestaurantViewController;
 
 public class IEASplitMasterViewController extends IEABaseTableViewController {
@@ -67,7 +67,7 @@ public class IEASplitMasterViewController extends IEABaseTableViewController {
     }
 
     @Override
-    protected void segueForRestaurantDetailViewController(IEARestaurantDetailViewController destination, Intent sender) {
+    protected void segueForRestaurantDetailViewController(IEARestaurantDetailActivity destination, Intent sender) {
         // TODO djzhang(used for iPhone)
 //        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
 //            /// Show detailed restaurant
