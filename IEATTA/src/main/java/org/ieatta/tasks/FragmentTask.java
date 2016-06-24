@@ -2,41 +2,32 @@ package org.ieatta.tasks;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
-import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
-import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
+import com.ieatta.android.modules.cells.photos.IEAGalleryThumbnail;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.provide.IEAEditKey;
 import com.tableview.RecycleViewManager;
 import com.tableview.adapter.NSIndexPath;
 import com.tableview.adapter.RecyclerOnItemClickListener;
 import com.tableview.model.EditBaseCellModel;
-import com.tableview.model.IEAGalleryThumbnail;
 import com.tableview.model.IEAReviewsCellModel;
 import com.tableview.utils.CollectionUtil;
 
 import org.ieatta.activity.LeadImage;
 import org.ieatta.activity.LeadImageCollection;
-import org.ieatta.activity.gallery.GalleryActivity;
 import org.ieatta.activity.gallery.GalleryCollection;
 import org.ieatta.activity.gallery.GalleryItem;
 import org.ieatta.activity.gallery.GalleryThumbnailScrollView;
-
 import org.ieatta.activity.gallery.IEAGalleryThumbnailCell;
 import org.ieatta.database.models.DBPhoto;
 import org.ieatta.database.provide.ReviewType;
-import org.ieatta.database.query.LocalDatabaseQuery;
 import org.ieatta.database.query.ReviewQuery;
-
 import org.ieatta.server.cache.ThumbnailImageUtil;
 import org.wikipedia.analytics.DBConvertFunnel;
-import org.wikipedia.analytics.GalleryFunnel;
 import org.wikipedia.analytics.RecycleCellFunnel;
 import org.wikipedia.util.DimenUtil;
 
@@ -81,7 +72,6 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
     }
 
 
-
     public Task<Void> executeTask() {
         return Task.forResult(null);
     }
@@ -106,7 +96,7 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
     public void postPhotosGallery(int forSectionIndex) {
         this.manager.setRegisterCellClass(IEAGalleryThumbnailCell.getType(), forSectionIndex);
         this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.PhotosGallery), forSectionIndex);
-//        this.manager.setSectionItems(CollectionUtil.createList(new IEAGalleryThumbnail(this.thumbnailGalleryCollection, this.galleryViewListener)), forSectionIndex);
+        this.manager.setSectionItems(CollectionUtil.createList(new IEAGalleryThumbnail(this.thumbnailGalleryCollection, this.galleryViewListener)), forSectionIndex);
 //         this.manager.setFooterModelInSection(new SectionPhotoGalleryFooterCellModel(mRestaurantUUID, ReviewType.Review_Restaurant), forSectionIndex, IEAPhotoGalleryFooterCell.getType());
     }
 
@@ -124,20 +114,20 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
     }
 
 
-//    protected GalleryThumbnailScrollView.GalleryViewListener galleryViewListener
-//            = new GalleryThumbnailScrollView.GalleryViewListener() {
-//        @Override
-//        public void onGalleryItemClicked(String imageUUID) {
-////            PageTitle imageTitle = new PageTitle(imageUUID,null,null);
-////            GalleryActivity.showGallery(activity, model.getTitle(), imageTitle,
-////                    GalleryFunnel.SOURCE_LINK_PREVIEW);
-//        }
-//
-//        @Override
-//        public void onGalleryAddPhotoItemClicked() {
-//
-//        }
-//    };
+    protected GalleryThumbnailScrollView.GalleryViewListener galleryViewListener
+            = new GalleryThumbnailScrollView.GalleryViewListener() {
+        @Override
+        public void onGalleryItemClicked(String imageUUID) {
+//            PageTitle imageTitle = new PageTitle(imageUUID,null,null);
+//            GalleryActivity.showGallery(activity, model.getTitle(), imageTitle,
+//                    GalleryFunnel.SOURCE_LINK_PREVIEW);
+        }
+
+        @Override
+        public void onGalleryAddPhotoItemClicked() {
+
+        }
+    };
 
     public void setupRecycleView(RecyclerView recyclerView) {
         manager.startManagingWithDelegate(recyclerView);

@@ -12,7 +12,7 @@ import java.util.Map;
 
 //import io.realm.RealmResults;
 
-public class IEAGalleryThumbnail {
+//public class IEAGalleryThumbnail {
 //    private GalleryCollection result;
 //    public GalleryThumbnailScrollView.GalleryViewListener galleryViewListener;
 //
@@ -30,4 +30,4 @@ public class IEAGalleryThumbnail {
 //    }
 
 
-}
+//}
