@@ -21,6 +21,7 @@ import com.tableview.adapter.NSIndexPath;
 import com.tableview.model.IEAOrderedPeople;
 
 import org.ieatta.activity.LeadImageCollection;
+import org.ieatta.activity.recipe.IEAOrderedRecipesActivity;
 import org.ieatta.database.models.DBEvent;
 import org.ieatta.database.models.DBPeopleInEvent;
 import org.ieatta.database.models.DBPhoto;
@@ -52,7 +53,7 @@ public class EventlTask extends FragmentTask {
         Intent intent = null;
         if (model instanceof IEAOrderedPeople) {
             IEAOrderedPeople item = (IEAOrderedPeople) model;
-            intent = new Intent(activity, IEAEventActivity.class);
+            intent = new Intent(activity, IEAOrderedRecipesActivity.class);
             intent.putExtra(EXTRA_ID, item.getEventUUID());
             intent.putExtra(TEAM_ID, item.getTeamUUID());
         }
