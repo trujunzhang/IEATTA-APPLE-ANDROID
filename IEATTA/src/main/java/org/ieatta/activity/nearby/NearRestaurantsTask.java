@@ -52,7 +52,7 @@ public class NearRestaurantsTask extends FragmentTask {
             intent = new Intent(activity, ((IEANearRestaurantMore) model).identifier.getActivity());
         } else if (model instanceof DBRestaurant) {
             intent = new Intent(activity, IEARestaurantDetailActivity.class);
-            intent.putExtra(EXTRA_ID, "");
+            intent.putExtra(EXTRA_ID, ((DBRestaurant)model).getUUID());
         }
 
         this.nextPage(intent);
