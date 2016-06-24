@@ -11,6 +11,7 @@ import com.ieatta.android.cache.IEACache;
 
 import org.ieatta.database.models.DBReview;
 import org.ieatta.database.provide.ReviewType;
+import org.ieatta.database.query.LocalDatabaseQuery;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -37,8 +38,15 @@ public class RatingImageView extends ImageView {
 
 
     public void queryRatingInReviewsByModel(String reviewRef, ReviewType reviewType) {
-
-//        self.queryRatingInReviewsByReview(new Review(model));
+        self.setImageLevel(0);
+        LocalDatabaseQuery.queryRatingInReviews(reviewRef, reviewType).onSuccess(new Continuation<Integer, Void>() {
+            @Override
+            public Void then(Task<Integer> task) throws Exception {
+                int rating = task.getResult();
+                self.setImageLevel(rating);
+                return null;
+            }
+        });
     }
 
     public void queryRatingInReviewsByReview(final DBReview review) {

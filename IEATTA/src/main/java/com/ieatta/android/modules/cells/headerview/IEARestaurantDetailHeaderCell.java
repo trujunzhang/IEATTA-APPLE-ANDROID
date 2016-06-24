@@ -48,30 +48,30 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
 //                self.model.viewController.performSegueForEditingModel();
             }
         });
-//        self.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
-//        self.firstButton.setText(R.string.Add_Event);
-//        self.firstButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        self.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
+        self.firstButton.setText(R.string.Add_Event);
+        self.firstButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                self.model.viewController.performSegueForAddingEvent();
-//            }
-//        });
-//        self.secondButton = (TextView) itemView.findViewById(R.id.secondTextView);
-//        self.secondButton.setText(R.string.Write_Review);
-//        self.secondButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+            }
+        });
+        self.secondButton = (TextView) itemView.findViewById(R.id.secondTextView);
+        self.secondButton.setText(R.string.Write_Review);
+        self.secondButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                self.model.viewController.performSegueForWritingReview();
-//            }
-//        });
-//        self.thirdButton = (TextView) itemView.findViewById(R.id.thirdTextView);
-//        self.thirdButton.setText(R.string.See_Reviews);
-//        self.thirdButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+            }
+        });
+        self.thirdButton = (TextView) itemView.findViewById(R.id.thirdTextView);
+        self.thirdButton.setText(R.string.See_Reviews);
+        self.thirdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                self.model.viewController.performSegueForSeeReviews();
-//            }
-//        });
+            }
+        });
     }
 
     @Override
