@@ -10,6 +10,8 @@ import com.tableview.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
 import com.tableview.storage.models.CellType;
 
+import org.ieatta.database.provide.ReviewType;
+
 public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     public static CellType getType() {
         return new CellType(IEARestaurantDetailHeaderCell.class, R.layout.restaurant_detail_header_cell);
@@ -77,6 +79,6 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
         self.model = (IEARestaurantDetailHeader) value;
 
         self.displayNameLabel.setText(self.model.model.getDisplayName());
-//        self.ratingImageView.queryRatingInReviewsByModel(self.model.model);
+        self.ratingImageView.queryRatingInReviewsByModel(self.model.model.getUUID(), ReviewType.Review_Restaurant);
     }
 }

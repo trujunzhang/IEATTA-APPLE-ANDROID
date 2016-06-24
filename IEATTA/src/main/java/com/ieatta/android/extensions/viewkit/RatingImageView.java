@@ -10,6 +10,7 @@ import com.ieatta.android.cache.IEACache;
 
 
 import org.ieatta.database.models.DBReview;
+import org.ieatta.database.provide.ReviewType;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -35,7 +36,8 @@ public class RatingImageView extends ImageView {
     }
 
 
-    public void queryRatingInReviewsByModel() {
+    public void queryRatingInReviewsByModel(String reviewRef, ReviewType reviewType) {
+
 //        self.queryRatingInReviewsByReview(new Review(model));
     }
 

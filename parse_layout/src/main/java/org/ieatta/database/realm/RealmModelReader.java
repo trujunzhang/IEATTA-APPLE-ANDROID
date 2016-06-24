@@ -47,6 +47,35 @@ public class RealmModelReader<T extends RealmObject> {
         return Task.forResult(result);
     }
 
+    public Task<Integer> fetchRatingReview(DBBuilder builder, boolean needClose, List<Realm> realmList) {
+        RealmResults<T> result = null;
+
+        Realm realm = RealmInstance.getInstance();
+        try {
+            RealmQuery<T> query = realm.where(this.clazz);
+
+            buildAll(builder, query);
+
+            // Execute the query:
+            result = query.findAll();
+
+            if (result != null)
+                resultSorted(builder, result);
+        } catch (Exception e) {
+            return Task.forError(e);
+        } finally {
+            if (needClose) {
+                realm.close();
+            } else {
+                realmList.add(realm);
+            }
+        }
+
+        int rating = 0;
+
+        return Task.forResult(rating);
+    }
+
     public Task<T> getFirstObject(DBBuilder builder, boolean needClose, List<Realm> realmList) {
         T result = null;
 
