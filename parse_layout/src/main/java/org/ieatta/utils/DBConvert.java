@@ -6,6 +6,7 @@ import org.ieatta.database.models.DBPeopleInEvent;
 import org.ieatta.database.models.DBPhoto;
 import org.ieatta.database.models.DBReview;
 import org.ieatta.database.models.DBTeam;
+
 import com.ieatta.provide.AppConstant;
 import com.tableview.model.IEAOrderedPeople;
 import com.tableview.model.IEAReviewsCellModel;
@@ -33,27 +34,14 @@ public class DBConvert {
 //    }
 
 
+    // MARK: Anonymous User
+    public static DBTeam getAnonymousUser() {
+        DBTeam team = new DBTeam();
+        team.setDisplayName("Anonymous");
 
-
-
-    private static DBTeam getTeam(String userRef, RealmResults<DBTeam> teams) {
-        for (DBTeam team : teams) {
-            if (team.getUUID().equals(userRef))
-                return team;
-        }
-//        return AppConstant.getAnonymousUser();
-        return null;
+        return team;
     }
 
-    public static List<IEAReviewsCellModel> toReviewsCellModels(RealmResults<DBReview> reviews, RealmResults<DBTeam> teams) {
-        List<IEAReviewsCellModel> list = new LinkedList<>();
-
-        for (int i = 0; i < teams.size(); i++) {
-            DBReview review = reviews.get(i);
-//            list.add(new IEAReviewsCellModel(review, DBConvert.getTeam(review.getUserRef(), teams)));
-        }
-        return list;
-    }
 
     public static List<IEAOrderedPeople> toOrderedPeopleList(RealmResults<DBTeam> teams, DBEvent event) {
         List<IEAOrderedPeople> list = new LinkedList<>();

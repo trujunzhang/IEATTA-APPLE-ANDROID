@@ -1,6 +1,6 @@
-package com.ieatta.android.modules.common.edit;
-
-import com.ieatta.provide.IEAEditKey;
+//package com.ieatta.android.modules.common.edit;
+//
+//import com.ieatta.provide.IEAEditKey;
 
 //public class EditBaseCellModel {
 //    public IEAEditKey editKey = IEAEditKey.Unknow;

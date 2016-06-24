@@ -9,6 +9,7 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAMoreReviewsFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
+import com.ieatta.android.modules.cells.model.IEAReviewsCellModel;
 import com.ieatta.android.modules.cells.photos.IEAGalleryThumbnail;
 import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
@@ -17,7 +18,6 @@ import com.tableview.RecycleViewManager;
 import com.tableview.adapter.NSIndexPath;
 import com.tableview.adapter.RecyclerOnItemClickListener;
 import com.tableview.model.EditBaseCellModel;
-import com.tableview.model.IEAReviewsCellModel;
 import com.tableview.utils.CollectionUtil;
 
 import org.ieatta.activity.LeadImage;

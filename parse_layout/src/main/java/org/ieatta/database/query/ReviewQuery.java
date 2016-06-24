@@ -1,14 +1,13 @@
 package org.ieatta.database.query;
 
 
-
 import org.ieatta.database.models.DBReview;
 import org.ieatta.database.models.DBTeam;
 import org.ieatta.database.provide.ReviewType;
 import org.ieatta.database.realm.DBBuilder;
 import org.ieatta.database.realm.RealmModelReader;
+
 import com.ieatta.provide.AppConstant;
-import com.tableview.model.IEAReviewsCellModel;
 
 import org.ieatta.utils.DBConvert;
 
@@ -66,7 +65,7 @@ public class ReviewQuery {
                 if (task.getResult() == null)
                     return Task.forResult(list);
 
-                list = DBConvert.toReviewsCellModels(ReviewQuery.this.reviews, task.getResult());
+                list = ReviewQuery.this.toReviewsCellModels(ReviewQuery.this.reviews, task.getResult());
                 LocalDatabaseQuery.closeRealmList(realmList);
                 return Task.forResult(list);
             }
@@ -76,11 +75,11 @@ public class ReviewQuery {
     private void makeRatingReview(RealmResults<DBReview> result) {
         int count = result.size();
         int sum = 0;
-        for(DBReview item : result){
-            sum +=item.getRate();
+        for (DBReview item : result) {
+            sum += item.getRate();
         }
 
-        this.ratingReview = sum/count;
+        this.ratingReview = sum / count;
     }
 
     private List<String> getTeamsList(RealmResults<DBReview> reviews, int limit) {
@@ -94,5 +93,25 @@ public class ReviewQuery {
         }
         return list;
     }
+
+
+    private DBTeam getTeam(String userRef, RealmResults<DBTeam> teams) {
+        for (DBTeam team : teams) {
+            if (team.getUUID().equals(userRef))
+                return team;
+        }
+        return DBConvert.getAnonymousUser();
+    }
+
+    public List<IEAReviewsCellModel> toReviewsCellModels(RealmResults<DBReview> reviews, RealmResults<DBTeam> teams) {
+        List<IEAReviewsCellModel> list = new LinkedList<>();
+
+        for (int i = 0; i < teams.size(); i++) {
+            DBReview review = reviews.get(i);
+            list.add(new IEAReviewsCellModel(review, this.getTeam(review.getUserRef(), teams)));
+        }
+        return list;
+    }
+
 
 }

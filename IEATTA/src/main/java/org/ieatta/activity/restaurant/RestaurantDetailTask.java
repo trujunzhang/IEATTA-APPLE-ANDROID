@@ -10,12 +10,12 @@ import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
 import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell;
 import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
+import com.ieatta.android.modules.cells.model.IEAReviewsCellModel;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.provide.AppConstant;
 import com.ieatta.provide.IEAEditKey;
 import com.tableview.adapter.NSIndexPath;
-import com.tableview.model.IEAReviewsCellModel;
 
 import org.ieatta.activity.LeadImageCollection;
 import org.ieatta.database.models.DBEvent;
