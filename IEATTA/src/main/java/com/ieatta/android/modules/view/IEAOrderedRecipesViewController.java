@@ -1,25 +1,6 @@
 package com.ieatta.android.modules.view;
 
-import android.content.Intent;
-import android.os.Bundle;
-
-import com.ieatta.android.R;
 import com.ieatta.android.modules.IEASplitDetailViewController;
-import com.ieatta.android.modules.adapter.NSIndexPath;
-import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
-import com.ieatta.android.modules.cells.IEAOrderedRecipeCell;
-import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
-import com.ieatta.provide.IEAEditKey;
-import com.ieatta.android.modules.view.edit.IEAEditRecipeViewController;
-import com.ieatta.android.notification.NSNotification;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import bolts.Continuation;
-import bolts.Task;
 
 
 public class IEAOrderedRecipesViewController extends IEASplitDetailViewController {
