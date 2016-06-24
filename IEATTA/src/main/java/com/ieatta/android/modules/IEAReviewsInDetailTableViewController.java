@@ -17,7 +17,7 @@ import bolts.Continuation;
 import bolts.Task;
 
 /// IEAReviewsInDetailTableViewController <|-- IEARestaurantDetailActivity
-/// IEAReviewsInDetailTableViewController <|-- IEAEventDetailViewController
+/// IEAReviewsInDetailTableViewController <|-- IEAEventActivity
 /// IEAReviewsInDetailTableViewController <|-- IEARecipeDetailViewController
 public class IEAReviewsInDetailTableViewController extends IEABaseReviewsTableViewController {
     private IEAReviewsInDetailTableViewController self = this;

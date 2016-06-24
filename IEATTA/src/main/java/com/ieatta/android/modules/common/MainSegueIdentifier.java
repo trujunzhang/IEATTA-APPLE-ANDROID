@@ -1,7 +1,7 @@
 package com.ieatta.android.modules.common;
 
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
-import com.ieatta.android.modules.view.IEAEventDetailViewController;
+import org.ieatta.activity.event.IEAEventActivity;
 import com.ieatta.android.modules.view.IEAOrderedRecipesViewController;
 import com.ieatta.android.modules.view.IEARecipeDetailViewController;
 
@@ -31,7 +31,7 @@ public enum MainSegueIdentifier {
     readReviewsSegueIdentifier("addEditRestaurant", IEAReadReviewsViewController.class),
     // Four detail pages.
     detailRestaurantSegueIdentifier("detailRestaurant", IEARestaurantDetailActivity.class),
-    detailEventSegueIdentifier("detailEvent", IEAEventDetailViewController.class),
+    detailEventSegueIdentifier("detailEvent", IEAEventActivity.class),
     detailOrderedRecipesSegueIdentifier("detailOrderedRecipes", IEAOrderedRecipesViewController.class),
     detailRecipeSegueIdentifier("detailRecipe", IEARecipeDetailViewController.class),
 

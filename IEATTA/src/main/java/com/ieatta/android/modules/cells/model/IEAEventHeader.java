@@ -1,12 +1,13 @@
 package com.ieatta.android.modules.cells.model;
 
+import org.ieatta.activity.event.IEAEventActivity;
+import org.ieatta.database.models.DBEvent;
+
 public class IEAEventHeader {
 
-//    public IEAEventDetailViewController viewController;
-//    public Event model;
-//
-//    public IEAEventHeader(IEAEventDetailViewController viewController, Event model) {
-//        this.viewController = viewController;
-//        this.model = model;
-//    }
+    public DBEvent model;
+
+    public IEAEventHeader(DBEvent model) {
+        this.model = model;
+    }
 }

@@ -8,7 +8,9 @@ import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.adapter.RecyclerItemClickListener;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.view.IEAChoicePeopleViewController;
-import com.ieatta.android.modules.view.IEAEventDetailViewController;
+
+import org.ieatta.activity.event.IEAEventActivity;
+
 import com.ieatta.android.modules.view.IEAOrderedRecipesViewController;
 import com.ieatta.android.modules.view.IEARecipeDetailViewController;
 
@@ -102,7 +104,7 @@ public class IEAAppSegureTableViewController extends IEANotificationTableViewCon
     protected void segueForRestaurantDetailViewController(IEARestaurantDetailActivity destination, Intent sender) {
     }
 
-    protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender) {
+    protected void segueForEventDetailViewController(IEAEventActivity destination, Intent sender) {
     }
 
     protected void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {

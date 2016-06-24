@@ -1,5 +1,5 @@
-package com.tableview.model;
-
-public class IEAFooterViewModel {
-
-}
+//package com.tableview.model;
+//
+//public class IEAFooterViewModel {
+//
+//}

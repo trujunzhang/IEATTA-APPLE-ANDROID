@@ -1,43 +1,24 @@
-package com.ieatta.android.modules.view;
+package org.ieatta.activity.event;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
-import com.ieatta.android.R;
-import com.ieatta.android.apps.AppAlertView;
-import com.ieatta.android.cache.IntentCache;
-import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
-import com.ieatta.android.modules.adapter.NSIndexPath;
-import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
-import com.ieatta.android.modules.cells.headerview.IEAEventHeaderCell;
-import com.ieatta.android.modules.cells.model.IEAEventHeader;
-import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
-import com.ieatta.android.modules.common.MainSegueIdentifier;
-import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
-import com.ieatta.provide.IEAEditKey;
-import com.ieatta.android.modules.tools.CollectionUtils;
-import com.ieatta.android.modules.view.edit.IEAEditEventViewController;
-import com.ieatta.android.notification.NSNotification;
-import java.util.LinkedList;
-import java.util.List;
+import com.ieatta.android.IEAPageActivity;
 
-import bolts.Continuation;
-import bolts.Task;
+public class IEAEventActivity extends IEAPageActivity {
 
+    private EventlTask task;
 
-public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewController {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    enum EventDetailSection {
-        sectionHeader,        //= 0
-        sectionOrderedPeople, //= 1
-        sectionReviews,       //= 2
+        task = new EventlTask(this, this.recyclerView);
+        task.makeActivePage();
     }
 
-    private IEAEventDetailViewController self = this;
-
-//
 //    public ParseModelAbstract getPageModel() {
-//        return self.event;
+//        return this.event;
 //    }
 //
 //    public boolean shouldShowHUD() {
@@ -57,57 +38,57 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //
-//        self.event = (Event) self.getTransferedModel();
+//        this.event = (Event) this.getTransferedModel();
 //
 //        // Do any additional setup after loading the view.
-////        assert(self.event != nil, "Must setup Event's instance.")
-////        assert(self.event?.belongToModel != nil, "Must setup Restaurant's instance.")
+////        assert(this.event != nil, "Must setup Event's instance.")
+////        assert(this.event?.belongToModel != nil, "Must setup Restaurant's instance.")
 //
-////        NSNotificationCenter.defaultCenter().addObserver(self, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
-////        NSNotificationCenter.defaultCenter().addObserver(self, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
+////        NSNotificationCenter.defaultCenter().addObserver(this, selector: "EventWasCreated:", name: PAModelCreateEventNotification, object: nil)
+////        NSNotificationCenter.defaultCenter().addObserver(this, selector: "RecipeWasCreated:", name: PARecipeCreatedNotification, object: nil)
 //
-//        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(self.event))
+//        PeopleInEvent.queryOrderedPeople(ParseModelAbstract.getPoint(this.event))
 //                .onSuccessTask(new Continuation<List , Task<List >>() {
 //                    @Override
 //                    public Task<List > then(Task<List > task) throws Exception {
-//                        self.fetchedPeopleInEvent = task.getResult();
+//                        this.fetchedPeopleInEvent = task.getResult();
 //
 //                        // 2. Get all people in the event.
-//                        return Team.queryTeamByPeopleInEvent(self.fetchedPeopleInEvent);
+//                        return Team.queryTeamByPeopleInEvent(this.fetchedPeopleInEvent);
 //                    }
 //                }).onSuccessTask(new Continuation<List , Task<List >>() {
 //            @Override
 //            public Task<List > then(Task<List > task) throws Exception {
-//                self.fetchedPeople = new LinkedList (task.getResult());
+//                this.fetchedPeople = new LinkedList (task.getResult());
 //
 //                //  Sort, by fetchedPeopleInEvent
-//                return PeopleInEvent.sortOrderedPeople(self.fetchedPeople, self.fetchedPeopleInEvent);
+//                return PeopleInEvent.sortOrderedPeople(this.fetchedPeople, this.fetchedPeopleInEvent);
 //            }
 //        }).onSuccessTask(new Continuation<List , Task<Boolean>>() {
 //            @Override
 //            public Task<Boolean> then(Task<List > task) throws Exception {
 //                // Next, fetch related photos
-//                return self.getPhotosForModelsTask(task);
+//                return this.getPhotosForModelsTask(task);
 //            }
 //        }).onSuccessTask(new Continuation<Boolean, Task<Boolean>>() {
 //            @Override
 //            public Task<Boolean> then(Task<Boolean> task) throws Exception {
 //
 //                // Next, Load Reviews.
-//                return self.getReviewsRelatedModelQueryTask();
+//                return this.getReviewsRelatedModelQueryTask();
 //            }
 //        }).onSuccess(new Continuation<Boolean, Void>() {
 //            @Override
 //            public Void then(Task<Boolean> task) throws Exception {
 //
-//                self.setRegisterCellClass(IEAEventHeaderCell.getType(), EventDetailSection.sectionHeader.ordinal());
-//                self.setSectionItems(CollectionUtils.createList(new IEAEventHeader(self, self.event)), EventDetailSection.sectionHeader.ordinal());
+//                this.setRegisterCellClass(IEAEventHeaderCell.getType(), EventDetailSection.sectionHeader.ordinal());
+//                this.setSectionItems(CollectionUtils.createList(new IEAEventHeader(this, this.event)), EventDetailSection.sectionHeader.ordinal());
 //
-//                self.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.getType(), EventDetailSection.sectionOrderedPeople.ordinal());
-//                self.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
+//                this.setRegisterCellClassWhenSelected(IEAOrderedPeopleCell.getType(), EventDetailSection.sectionOrderedPeople.ordinal());
+//                this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.People_Ordered), EventDetailSection.sectionOrderedPeople.ordinal());
 //
-//                self.addOrderedPeopleSection(self.fetchedPeople);
-//                self.configureReviewsSection();
+//                this.addOrderedPeopleSection(this.fetchedPeople);
+//                this.configureReviewsSection();
 //
 //                return null;
 //            }
@@ -122,9 +103,9 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //
 //    /// Add rows for section "Ordered People".
 //    private void addOrderedPeopleSection(List  orderedPeople) {
-//        List items = IEAOrderedPeople.convertToOrderedPeople(self.fetchedPeople, self.event);
+//        List items = IEAOrderedPeople.convertToOrderedPeople(this.fetchedPeople, this.event);
 //
-//        self.configureDetailSection(items, R.string.Empty_for_Ordered_People, IEAOrderedPeopleCell.getType(), EventDetailSection.sectionOrderedPeople.ordinal());
+//        this.configureDetailSection(items, R.string.Empty_for_Ordered_People, IEAOrderedPeopleCell.getType(), EventDetailSection.sectionOrderedPeople.ordinal());
 //    }
 //
 //    @Override
@@ -136,15 +117,15 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //    protected void didSelectPeople(NSNotification note) {
 //        // 1. Add selected people to tableview.
 //        ParseModelAbstract people = (ParseModelAbstract) note.anObject;
-//        if (self.verifyExist(people) == true) {
+//        if (this.verifyExist(people) == true) {
 //            return;
 //        }
 //
-//        self.fetchedPeople.addFirst(people);
-//        self.addOrderedPeopleSection(self.fetchedPeople);
+//        this.fetchedPeople.addFirst(people);
+//        this.addOrderedPeopleSection(this.fetchedPeople);
 //
 //        // 2. Save selected people to database
-//        new PeopleInEvent(ParseModelAbstract.getPoint(people), ParseModelAbstract.getPoint(self.event)).saveTeam().
+//        new PeopleInEvent(ParseModelAbstract.getPoint(people), ParseModelAbstract.getPoint(this.event)).saveTeam().
 //                continueWith(new Continuation<Void, Object>() {
 //                    @Override
 //                    public Object then(Task<Void> task) throws Exception {
@@ -157,7 +138,7 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //    }
 //
 //    private boolean verifyExist(ParseModelAbstract people) {
-//        for (ParseModelAbstract model : self.fetchedPeople) {
+//        for (ParseModelAbstract model : this.fetchedPeople) {
 //            if (model.equals(people)) {
 //                return true;
 //            }
@@ -171,9 +152,9 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //        if (indexPath.section == EventDetailSection.sectionOrderedPeople.ordinal()) {
 //            IEAOrderedPeople people = (IEAOrderedPeople) model;
 //
-//            people.model.belongToModel = self.event;
-//            self.selectedModel = people.model;
-//            self.performSegueWithIdentifier(MainSegueIdentifier.detailOrderedRecipesSegueIdentifier, self);
+//            people.model.belongToModel = this.event;
+//            this.selectedModel = people.model;
+//            this.performSegueWithIdentifier(MainSegueIdentifier.detailOrderedRecipesSegueIdentifier, this);
 //        } else {
 //            super.whenSelectedEvent(model, indexPath);
 //        }
@@ -181,38 +162,38 @@ public class IEAEventDetailViewController extends IEAReviewsInDetailTableViewCon
 //
 //    @Override
 //    public void segueForOrderedRecipesViewController(IEAOrderedRecipesViewController destination, Intent sender) {
-//        self.setTransferedModel(sender, self.selectedModel);
+//        this.setTransferedModel(sender, this.selectedModel);
 //    }
 //
 //    @Override
 //    public void segueForChoicePeopleViewController(IEAChoicePeopleViewController destination, Intent sender) {
-//        IntentCache.sharedInstance.orderedPeople = self.fetchedPeople;
+//        IntentCache.sharedInstance.orderedPeople = this.fetchedPeople;
 //    }
 //
 //    @Override
 //    public void segueForEditEventViewController(IEAEditEventViewController destination, Intent sender) {
 //        // Edit event
-//        self.setTransferedModelForEdit(sender, self.event);
+//        this.setTransferedModelForEdit(sender, this.event);
 //    }
 //
 //    // MARK: Header cell events
 //    public void addPeopleTaped() {
-//        self.performSegueWithIdentifier(MainSegueIdentifier.choicePeopleSegueIdentifier, self);
+//        this.performSegueWithIdentifier(MainSegueIdentifier.choicePeopleSegueIdentifier, this);
 //    }
 //
 //    public void performSegueForEditingModel() {
-//        self.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier, self);
+//        this.performSegueWithIdentifier(MainSegueIdentifier.editEventSegueIdentifier, this);
 //    }
 //
 //    // MARK: NSNotificationCenter notification handlers
 //    @Override
 //    protected void RecipeWasCreated(NSNotification note) {
-//        self.addOrderedPeopleSection(self.fetchedPeople);
+//        this.addOrderedPeopleSection(this.fetchedPeople);
 //    }
 //
 //    @Override
 //    protected void EventWasCreated(NSNotification note) {
-//        self.setSectionItems(CollectionUtils.createList(new IEAEventHeader(self, self.event)), EventDetailSection.sectionHeader.ordinal());
+//        this.setSectionItems(CollectionUtils.createList(new IEAEventHeader(this, this.event)), EventDetailSection.sectionHeader.ordinal());
 //    }
 
 

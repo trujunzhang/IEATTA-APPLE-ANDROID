@@ -2,9 +2,9 @@ package org.ieatta.activity.restaurant;
 
 import android.os.Bundle;
 
-import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
+import com.ieatta.android.IEAPageActivity;
 
-public class IEARestaurantDetailActivity extends IEAReviewsInDetailTableViewController {
+public class IEARestaurantDetailActivity extends IEAPageActivity {
     private RestaurantDetailTask task;
 
     @Override
@@ -100,7 +100,7 @@ public class IEARestaurantDetailActivity extends IEAReviewsInDetailTableViewCont
 //    }
 //
 //    @Override
-//    protected void segueForEventDetailViewController(IEAEventDetailViewController destination, Intent sender) {
+//    protected void segueForEventDetailViewController(IEAEventActivity destination, Intent sender) {
 //        /// Show detailed event
 //        this.setTransferedModel(sender, this.selectedModel);
 //    }
