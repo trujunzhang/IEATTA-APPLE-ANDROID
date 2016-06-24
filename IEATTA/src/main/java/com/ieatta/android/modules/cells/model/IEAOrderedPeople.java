@@ -2,7 +2,7 @@ package com.ieatta.android.modules.cells.model;
 
 
 
-public class IEAOrderedPeople {
+//public class IEAOrderedPeople {
 //    private IEAOrderedPeople self = this;
 //    public Team model;
 //    public Event event;
@@ -34,4 +34,4 @@ public class IEAOrderedPeople {
 //    }
 
 
-}
+//}

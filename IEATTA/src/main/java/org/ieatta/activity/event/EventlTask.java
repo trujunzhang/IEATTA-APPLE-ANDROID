@@ -10,13 +10,13 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
-import com.ieatta.android.modules.cells.model.IEAOrderedPeople;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.provide.AppConstant;
 import com.ieatta.provide.IEAEditKey;
 import com.tableview.adapter.NSIndexPath;
+import com.tableview.model.IEAOrderedPeople;
 
 import org.ieatta.activity.LeadImageCollection;
 import org.ieatta.database.models.DBEvent;
@@ -64,7 +64,6 @@ public class EventlTask extends FragmentTask {
     public DBRestaurant restaurant;
     public DBEvent event;
     public List<IEAOrderedPeople> orderedPeopleList;
-    private LeadImageCollection leadImageCollection; // for restaurants
 
     /**
      * Execute Task for Event detail.
@@ -93,7 +92,6 @@ public class EventlTask extends FragmentTask {
         }).onSuccessTask(new Continuation<RealmResults<DBPhoto>, Task<RealmResults<DBPeopleInEvent>>>() {
             @Override
             public Task<RealmResults<DBPeopleInEvent>> then(Task<RealmResults<DBPhoto>> task) throws Exception {
-//                EventlTask.this.leadImageCollection = DBConvert.toLeadImageCollection(task.getResult());
                 return new RealmModelReader<DBPeopleInEvent>(DBPeopleInEvent.class).fetchResults(
                         LocalDatabaseQuery.getQueryOrderedPeople(_eventUUID), false, realmList);
             }
@@ -106,7 +104,7 @@ public class EventlTask extends FragmentTask {
         }).onSuccessTask(new Continuation<RealmResults<DBTeam>, Task<List<IEAReviewsCellModel>>>() {
             @Override
             public Task<List<IEAReviewsCellModel>> then(Task<RealmResults<DBTeam>> task) throws Exception {
-//                EventlTask.this.orderedPeopleList = DBConvert.toOrderedPeopleList(task.getResult(), EventlTask.this.event);
+                EventlTask.this.orderedPeopleList = EventlTask.this.toOrderedPeopleList(task.getResult(), EventlTask.this.event);
                 return reviewQuery.queryReview(_eventUUID, ReviewType.Review_Event, AppConstant.limit_reviews);
             }
         }).onSuccess(new Continuation<List<IEAReviewsCellModel>, Void>() {

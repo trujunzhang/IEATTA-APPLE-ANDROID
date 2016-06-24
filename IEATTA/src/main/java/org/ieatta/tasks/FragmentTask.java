@@ -17,6 +17,7 @@ import com.tableview.RecycleViewManager;
 import com.tableview.adapter.NSIndexPath;
 import com.tableview.adapter.RecyclerOnItemClickListener;
 import com.tableview.model.EditBaseCellModel;
+import com.tableview.model.IEAOrderedPeople;
 import com.tableview.utils.CollectionUtil;
 
 import org.ieatta.activity.LeadImage;
@@ -25,7 +26,9 @@ import org.ieatta.activity.gallery.GalleryCollection;
 import org.ieatta.activity.gallery.GalleryItem;
 import org.ieatta.activity.gallery.GalleryThumbnailScrollView;
 import org.ieatta.activity.gallery.IEAGalleryThumbnailCell;
+import org.ieatta.database.models.DBEvent;
 import org.ieatta.database.models.DBPhoto;
+import org.ieatta.database.models.DBTeam;
 import org.ieatta.database.provide.ReviewType;
 import org.ieatta.database.query.IEAReviewsCellModel;
 import org.ieatta.database.query.ReviewQuery;
@@ -163,6 +166,13 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
         }, Task.UI_THREAD_EXECUTOR);
     }
 
+    protected List<IEAOrderedPeople> toOrderedPeopleList(RealmResults<DBTeam> teams, DBEvent event) {
+        List<IEAOrderedPeople> list = new LinkedList<>();
+        for (DBTeam team : teams) {
+            list.add(new IEAOrderedPeople(team.getUUID(), team.getDisplayName(), event.getUUID()));
+        }
+        return list;
+    }
 
     protected LeadImageCollection toLeadImageCollection(RealmResults<DBPhoto> photos) {
         List<LeadImage> leadImages = new LinkedList<>();
