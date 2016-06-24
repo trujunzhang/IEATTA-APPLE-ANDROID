@@ -81,7 +81,6 @@ public class LocalDatabaseQuery {
     }
 
     public static Task<Integer> queryRatingInReviews(String reviewRef, ReviewType reviewType) {
-        List<Realm> realmList = new LinkedList<>();
         DBBuilder builder = new DBBuilder()
                 .whereEqualTo(AppConstant.kPAPFieldReviewRefKey, reviewRef)
                 .whereEqualTo(AppConstant.kPAPFieldReviewTypeKey, reviewType.ordinal());
