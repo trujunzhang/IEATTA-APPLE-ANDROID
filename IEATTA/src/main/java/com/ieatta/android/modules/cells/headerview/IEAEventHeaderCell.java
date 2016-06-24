@@ -9,6 +9,8 @@ import com.ieatta.android.extensions.viewkit.RatingImageView;
 import com.tableview.adapter.IEAViewHolder;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
 
+import org.ieatta.database.provide.ReviewType;
+
 public class IEAEventHeaderCell extends IEAViewHolder {
     public static CellType getType() {
         return new CellType(IEAEventHeaderCell.class, R.layout.event_header_cell);
@@ -38,22 +40,22 @@ public class IEAEventHeaderCell extends IEAViewHolder {
         self.displayNameLabel = (TextView) itemView.findViewById(R.id.displayNameTextView);
         self.ratingImageView = (RatingImageView) itemView.findViewById(R.id.business_review_star_rating);
 
-//        self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
-//        self.editButton.setText(R.string.Edit_Event);
-//        self.editButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        self.editButton = (TextView) itemView.findViewById(R.id.editNameTextView);
+        self.editButton.setText(R.string.Edit_Event);
+        self.editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                self.model.viewController.performSegueForEditingModel();
-//            }
-//        });
-//        self.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
-//        self.firstButton.setText(R.string.Select_People);
-//        self.firstButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+            }
+        });
+        self.firstButton = (TextView) itemView.findViewById(R.id.firstTextView);
+        self.firstButton.setText(R.string.Select_People);
+        self.firstButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                self.model.viewController.addPeopleTaped();
-//            }
-//        });
+            }
+        });
         self.secondButton = (TextView) itemView.findViewById(R.id.secondTextView);
         self.secondButton.setText(R.string.Write_Review);
         self.secondButton.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +74,15 @@ public class IEAEventHeaderCell extends IEAViewHolder {
         });
     }
 
+    private void setEventHeader(IEAEventHeader header) {
+        self.restaurantNameLabel.setText(model.restaurantName);
+        self.displayNameLabel.setText(model.eventName);
+
+        self.ratingImageView.queryRatingInReviewsByModel(model.eventUUID, ReviewType.Review_Event);
+    }
+
     @Override
     public void render(Object value) {
-        self.model = (IEAEventHeader) value;
-
-//        self.restaurantNameLabel.setText(model.model.belongToModel.displayName);
-//        self.displayNameLabel.setText(model.model.displayName);
-//
-//        self.ratingImageView.queryRatingInReviewsByModel(model.model);
+        this.setEventHeader((IEAEventHeader) value);
     }
 }

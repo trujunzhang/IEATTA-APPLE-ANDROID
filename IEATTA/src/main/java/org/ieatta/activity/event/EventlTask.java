@@ -9,6 +9,7 @@ import android.view.View;
 import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.IEAOrderedPeopleCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
+import com.ieatta.android.modules.cells.headerview.IEAEventHeaderCell;
 import com.ieatta.android.modules.cells.model.IEAEventHeader;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
@@ -132,7 +133,9 @@ public class EventlTask extends FragmentTask {
 
     @Override
     public void postUI() {
-        this.manager.setSectionItems(CollectionUtils.createList(new IEAEventHeader(this.event)), EventDetailSection.section_header.ordinal());
+        this.manager.setSectionItems(IEAEventHeaderCell.getType(),
+                CollectionUtils.createList(new IEAEventHeader(this.restaurant.getDisplayName(), this.event.getDisplayName(), this.event.getUUID())),
+                EventDetailSection.section_header.ordinal());
         this.manager.setSectionItems(this.orderedPeopleList, EventDetailSection.section_ordered_people.ordinal());
 
         postReviews(EventDetailSection.section_reviews.ordinal(), mEventUUID, ReviewType.Review_Event, AppConstant.limit_reviews);
