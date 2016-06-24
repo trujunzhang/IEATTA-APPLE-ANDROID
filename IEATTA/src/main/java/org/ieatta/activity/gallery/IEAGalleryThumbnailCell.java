@@ -2,11 +2,10 @@ package org.ieatta.activity.gallery;
 
 import android.view.View;
 
+import com.ieatta.android.R;
+import com.ieatta.android.modules.cells.photos.IEAGalleryThumbnail;
 import com.tableview.adapter.IEAViewHolder;
 import com.tableview.storage.models.CellType;
-
-import org.ieatta.R;
-import org.ieatta.cells.model.IEAGalleryThumbnail;
 
 public class IEAGalleryThumbnailCell extends IEAViewHolder {
     public static CellType getType() {
