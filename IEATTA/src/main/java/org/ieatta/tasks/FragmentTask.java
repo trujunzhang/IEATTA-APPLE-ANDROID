@@ -111,11 +111,6 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
         this.manager.setFooterModelInSection(new SectionMoreReviewsFooterCellModel(otherCount), forSectionIndex, IEAMoreReviewsFooterCell.getType());
     }
 
-    protected int getEmptyHeaderViewHeight() {
-        return DimenUtil.getDisplayWidthPx();
-    }
-
-
     protected GalleryThumbnailScrollView.GalleryViewListener galleryViewListener
             = new GalleryThumbnailScrollView.GalleryViewListener() {
         @Override
