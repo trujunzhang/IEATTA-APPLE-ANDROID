@@ -123,7 +123,7 @@ public class RestaurantDetailTask extends FragmentTask {
         this.manager.setSectionItems(IEARestaurantEventsCell.getType(), this.events, RestaurantDetailSection.section_events.ordinal());
 
         postPhotosGallery(RestaurantDetailSection.section_gallery_thumbnail.ordinal());
-//        postReviews(RestaurantDetailSection.section_reviews.ordinal(), mRestaurantUUID, ReviewType.Review_Restaurant, AppConstant.limit_reviews);
+        postReviews(RestaurantDetailSection.section_reviews.ordinal(), mRestaurantUUID, ReviewType.Review_Restaurant, AppConstant.limit_reviews);
     }
 
 }

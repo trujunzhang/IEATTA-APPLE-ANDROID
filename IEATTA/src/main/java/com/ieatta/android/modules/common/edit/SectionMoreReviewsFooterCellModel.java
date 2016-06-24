@@ -6,10 +6,11 @@ import com.tableview.model.EditBaseCellModel;
 
 
 public class SectionMoreReviewsFooterCellModel extends EditBaseCellModel {
-    public IEAReviewsInDetailTableViewController viewController;
+    public int otherReviewCount;
 
-    public SectionMoreReviewsFooterCellModel(IEAEditKey editKey) {
-        super(editKey);
+    public SectionMoreReviewsFooterCellModel(int otherReviewCount) {
+        super(IEAEditKey.Section_Title);
+        this.otherReviewCount = otherReviewCount;
     }
 //    public ParseModelAbstract reviewForModel;
 

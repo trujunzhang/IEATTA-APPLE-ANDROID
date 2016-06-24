@@ -5,14 +5,11 @@ import android.widget.Button;
 import android.yelp.com.commonlib.EnvironmentUtils;
 
 import com.ieatta.android.R;
-import com.ieatta.android.extensions.storage.models.CellType;
+import com.tableview.storage.models.CellType;
 import com.tableview.adapter.IEAViewHolder;
 import com.tableview.adapter.enums.ViewHolderType;
 import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 
-
-import bolts.Continuation;
-import bolts.Task;
 
 public class IEAMoreReviewsFooterCell extends IEAViewHolder {
     public static CellType getType() {
@@ -41,7 +38,7 @@ public class IEAMoreReviewsFooterCell extends IEAViewHolder {
         self.footerLargeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                self.model.viewController.performSegueForSeeReviews();
+//                self.model.viewController.performSegueForSeeReviews();
             }
         });
     }

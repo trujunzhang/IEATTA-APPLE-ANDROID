@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ieatta.android.R;
+import com.ieatta.android.modules.cells.headerfooterview.IEAMoreReviewsFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAViewForHeaderInSectionCell;
 import com.ieatta.android.modules.cells.photos.IEAGalleryThumbnail;
+import com.ieatta.android.modules.common.edit.SectionMoreReviewsFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
 import com.ieatta.provide.IEAEditKey;
 import com.tableview.RecycleViewManager;
@@ -101,12 +103,12 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
     }
 
     public void postReviews(int forSectionIndex, String reviewRef, ReviewType type, int limit) {
-//        this.manager.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Reviews), forSectionIndex);
+        this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Reviews), forSectionIndex);
         this.manager.setSectionItems(this.reviewsCellModelList, forSectionIndex);
 
         int otherCount = this.reviewQuery.reviewsCount <= 0 ? 0 : (this.reviewQuery.reviewsCount - limit);
         new RecycleCellFunnel().logOtherReviewsCount(otherCount);
-//        this.manager.setFooterModelInSection(new SectionMoreReviewsFooterCellModel(otherCount), forSectionIndex, IEAMoreReviewsFooterCell.getType());
+        this.manager.setFooterModelInSection(new SectionMoreReviewsFooterCellModel(otherCount), forSectionIndex, IEAMoreReviewsFooterCell.getType());
     }
 
     protected int getEmptyHeaderViewHeight() {
