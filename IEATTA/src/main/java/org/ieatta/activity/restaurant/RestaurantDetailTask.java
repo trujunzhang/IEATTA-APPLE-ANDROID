@@ -8,7 +8,9 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
 import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell;
+import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
 import com.ieatta.android.modules.common.edit.SectionTitleCellModel;
+import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.provide.AppConstant;
 import com.ieatta.provide.IEAEditKey;
 import com.tableview.adapter.NSIndexPath;
@@ -112,16 +114,13 @@ public class RestaurantDetailTask extends FragmentTask {
     public void prepareUI() {
         super.prepareUI();
         this.manager.setRegisterCellClass(IEAReviewsCell.getType(), RestaurantDetailSection.section_reviews.ordinal());
-
-        this.manager.setRegisterCellClass(IEARestaurantDetailHeaderCell.getType(), RestaurantDetailSection.section_header.ordinal());
-
         this.appendSectionTitleCell(new SectionTitleCellModel(IEAEditKey.Section_Title, R.string.Events_Recorded), RestaurantDetailSection.section_events.ordinal());
     }
 
     @Override
     public void postUI() {
+        this.manager.setSectionItems(IEARestaurantDetailHeaderCell.getType(),CollectionUtils.createList(new IEARestaurantDetailHeader(this.restaurant)), RestaurantDetailSection.section_header.ordinal());
         this.manager.setSectionItems(IEARestaurantEventsCell.getType(), this.events, RestaurantDetailSection.section_events.ordinal());
-//        this.manager.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(this.restaurant)), RestaurantDetailSection.section_header.ordinal());
 
         postPhotosGallery(RestaurantDetailSection.section_gallery_thumbnail.ordinal());
 //        postReviews(RestaurantDetailSection.section_reviews.ordinal(), mRestaurantUUID, ReviewType.Review_Restaurant, AppConstant.limit_reviews);

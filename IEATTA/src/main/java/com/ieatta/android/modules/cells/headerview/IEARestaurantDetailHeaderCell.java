@@ -76,7 +76,7 @@ public class IEARestaurantDetailHeaderCell extends IEAViewHolder {
     public void render(Object value) {
         self.model = (IEARestaurantDetailHeader) value;
 
-//        self.displayNameLabel.setText(self.model.model.displayName);
+        self.displayNameLabel.setText(self.model.model.getDisplayName());
 //        self.ratingImageView.queryRatingInReviewsByModel(self.model.model);
     }
 }

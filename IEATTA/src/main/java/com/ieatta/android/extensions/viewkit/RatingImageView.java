@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.ieatta.android.cache.IEACache;
 
 
+import org.ieatta.database.models.DBReview;
 
 import bolts.Continuation;
 import bolts.Task;
@@ -33,12 +34,12 @@ public class RatingImageView extends ImageView {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-//
-//    public void queryRatingInReviewsByModel(ParseModelAbstract model) {
+
+    public void queryRatingInReviewsByModel() {
 //        self.queryRatingInReviewsByReview(new Review(model));
-//    }
-//
-//    public void queryRatingInReviewsByReview(final Review review) {
+    }
+
+    public void queryRatingInReviewsByReview(final DBReview review) {
 //        Integer integer = IEACache.sharedInstance.avarageRating(review);
 //        if (integer != null) {
 //            self.setImageLevel(integer.intValue());
@@ -55,6 +56,6 @@ public class RatingImageView extends ImageView {
 //                }
 //            }, Task.UI_THREAD_EXECUTOR);
 //        }
-//    }
+    }
 
 }
