@@ -5,6 +5,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ieatta.android.R;
+import com.ieatta.android.extensions.viewkit.AvatarView;
+import com.tableview.model.IEAReviewsCellModel;
 import com.tableview.storage.models.CellType;
 import com.tableview.adapter.IEAViewHolder;
 import com.tableview.adapter.enums.ViewHolderType;
@@ -12,15 +14,18 @@ import com.tableview.adapter.enums.ViewHolderType;
 
 public class IEAReviewsCell extends IEAViewHolder {
     public static CellType getType() {
-        return new CellType(IEAReviewsCell.class, R.layout.reviews_cell);
+        return new CellType(IEAReviewsCell.class, R.layout.cell_reviews);
     }
-
-    private IEAReviewsCell self = this;
 
     @Override
-    public ViewHolderType getViewHolderType() {
-        return ViewHolderType.section;
+    protected boolean shouldOnClickItem() {
+        return false;
     }
+
+    private AvatarView avatarView;
+
+    private TextView titleLabel;
+    private TextView timeAgoTextView;
 
     private ImageView business_review_star_rating;
     private TextView reviewContentLabel;
@@ -28,14 +33,23 @@ public class IEAReviewsCell extends IEAViewHolder {
     public IEAReviewsCell(View itemView) {
         super(itemView);
 
-        self.business_review_star_rating = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
-        self.reviewContentLabel = (TextView) itemView.findViewById(R.id.reviewContentLabel);
+        this.avatarView = (AvatarView) itemView.findViewById(R.id.avatarView);
+        this.titleLabel = (TextView) itemView.findViewById(R.id.titleTextView);
+        this.timeAgoTextView = (TextView) itemView.findViewById(R.id.timeAgoTextView);
+
+        this.business_review_star_rating = (ImageView) itemView.findViewById(R.id.business_review_star_rating);
+        this.reviewContentLabel = (TextView) itemView.findViewById(R.id.reviewContentLabel);
     }
 
     @Override
     public void render(Object value) {
-//        Review model = (Review) value;
-//        self.business_review_star_rating.setImageLevel(model.rate);
-//        self.reviewContentLabel.setText(model.content);
+        IEAReviewsCellModel model = (IEAReviewsCellModel) value;
+
+        this.avatarView.loadNewPhotoByModel(model.userUUID);
+
+        this.titleLabel.setText(model.title);
+        this.timeAgoTextView.setText(model.timeAgoString);
+        this.business_review_star_rating.setImageLevel(model.ratingValue);
+        this.reviewContentLabel.setText(model.reviewContent);
     }
 }
