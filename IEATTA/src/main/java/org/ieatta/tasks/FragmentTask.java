@@ -2,6 +2,7 @@ package org.ieatta.tasks;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -70,6 +71,7 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
     public FragmentTask(Activity activity, RecyclerView recyclerView) {
         this.activity = activity;
         this.manager = new RecycleViewManager(activity.getApplicationContext());
+//        Bundle extras = activity.getIntent().getExtras();
 
         this.setupRecycleView(recyclerView);
     }
@@ -78,9 +80,7 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
 
     }
 
-    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
-        this.manager.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
-    }
+
 
     public Task<Void> executeTask() {
         return Task.forResult(null);
@@ -197,5 +197,8 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
         return new GalleryCollection(galleryItems);
     }
 
+    public void appendSectionTitleCell(EditBaseCellModel cell, int forSectionIndex) {
+        this.manager.appendSectionTitleCell(cell, forSectionIndex, IEAViewForHeaderInSectionCell.getType());
+    }
 
 }

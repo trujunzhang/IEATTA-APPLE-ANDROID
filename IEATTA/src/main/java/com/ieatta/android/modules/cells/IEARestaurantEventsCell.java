@@ -7,6 +7,9 @@ import com.ieatta.android.R;
 import com.tableview.adapter.IEAViewHolder;
 import com.tableview.storage.models.CellType;
 
+import org.ieatta.database.models.DBEvent;
+import org.ieatta.database.utils.DBUtil;
+
 
 public class IEARestaurantEventsCell extends IEAViewHolder {
     public static CellType getType() {
@@ -27,18 +30,21 @@ public class IEARestaurantEventsCell extends IEAViewHolder {
         self.timeAgoLabelLabel = (TextView) itemView.findViewById(R.id.timeAgoTextView);
     }
 
+    private void setEvent(DBEvent event) {
+        self.infoLabel.setText(event.getDisplayName());
+        String waiter = event.getWaiter();
+        if (waiter == null || waiter.equals("")) {
+            self.timeInfoLabel.setText(R.string.No_waiters_servered_for_you);
+        } else {
+            self.timeInfoLabel.setText(waiter);
+        }
+
+        this.timeAgoLabelLabel.setText(DBUtil.getTimeAgoString(event.getObjectCreatedDate()));
+    }
+
+
     @Override
     public void render(Object value) {
-//        Event more = (Event) value;
-//
-//        self.infoLabel.setText(more.displayName);
-//        if (more.waiter == null || more.waiter.equals("")) {
-//            self.timeInfoLabel.setText(R.string.No_waiters_servered_for_you);
-//        } else {
-//            self.timeInfoLabel.setText(more.waiter);
-//        }
-//
-//        self.timeAgoLabelLabel.setText(more.getTimeAgoString());
-
+        this.setEvent((DBEvent) value);
     }
 }

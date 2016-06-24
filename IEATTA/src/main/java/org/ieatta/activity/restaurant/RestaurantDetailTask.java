@@ -111,7 +111,7 @@ public class RestaurantDetailTask extends FragmentTask {
     @Override
     public void prepareUI() {
         super.prepareUI();
-        this.manager.setRegisterCellClass(IEARestaurantEventsCell.getType(), RestaurantDetailSection.section_events.ordinal());
+//        this.manager.setRegisterCellClass(IEARestaurantEventsCell.getType(), RestaurantDetailSection.section_events.ordinal());
         this.manager.setRegisterCellClass(IEAReviewsCell.getType(), RestaurantDetailSection.section_reviews.ordinal());
 
         this.manager.setRegisterCellClass(IEARestaurantDetailHeaderCell.getType(), RestaurantDetailSection.section_header.ordinal());
@@ -121,7 +121,7 @@ public class RestaurantDetailTask extends FragmentTask {
 
     @Override
     public void postUI() {
-        this.manager.setSectionItems(this.events, RestaurantDetailSection.section_events.ordinal());
+        this.manager.setSectionItems(IEARestaurantEventsCell.getType(), this.events, RestaurantDetailSection.section_events.ordinal());
 //        this.manager.setSectionItems(CollectionUtils.createList(new IEARestaurantDetailHeader(this.restaurant)), RestaurantDetailSection.section_header.ordinal());
 
         postPhotosGallery(RestaurantDetailSection.section_gallery_thumbnail.ordinal());

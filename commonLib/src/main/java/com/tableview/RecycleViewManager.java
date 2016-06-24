@@ -111,6 +111,11 @@ public class RecycleViewManager {
         getMemoryStorage().setItems(items, forSectionIndex);
     }
 
+    public void setSectionItems(CellType type, List items, int forSectionIndex) {
+        this.setRegisterCellClass(type, forSectionIndex);
+        this.setSectionItems(items, forSectionIndex);
+    }
+
     public void setSectionItems(List items, int forSectionIndex) {
         getMemoryStorage().setItems(items, forSectionIndex);
     }
