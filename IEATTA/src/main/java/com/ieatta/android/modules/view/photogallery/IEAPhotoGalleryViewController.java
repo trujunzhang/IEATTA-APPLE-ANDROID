@@ -19,7 +19,7 @@ import com.ieatta.android.modules.IEASplitDetailViewController;
 import com.ieatta.android.modules.adapter.NSIndexPath;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
-import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
+//import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.MainSegueIdentifier;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;

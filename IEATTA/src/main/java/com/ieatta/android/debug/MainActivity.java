@@ -10,7 +10,7 @@ import com.ieatta.android.modules.IEAReviewsInDetailTableViewController;
 import com.ieatta.android.modules.adapter.IEAPhotoGalleryAdapter;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryFooterCell;
 import com.ieatta.android.modules.cells.headerfooterview.IEAPhotoGalleryHeaderCell;
-import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
+//import com.ieatta.android.modules.cells.photos.IEAPhotoGalleryCell;
 import com.ieatta.android.modules.common.edit.PhotoGallery;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryFooterCellModel;
 import com.ieatta.android.modules.common.edit.SectionPhotoGalleryHeaderCellModel;
