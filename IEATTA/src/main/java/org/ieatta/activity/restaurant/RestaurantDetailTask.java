@@ -82,7 +82,7 @@ public class RestaurantDetailTask extends FragmentTask {
         }).onSuccessTask(new Continuation<RealmResults<DBPhoto>, Task<List<File>>>() {
             @Override
             public Task<List<File>> then(Task<RealmResults<DBPhoto>> task) throws Exception {
-                RestaurantDetailTask.this.leadImageCollection = RestaurantDetailTask.this.toLeadImageCollection(task.getResult());
+//                RestaurantDetailTask.this.leadImageCollection = RestaurantDetailTask.this.toLeadImageCollection(task.getResult());
                 return ThumbnailImageUtil.sharedInstance.getImagesListTask(_restaurantUUID);
             }
         }).onSuccessTask(new Continuation<List<File>, Task<RealmResults<DBEvent>>>() {
