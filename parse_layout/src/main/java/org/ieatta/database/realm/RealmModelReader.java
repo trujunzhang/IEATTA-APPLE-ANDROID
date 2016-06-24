@@ -64,7 +64,6 @@ public class RealmModelReader<T extends RealmObject> {
             result = query.findAll();
 
             if (result.size() > 0) {
-
                 int sum = 0;
                 for (T model : result) {
                     sum += ((DBReview) model).getRate();
