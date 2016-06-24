@@ -8,13 +8,9 @@ import com.ieatta.android.R;
 import com.ieatta.android.modules.cells.IEARestaurantEventsCell;
 import com.ieatta.android.modules.cells.IEAReviewsCell;
 import com.ieatta.android.modules.cells.headerview.IEARestaurantDetailHeaderCell;
-import com.ieatta.android.modules.cells.model.IEARestaurantDetailHeader;
-import com.ieatta.android.modules.tools.CollectionUtils;
 import com.ieatta.provide.AppConstant;
 import com.ieatta.provide.IEAEditKey;
 import com.tableview.adapter.NSIndexPath;
-import com.tableview.model.IEAFooterViewModel;
-import com.tableview.model.IEAHeaderViewModel;
 import com.tableview.model.IEAReviewsCellModel;
 import com.tableview.model.SectionTitleCellModel;
 
@@ -29,7 +25,6 @@ import org.ieatta.database.realm.DBBuilder;
 import org.ieatta.database.realm.RealmModelReader;
 import org.ieatta.server.cache.ThumbnailImageUtil;
 import org.ieatta.tasks.FragmentTask;
-import org.ieatta.utils.DBConvert;
 
 import java.io.File;
 import java.util.List;
