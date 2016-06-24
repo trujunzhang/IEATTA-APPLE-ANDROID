@@ -79,13 +79,13 @@ public class RestaurantDetailTask extends FragmentTask {
         }).onSuccessTask(new Continuation<RealmResults<DBPhoto>, Task<List<File>>>() {
             @Override
             public Task<List<File>> then(Task<RealmResults<DBPhoto>> task) throws Exception {
-//                RestaurantDetailTask.this.leadImageCollection = DBConvert.toLeadImageCollection(task.getResult());
+                RestaurantDetailTask.this.leadImageCollection = RestaurantDetailTask.this.toLeadImageCollection(task.getResult());
                 return ThumbnailImageUtil.sharedInstance.getImagesListTask(_restaurantUUID);
             }
         }).onSuccessTask(new Continuation<List<File>, Task<RealmResults<DBEvent>>>() {
             @Override
             public Task<RealmResults<DBEvent>> then(Task<List<File>> task) throws Exception {
-//                RestaurantDetailTask.this.thumbnailGalleryCollection = DBConvert.toGalleryCollection(task.getResult());
+                RestaurantDetailTask.this.thumbnailGalleryCollection = RestaurantDetailTask.this.toGalleryCollection(task.getResult());
                 return new RealmModelReader<DBEvent>(DBEvent.class).fetchResults(
                         new DBBuilder().whereEqualTo(AppConstant.kPAPFieldLocalRestaurantKey, _restaurantUUID), false, realmList);
             }

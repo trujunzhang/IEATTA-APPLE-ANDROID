@@ -19,24 +19,32 @@ import com.tableview.model.IEAGalleryThumbnail;
 import com.tableview.model.IEAReviewsCellModel;
 import com.tableview.utils.CollectionUtil;
 
+import org.ieatta.activity.LeadImage;
+import org.ieatta.activity.LeadImageCollection;
 import org.ieatta.activity.gallery.GalleryActivity;
 import org.ieatta.activity.gallery.GalleryCollection;
+import org.ieatta.activity.gallery.GalleryItem;
 import org.ieatta.activity.gallery.GalleryThumbnailScrollView;
 
+import org.ieatta.database.models.DBPhoto;
 import org.ieatta.database.provide.ReviewType;
 import org.ieatta.database.query.LocalDatabaseQuery;
 import org.ieatta.database.query.ReviewQuery;
 
+import org.ieatta.server.cache.ThumbnailImageUtil;
+import org.wikipedia.analytics.DBConvertFunnel;
 import org.wikipedia.analytics.GalleryFunnel;
 import org.wikipedia.analytics.RecycleCellFunnel;
 import org.wikipedia.util.DimenUtil;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
 import bolts.Continuation;
 import bolts.Task;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public abstract class FragmentTask implements RecyclerOnItemClickListener {
     protected static final String EXTRA_ID = "model_id";
@@ -161,6 +169,30 @@ public abstract class FragmentTask implements RecyclerOnItemClickListener {
                 return null;
             }
         }, Task.UI_THREAD_EXECUTOR);
+    }
+
+
+    protected LeadImageCollection toLeadImageCollection(RealmResults<DBPhoto> photos) {
+        List<LeadImage> leadImages = new LinkedList<>();
+        for (DBPhoto photo : photos) {
+            File localFile = ThumbnailImageUtil.sharedInstance.getCacheImageUrl(photo);
+            LeadImage item = new LeadImage("file://" + localFile.getAbsolutePath(), photo.getOriginalUrl());
+            new DBConvertFunnel().logToLeadImageCollection(item.getLocalUrl(), item.getOnlineUrl());
+            leadImages.add(item);
+        }
+        return new LeadImageCollection(leadImages);
+    }
+
+
+    protected GalleryCollection toGalleryCollection(List<File> files) {
+        List<GalleryItem> galleryItems = new LinkedList<>();
+        for (File photoFile : files) {
+            String uuid = photoFile.getName().split("_")[1];
+            String thumbUrl = "file://" + photoFile.getAbsolutePath();
+            GalleryItem item = new GalleryItem(uuid, thumbUrl);
+            galleryItems.add(item);
+        }
+        return new GalleryCollection(galleryItems);
     }
 
 

@@ -11,6 +11,7 @@ import com.tableview.model.IEAOrderedPeople;
 import com.tableview.model.IEAReviewsCellModel;
 
 import org.ieatta.server.cache.ThumbnailImageUtil;
+import org.wikipedia.analytics.DBConvertFunnel;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -30,29 +31,10 @@ public class DBConvert {
 //        }
 //        return list;
 //    }
-//
-//    public static LeadImageCollection toLeadImageCollection(RealmResults<DBPhoto> photos) {
-//        List<LeadImage> leadImages = new LinkedList<>();
-//        for (DBPhoto photo : photos) {
-//            File localFile = ThumbnailImageUtil.sharedInstance.getCacheImageUrl(photo);
-//            LeadImage item = new LeadImage("file://" + localFile.getAbsolutePath(), photo.getOriginalUrl());
-//            new DBConvertFunnel().logToLeadImageCollection(item.getLocalUrl(), item.getOnlineUrl());
-//            leadImages.add(item);
-//        }
-//        return new LeadImageCollection(leadImages);
-//    }
-//
-//
-//    public static GalleryCollection toGalleryCollection(List<File> files) {
-//        List<GalleryItem> galleryItems = new LinkedList<>();
-//        for (File photoFile : files) {
-//            String uuid = photoFile.getName().split("_")[1];
-//            String thumbUrl = "file://" + photoFile.getAbsolutePath();
-//            GalleryItem item = new GalleryItem(uuid, thumbUrl);
-//            galleryItems.add(item);
-//        }
-//        return new GalleryCollection(galleryItems);
-//    }
+
+
+
+
 
     private static DBTeam getTeam(String userRef, RealmResults<DBTeam> teams) {
         for (DBTeam team : teams) {
